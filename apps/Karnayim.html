@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Karnayim · A Primer for Chullin 59b</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    :root{
+      --maroon:       #5a1421;
+      --maroon-deep:  #3d0d18;
+      --maroon-ink:   #2a0810;
+      --ink:          #16110f;
+      --paper:        #ffffff;
+      --paper-soft:   #fafaf9;
+      --paper-tint:   #fbf7f6;
+      --bg:           #f7ecec;
+      --rule:         #e6e6e6;
+      --dotted:       #d8d2cf;
+      --mute:         #6e6663;
+      --mute-soft:    #9a9290;
+      --p-mita:       #5a1421;
+      --p-karet:      #4a2a5a;
+      --p-rabbinic:   #3a4a6b;
+      --p-structural: #6e6663;
+      --display: 'Bricolage Grotesque', system-ui, sans-serif;
+      --body:    'Crimson Pro', Georgia, serif;
+      --hebrew:  'Frank Ruhl Libre', serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: var(--maroon); text-decoration: none; border-bottom: 1px solid currentColor; }
+    a:hover { background: var(--paper-tint); }
+    code { font-family: ui-monospace, 'Cascadia Code', Menlo, monospace; font-size: 0.85em; background: rgba(90,20,33,0.06); padding: 1px 5px; border-radius: 0; color: var(--maroon); }
+
+    .shell-header { position: sticky; top: 0; z-index: 30; background: var(--bg); border-bottom: 1px solid var(--maroon); padding: 14px 28px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-family: var(--display); font-weight: 800; font-size: 15px; letter-spacing: -0.01em; color: var(--maroon-ink); }
+    .brand .heb { font-family: var(--hebrew); font-weight: 700; margin-left: 6px; color: var(--maroon); }
+    .navs { display: flex; gap: 18px; font-family: var(--display); font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); }
+    .navs span.active { color: var(--maroon); }
+    .header-right { display: flex; align-items: center; gap: 18px; }
+    .crumb { font-family: var(--display); font-weight: 600; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute); }
+    .lang-toggle { display: flex; border: 1px solid var(--maroon); }
+    .lang-toggle button { font-family: var(--display); font-weight: 700; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; padding: 5px 9px; background: transparent; color: var(--maroon); border: 0; border-right: 1px solid var(--maroon); cursor: pointer; }
+    .lang-toggle button:last-child { border-right: 0; }
+    .lang-toggle button.active { background: var(--maroon); color: var(--paper); }
+    .lang-toggle button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .shell-body { display: grid; grid-template-columns: 1fr 380px; gap: 0; min-height: calc(100vh - 56px); }
+    @media (max-width: 980px) {
+      .shell-body { grid-template-columns: 1fr; }
+      .rail { border-left: 0 !important; border-top: 1px solid var(--rule); }
+      .rail-sticky { position: static !important; max-height: none !important; }
+    }
+    .main { padding: 32px 36px 80px; max-width: 100%; overflow: hidden; }
+    .rail { background: var(--paper-soft); border-left: 1px solid var(--rule); padding: 0; }
+    .rail-sticky { position: sticky; top: 55px; max-height: calc(100vh - 55px); overflow-y: auto; padding: 28px 24px; }
+
+    .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 18px; flex-wrap: wrap; }
+    .section-head-left { display: flex; flex-direction: column; gap: 4px; }
+    .eyebrow { font-family: var(--display); font-weight: 700; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--maroon); }
+    .section-title { font-family: var(--display); font-weight: 700; font-size: 20px; letter-spacing: -0.01em; color: var(--ink); }
+
+    .segmented { display: flex; border: 1px solid var(--maroon); }
+    .segmented button { font-family: var(--display); font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; padding: 7px 12px; background: transparent; color: var(--maroon); border: 0; border-right: 1px solid var(--maroon); cursor: pointer; }
+    .segmented button:last-child { border-right: 0; }
+    .segmented button.active { background: var(--maroon); color: var(--paper); }
+
+    .headline { margin-bottom: 36px; border-bottom: 1px solid var(--rule); padding-bottom: 24px; }
+    .headline h1 { font-family: var(--display); font-weight: 800; font-size: 34px; line-height: 1.05; letter-spacing: -0.01em; color: var(--maroon-ink); margin: 6px 0 8px; }
+    .headline .he { font-family: var(--hebrew); font-weight: 700; direction: rtl; font-size: 28px; color: var(--maroon); display: block; margin-bottom: 4px; }
+    .headline .dek { font-family: var(--body); font-size: 16px; color: var(--mute); max-width: 60ch; margin-top: 8px; }
+
+    .prose { font-family: var(--body); font-size: 15px; line-height: 1.65; max-width: 64ch; }
+    .prose p { margin: 0 0 14px; }
+    .prose .he-inline { font-family: var(--hebrew); font-weight: 700; direction: rtl; unicode-bidi: isolate; display: inline; color: var(--ink); }
+    .translit { font-family: var(--body); font-style: italic; font-size: 14px; color: #5b4a44; }
+
+    .signs { display: flex; flex-direction: column; gap: 0; margin-top: 8px; }
+    .sign-card { background: var(--paper); border: 1px solid var(--rule); border-top: 3px solid var(--maroon); padding: 14px 16px; margin-bottom: -1px; cursor: pointer; transition: background 60ms linear; }
+    .sign-card:hover { background: var(--paper-tint); }
+    .sign-card.active { outline: 2px solid var(--maroon); outline-offset: -2px; }
+    .sign-row { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+    .sign-he { font-family: var(--hebrew); font-weight: 700; direction: rtl; font-size: 24px; color: var(--maroon-ink); line-height: 1.1; }
+    .sign-translit { font-family: var(--body); font-style: italic; font-size: 15px; color: var(--mute); }
+    .sign-gloss { font-family: var(--body); font-size: 14px; color: var(--ink); }
+    .sign-num { font-family: var(--display); font-weight: 700; font-size: 11px; letter-spacing: 0.18em; color: var(--mute-soft); min-width: 24px; }
+
+    .chip { display: inline-block; font-family: var(--display); font-weight: 700; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 7px; color: var(--paper); background: var(--maroon); border-radius: 0; }
+    .chip.outline { background: transparent; color: var(--maroon); border: 1px solid var(--maroon); }
+
+    .rail-section { padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid var(--rule); }
+    .rail-section:last-child { border-bottom: 0; }
+    .rail-label { font-family: var(--display); font-weight: 700; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--maroon); margin-bottom: 10px; }
+    .pasuk { background: var(--paper); border-left: 3px solid var(--maroon); padding: 12px 14px; }
+    .pasuk-he { font-family: var(--hebrew); direction: rtl; font-weight: 500; font-size: 19px; line-height: 1.7; color: var(--ink); }
+    .pasuk-translit { font-family: var(--body); font-style: italic; font-size: 13px; color: #5b4a44; margin-top: 6px; }
+    .pasuk-en { font-family: var(--body); font-size: 14px; color: var(--ink); margin-top: 6px; }
+    .pasuk-ref { font-family: var(--display); font-weight: 700; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); margin-top: 8px; }
+    .commentary { font-family: var(--body); font-size: 14px; line-height: 1.6; }
+    .commentary p { margin: 0 0 8px; }
+    .commentary .heb-block { font-family: var(--hebrew); direction: rtl; font-size: 17px; line-height: 1.65; color: var(--ink); margin: 6px 0; }
+    .commentary .it { font-style: italic; color: #5b4a44; }
+
+    .plate { background: var(--paper); border: 1px solid var(--rule); display: flex; flex-direction: column; }
+    .plate-img-wrap { position: relative; background: var(--paper-tint); border-bottom: 1px solid var(--rule); width: 100%; aspect-ratio: 4 / 3; overflow: hidden; }
+    .plate-img-wrap img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .plate-img-wrap.contain img { object-fit: contain; padding: 12px; background: var(--paper); }
+    .plate-img-fallback { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; padding: 20px; color: var(--maroon); font-family: var(--body); font-size: 13px; text-align: center; }
+    .plate-body { padding: 14px 16px; flex: 1; display: flex; flex-direction: column; }
+    .plate-title { font-family: var(--display); font-weight: 700; font-size: 14px; color: var(--ink); letter-spacing: -0.005em; }
+    .plate-he { font-family: var(--hebrew); direction: rtl; font-weight: 700; color: var(--maroon); margin-right: 6px; }
+    .plate-caption { font-family: var(--body); font-size: 14px; line-height: 1.55; color: var(--ink); margin-top: 6px; }
+    .plate-credit { font-family: var(--display); font-weight: 600; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); margin-top: auto; padding-top: 8px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+    @media (min-width: 1180px) { .grid-2 { grid-template-columns: repeat(3, 1fr); } }
+
+    .case-table { width: 100%; border-collapse: collapse; background: var(--paper); border: 1px solid var(--rule); font-family: var(--body); font-size: 14px; }
+    .case-table th { font-family: var(--display); font-weight: 700; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; text-align: left; padding: 10px 12px; background: var(--paper); border-bottom: 1px solid var(--maroon); color: var(--maroon-ink); }
+    .case-table td { padding: 10px 12px; border-top: 1px solid var(--rule); vertical-align: top; }
+    .case-table .heb { font-family: var(--hebrew); direction: rtl; unicode-bidi: isolate; font-weight: 700; font-size: 17px; color: var(--maroon-ink); }
+
+    .flow { background: var(--paper); border: 1px solid var(--rule); padding: 18px 20px; }
+    .flow-branch { display: grid; grid-template-columns: 24px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px dotted var(--dotted); }
+    .flow-branch:last-child { border-bottom: 0; }
+    .flow-num { font-family: var(--display); font-weight: 700; font-size: 14px; color: var(--mute-soft); }
+    .flow-head { font-family: var(--display); font-weight: 700; font-size: 13px; color: var(--ink); letter-spacing: -0.005em; margin-bottom: 6px; }
+    .flow-heb { font-family: var(--hebrew); direction: rtl; font-weight: 500; font-size: 19px; line-height: 1.7; color: var(--ink); margin: 4px 0; }
+    .flow-en { font-family: var(--body); font-size: 14px; color: var(--ink); line-height: 1.55; }
+    .flow-ref { font-family: var(--display); font-weight: 700; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); margin-top: 6px; }
+
+    .reading-item { background: var(--paper); border: 1px solid var(--rule); border-left: 3px solid var(--maroon); padding: 10px 14px; margin-bottom: 8px; }
+    .reading-item a { border-bottom: 0; }
+    .reading-title { font-family: var(--display); font-weight: 700; font-size: 14px; color: var(--ink); }
+    .reading-he { font-family: var(--hebrew); font-weight: 700; direction: rtl; display: inline-block; margin-right: 8px; color: var(--maroon); }
+    .reading-note { font-family: var(--body); font-size: 13px; color: var(--mute); margin-top: 2px; }
+
+    .foot { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: var(--body); font-size: 13px; color: var(--mute); }
+    .foot .eyebrow { margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" data-presets="react">
+const { useState } = React;
+
+// Data shape per item: { he, se, en, ref }
+const SIGNS = [
+  {
+    id: "mefutzalot",
+    he: "מְפֻצָּלוֹת",
+    se: "mefutzalot",
+    en: "branched / forked",
+    color: "var(--p-mita)",
+    rashi: { he: 'פורקייר"ש בלע"ז', se: "\"forchies\" in Old French", en: "forked", ref: "Rashi, Chullin 59b s.v. מפוצלות" },
+    talmud: { he: "הֵיכָא דְּמִיפַּצְלָא — לָא דִּינָא וְלָא דַּיָּינָא", se: "heicha de-mipatzla — la dina ve-la dayyana", en: "Where it is forked — no judgment and no judge (no further inquiry needed).", ref: "Chullin 59b" },
+    anatomy: {
+      en: "Branching is the diagnostic feature of antlers (Cervidae). Antlers are not true horns: pure bone, grown from a pedicle on the frontal bone, sheathed in vascular skin (velvet) during growth, and shed annually. They lack the keratin sheath that defines a true horn. Branching is unique to deer in living zoology.",
+      he: "הקרניים המסתעפות הללו אינן קרניים אמיתיות במובן המודרני, אלא קַרְנֵי־צְבִי: עצם בלבד, ללא נדן קרטין, נושרות מדי שנה.",
+    },
+    exemplar: { he: "אַיָּל", se: "ayal", en: "deer, stag" },
+    note: {
+      en: "Rashi notes a difficulty: the Gemara says \"and the tzvi is not forked\" — but a tzvi IS forked! Rashi resolves: \"what we call tzvi, they did not call tzvi; rather they called the שטיינבו\"ק [ibex], whose horns are not forked.\" Fundamental for the whole sugya.",
+      ref: "Rashi, Chullin 59b s.v. והרי צבי דאין מפוצלות",
+    },
+  },
+  {
+    id: "keruchot",
+    he: "כְּרוּכוֹת",
+    se: "keruchot",
+    en: "wrapped, layered in concentric sheaths",
+    color: "var(--p-rabbinic)",
+    rashi: { he: "גִּלְדֵּי גִּלְדֵּי, קְלִיפָּה עַל קְלִיפָּה, כְּעֵין קַרְנֵי הַשּׁוֹר", se: "gildei gildei, kelipa al kelipa, ke-ein karnei ha-shor", en: "Layer upon layer, sheath upon sheath, like the horns of an ox.", ref: "Rashi, Chullin 59b s.v. כרוכות" },
+    talmud: { he: "וַהֲרֵי שׁוֹר, דִּכְרוּכוֹת, וְחֶלְבּוֹ אָסוּר", se: "va-harei shor, dikhruchot, ve-chelbo asur", en: "But the ox is keruchot — and its cheilev is forbidden! (Therefore keruchot alone is insufficient.)", ref: "Chullin 59b" },
+    anatomy: {
+      en: "Lands almost exactly on the modern definition of a true horn (Bovidae): a permanent bony core (processus cornualis, an outgrowth of the frontal bone) sheathed by keratin laid down in successive growth layers. The sheath is never shed; new keratin is added at the base and pushes older keratin distally.",
+      he: "לִיבָּה גַּרְמִית קבועה (זיז של עצם המצח) עטופה בנְדַן קֶרָטִין הנבנה בשכבות עוקבות. תיאור רש\"י \"גלדי גלדי\" מתאר במדויק את הלמלות הקרטיניות.",
+    },
+    exemplar: { he: "שׁוֹר", se: "shor", en: "ox" },
+  },
+  {
+    id: "charukot",
+    he: "חֲרוּקוֹת",
+    se: "charukot",
+    en: "notched, ridged",
+    color: "var(--p-karet)",
+    rashi: { he: "מְלֵאוֹת פְּגִימוֹת וַחֲרִיצִים", se: "meleot pegimot va-charitzim", en: "Full of nicks and grooves.", ref: "Rashi, Chullin 59b s.v. חרוקות" },
+    talmud: { he: "וְהוּא דְּמִיבְּלַע חִירְקַיְיהוּ", se: "ve-hu de-mivla chirkayyahu", en: "...and provided that the notches are absorbed (tightly packed and integrated, not separated).", ref: "Chullin 59b" },
+    anatomy: {
+      en: "Growth ridges on the keratin sheath. As the sheath accretes from the base, periodic differences in growth rate (often seasonal) leave transverse ridges. The sugya distinguishes the goat's ridges from the gazelle's by requiring מִיבְּלַע חִירְקַיְיהוּ — that the notches be absorbed into one another.",
+      he: "טַבָּעוֹת גְּדִילָה רוחביות על נְדַן הקרטין, הנוצרות מקצב גדילה משתנה. בולטות במיוחד בעיזים ובכבשים.",
+    },
+    exemplar: { he: "עֵז", se: "ez", en: "goat / ibex (separated rings FAIL the absorption test)" },
+    note: {
+      en: "Rashi on דְּמִיבְּלַע חִירְקַיְיהוּ: \"Their grooves are dense, adjacent, and absorbed into one another.\"",
+      he: "חֲרִיצֵיהֶן תְּכוּפוֹת וּסְמוּכִין וּמוּבְלָעִים זֶה בָּזֶה",
+      ref: "Rashi, Chullin 59b s.v. דמיבלע חירקייהו",
+    },
+  },
+  {
+    id: "chadurot",
+    he: "חֲדוּרוֹת",
+    se: "chadurot",
+    en: "tapered / sharp at the apex",
+    color: "var(--p-structural)",
+    rashi: { he: "חֲדוּרוֹת כְּעֵין קַרְנֵי אַיָּל וּצְבִי שֶׁחַדִּין לְמַעְלָה", se: "chadurot ke-ein karnei ayal u-tzvi she-chadin lemala", en: "Chadurot like the horns of deer and gazelle, which taper sharply upward.", ref: "Rashi, Chullin 59b s.v. חדורות" },
+    talmud: { he: "וַהֲרֵי צְבִי, דְּאֵין מְפוּצָּלוֹת, וְחֶלְבּוֹ מוּתָּר? חֲדוּרוֹת בָּעֵינַן", se: "va-harei tzvi, de-ein mefutzalot, ve-chelbo mutar? chadurot ba'einan", en: "But the tzvi is not forked, and its cheilev is permitted! [Answer:] We require chadurot.", ref: "Chullin 59b" },
+    anatomy: {
+      en: "On Rashi's reading, this picks out the slender, distally-tapering profile typical of antelopes and gazelles, distinguished from the broad-based horns of domestic goats. The bony core itself tapers, and the keratin sheath follows, producing a needle-like apex.",
+      he: "פרופיל קרן הולך וצר כלפי מעלה: גם הליבה הגרמית וגם נדן הקרטין מתחדדים. אופייני לאנטילופות וצבאים.",
+    },
+    exemplar: { he: "צְבִי", se: "tzvi", en: "gazelle (passes all three sign-test)" },
+    note: {
+      en: "Textual variant: Rambam writes הֲדוּרוֹת with ה rather than חֲדוּרוֹת with ח. Some explain הדורות as \"splendid in form,\" which fits the tapering profile equally.",
+      ref: "Mishneh Torah, Forbidden Foods 1:10",
+    },
+  },
+];
+
+const CASES = [
+  { animal: "עֵז",          se: "ez",         has: "Horns + hooves, charukot, keruchot",                  fails: "Not mefutzal; charukot NOT absorbed",      verdict: "behema · cheilev אסור" },
+  { animal: "שׁוֹר",          se: "shor",       has: "Horns + hooves, keruchot",                           fails: "Not mefutzal, not charukot",              verdict: "behema · cheilev אסור" },
+  { animal: "צְבִי",         se: "tzvi",       has: "Keruchot, chadurot, charukot with absorbed notches", fails: "—",                                       verdict: "chaya · cheilev מותר" },
+  { animal: "אַיָּל",         se: "ayal",       has: "Mefutzalot",                                         fails: "—",                                       verdict: "chaya · cheilev מותר (sufficient alone)" },
+  { animal: "עֵז כַּרְכּוּז", se: "ez karkoz",  has: "All three chaya signs; called \"goat\" in name",       fails: "Identity unresolved — Rav Achai forbade", verdict: "Halacha follows R. Shmuel: permitted" },
+];
+
+const ANATOMY_PLATES = [
+  { src: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Anatomy_and_physiology_of_animals_A_horn.jpg",                                                title: "True horn · cross-section",            he: "כְּרוּכוֹת",        caption: "Cutaway diagram of a bovid horn. Keratin sheath wraps the bony cornual process in concentric layers — Rashi's גלדי גלדי, קליפה על קליפה.", credit: "Anatomy and Physiology of Animals · Wikimedia · CC BY-SA", contain: true },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/6/65/Anatomy_and_physiology_of_animals_Deer_antler.jpg",                                           title: "Antler · anatomical diagram",          he: "מְפֻצָּלוֹת",       caption: "Companion diagram. Antler is pure bone rising from the pedicle on the frontal bone. Branching tines diagnostic of cervids. No keratin sheath.",                                                          credit: "Anatomy and Physiology of Animals · Wikimedia · CC BY-SA", contain: true },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Aurochs_skull.jpg",                                                                            title: "Aurochs skull · cores exposed",        he: "לִיבָּה גַּרְמִית", caption: "Bos primigenius preserved without horn sheaths. The bare bony cornual processes — what lies beneath the keratin in living bovids.",                                                                      credit: "Wikimedia Commons · public domain" },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/d/dd/Bos_primigenius_horns_Montevarchi_03.jpg",                                                    title: "Bovine horn cores · museum",           he: "מבנה הקרן",         caption: "Massive Bos primigenius horn cores. Surface is rough, vascularized, grooved — the substrate that the keratin sheath grows over and adheres to.",                                                          credit: "Wikimedia Commons · CC BY-SA" },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/e/ea/Capra_ibex_nubiana_near_Mitzpe_Ramon_in_summer_2011_%284%29.JPG",                              title: "Nubian ibex · separated ridges",       he: "חֲרוּקוֹת",         caption: "Transverse growth ridges on the keratin sheath, prominently separated. The pattern that FAILS the Gemara's absorption test for chaya status.",                                                            credit: "Wikimedia · Mitzpe Ramon · CC BY" },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Capreolus_capreolus_-_antlers.jpg",                                                           title: "Roe deer antlers · close-up",          he: "מְפֻצָּלוֹת",       caption: "Tines, the burr (rough ring at base), and the dead-bone surface texture with characteristic pearling. The unmistakable visual signature of Cervidae.",                                                    credit: "Wikimedia Commons · CC BY-SA" },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/d/d3/Antlers_of_a_roe_buck.jpg",                                                                   title: "Roe buck antlers · detail",            he: "מְפֻצָּלוֹת",       caption: "Detail view of mature roe buck antlers showing branching pattern, pearling around the burr, and the dead-bone matte finish after velvet shedding.",                                                       credit: "Wikimedia Commons · CC BY-SA" },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/a/ad/Antler_specimens.jpg",                                                                        title: "Antler specimens · collection",        he: "מְפֻצָּלוֹת",       caption: "Multiple shed antlers. Variation in branching pattern across age and individual — but in every case, pure bone with no keratin.",                                                                        credit: "Wikimedia Commons · CC BY-SA" },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/1/1f/Velvet-antler-slices.JPG",                                                                    title: "Antler · sliced cross-sections",       he: "פנים הקרן",         caption: "Slices through antler reveal solid bone interior with no keratin layer. This architecture distinguishes antlers from true horns.",                                                                       credit: "Wikimedia Commons · CC BY-SA" },
+];
+
+const SPECIMENS = {
+  mefutzalot: { src: "https://upload.wikimedia.org/wikipedia/commons/3/33/Red_Deer_Stag%2C_Badminton_Park%2C_Gloucestershire_-_geograph.org.uk_-_8210733.jpg", credit: "Red deer · Wikimedia · geograph.org.uk · CC BY-SA" },
+  keruchot:    { src: "https://upload.wikimedia.org/wikipedia/commons/f/f3/Hereford_bull_large.jpg",                                                          credit: "Hereford bull · Wikimedia · public domain" },
+  charukot:    { src: "https://upload.wikimedia.org/wikipedia/commons/8/80/Alpensteinbock%2C_Capra_ibex_01.JPG",                                              credit: "Alpine ibex · Wikimedia · Böhringer · CC BY-SA" },
+  chadurot:    { src: "https://upload.wikimedia.org/wikipedia/commons/7/79/Gazella_gazella.jpg",                                                              credit: "Mountain gazelle · Wikimedia" },
+};
+
+const FURTHER_READING = [
+  { he: "תַּלְמוּד בָּבְלִי", title: "Chullin 59b",                                              note: "Primary sugya · William Davidson",            url: "https://www.sefaria.org/Chullin.59b" },
+  { he: "רַשִׁ\"י",          title: "Rashi on Chullin 59b",                                     note: "All four term definitions",                   url: "https://www.sefaria.org/Rashi_on_Chullin.59b" },
+  { he: "רַמְבַּ\"ם",        title: "Mishneh Torah, Forbidden Foods 1:10",                       note: "Codified three-sign test",                    url: "https://www.sefaria.org/Mishneh_Torah%2C_Forbidden_Foods.1.10" },
+  { he: null,                title: "WikiVet · Horn — Anatomy & Physiology",                   note: "Veterinary teaching wiki",                    url: "https://en.wikivet.net/Horn_-_Anatomy_%26_Physiology" },
+  { he: null,                title: "AMNH · Horns and Antlers",                                note: "Conservation study, museum skulls",           url: "https://www.amnh.org/research/science-conservation/projects/case-studies/horns-and-antlers" },
+  { he: null,                title: "ScienceDirect · Horn (topic)",                            note: "Veterinary textbook excerpts",                url: "https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/horn" },
+  { he: null,                title: "Royal Society Interface · Keratinous horn microstructure", note: "Open access · lamellar keratin under scope",  url: "https://royalsocietypublishing.org/doi/10.1098/rsif.2018.0093" },
+];
+
+function App() {
+  const [lang, setLang] = useState({ he: true, se: false, en: true });
+  const [activeSign, setActiveSign] = useState("mefutzalot");
+  const [view, setView] = useState("signs");
+
+  const toggleLang = (k) => setLang(l => {
+    if (k === "he") return l;
+    return { ...l, [k]: !l[k] };
+  });
+
+  const sign = SIGNS.find(s => s.id === activeSign) || SIGNS[0];
+  const specimen = SPECIMENS[sign.id];
+
+  return (
+    <div>
+      <header className="shell-header">
+        <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
+          <div className="brand">Karnayim <span className="heb">קַרְנַיִם</span></div>
+          <div className="navs">
+            <span className="active">Primer</span>
+            <span>Signs</span>
+            <span>Cases</span>
+            <span>Sources</span>
+          </div>
+        </div>
+        <div className="header-right">
+          <div className="crumb">Chullin · 59b</div>
+          <div className="lang-toggle">
+            <button className={lang.he ? "active" : ""} disabled title="Hebrew is always on">HE</button>
+            <button className={lang.se ? "active" : ""} onClick={() => toggleLang("se")}>SE</button>
+            <button className={lang.en ? "active" : ""} onClick={() => toggleLang("en")}>EN</button>
+          </div>
+        </div>
+      </header>
+
+      <div className="shell-body">
+        <main className="main">
+          <div className="headline">
+            <div className="eyebrow">A Primer · For Chullin 59b</div>
+            <span className="he">סִימָנֵי הַקַּרְנַיִם</span>
+            <h1>On the Anatomy of Horns</h1>
+            <p className="dek">Modern zoological anatomy paired with the four kashrut signs set down by the Gemara and glossed by Rashi.</p>
+          </div>
+
+          <section style={{ marginBottom: 36 }}>
+            <div className="section-head">
+              <div className="section-head-left">
+                <div className="eyebrow">§ I · Anatomy</div>
+                <div className="section-title">The Two Structures</div>
+              </div>
+            </div>
+            <div className="prose">
+              {lang.en && (
+                <>
+                  <p>The word &ldquo;horn&rdquo; in modern zoology covers two structures that look superficially alike but are anatomically distinct.</p>
+                  <p>
+                    <strong>True horns</strong> belong to the family Bovidae — cattle, sheep, goats, antelopes, gazelles. They are <em>permanent.</em> A bony core (<em>processus cornualis</em>, <span className="he-inline">לִיבָּה גַּרְמִית</span>) grows out of the frontal bone of the skull, and over it grows a sheath of keratin — the same protein as fingernails — laid down in successive layers from the base. Old keratin is pushed distally; the horn is never shed.
+                  </p>
+                  <p>
+                    <strong>Antlers</strong> belong to the family Cervidae — the deer family. They are <em>not</em> true horns. They are pure bone, they branch, they are sheathed only in vascular skin (&ldquo;velvet&rdquo;) during their growth phase, and they are <em>shed and regrown each year.</em> Branching is the feature that, in living zoology, is exclusive to this family.
+                  </p>
+                  <p>The Gemara&rsquo;s four signs map remarkably onto these structures.</p>
+                </>
+              )}
+            </div>
+          </section>
+
+          <section style={{ marginBottom: 36 }}>
+            <div className="section-head">
+              <div className="section-head-left">
+                <div className="eyebrow">§ II · The Four Signs</div>
+                <div className="section-title"><span style={{ fontFamily: "var(--hebrew)", direction: "rtl", display: "inline-block", marginRight: 8, color: "var(--maroon)" }}>אַרְבָּעָה סִימָנִים</span></div>
+              </div>
+              <div className="segmented">
+                <button className={view === "signs" ? "active" : ""} onClick={() => setView("signs")}>Signs</button>
+                <button className={view === "flow" ? "active" : ""} onClick={() => setView("flow")}>Flow</button>
+              </div>
+            </div>
+
+            {view === "signs" && (
+              <div className="signs">
+                {SIGNS.map((s, i) => (
+                  <div
+                    key={s.id}
+                    className={"sign-card" + (activeSign === s.id ? " active" : "")}
+                    style={{ borderTopColor: s.color }}
+                    onClick={() => setActiveSign(s.id)}
+                  >
+                    <div className="sign-row">
+                      <span className="sign-num">{String(i + 1).padStart(2, "0")}</span>
+                      <span className="sign-he">{s.he}</span>
+                      {lang.se && <span className="sign-translit">{s.se}</span>}
+                      {lang.en && <span className="sign-gloss">— {s.en}</span>}
+                      <span style={{ marginLeft: "auto" }}><span className="chip outline">{s.exemplar.he}</span></span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {view === "flow" && (
+              <div className="flow">
+                <div className="flow-branch">
+                  <div className="flow-num">01</div>
+                  <div>
+                    <div className="flow-head">If the horns are forked</div>
+                    <div className="flow-heb">הֵיכָא דְּמִיפַּצְלָא — לָא דִּינָא וְלָא דַּיָּינָא</div>
+                    {lang.se && <div className="translit">heicha de-mipatzla — la dina ve-la dayyana</div>}
+                    {lang.en && <div className="flow-en">Where it is forked, no judgment and no judge. Mefutzalot alone settles it: chaya, cheilev permitted.</div>}
+                    <div className="flow-ref">Chullin 59b</div>
+                  </div>
+                </div>
+                <div className="flow-branch">
+                  <div className="flow-num">02</div>
+                  <div>
+                    <div className="flow-head">If the horns are not forked</div>
+                    <div className="flow-heb">בָּעֵינַן כְּרוּכוֹת, חֲדוּרוֹת, וַחֲרוּקוֹת — וְהוּא דְּמִיבְּלַע חִירְקַיְיהוּ</div>
+                    {lang.en && <div className="flow-en">All three remaining signs must be present: layered like an ox, tapered like a gazelle, ridged — provided the ridges are absorbed (not the deep separated rings of a goat).</div>}
+                    <div className="flow-ref">Chullin 59b</div>
+                  </div>
+                </div>
+                <div className="flow-branch">
+                  <div className="flow-num">03</div>
+                  <div>
+                    <div className="flow-head">Rambam codifies the three-sign test</div>
+                    <div className="flow-heb">כָּל שֶׁאֵין קַרְנָיו מְפֻצָּלוֹת — אִם הָיוּ קַרְנָיו כְּרוּכוֹת כְּקַרְנֵי הַשּׁוֹר וַחֲרוּקוֹת כְּקַרְנֵי הָעֵז וְיִהְיֶה הֶחָרָק מֻבְלָע בָּהֶן וַהֲדוּרוֹת כְּקַרְנֵי הַצְּבִי — הֲרֵי זוֹ חַיָּה טְהוֹרָה</div>
+                    <div className="flow-ref">Mishneh Torah, Forbidden Foods 1:10</div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </section>
+
+          <section style={{ marginBottom: 36 }}>
+            <div className="section-head">
+              <div className="section-head-left">
+                <div className="eyebrow">§ III · Horn Anatomy</div>
+                <div className="section-title"><span style={{ fontFamily: "var(--hebrew)", direction: "rtl", display: "inline-block", marginRight: 8, color: "var(--maroon)" }}>מִבְנֵה הַקֶּרֶן</span></div>
+              </div>
+            </div>
+            <div className="grid-2">
+              {ANATOMY_PLATES.map((p, i) => <Plate key={i} item={p} />)}
+            </div>
+          </section>
+
+          <section style={{ marginBottom: 36 }}>
+            <div className="section-head">
+              <div className="section-head-left">
+                <div className="eyebrow">§ IV · Test Cases</div>
+                <div className="section-title"><span style={{ fontFamily: "var(--hebrew)", direction: "rtl", display: "inline-block", marginRight: 8, color: "var(--maroon)" }}>מַעֲשִׂים שֶׁבַּסּוּגְיָא</span></div>
+              </div>
+            </div>
+            <table className="case-table">
+              <thead>
+                <tr><th>Animal</th><th>Has</th><th>Fails</th><th>Verdict</th></tr>
+              </thead>
+              <tbody>
+                {CASES.map((c) => (
+                  <tr key={c.animal}>
+                    <td>
+                      <div className="heb">{c.animal}</div>
+                      {lang.se && <div className="translit" style={{ fontSize: 12 }}>{c.se}</div>}
+                    </td>
+                    <td>{c.has}</td>
+                    <td>{c.fails}</td>
+                    <td>{c.verdict}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+
+          <section>
+            <div className="section-head">
+              <div className="section-head-left">
+                <div className="eyebrow">§ V · Further Reading</div>
+                <div className="section-title">Sources &amp; Links</div>
+              </div>
+            </div>
+            {FURTHER_READING.map((r, i) => (
+              <div key={i} className="reading-item">
+                <a href={r.url} target="_blank" rel="noopener noreferrer">
+                  {r.he && <span className="reading-he">{r.he}</span>}
+                  <span className="reading-title">{r.title}</span>
+                </a>
+                <div className="reading-note">{r.note}</div>
+              </div>
+            ))}
+          </section>
+
+          <div className="foot">
+            <div className="eyebrow">Colophon</div>
+            <div>Primary text and Rashi from Sefaria (William Davidson Vocalized Aramaic; Vilna Rashi). Rambam from Mishneh Torah, Hilchot Maachalot Asurot 1:10. Anatomical content is standard zoology of Bovidae and Cervidae — memory-grounded, not from Sefaria. Images from Wikimedia Commons (CC licensed where indicated).</div>
+          </div>
+        </main>
+
+        <aside className="rail">
+          <div className="rail-sticky">
+            <div className="rail-section">
+              <div className="rail-label">Active Sign</div>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 4 }}>
+                <span style={{ fontFamily: "var(--hebrew)", fontWeight: 700, direction: "rtl", fontSize: 28, color: sign.color }}>{sign.he}</span>
+                {lang.se && <span style={{ fontFamily: "var(--body)", fontStyle: "italic", color: "var(--mute)" }}>{sign.se}</span>}
+              </div>
+              {lang.en && <div style={{ fontFamily: "var(--body)", fontSize: 14, color: "var(--ink)" }}>{sign.en}</div>}
+            </div>
+
+            <div className="rail-section">
+              <div className="rail-label">In the Sugya</div>
+              <div className="pasuk">
+                <div className="pasuk-he">{sign.talmud.he}</div>
+                {lang.se && <div className="pasuk-translit">{sign.talmud.se}</div>}
+                {lang.en && <div className="pasuk-en">{sign.talmud.en}</div>}
+                <div className="pasuk-ref">{sign.talmud.ref}</div>
+              </div>
+            </div>
+
+            <div className="rail-section">
+              <div className="rail-label">Rashi <span className="chip" style={{ marginLeft: 4 }}>direct</span></div>
+              <div className="commentary">
+                <div className="heb-block">{sign.rashi.he}</div>
+                {lang.se && <p className="it">{sign.rashi.se}</p>}
+                {lang.en && <p>&ldquo;{sign.rashi.en}&rdquo;</p>}
+                <div className="pasuk-ref" style={{ marginTop: 6 }}>{sign.rashi.ref}</div>
+              </div>
+            </div>
+
+            <div className="rail-section">
+              <div className="rail-label">Modern Anatomy</div>
+              <div className="commentary">
+                {lang.en && <p>{sign.anatomy.en}</p>}
+                {sign.anatomy.he && <div className="heb-block">{sign.anatomy.he}</div>}
+              </div>
+            </div>
+
+            <div className="rail-section">
+              <div className="rail-label">Exemplar</div>
+              <div className="commentary">
+                <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 8 }}>
+                  <span style={{ fontFamily: "var(--hebrew)", fontWeight: 700, direction: "rtl", fontSize: 22, color: sign.color }}>{sign.exemplar.he}</span>
+                  {lang.se && <span className="it">{sign.exemplar.se}</span>}
+                </div>
+                {lang.en && <p style={{ fontSize: 13 }}>{sign.exemplar.en}</p>}
+                {specimen && (
+                  <div style={{ marginTop: 10, background: "var(--paper)", border: "1px solid var(--rule)" }}>
+                    <img
+                      src={specimen.src}
+                      alt={sign.exemplar.en}
+                      style={{ display: "block", width: "100%", height: "auto", maxHeight: 220, objectFit: "cover" }}
+                      onError={(e) => { e.target.style.display = 'none'; }}
+                    />
+                    <div className="plate-credit" style={{ padding: "6px 10px" }}>{specimen.credit}</div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {sign.note && (
+              <div className="rail-section">
+                <div className="rail-label">A Note Worth Pausing On</div>
+                <div className="commentary">
+                  {sign.note.he && <div className="heb-block">{sign.note.he}</div>}
+                  {lang.en && <p>{sign.note.en}</p>}
+                  {sign.note.ref && <div className="pasuk-ref" style={{ marginTop: 6 }}>{sign.note.ref}</div>}
+                </div>
+              </div>
+            )}
+          </div>
+        </aside>
+      </div>
+    </div>
+  );
+}
+
+function Plate({ item }) {
+  return (
+    <div className="plate">
+      <div className={"plate-img-wrap" + (item.contain ? " contain" : "")}>
+        <img
+          src={item.src}
+          alt={item.title}
+          onError={(e) => {
+            e.target.style.display = "none";
+            const fb = e.target.parentElement.querySelector(".plate-img-fallback");
+            if (fb) fb.style.display = "flex";
+          }}
+        />
+        <div className="plate-img-fallback">[image failed — replace src]</div>
+      </div>
+      <div className="plate-body">
+        <div className="plate-title">
+          {item.he && <span className="plate-he">{item.he}</span>}
+          {item.title}
+        </div>
+        <div className="plate-caption">{item.caption}</div>
+        <div className="plate-credit">{item.credit}</div>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

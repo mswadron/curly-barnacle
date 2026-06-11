@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>מקורות הטומאה · Tumah Tree A</title>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+window.__lucide = (function(){
+  const mk = (children) => function Icon(props){
+    const {size=24, className='', style, strokeWidth=2, ...rest} = props||{};
+    return React.createElement('svg', {xmlns:'http://www.w3.org/2000/svg', width:size, height:size,
+      viewBox:'0 0 24 24', fill:'none', stroke:'currentColor', strokeWidth:strokeWidth,
+      strokeLinecap:'round', strokeLinejoin:'round', className, style, ...rest},
+      children.map((c,i)=>React.createElement(c[0], Object.assign({key:i}, c[1]))));
+  };
+  return {
+    Search: mk([['circle',{cx:11,cy:11,r:8}],['path',{d:'m21 21-4.3-4.3'}]]),
+    ChevronDown: mk([['path',{d:'m6 9 6 6 6-6'}]]),
+    X: mk([['path',{d:'M18 6 6 18'}],['path',{d:'m6 6 12 12'}]]),
+    Globe: mk([['circle',{cx:12,cy:12,r:10}],['path',{d:'M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20'}],['path',{d:'M2 12h20'}]]),
+    Scroll: mk([['path',{d:'M19 17V5a2 2 0 0 0-2-2H4'}],['path',{d:'M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v3a1 1 0 0 0 1 1h3'}]])
+  };
+})();
+</script>
+<style>html,body{margin:0;padding:0;}</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" data-presets="react" src="tumah.app.js"></script>
+</body>
+</html>

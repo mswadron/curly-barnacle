@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part C · Orders &amp; Ornithology — A Jewish Ornithology Guide</title>
+<style>
+  :root {
+    --bg: #fafbfc;
+    --card: #ffffff;
+    --ink: #1f2937;
+    --ink-2: #374151;
+    --ink-3: #6b7280;
+    --ink-4: #9ca3af;
+    --rule: #e5e7eb;
+    --blue: #2563eb;
+    --blue-2: #3b82f6;
+    --blue-soft: #eff6ff;
+    --blue-ring: #bfdbfe;
+    --anchored: #047857;
+    --anchored-soft: #ecfdf5;
+    --anchored-ring: #a7f3d0;
+    --caveat: #b45309;
+    --caveat-soft: #fffbeb;
+    --caveat-ring: #fde68a;
+    --noanchor: #64748b;
+    --noanchor-soft: #f1f5f9;
+    --noanchor-ring: #cbd5e1;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "Helvetica Neue", Arial, sans-serif;
+    --serif: "Charter", "Iowan Old Style", "Palatino Linotype", "Palatino", Georgia, serif;
+    --hebrew: "Frank Ruehl CLM", "David CLM", "SBL Hebrew", "Ezra SIL", "Times New Roman", serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body { background: var(--bg); color: var(--ink); font-family: var(--serif); font-size: 16px; line-height: 1.6; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 32px 24px 100px; }
+
+  .part-nav { display: flex; gap: 4px; margin-bottom: 28px; flex-wrap: wrap; }
+  .part-nav a, .part-nav span {
+    font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 7px 12px; border: 1px solid var(--rule);
+    background: var(--card); color: var(--ink-3); text-decoration: none;
+    border-radius: 4px; transition: all 0.15s;
+  }
+  .part-nav a:hover { border-color: var(--blue); color: var(--blue); }
+  .part-nav .current { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+  .masthead { padding-bottom: 28px; border-bottom: 1px solid var(--rule); margin-bottom: 28px; }
+  .eyebrow { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+  h1.title { font-family: var(--serif); font-weight: 600; font-size: 36px; line-height: 1.15; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.01em; }
+  .subtitle { font-size: 16px; color: var(--ink-3); line-height: 1.55; max-width: 560px; }
+  .subtitle-note { font-size: 13px; color: var(--ink-4); line-height: 1.55; max-width: 560px; margin-top: 10px; font-style: italic; }
+
+  .banner {
+    padding: 14px 18px; margin-bottom: 20px; border-radius: 4px;
+    border: 1px solid var(--rule); border-left-width: 3px;
+    background: var(--card);
+  }
+  .banner.caveat { background: var(--caveat-soft); border-color: var(--caveat-ring); border-left-color: var(--caveat); }
+  .banner.info { background: var(--blue-soft); border-color: var(--blue-ring); border-left-color: var(--blue); }
+  .banner .b-label {
+    font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .banner.caveat .b-label { color: var(--caveat); }
+  .banner.info .b-label { color: var(--blue); }
+  .banner p { font-size: 14px; color: var(--ink-2); line-height: 1.6; margin-bottom: 6px; }
+  .banner p:last-child { margin-bottom: 0; }
+  .banner strong { color: var(--ink); font-weight: 600; }
+  .banner a { color: var(--blue); text-decoration: none; border-bottom: 1px dotted var(--blue); }
+
+  /* Index */
+  .index { background: var(--card); border: 1px solid var(--rule); border-radius: 4px; padding: 18px 22px; margin-bottom: 32px; }
+  .index-label { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px; }
+  .index-grid { display: flex; flex-wrap: wrap; gap: 4px 10px; }
+  .index-grid a { font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--ink-2); text-decoration: none; padding: 2px 4px; border-bottom: 1px dotted transparent; }
+  .index-grid a:hover { color: var(--blue); border-bottom-color: var(--blue); }
+  .index-grid .sep { color: var(--ink-4); font-style: normal; }
+
+  /* Order card */
+  .order {
+    background: var(--card); border: 1px solid var(--rule); border-radius: 6px;
+    padding: 26px 28px 22px; margin-bottom: 24px; scroll-margin-top: 20px;
+  }
+  .order-head { padding-bottom: 14px; border-bottom: 1px solid var(--rule); margin-bottom: 18px; position: relative; }
+  .order-num { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 6px; }
+  .order-name { font-family: var(--serif); font-weight: 600; font-size: 22px; color: var(--ink); line-height: 1.2; margin-bottom: 4px; }
+  .order-latin { font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--ink-3); }
+
+  p.ecology {
+    color: var(--ink-2); font-size: 15px; line-height: 1.65; margin-bottom: 14px;
+  }
+  p.ecology em { color: var(--blue); font-style: italic; }
+
+  /* Birds-in-order list */
+  .birds-in-order { margin-bottom: 18px; padding: 12px 14px; background: var(--bg); border: 1px solid var(--rule); border-radius: 4px; }
+  .birds-label { font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+  .birds-list { display: flex; flex-wrap: wrap; gap: 8px 14px; }
+  .bird-chip {
+    display: inline-flex; align-items: baseline; gap: 6px;
+    padding: 4px 10px; background: var(--card); border: 1px solid var(--rule);
+    border-radius: 3px; text-decoration: none; transition: all 0.15s;
+  }
+  .bird-chip:hover { border-color: var(--blue); background: var(--blue-soft); }
+  .bird-chip .b-hebrew { font-family: var(--hebrew); font-size: 16px; color: var(--ink); }
+  .bird-chip .b-translit { font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--blue); }
+
+  /* Signs observational block */
+  .signs-observed {
+    margin-bottom: 14px; padding: 14px 16px;
+    background: var(--card); border: 1px solid var(--rule); border-radius: 4px;
+    border-left: 3px solid var(--blue);
+  }
+  .signs-header { font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 10px; }
+  .signs-header-note { font-size: 13px; color: var(--ink-2); font-style: italic; margin-bottom: 10px; line-height: 1.5; }
+  .signs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .sign-row { padding: 8px 10px; background: var(--bg); border: 1px solid var(--rule); border-radius: 3px; }
+  .sign-row-label { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 2px; }
+  .sign-row-hebrew { font-family: var(--hebrew); font-size: 14px; color: var(--ink-2); }
+  .sign-row-value { font-family: var(--serif); font-size: 13px; color: var(--ink); font-weight: 500; margin-top: 4px; }
+
+  /* Observational value color coding - subtle */
+  .sign-row.commonly { background: var(--caveat-soft); border-color: var(--caveat-ring); }
+  .sign-row.commonly .sign-row-value { color: var(--caveat); }
+  .sign-row.variably { background: var(--noanchor-soft); border-color: var(--noanchor-ring); }
+  .sign-row.variably .sign-row-value { color: var(--noanchor); }
+  .sign-row.not-observed, .sign-row.absent { background: var(--anchored-soft); border-color: var(--anchored-ring); }
+  .sign-row.not-observed .sign-row-value, .sign-row.absent .sign-row-value { color: var(--anchored); }
+  .sign-row.present { background: var(--blue-soft); border-color: var(--blue-ring); }
+  .sign-row.present .sign-row-value { color: var(--blue); }
+  .sign-row.varies { background: var(--noanchor-soft); border-color: var(--noanchor-ring); }
+  .sign-row.varies .sign-row-value { color: var(--noanchor); }
+
+  /* Special note for Chiroptera */
+  .signs-special-note {
+    padding: 14px 16px; background: var(--caveat-soft);
+    border: 1px solid var(--caveat-ring); border-left: 3px solid var(--caveat);
+    border-radius: 4px; margin-bottom: 14px;
+  }
+  .signs-special-note .ssn-label {
+    font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--caveat); margin-bottom: 6px;
+  }
+  .signs-special-note p { font-size: 14px; color: var(--ink-2); line-height: 1.6; }
+
+  /* Caveats */
+  .caveats {
+    margin-bottom: 10px; padding: 12px 14px; background: var(--caveat-soft);
+    border: 1px solid var(--caveat-ring); border-left: 2px solid var(--caveat);
+    border-radius: 4px;
+  }
+  .caveats-label { font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--caveat); margin-bottom: 6px; }
+  .caveats ul { list-style: none; padding: 0; margin: 0; }
+  .caveats li { font-size: 13px; color: var(--ink-2); line-height: 1.55; margin-bottom: 6px; padding-left: 12px; position: relative; }
+  .caveats li:last-child { margin-bottom: 0; }
+  .caveats li::before { content: "—"; position: absolute; left: 0; color: var(--caveat); }
+  .caveats li em { color: var(--blue); font-style: italic; }
+  .caveats li a { color: var(--blue); text-decoration: none; border-bottom: 1px dotted var(--blue); }
+
+  .top-link {
+    display: block; text-align: right; margin-top: 10px;
+    font-family: var(--sans); font-size: 10px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-4); text-decoration: none;
+  }
+  .top-link:hover { color: var(--blue); }
+
+  /* Closing summary */
+  .closing-section {
+    margin-top: 32px; padding: 24px 28px;
+    background: var(--card); border: 1px solid var(--rule); border-radius: 6px;
+  }
+  .closing-section h2 {
+    font-family: var(--serif); font-weight: 600; font-size: 20px; color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .closing-section p {
+    color: var(--ink-2); font-size: 15px; line-height: 1.65; margin-bottom: 14px;
+  }
+  .closing-section p:last-child { margin-bottom: 0; }
+
+  .footer { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--rule); text-align: center; }
+  .footer p { font-size: 13px; color: var(--ink-3); line-height: 1.55; margin-bottom: 8px; }
+  .footer a { color: var(--blue); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 20px 14px 60px; }
+    h1.title { font-size: 28px; }
+    .order { padding: 20px 18px 18px; }
+    .order-name { font-size: 18px; }
+    .signs-grid { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    body { background: white; color: black; font-size: 11pt; }
+    .wrap { max-width: none; padding: 0; }
+    .part-nav, .top-link, .footer { display: none !important; }
+    .order, .banner, .signs-observed, .signs-special-note, .caveats, .closing-section {
+      page-break-inside: avoid; background: white !important; box-shadow: none; border: 1px solid #000;
+    }
+    .sign-row { background: #f5f5f5 !important; border: 1px solid #000 !important; }
+    a { color: black; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap" id="top">
+
+  <div class="part-nav">
+    <a href="01_framework.html">Part A · Framework</a>
+    <a href="02_specimens.html">Part B · Specimens</a>
+    <span class="current">Part C · Orders</span>
+  </div>
+
+  <header class="masthead">
+    <div class="eyebrow">A Three-Part Study</div>
+    <h1 class="title">Orders &amp; Ornithology</h1>
+    <p class="subtitle">The Torah's forbidden birds fall into recognizable ecological groupings. Each group shares observable anatomical patterns.</p>
+    <p class="subtitle-note">This section reorganizes the 20 head-terms of Part B by ecological group. It introduces no new source quotations — the verbatim Hebrew, Aramaic, and Old French texts live in Parts A and B.</p>
+  </header>
+
+  <!-- Guardrail banner (prominent, up top) -->
+  <div class="banner caveat">
+    <div class="b-label">⚠ Scope of This Section</div>
+    <p><strong>These observations describe anatomical patterns within each group. They are not halakhic determinations</strong> — the operative rules appear in <a href="01_framework.html#four-signs">Part A (the Four Signs and the role of mesorah)</a>, and the verified per-bird analysis appears in <a href="02_specimens.html">Part B</a>. No bird is declared kosher or non-kosher in this section.</p>
+  </div>
+
+  <!-- Opening prose -->
+  <div class="order" id="opening">
+    <p class="ecology">The birds listed in Leviticus 11 and Deuteronomy 14 cluster into ecological groupings that modern observers also recognize — raptors, owls, long-legged waders, corvids, one ground-dwelling bird, one crested insect-eater, and one flying mammal grouped in the Torah's bird list. For readers working through Part B specimen-by-specimen, this section offers a different entry point: the same 20 head-terms reorganized by ecological group.</p>
+    <p class="ecology">Within each group, certain anatomical patterns appear consistently. The Four Signs defined in <a href="01_framework.html#four-signs" style="color:var(--blue);">Part A</a> — <em>dores</em>, <em>etzba yeseira</em>, <em>zefek</em>, <em>kurkevan niklaf</em> — can be observed across whole groups, not only in individual birds. That is part of why the Sages' signs were derivable from the Torah's list: birds grouped by lifestyle often display similar observable traits.</p>
+  </div>
+
+  <!-- Index -->
+  <div class="index">
+    <div class="index-label">Jump to Order</div>
+    <div class="index-grid">
+      <a href="#accipitriformes">Accipitriformes</a><span class="sep">·</span>
+      <a href="#strigiformes">Strigiformes</a><span class="sep">·</span>
+      <a href="#ciconiiformes">Ciconiiformes</a><span class="sep">·</span>
+      <a href="#corvidae">Corvidae</a><span class="sep">·</span>
+      <a href="#upupiformes">Upupiformes</a><span class="sep">·</span>
+      <a href="#struthioniformes">Struthioniformes</a><span class="sep">·</span>
+      <a href="#chiroptera">Chiroptera</a>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- ORDER 1 — ACCIPITRIFORMES -->
+  <!-- ==================================================================== -->
+  <article class="order" id="accipitriformes">
+    <div class="order-head">
+      <div class="order-num">Order 1</div>
+      <h2 class="order-name">Raptors — hawks, eagles, vultures</h2>
+      <div class="order-latin">Accipitriformes (plus Falconiformes for falcons)</div>
+    </div>
+
+    <p class="ecology">Raptors hunt or scavenge with hooked beaks and powerful taloned feet. Some, like the griffon vulture, feed primarily on carrion; others, like the sparrowhawk, take live prey in flight. Most soar on thermal updrafts or wait motionless before striking. All share the hunting-specific anatomy: hooked beak, strong feet with curved claws, forward-facing eyes for depth perception.</p>
+
+    <div class="birds-in-order">
+      <div class="birds-label">Birds from Part B in this order</div>
+      <div class="birds-list">
+        <a class="bird-chip" href="02_specimens.html#nesher"><span class="b-hebrew" lang="he" dir="rtl">נֶשֶׁר</span><span class="b-translit">nesher</span></a>
+        <a class="bird-chip" href="02_specimens.html#peres"><span class="b-hebrew" lang="he" dir="rtl">פֶּרֶס</span><span class="b-translit">peres</span></a>
+        <a class="bird-chip" href="02_specimens.html#ozniyah"><span class="b-hebrew" lang="he" dir="rtl">עׇזְנִיָּה</span><span class="b-translit">ozniyah</span></a>
+        <a class="bird-chip" href="02_specimens.html#daah-raah"><span class="b-hebrew" lang="he" dir="rtl">דָּאָה / רָאָה</span><span class="b-translit">da'ah / ra'ah</span></a>
+        <a class="bird-chip" href="02_specimens.html#ayah-dayah"><span class="b-hebrew" lang="he" dir="rtl">אַיָּה / דַּיָּה</span><span class="b-translit">ayah / dayah</span></a>
+        <a class="bird-chip" href="02_specimens.html#netz"><span class="b-hebrew" lang="he" dir="rtl">נֵץ</span><span class="b-translit">netz</span></a>
+        <a class="bird-chip" href="02_specimens.html#racham"><span class="b-hebrew" lang="he" dir="rtl">רָחָם</span><span class="b-translit">racham</span></a>
+      </div>
+    </div>
+
+    <div class="signs-observed">
+      <div class="signs-header">Observed alongside the birds in this group</div>
+      <div class="signs-grid">
+        <div class="sign-row commonly">
+          <div class="sign-row-label"><span lang="he" dir="rtl">דּוֹרֵס</span> · dores</div>
+          <div class="sign-row-value">commonly observed</div>
+        </div>
+        <div class="sign-row varies">
+          <div class="sign-row-label"><span lang="he" dir="rtl">אֶצְבַּע יְתֵרָה</span> · etzba yeseira</div>
+          <div class="sign-row-value">not relied on in this guide</div>
+        </div>
+        <div class="sign-row varies">
+          <div class="sign-row-label"><span lang="he" dir="rtl">זֶפֶק</span> · zefek</div>
+          <div class="sign-row-value">varies across the group</div>
+        </div>
+        <div class="sign-row varies">
+          <div class="sign-row-label"><span lang="he" dir="rtl">קֻרְקְבָן נִקְלָף</span> · kurkevan niklaf</div>
+          <div class="sign-row-value">not relied on in this guide</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="caveats">
+      <div class="caveats-label">Caveats</div>
+      <ul>
+        <li>Pure scavengers (<em>nesher</em> / griffon vulture, <em>racham</em> / Egyptian vulture) do not hunt live prey in the strict sense; whether they meet Rashi's or Rabbeinu Tam's definition of <em>dores</em> is a substantive question, treated in <a href="01_framework.html#four-signs">Part A</a>.</li>
+        <li>Chullin 61b notes that <em>peres</em> and <em>ozniyah</em> each possess one of the four signs, unlike the other listed birds; see <a href="02_specimens.html#nesher">Part B</a> for the verbatim passage.</li>
+        <li>The <em>da'ah/ra'ah</em> and <em>ayah/dayah</em> rows are identified by Chullin 63b as one species each; see Part B rows 4 and 5 for the verbatim Talmudic text.</li>
+      </ul>
+    </div>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- ==================================================================== -->
+  <!-- ORDER 2 — STRIGIFORMES -->
+  <!-- ==================================================================== -->
+  <article class="order" id="strigiformes">
+    <div class="order-head">
+      <div class="order-num">Order 2</div>
+      <h2 class="order-name">Owls</h2>
+      <div class="order-latin">Strigiformes</div>
+    </div>
+
+    <p class="ecology">Owls are nocturnal hunters. Their eyes are forward-facing and exceptionally large for their skull size; asymmetrical ear openings allow them to locate prey by sound alone in total darkness; specialized wing feathers dampen airflow noise in flight. They hunt small mammals, other birds, and insects, swallowing prey whole and later regurgitating indigestible bone and fur as pellets.</p>
+
+    <div class="birds-in-order">
+      <div class="birds-label">Birds from Part B in this order</div>
+      <div class="birds-list">
+        <a class="bird-chip" href="02_specimens.html#kos"><span class="b-hebrew" lang="he" dir="rtl">כּוֹס</span><span class="b-translit">kos</span></a>
+        <a class="bird-chip" href="02_specimens.html#yanshuf"><span class="b-hebrew" lang="he" dir="rtl">יַנְשׁוּף</span><span class="b-translit">yanshuf</span></a>
+        <a class="bird-chip" href="02_specimens.html#tinshemet"><span class="b-hebrew" lang="he" dir="rtl">תִּנְשֶׁמֶת</span><span class="b-translit">tinshemet</span></a>
+      </div>
+    </div>
+
+    <div class="signs-observed">
+      <div class="signs-header">Observed alongside the birds in this group</div>
+      <div class="signs-grid">
+        <div class="sign-row commonly">
+          <div class="sign-row-label"><span lang="he" dir="rtl">דּוֹרֵס</span> · dores</div>
+          <div class="sign-row-value">commonly observed</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">אֶצְבַּע יְתֵרָה</span> · etzba yeseira</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">זֶפֶק</span> · zefek</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">קֻרְקְבָן נִקְלָף</span> · kurkevan niklaf</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="caveats">
+      <div class="caveats-label">Caveats</div>
+      <ul>
+        <li>Rashi groups <em>kos</em> and <em>yanshuf</em> together as an owl-pair in his Old French gloss (<em>chouette / hibou</em>) without specifying internal allocation — see <a href="02_specimens.html#kos">Part B rows 11</a> and <a href="02_specimens.html#yanshuf">13</a>.</li>
+        <li><em>Tinshemet</em> is placed in this section tentatively on the strength of one traditional identification (barn owl); Rashi's own <span lang="he" dir="rtl">לעז</span> on <em>tinshemet</em> is the bat-word <em>calve soriz</em>, which creates an unresolved tension noted in <a href="02_specimens.html#tinshemet">Part B row 14</a>.</li>
+      </ul>
+    </div>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- ==================================================================== -->
+  <!-- ORDER 3 — CICONIIFORMES -->
+  <!-- ==================================================================== -->
+  <article class="order" id="ciconiiformes">
+    <div class="order-head">
+      <div class="order-num">Order 3</div>
+      <h2 class="order-name">Storks and herons — long-legged waders</h2>
+      <div class="order-latin">Ciconiiformes (storks) and Pelecaniformes (herons)</div>
+    </div>
+
+    <p class="ecology">Long-legged waders feed in shallow water, spearing or seizing fish, frogs, small reptiles, and small mammals with dagger-like bills. Storks and herons share the long-legs / long-neck / long-bill body plan but differ in hunting style: herons stand motionless and strike; storks walk and grab more actively.</p>
+
+    <div class="birds-in-order">
+      <div class="birds-label">Birds from Part B in this order</div>
+      <div class="birds-list">
+        <a class="bird-chip" href="02_specimens.html#chasidah"><span class="b-hebrew" lang="he" dir="rtl">חֲסִידָה</span><span class="b-translit">chasidah</span></a>
+        <a class="bird-chip" href="02_specimens.html#anafah"><span class="b-hebrew" lang="he" dir="rtl">אֲנָפָה</span><span class="b-translit">anafah</span></a>
+      </div>
+    </div>
+
+    <div class="signs-observed">
+      <div class="signs-header">Observed alongside the birds in this group</div>
+      <div class="signs-grid">
+        <div class="sign-row commonly">
+          <div class="sign-row-label"><span lang="he" dir="rtl">דּוֹרֵס</span> · dores</div>
+          <div class="sign-row-value">predatory feeding observed</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">אֶצְבַּע יְתֵרָה</span> · etzba yeseira</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">זֶפֶק</span> · zefek</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">קֻרְקְבָן נִקְלָף</span> · kurkevan niklaf</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="caveats">
+      <div class="caveats-label">Caveats</div>
+      <ul>
+        <li>These are the only two Part B specimens anchored at <strong>Anchored (Rashi + Talmud)</strong> confidence via a Rashi Old French gloss (<em>cigogne</em> for chasidah, <em>heron</em> for anafah) plus verbatim Chullin 63a passages.</li>
+        <li>The <em>shalach</em> (<a href="02_specimens.html#shalach">Part B row 12</a>) is traditionally placed among fish-catching birds but identified by Rashi and Rav Yehuda behaviorally, not zoologically. It is not placed in this order because its species is genuinely unresolved.</li>
+        <li>Whether the herons' and storks' spear-and-strike feeding maps to <em>dores</em> under any given Rishon's definition is exactly the question Part A presents — this row does not pre-judge it.</li>
+      </ul>
+    </div>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- ==================================================================== -->
+  <!-- ORDER 4 — CORVIDAE -->
+  <!-- ==================================================================== -->
+  <article class="order" id="corvidae">
+    <div class="order-head">
+      <div class="order-num">Order 4</div>
+      <h2 class="order-name">Ravens, crows, and related corvids</h2>
+      <div class="order-latin">Corvidae (within Passeriformes)</div>
+    </div>
+
+    <p class="ecology">Corvids are omnivorous — they eat seeds, fruit, insects, carrion, and small prey. They are not strict predators; they do not pursue live prey the way a hawk does, and they do not have the hooked beak or curved talons of the Accipitriformes. They are the one songbird family (Passeriformes) in the Torah's list.</p>
+
+    <div class="birds-in-order">
+      <div class="birds-label">Birds from Part B in this order</div>
+      <div class="birds-list">
+        <a class="bird-chip" href="02_specimens.html#orev"><span class="b-hebrew" lang="he" dir="rtl">עֹרֵב</span><span class="b-translit">orev</span></a>
+        <a class="bird-chip" href="02_specimens.html#orev-family"><span class="b-hebrew" lang="he" dir="rtl">לְמִינוֹ</span><span class="b-translit">orev l'mino</span></a>
+      </div>
+    </div>
+
+    <div class="signs-observed">
+      <div class="signs-header">Observed alongside the birds in this group</div>
+      <div class="signs-grid">
+        <div class="sign-row variably">
+          <div class="sign-row-label"><span lang="he" dir="rtl">דּוֹרֵס</span> · dores</div>
+          <div class="sign-row-value">variably observed</div>
+        </div>
+        <div class="sign-row present">
+          <div class="sign-row-label"><span lang="he" dir="rtl">אֶצְבַּע יְתֵרָה</span> · etzba yeseira</div>
+          <div class="sign-row-value">present</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">זֶפֶק</span> · zefek</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">קֻרְקְבָן נִקְלָף</span> · kurkevan niklaf</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="caveats">
+      <div class="caveats-label">Caveats</div>
+      <ul>
+        <li>Corvids possess a hind toe (hallux) that is visibly set apart from the three front toes, which matches one reading of <em>etzba yeseira</em> — but as <a href="01_framework.html#four-signs">Part A</a> notes, no verbatim Rashi definition of <em>etzba yeseira</em> was located, so whether corvid foot anatomy satisfies the sign halakhically is not a question this guide answers.</li>
+        <li>Corvid scavenging on carrion is well-observed; whether this counts as <em>dores</em> depends on which definition applies — see <a href="01_framework.html#four-signs">Part A Section II</a> (Rashi and Tosafot verbatim).</li>
+        <li>The <em>l'mino</em> expansion is given its own row in Part B per the Talmud's derivation at Chullin 63a (sub-kinds: valley raven, raven-with-dove-like-heads).</li>
+      </ul>
+    </div>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- ==================================================================== -->
+  <!-- ORDER 5 — UPUPIFORMES -->
+  <!-- ==================================================================== -->
+  <article class="order" id="upupiformes">
+    <div class="order-head">
+      <div class="order-num">Order 5</div>
+      <h2 class="order-name">Hoopoe</h2>
+      <div class="order-latin">Upupiformes (sometimes Bucerotiformes)</div>
+    </div>
+
+    <p class="ecology">The hoopoe is a ground-probing insectivore. It walks on short legs, uses its long curved bill to extract insects, grubs, and small reptiles from soil and crevices, and displays a fan-shaped erectable crest. It is the only species in its order found in the Levant.</p>
+
+    <div class="birds-in-order">
+      <div class="birds-label">Birds from Part B in this order</div>
+      <div class="birds-list">
+        <a class="bird-chip" href="02_specimens.html#duchifat"><span class="b-hebrew" lang="he" dir="rtl">דּוּכִיפַת</span><span class="b-translit">duchifat</span></a>
+      </div>
+    </div>
+
+    <div class="signs-observed">
+      <div class="signs-header">Observed alongside the birds in this group</div>
+      <div class="signs-grid">
+        <div class="sign-row not-observed">
+          <div class="sign-row-label"><span lang="he" dir="rtl">דּוֹרֵס</span> · dores</div>
+          <div class="sign-row-value">not observed</div>
+        </div>
+        <div class="sign-row present">
+          <div class="sign-row-label"><span lang="he" dir="rtl">אֶצְבַּע יְתֵרָה</span> · etzba yeseira</div>
+          <div class="sign-row-value">present</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">זֶפֶק</span> · zefek</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">קֻרְקְבָן נִקְלָף</span> · kurkevan niklaf</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="caveats">
+      <div class="caveats-label">Caveats</div>
+      <ul>
+        <li>Duchifat is one of the four <strong>Anchored (Rashi + Talmud)</strong> rows in Part B. Rashi's <span lang="he" dir="rtl">לעז</span> (<em>huppe</em>, likely) and the Talmudic <span lang="he" dir="rtl">הודו כפות</span> ("its glory is bound," i.e. the crest) converge cleanly on this species.</li>
+        <li>It is also one of the few Torah birds that is not in any sense a predator. Its inclusion in the Torah's forbidden list is explicit; this guide does not infer a practical ruling from the signs.</li>
+      </ul>
+    </div>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- ==================================================================== -->
+  <!-- ORDER 6 — STRUTHIONIFORMES -->
+  <!-- ==================================================================== -->
+  <article class="order" id="struthioniformes">
+    <div class="order-head">
+      <div class="order-num">Order 6</div>
+      <h2 class="order-name">Ostrich</h2>
+      <div class="order-latin">Struthioniformes (ratites)</div>
+    </div>
+
+    <p class="ecology">Ratites are large flightless birds with reduced wing structures and powerful legs. The ostrich is the largest living bird. It is a ground-running omnivore, feeding on seeds, plants, and occasional small animals.</p>
+
+    <div class="birds-in-order">
+      <div class="birds-label">Birds from Part B in this order</div>
+      <div class="birds-list">
+        <a class="bird-chip" href="02_specimens.html#yaanah"><span class="b-hebrew" lang="he" dir="rtl">בַּת הַיַּעֲנָה</span><span class="b-translit">bat ha-ya'anah</span></a>
+      </div>
+    </div>
+
+    <div class="signs-observed">
+      <div class="signs-header">Observed alongside the birds in this group</div>
+      <div class="signs-grid">
+        <div class="sign-row not-observed">
+          <div class="sign-row-label"><span lang="he" dir="rtl">דּוֹרֵס</span> · dores</div>
+          <div class="sign-row-value">not observed</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">אֶצְבַּע יְתֵרָה</span> · etzba yeseira</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">זֶפֶק</span> · zefek</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+        <div class="sign-row present">
+          <div class="sign-row-label"><span lang="he" dir="rtl">קֻרְקְבָן נִקְלָף</span> · kurkevan niklaf</div>
+          <div class="sign-row-value">present</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="caveats">
+      <div class="caveats-label">Caveats</div>
+      <ul>
+        <li><strong>This is the classic case of signs vs. explicit prohibition.</strong> The ostrich has a peelable gizzard — a positive sign — yet the Torah names it explicitly as forbidden. <a href="01_framework.html#mesorah">Part A Section III</a> ("Why <em>Mesorah</em> Decides") discusses how the halakhic system treats signs as necessary but not sufficient; <em>bat ha-ya'anah</em> is the most cited example.</li>
+        <li>Other ratites (emu, rhea, cassowary) were not known in the biblical Levant. Whether they are included in the Torah's prohibition is a halakhic question not addressed in this guide.</li>
+      </ul>
+    </div>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- ==================================================================== -->
+  <!-- ORDER 7 — CHIROPTERA -->
+  <!-- ==================================================================== -->
+  <article class="order" id="chiroptera">
+    <div class="order-head">
+      <div class="order-num">Order 7</div>
+      <h2 class="order-name">Bats</h2>
+      <div class="order-latin">Chiroptera (mammal order, not bird)</div>
+    </div>
+
+    <p class="ecology">Bats are the only mammals capable of true powered flight. Most species in the Levant feed on insects caught in flight; the Egyptian fruit bat (common in Israel) feeds on dates, figs, and other fruit. They roost in caves, hollow trees, or abandoned structures and are active at dusk and night.</p>
+
+    <p class="ecology">The Torah lists <em>atalef</em> among the flying creatures in this passage. This guide follows the verse's placement without making a zoological claim from it.</p>
+
+    <div class="birds-in-order">
+      <div class="birds-label">Birds from Part B in this order</div>
+      <div class="birds-list">
+        <a class="bird-chip" href="02_specimens.html#atalef"><span class="b-hebrew" lang="he" dir="rtl">עֲטַלֵּף</span><span class="b-translit">atalef</span></a>
+      </div>
+    </div>
+
+    <div class="signs-special-note">
+      <div class="ssn-label">Note on the Four Signs for this group</div>
+      <p>The Four Signs were stated by the Sages for birds. Bats do not possess avian anatomy, and the signs do not apply in the structural way they do for the other orders in this section. The <em>atalef</em> is forbidden by the Torah's explicit listing (Leviticus 11:19), which does not depend on the signs.</p>
+    </div>
+
+    <div class="caveats">
+      <div class="caveats-label">Caveats</div>
+      <ul>
+        <li>Rashi's <span lang="he" dir="rtl">לעז</span> for <em>tinshemet</em> (<a href="02_specimens.html#tinshemet">Part B row 14</a>) is <em>calve soriz</em> = bat. This creates a structural question the document does not resolve: if <em>tinshemet</em> is a bat, what is <em>atalef</em>? The question is flagged in Part B and not re-argued here.</li>
+      </ul>
+    </div>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- Closing -->
+  <div class="closing-section" id="closing">
+    <h2>Closing</h2>
+    <p>Across seven groupings, the Torah's forbidden birds cluster into lifestyles. Predators (Accipitriformes, Strigiformes, Ciconiiformes) share the absence of the positive signs and commonly display predatory feeding. Scavengers and omnivores (Corvidae, part of the vulture group) fall between. The ground-runners and crested insect-eaters (Struthioniformes, Upupiformes) have their own patterns. The <em>atalef</em> stands alone in the Torah's grouping on the strength of flight.</p>
+    <p>The Four Signs can be viewed alongside these ecological groupings, but this section does not derive halakhic conclusions from that comparison. The operative rules are in <a href="01_framework.html" style="color:var(--blue);">Part A</a>, and the verified per-bird analysis is in <a href="02_specimens.html" style="color:var(--blue);">Part B</a>.</p>
+  </div>
+
+  <div class="footer">
+    <p><a href="01_framework.html">← Part A · Framework</a> &nbsp;·&nbsp; <a href="02_specimens.html">Part B · Specimens</a> &nbsp;·&nbsp; <span style="padding:4px 8px; background:var(--ink); color:#fff; border-radius:3px; font-family:var(--sans); font-size:10px; letter-spacing:0.08em; text-transform:uppercase;">Part C</span></p>
+    <p style="margin-top:12px;">A Jewish Ornithology Guide.</p>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Torah Interactive · Study Apps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --maroon:#5a1421; --maroon-deep:#3d0d18; --maroon-ink:#2a0810;
+  --ink:#16110f; --paper:#ffffff; --paper-soft:#fafaf9; --paper-tint:#fbf7f6;
+  --bg:#f7ecec; --rule:#e6e6e6; --dotted:#d8d2cf; --mute:#6e6663; --mute-soft:#9a9290;
+  --display:'Bricolage Grotesque',system-ui,sans-serif;
+  --body:'Crimson Pro',Georgia,serif;
+  --hebrew:'Frank Ruhl Libre',serif;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);}
+header{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--maroon);padding:14px 28px;display:flex;align-items:baseline;justify-content:space-between;z-index:5;}
+.brand{font-family:var(--display);font-weight:800;font-size:17px;letter-spacing:-0.01em;color:var(--maroon-ink);}
+.brand .he{font-family:var(--hebrew);font-weight:700;margin-left:8px;}
+.crumb{font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--mute);}
+main{max-width:1080px;margin:0 auto;padding:26px 28px 64px;}
+.section-head{display:flex;align-items:baseline;gap:14px;margin:6px 0 16px;}
+.eyebrow{font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--maroon);}
+h1{font-family:var(--display);font-weight:800;font-size:30px;letter-spacing:-0.01em;margin:0 0 4px;}
+.lede{font-size:16px;line-height:1.6;color:var(--mute);max-width:62ch;margin:0 0 26px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px;}
+.card{display:block;background:var(--paper);border:1px solid var(--rule);border-top:3px solid var(--maroon);padding:14px 16px 13px;text-decoration:none;color:var(--ink);}
+.card:hover{background:var(--paper-tint);}
+.card .he-title{font-family:var(--hebrew);font-weight:700;font-size:22px;direction:rtl;text-align:right;color:var(--maroon-ink);line-height:1.4;}
+.card .en-title{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:0.04em;margin-top:2px;}
+.card p{font-size:14.5px;line-height:1.55;margin:7px 0 9px;color:var(--ink);}
+.card .ref{font-family:var(--display);font-weight:700;font-size:9.5px;letter-spacing:0.15em;text-transform:uppercase;color:var(--mute-soft);}
+.subnote{margin-top:8px;font-size:13px;}
+.subnote a{color:var(--maroon);font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;margin-right:12px;}
+.subnote a:hover{text-decoration:underline;}
+footer{border-top:1px solid var(--rule);margin-top:44px;padding-top:14px;font-family:var(--display);font-weight:600;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mute-soft);}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">TORAH INTERACTIVE<span class="he">לימוד</span></div>
+  <div class="crumb">Interactive Study Apps</div>
+</header>
+<main>
+  <div class="section-head"><span class="eyebrow">Library</span></div>
+  <h1>Interactive Halachic Learning</h1>
+  <p class="lede">Source-grounded interactive tools pairing classical rabbinic literature with modern presentation. Hebrew · transliteration · English throughout.</p>
+  <div class="grid">
+
+    <a class="card" href="apps/tumah.html">
+      <div class="he-title">מְקוֹרוֹת הַטֻּמְאָה</div>
+      <div class="en-title">TUMAH TREE A</div>
+      <p>The 44 sources of tumah — avi avos, avos, and toldos — as a navigable state machine with levels, creates-chains, and purification paths.</p>
+      <div class="ref">Ohalos · Keilim · Parah</div>
+    </a>
+
+    <a class="card" href="apps/negaim.html">
+      <div class="he-title">נְגָעִים</div>
+      <div class="en-title">TZARA'AS DIAGNOSTIC</div>
+      <p>Step-by-step halachic diagnostic for negaim of the person, clothing, and house, with full decision tree and trilingual sources.</p>
+      <div class="ref">Vayikra 13–14 · Negaim</div>
+    </a>
+
+    <a class="card" href="apps/arayot-v6.html">
+      <div class="he-title">אִילַן הָעֲרָיוֹת</div>
+      <div class="en-title">ARAYOT TREE</div>
+      <p>Genealogical and thematic visualization of the forbidden relationships, with seven-category thematic toggle.</p>
+      <div class="ref">Vayikra 18 · 20</div>
+    </a>
+
+    <a class="card" href="apps/mumim.html">
+      <div class="he-title">מוּמִים</div>
+      <div class="en-title">MUMIM CATALOG</div>
+      <p>Catalog of the blemishes of kohen and korban — every term with sourcing badges and anti-hallucination schema.</p>
+      <div class="ref">Vayikra 21–22 · Bechoros</div>
+    </a>
+
+    <a class="card" href="apps/Counts.html">
+      <div class="he-title">פְּקוּדִים</div>
+      <div class="en-title">THE COUNTS</div>
+      <p>Census analysis across the eight formal counts of Bnei Yisroel in the Torah, in nine comparative views.</p>
+      <div class="ref">Shemos · Bamidbar</div>
+    </a>
+
+    <a class="card" href="apps/Karnayim.html">
+      <div class="he-title">קַרְנַיִם</div>
+      <div class="en-title">KARNAYIM</div>
+      <p>Horn anatomy primer keyed to the kashrut signs of Chullin 59b.</p>
+      <div class="ref">Chullin 59b</div>
+    </a>
+
+    <a class="card" href="apps/yom_kippur_avodah.html">
+      <div class="he-title">עֲבוֹדַת יוֹם הַכִּפּוּרִים</div>
+      <div class="en-title">AVODAS YOM HAKIPPURIM</div>
+      <p>The 28 stations of the Kohen Gadol's service as a departures board. Fully Hebrew interface.</p>
+      <div class="ref">Yoma · Seder HaAvodah</div>
+    </a>
+
+    <div class="card" style="border-top:3px solid var(--maroon);">
+      <a href="apps/jewish_ornithology_guide.html" style="text-decoration:none;color:inherit;display:block;">
+        <div class="he-title">עוֹפוֹת טְמֵאִים</div>
+        <div class="en-title">JEWISH ORNITHOLOGY GUIDE</div>
+        <p>Classroom guide to the Torah's 24 forbidden birds — verbatim sources only, six-tier confidence taxonomy.</p>
+        <div class="ref">Vayikra 11 · Chullin 59a–63b</div>
+      </a>
+      <div class="subnote">
+        <a href="apps/01_framework.html">Part 1 · Framework</a>
+        <a href="apps/02_specimens.html">Part 2 · Specimens</a>
+        <a href="apps/03_orders.html">Part 3 · Orders</a>
+      </div>
+    </div>
+
+  </div>
+  <footer>Torah Interactive · Built with source discipline · No invented citations</footer>
+</main>
+</body>
+</html>

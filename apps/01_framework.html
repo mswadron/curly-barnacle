@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part A · The Framework — A Jewish Ornithology Guide</title>
+<style>
+  :root {
+    --bg: #fafbfc;
+    --card: #ffffff;
+    --ink: #1f2937;
+    --ink-2: #374151;
+    --ink-3: #6b7280;
+    --ink-4: #9ca3af;
+    --rule: #e5e7eb;
+    --blue: #2563eb;
+    --blue-2: #3b82f6;
+    --blue-soft: #eff6ff;
+    --blue-ring: #bfdbfe;
+    --anchored: #047857;
+    --anchored-soft: #ecfdf5;
+    --anchored-ring: #a7f3d0;
+    --caveat: #b45309;
+    --caveat-soft: #fffbeb;
+    --caveat-ring: #fde68a;
+    --noanchor: #64748b;
+    --noanchor-soft: #f1f5f9;
+    --noanchor-ring: #cbd5e1;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "Helvetica Neue", Arial, sans-serif;
+    --serif: "Charter", "Iowan Old Style", "Palatino Linotype", "Palatino", Georgia, serif;
+    --hebrew: "Frank Ruehl CLM", "David CLM", "SBL Hebrew", "Ezra SIL", "Times New Roman", serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body { background: var(--bg); color: var(--ink); font-family: var(--serif); font-size: 16px; line-height: 1.6; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 32px 24px 100px; }
+
+  .part-nav { display: flex; gap: 4px; margin-bottom: 28px; flex-wrap: wrap; }
+  .part-nav a, .part-nav span {
+    font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 7px 12px; border: 1px solid var(--rule);
+    background: var(--card); color: var(--ink-3); text-decoration: none;
+    border-radius: 4px; transition: all 0.15s;
+  }
+  .part-nav a:hover { border-color: var(--blue); color: var(--blue); }
+  .part-nav .current { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+  .masthead { padding-bottom: 28px; border-bottom: 1px solid var(--rule); margin-bottom: 28px; }
+  .eyebrow { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+  h1.title { font-family: var(--serif); font-weight: 600; font-size: 36px; line-height: 1.15; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.01em; }
+  .subtitle { font-size: 16px; color: var(--ink-3); line-height: 1.55; max-width: 560px; }
+  .subtitle-note { font-size: 13px; color: var(--ink-4); line-height: 1.55; max-width: 560px; margin-top: 10px; font-style: italic; }
+
+  .banner {
+    padding: 14px 18px; margin-bottom: 20px; border-radius: 4px;
+    border: 1px solid var(--rule); border-left-width: 3px;
+    background: var(--card);
+  }
+  .banner.caveat { background: var(--caveat-soft); border-color: var(--caveat-ring); border-left-color: var(--caveat); }
+  .banner.info { background: var(--blue-soft); border-color: var(--blue-ring); border-left-color: var(--blue); }
+  .banner .b-label {
+    font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .banner.caveat .b-label { color: var(--caveat); }
+  .banner.info .b-label { color: var(--blue); }
+  .banner p { font-size: 14px; color: var(--ink-2); line-height: 1.6; margin-bottom: 6px; }
+  .banner p:last-child { margin-bottom: 0; }
+  .banner strong { color: var(--ink); font-weight: 600; }
+  .banner a { color: var(--blue); text-decoration: none; border-bottom: 1px dotted var(--blue); }
+
+  /* Section layout */
+  .section {
+    background: var(--card); border: 1px solid var(--rule); border-radius: 6px;
+    padding: 28px 30px 24px; margin-bottom: 24px; scroll-margin-top: 20px;
+  }
+  .section-head {
+    padding-bottom: 16px; border-bottom: 1px solid var(--rule); margin-bottom: 20px;
+  }
+  .section-number {
+    font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 6px;
+  }
+  .section-title { font-family: var(--serif); font-weight: 600; font-size: 24px; color: var(--ink); line-height: 1.2; margin-bottom: 6px; }
+  .section-subtitle { font-size: 14px; color: var(--ink-3); font-style: italic; }
+
+  p.body {
+    color: var(--ink-2); font-size: 15px; line-height: 1.7; margin-bottom: 14px;
+  }
+  p.body strong { color: var(--ink); font-weight: 600; }
+  p.body em { color: var(--blue); font-style: italic; }
+
+  .block { margin-bottom: 16px; padding: 14px 16px; border: 1px solid var(--rule); border-radius: 4px; background: var(--card); }
+  .block.verse { background: var(--blue-soft); border-left: 3px solid var(--blue-2); border-color: var(--blue-ring); }
+  .block.mishnah { background: var(--anchored-soft); border-left: 3px solid var(--anchored); border-color: var(--anchored-ring); }
+  .block.rashi { background: var(--card); border-left: 3px solid var(--anchored); }
+  .block.tosafot { background: var(--card); border-left: 3px solid var(--blue); }
+
+  .block-label { font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+
+  .heb-text {
+    font-family: var(--hebrew); font-size: 16px; color: var(--ink);
+    line-height: 1.9; margin-bottom: 8px;
+    padding: 10px 14px; background: var(--bg); border-radius: 3px;
+  }
+  .heb-text.verse-block { font-size: 17px; }
+
+  .verify-link {
+    font-family: var(--sans); font-size: 11px; color: var(--ink-3);
+    margin-top: 4px;
+  }
+  .verify-link a { color: var(--blue); text-decoration: none; border-bottom: 1px dotted var(--blue); }
+
+  .provenance-note {
+    font-family: var(--sans); font-size: 12px; color: var(--ink-3);
+    font-style: italic; margin-top: 6px; padding: 6px 10px;
+    background: var(--anchored-soft); border-left: 2px solid var(--anchored);
+    border-radius: 3px;
+  }
+
+  .speaker-tag {
+    font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-4); margin-bottom: 6px;
+  }
+
+  /* Signs sub-block layout */
+  .sign-block {
+    margin-top: 16px; padding: 16px 18px;
+    background: var(--bg); border: 1px solid var(--rule); border-radius: 4px;
+  }
+  .sign-block-head {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px;
+    margin-bottom: 12px;
+    padding-bottom: 10px; border-bottom: 1px solid var(--rule);
+  }
+  .sign-num { font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-4); }
+  .sign-hebrew { font-family: var(--hebrew); font-size: 22px; color: var(--ink); }
+  .sign-transliteration { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--blue); font-weight: 500; }
+  .sign-english { font-size: 13px; color: var(--ink-3); }
+
+  .sign-note {
+    font-size: 13px; color: var(--ink-2); line-height: 1.55; margin-top: 8px;
+  }
+
+  /* Torah list table */
+  .torah-list-table {
+    width: 100%; border-collapse: collapse; margin: 16px 0;
+    font-size: 14px;
+  }
+  .torah-list-table tr { border-bottom: 1px solid var(--rule); }
+  .torah-list-table tr:last-child { border-bottom: none; }
+  .torah-list-table tr:hover { background: var(--blue-soft); }
+  .torah-list-table td { padding: 8px 6px; vertical-align: baseline; }
+  .torah-list-table td:first-child { width: 36px; color: var(--ink-4); font-family: var(--sans); font-size: 11px; font-weight: 600; }
+  .torah-list-table .tl-hebrew { font-family: var(--hebrew); font-size: 18px; color: var(--ink); width: 130px; }
+  .torah-list-table .tl-translit { font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--blue); width: 140px; }
+  .torah-list-table .tl-english { color: var(--ink-3); font-size: 13px; }
+  .torah-list-table .tl-link { text-align: right; }
+  .torah-list-table .tl-link a {
+    font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--blue); text-decoration: none;
+    border: 1px solid var(--blue-ring); padding: 3px 8px; border-radius: 3px;
+  }
+  .torah-list-table .tl-link a:hover { background: var(--blue); color: #fff; }
+
+  /* Cross-reference lists */
+  .xref-list {
+    list-style: none; padding: 0; margin: 12px 0;
+  }
+  .xref-list li {
+    padding: 8px 12px; margin-bottom: 6px;
+    background: var(--bg); border: 1px dashed var(--rule); border-radius: 3px;
+    font-family: var(--sans); font-size: 13px; color: var(--ink-2);
+  }
+  .xref-list li a { color: var(--blue); text-decoration: none; border-bottom: 1px dotted var(--blue); }
+
+  /* Footer */
+  .footer { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--rule); text-align: center; }
+  .footer p { font-size: 13px; color: var(--ink-3); line-height: 1.55; margin-bottom: 8px; }
+  .footer a { color: var(--blue); text-decoration: none; }
+
+  .top-link {
+    display: block; text-align: right; margin-top: 10px;
+    font-family: var(--sans); font-size: 10px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-4); text-decoration: none;
+  }
+  .top-link:hover { color: var(--blue); }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 20px 14px 60px; }
+    h1.title { font-size: 28px; }
+    .section { padding: 20px 18px 18px; }
+    .section-title { font-size: 20px; }
+    .torah-list-table .tl-hebrew { font-size: 16px; width: auto; }
+    .torah-list-table .tl-translit { width: auto; }
+  }
+
+  @media print {
+    body { background: white; color: black; font-size: 11pt; }
+    .wrap { max-width: none; padding: 0; }
+    .part-nav, .top-link, .footer { display: none !important; }
+    .section, .sign-block, .block { page-break-inside: avoid; background: white !important; box-shadow: none; margin-bottom: 16pt; border: 1px solid #000; }
+    .banner { page-break-inside: avoid; background: white !important; border: 1px solid #000; }
+    .heb-text { background: #f5f5f5 !important; }
+    a { color: black; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap" id="top">
+
+  <div class="part-nav">
+    <span class="current">Part A · Framework</span>
+    <a href="02_specimens.html">Part B · Specimens</a>
+    <a href="03_orders.html">Part C · Orders</a>
+  </div>
+
+  <header class="masthead">
+    <div class="eyebrow">A Three-Part Study</div>
+    <h1 class="title">The Framework</h1>
+    <p class="subtitle">The Torah's forbidden birds, the Sages' four signs, and the role of mesorah — the conceptual scaffolding beneath the specimen-by-specimen analysis in Part B.</p>
+    <p class="subtitle-note">Every primary-source quote in this guide is reproduced verbatim with a direct Sefaria link. No views are attributed to Rishonim unless the exact text is present. Where a gloss could not be verbatim-located, the section says so plainly.</p>
+  </header>
+
+  <!-- =================================================================== -->
+  <!-- SECTION I — THE TORAH'S LIST -->
+  <!-- =================================================================== -->
+  <section class="section" id="torah-list">
+    <div class="section-head">
+      <div class="section-number">Section I</div>
+      <h2 class="section-title">The Torah's Forbidden Birds</h2>
+      <p class="section-subtitle">The list appears twice — in Leviticus 11:13–19 and Deuteronomy 14:12–18.</p>
+    </div>
+
+    <p class="body">Unlike mammals and fish, the Torah does not give signs for kosher birds. Instead, it names the birds that are forbidden; the Sages then formulate signs for identifying permitted birds.</p>
+
+    <p class="body">The list follows. Each name links to its specimen row in Part B, where verse text, verified commentary, and modern candidates are laid out in detail. Identifications vary in confidence — that variation, documented in Part B, is the reason the Sages introduced signs and <em>mesorah</em>.</p>
+
+    <div class="block verse">
+      <div class="block-label">Torah · Leviticus 11:13–19 (verbatim)</div>
+      <div class="heb-text verse-block" lang="he" dir="rtl">וְאֶת־אֵלֶּה תְּשַׁקְּצוּ מִן־הָעוֹף לֹא יֵאָכְלוּ שֶׁקֶץ הֵם: אֶת־הַנֶּשֶׁר וְאֶת־הַפֶּרֶס וְאֵת הָעׇזְנִיָּה׃ וְאֶת־הַדָּאָה וְאֶת־הָאַיָּה לְמִינָהּ׃ אֵת כׇּל־עֹרֵב לְמִינוֹ׃ וְאֵת בַּת הַיַּעֲנָה וְאֶת־הַתַּחְמָס וְאֶת־הַשָּׁחַף וְאֶת־הַנֵּץ לְמִינֵהוּ׃ וְאֶת־הַכּוֹס וְאֶת־הַשָּׁלָךְ וְאֶת־הַיַּנְשׁוּף׃ וְאֶת־הַתִּנְשֶׁמֶת וְהַקָּאָת וְהָרָחָם׃ וְהַחֲסִידָה הָאֲנָפָה לְמִינָהּ וְהַדּוּכִיפַת וְהָעֲטַלֵּף׃</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Leviticus.11.13-19">sefaria.org/Leviticus.11.13-19</a> · Parallel list in Deuteronomy 14:12–18 (<a href="https://www.sefaria.org/Deuteronomy.14.12-18">cross-reference</a>)</div>
+    </div>
+
+    <h3 style="font-family: var(--serif); font-weight: 600; font-size: 16px; color: var(--ink); margin: 20px 0 10px;">The Twenty Head-Terms</h3>
+    <table class="torah-list-table">
+      <tbody>
+        <tr><td>1</td><td class="tl-hebrew" lang="he" dir="rtl">נֶשֶׁר</td><td class="tl-translit">nesher</td><td class="tl-english">griffon vulture / eagle</td><td class="tl-link"><a href="02_specimens.html#nesher">View in B</a></td></tr>
+        <tr><td>2</td><td class="tl-hebrew" lang="he" dir="rtl">פֶּרֶס</td><td class="tl-translit">peres</td><td class="tl-english">bearded vulture / lammergeier</td><td class="tl-link"><a href="02_specimens.html#peres">View in B</a></td></tr>
+        <tr><td>3</td><td class="tl-hebrew" lang="he" dir="rtl">עׇזְנִיָּה</td><td class="tl-translit">ozniyah</td><td class="tl-english">sea eagle / black vulture</td><td class="tl-link"><a href="02_specimens.html#ozniyah">View in B</a></td></tr>
+        <tr><td>4</td><td class="tl-hebrew" lang="he" dir="rtl">דָּאָה / רָאָה</td><td class="tl-translit">da'ah / ra'ah</td><td class="tl-english">one species per Chullin 63b</td><td class="tl-link"><a href="02_specimens.html#daah-raah">View in B</a></td></tr>
+        <tr><td>5</td><td class="tl-hebrew" lang="he" dir="rtl">אַיָּה / דַּיָּה</td><td class="tl-translit">ayah / dayah</td><td class="tl-english">one species per Chullin 63b</td><td class="tl-link"><a href="02_specimens.html#ayah-dayah">View in B</a></td></tr>
+        <tr><td>6</td><td class="tl-hebrew" lang="he" dir="rtl">עֹרֵב</td><td class="tl-translit">orev</td><td class="tl-english">raven (base term)</td><td class="tl-link"><a href="02_specimens.html#orev">View in B</a></td></tr>
+        <tr><td>7</td><td class="tl-hebrew" lang="he" dir="rtl">בַּת הַיַּעֲנָה</td><td class="tl-translit">bat ha-ya'anah</td><td class="tl-english">ostrich (trad.)</td><td class="tl-link"><a href="02_specimens.html#yaanah">View in B</a></td></tr>
+        <tr><td>8</td><td class="tl-hebrew" lang="he" dir="rtl">תַּחְמָס</td><td class="tl-translit">tachmas</td><td class="tl-english">unresolved</td><td class="tl-link"><a href="02_specimens.html#tachmas">View in B</a></td></tr>
+        <tr><td>9</td><td class="tl-hebrew" lang="he" dir="rtl">שָׁחָף</td><td class="tl-translit">shachaf</td><td class="tl-english">unresolved</td><td class="tl-link"><a href="02_specimens.html#shachaf">View in B</a></td></tr>
+        <tr><td>10</td><td class="tl-hebrew" lang="he" dir="rtl">נֵץ</td><td class="tl-translit">netz</td><td class="tl-english">hawk / sparrowhawk</td><td class="tl-link"><a href="02_specimens.html#netz">View in B</a></td></tr>
+        <tr><td>11</td><td class="tl-hebrew" lang="he" dir="rtl">כּוֹס</td><td class="tl-translit">kos</td><td class="tl-english">owl (Rashi owl-pair)</td><td class="tl-link"><a href="02_specimens.html#kos">View in B</a></td></tr>
+        <tr><td>12</td><td class="tl-hebrew" lang="he" dir="rtl">שָׁלָךְ</td><td class="tl-translit">shalach</td><td class="tl-english">fish-catching bird (unresolved)</td><td class="tl-link"><a href="02_specimens.html#shalach">View in B</a></td></tr>
+        <tr><td>13</td><td class="tl-hebrew" lang="he" dir="rtl">יַנְשׁוּף</td><td class="tl-translit">yanshuf</td><td class="tl-english">owl (Rashi owl-pair)</td><td class="tl-link"><a href="02_specimens.html#yanshuf">View in B</a></td></tr>
+        <tr><td>14</td><td class="tl-hebrew" lang="he" dir="rtl">תִּנְשֶׁמֶת</td><td class="tl-translit">tinshemet</td><td class="tl-english">Rashi's לעז: bat (unresolved)</td><td class="tl-link"><a href="02_specimens.html#tinshemet">View in B</a></td></tr>
+        <tr><td>15</td><td class="tl-hebrew" lang="he" dir="rtl">קָאָת</td><td class="tl-translit">ka'at</td><td class="tl-english">Gemara: <span lang="he" dir="rtl">קוק</span> (unidentified)</td><td class="tl-link"><a href="02_specimens.html#kaat">View in B</a></td></tr>
+        <tr><td>16</td><td class="tl-hebrew" lang="he" dir="rtl">רָחָם</td><td class="tl-translit">racham</td><td class="tl-english">Gemara: <span lang="he" dir="rtl">שרקרק</span> (unidentified)</td><td class="tl-link"><a href="02_specimens.html#racham">View in B</a></td></tr>
+        <tr><td>17</td><td class="tl-hebrew" lang="he" dir="rtl">חֲסִידָה</td><td class="tl-translit">chasidah</td><td class="tl-english">stork (via Rashi's לעז)</td><td class="tl-link"><a href="02_specimens.html#chasidah">View in B</a></td></tr>
+        <tr><td>18</td><td class="tl-hebrew" lang="he" dir="rtl">אֲנָפָה</td><td class="tl-translit">anafah</td><td class="tl-english">heron (via Rashi's לעז)</td><td class="tl-link"><a href="02_specimens.html#anafah">View in B</a></td></tr>
+        <tr><td>19</td><td class="tl-hebrew" lang="he" dir="rtl">דּוּכִיפַת</td><td class="tl-translit">duchifat</td><td class="tl-english">hoopoe</td><td class="tl-link"><a href="02_specimens.html#duchifat">View in B</a></td></tr>
+        <tr><td>20</td><td class="tl-hebrew" lang="he" dir="rtl">עֲטַלֵּף</td><td class="tl-translit">atalef</td><td class="tl-english">bat</td><td class="tl-link"><a href="02_specimens.html#atalef">View in B</a></td></tr>
+      </tbody>
+    </table>
+
+    <p class="body" style="font-size:14px; color:var(--ink-3); font-style:italic;">The Torah also uses four <span lang="he" dir="rtl">למינה / למינו / למינהו</span> family-expansion clauses on <em>da'ah/ra'ah, orev, netz,</em> and <em>anafah</em>. This guide renders those clauses as family-expansion rows so the presentation matches the Talmudic count of 24. See Part B's family-expansion rows.</p>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </section>
+
+  <!-- =================================================================== -->
+  <!-- SECTION II — THE FOUR SIGNS -->
+  <!-- =================================================================== -->
+  <section class="section" id="four-signs">
+    <div class="section-head">
+      <div class="section-number">Section II</div>
+      <h2 class="section-title">The Four Signs</h2>
+      <p class="section-subtitle">The Sages' working rules for identifying kosher birds, derived from the forbidden list itself.</p>
+    </div>
+
+    <p class="body">Since the Torah gave no positive signs for kosher birds, the Sages in Mishnah Chullin 3:6 stated four working rules — one negative (<em>dores</em>, "seizes prey") and three positive (<em>etzba yeseira</em>, <em>zefek</em>, <em>kurkevan niklaf</em>). The Mishnah is reproduced below verbatim.</p>
+
+    <p class="body">Of the four, <em>dores</em> is the one whose definition is most debated. Rashi on Chullin 59a and Tosafot on Chullin 61a take different positions, both reproduced below verbatim from Sefaria. The other three signs are named in the Mishnah itself; no verbatim Rashi definitions were located for reproduction here.</p>
+
+    <div class="block mishnah">
+      <div class="block-label">Mishnah · Chullin 3:6 (verbatim)</div>
+      <div class="speaker-tag">Mishnah (folio 59a)</div>
+      <div class="heb-text" lang="he" dir="rtl">סִימָנֵי בְּהֵמָה וְחַיָּה נֶאֶמְרוּ מִן הַתּוֹרָה, וְסִימָנֵי הָעוֹף לֹא נֶאֶמְרוּ. אֲבָל אָמְרוּ חֲכָמִים: כָּל עוֹף הַדּוֹרֵס — טָמֵא. כֹּל שֶׁיֶּשׁ לוֹ אֶצְבַּע יְתֵרָה, וְזֶפֶק, וְקֻרְקְבָנוֹ נִקְלָף — טָהוֹר. רַבִּי אֱלִיעֶזֶר בַּר צָדוֹק אוֹמֵר: כָּל עוֹף הַחוֹלֵק אֶת רַגְלָיו — טָמֵא.</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Mishnah_Chullin.3.6">sefaria.org/Mishnah_Chullin.3.6</a> · English translation at the link.</div>
+    </div>
+
+    <!-- Sign I: DORES -->
+    <div class="sign-block">
+      <div class="sign-block-head">
+        <span class="sign-num">Sign I</span>
+        <span class="sign-hebrew" lang="he" dir="rtl">דּוֹרֵס</span>
+        <span class="sign-transliteration">dores</span>
+        <span class="sign-english">— "seizes prey" (the negative sign)</span>
+      </div>
+
+      <div class="block rashi">
+        <div class="block-label">Rashi on Chullin 59a (verbatim)</div>
+        <div class="speaker-tag">Rashi</div>
+        <div class="heb-text" lang="he" dir="rtl">שֶׁאוֹחֵז בְּצִפּוֹרְנָיו וּמַגְבִּיהַּ מִן הַקַּרְקַע מַה שֶּׁאוֹכֵל.</div>
+        <div class="verify-link">Verify: <a href="https://www.sefaria.org/Rashi_on_Chullin.59a.20.1">sefaria.org/Rashi_on_Chullin.59a.20.1</a></div>
+        <div class="provenance-note">This Rashi text is independently preserved in Tosafot on Chullin 61a (below), which quotes Rashi by name using the exact same wording.</div>
+      </div>
+
+      <div class="block tosafot">
+        <div class="block-label">Tosafot on Chullin 61a (verbatim — citing Rabbeinu Tam)</div>
+        <div class="speaker-tag">Tosafot, citing Rabbeinu Tam</div>
+        <div class="heb-text" lang="he" dir="rtl">הַדּוֹרֵס — פֵּירֵשׁ בַּקּוּנְטְרֵס שֶׁאוֹחֵז בְּצִפּוֹרְנָיו וּמַגְבִּיהַּ מִן הַקַּרְקַע מַה שֶׁאוֹכֵל, וְקָשֶׁה לְרַבֵּינוּ תָּם דְּהָא אֲפִילּוּ תַּרְנְגוֹלֶת עוֹשָׂה כֵן, וּמְפָרֵשׁ רַבֵּינוּ תָּם — דּוֹרֵס וְאוֹכֵל מֵחַיִּים וְאֵינוֹ מַמְתִּין לָהּ עַד שֶׁתָּמוּת.</div>
+        <div class="verify-link">Verify: <a href="https://www.sefaria.org/Tosafot_on_Chullin.61a.1.3">sefaria.org/Tosafot_on_Chullin.61a.1.3</a></div>
+      </div>
+
+      <div class="sign-note">Rashi and Rabbeinu Tam (as Tosafot reports him) differ on what <em>dores</em> describes. The two quotes stand side by side; a reader can compare them directly.</div>
+    </div>
+
+    <!-- Sign II: ETZBA YESEIRA -->
+    <div class="sign-block">
+      <div class="sign-block-head">
+        <span class="sign-num">Sign II</span>
+        <span class="sign-hebrew" lang="he" dir="rtl">אֶצְבַּע יְתֵרָה</span>
+        <span class="sign-transliteration">etzba yeseira</span>
+        <span class="sign-english">— "extra toe"</span>
+      </div>
+      <div class="sign-note">The Mishnah names <em>etzba yeseira</em> but does not elaborate on which toe is meant. Later authorities discuss this; no verbatim Rashi definition was located for reproduction here. See the Further Study note at the end of this section.</div>
+    </div>
+
+    <!-- Sign III: ZEFEK -->
+    <div class="sign-block">
+      <div class="sign-block-head">
+        <span class="sign-num">Sign III</span>
+        <span class="sign-hebrew" lang="he" dir="rtl">זֶפֶק</span>
+        <span class="sign-transliteration">zefek</span>
+        <span class="sign-english">— "crop"</span>
+      </div>
+      <div class="sign-note">A pouch in the esophagus where food is softened before digestion. The Mishnah names the feature; no verbatim Rashi definition was located for reproduction here.</div>
+    </div>
+
+    <!-- Sign IV: KURKEVAN NIKLAF -->
+    <div class="sign-block">
+      <div class="sign-block-head">
+        <span class="sign-num">Sign IV</span>
+        <span class="sign-hebrew" lang="he" dir="rtl">קֻרְקְבָנוֹ נִקְלָף</span>
+        <span class="sign-transliteration">kurkevan niklaf</span>
+        <span class="sign-english">— "gizzard that can be peeled"</span>
+      </div>
+      <div class="sign-note">The muscular stomach has an inner lining. In kosher birds the lining peels away by hand. The Mishnah names this; no verbatim Rashi definition was located for reproduction here.</div>
+    </div>
+
+    <!-- Further Study note -->
+    <div class="banner caveat" style="margin-top: 20px;">
+      <div class="b-label">Further Study</div>
+      <p>Later authorities debate the precise definitions of the four signs, especially <span lang="he" dir="rtl">דורס</span>. This guide presents only views reproduced from directly verifiable source text.</p>
+    </div>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </section>
+
+  <!-- =================================================================== -->
+  <!-- SECTION III — WHY MESORAH DECIDES -->
+  <!-- =================================================================== -->
+  <section class="section" id="mesorah">
+    <div class="section-head">
+      <div class="section-number">Section III</div>
+      <h2 class="section-title">Why Mesorah Decides</h2>
+      <p class="section-subtitle">Later halakhic practice treats signs as necessary but not sufficient.</p>
+    </div>
+
+    <p class="body">The four signs provide the Mishnah's framework for identifying permitted birds, but this guide does not present them as a standalone practical ruling system.</p>
+
+    <p class="body">Later halakhic practice treats <em>mesorah</em> as decisive in many bird-identification cases. This guide does not reproduce the decisor texts here; see <a href="#further-study" style="color:var(--blue);">Further Study</a>.</p>
+
+    <p class="body">This is why the identification debates in Part B are presented as source-critical and zoological, not as practical kashrut rulings.</p>
+
+    <p class="body">New bird species encountered in new regions are outside the scope of this guide's practical conclusions. For applied halakhah, consult the decisor texts listed below.</p>
+
+    <div class="banner caveat" style="margin-top: 16px;">
+      <div class="b-label">Note</div>
+      <p>This section describes the halakhic framework at a high level. No specific rulings are reproduced. For decisor texts see the reading list in <a href="#further-study">Further Study</a>, specifically Rambam <em>Hilchot Ma'achalot Asurot</em> 1:14–15 and Shulchan Aruch <em>Yoreh De'ah</em> 82.</p>
+    </div>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </section>
+
+  <!-- =================================================================== -->
+  <!-- SECTION IV — FURTHER STUDY -->
+  <!-- =================================================================== -->
+  <section class="section" id="further-study">
+    <div class="section-head">
+      <div class="section-number">Section IV</div>
+      <h2 class="section-title">Further Study</h2>
+    </div>
+
+    <p class="body">This guide's sources policy is strict: every popup reproduces verbatim text with a Sefaria link, and paraphrases are not attributed to the Gemara or to specific Rishonim. That discipline means some views that appear in traditional Jewish educational materials are not reproduced here.</p>
+
+    <p class="body">Readers who want the full picture should consult the following primary materials directly on Sefaria.</p>
+
+    <ul class="xref-list">
+      <li>Rashi on Chullin 59a–65a — <a href="https://www.sefaria.org/Rashi_on_Chullin">sefaria.org/Rashi_on_Chullin</a></li>
+      <li>Tosafot on Chullin 61a (Rabbeinu Tam's <em>dores</em> position) — <a href="https://www.sefaria.org/Tosafot_on_Chullin.61a">sefaria.org/Tosafot_on_Chullin.61a</a></li>
+      <li>Rambam, <em>Mishneh Torah</em>, Hilchot Ma'achalot Asurot 1:14–15 (the codified halakha on bird kashrut) — <a href="https://www.sefaria.org/Mishneh_Torah,_Forbidden_Foods.1.14-15">sefaria.org/Mishneh_Torah,_Forbidden_Foods.1.14-15</a></li>
+      <li>Shulchan Aruch, Yoreh De'ah 82 (the authoritative halakhic decisor) — <a href="https://www.sefaria.org/Shulchan_Arukh,_Yoreh_De'ah.82">sefaria.org/Shulchan_Arukh,_Yoreh_De'ah.82</a></li>
+    </ul>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </section>
+
+  <!-- Closing verification summary -->
+  <div class="banner info" style="margin-top: 32px;">
+    <div class="b-label">Verification Summary</div>
+    <p><strong>Verbatim sources included in this document:</strong> Leviticus 11:13–19 (with Deuteronomy 14:12–18 cross-referenced); Mishnah Chullin 3:6 (folio 59a); Rashi on Chullin 59a (<em>dores</em> definition only); Tosafot on Chullin 61a (citing Rabbeinu Tam). No other Rishonim attributions appear. No paraphrases of the Gemara. No Rambam <em>Peirush HaMishnayot</em> or Saadia Gaon <em>Tafsir</em> citations anywhere in this three-part guide.</p>
+  </div>
+
+  <div class="footer">
+    <p><span class="current" style="padding:4px 8px; background:var(--ink); color:#fff; border-radius:3px; font-family:var(--sans); font-size:10px; letter-spacing:0.08em; text-transform:uppercase;">Part A</span> &nbsp;·&nbsp; <a href="02_specimens.html">Part B · Specimens →</a> &nbsp;·&nbsp; <a href="03_orders.html">Part C · Orders →</a></p>
+    <p style="margin-top:12px;">A Jewish Ornithology Guide. Verbatim Hebrew/Aramaic texts linked to Sefaria.</p>
+  </div>
+
+</div>
+
+</body>
+</html>

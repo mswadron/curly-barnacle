@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+<title>אילן העריות — שתי תצוגות</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parchment: #f3e8cf;
+    --parchment-dark: #e4d3ae;
+    --ink: #2a1e10;
+    --ink-soft: #4a3823;
+    --gold: #a8792a;
+    --mb-death: #8a1c1c;
+    --karet: #5b2e86;
+    --rabbinic: #3d6b6b;
+    --structural: #a89a7e;
+    --line: #6b5434;
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Assistant', sans-serif;
+    background:
+      radial-gradient(ellipse at top, rgba(168,121,42,0.08), transparent 60%),
+      radial-gradient(ellipse at bottom, rgba(138,28,28,0.06), transparent 55%),
+      var(--parchment);
+    color: var(--ink);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(74,56,35,0.04) 0, transparent 2px),
+      radial-gradient(circle at 70% 60%, rgba(74,56,35,0.05) 0, transparent 2px),
+      radial-gradient(circle at 40% 80%, rgba(74,56,35,0.03) 0, transparent 2px);
+    background-size: 7px 7px, 11px 11px, 13px 13px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  header {
+    text-align: center;
+    padding: 24px 16px 4px;
+    position: relative;
+    z-index: 1;
+  }
+
+  header h1 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 900;
+    font-size: clamp(26px, 6vw, 40px);
+    margin: 0 0 6px;
+    color: var(--ink);
+    letter-spacing: 0.5px;
+  }
+
+  header .subtitle {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: clamp(13px, 3.3vw, 16px);
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+    max-width: 620px;
+    margin-inline: auto;
+    line-height: 1.5;
+  }
+
+  .ornament {
+    text-align: center;
+    color: var(--gold);
+    font-size: 16px;
+    opacity: 0.5;
+    margin: 4px 0 8px;
+  }
+
+  /* ---------- View toggle ---------- */
+  .view-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    padding: 10px 16px 12px;
+    position: relative;
+    z-index: 1;
+  }
+  .view-toggle button {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 15px;
+    font-weight: 700;
+    background: transparent;
+    color: var(--ink-soft);
+    border: 2px solid var(--gold);
+    padding: 10px 22px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .view-toggle button:first-child {
+    border-radius: 0 999px 999px 0;
+    border-left-width: 1px;
+  }
+  .view-toggle button:last-child {
+    border-radius: 999px 0 0 999px;
+    border-right-width: 1px;
+  }
+  .view-toggle button.active {
+    background: var(--ink);
+    color: var(--parchment);
+    border-color: var(--ink);
+  }
+  .view-toggle button:hover:not(.active) {
+    background: rgba(168,121,42,0.1);
+  }
+
+  .instruction-bar {
+    text-align: center;
+    padding: 0 16px 6px;
+    position: relative;
+    z-index: 1;
+  }
+  .instruction {
+    display: inline-block;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    background: rgba(168,121,42,0.12);
+    border: 1px dashed var(--gold);
+    padding: 5px 14px;
+    border-radius: 999px;
+  }
+
+  /* ---------- Legend ---------- */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 14px;
+    padding: 12px 16px 4px;
+    max-width: 780px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+  .dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.5);
+  }
+
+  /* ---------- Views ---------- */
+  .view { display: none; }
+  .view.active { display: block; }
+
+  /* ---------- Tree view ---------- */
+  .tree-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 18px 16px 40px;
+    position: relative;
+    z-index: 1;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tree {
+    min-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    padding: 10px 0 30px;
+  }
+
+  .generation {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+    position: relative;
+    margin-bottom: 52px;
+  }
+  .generation:last-child { margin-bottom: 0; }
+
+  .generation::after {
+    content: "";
+    position: absolute;
+    bottom: -32px;
+    left: 50%;
+    width: 2px; height: 30px;
+    background: var(--line);
+    transform: translateX(-50%);
+    opacity: 0.35;
+  }
+  .generation:last-child::after { display: none; }
+
+  .couple {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    position: relative;
+  }
+  .couple::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 4px; left: 4px;
+    height: 2px;
+    background: var(--line);
+    opacity: 0.25;
+    z-index: 0;
+  }
+
+  .node {
+    position: relative;
+    z-index: 1;
+    background: var(--parchment);
+    border: 2px solid var(--structural);
+    color: var(--ink);
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 8px 10px;
+    min-width: 78px;
+    min-height: 54px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 0 rgba(74,56,35,0.25), 0 4px 10px rgba(74,56,35,0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.15;
+  }
+
+  .node[data-clickable="true"] { cursor: pointer; }
+  .node[data-clickable="true"]:hover,
+  .node[data-clickable="true"]:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 0 rgba(74,56,35,0.3), 0 8px 16px rgba(74,56,35,0.15);
+    outline: none;
+  }
+  .node[data-clickable="true"]:active { transform: translateY(0); }
+
+  .node .tag {
+    font-family: 'Assistant', sans-serif;
+    font-size: 9.5px;
+    font-weight: 700;
+    margin-top: 4px;
+    letter-spacing: 0.3px;
+    opacity: 0.9;
+    white-space: nowrap;
+  }
+
+  .node.mb-death { border-color: var(--mb-death); background: #fbe9e9; }
+  .node.mb-death .tag { color: var(--mb-death); }
+  .node.mb-death::before {
+    content: "✦";
+    position: absolute;
+    top: -11px;
+    right: 50%;
+    transform: translateX(50%);
+    color: var(--mb-death);
+    font-size: 14px;
+    background: var(--parchment);
+    padding: 0 4px;
+    border-radius: 50%;
+  }
+
+  .node.karet { border-color: var(--karet); background: #f0e8fa; }
+  .node.karet .tag { color: var(--karet); }
+
+  .node.rabbinic { border-color: var(--rabbinic); background: #e0efee; border-style: dashed; }
+  .node.rabbinic .tag { color: var(--rabbinic); }
+
+  .node.structural {
+    background: transparent;
+    border: 1.5px dotted var(--structural);
+    color: var(--ink-soft);
+    font-weight: 400;
+    font-size: 13px;
+    min-width: 64px;
+    min-height: 46px;
+    opacity: 0.75;
+    box-shadow: none;
+    cursor: default;
+  }
+  .node.structural .note {
+    font-family: 'Assistant', sans-serif;
+    font-size: 9px;
+    margin-top: 3px;
+    color: var(--structural);
+    letter-spacing: 0.2px;
+  }
+
+  .node.self {
+    background: var(--ink);
+    color: var(--parchment);
+    border-color: var(--gold);
+    border-width: 3px;
+    cursor: default;
+  }
+  .node.self .tag { color: var(--parchment-dark); }
+
+  .node .condition {
+    position: absolute;
+    bottom: -18px;
+    right: 50%;
+    transform: translateX(50%);
+    white-space: nowrap;
+    font-family: 'Assistant', sans-serif;
+    font-size: 9px;
+    color: var(--ink-soft);
+    background: rgba(243,232,207,0.9);
+    padding: 1px 6px;
+    border-radius: 3px;
+    border: 1px solid rgba(168,121,42,0.3);
+  }
+
+  /* ---------- Categories view ---------- */
+  .categories {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 16px 16px 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 18px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .category {
+    background: var(--parchment);
+    border: 2px solid var(--gold);
+    border-radius: 12px;
+    padding: 18px 16px 16px;
+    position: relative;
+    box-shadow: 0 4px 0 rgba(74,56,35,0.15), 0 6px 20px rgba(74,56,35,0.08);
+  }
+
+  .category-num {
+    position: absolute;
+    top: -18px;
+    right: 14px;
+    width: 36px; height: 36px;
+    background: var(--ink);
+    color: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 900;
+    font-size: 18px;
+    border: 2px solid var(--gold);
+  }
+
+  .category h3 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 900;
+    font-size: 22px;
+    margin: 4px 42px 4px 0;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .category .cat-source {
+    font-family: 'Assistant', sans-serif;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  .cat-section {
+    margin-top: 12px;
+  }
+
+  .cat-section-title {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+    border-bottom: 1px dashed rgba(168,121,42,0.4);
+    padding-bottom: 4px;
+  }
+
+  .pill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .pill {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 11px;
+    border-radius: 999px;
+    background: var(--parchment);
+    border: 2px solid var(--structural);
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    line-height: 1.2;
+  }
+  .pill:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(74,56,35,0.15);
+  }
+  .pill .pill-tag {
+    font-family: 'Assistant', sans-serif;
+    font-size: 9.5px;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 3px;
+    opacity: 0.85;
+  }
+
+  .pill.mb-death {
+    border-color: var(--mb-death);
+    background: #fbe9e9;
+    color: var(--ink);
+  }
+  .pill.mb-death .pill-tag { background: var(--mb-death); color: #fff4e6; }
+
+  .pill.karet {
+    border-color: var(--karet);
+    background: #f0e8fa;
+    color: var(--ink);
+  }
+  .pill.karet .pill-tag { background: var(--karet); color: #f0e8fa; }
+
+  .pill.rabbinic {
+    border-color: var(--rabbinic);
+    background: #e0efee;
+    border-style: dashed;
+    color: var(--ink);
+  }
+  .pill.rabbinic .pill-tag { background: var(--rabbinic); color: #e0efee; }
+
+  .no-rabbinic {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-soft);
+    opacity: 0.7;
+  }
+
+  /* ---------- Modal ---------- */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(30,20,8,0.65);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 20px;
+    animation: fadeIn 0.2s ease;
+  }
+  .overlay.active { display: flex; }
+
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .modal {
+    background: var(--parchment);
+    border: 2px solid var(--gold);
+    border-radius: 14px;
+    max-width: 460px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 30px 24px 24px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(30,20,8,0.4), inset 0 0 0 1px rgba(168,121,42,0.2);
+    animation: slideUp 0.25s ease;
+  }
+
+  .modal .close {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: transparent;
+    border: 1.5px solid var(--ink-soft);
+    color: var(--ink-soft);
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-family: serif;
+    line-height: 1;
+    transition: all 0.15s;
+  }
+  .modal .close:hover {
+    background: var(--ink);
+    color: var(--parchment);
+    border-color: var(--ink);
+  }
+
+  .modal .kind-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 4px 11px;
+    border-radius: 999px;
+    margin-bottom: 6px;
+  }
+  .kind-badge.mb-death { background: var(--mb-death); color: #fff4e6; }
+  .kind-badge.karet { background: var(--karet); color: #f0e8fa; }
+  .kind-badge.rabbinic { background: var(--rabbinic); color: #e0efee; }
+
+  .modal h2 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 900;
+    font-size: 28px;
+    margin: 4px 0 4px;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .modal .relation {
+    font-family: 'Assistant', sans-serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+  }
+
+  .section {
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed rgba(74,56,35,0.2);
+  }
+  .section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .section-title {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .section-body {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+
+  .verse {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    background: rgba(168,121,42,0.1);
+    border-right: 3px solid var(--gold);
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+
+  .punish-display {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.3;
+  }
+  .punish-display.mb-death { color: var(--mb-death); }
+  .punish-display.karet { color: var(--karet); }
+  .punish-display.rabbinic { color: var(--rabbinic); }
+
+  .lifetime-note {
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: rgba(61,107,107,0.1);
+    border-right: 3px solid var(--rabbinic);
+    border-radius: 4px;
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .lifetime-note strong { color: var(--rabbinic); }
+
+  footer {
+    text-align: center;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    padding: 8px 16px 24px;
+    opacity: 0.75;
+    position: relative;
+    z-index: 1;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 500px) {
+    .node { font-size: 12.5px; min-width: 66px; min-height: 48px; padding: 6px 7px; }
+    .node .tag { font-size: 8.5px; }
+    .node.structural { min-width: 58px; min-height: 42px; font-size: 11.5px; }
+    .generation { gap: 6px; margin-bottom: 44px; }
+    .tree { min-width: 1020px; }
+    .categories { grid-template-columns: 1fr; }
+    .view-toggle button { font-size: 14px; padding: 9px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>אילן העריות</h1>
+  <div class="subtitle">איסורי הקרבה במשפחה — עריות מן התורה וסייגי חכמים</div>
+  <div class="ornament">✦ ❦ ✦</div>
+</header>
+
+<nav class="view-toggle">
+  <button id="treeBtn" class="active">עץ משפחה</button>
+  <button id="categoriesBtn">שבע קבוצות</button>
+</nav>
+
+<div class="instruction-bar">
+  <span class="instruction">גע בכל שם כדי לראות את האיסור ואת העונש</span>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><span class="dot" style="background:var(--mb-death)"></span>ערוה מן התורה — מיתת בית דין וכרת</div>
+  <div class="legend-item"><span class="dot" style="background:var(--karet)"></span>ערוה מן התורה — כרת ומלקות</div>
+  <div class="legend-item"><span class="dot" style="background:var(--rabbinic); border:1px dashed var(--rabbinic);"></span>שנִיָּה לעריות — מדרבנן (מכת מרדות)</div>
+</div>
+
+<!-- ========== TREE VIEW ========== -->
+<div class="view view-tree active" id="viewTree">
+  <div class="tree-scroll">
+    <div class="tree">
+
+      <div class="generation">
+        <div class="couple">
+          <div class="node structural">אֲבִי אָבִיו<span class="note">—</span></div>
+          <div class="node rabbinic" data-clickable="true" data-id="paternal-grandmother">אֵם אָבִיו<span class="tag">שנִיָּה</span></div>
+        </div>
+        <div class="couple">
+          <div class="node structural">אֲבִי אִמּוֹ<span class="note">—</span></div>
+          <div class="node rabbinic" data-clickable="true" data-id="maternal-grandmother">אֵם אִמּוֹ<span class="tag">שנִיָּה</span></div>
+        </div>
+      </div>
+
+      <div class="generation">
+        <div class="couple">
+          <div class="node karet" data-clickable="true" data-id="father-brother-wife">אֵשֶׁת אֲחִי אָב<span class="tag">כרת ומלקות</span></div>
+          <div class="node structural">אֲחִי אָב<span class="note">דוד</span></div>
+        </div>
+        <div class="node karet" data-clickable="true" data-id="father-sister">אֲחוֹת אָב<span class="tag">כרת ומלקות</span></div>
+        <div class="couple">
+          <div class="node structural">אָב<span class="note">—</span></div>
+          <div class="node mb-death" data-clickable="true" data-id="mother">אֵם<span class="tag">סקילה וכרת</span></div>
+        </div>
+        <div class="node mb-death" data-clickable="true" data-id="stepmother">אֵשֶׁת אָב<span class="tag">סקילה וכרת</span></div>
+        <div class="node karet" data-clickable="true" data-id="mother-sister">אֲחוֹת אֵם<span class="tag">כרת ומלקות</span></div>
+        <div class="couple">
+          <div class="node structural">אֲחִי אֵם<span class="note">דוד</span></div>
+          <div class="node rabbinic" data-clickable="true" data-id="mother-brother-wife">אֵשֶׁת אֲחִי אֵם<span class="tag">שנִיָּה</span></div>
+        </div>
+        <div class="couple">
+          <div class="node structural">חָם<span class="note">אבי אשתו</span></div>
+          <div class="node mb-death" data-clickable="true" data-id="mother-in-law">חֲמוֹתוֹ<span class="tag">שריפה וכרת</span></div>
+        </div>
+      </div>
+
+      <div class="generation">
+        <div class="couple">
+          <div class="node karet" data-clickable="true" data-id="brother-wife">אֵשֶׁת אָח<span class="tag">כרת ומלקות</span></div>
+          <div class="node structural">אָח<span class="note">—</span></div>
+        </div>
+        <div class="node karet" data-clickable="true" data-id="sister">אָחוֹת<span class="tag">כרת ומלקות</span></div>
+        <div class="couple">
+          <div class="node self">אֲנִי<span class="tag">★</span></div>
+          <div class="node structural">אִשְׁתִּי<span class="note">מותרת</span></div>
+        </div>
+        <div class="node karet" data-clickable="true" data-id="wife-sister" style="margin-bottom:12px;">אֲחוֹת אִשְׁתּוֹ<span class="tag">כרת ומלקות</span><span class="condition">רק בחיי אשתו</span></div>
+        <div class="node karet" data-clickable="true" data-id="married-woman">אֵשֶׁת אִישׁ<span class="tag">חנק וכרת</span></div>
+      </div>
+
+      <div class="generation">
+        <div class="couple">
+          <div class="node structural">בֵּן<span class="note">—</span></div>
+          <div class="node mb-death" data-clickable="true" data-id="daughter-in-law">כַּלָּה<span class="tag">סקילה וכרת</span></div>
+        </div>
+        <div class="node mb-death" data-clickable="true" data-id="daughter">בַּת<span class="tag">שריפה וכרת</span></div>
+        <div class="node mb-death" data-clickable="true" data-id="wife-daughter" style="margin-bottom:12px;">בַּת אִשְׁתּוֹ<span class="tag">שריפה וכרת</span><span class="condition">בחיי אשתו; אחר — כרת</span></div>
+      </div>
+
+      <div class="generation">
+        <div class="node mb-death" data-clickable="true" data-id="son-daughter">בַּת הַבֵּן<span class="tag">שריפה וכרת</span></div>
+        <div class="node mb-death" data-clickable="true" data-id="daughter-daughter">בַּת הַבַּת<span class="tag">שריפה וכרת</span></div>
+        <div class="node rabbinic" data-clickable="true" data-id="grandson-wife">כַּלַּת בְּנוֹ<span class="tag">שנִיָּה</span></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ========== SEVEN CATEGORIES VIEW ========== -->
+<div class="view view-categories" id="viewCategories">
+  <div class="categories">
+
+    <!-- 1. Parents -->
+    <div class="category">
+      <div class="category-num">א</div>
+      <h3>הוֹרִים</h3>
+      <div class="cat-source">ויקרא י״ח:ז׳–ח׳ • אם ואשת אב</div>
+      <div class="cat-section">
+        <div class="cat-section-title">מן התורה</div>
+        <div class="pill-list">
+          <div class="pill mb-death" data-id="mother">אֵם <span class="pill-tag">סקילה וכרת</span></div>
+          <div class="pill mb-death" data-id="stepmother">אֵשֶׁת אָב <span class="pill-tag">סקילה וכרת</span></div>
+        </div>
+      </div>
+      <div class="cat-section">
+        <div class="cat-section-title">שניות מדרבנן</div>
+        <div class="pill-list">
+          <div class="pill rabbinic" data-id="maternal-grandmother">אֵם אִמּוֹ <span class="pill-tag">שנִיָּה</span></div>
+          <div class="pill rabbinic" data-id="paternal-grandmother">אֵם אָבִיו <span class="pill-tag">שנִיָּה</span></div>
+          <div class="pill rabbinic" data-id="wife-of-paternal-grandfather">אֵשֶׁת אֲבִי אָבִיו <span class="pill-tag">שנִיָּה</span></div>
+          <div class="pill rabbinic" data-id="wife-of-maternal-grandfather">אֵשֶׁת אֲבִי אִמּוֹ <span class="pill-tag">שנִיָּה</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Sisters -->
+    <div class="category">
+      <div class="category-num">ב</div>
+      <h3>אֲחָיוֹת</h3>
+      <div class="cat-source">ויקרא י״ח:ט׳, י״ב–י״ג • אחות, אחות אב, אחות אם</div>
+      <div class="cat-section">
+        <div class="cat-section-title">מן התורה</div>
+        <div class="pill-list">
+          <div class="pill karet" data-id="sister">אָחוֹת <span class="pill-tag">כרת ומלקות</span></div>
+          <div class="pill karet" data-id="father-sister">אֲחוֹת אָב <span class="pill-tag">כרת ומלקות</span></div>
+          <div class="pill karet" data-id="mother-sister">אֲחוֹת אֵם <span class="pill-tag">כרת ומלקות</span></div>
+        </div>
+      </div>
+      <div class="cat-section">
+        <div class="cat-section-title">שניות מדרבנן</div>
+        <div class="no-rabbinic">אין שניות מרחיבות לקבוצה זו — האחיות מן הדורות הקודמים (סבתות) שייכות לקבוצת ההורים.</div>
+      </div>
+    </div>
+
+    <!-- 3. Wives of brothers and uncles -->
+    <div class="category">
+      <div class="category-num">ג</div>
+      <h3>נְשֵׁי אַחִים וְדוֹדִים</h3>
+      <div class="cat-source">ויקרא י״ח:י״ד, ט״ז • אשת אח, אשת אחי אב</div>
+      <div class="cat-section">
+        <div class="cat-section-title">מן התורה</div>
+        <div class="pill-list">
+          <div class="pill karet" data-id="brother-wife">אֵשֶׁת אָח <span class="pill-tag">כרת ומלקות</span></div>
+          <div class="pill karet" data-id="father-brother-wife">אֵשֶׁת אֲחִי אָב <span class="pill-tag">כרת ומלקות</span></div>
+        </div>
+      </div>
+      <div class="cat-section">
+        <div class="cat-section-title">שניות מדרבנן</div>
+        <div class="pill-list">
+          <div class="pill rabbinic" data-id="mother-brother-wife">אֵשֶׁת אֲחִי אֵם <span class="pill-tag">שנִיָּה</span></div>
+          <div class="pill rabbinic" data-id="father-half-brother-wife">אֵשֶׁת אֲחִי אָב מִן הָאֵם <span class="pill-tag">שנִיָּה</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Direct descendants -->
+    <div class="category">
+      <div class="category-num">ד</div>
+      <h3>צֶאֱצָאִים יְשִׁירִים</h3>
+      <div class="cat-source">ויקרא י״ח:י׳ • בת, בת הבן, בת הבת</div>
+      <div class="cat-section">
+        <div class="cat-section-title">מן התורה</div>
+        <div class="pill-list">
+          <div class="pill mb-death" data-id="daughter">בַּת <span class="pill-tag">שריפה וכרת</span></div>
+          <div class="pill mb-death" data-id="son-daughter">בַּת הַבֵּן <span class="pill-tag">שריפה וכרת</span></div>
+          <div class="pill mb-death" data-id="daughter-daughter">בַּת הַבַּת <span class="pill-tag">שריפה וכרת</span></div>
+        </div>
+      </div>
+      <div class="cat-section">
+        <div class="cat-section-title">שניות מדרבנן</div>
+        <div class="no-rabbinic">אין שניות מוגדרות כלפי צאצאיות הצאצאיות — האיסור מן התורה אינו מתרחב בשניה נוספת כלפי מטה.</div>
+      </div>
+    </div>
+
+    <!-- 5. Daughter-in-law -->
+    <div class="category">
+      <div class="category-num">ה</div>
+      <h3>כַּלָּה</h3>
+      <div class="cat-source">ויקרא י״ח:ט״ו • אשת בנו</div>
+      <div class="cat-section">
+        <div class="cat-section-title">מן התורה</div>
+        <div class="pill-list">
+          <div class="pill mb-death" data-id="daughter-in-law">כַּלָּה <span class="pill-tag">סקילה וכרת</span></div>
+        </div>
+      </div>
+      <div class="cat-section">
+        <div class="cat-section-title">שניות מדרבנן</div>
+        <div class="pill-list">
+          <div class="pill rabbinic" data-id="grandson-wife">כַּלַּת בְּנוֹ <span class="pill-tag">שנִיָּה</span></div>
+          <div class="pill rabbinic" data-id="great-grandson-wife">כַּלַּת בֶּן בְּנוֹ <span class="pill-tag">שנִיָּה</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Wife's relatives -->
+    <div class="category">
+      <div class="category-num">ו</div>
+      <h3>קְרוֹבוֹת אִשְׁתּוֹ</h3>
+      <div class="cat-source">ויקרא י״ח:י״ז–י״ח • חמותו, בת אשתו, אחות אשתו</div>
+      <div class="cat-section">
+        <div class="cat-section-title">מן התורה</div>
+        <div class="pill-list">
+          <div class="pill mb-death" data-id="mother-in-law">חֲמוֹתוֹ <span class="pill-tag">שריפה וכרת</span></div>
+          <div class="pill mb-death" data-id="wife-daughter">בַּת אִשְׁתּוֹ <span class="pill-tag">שריפה וכרת</span></div>
+          <div class="pill mb-death" data-id="wife-son-daughter">בַּת בֵּן אִשְׁתּוֹ <span class="pill-tag">שריפה וכרת</span></div>
+          <div class="pill mb-death" data-id="wife-daughter-daughter">בַּת בַּת אִשְׁתּוֹ <span class="pill-tag">שריפה וכרת</span></div>
+          <div class="pill karet" data-id="wife-sister">אֲחוֹת אִשְׁתּוֹ <span class="pill-tag">כרת בחייה</span></div>
+        </div>
+      </div>
+      <div class="cat-section">
+        <div class="cat-section-title">שניות מדרבנן</div>
+        <div class="pill-list">
+          <div class="pill rabbinic" data-id="grandmother-in-law">אֵם חֲמוֹתוֹ / אֵם חָמִיו <span class="pill-tag">מחלוקת</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Married woman -->
+    <div class="category">
+      <div class="category-num">ז</div>
+      <h3>אֵשֶׁת אִישׁ</h3>
+      <div class="cat-source">ויקרא י״ח:כ׳; ויקרא כ׳:י׳ • אשה הנשואה לאחר</div>
+      <div class="cat-section">
+        <div class="cat-section-title">מן התורה</div>
+        <div class="pill-list">
+          <div class="pill karet" data-id="married-woman">אֵשֶׁת אִישׁ <span class="pill-tag">חנק וכרת</span></div>
+        </div>
+      </div>
+      <div class="cat-section">
+        <div class="cat-section-title">שניות מדרבנן</div>
+        <div class="no-rabbinic">איסור אשת איש עומד בפני עצמו ואינו מתרחב בשניות רבניות — כל אשה נשואה לאיש אסורה לכל אחר.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  מקורות עיקריים: ויקרא י״ח, כ׳ • משנה סנהדרין ז׳–ט׳, כריתות א׳ • יבמות כ״א ע״א • רמב״ם הלכות איסורי ביאה א׳–ב׳ • שלחן ערוך אבן העזר ט״ו
+  <br><small style="opacity:0.8">מיועד ללימוד בלבד — לא להוראת הלכה למעשה</small>
+</footer>
+
+<!-- Modal -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal">
+    <button class="close" id="closeBtn" aria-label="סגור">×</button>
+    <span class="kind-badge" id="kindBadge">—</span>
+    <h2 id="modal-title">—</h2>
+    <div class="relation" id="modalRelation">—</div>
+
+    <div class="section">
+      <div class="section-title">האיסור</div>
+      <div class="section-body" id="modalProhibition">—</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">מקור מן הכתוב</div>
+      <div class="verse" id="modalVerse">—</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">העונש</div>
+      <div class="punish-display" id="modalPunish">—</div>
+      <div class="lifetime-note" id="lifetimeNote" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const DATA = {
+    // ===== שניות =====
+    "paternal-grandmother": {
+      title: "אֵם אָבִיו",
+      kind: "rabbinic",
+      kindLabel: "שנִיָּה לעריות — מדרבנן",
+      relation: "סבתא מצד האב",
+      prohibition: "אם אביו אסורה עליו מדברי סופרים כשניה לערות אמו. חכמים הרחיבו את ערות האם דור אחד למעלה.",
+      verse: "״ערות אמך לא תגלה״ (ויקרא י״ח:ז׳); יבמות כ״א ע״א.",
+      punish: "איסור דרבנן — מכת מרדות",
+      punishKind: "rabbinic",
+      lifetime: "אסורה לעולם ואין לה היתר."
+    },
+    "maternal-grandmother": {
+      title: "אֵם אִמּוֹ",
+      kind: "rabbinic",
+      kindLabel: "שנִיָּה לעריות — מדרבנן",
+      relation: "סבתא מצד האם",
+      prohibition: "אם אמו אסורה עליו מדברי סופרים, שניה לערות אמו.",
+      verse: "יבמות כ״א ע״א; רמב״ם איסורי ביאה א׳:ו׳.",
+      punish: "איסור דרבנן — מכת מרדות",
+      punishKind: "rabbinic",
+      lifetime: "אסורה לעולם."
+    },
+    "wife-of-paternal-grandfather": {
+      title: "אֵשֶׁת אֲבִי אָבִיו",
+      kind: "rabbinic",
+      kindLabel: "שנִיָּה לעריות — מדרבנן",
+      relation: "אשת הסב מצד האב",
+      prohibition: "אשת אבי אביו אסורה עליו מדברי סופרים, שניה לערות ״אשת אב״. איסור זה עולה עד סוף כל הדורות.",
+      verse: "רמב״ם איסורי ביאה א׳:ו׳, והמקור ביבמות כ״א ע״א.",
+      punish: "איסור דרבנן — מכת מרדות",
+      punishKind: "rabbinic",
+      lifetime: "אין לה הפסק — עולה לכל הדורות."
+    },
+    "wife-of-maternal-grandfather": {
+      title: "אֵשֶׁת אֲבִי אִמּוֹ",
+      kind: "rabbinic",
+      kindLabel: "שנִיָּה לעריות — מדרבנן",
+      relation: "אשת הסב מצד האם",
+      prohibition: "אשת אבי אמו אסורה עליו מדברי סופרים, שניה לעריות. לדעת חלק מהפוסקים אין לה הפסק מעלה, ולדעת אחרים — רק דור אחד.",
+      verse: "רמב״ם איסורי ביאה א׳:ו׳.",
+      punish: "איסור דרבנן — מכת מרדות",
+      punishKind: "rabbinic"
+    },
+    "mother-brother-wife": {
+      title: "אֵשֶׁת אֲחִי אֵם",
+      kind: "rabbinic",
+      kindLabel: "שנִיָּה לעריות — מדרבנן",
+      relation: "אשת דוד מצד האם",
+      prohibition: "אשת אחי אמו אסורה עליו מדברי סופרים, שניה לערות אשת אחי אב (שהיא מן התורה רק כשהדוד מן אביו).",
+      verse: "יבמות כ״א ע״א; רמב״ם איסורי ביאה א׳:ו׳.",
+      punish: "איסור דרבנן — מכת מרדות",
+      punishKind: "rabbinic"
+    },
+    "father-half-brother-wife": {
+      title: "אֵשֶׁת אֲחִי אָב מִן הָאֵם",
+      kind: "rabbinic",
+      kindLabel: "שנִיָּה לעריות — מדרבנן",
+      relation: "אשת אחיו של אביו — כשהדוד אחיו רק מאותה אם",
+      prohibition: "אשת אחי אב שהוא אחיו מן האם בלבד (ולא מן האב) — אסורה עליו מדברי סופרים. ערוה דאורייתא חלה רק כשהדוד אחי אביו מן האב.",
+      verse: "יבמות כ״א ע״א; רמב״ם איסורי ביאה א׳:ו׳.",
+      punish: "איסור דרבנן — מכת מרדות",
+      punishKind: "rabbinic"
+    },
+    "grandson-wife": {
+      title: "כַּלַּת בְּנוֹ",
+      kind: "rabbinic",
+      kindLabel: "שנִיָּה לעריות — מדרבנן",
+      relation: "אשת בן בנו",
+      prohibition: "כלת בנו (אשת נכדו) אסורה עליו מדברי סופרים, שניה לערות ״כלתך״.",
+      verse: "יבמות כ״א ע״א; רמב״ם איסורי ביאה א׳:ו׳.",
+      punish: "איסור דרבנן — מכת מרדות",
+      punishKind: "rabbinic",
+      lifetime: "עולה עד סוף כל הדורות — כל אשת בן־בן־בן וכו' אסורה."
+    },
+    "great-grandson-wife": {
+      title: "כַּלַּת בֶּן בְּנוֹ",
+      kind: "rabbinic",
+      kindLabel: "שנִיָּה לעריות — מדרבנן",
+      relation: "אשת נין — דור נוסף למטה",
+      prohibition: "כלת הנכד אסורה עליו מדברי סופרים; שניות הכלה יורדות עד סוף כל הדורות.",
+      verse: "רמב״ם איסורי ביאה א׳:ו׳.",
+      punish: "איסור דרבנן — מכת מרדות",
+      punishKind: "rabbinic"
+    },
+    "grandmother-in-law": {
+      title: "אֵם חֲמוֹתוֹ / אֵם חָמִיו",
+      kind: "rabbinic",
+      kindLabel: "מחלוקת ראשונים",
+      relation: "אם האם או האב של אשתו",
+      prohibition: "לדעת הרמב״ם (איסורי ביאה ב׳:ז׳) אם חמיו ואם חמותו אסורות מן התורה, בשריפה בחיי אשתו וכרת אחריו. לדעת הרא״ש וחלק מהפוסקים — הן שניות מדרבנן בלבד.",
+      verse: "ויקרא י״ח:י״ז; רמב״ם איסורי ביאה ב׳:ז׳; רא״ש ביבמות.",
+      punish: "לרמב״ם — מן התורה; לאחרים — שניה מדרבנן",
+      punishKind: "rabbinic",
+      lifetime: "הדין המעשי מחמיר כשתי הדעות — אסורה לעולם."
+    },
+    "wife-son-daughter": {
+      title: "בַּת בֵּן אִשְׁתּוֹ",
+      kind: "mb-death",
+      kindLabel: "ערוה מן התורה",
+      relation: "בת בנה של אשתו מאיש אחר",
+      prohibition: "בת בנה של אשתו אסורה עליו. בחיי אשתו — בשריפה; אחר מיתת אשתו האיסור נמשך לעולם בכרת.",
+      verse: "״את בת בנה ואת בת בתה לא תקח לגלות ערותה, שארה הנה — זמה הִוא״ (ויקרא י״ח:י״ז).",
+      punish: "שריפה וכרת (בחיי אשתו)",
+      punishKind: "mb-death",
+      lifetime: "בחיי אשתו — שריפה. אחר מיתתה — אסורה לעולם בכרת בלבד."
+    },
+    "wife-daughter-daughter": {
+      title: "בַּת בַּת אִשְׁתּוֹ",
+      kind: "mb-death",
+      kindLabel: "ערוה מן התורה",
+      relation: "בת בתה של אשתו מאיש אחר",
+      prohibition: "בת בתה של אשתו אסורה עליו כבת אשתו עצמה. בחיי אשתו — שריפה; אחריה — כרת.",
+      verse: "ויקרא י״ח:י״ז.",
+      punish: "שריפה וכרת (בחיי אשתו)",
+      punishKind: "mb-death",
+      lifetime: "בחיי אשתו — שריפה. אחר מיתתה — כרת בלבד."
+    },
+
+    // ===== עריות: כרת ומלקות =====
+    "father-sister": {
+      title: "אֲחוֹת אָב",
+      kind: "karet",
+      kindLabel: "ערוה מן התורה — כרת ומלקות",
+      relation: "אחות אביו — דודתו",
+      prohibition: "אחותו של אביו אסורה עליו בין מאבי אביו בין מאם אביו. ״שאר אביך הִוא״.",
+      verse: "״ערות אחות אביך לא תגלה, שאר אביך הִוא״ (ויקרא י״ח:י״ב); ״עונם ישאו״ (ויקרא כ׳:י״ט).",
+      punish: "כרת ומלקות",
+      punishKind: "karet"
+    },
+    "mother-sister": {
+      title: "אֲחוֹת אֵם",
+      kind: "karet",
+      kindLabel: "ערוה מן התורה — כרת ומלקות",
+      relation: "אחות אמו — דודתו",
+      prohibition: "אחות אמו אסורה עליו בין מאבי אמו ובין מאם אמו.",
+      verse: "״ערות אחות אמך לא תגלה, כי שאר אמך הִוא״ (ויקרא י״ח:י״ג).",
+      punish: "כרת ומלקות",
+      punishKind: "karet"
+    },
+    "father-brother-wife": {
+      title: "אֵשֶׁת אֲחִי אָב",
+      kind: "karet",
+      kindLabel: "ערוה מן התורה — כרת ומלקות",
+      relation: "אשת אחי אביו מן האב — ״דודתך״",
+      prohibition: "אשת אחיו של אביו אסורה עליו — כשהדוד אחי אביו מן האב. אם אחיו מן האם בלבד — שניה מדרבנן.",
+      verse: "״ערות אחי אביך לא תגלה, אל אשתו לא תקרב, דודתך הִוא״ (ויקרא י״ח:י״ד).",
+      punish: "כרת ומלקות",
+      punishKind: "karet",
+      lifetime: "אסורה אף לאחר מיתת דודו."
+    },
+    "sister": {
+      title: "אָחוֹת",
+      kind: "karet",
+      kindLabel: "ערוה מן התורה — כרת ומלקות",
+      relation: "אחותו — מן האב, מן האם, או משניהם",
+      prohibition: "אחותו אסורה עליו בין מן האב ובין מן האם.",
+      verse: "״ערות אחותך בת אביך או בת אמך, מולדת בית או מולדת חוץ, לא תגלה ערותן״ (ויקרא י״ח:ט׳).",
+      punish: "כרת ומלקות",
+      punishKind: "karet"
+    },
+    "brother-wife": {
+      title: "אֵשֶׁת אָח",
+      kind: "karet",
+      kindLabel: "ערוה מן התורה — כרת ומלקות",
+      relation: "אשת אחיו",
+      prohibition: "אשת אחיו אסורה עליו בחייו; ואחר מיתתו — כשהניח זרע. במת בלא זרע — מצות יבום מתירתה ליבם.",
+      verse: "״ערות אשת אחיך לא תגלה, ערות אחיך הִוא״ (ויקרא י״ח:ט״ז); ״נִדָּה היא, עֲרִירִים יהיו״ (ויקרא כ׳:כ״א).",
+      punish: "כרת ומלקות",
+      punishKind: "karet",
+      lifetime: "מותרת ליבום רק כשמת אחיו בלא זרע."
+    },
+    "wife-sister": {
+      title: "אֲחוֹת אִשְׁתּוֹ",
+      kind: "karet",
+      kindLabel: "ערוה מן התורה — בחיי אשתו בלבד",
+      relation: "אחות אשתו — כל זמן שאשתו חיה",
+      prohibition: "אחות אשתו אסורה עליו כל זמן שאשתו בחיים — אפילו גירשה. התורה פירשה את התנאי במפורש.",
+      verse: "״ואשה אל אחותה לא תקח — לצרור לגלות ערותה עליה, בְּחַיֶּיהָ״ (ויקרא י״ח:י״ח).",
+      punish: "כרת ומלקות (בחיי אשתו)",
+      punishKind: "karet",
+      lifetime: "האיסור רק בחיי אשתו. לאחר מיתתה — אחות אשתו מותרת לגמרי."
+    },
+    "married-woman": {
+      title: "אֵשֶׁת אִישׁ",
+      kind: "karet",
+      kindLabel: "ערוה מן התורה — חנק וכרת",
+      relation: "אשה הנשואה לאיש אחר",
+      prohibition: "אשת איש אסורה לכל אדם זולת בעלה; הבא עליה והיא — שניהם חייבים.",
+      verse: "״לא תנאף״ (שמות כ׳:י״ג); ״ואיש אשר ינאף את אשת איש… מות יומת הנואף והנואפת״ (ויקרא כ׳:י׳).",
+      punish: "חנק וכרת",
+      punishKind: "karet",
+      lifetime: "סתם מיתה בתורה — חנק (סנהדרין י״א:א׳); הנואף והנואפת כאחד."
+    },
+
+    // ===== עריות: מיתת בית דין וכרת =====
+    "mother": {
+      title: "אֵם",
+      kind: "mb-death",
+      kindLabel: "ערוה מן התורה — סקילה וכרת",
+      relation: "האם יולדתו",
+      prohibition: "ערות אמו — החמורה שבעריות. הבא עליה חייב משום אמו ומשום אשת אביו.",
+      verse: "״ערות אביך וערות אמך לא תגלה, אמך הִוא״ (ויקרא י״ח:ז׳); ״מות יומתו שניהם״ (ויקרא כ׳:י״א).",
+      punish: "סקילה וכרת",
+      punishKind: "mb-death",
+      lifetime: "כשאמו היתה אשת אביו — שני איסורים חלים."
+    },
+    "stepmother": {
+      title: "אֵשֶׁת אָב",
+      kind: "mb-death",
+      kindLabel: "ערוה מן התורה — סקילה וכרת",
+      relation: "אשת אביו (אף שאינה אמו, ואף לאחר מיתת אביו)",
+      prohibition: "אשת אביו אסורה עליו לעולם — בין בחיי אביו, בין אחריו, בין התגרשה. ״ערות אביך״ נדרש על אשת אב.",
+      verse: "״ערות אשת אביך לא תגלה, ערות אביך הִוא״ (ויקרא י״ח:ח׳); ״מות יומתו שניהם״ (ויקרא כ׳:י״א).",
+      punish: "סקילה וכרת",
+      punishKind: "mb-death"
+    },
+    "mother-in-law": {
+      title: "חֲמוֹתוֹ",
+      kind: "mb-death",
+      kindLabel: "ערוה מן התורה — שריפה וכרת",
+      relation: "אם אשתו",
+      prohibition: "אם אשתו אסורה עליו לעולם. בחיי אשתו — בשריפה. לדעת הרמב״ם אף אם חמותו ואם חמיו דאורייתא.",
+      verse: "״ואיש אשר יקח את אשה ואת אמה, זמה הִוא — באש ישרפו אֹתוֹ ואתהן״ (ויקרא כ׳:י״ד).",
+      punish: "שריפה וכרת",
+      punishKind: "mb-death",
+      lifetime: "אסורה לעולם (רמב״ם איסורי ביאה ב׳:ז׳)."
+    },
+    "daughter-in-law": {
+      title: "כַּלָּה",
+      kind: "mb-death",
+      kindLabel: "ערוה מן התורה — סקילה וכרת",
+      relation: "אשת בנו",
+      prohibition: "כלתו אסורה עליו לעולם — בחיי בנו, אחריו, ואף אם התגרשה.",
+      verse: "״ערות כלתך לא תגלה, אשת בנך הִוא״ (ויקרא י״ח:ט״ו); ״ואיש אשר ישכב את כלתו, מות יומתו שניהם, תבל עשו״ (ויקרא כ׳:י״ב).",
+      punish: "סקילה וכרת",
+      punishKind: "mb-death"
+    },
+    "daughter": {
+      title: "בַּת",
+      kind: "mb-death",
+      kindLabel: "ערוה מן התורה — שריפה וכרת",
+      relation: "בתו מאשתו או מאשה אחרת",
+      prohibition: "בתו אסורה עליו, נלמדה בקל וחומר מבת בתו המפורשת (יבמות ג׳ ע״א; סנהדרין ע״ה ע״א).",
+      verse: "נלמדה מ״ערות בת בנך או בת בתך״ (ויקרא י״ח:י׳) ומ״זמה״ (י״ח:י״ז).",
+      punish: "שריפה וכרת",
+      punishKind: "mb-death"
+    },
+    "wife-daughter": {
+      title: "בַּת אִשְׁתּוֹ",
+      kind: "mb-death",
+      kindLabel: "ערוה מן התורה",
+      relation: "בת אשתו מאיש אחר — חורגתו",
+      prohibition: "בת אשתו אסורה עליו. בחיי אשתו — בשריפה; אחר מיתתה — האיסור נמשך לעולם בכרת.",
+      verse: "״ערות אשה ובתה לא תגלה… זמה הִוא״ (ויקרא י״ח:י״ז); ״באש ישרפו אֹתוֹ ואתהן״ (ויקרא כ׳:י״ד).",
+      punish: "שריפה וכרת (בחיי אשתו)",
+      punishKind: "mb-death",
+      lifetime: "בחיי אשתו — שריפה. אחר מיתתה — כרת בלבד (רמב״ם איסורי ביאה ב׳:ז׳–ח׳)."
+    },
+    "son-daughter": {
+      title: "בַּת הַבֵּן",
+      kind: "mb-death",
+      kindLabel: "ערוה מן התורה — שריפה וכרת",
+      relation: "בת בנו — נכדה מן הבן",
+      prohibition: "בת בנו אסורה עליו כבתו ממש, מפורש בתורה.",
+      verse: "״ערות בת בנך או בת בתך לא תגלה ערותן, כי ערותך הנה״ (ויקרא י״ח:י׳).",
+      punish: "שריפה וכרת",
+      punishKind: "mb-death"
+    },
+    "daughter-daughter": {
+      title: "בַּת הַבַּת",
+      kind: "mb-death",
+      kindLabel: "ערוה מן התורה — שריפה וכרת",
+      relation: "בת בתו — נכדה מן הבת",
+      prohibition: "בת בתו אסורה עליו כבתו ממש.",
+      verse: "״ערות בת בנך או בת בתך לא תגלה ערותן״ (ויקרא י״ח:י׳); ״זמה הִוא״ (י״ח:י״ז).",
+      punish: "שריפה וכרת",
+      punishKind: "mb-death"
+    }
+  };
+
+  const overlay = document.getElementById('overlay');
+  const closeBtn = document.getElementById('closeBtn');
+
+  function openModal(id) {
+    const d = DATA[id];
+    if (!d) return;
+
+    const badge = document.getElementById('kindBadge');
+    badge.className = 'kind-badge ' + d.kind;
+    badge.textContent = d.kindLabel || '—';
+
+    document.getElementById('modal-title').textContent = d.title;
+    document.getElementById('modalRelation').textContent = d.relation;
+    document.getElementById('modalProhibition').textContent = d.prohibition;
+    document.getElementById('modalVerse').textContent = d.verse;
+
+    const p = document.getElementById('modalPunish');
+    p.textContent = d.punish;
+    p.className = 'punish-display ' + (d.punishKind || 'karet');
+
+    const lifeEl = document.getElementById('lifetimeNote');
+    if (d.lifetime) {
+      lifeEl.innerHTML = '<strong>הערה:</strong> ' + d.lifetime;
+      lifeEl.style.display = 'block';
+    } else {
+      lifeEl.style.display = 'none';
+    }
+
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Wire up clickable nodes and pills
+  function bindClickables() {
+    document.querySelectorAll('[data-clickable="true"], .pill').forEach(el => {
+      if (el.dataset.bound) return;
+      el.dataset.bound = '1';
+      el.addEventListener('click', () => openModal(el.dataset.id));
+      el.setAttribute('tabindex', '0');
+      el.setAttribute('role', 'button');
+      el.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(el.dataset.id); }
+      });
+    });
+  }
+  bindClickables();
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // View toggle
+  const treeBtn = document.getElementById('treeBtn');
+  const catBtn = document.getElementById('categoriesBtn');
+  const viewTree = document.getElementById('viewTree');
+  const viewCat = document.getElementById('viewCategories');
+
+  treeBtn.addEventListener('click', () => {
+    treeBtn.classList.add('active');
+    catBtn.classList.remove('active');
+    viewTree.classList.add('active');
+    viewCat.classList.remove('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  catBtn.addEventListener('click', () => {
+    catBtn.classList.add('active');
+    treeBtn.classList.remove('active');
+    viewCat.classList.add('active');
+    viewTree.classList.remove('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>

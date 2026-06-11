@@ -1,0 +1,2196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Jewish Ornithology Guide — Framework, Specimens, Orders</title>
+<style>
+
+  :root {
+    --bg: #fafbfc;
+    --card: #ffffff;
+    --ink: #1f2937;
+    --ink-2: #374151;
+    --ink-3: #6b7280;
+    --ink-4: #9ca3af;
+    --rule: #e5e7eb;
+    --blue: #2563eb;
+    --blue-2: #3b82f6;
+    --blue-soft: #eff6ff;
+    --blue-ring: #bfdbfe;
+    --anchored: #047857;
+    --anchored-soft: #ecfdf5;
+    --anchored-ring: #a7f3d0;
+    --caveat: #b45309;
+    --caveat-soft: #fffbeb;
+    --caveat-ring: #fde68a;
+    --noanchor: #64748b;
+    --noanchor-soft: #f1f5f9;
+    --noanchor-ring: #cbd5e1;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "Helvetica Neue", Arial, sans-serif;
+    --serif: "Charter", "Iowan Old Style", "Palatino Linotype", "Palatino", Georgia, serif;
+    --hebrew: "Frank Ruehl CLM", "David CLM", "SBL Hebrew", "Ezra SIL", "Times New Roman", serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body { background: var(--bg); color: var(--ink); font-family: var(--serif); font-size: 16px; line-height: 1.6; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 32px 24px 100px; }
+
+  .part-nav { display: flex; gap: 4px; margin-bottom: 28px; flex-wrap: wrap; }
+  .part-nav a, .part-nav span {
+    font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 7px 12px; border: 1px solid var(--rule);
+    background: var(--card); color: var(--ink-3); text-decoration: none;
+    border-radius: 4px; transition: all 0.15s;
+  }
+  .part-nav a:hover { border-color: var(--blue); color: var(--blue); }
+  .part-nav .current { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+  .masthead { padding-bottom: 28px; border-bottom: 1px solid var(--rule); margin-bottom: 28px; }
+  .eyebrow { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+  h1.title { font-family: var(--serif); font-weight: 600; font-size: 36px; line-height: 1.15; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.01em; }
+  .subtitle { font-size: 16px; color: var(--ink-3); line-height: 1.55; max-width: 560px; }
+  .subtitle-note { font-size: 13px; color: var(--ink-4); line-height: 1.55; max-width: 560px; margin-top: 10px; font-style: italic; }
+
+  .banner {
+    padding: 14px 18px; margin-bottom: 20px; border-radius: 4px;
+    border: 1px solid var(--rule); border-left-width: 3px;
+    background: var(--card);
+  }
+  .banner.caveat { background: var(--caveat-soft); border-color: var(--caveat-ring); border-left-color: var(--caveat); }
+  .banner.info { background: var(--blue-soft); border-color: var(--blue-ring); border-left-color: var(--blue); }
+  .banner .b-label {
+    font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .banner.caveat .b-label { color: var(--caveat); }
+  .banner.info .b-label { color: var(--blue); }
+  .banner p { font-size: 14px; color: var(--ink-2); line-height: 1.6; margin-bottom: 6px; }
+  .banner p:last-child { margin-bottom: 0; }
+  .banner strong { color: var(--ink); font-weight: 600; }
+  .banner a { color: var(--blue); text-decoration: none; border-bottom: 1px dotted var(--blue); }
+
+  .index { background: var(--card); border: 1px solid var(--rule); border-radius: 4px; padding: 18px 22px; margin-bottom: 32px; }
+  .index-label { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px; }
+  .index-section { margin-bottom: 14px; }
+  .index-section:last-child { margin-bottom: 0; }
+  .index-section-label { font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 6px; }
+  .index-grid { display: flex; flex-wrap: wrap; gap: 4px 10px; }
+  .index-grid a { font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--ink-2); text-decoration: none; padding: 2px 4px; border-bottom: 1px dotted transparent; }
+  .index-grid a:hover { color: var(--blue); border-bottom-color: var(--blue); }
+  .index-grid .sep { color: var(--ink-4); font-style: normal; }
+
+  .specimen { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 24px 26px 22px; margin-bottom: 20px; scroll-margin-top: 20px; }
+  .specimen.family-row { background: var(--noanchor-soft); border-style: dashed; }
+  .specimen.family-row .specimen-head { padding-bottom: 10px; margin-bottom: 12px; }
+
+  .specimen-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 16px; padding-bottom: 14px; border-bottom: 1px solid var(--rule); margin-bottom: 18px; position: relative; }
+  .spec-number { position: absolute; top: -4px; right: 0; font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-4); }
+  .spec-heb { font-family: var(--hebrew); font-size: 30px; color: var(--ink); line-height: 1; }
+  .spec-translit { font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--blue); font-weight: 500; }
+  .spec-eng { font-size: 14px; color: var(--ink-3); }
+
+  .chip { display: inline-block; font-family: var(--sans); font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border-radius: 3px; vertical-align: 2px; }
+  .chip-anchored { background: var(--anchored-soft); color: var(--anchored); border: 1px solid var(--anchored-ring); }
+  .chip-rashi-anchored, .chip-talmudic-anchored { background: var(--blue-soft); color: var(--blue); border: 1px solid var(--blue-ring); }
+  .chip-caveat { background: var(--caveat-soft); color: var(--caveat); border: 1px solid var(--caveat-ring); }
+  .chip-no-anchor { background: var(--noanchor-soft); color: var(--noanchor); border: 1px solid var(--noanchor-ring); }
+  .chip-structural { background: var(--blue-soft); color: var(--blue); border: 1px solid var(--blue-ring); opacity: 0.85; }
+
+  .block { margin-bottom: 16px; padding: 14px 16px; border: 1px solid var(--rule); border-radius: 4px; background: var(--card); }
+  .block.verse { background: var(--blue-soft); border-left: 3px solid var(--blue-2); border-color: var(--blue-ring); }
+  .block.rashi { background: var(--card); border-left: 3px solid var(--anchored); }
+  .block.talmud { background: var(--card); border-left: 3px solid var(--blue); }
+  .block.modern-id { background: var(--noanchor-soft); border-left: 3px solid var(--noanchor); }
+
+  .block-label { font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+  .block-ref { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 6px; }
+
+  .heb-text { font-family: var(--hebrew); font-size: 16px; color: var(--ink); line-height: 1.75; margin-bottom: 8px; padding: 8px 12px; background: var(--bg); border-radius: 3px; }
+  .heb-text.large { font-size: 18px; }
+  .verse-gloss { font-size: 13px; color: var(--ink-2); font-style: italic; line-height: 1.5; }
+
+  .rashi-laaz-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px; margin-bottom: 8px; padding: 8px 10px; background: var(--bg); border-radius: 3px; }
+  .laaz-label { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+  .laaz-heb { font-family: var(--hebrew); font-size: 18px; color: var(--ink); }
+  .laaz-normalized { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--blue); font-weight: 500; }
+  .laaz-meaning { font-size: 13px; color: var(--ink-2); }
+
+  .verify-link { font-family: var(--sans); font-size: 11px; color: var(--ink-3); }
+  .verify-link a { color: var(--blue); text-decoration: none; border-bottom: 1px dotted var(--blue); }
+
+  .caveat-note { font-family: var(--sans); font-size: 12px; color: var(--caveat); font-style: italic; margin-top: 8px; padding: 6px 10px; background: var(--caveat-soft); border-radius: 3px; border-left: 2px solid var(--caveat); }
+
+  .modern-id-text { font-size: 14px; color: var(--ink-2); }
+  .modern-id-text em { color: var(--blue); font-style: italic; }
+
+  .img-wrap { margin-bottom: 8px; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; background: var(--ink); }
+  .img-wrap img { display: block; width: 100%; height: auto; max-height: 380px; object-fit: cover; }
+  .img-caption { font-size: 12px; color: var(--ink-3); line-height: 1.5; margin-bottom: 16px; font-style: italic; padding: 0 4px; }
+  .img-caption strong { font-style: normal; color: var(--ink-2); font-weight: 600; }
+  .img-caption .caveat-inline { color: var(--caveat); font-weight: 500; font-style: normal; }
+
+  .top-link { display: block; text-align: right; margin-top: 10px; font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-4); text-decoration: none; }
+  .top-link:hover { color: var(--blue); }
+
+  .xref { font-family: var(--sans); font-size: 12px; color: var(--ink-3); padding: 8px 12px; background: var(--bg); border: 1px dashed var(--rule); border-radius: 3px; }
+  .xref a { color: var(--blue); text-decoration: none; border-bottom: 1px dotted var(--blue); }
+
+  .footer { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--rule); text-align: center; }
+  .footer p { font-size: 13px; color: var(--ink-3); line-height: 1.55; margin-bottom: 8px; }
+  .footer a { color: var(--blue); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 20px 14px 60px; }
+    h1.title { font-size: 28px; }
+    .specimen { padding: 18px 16px 16px; }
+    .spec-heb { font-size: 26px; }
+    .spec-translit { font-size: 19px; }
+  }
+
+  @media print {
+    body { background: white; color: black; font-size: 11pt; }
+    .wrap { max-width: none; padding: 0; }
+    .part-nav, .top-link, .footer { display: none !important; }
+    .specimen { page-break-inside: avoid; border: 1px solid #000; background: white !important; box-shadow: none; margin-bottom: 16pt; }
+    .specimen.family-row { border-style: dashed; }
+    .block { page-break-inside: avoid; background: white !important; }
+    .img-wrap { page-break-inside: avoid; }
+    .banner { page-break-inside: avoid; background: white !important; }
+    .chip { border: 1px solid #000 !important; background: white !important; color: black !important; }
+    a { color: black; text-decoration: none; }
+    .heb-text { background: #f5f5f5 !important; }
+  }
+
+
+/* ===== Part A additions ===== */
+
+  :root {
+    --bg: #fafbfc;
+    --card: #ffffff;
+    --ink: #1f2937;
+    --ink-2: #374151;
+    --ink-3: #6b7280;
+    --ink-4: #9ca3af;
+    --rule: #e5e7eb;
+    --blue: #2563eb;
+    --blue-2: #3b82f6;
+    --blue-soft: #eff6ff;
+    --blue-ring: #bfdbfe;
+    --anchored: #047857;
+    --anchored-soft: #ecfdf5;
+    --anchored-ring: #a7f3d0;
+    --caveat: #b45309;
+    --caveat-soft: #fffbeb;
+    --caveat-ring: #fde68a;
+    --noanchor: #64748b;
+    --noanchor-soft: #f1f5f9;
+    --noanchor-ring: #cbd5e1;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "Helvetica Neue", Arial, sans-serif;
+    --serif: "Charter", "Iowan Old Style", "Palatino Linotype", "Palatino", Georgia, serif;
+    --hebrew: "Frank Ruehl CLM", "David CLM", "SBL Hebrew", "Ezra SIL", "Times New Roman", serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body { background: var(--bg); color: var(--ink); font-family: var(--serif); font-size: 16px; line-height: 1.6; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 32px 24px 100px; }
+
+  .part-nav { display: flex; gap: 4px; margin-bottom: 28px; flex-wrap: wrap; }
+  .part-nav a, .part-nav span {
+    font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 7px 12px; border: 1px solid var(--rule);
+    background: var(--card); color: var(--ink-3); text-decoration: none;
+    border-radius: 4px; transition: all 0.15s;
+  }
+  .part-nav a:hover { border-color: var(--blue); color: var(--blue); }
+  .part-nav .current { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+  .masthead { padding-bottom: 28px; border-bottom: 1px solid var(--rule); margin-bottom: 28px; }
+  .eyebrow { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+  h1.title { font-family: var(--serif); font-weight: 600; font-size: 36px; line-height: 1.15; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.01em; }
+  .subtitle { font-size: 16px; color: var(--ink-3); line-height: 1.55; max-width: 560px; }
+  .subtitle-note { font-size: 13px; color: var(--ink-4); line-height: 1.55; max-width: 560px; margin-top: 10px; font-style: italic; }
+
+  .banner {
+    padding: 14px 18px; margin-bottom: 20px; border-radius: 4px;
+    border: 1px solid var(--rule); border-left-width: 3px;
+    background: var(--card);
+  }
+  .banner.caveat { background: var(--caveat-soft); border-color: var(--caveat-ring); border-left-color: var(--caveat); }
+  .banner.info { background: var(--blue-soft); border-color: var(--blue-ring); border-left-color: var(--blue); }
+  .banner .b-label {
+    font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .banner.caveat .b-label { color: var(--caveat); }
+  .banner.info .b-label { color: var(--blue); }
+  .banner p { font-size: 14px; color: var(--ink-2); line-height: 1.6; margin-bottom: 6px; }
+  .banner p:last-child { margin-bottom: 0; }
+  .banner strong { color: var(--ink); font-weight: 600; }
+  .banner a { color: var(--blue); text-decoration: none; border-bottom: 1px dotted var(--blue); }
+
+  /* Section layout */
+  .section {
+    background: var(--card); border: 1px solid var(--rule); border-radius: 6px;
+    padding: 28px 30px 24px; margin-bottom: 24px; scroll-margin-top: 20px;
+  }
+  .section-head {
+    padding-bottom: 16px; border-bottom: 1px solid var(--rule); margin-bottom: 20px;
+  }
+  .section-number {
+    font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 6px;
+  }
+  .section-title { font-family: var(--serif); font-weight: 600; font-size: 24px; color: var(--ink); line-height: 1.2; margin-bottom: 6px; }
+  .section-subtitle { font-size: 14px; color: var(--ink-3); font-style: italic; }
+
+  p.body {
+    color: var(--ink-2); font-size: 15px; line-height: 1.7; margin-bottom: 14px;
+  }
+  p.body strong { color: var(--ink); font-weight: 600; }
+  p.body em { color: var(--blue); font-style: italic; }
+
+  .block { margin-bottom: 16px; padding: 14px 16px; border: 1px solid var(--rule); border-radius: 4px; background: var(--card); }
+  .block.verse { background: var(--blue-soft); border-left: 3px solid var(--blue-2); border-color: var(--blue-ring); }
+  .block.mishnah { background: var(--anchored-soft); border-left: 3px solid var(--anchored); border-color: var(--anchored-ring); }
+  .block.rashi { background: var(--card); border-left: 3px solid var(--anchored); }
+  .block.tosafot { background: var(--card); border-left: 3px solid var(--blue); }
+
+  .block-label { font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+
+  .heb-text {
+    font-family: var(--hebrew); font-size: 16px; color: var(--ink);
+    line-height: 1.9; margin-bottom: 8px;
+    padding: 10px 14px; background: var(--bg); border-radius: 3px;
+  }
+  .heb-text.verse-block { font-size: 17px; }
+
+  .verify-link {
+    font-family: var(--sans); font-size: 11px; color: var(--ink-3);
+    margin-top: 4px;
+  }
+  .verify-link a { color: var(--blue); text-decoration: none; border-bottom: 1px dotted var(--blue); }
+
+  .provenance-note {
+    font-family: var(--sans); font-size: 12px; color: var(--ink-3);
+    font-style: italic; margin-top: 6px; padding: 6px 10px;
+    background: var(--anchored-soft); border-left: 2px solid var(--anchored);
+    border-radius: 3px;
+  }
+
+  .speaker-tag {
+    font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-4); margin-bottom: 6px;
+  }
+
+  /* Signs sub-block layout */
+  .sign-block {
+    margin-top: 16px; padding: 16px 18px;
+    background: var(--bg); border: 1px solid var(--rule); border-radius: 4px;
+  }
+  .sign-block-head {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px;
+    margin-bottom: 12px;
+    padding-bottom: 10px; border-bottom: 1px solid var(--rule);
+  }
+  .sign-num { font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-4); }
+  .sign-hebrew { font-family: var(--hebrew); font-size: 22px; color: var(--ink); }
+  .sign-transliteration { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--blue); font-weight: 500; }
+  .sign-english { font-size: 13px; color: var(--ink-3); }
+
+  .sign-note {
+    font-size: 13px; color: var(--ink-2); line-height: 1.55; margin-top: 8px;
+  }
+
+  /* Torah list table */
+  .torah-list-table {
+    width: 100%; border-collapse: collapse; margin: 16px 0;
+    font-size: 14px;
+  }
+  .torah-list-table tr { border-bottom: 1px solid var(--rule); }
+  .torah-list-table tr:last-child { border-bottom: none; }
+  .torah-list-table tr:hover { background: var(--blue-soft); }
+  .torah-list-table td { padding: 8px 6px; vertical-align: baseline; }
+  .torah-list-table td:first-child { width: 36px; color: var(--ink-4); font-family: var(--sans); font-size: 11px; font-weight: 600; }
+  .torah-list-table .tl-hebrew { font-family: var(--hebrew); font-size: 18px; color: var(--ink); width: 130px; }
+  .torah-list-table .tl-translit { font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--blue); width: 140px; }
+  .torah-list-table .tl-english { color: var(--ink-3); font-size: 13px; }
+  .torah-list-table .tl-link { text-align: right; }
+  .torah-list-table .tl-link a {
+    font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--blue); text-decoration: none;
+    border: 1px solid var(--blue-ring); padding: 3px 8px; border-radius: 3px;
+  }
+  .torah-list-table .tl-link a:hover { background: var(--blue); color: #fff; }
+
+  /* Cross-reference lists */
+  .xref-list {
+    list-style: none; padding: 0; margin: 12px 0;
+  }
+  .xref-list li {
+    padding: 8px 12px; margin-bottom: 6px;
+    background: var(--bg); border: 1px dashed var(--rule); border-radius: 3px;
+    font-family: var(--sans); font-size: 13px; color: var(--ink-2);
+  }
+  .xref-list li a { color: var(--blue); text-decoration: none; border-bottom: 1px dotted var(--blue); }
+
+  /* Footer */
+  .footer { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--rule); text-align: center; }
+  .footer p { font-size: 13px; color: var(--ink-3); line-height: 1.55; margin-bottom: 8px; }
+  .footer a { color: var(--blue); text-decoration: none; }
+
+  .top-link {
+    display: block; text-align: right; margin-top: 10px;
+    font-family: var(--sans); font-size: 10px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-4); text-decoration: none;
+  }
+  .top-link:hover { color: var(--blue); }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 20px 14px 60px; }
+    h1.title { font-size: 28px; }
+    .section { padding: 20px 18px 18px; }
+    .section-title { font-size: 20px; }
+    .torah-list-table .tl-hebrew { font-size: 16px; width: auto; }
+    .torah-list-table .tl-translit { width: auto; }
+  }
+
+  @media print {
+    body { background: white; color: black; font-size: 11pt; }
+    .wrap { max-width: none; padding: 0; }
+    .part-nav, .top-link, .footer { display: none !important; }
+    .section, .sign-block, .block { page-break-inside: avoid; background: white !important; box-shadow: none; margin-bottom: 16pt; border: 1px solid #000; }
+    .banner { page-break-inside: avoid; background: white !important; border: 1px solid #000; }
+    .heb-text { background: #f5f5f5 !important; }
+    a { color: black; text-decoration: none; }
+  }
+
+
+/* ===== Part C additions ===== */
+
+  :root {
+    --bg: #fafbfc;
+    --card: #ffffff;
+    --ink: #1f2937;
+    --ink-2: #374151;
+    --ink-3: #6b7280;
+    --ink-4: #9ca3af;
+    --rule: #e5e7eb;
+    --blue: #2563eb;
+    --blue-2: #3b82f6;
+    --blue-soft: #eff6ff;
+    --blue-ring: #bfdbfe;
+    --anchored: #047857;
+    --anchored-soft: #ecfdf5;
+    --anchored-ring: #a7f3d0;
+    --caveat: #b45309;
+    --caveat-soft: #fffbeb;
+    --caveat-ring: #fde68a;
+    --noanchor: #64748b;
+    --noanchor-soft: #f1f5f9;
+    --noanchor-ring: #cbd5e1;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "Helvetica Neue", Arial, sans-serif;
+    --serif: "Charter", "Iowan Old Style", "Palatino Linotype", "Palatino", Georgia, serif;
+    --hebrew: "Frank Ruehl CLM", "David CLM", "SBL Hebrew", "Ezra SIL", "Times New Roman", serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body { background: var(--bg); color: var(--ink); font-family: var(--serif); font-size: 16px; line-height: 1.6; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 32px 24px 100px; }
+
+  .part-nav { display: flex; gap: 4px; margin-bottom: 28px; flex-wrap: wrap; }
+  .part-nav a, .part-nav span {
+    font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 7px 12px; border: 1px solid var(--rule);
+    background: var(--card); color: var(--ink-3); text-decoration: none;
+    border-radius: 4px; transition: all 0.15s;
+  }
+  .part-nav a:hover { border-color: var(--blue); color: var(--blue); }
+  .part-nav .current { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+  .masthead { padding-bottom: 28px; border-bottom: 1px solid var(--rule); margin-bottom: 28px; }
+  .eyebrow { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+  h1.title { font-family: var(--serif); font-weight: 600; font-size: 36px; line-height: 1.15; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.01em; }
+  .subtitle { font-size: 16px; color: var(--ink-3); line-height: 1.55; max-width: 560px; }
+  .subtitle-note { font-size: 13px; color: var(--ink-4); line-height: 1.55; max-width: 560px; margin-top: 10px; font-style: italic; }
+
+  .banner {
+    padding: 14px 18px; margin-bottom: 20px; border-radius: 4px;
+    border: 1px solid var(--rule); border-left-width: 3px;
+    background: var(--card);
+  }
+  .banner.caveat { background: var(--caveat-soft); border-color: var(--caveat-ring); border-left-color: var(--caveat); }
+  .banner.info { background: var(--blue-soft); border-color: var(--blue-ring); border-left-color: var(--blue); }
+  .banner .b-label {
+    font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .banner.caveat .b-label { color: var(--caveat); }
+  .banner.info .b-label { color: var(--blue); }
+  .banner p { font-size: 14px; color: var(--ink-2); line-height: 1.6; margin-bottom: 6px; }
+  .banner p:last-child { margin-bottom: 0; }
+  .banner strong { color: var(--ink); font-weight: 600; }
+  .banner a { color: var(--blue); text-decoration: none; border-bottom: 1px dotted var(--blue); }
+
+  /* Index */
+  .index { background: var(--card); border: 1px solid var(--rule); border-radius: 4px; padding: 18px 22px; margin-bottom: 32px; }
+  .index-label { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px; }
+  .index-grid { display: flex; flex-wrap: wrap; gap: 4px 10px; }
+  .index-grid a { font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--ink-2); text-decoration: none; padding: 2px 4px; border-bottom: 1px dotted transparent; }
+  .index-grid a:hover { color: var(--blue); border-bottom-color: var(--blue); }
+  .index-grid .sep { color: var(--ink-4); font-style: normal; }
+
+  /* Order card */
+  .order {
+    background: var(--card); border: 1px solid var(--rule); border-radius: 6px;
+    padding: 26px 28px 22px; margin-bottom: 24px; scroll-margin-top: 20px;
+  }
+  .order-head { padding-bottom: 14px; border-bottom: 1px solid var(--rule); margin-bottom: 18px; position: relative; }
+  .order-num { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 6px; }
+  .order-name { font-family: var(--serif); font-weight: 600; font-size: 22px; color: var(--ink); line-height: 1.2; margin-bottom: 4px; }
+  .order-latin { font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--ink-3); }
+
+  p.ecology {
+    color: var(--ink-2); font-size: 15px; line-height: 1.65; margin-bottom: 14px;
+  }
+  p.ecology em { color: var(--blue); font-style: italic; }
+
+  /* Birds-in-order list */
+  .birds-in-order { margin-bottom: 18px; padding: 12px 14px; background: var(--bg); border: 1px solid var(--rule); border-radius: 4px; }
+  .birds-label { font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+  .birds-list { display: flex; flex-wrap: wrap; gap: 8px 14px; }
+  .bird-chip {
+    display: inline-flex; align-items: baseline; gap: 6px;
+    padding: 4px 10px; background: var(--card); border: 1px solid var(--rule);
+    border-radius: 3px; text-decoration: none; transition: all 0.15s;
+  }
+  .bird-chip:hover { border-color: var(--blue); background: var(--blue-soft); }
+  .bird-chip .b-hebrew { font-family: var(--hebrew); font-size: 16px; color: var(--ink); }
+  .bird-chip .b-translit { font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--blue); }
+
+  /* Signs observational block */
+  .signs-observed {
+    margin-bottom: 14px; padding: 14px 16px;
+    background: var(--card); border: 1px solid var(--rule); border-radius: 4px;
+    border-left: 3px solid var(--blue);
+  }
+  .signs-header { font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 10px; }
+  .signs-header-note { font-size: 13px; color: var(--ink-2); font-style: italic; margin-bottom: 10px; line-height: 1.5; }
+  .signs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .sign-row { padding: 8px 10px; background: var(--bg); border: 1px solid var(--rule); border-radius: 3px; }
+  .sign-row-label { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 2px; }
+  .sign-row-hebrew { font-family: var(--hebrew); font-size: 14px; color: var(--ink-2); }
+  .sign-row-value { font-family: var(--serif); font-size: 13px; color: var(--ink); font-weight: 500; margin-top: 4px; }
+
+  /* Observational value color coding - subtle */
+  .sign-row.commonly { background: var(--caveat-soft); border-color: var(--caveat-ring); }
+  .sign-row.commonly .sign-row-value { color: var(--caveat); }
+  .sign-row.variably { background: var(--noanchor-soft); border-color: var(--noanchor-ring); }
+  .sign-row.variably .sign-row-value { color: var(--noanchor); }
+  .sign-row.not-observed, .sign-row.absent { background: var(--anchored-soft); border-color: var(--anchored-ring); }
+  .sign-row.not-observed .sign-row-value, .sign-row.absent .sign-row-value { color: var(--anchored); }
+  .sign-row.present { background: var(--blue-soft); border-color: var(--blue-ring); }
+  .sign-row.present .sign-row-value { color: var(--blue); }
+  .sign-row.varies { background: var(--noanchor-soft); border-color: var(--noanchor-ring); }
+  .sign-row.varies .sign-row-value { color: var(--noanchor); }
+
+  /* Special note for Chiroptera */
+  .signs-special-note {
+    padding: 14px 16px; background: var(--caveat-soft);
+    border: 1px solid var(--caveat-ring); border-left: 3px solid var(--caveat);
+    border-radius: 4px; margin-bottom: 14px;
+  }
+  .signs-special-note .ssn-label {
+    font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--caveat); margin-bottom: 6px;
+  }
+  .signs-special-note p { font-size: 14px; color: var(--ink-2); line-height: 1.6; }
+
+  /* Caveats */
+  .caveats {
+    margin-bottom: 10px; padding: 12px 14px; background: var(--caveat-soft);
+    border: 1px solid var(--caveat-ring); border-left: 2px solid var(--caveat);
+    border-radius: 4px;
+  }
+  .caveats-label { font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--caveat); margin-bottom: 6px; }
+  .caveats ul { list-style: none; padding: 0; margin: 0; }
+  .caveats li { font-size: 13px; color: var(--ink-2); line-height: 1.55; margin-bottom: 6px; padding-left: 12px; position: relative; }
+  .caveats li:last-child { margin-bottom: 0; }
+  .caveats li::before { content: "—"; position: absolute; left: 0; color: var(--caveat); }
+  .caveats li em { color: var(--blue); font-style: italic; }
+  .caveats li a { color: var(--blue); text-decoration: none; border-bottom: 1px dotted var(--blue); }
+
+  .top-link {
+    display: block; text-align: right; margin-top: 10px;
+    font-family: var(--sans); font-size: 10px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-4); text-decoration: none;
+  }
+  .top-link:hover { color: var(--blue); }
+
+  /* Closing summary */
+  .closing-section {
+    margin-top: 32px; padding: 24px 28px;
+    background: var(--card); border: 1px solid var(--rule); border-radius: 6px;
+  }
+  .closing-section h2 {
+    font-family: var(--serif); font-weight: 600; font-size: 20px; color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .closing-section p {
+    color: var(--ink-2); font-size: 15px; line-height: 1.65; margin-bottom: 14px;
+  }
+  .closing-section p:last-child { margin-bottom: 0; }
+
+  .footer { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--rule); text-align: center; }
+  .footer p { font-size: 13px; color: var(--ink-3); line-height: 1.55; margin-bottom: 8px; }
+  .footer a { color: var(--blue); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 20px 14px 60px; }
+    h1.title { font-size: 28px; }
+    .order { padding: 20px 18px 18px; }
+    .order-name { font-size: 18px; }
+    .signs-grid { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    body { background: white; color: black; font-size: 11pt; }
+    .wrap { max-width: none; padding: 0; }
+    .part-nav, .top-link, .footer { display: none !important; }
+    .order, .banner, .signs-observed, .signs-special-note, .caveats, .closing-section {
+      page-break-inside: avoid; background: white !important; box-shadow: none; border: 1px solid #000;
+    }
+    .sign-row { background: #f5f5f5 !important; border: 1px solid #000 !important; }
+    a { color: black; text-decoration: none; }
+  }
+
+
+/* ===== Combined-file additions ===== */
+.part-divider {
+  margin: 60px 0 40px;
+  padding: 40px 0;
+  border-top: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  text-align: center;
+  background: var(--card);
+}
+.part-divider .pd-eyebrow {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 8px;
+}
+.part-divider .pd-title {
+  font-family: var(--serif); font-weight: 600; font-size: 22px;
+  color: var(--ink);
+}
+@media print {
+  .part-divider {
+    page-break-before: always;
+    border-top: none !important;
+    border-bottom: 1px solid #000 !important;
+    background: white !important;
+  }
+}
+
+/* Unified top nav */
+.unified-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg); padding: 12px 0;
+  border-bottom: 1px solid var(--rule);
+  margin: -32px -24px 28px; padding: 12px 24px;
+}
+@media print {
+  .unified-nav { display: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap" id="top">
+
+  <!-- Unified sticky nav -->
+  <div class="unified-nav">
+    <div class="part-nav" style="margin-bottom: 0;">
+      <a href="#part-a">Part A · Framework</a>
+      <a href="#part-b">Part B · Specimens</a>
+      <a href="#part-c">Part C · Orders</a>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- PART A — FRAMEWORK -->
+  <!-- ============================================ -->
+  <div id="part-a">
+  
+
+  <header class="masthead">
+    <div class="eyebrow">A Three-Part Study</div>
+    <h1 class="title">The Framework</h1>
+    <p class="subtitle">The Torah's forbidden birds, the Sages' four signs, and the role of mesorah — the conceptual scaffolding beneath the specimen-by-specimen analysis in Part B.</p>
+    <p class="subtitle-note">Every primary-source quote in this guide is reproduced verbatim with a direct Sefaria link. No views are attributed to Rishonim unless the exact text is present. Where a gloss could not be verbatim-located, the section says so plainly.</p>
+  </header>
+
+  <!-- =================================================================== -->
+  <!-- SECTION I — THE TORAH'S LIST -->
+  <!-- =================================================================== -->
+  <section class="section" id="torah-list">
+    <div class="section-head">
+      <div class="section-number">Section I</div>
+      <h2 class="section-title">The Torah's Forbidden Birds</h2>
+      <p class="section-subtitle">The list appears twice — in Leviticus 11:13–19 and Deuteronomy 14:12–18.</p>
+    </div>
+
+    <p class="body">Unlike mammals and fish, the Torah does not give signs for kosher birds. Instead, it names the birds that are forbidden; the Sages then formulate signs for identifying permitted birds.</p>
+
+    <p class="body">The list follows. Each name links to its specimen row in Part B, where verse text, verified commentary, and modern candidates are laid out in detail. Identifications vary in confidence — that variation, documented in Part B, is the reason the Sages introduced signs and <em>mesorah</em>.</p>
+
+    <div class="block verse">
+      <div class="block-label">Torah · Leviticus 11:13–19 (verbatim)</div>
+      <div class="heb-text verse-block" lang="he" dir="rtl">וְאֶת־אֵלֶּה תְּשַׁקְּצוּ מִן־הָעוֹף לֹא יֵאָכְלוּ שֶׁקֶץ הֵם: אֶת־הַנֶּשֶׁר וְאֶת־הַפֶּרֶס וְאֵת הָעׇזְנִיָּה׃ וְאֶת־הַדָּאָה וְאֶת־הָאַיָּה לְמִינָהּ׃ אֵת כׇּל־עֹרֵב לְמִינוֹ׃ וְאֵת בַּת הַיַּעֲנָה וְאֶת־הַתַּחְמָס וְאֶת־הַשָּׁחַף וְאֶת־הַנֵּץ לְמִינֵהוּ׃ וְאֶת־הַכּוֹס וְאֶת־הַשָּׁלָךְ וְאֶת־הַיַּנְשׁוּף׃ וְאֶת־הַתִּנְשֶׁמֶת וְהַקָּאָת וְהָרָחָם׃ וְהַחֲסִידָה הָאֲנָפָה לְמִינָהּ וְהַדּוּכִיפַת וְהָעֲטַלֵּף׃</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Leviticus.11.13-19">sefaria.org/Leviticus.11.13-19</a> · Parallel list in Deuteronomy 14:12–18 (<a href="https://www.sefaria.org/Deuteronomy.14.12-18">cross-reference</a>)</div>
+    </div>
+
+    <h3 style="font-family: var(--serif); font-weight: 600; font-size: 16px; color: var(--ink); margin: 20px 0 10px;">The Twenty Head-Terms</h3>
+    <table class="torah-list-table">
+      <tbody>
+        <tr><td>1</td><td class="tl-hebrew" lang="he" dir="rtl">נֶשֶׁר</td><td class="tl-translit">nesher</td><td class="tl-english">griffon vulture / eagle</td><td class="tl-link"><a href="#nesher">View in B</a></td></tr>
+        <tr><td>2</td><td class="tl-hebrew" lang="he" dir="rtl">פֶּרֶס</td><td class="tl-translit">peres</td><td class="tl-english">bearded vulture / lammergeier</td><td class="tl-link"><a href="#peres">View in B</a></td></tr>
+        <tr><td>3</td><td class="tl-hebrew" lang="he" dir="rtl">עׇזְנִיָּה</td><td class="tl-translit">ozniyah</td><td class="tl-english">sea eagle / black vulture</td><td class="tl-link"><a href="#ozniyah">View in B</a></td></tr>
+        <tr><td>4</td><td class="tl-hebrew" lang="he" dir="rtl">דָּאָה / רָאָה</td><td class="tl-translit">da'ah / ra'ah</td><td class="tl-english">one species per Chullin 63b</td><td class="tl-link"><a href="#daah-raah">View in B</a></td></tr>
+        <tr><td>5</td><td class="tl-hebrew" lang="he" dir="rtl">אַיָּה / דַּיָּה</td><td class="tl-translit">ayah / dayah</td><td class="tl-english">one species per Chullin 63b</td><td class="tl-link"><a href="#ayah-dayah">View in B</a></td></tr>
+        <tr><td>6</td><td class="tl-hebrew" lang="he" dir="rtl">עֹרֵב</td><td class="tl-translit">orev</td><td class="tl-english">raven (base term)</td><td class="tl-link"><a href="#orev">View in B</a></td></tr>
+        <tr><td>7</td><td class="tl-hebrew" lang="he" dir="rtl">בַּת הַיַּעֲנָה</td><td class="tl-translit">bat ha-ya'anah</td><td class="tl-english">ostrich (trad.)</td><td class="tl-link"><a href="#yaanah">View in B</a></td></tr>
+        <tr><td>8</td><td class="tl-hebrew" lang="he" dir="rtl">תַּחְמָס</td><td class="tl-translit">tachmas</td><td class="tl-english">unresolved</td><td class="tl-link"><a href="#tachmas">View in B</a></td></tr>
+        <tr><td>9</td><td class="tl-hebrew" lang="he" dir="rtl">שָׁחָף</td><td class="tl-translit">shachaf</td><td class="tl-english">unresolved</td><td class="tl-link"><a href="#shachaf">View in B</a></td></tr>
+        <tr><td>10</td><td class="tl-hebrew" lang="he" dir="rtl">נֵץ</td><td class="tl-translit">netz</td><td class="tl-english">hawk / sparrowhawk</td><td class="tl-link"><a href="#netz">View in B</a></td></tr>
+        <tr><td>11</td><td class="tl-hebrew" lang="he" dir="rtl">כּוֹס</td><td class="tl-translit">kos</td><td class="tl-english">owl (Rashi owl-pair)</td><td class="tl-link"><a href="#kos">View in B</a></td></tr>
+        <tr><td>12</td><td class="tl-hebrew" lang="he" dir="rtl">שָׁלָךְ</td><td class="tl-translit">shalach</td><td class="tl-english">fish-catching bird (unresolved)</td><td class="tl-link"><a href="#shalach">View in B</a></td></tr>
+        <tr><td>13</td><td class="tl-hebrew" lang="he" dir="rtl">יַנְשׁוּף</td><td class="tl-translit">yanshuf</td><td class="tl-english">owl (Rashi owl-pair)</td><td class="tl-link"><a href="#yanshuf">View in B</a></td></tr>
+        <tr><td>14</td><td class="tl-hebrew" lang="he" dir="rtl">תִּנְשֶׁמֶת</td><td class="tl-translit">tinshemet</td><td class="tl-english">Rashi's לעז: bat (unresolved)</td><td class="tl-link"><a href="#tinshemet">View in B</a></td></tr>
+        <tr><td>15</td><td class="tl-hebrew" lang="he" dir="rtl">קָאָת</td><td class="tl-translit">ka'at</td><td class="tl-english">Gemara: <span lang="he" dir="rtl">קוק</span> (unidentified)</td><td class="tl-link"><a href="#kaat">View in B</a></td></tr>
+        <tr><td>16</td><td class="tl-hebrew" lang="he" dir="rtl">רָחָם</td><td class="tl-translit">racham</td><td class="tl-english">Gemara: <span lang="he" dir="rtl">שרקרק</span> (unidentified)</td><td class="tl-link"><a href="#racham">View in B</a></td></tr>
+        <tr><td>17</td><td class="tl-hebrew" lang="he" dir="rtl">חֲסִידָה</td><td class="tl-translit">chasidah</td><td class="tl-english">stork (via Rashi's לעז)</td><td class="tl-link"><a href="#chasidah">View in B</a></td></tr>
+        <tr><td>18</td><td class="tl-hebrew" lang="he" dir="rtl">אֲנָפָה</td><td class="tl-translit">anafah</td><td class="tl-english">heron (via Rashi's לעז)</td><td class="tl-link"><a href="#anafah">View in B</a></td></tr>
+        <tr><td>19</td><td class="tl-hebrew" lang="he" dir="rtl">דּוּכִיפַת</td><td class="tl-translit">duchifat</td><td class="tl-english">hoopoe</td><td class="tl-link"><a href="#duchifat">View in B</a></td></tr>
+        <tr><td>20</td><td class="tl-hebrew" lang="he" dir="rtl">עֲטַלֵּף</td><td class="tl-translit">atalef</td><td class="tl-english">bat</td><td class="tl-link"><a href="#atalef">View in B</a></td></tr>
+      </tbody>
+    </table>
+
+    <p class="body" style="font-size:14px; color:var(--ink-3); font-style:italic;">The Torah also uses four <span lang="he" dir="rtl">למינה / למינו / למינהו</span> family-expansion clauses on <em>da'ah/ra'ah, orev, netz,</em> and <em>anafah</em>. This guide renders those clauses as family-expansion rows so the presentation matches the Talmudic count of 24. See Part B's family-expansion rows.</p>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </section>
+
+  <!-- =================================================================== -->
+  <!-- SECTION II — THE FOUR SIGNS -->
+  <!-- =================================================================== -->
+  <section class="section" id="four-signs">
+    <div class="section-head">
+      <div class="section-number">Section II</div>
+      <h2 class="section-title">The Four Signs</h2>
+      <p class="section-subtitle">The Sages' working rules for identifying kosher birds, derived from the forbidden list itself.</p>
+    </div>
+
+    <p class="body">Since the Torah gave no positive signs for kosher birds, the Sages in Mishnah Chullin 3:6 stated four working rules — one negative (<em>dores</em>, "seizes prey") and three positive (<em>etzba yeseira</em>, <em>zefek</em>, <em>kurkevan niklaf</em>). The Mishnah is reproduced below verbatim.</p>
+
+    <p class="body">Of the four, <em>dores</em> is the one whose definition is most debated. Rashi on Chullin 59a and Tosafot on Chullin 61a take different positions, both reproduced below verbatim from Sefaria. The other three signs are named in the Mishnah itself; no verbatim Rashi definitions were located for reproduction here.</p>
+
+    <div class="block mishnah">
+      <div class="block-label">Mishnah · Chullin 3:6 (verbatim)</div>
+      <div class="speaker-tag">Mishnah (folio 59a)</div>
+      <div class="heb-text" lang="he" dir="rtl">סִימָנֵי בְּהֵמָה וְחַיָּה נֶאֶמְרוּ מִן הַתּוֹרָה, וְסִימָנֵי הָעוֹף לֹא נֶאֶמְרוּ. אֲבָל אָמְרוּ חֲכָמִים: כָּל עוֹף הַדּוֹרֵס — טָמֵא. כֹּל שֶׁיֶּשׁ לוֹ אֶצְבַּע יְתֵרָה, וְזֶפֶק, וְקֻרְקְבָנוֹ נִקְלָף — טָהוֹר. רַבִּי אֱלִיעֶזֶר בַּר צָדוֹק אוֹמֵר: כָּל עוֹף הַחוֹלֵק אֶת רַגְלָיו — טָמֵא.</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Mishnah_Chullin.3.6">sefaria.org/Mishnah_Chullin.3.6</a> · English translation at the link.</div>
+    </div>
+
+    <!-- Sign I: DORES -->
+    <div class="sign-block">
+      <div class="sign-block-head">
+        <span class="sign-num">Sign I</span>
+        <span class="sign-hebrew" lang="he" dir="rtl">דּוֹרֵס</span>
+        <span class="sign-transliteration">dores</span>
+        <span class="sign-english">— "seizes prey" (the negative sign)</span>
+      </div>
+
+      <div class="block rashi">
+        <div class="block-label">Rashi on Chullin 59a (verbatim)</div>
+        <div class="speaker-tag">Rashi</div>
+        <div class="heb-text" lang="he" dir="rtl">שֶׁאוֹחֵז בְּצִפּוֹרְנָיו וּמַגְבִּיהַּ מִן הַקַּרְקַע מַה שֶּׁאוֹכֵל.</div>
+        <div class="verify-link">Verify: <a href="https://www.sefaria.org/Rashi_on_Chullin.59a.20.1">sefaria.org/Rashi_on_Chullin.59a.20.1</a></div>
+        <div class="provenance-note">This Rashi text is independently preserved in Tosafot on Chullin 61a (below), which quotes Rashi by name using the exact same wording.</div>
+      </div>
+
+      <div class="block tosafot">
+        <div class="block-label">Tosafot on Chullin 61a (verbatim — citing Rabbeinu Tam)</div>
+        <div class="speaker-tag">Tosafot, citing Rabbeinu Tam</div>
+        <div class="heb-text" lang="he" dir="rtl">הַדּוֹרֵס — פֵּירֵשׁ בַּקּוּנְטְרֵס שֶׁאוֹחֵז בְּצִפּוֹרְנָיו וּמַגְבִּיהַּ מִן הַקַּרְקַע מַה שֶׁאוֹכֵל, וְקָשֶׁה לְרַבֵּינוּ תָּם דְּהָא אֲפִילּוּ תַּרְנְגוֹלֶת עוֹשָׂה כֵן, וּמְפָרֵשׁ רַבֵּינוּ תָּם — דּוֹרֵס וְאוֹכֵל מֵחַיִּים וְאֵינוֹ מַמְתִּין לָהּ עַד שֶׁתָּמוּת.</div>
+        <div class="verify-link">Verify: <a href="https://www.sefaria.org/Tosafot_on_Chullin.61a.1.3">sefaria.org/Tosafot_on_Chullin.61a.1.3</a></div>
+      </div>
+
+      <div class="sign-note">Rashi and Rabbeinu Tam (as Tosafot reports him) differ on what <em>dores</em> describes. The two quotes stand side by side; a reader can compare them directly.</div>
+    </div>
+
+    <!-- Sign II: ETZBA YESEIRA -->
+    <div class="sign-block">
+      <div class="sign-block-head">
+        <span class="sign-num">Sign II</span>
+        <span class="sign-hebrew" lang="he" dir="rtl">אֶצְבַּע יְתֵרָה</span>
+        <span class="sign-transliteration">etzba yeseira</span>
+        <span class="sign-english">— "extra toe"</span>
+      </div>
+      <div class="sign-note">The Mishnah names <em>etzba yeseira</em> but does not elaborate on which toe is meant. Later authorities discuss this; no verbatim Rashi definition was located for reproduction here. See the Further Study note at the end of this section.</div>
+    </div>
+
+    <!-- Sign III: ZEFEK -->
+    <div class="sign-block">
+      <div class="sign-block-head">
+        <span class="sign-num">Sign III</span>
+        <span class="sign-hebrew" lang="he" dir="rtl">זֶפֶק</span>
+        <span class="sign-transliteration">zefek</span>
+        <span class="sign-english">— "crop"</span>
+      </div>
+      <div class="sign-note">A pouch in the esophagus where food is softened before digestion. The Mishnah names the feature; no verbatim Rashi definition was located for reproduction here.</div>
+    </div>
+
+    <!-- Sign IV: KURKEVAN NIKLAF -->
+    <div class="sign-block">
+      <div class="sign-block-head">
+        <span class="sign-num">Sign IV</span>
+        <span class="sign-hebrew" lang="he" dir="rtl">קֻרְקְבָנוֹ נִקְלָף</span>
+        <span class="sign-transliteration">kurkevan niklaf</span>
+        <span class="sign-english">— "gizzard that can be peeled"</span>
+      </div>
+      <div class="sign-note">The muscular stomach has an inner lining. In kosher birds the lining peels away by hand. The Mishnah names this; no verbatim Rashi definition was located for reproduction here.</div>
+    </div>
+
+    <!-- Further Study note -->
+    <div class="banner caveat" style="margin-top: 20px;">
+      <div class="b-label">Further Study</div>
+      <p>Later authorities debate the precise definitions of the four signs, especially <span lang="he" dir="rtl">דורס</span>. This guide presents only views reproduced from directly verifiable source text.</p>
+    </div>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </section>
+
+  <!-- =================================================================== -->
+  <!-- SECTION III — WHY MESORAH DECIDES -->
+  <!-- =================================================================== -->
+  <section class="section" id="mesorah">
+    <div class="section-head">
+      <div class="section-number">Section III</div>
+      <h2 class="section-title">Why Mesorah Decides</h2>
+      <p class="section-subtitle">Later halakhic practice treats signs as necessary but not sufficient.</p>
+    </div>
+
+    <p class="body">The four signs provide the Mishnah's framework for identifying permitted birds, but this guide does not present them as a standalone practical ruling system.</p>
+
+    <p class="body">Later halakhic practice treats <em>mesorah</em> as decisive in many bird-identification cases. This guide does not reproduce the decisor texts here; see <a href="#further-study" style="color:var(--blue);">Further Study</a>.</p>
+
+    <p class="body">This is why the identification debates in Part B are presented as source-critical and zoological, not as practical kashrut rulings.</p>
+
+    <p class="body">New bird species encountered in new regions are outside the scope of this guide's practical conclusions. For applied halakhah, consult the decisor texts listed below.</p>
+
+    <div class="banner caveat" style="margin-top: 16px;">
+      <div class="b-label">Note</div>
+      <p>This section describes the halakhic framework at a high level. No specific rulings are reproduced. For decisor texts see the reading list in <a href="#further-study">Further Study</a>, specifically Rambam <em>Hilchot Ma'achalot Asurot</em> 1:14–15 and Shulchan Aruch <em>Yoreh De'ah</em> 82.</p>
+    </div>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </section>
+
+  <!-- =================================================================== -->
+  <!-- SECTION IV — FURTHER STUDY -->
+  <!-- =================================================================== -->
+  <section class="section" id="further-study">
+    <div class="section-head">
+      <div class="section-number">Section IV</div>
+      <h2 class="section-title">Further Study</h2>
+    </div>
+
+    <p class="body">This guide's sources policy is strict: every popup reproduces verbatim text with a Sefaria link, and paraphrases are not attributed to the Gemara or to specific Rishonim. That discipline means some views that appear in traditional Jewish educational materials are not reproduced here.</p>
+
+    <p class="body">Readers who want the full picture should consult the following primary materials directly on Sefaria.</p>
+
+    <ul class="xref-list">
+      <li>Rashi on Chullin 59a–65a — <a href="https://www.sefaria.org/Rashi_on_Chullin">sefaria.org/Rashi_on_Chullin</a></li>
+      <li>Tosafot on Chullin 61a (Rabbeinu Tam's <em>dores</em> position) — <a href="https://www.sefaria.org/Tosafot_on_Chullin.61a">sefaria.org/Tosafot_on_Chullin.61a</a></li>
+      <li>Rambam, <em>Mishneh Torah</em>, Hilchot Ma'achalot Asurot 1:14–15 (the codified halakha on bird kashrut) — <a href="https://www.sefaria.org/Mishneh_Torah,_Forbidden_Foods.1.14-15">sefaria.org/Mishneh_Torah,_Forbidden_Foods.1.14-15</a></li>
+      <li>Shulchan Aruch, Yoreh De'ah 82 (the authoritative halakhic decisor) — <a href="https://www.sefaria.org/Shulchan_Arukh,_Yoreh_De'ah.82">sefaria.org/Shulchan_Arukh,_Yoreh_De'ah.82</a></li>
+    </ul>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </section>
+
+  <!-- Closing verification summary -->
+  <div class="banner info" style="margin-top: 32px;">
+    <div class="b-label">Verification Summary</div>
+    <p><strong>Verbatim sources included in this document:</strong> Leviticus 11:13–19 (with Deuteronomy 14:12–18 cross-referenced); Mishnah Chullin 3:6 (folio 59a); Rashi on Chullin 59a (<em>dores</em> definition only); Tosafot on Chullin 61a (citing Rabbeinu Tam). No other Rishonim attributions appear. No paraphrases of the Gemara. No Rambam <em>Peirush HaMishnayot</em> or Saadia Gaon <em>Tafsir</em> citations anywhere in this three-part guide.</p>
+  </div>
+  </div>
+
+  <div class="part-divider">
+    <div class="pd-eyebrow">End of Part A</div>
+    <div class="pd-title">Part B · The Specimens</div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- PART B — SPECIMENS -->
+  <!-- ============================================ -->
+  <div id="part-b">
+  
+
+  <header class="masthead">
+    <div class="eyebrow">A Three-Part Study</div>
+    <h1 class="title">The Specimens</h1>
+    <p class="subtitle">The Torah's list of forbidden birds, organized as twenty head-terms plus four family-expansion clauses (<span lang="he" dir="rtl">למינה / למינו / למינהו</span>) — 24 rows total, matching the Talmudic count of 24 forbidden birds.</p>
+    <p class="subtitle-note">The Torah names twenty distinct birds — or twenty-one, if <span lang="he" dir="rtl">ראה/דאה</span> and <span lang="he" dir="rtl">איה/דיה</span> are counted as separate lexical entries. The Talmud reaches twenty-four; this document renders the four <span lang="he" dir="rtl">למינה/למינו/למינהו</span> clauses as structural rows to match that count. The Gemara's own derivation of the count is more complex than a one-to-one clause-to-row mapping.</p>
+  </header>
+
+  <div class="banner caveat">
+    <div class="b-label">⚠ Sources Policy</div>
+    <p>Every Hebrew/Aramaic passage in this document is reproduced verbatim from a verified witness and linked to Sefaria. No English translations are provided inside popups — consult the Davidson Edition at each link. No paraphrases of the Gemara. No Old French gloss attributed to Rashi unless the <span lang="he" dir="rtl">לעז</span> is present in standard printed witnesses. No attribution to Rambam's <em>Peirush HaMishnayot</em> or Saadia Gaon's <em>Tafsir</em> anywhere in this document.</p>
+  </div>
+
+  <div class="banner info">
+    <div class="b-label">Note on Rambam Peirush HaMishnayot (applies to all 24 rows)</div>
+    <p>The accessible manuscript witness of Rambam's <em>Peirush HaMishnayot</em> on <em>Chullin</em> is fragmentary and covers Mishnah 3:2–3 and 4:3–6 — <strong>not</strong> Mishnah 3:1, where the Torah bird list would be addressed. A Judeo-Arabic glossary of the 24 birds is therefore not retrievable from the accessible witness set. Because that evidence is unavailable, Rambam PM is omitted from the per-bird rows.</p>
+  </div>
+
+  <div class="banner">
+    <div class="b-label" style="color:var(--ink-3);">Confidence Tiers (Derived, Not Chosen)</div>
+    <p>Each row's confidence chip is computed from which sources are populated. <span class="chip chip-anchored">Anchored (Rashi + Talmud)</span> = both a Rashi <span lang="he" dir="rtl">לעז</span> and a verbatim Talmudic passage. <span class="chip chip-talmudic-anchored">Talmudic-anchored</span> = verbatim Talmudic passage only. <span class="chip chip-rashi-anchored">Rashi-anchored</span> = Rashi <span lang="he" dir="rtl">לעז</span> only. <span class="chip chip-caveat">Rashi-anchored (with caveat)</span> = Rashi comment exists but carries a structural problem (owl-pair internal allocation, or <span lang="he" dir="rtl">תנשמת</span>/<span lang="he" dir="rtl">עטלף</span> conflict). <span class="chip chip-structural">Structural anchor only</span> = named in the Talmud's structural count (Chullin 61b) but no lexical identification anchor. <span class="chip chip-no-anchor">No lexical anchor</span> = no Rashi, no verbatim Talmudic etymology, no structural reference in this dataset.</p>
+  </div>
+
+  <div class="index">
+    <div class="index-label">Jump to Row</div>
+    <div class="index-section">
+      <div class="index-section-label">Head-terms (20)</div>
+      <div class="index-grid">
+        <a href="#nesher">nesher</a><span class="sep">·</span>
+        <a href="#peres">peres</a><span class="sep">·</span>
+        <a href="#ozniyah">ozniyah</a><span class="sep">·</span>
+        <a href="#daah-raah">da'ah/ra'ah</a><span class="sep">·</span>
+        <a href="#ayah-dayah">ayah/dayah</a><span class="sep">·</span>
+        <a href="#orev">orev</a><span class="sep">·</span>
+        <a href="#yaanah">bat ha-ya'anah</a><span class="sep">·</span>
+        <a href="#tachmas">tachmas</a><span class="sep">·</span>
+        <a href="#shachaf">shachaf</a><span class="sep">·</span>
+        <a href="#netz">netz</a><span class="sep">·</span>
+        <a href="#kos">kos</a><span class="sep">·</span>
+        <a href="#shalach">shalach</a><span class="sep">·</span>
+        <a href="#yanshuf">yanshuf</a><span class="sep">·</span>
+        <a href="#tinshemet">tinshemet</a><span class="sep">·</span>
+        <a href="#kaat">ka'at</a><span class="sep">·</span>
+        <a href="#racham">racham</a><span class="sep">·</span>
+        <a href="#chasidah">chasidah</a><span class="sep">·</span>
+        <a href="#anafah">anafah</a><span class="sep">·</span>
+        <a href="#duchifat">duchifat</a><span class="sep">·</span>
+        <a href="#atalef">atalef</a>
+      </div>
+    </div>
+    <div class="index-section">
+      <div class="index-section-label">Family-expansion rows (4)</div>
+      <div class="index-grid">
+        <a href="#ayah-dayah-family">ayah/dayah לְמִינָהּ</a><span class="sep">·</span>
+        <a href="#orev-family">orev לְמִינוֹ</a><span class="sep">·</span>
+        <a href="#netz-family">netz לְמִינֵהוּ</a><span class="sep">·</span>
+        <a href="#anafah-family">anafah לְמִינָהּ</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================================================================== -->
+  <!-- ROW 1 — NESHER (Talmudic-anchored via Chullin 61b) -->
+  <!-- =================================================================== -->
+  <article class="specimen" id="nesher">
+    <div class="specimen-head">
+      <span class="spec-number">Row 1</span>
+      <span class="spec-heb" lang="he" dir="rtl">נֶשֶׁר</span>
+      <span class="spec-translit">nesher</span>
+      <span class="spec-eng">griffon vulture (mod.) / eagle (trad.)</span>
+      <span class="chip chip-talmudic-anchored">Talmudic-anchored</span>
+    </div>
+
+    <div class="block verse">
+      <div class="block-label">Verse</div>
+      <div class="heb-text" lang="he" dir="rtl">אֶת־הַנֶּשֶׁר וְאֶת־הַפֶּרֶס וְאֵת הָעׇזְנִיָּה׃</div>
+      <div class="verse-gloss">Leviticus 11:13 · Deuteronomy 14:12</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Leviticus.11.13">Lev 11:13</a> · <a href="https://www.sefaria.org/Deuteronomy.14.12">Deut 14:12</a></div>
+    </div>
+
+    <div class="block talmud">
+      <div class="block-label">Talmud · Chullin 61b (24 birds, 4 signs)</div>
+      <div class="heb-text" lang="he" dir="rtl">גְּמִירִי עֶשְׂרִים וְאַרְבָּעָה עוֹפוֹת טְמֵאִים הָווּ וְאַרְבָּעָה סִימָנִין. תְּלָתָא הָדְרִי בְּכֻלְּהוּ עֶשְׂרִים מֵהֶם שְׁלֹשָׁה שְׁלֹשָׁה, וּתְרֵי בְּעוֹרֵב, חַד בְּפֶרֶס וְחַד בְּעׇזְנִיָּה.</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Chullin.61b">sefaria.org/Chullin.61b</a></div>
+      <div class="caveat-note">This passage establishes the structural count (24 birds, 4 signs) and groups <span lang="he" dir="rtl">נשר · פרס · עזניה</span>. It is rendered once here and cross-referenced from the <a href="#peres">peres</a> and <a href="#ozniyah">ozniyah</a> rows.</div>
+    </div>
+
+    <div class="block modern-id">
+      <div class="block-label">Modern Candidate</div>
+      <div class="modern-id-text"><em>Gyps fulvus</em> (Eurasian griffon vulture). Common modern candidate; no medieval <span lang="he" dir="rtl">לעז</span> or Rambam PM anchor in this dataset.</div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Gyps_fulvus_-_01.jpg?width=800" alt="Eurasian griffon vulture (Gyps fulvus) in flight, showing broad wings and bare head">
+    </div>
+    <p class="img-caption"><strong>Eurasian Griffon Vulture</strong> (<em>Gyps fulvus</em>). Photograph via Wikimedia Commons.</p>
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- =================================================================== -->
+  <!-- ROW 2 — PERES (no medieval anchor; 61b cross-ref) -->
+  <!-- =================================================================== -->
+  <article class="specimen" id="peres">
+    <div class="specimen-head">
+      <span class="spec-number">Row 2</span>
+      <span class="spec-heb" lang="he" dir="rtl">פֶּרֶס</span>
+      <span class="spec-translit">peres</span>
+      <span class="spec-eng">bearded vulture / lammergeier</span>
+      <span class="chip chip-structural">Structural anchor only</span>
+    </div>
+
+    <div class="block verse">
+      <div class="block-label">Verse</div>
+      <div class="heb-text" lang="he" dir="rtl">אֶת־הַנֶּשֶׁר וְאֶת־הַפֶּרֶס וְאֵת הָעׇזְנִיָּה׃</div>
+      <div class="verse-gloss">Leviticus 11:13 · Deuteronomy 14:12</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Leviticus.11.13">Lev 11:13</a> · <a href="https://www.sefaria.org/Deuteronomy.14.12">Deut 14:12</a></div>
+    </div>
+
+    <div class="xref">Chullin 61b names <span lang="he" dir="rtl">פרס</span> as one of the two birds having exactly one of the four signs. See the verbatim 61b quote on the <a href="#nesher">nesher row above</a>.</div>
+
+    <div class="block modern-id" style="margin-top:16px;">
+      <div class="block-label">Modern Candidate</div>
+      <div class="modern-id-text"><em>Gypaetus barbatus</em> (bearded vulture / lammergeier). Common modern candidate; no Rashi <span lang="he" dir="rtl">לעז</span> and no Rambam PM anchor in this dataset.</div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Bartgeier_Gypaetus_barbatus_front_Richard_Bartz.jpg?width=800" alt="Bearded vulture / lammergeier (Gypaetus barbatus), front view showing distinctive facial feathers">
+    </div>
+    <p class="img-caption"><strong>Bearded Vulture / Lammergeier</strong> (<em>Gypaetus barbatus</em>). Photograph via Wikimedia Commons.</p>
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- =================================================================== -->
+  <!-- ROW 3 — OZNIYAH (no medieval anchor; 61b cross-ref) -->
+  <!-- =================================================================== -->
+  <article class="specimen" id="ozniyah">
+    <div class="specimen-head">
+      <span class="spec-number">Row 3</span>
+      <span class="spec-heb" lang="he" dir="rtl">עׇזְנִיָּה</span>
+      <span class="spec-translit">ozniyah</span>
+      <span class="spec-eng">sea eagle (trad.) / black vulture (mod.)</span>
+      <span class="chip chip-structural">Structural anchor only</span>
+    </div>
+
+    <div class="block verse">
+      <div class="block-label">Verse</div>
+      <div class="heb-text" lang="he" dir="rtl">אֶת־הַנֶּשֶׁר וְאֶת־הַפֶּרֶס וְאֵת הָעׇזְנִיָּה׃</div>
+      <div class="verse-gloss">Leviticus 11:13 · Deuteronomy 14:12</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Leviticus.11.13">Lev 11:13</a> · <a href="https://www.sefaria.org/Deuteronomy.14.12">Deut 14:12</a></div>
+    </div>
+
+    <div class="xref">Chullin 61b names <span lang="he" dir="rtl">עזניה</span> as the other bird with exactly one of the four signs. See the verbatim 61b quote on the <a href="#nesher">nesher row above</a>.</div>
+
+    <div class="block modern-id" style="margin-top:16px;">
+      <div class="block-label">Modern Candidate</div>
+      <div class="modern-id-text">Unresolved. <em>Aegypius monachus</em> (cinereous vulture) is the common modern candidate but carries no medieval <span lang="he" dir="rtl">לעז</span> or Rambam PM anchor in this dataset.</div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Eurasian_black_vulture_(Aegypius_monachus)_in_flight.jpg?width=800" alt="Cinereous vulture (Aegypius monachus) in flight — traditional candidate for ozniyah, not a secure identification">
+    </div>
+    <p class="img-caption"><strong>Cinereous Vulture</strong> (<em>Aegypius monachus</em>). <span class="caveat-inline">Traditional candidate, not a secure identification.</span> Photograph via Wikimedia Commons.</p>
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- =================================================================== -->
+  <!-- ROW 4 — DA'AH / RA'AH combined per Chullin 63b -->
+  <!-- =================================================================== -->
+  <article class="specimen" id="daah-raah">
+    <div class="specimen-head">
+      <span class="spec-number">Row 4</span>
+      <span class="spec-heb" lang="he" dir="rtl">דָּאָה / רָאָה</span>
+      <span class="spec-translit">da'ah / ra'ah</span>
+      <span class="spec-eng">one species per Chullin 63b</span>
+      <span class="chip chip-talmudic-anchored">Talmudic-anchored</span>
+    </div>
+
+    <div class="block verse">
+      <div class="block-label">Verses</div>
+      <div class="heb-text" lang="he" dir="rtl">וְאֶת־הַדָּאָה וְאֶת־הָאַיָּה לְמִינָהּ׃ <span style="color:var(--ink-3);font-size:13px;">(ויקרא)</span></div>
+      <div class="heb-text" lang="he" dir="rtl">וְהָרָאָה וְאֶת־הָאַיָּה וְהַדַּיָּה לְמִינָהּ׃ <span style="color:var(--ink-3);font-size:13px;">(דברים)</span></div>
+      <div class="verse-gloss">Leviticus 11:14 · Deuteronomy 14:13</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Leviticus.11.14">Lev 11:14</a> · <a href="https://www.sefaria.org/Deuteronomy.14.13">Deut 14:13</a></div>
+    </div>
+
+    <div class="block talmud">
+      <div class="block-label">Talmud · Chullin 63b (one-species derivation)</div>
+      <div class="heb-text" lang="he" dir="rtl">מִכְדִּי מִשְׁנֵה תּוֹרָה לְאוֹסוֹפֵי הוּא דְּאָתָא, מַאי שְׁנָא הָכָא דִּכְתִיב דָּאָה וּמַאי שְׁנָא הָכָא דִּכְתִיב רָאָה וְלָא כְתִיב דָּאָה? אֶלָּא שְׁמַע מִינַּהּ — מִין רָאָה וְדָאָה אַחַת הִיא.</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Chullin.63b">sefaria.org/Chullin.63b</a></div>
+    </div>
+
+    <div class="block modern-id">
+      <div class="block-label">Modern Candidate</div>
+      <div class="modern-id-text">Unresolved raptor complex. No Rashi <span lang="he" dir="rtl">לעז</span> for this row.</div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Milvus_migrans_in_flight_in_Kochi_Prefecture_13.jpg?width=800" alt="Black kite (Milvus migrans) in flight — traditional candidate for the da'ah/ra'ah complex, not a secure identification">
+    </div>
+    <p class="img-caption"><strong>Black Kite</strong> (<em>Milvus migrans</em>). <span class="caveat-inline">Traditional candidate, not a secure identification.</span> Photograph via Wikimedia Commons.</p>
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- =================================================================== -->
+  <!-- ROW 5 — AYAH / DAYAH combined per Chullin 63b -->
+  <!-- =================================================================== -->
+  <article class="specimen" id="ayah-dayah">
+    <div class="specimen-head">
+      <span class="spec-number">Row 5</span>
+      <span class="spec-heb" lang="he" dir="rtl">אַיָּה / דַּיָּה</span>
+      <span class="spec-translit">ayah / dayah</span>
+      <span class="spec-eng">one species per Chullin 63b</span>
+      <span class="chip chip-talmudic-anchored">Talmudic-anchored</span>
+    </div>
+
+    <div class="block verse">
+      <div class="block-label">Verses</div>
+      <div class="verse-gloss">Leviticus 11:14 (<span lang="he" dir="rtl">איה</span>) · Deuteronomy 14:13 (<span lang="he" dir="rtl">איה · דיה</span>)</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Leviticus.11.14">Lev 11:14</a> · <a href="https://www.sefaria.org/Deuteronomy.14.13">Deut 14:13</a></div>
+    </div>
+
+    <div class="block talmud">
+      <div class="block-label">Talmud · Chullin 63b (Abaye on parallel identification)</div>
+      <div class="heb-text" lang="he" dir="rtl">אָמַר אַבַּיֵי: כְּשֵׁם שֶׁרָאָה וְדָאָה אַחַת הִיא, כָּךְ אַיָּה וְדַיָּה אַחַת הִיא.</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Chullin.63b">sefaria.org/Chullin.63b</a></div>
+    </div>
+
+    <div class="block talmud">
+      <div class="block-label">Talmud · Chullin 63b (Rabbi on the multiple names)</div>
+      <div class="heb-text" lang="he" dir="rtl">כִּדְתַנְיָא: רַבִּי אוֹמֵר: אֶקְרָא אֲנִי אַיָּה, דַּיָּה לָמָּה נֶאֶמְרָה? כְּדֵי שֶׁלֹּא תִּתֵּן פִּתְחוֹן פֶּה לְבַעַל דִּין לַחֲלֹק — שֶׁלֹּא תְּהֵא אַתָּה קוֹרֵא אַיָּה וְהוּא קוֹרֵא דַּיָּה.</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Chullin.63b">sefaria.org/Chullin.63b</a></div>
+    </div>
+
+    <div class="block modern-id">
+      <div class="block-label">Modern Candidate</div>
+      <div class="modern-id-text">Unresolved raptor complex. No Rashi <span lang="he" dir="rtl">לעז</span>.</div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Peregrine_Falcon_in_flight.jpg?width=800" alt="Peregrine falcon in flight — traditional raptor candidate, not a secure identification for the ayah/dayah complex">
+    </div>
+    <p class="img-caption"><strong>Peregrine Falcon</strong> (<em>Falco peregrinus</em>). <span class="caveat-inline">Traditional candidate, not a secure identification.</span> Photograph via Wikimedia Commons.</p>
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- =================================================================== -->
+  <!-- ROW 6 — OREV (Talmudic-anchored via Chullin 63a) -->
+  <!-- =================================================================== -->
+  <article class="specimen" id="orev">
+    <div class="specimen-head">
+      <span class="spec-number">Row 6</span>
+      <span class="spec-heb" lang="he" dir="rtl">עֹרֵב</span>
+      <span class="spec-translit">orev</span>
+      <span class="spec-eng">raven (base term)</span>
+      <span class="chip chip-talmudic-anchored">Talmudic-anchored</span>
+    </div>
+
+    <div class="block verse">
+      <div class="block-label">Verse</div>
+      <div class="heb-text" lang="he" dir="rtl">אֵת כׇּל־עֹרֵב לְמִינוֹ׃</div>
+      <div class="verse-gloss">Leviticus 11:15 · Deuteronomy 14:14</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Leviticus.11.15">Lev 11:15</a> · <a href="https://www.sefaria.org/Deuteronomy.14.14">Deut 14:14</a></div>
+    </div>
+
+    <div class="block talmud">
+      <div class="block-label">Talmud · Chullin 63a ("black as a raven")</div>
+      <div class="heb-text" lang="he" dir="rtl">אָמַר מָר: עוֹרֵב זֶה עוֹרֵב. אַטּוּ קַמַּן קָאֵי? אֶלָּא אֵימָא עוֹרֵב זֶה עוֹרֵב אוּכְמָא. וְכֵן הוּא אוֹמֵר: קְוֻצּוֹתָיו תַּלְתַּלִּים שְׁחֹרוֹת כָּעוֹרֵב (שיר השירים ה, יא).</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Chullin.63a">sefaria.org/Chullin.63a</a></div>
+      <div class="caveat-note">The sub-kinds expansion (<span lang="he" dir="rtl">למינו</span>) is on the <a href="#orev-family">orev family row below</a>.</div>
+    </div>
+
+    <div class="block modern-id">
+      <div class="block-label">Modern Candidate</div>
+      <div class="modern-id-text"><em>Corvus</em> spp. (raven and related corvids). The Torah itself presents a family group with <span lang="he" dir="rtl">למינו</span>, so family-level identification is secure; species-level is not.</div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Corvus_corax_(Common_Raven),_Yosemite_NP,_CA,_US_-_Diliff.jpg?width=800" alt="Common raven (Corvus corax) showing black plumage referenced in Song of Songs 5:11">
+    </div>
+    <p class="img-caption"><strong>Common Raven</strong> (<em>Corvus corax</em>). Photograph via Wikimedia Commons.</p>
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- =================================================================== -->
+  <!-- ROW 7 — BAT HA-YA'ANAH (no anchor) -->
+  <!-- =================================================================== -->
+  <article class="specimen" id="yaanah">
+    <div class="specimen-head">
+      <span class="spec-number">Row 7</span>
+      <span class="spec-heb" lang="he" dir="rtl">בַּת הַיַּעֲנָה</span>
+      <span class="spec-translit">bat ha-ya'anah</span>
+      <span class="spec-eng">ostrich (trad.)</span>
+      <span class="chip chip-no-anchor">No lexical anchor</span>
+    </div>
+
+    <div class="block verse">
+      <div class="block-label">Verse</div>
+      <div class="heb-text" lang="he" dir="rtl">וְאֵת בַּת הַיַּעֲנָה וְאֶת־הַתַּחְמָס וְאֶת־הַשָּׁחַף וְאֶת־הַנֵּץ לְמִינֵהוּ׃</div>
+      <div class="verse-gloss">Leviticus 11:16 · Deuteronomy 14:15</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Leviticus.11.16">Lev 11:16</a> · <a href="https://www.sefaria.org/Deuteronomy.14.15">Deut 14:15</a></div>
+    </div>
+
+    <div class="block modern-id">
+      <div class="block-label">Modern Candidate</div>
+      <div class="modern-id-text"><em>Struthio camelus</em> (common ostrich). Common modern candidate. No Rashi <span lang="he" dir="rtl">לעז</span>, no verified verbatim Talmudic etymology, and no Rambam PM anchor in this dataset.</div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Struthio_camelus_-_Etosha_2014_(3).jpg?width=800" alt="Common ostrich (Struthio camelus) — flightless ratite with a peelable gizzard despite being explicitly forbidden">
+    </div>
+    <p class="img-caption"><strong>Common Ostrich</strong> (<em>Struthio camelus</em>). Photograph via Wikimedia Commons.</p>
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- =================================================================== -->
+  <!-- ROW 8 — TACHMAS (no anchor) -->
+  <!-- =================================================================== -->
+  <article class="specimen" id="tachmas">
+    <div class="specimen-head">
+      <span class="spec-number">Row 8</span>
+      <span class="spec-heb" lang="he" dir="rtl">תַּחְמָס</span>
+      <span class="spec-translit">tachmas</span>
+      <span class="spec-eng">unresolved</span>
+      <span class="chip chip-no-anchor">No lexical anchor</span>
+    </div>
+
+    <div class="block verse">
+      <div class="block-label">Verse</div>
+      <div class="heb-text" lang="he" dir="rtl">וְאֶת־הַתַּחְמָס וְאֶת־הַשָּׁחַף</div>
+      <div class="verse-gloss">Leviticus 11:16 · Deuteronomy 14:15</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Leviticus.11.16">Lev 11:16</a> · <a href="https://www.sefaria.org/Deuteronomy.14.15">Deut 14:15</a></div>
+    </div>
+
+    <div class="block modern-id">
+      <div class="block-label">Modern Candidate</div>
+      <div class="modern-id-text">Unresolved. No secure medieval lexical anchor in this dataset. The word appears nowhere else in Tanakh.</div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Eurasian_nightjar_(Caprimulgus_europaeus)_in_Algeria.jpg?width=800" alt="European nightjar (Caprimulgus europaeus) — one traditional candidate for tachmas, not a secure identification">
+    </div>
+    <p class="img-caption"><strong>European Nightjar</strong> (<em>Caprimulgus europaeus</em>). <span class="caveat-inline">One traditional candidate, not a secure identification.</span> Photograph via Wikimedia Commons.</p>
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- =================================================================== -->
+  <!-- ROW 9 — SHACHAF (no anchor) -->
+  <!-- =================================================================== -->
+  <article class="specimen" id="shachaf">
+    <div class="specimen-head">
+      <span class="spec-number">Row 9</span>
+      <span class="spec-heb" lang="he" dir="rtl">שָׁחָף</span>
+      <span class="spec-translit">shachaf</span>
+      <span class="spec-eng">unresolved</span>
+      <span class="chip chip-no-anchor">No lexical anchor</span>
+    </div>
+
+    <div class="block verse">
+      <div class="block-label">Verse</div>
+      <div class="heb-text" lang="he" dir="rtl">וְאֶת־הַשָּׁחַף וְאֶת־הַנֵּץ לְמִינֵהוּ׃</div>
+      <div class="verse-gloss">Leviticus 11:16 · Deuteronomy 14:15</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Leviticus.11.16">Lev 11:16</a> · <a href="https://www.sefaria.org/Deuteronomy.14.15">Deut 14:15</a></div>
+    </div>
+
+    <div class="block modern-id">
+      <div class="block-label">Modern Candidate</div>
+      <div class="modern-id-text">Unresolved. No secure medieval lexical anchor in this dataset.</div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Larus_michahellis.008_-_Islas_Cies.JPG?width=800" alt="Yellow-legged gull (Larus michahellis) — one traditional candidate for shachaf, not a secure identification">
+    </div>
+    <p class="img-caption"><strong>Yellow-legged Gull</strong> (<em>Larus michahellis</em>). <span class="caveat-inline">One traditional candidate, not a secure identification.</span> Photograph via Wikimedia Commons.</p>
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- =================================================================== -->
+  <!-- ROW 10 — NETZ (Anchored: Rashi + Talmud) -->
+  <!-- =================================================================== -->
+  <article class="specimen" id="netz">
+    <div class="specimen-head">
+      <span class="spec-number">Row 10</span>
+      <span class="spec-heb" lang="he" dir="rtl">נֵץ</span>
+      <span class="spec-translit">netz</span>
+      <span class="spec-eng">hawk / sparrowhawk</span>
+      <span class="chip chip-anchored">Anchored (Rashi + Talmud)</span>
+    </div>
+
+    <div class="block verse">
+      <div class="block-label">Verse</div>
+      <div class="heb-text" lang="he" dir="rtl">וְאֶת־הַנֵּץ לְמִינֵהוּ׃</div>
+      <div class="verse-gloss">Leviticus 11:16 · Deuteronomy 14:15</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Leviticus.11.16">Lev 11:16</a> · <a href="https://www.sefaria.org/Deuteronomy.14.15">Deut 14:15</a></div>
+    </div>
+
+    <div class="block rashi">
+      <div class="block-label">Rashi on Leviticus 11:16</div>
+      <div class="rashi-laaz-line">
+        <span class="laaz-label"><span lang="he" dir="rtl">לעז:</span></span>
+        <span class="laaz-heb" lang="he" dir="rtl">אשפר״ויר</span>
+        <span class="laaz-normalized">esprevier</span>
+        <span class="laaz-meaning">— sparrowhawk / small hawk</span>
+      </div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Rashi_on_Leviticus.11.16">sefaria.org/Rashi on Leviticus 11:16</a></div>
+    </div>
+
+    <div class="block talmud">
+      <div class="block-label">Talmud · Chullin 63a (Abaye on netz sub-kind)</div>
+      <div class="heb-text" lang="he" dir="rtl">תָּנוּ רַבָּנַן: הַנֵּץ — זֶה הַנֵּץ. לְמִינֵהוּ — לְהָבִיא אֶת בַּר חִירְיָא. מַאי בַּר חִירְיָא? אָמַר אַבַּיֵי: שׁוּרִינְקָא.</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Chullin.63a">sefaria.org/Chullin.63a</a></div>
+    </div>
+
+    <div class="block modern-id">
+      <div class="block-label">Modern Candidate</div>
+      <div class="modern-id-text"><em>Accipiter</em> sp.; likely <em>Accipiter nisus</em> (Eurasian sparrowhawk). Rashi's <em>esprevier</em> and the Talmudic sub-kind both point to the accipiter-class hawk zone; species-level identification is less secure.</div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Accipiter_nisus_edit.jpg?width=800" alt="Eurasian sparrowhawk (Accipiter nisus) — matches Rashi's Old French esprevier">
+    </div>
+    <p class="img-caption"><strong>Eurasian Sparrowhawk</strong> (<em>Accipiter nisus</em>). Photograph via Wikimedia Commons.</p>
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- =================================================================== -->
+  <!-- ROW 11 — KOS (Rashi-anchored with owl-pair caveat) -->
+  <!-- =================================================================== -->
+  <article class="specimen" id="kos">
+    <div class="specimen-head">
+      <span class="spec-number">Row 11</span>
+      <span class="spec-heb" lang="he" dir="rtl">כּוֹס</span>
+      <span class="spec-translit">kos</span>
+      <span class="spec-eng">owl (paired with yanshuf in Rashi)</span>
+      <span class="chip chip-caveat">Rashi-anchored (with caveat)</span>
+    </div>
+
+    <div class="block verse">
+      <div class="block-label">Verse</div>
+      <div class="heb-text" lang="he" dir="rtl">וְאֶת־הַכּוֹס וְאֶת־הַשָּׁלָךְ וְאֶת־הַיַּנְשׁוּף׃</div>
+      <div class="verse-gloss">Leviticus 11:17 · Deuteronomy 14:16</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Leviticus.11.17">Lev 11:17</a> · <a href="https://www.sefaria.org/Deuteronomy.14.16">Deut 14:16</a></div>
+    </div>
+
+    <div class="block rashi">
+      <div class="block-label">Rashi on Leviticus 11:17 (owl-pair)</div>
+      <div class="rashi-laaz-line">
+        <span class="laaz-label"><span lang="he" dir="rtl">לעז:</span></span>
+        <span class="laaz-heb" lang="he" dir="rtl">צואי״טש · יי״בו</span>
+        <span class="laaz-normalized">chouette · hibou</span>
+        <span class="laaz-meaning">— owl (pair)</span>
+      </div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Rashi_on_Leviticus.11.17">sefaria.org/Rashi on Leviticus 11:17</a></div>
+      <div class="caveat-note">Rashi gives two Old French owl-words (<em>chouette</em>, <em>hibou</em>) covering <span lang="he" dir="rtl">כוס</span> and <span lang="he" dir="rtl">ינשוף</span> together as an owl-pair. The internal one-to-one assignment — which French word belongs to which Hebrew word — is not made explicit in Rashi. This row should not be read as assigning <em>chouette</em> specifically to <span lang="he" dir="rtl">כוס</span>.</div>
+    </div>
+
+    <div class="block modern-id">
+      <div class="block-label">Modern Candidate</div>
+      <div class="modern-id-text">Owl group (Strigidae/Tyto indeterminate). Rashi's <span lang="he" dir="rtl">לעז</span> anchors the owl zone; internal species allocation between kos and yanshuf is not Rashi's own.</div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Athene_noctua_(portrait).jpg?width=800" alt="Little owl (Athene noctua) — one traditional candidate within the owl group named by Rashi's owl-pair gloss">
+    </div>
+    <p class="img-caption"><strong>Little Owl</strong> (<em>Athene noctua</em>). <span class="caveat-inline">One traditional candidate within the owl-pair, not a secure species identification.</span> Photograph via Wikimedia Commons.</p>
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- =================================================================== -->
+  <!-- ROW 12 — SHALACH (Talmudic-anchored, Rashi behavioral only) -->
+  <!-- =================================================================== -->
+  <article class="specimen" id="shalach">
+    <div class="specimen-head">
+      <span class="spec-number">Row 12</span>
+      <span class="spec-heb" lang="he" dir="rtl">שָׁלָךְ</span>
+      <span class="spec-translit">shalach</span>
+      <span class="spec-eng">fish-catching bird (unresolved species)</span>
+      <span class="chip chip-talmudic-anchored">Talmudic-anchored</span>
+    </div>
+
+    <div class="block verse">
+      <div class="block-label">Verse</div>
+      <div class="heb-text" lang="he" dir="rtl">וְאֶת־הַשָּׁלָךְ וְאֶת־הַיַּנְשׁוּף׃</div>
+      <div class="verse-gloss">Leviticus 11:17 · Deuteronomy 14:17</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Leviticus.11.17">Lev 11:17</a> · <a href="https://www.sefaria.org/Deuteronomy.14.17">Deut 14:17</a></div>
+    </div>
+
+    <div class="block rashi">
+      <div class="block-label">Rashi on Leviticus 11:17 (behavioral, no <span lang="he" dir="rtl">לעז</span>)</div>
+      <div class="heb-text" lang="he" dir="rtl">זֶה הַשּׁוֹלֶה דָּגִים מִן הַיָּם.</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Rashi_on_Leviticus.11.17">sefaria.org/Rashi on Leviticus 11:17</a></div>
+      <div class="caveat-note">Rashi gives a behavioral definition — "this is the one who draws fish from the sea" — not an Old French gloss. Behavior anchors ecology, not taxonomy.</div>
+    </div>
+
+    <div class="block talmud">
+      <div class="block-label">Talmud · Chullin 63a (Rav Yehuda, matching Rashi's phrasing)</div>
+      <div class="heb-text" lang="he" dir="rtl">אָמַר רַב יְהוּדָה: שָׁלָךְ — זֶה הַשּׁוֹלֶה דָּגִים מִן הַיָּם.</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Chullin.63a">sefaria.org/Chullin.63a</a></div>
+    </div>
+
+    <div class="block modern-id">
+      <div class="block-label">Modern Candidate</div>
+      <div class="modern-id-text">Fish-snatching water bird, species unresolved. The medieval witnesses narrow ecology, not species.</div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Great_cormorant_(Phalacrocorax_carbo).JPG?width=800" alt="Great cormorant (Phalacrocorax carbo) — one traditional candidate for a fish-drawing bird, not a secure identification">
+    </div>
+    <p class="img-caption"><strong>Great Cormorant</strong> (<em>Phalacrocorax carbo</em>). <span class="caveat-inline">One traditional candidate, not a secure identification.</span> Photograph via Wikimedia Commons.</p>
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- =================================================================== -->
+  <!-- ROW 13 — YANSHUF (Rashi-anchored with owl-pair caveat) -->
+  <!-- =================================================================== -->
+  <article class="specimen" id="yanshuf">
+    <div class="specimen-head">
+      <span class="spec-number">Row 13</span>
+      <span class="spec-heb" lang="he" dir="rtl">יַנְשׁוּף</span>
+      <span class="spec-translit">yanshuf</span>
+      <span class="spec-eng">owl (paired with kos in Rashi)</span>
+      <span class="chip chip-caveat">Rashi-anchored (with caveat)</span>
+    </div>
+
+    <div class="block verse">
+      <div class="block-label">Verse</div>
+      <div class="heb-text" lang="he" dir="rtl">וְאֶת־הַיַּנְשׁוּף וְאֶת־הַתִּנְשֶׁמֶת</div>
+      <div class="verse-gloss">Leviticus 11:17–18 · Deuteronomy 14:16</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Leviticus.11.17">Lev 11:17</a> · <a href="https://www.sefaria.org/Deuteronomy.14.16">Deut 14:16</a></div>
+    </div>
+
+    <div class="block rashi">
+      <div class="block-label">Rashi on Leviticus 11:17 (owl-pair, shared with kos)</div>
+      <div class="rashi-laaz-line">
+        <span class="laaz-label"><span lang="he" dir="rtl">לעז:</span></span>
+        <span class="laaz-heb" lang="he" dir="rtl">צואי״טש · יי״בו</span>
+        <span class="laaz-normalized">chouette · hibou</span>
+        <span class="laaz-meaning">— owl (pair)</span>
+      </div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Rashi_on_Leviticus.11.17">sefaria.org/Rashi on Leviticus 11:17</a></div>
+      <div class="caveat-note">Same owl-pair as on the <a href="#kos">kos row</a>. Rashi's two Old French owl-words are not individually allocated — which French word belongs to <span lang="he" dir="rtl">יַנְשׁוּף</span> as distinct from <span lang="he" dir="rtl">כּוֹס</span> is not stated by Rashi himself.</div>
+    </div>
+
+    <div class="block modern-id">
+      <div class="block-label">Modern Candidate</div>
+      <div class="modern-id-text">Owl group, unresolved at species level.</div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Bubo_bubo_sibiricus_-_01.JPG?width=800" alt="Eurasian eagle owl (Bubo bubo) — one traditional candidate within the owl group, not a secure identification">
+    </div>
+    <p class="img-caption"><strong>Eurasian Eagle Owl</strong> (<em>Bubo bubo</em>). <span class="caveat-inline">One traditional candidate within the owl-pair, not a secure species identification.</span> Photograph via Wikimedia Commons.</p>
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- =================================================================== -->
+  <!-- ROW 14 — TINSHEMET (Rashi-anchored with unresolved-problem caveat) -->
+  <!-- =================================================================== -->
+  <article class="specimen" id="tinshemet">
+    <div class="specimen-head">
+      <span class="spec-number">Row 14</span>
+      <span class="spec-heb" lang="he" dir="rtl">תִּנְשֶׁמֶת</span>
+      <span class="spec-translit">tinshemet</span>
+      <span class="spec-eng">Rashi's <span lang="he" dir="rtl">לעז</span>: bat (unresolved zoological problem)</span>
+      <span class="chip chip-caveat">Rashi-anchored (with caveat)</span>
+    </div>
+
+    <div class="block verse">
+      <div class="block-label">Verse</div>
+      <div class="heb-text" lang="he" dir="rtl">וְאֶת־הַתִּנְשֶׁמֶת וְהַקָּאָת וְהָרָחָם׃</div>
+      <div class="verse-gloss">Leviticus 11:18 · Deuteronomy 14:16</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Leviticus.11.18">Lev 11:18</a> · <a href="https://www.sefaria.org/Deuteronomy.14.16">Deut 14:16</a></div>
+    </div>
+
+    <div class="block rashi">
+      <div class="block-label">Rashi on Leviticus 11:18</div>
+      <div class="rashi-laaz-line">
+        <span class="laaz-label"><span lang="he" dir="rtl">לעז:</span></span>
+        <span class="laaz-heb" lang="he" dir="rtl">קלב״א שוריץ</span>
+        <span class="laaz-normalized">calve soriz (chauve-souris)</span>
+        <span class="laaz-meaning">— bat</span>
+      </div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Rashi_on_Leviticus.11.18">sefaria.org/Rashi on Leviticus 11:18</a></div>
+      <div class="caveat-note">Rashi's <span lang="he" dir="rtl">לעז</span> is a strong lexical datum but creates an unresolved zoological problem: it points to "bat," yet the Torah separately lists <span lang="he" dir="rtl">עטלף</span> as its own bird on the very next verse (Leviticus 11:19 — <a href="#atalef">see atalef below</a>). The <span lang="he" dir="rtl">לעז</span> is therefore a lexical anchor, not a solved identification.</div>
+    </div>
+
+    <div class="block modern-id">
+      <div class="block-label">Modern Candidate</div>
+      <div class="modern-id-text">Unresolved. Rashi's reading and the Torah's separate listing of <span lang="he" dir="rtl">עטלף</span> are in tension.</div>
+    </div>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- =================================================================== -->
+  <!-- ROW 15 — KA'AT (Talmudic-anchored) -->
+  <!-- =================================================================== -->
+  <article class="specimen" id="kaat">
+    <div class="specimen-head">
+      <span class="spec-number">Row 15</span>
+      <span class="spec-heb" lang="he" dir="rtl">קָאָת</span>
+      <span class="spec-translit">ka'at</span>
+      <span class="spec-eng">unresolved (Gemara: <em lang="he" dir="rtl">קוק</em>, unidentified)</span>
+      <span class="chip chip-talmudic-anchored">Talmudic-anchored</span>
+    </div>
+
+    <div class="block verse">
+      <div class="block-label">Verse</div>
+      <div class="heb-text" lang="he" dir="rtl">וְהַקָּאָת וְהָרָחָם</div>
+      <div class="verse-gloss">Leviticus 11:18 · Deuteronomy 14:17</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Leviticus.11.18">Lev 11:18</a> · <a href="https://www.sefaria.org/Deuteronomy.14.17">Deut 14:17</a></div>
+    </div>
+
+    <div class="block talmud">
+      <div class="block-label">Talmud · Chullin 63a (Rav Yehuda)</div>
+      <div class="heb-text" lang="he" dir="rtl">אָמַר רַב יְהוּדָה: קָאָת — זוֹ הַקּוּק.</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Chullin.63a">sefaria.org/Chullin.63a</a></div>
+    </div>
+
+    <div class="block modern-id">
+      <div class="block-label">Modern Candidate</div>
+      <div class="modern-id-text">Unresolved. The Gemara identifies <span lang="he" dir="rtl">קאת</span> with an Aramaic term <span lang="he" dir="rtl">קוק</span> which is itself not further identified in this passage.</div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Great_white_pelican_(Pelecanus_onocrotalus)_in_flight.jpg?width=800" alt="Great white pelican (Pelecanus onocrotalus) — one traditional candidate for ka'at, not a secure identification">
+    </div>
+    <p class="img-caption"><strong>Great White Pelican</strong> (<em>Pelecanus onocrotalus</em>). <span class="caveat-inline">One traditional candidate, not a secure identification.</span> Photograph via Wikimedia Commons.</p>
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- =================================================================== -->
+  <!-- ROW 16 — RACHAM (Talmudic-anchored) -->
+  <!-- =================================================================== -->
+  <article class="specimen" id="racham">
+    <div class="specimen-head">
+      <span class="spec-number">Row 16</span>
+      <span class="spec-heb" lang="he" dir="rtl">רָחָם</span>
+      <span class="spec-translit">racham</span>
+      <span class="spec-eng">Gemara: <em lang="he" dir="rtl">שרקרק</em> (unidentified)</span>
+      <span class="chip chip-talmudic-anchored">Talmudic-anchored</span>
+    </div>
+
+    <div class="block verse">
+      <div class="block-label">Verse</div>
+      <div class="heb-text" lang="he" dir="rtl">וְהָרָחָם וְהַחֲסִידָה</div>
+      <div class="verse-gloss">Leviticus 11:18 · Deuteronomy 14:17</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Leviticus.11.18">Lev 11:18</a> · <a href="https://www.sefaria.org/Deuteronomy.14.17">Deut 14:17</a></div>
+    </div>
+
+    <div class="block talmud">
+      <div class="block-label">Talmud · Chullin 63a (R. Yochanan on mercy etymology)</div>
+      <div class="heb-text" lang="he" dir="rtl">רָחָם — זוֹ שְׁרַקְרַק. אָמַר רַבִּי יוֹחָנָן: לָמָּה נִקְרָא שְׁמוֹ רָחָם? כֵּיוָן שֶׁבָּא רָחָם בָּאוּ רַחֲמִים לָעוֹלָם.</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Chullin.63a">sefaria.org/Chullin.63a</a></div>
+    </div>
+
+    <div class="block talmud">
+      <div class="block-label">Talmud · Chullin 63a (Rav Bibi bar Abaye on the messianic sign)</div>
+      <div class="heb-text" lang="he" dir="rtl">אָמַר רַב בִּיבִי בַּר אַבַּיֵי: וְהוּא דְיָתֵיב אַמִּידֵי וְעָבֵיד שְׁרַקְרַק. וּגְמִירִי דְּאִי יָתֵיב אַאַרְעָא וְשָׁרֵיק — אֲתָא מְשִׁיחָא, שֶׁנֶּאֱמַר: אֶשְׁרְקָה לָהֶם וַאֲקַבְּצֵם (זכריה י, ח).</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Chullin.63a">sefaria.org/Chullin.63a</a></div>
+    </div>
+
+    <div class="block modern-id">
+      <div class="block-label">Modern Candidate</div>
+      <div class="modern-id-text">Unresolved. Modern Hebrew uses <span lang="he" dir="rtl">רחם</span> for <em>Neophron percnopterus</em> (Egyptian vulture) but this is a later identification; the Talmudic <span lang="he" dir="rtl">שרקרק</span> is not itself securely identified.</div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Neophron_percnopterus.JPG?width=800" alt="Egyptian vulture (Neophron percnopterus) — modern Hebrew referent of racham, not the Talmudic sherakrak">
+    </div>
+    <p class="img-caption"><strong>Egyptian Vulture</strong> (<em>Neophron percnopterus</em>). <span class="caveat-inline">Modern Hebrew usage of racham; not a secure identification of the Talmudic sherakrak.</span> Photograph via Wikimedia Commons.</p>
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- =================================================================== -->
+  <!-- ROW 17 — CHASIDAH (Anchored: Rashi + Talmud) -->
+  <!-- =================================================================== -->
+  <article class="specimen" id="chasidah">
+    <div class="specimen-head">
+      <span class="spec-number">Row 17</span>
+      <span class="spec-heb" lang="he" dir="rtl">חֲסִידָה</span>
+      <span class="spec-translit">chasidah</span>
+      <span class="spec-eng">stork (via Rashi's <span lang="he" dir="rtl">לעז</span>)</span>
+      <span class="chip chip-anchored">Anchored (Rashi + Talmud)</span>
+    </div>
+
+    <div class="block verse">
+      <div class="block-label">Verse</div>
+      <div class="heb-text" lang="he" dir="rtl">וְהַחֲסִידָה וְהָאֲנָפָה לְמִינָהּ</div>
+      <div class="verse-gloss">Leviticus 11:19 · Deuteronomy 14:18</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Leviticus.11.19">Lev 11:19</a> · <a href="https://www.sefaria.org/Deuteronomy.14.18">Deut 14:18</a></div>
+    </div>
+
+    <div class="block rashi">
+      <div class="block-label">Rashi on Leviticus 11:19</div>
+      <div class="rashi-laaz-line">
+        <span class="laaz-label"><span lang="he" dir="rtl">לעז:</span></span>
+        <span class="laaz-heb" lang="he" dir="rtl">ציגוני״א</span>
+        <span class="laaz-normalized">cigogne</span>
+        <span class="laaz-meaning">— stork</span>
+      </div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Rashi_on_Leviticus.11.19">sefaria.org/Rashi on Leviticus 11:19</a></div>
+    </div>
+
+    <div class="block talmud">
+      <div class="block-label">Talmud · Chullin 63a (Rav Yehuda)</div>
+      <div class="heb-text" lang="he" dir="rtl">אָמַר רַב יְהוּדָה: הַחֲסִידָה — זוֹ דַּיָּה לְבָנָה. לָמָּה נִקְרָא שְׁמָהּ חֲסִידָה? שֶׁעוֹשָׂה חֲסִידוּת עִם חַבְרוֹתֶיהָ.</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Chullin.63a">sefaria.org/Chullin.63a</a></div>
+    </div>
+
+    <div class="block modern-id">
+      <div class="block-label">Modern Candidate</div>
+      <div class="modern-id-text"><em>Ciconia ciconia</em> (white stork). Family-level "stork" is anchored by Rashi's <em>cigogne</em>; species-level white stork is the common Levantine candidate, though species precision still requires caution.</div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ciconia_ciconia_-_01.jpg?width=800" alt="White stork (Ciconia ciconia) — matches Rashi's Old French cigogne">
+    </div>
+    <p class="img-caption"><strong>White Stork</strong> (<em>Ciconia ciconia</em>). Photograph via Wikimedia Commons.</p>
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- =================================================================== -->
+  <!-- ROW 18 — ANAFAH (Anchored: Rashi + Talmud) -->
+  <!-- =================================================================== -->
+  <article class="specimen" id="anafah">
+    <div class="specimen-head">
+      <span class="spec-number">Row 18</span>
+      <span class="spec-heb" lang="he" dir="rtl">אֲנָפָה</span>
+      <span class="spec-translit">anafah</span>
+      <span class="spec-eng">heron (via Rashi's <span lang="he" dir="rtl">לעז</span>)</span>
+      <span class="chip chip-anchored">Anchored (Rashi + Talmud)</span>
+    </div>
+
+    <div class="block verse">
+      <div class="block-label">Verse</div>
+      <div class="heb-text" lang="he" dir="rtl">וְהָאֲנָפָה לְמִינָהּ וְהַדּוּכִיפַת וְהָעֲטַלֵּף׃</div>
+      <div class="verse-gloss">Leviticus 11:19 · Deuteronomy 14:18</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Leviticus.11.19">Lev 11:19</a> · <a href="https://www.sefaria.org/Deuteronomy.14.18">Deut 14:18</a></div>
+    </div>
+
+    <div class="block rashi">
+      <div class="block-label">Rashi on Leviticus 11:19</div>
+      <div class="rashi-laaz-line">
+        <span class="laaz-label"><span lang="he" dir="rtl">לעז:</span></span>
+        <span class="laaz-heb" lang="he" dir="rtl">הירו״ן</span>
+        <span class="laaz-normalized">heron</span>
+        <span class="laaz-meaning">— heron</span>
+      </div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Rashi_on_Leviticus.11.19">sefaria.org/Rashi on Leviticus 11:19</a></div>
+    </div>
+
+    <div class="block talmud">
+      <div class="block-label">Talmud · Chullin 63a (Rav Yehuda)</div>
+      <div class="heb-text" lang="he" dir="rtl">הָאֲנָפָה — זוֹ דַּיָּה רַגְזָנִית. לָמָּה נִקְרָא שְׁמָהּ אֲנָפָה? שֶׁמְּנָאֶפֶת עִם חַבְרוֹתֶיהָ.</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Chullin.63a">sefaria.org/Chullin.63a</a></div>
+    </div>
+
+    <div class="block modern-id">
+      <div class="block-label">Modern Candidate</div>
+      <div class="modern-id-text"><em>Ardea</em> sp.; probably <em>Ardea cinerea</em> (grey heron). Rashi's <em>heron</em> anchors the family; species-level is slightly less secure.</div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ardea_cinerea_flying_2022_03_06.jpg?width=800" alt="Grey heron (Ardea cinerea) in flight — matches Rashi's Old French heron">
+    </div>
+    <p class="img-caption"><strong>Grey Heron</strong> (<em>Ardea cinerea</em>). Photograph via Wikimedia Commons.</p>
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- =================================================================== -->
+  <!-- ROW 19 — DUCHIFAT (Anchored: Rashi + Talmud) -->
+  <!-- =================================================================== -->
+  <article class="specimen" id="duchifat">
+    <div class="specimen-head">
+      <span class="spec-number">Row 19</span>
+      <span class="spec-heb" lang="he" dir="rtl">דּוּכִיפַת</span>
+      <span class="spec-translit">duchifat</span>
+      <span class="spec-eng">hoopoe</span>
+      <span class="chip chip-anchored">Anchored (Rashi + Talmud)</span>
+    </div>
+
+    <div class="block verse">
+      <div class="block-label">Verse</div>
+      <div class="heb-text" lang="he" dir="rtl">וְהַדּוּכִיפַת וְהָעֲטַלֵּף</div>
+      <div class="verse-gloss">Leviticus 11:19 · Deuteronomy 14:18</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Leviticus.11.19">Lev 11:19</a> · <a href="https://www.sefaria.org/Deuteronomy.14.18">Deut 14:18</a></div>
+    </div>
+
+    <div class="block rashi">
+      <div class="block-label">Rashi on Leviticus 11:19</div>
+      <div class="rashi-laaz-line">
+        <span class="laaz-label"><span lang="he" dir="rtl">לעז:</span></span>
+        <span class="laaz-heb" lang="he" dir="rtl">הרופ״א</span>
+        <span class="laaz-normalized">huppe (likely)</span>
+        <span class="laaz-meaning">— hoopoe</span>
+      </div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Rashi_on_Leviticus.11.19">sefaria.org/Rashi on Leviticus 11:19</a></div>
+    </div>
+
+    <div class="block talmud">
+      <div class="block-label">Talmud · Chullin 63a (Rav Yehuda)</div>
+      <div class="heb-text" lang="he" dir="rtl">אָמַר רַב יְהוּדָה: דּוּכִיפַת — שֶׁהוֹדוֹ כָּפוּת. תַּנְיָא נַמֵי הָכִי: דּוּכִיפַת שֶׁהוֹדוֹ כָּפוּת, וְזֶהוּ שֶׁהֵבִיא שָׁמִיר לְבֵית הַמִּקְדָּשׁ.</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Chullin.63a">sefaria.org/Chullin.63a</a></div>
+    </div>
+
+    <div class="block modern-id">
+      <div class="block-label">Modern Candidate</div>
+      <div class="modern-id-text"><em>Upupa epops</em> (hoopoe). Rashi's <em>huppe</em> and the Talmudic "glory-bound" (crest) etymology both point to a crested bird; this is the most widely accepted identification on the list.</div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Upupa_epops_hop.JPG?width=800" alt="Hoopoe (Upupa epops) with distinctive erectable crest — matches Rashi's huppe and the Talmudic hodo kaput (bound glory)">
+    </div>
+    <p class="img-caption"><strong>Hoopoe</strong> (<em>Upupa epops</em>). Photograph via Wikimedia Commons.</p>
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- =================================================================== -->
+  <!-- ROW 20 — ATALEF (no medieval anchor) -->
+  <!-- =================================================================== -->
+  <article class="specimen" id="atalef">
+    <div class="specimen-head">
+      <span class="spec-number">Row 20</span>
+      <span class="spec-heb" lang="he" dir="rtl">עֲטַלֵּף</span>
+      <span class="spec-translit">atalef</span>
+      <span class="spec-eng">bat</span>
+      <span class="chip chip-no-anchor">No lexical anchor</span>
+    </div>
+
+    <div class="block verse">
+      <div class="block-label">Verse</div>
+      <div class="heb-text" lang="he" dir="rtl">וְאֶת־הָעֲטַלֵּף׃</div>
+      <div class="verse-gloss">Leviticus 11:19 · Deuteronomy 14:18</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Leviticus.11.19">Lev 11:19</a> · <a href="https://www.sefaria.org/Deuteronomy.14.18">Deut 14:18</a></div>
+    </div>
+
+    <div class="block modern-id">
+      <div class="block-label">Modern Candidate</div>
+      <div class="modern-id-text">Bat (at the lemma level). No Rashi <span lang="he" dir="rtl">לעז</span> on <span lang="he" dir="rtl">עטלף</span> itself — Rashi's bat-word appears on <a href="#tinshemet">tinshemet (Row 14)</a> and the conflict between the two listings is noted there. No verified Talmudic etymology for <span lang="he" dir="rtl">עטלף</span> in this dataset.</div>
+    </div>
+
+    <div class="img-wrap">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Egyptian_Fruit_Bat_-_Hai-Bar_Yotvata_2013.jpg?width=800" alt="Egyptian fruit bat (Rousettus aegyptiacus) at Hai-Bar Yotvata reserve, Israel — one example of the bat group">
+    </div>
+    <p class="img-caption"><strong>Egyptian Fruit Bat</strong> (<em>Rousettus aegyptiacus</em>) at Hai-Bar Yotvata, Israel. <span class="caveat-inline">One example of the bat group, not a secure species identification.</span> Photograph via Wikimedia Commons.</p>
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- =================================================================== -->
+  <!-- FAMILY EXPANSION ROWS — 4 structural rows to reach the Talmudic total of 24 -->
+  <!-- =================================================================== -->
+
+  <div class="banner" style="margin-top:32px;">
+    <div class="b-label" style="color:var(--ink-3);">Family-Expansion Rows (4)</div>
+    <p>The Torah's four <span lang="he" dir="rtl">למינה / למינו / למינהו</span> clauses attach to <span lang="he" dir="rtl">איה · עורב · נץ · אנפה</span>. This document renders them as structural rows so the presentation matches the Talmudic count of 24 in Chullin 61b. The Gemara's own derivation of the count is more involved than a one-to-one clause-to-row mapping.</p>
+  </div>
+
+  <!-- Row 21 — AYAH/DAYAH family expansion -->
+  <article class="specimen family-row" id="ayah-dayah-family">
+    <div class="specimen-head">
+      <span class="spec-number">Row 21 · family</span>
+      <span class="spec-heb" lang="he" dir="rtl">לְמִינָהּ</span>
+      <span class="spec-translit">on ayah/dayah</span>
+      <span class="spec-eng">Lev 11:14 · Deut 14:13</span>
+      <span class="chip chip-no-anchor">No lexical anchor (family row)</span>
+    </div>
+    <div class="xref">See <a href="#ayah-dayah">ayah/dayah headword row (5)</a> for the Chullin 63b anchor. This row is the structural family-expansion.</div>
+  </article>
+
+  <!-- Row 22 — OREV family expansion (has its own Chullin 63a quote) -->
+  <article class="specimen family-row" id="orev-family">
+    <div class="specimen-head">
+      <span class="spec-number">Row 22 · family</span>
+      <span class="spec-heb" lang="he" dir="rtl">לְמִינוֹ</span>
+      <span class="spec-translit">on orev</span>
+      <span class="spec-eng">Lev 11:15 · Deut 14:14</span>
+      <span class="chip chip-talmudic-anchored">Talmudic-anchored</span>
+    </div>
+    <div class="block talmud">
+      <div class="block-label">Talmud · Chullin 63a (raven sub-kinds)</div>
+      <div class="heb-text" lang="he" dir="rtl">תָּנוּ רַבָּנַן: עוֹרֵב — זֶה עוֹרֵב. אֶת־כׇּל־עוֹרֵב — לְהָבִיא עוֹרֵב הָעֶמֶקִי. לְמִינוֹ — לְהָבִיא עוֹרֵב הַבָּא בְּרָאשֵׁי יוֹנִים.</div>
+      <div class="verify-link">Verify: <a href="https://www.sefaria.org/Chullin.63a">sefaria.org/Chullin.63a</a></div>
+    </div>
+    <div class="xref">See also <a href="#orev">orev headword row (6)</a>.</div>
+  </article>
+
+  <!-- Row 23 — NETZ family expansion -->
+  <article class="specimen family-row" id="netz-family">
+    <div class="specimen-head">
+      <span class="spec-number">Row 23 · family</span>
+      <span class="spec-heb" lang="he" dir="rtl">לְמִינֵהוּ</span>
+      <span class="spec-translit">on netz</span>
+      <span class="spec-eng">Lev 11:16 · Deut 14:15</span>
+      <span class="chip chip-no-anchor">No lexical anchor (family row)</span>
+    </div>
+    <div class="xref">See <a href="#netz">netz headword row (10)</a> for Rashi's <em>esprevier</em> and the Chullin 63a <em>bar chiriya</em> passage. This row is the structural family-expansion.</div>
+  </article>
+
+  <!-- Row 24 — ANAFAH family expansion -->
+  <article class="specimen family-row" id="anafah-family">
+    <div class="specimen-head">
+      <span class="spec-number">Row 24 · family</span>
+      <span class="spec-heb" lang="he" dir="rtl">לְמִינָהּ</span>
+      <span class="spec-translit">on anafah</span>
+      <span class="spec-eng">Lev 11:19 · Deut 14:18</span>
+      <span class="chip chip-no-anchor">No lexical anchor (family row)</span>
+    </div>
+    <div class="xref">See <a href="#anafah">anafah headword row (18)</a> for Rashi's <em>heron</em> and the Chullin 63a anchor. This row is the structural family-expansion.</div>
+  </article>
+
+  <!-- =================================================================== -->
+  <!-- Closing summary -->
+  <!-- =================================================================== -->
+  <div class="banner info" style="margin-top:32px;">
+    <div class="b-label">Confidence Distribution Across 24 Rows</div>
+    <p><strong>Anchored (Rashi + Talmud) — 4 rows:</strong> netz, chasidah, anafah, duchifat.</p>
+    <p><strong>Rashi-anchored with caveat — 3 rows:</strong> kos, yanshuf, tinshemet.</p>
+    <p><strong>Talmudic-anchored — 8 rows:</strong> nesher, da'ah/ra'ah, ayah/dayah, orev, ka'at, racham, shalach, and the orev family-expansion row.</p>
+    <p><strong>Structural anchor only — 2 rows:</strong> peres, ozniyah. Named in the Chullin 61b sugya on the structural count of 24 birds and 4 signs, but no lexical identification anchor (no Rashi <span lang="he" dir="rtl">לעז</span>, no etymology).</p>
+    <p><strong>No lexical anchor — 7 rows:</strong> bat ha-ya'anah, tachmas, shachaf, atalef, plus the ayah/dayah, netz, and anafah family-expansion rows.</p>
+    <p style="margin-top: 8px; font-size: 13px; color: var(--ink-3); font-style: italic;">Total: 4 + 3 + 8 + 2 + 7 = 24.</p>
+  </div>
+  </div>
+
+  <div class="part-divider">
+    <div class="pd-eyebrow">End of Part B</div>
+    <div class="pd-title">Part C · Orders &amp; Ornithology</div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- PART C — ORDERS -->
+  <!-- ============================================ -->
+  <div id="part-c">
+  
+
+  <header class="masthead">
+    <div class="eyebrow">A Three-Part Study</div>
+    <h1 class="title">Orders &amp; Ornithology</h1>
+    <p class="subtitle">The Torah's forbidden birds fall into recognizable ecological groupings. Each group shares observable anatomical patterns.</p>
+    <p class="subtitle-note">This section reorganizes the 20 head-terms of Part B by ecological group. It introduces no new source quotations — the verbatim Hebrew, Aramaic, and Old French texts live in Parts A and B.</p>
+  </header>
+
+  <!-- Guardrail banner (prominent, up top) -->
+  <div class="banner caveat">
+    <div class="b-label">⚠ Scope of This Section</div>
+    <p><strong>These observations describe anatomical patterns within each group. They are not halakhic determinations</strong> — the operative rules appear in <a href="#four-signs">Part A (the Four Signs and the role of mesorah)</a>, and the verified per-bird analysis appears in <a href="#part-b">Part B</a>. No bird is declared kosher or non-kosher in this section.</p>
+  </div>
+
+  <!-- Opening prose -->
+  <div class="order" id="opening">
+    <p class="ecology">The birds listed in Leviticus 11 and Deuteronomy 14 cluster into ecological groupings that modern observers also recognize — raptors, owls, long-legged waders, corvids, one ground-dwelling bird, one crested insect-eater, and one flying mammal grouped in the Torah's bird list. For readers working through Part B specimen-by-specimen, this section offers a different entry point: the same 20 head-terms reorganized by ecological group.</p>
+    <p class="ecology">Within each group, certain anatomical patterns appear consistently. The Four Signs defined in <a href="#four-signs" style="color:var(--blue);">Part A</a> — <em>dores</em>, <em>etzba yeseira</em>, <em>zefek</em>, <em>kurkevan niklaf</em> — can be observed across whole groups, not only in individual birds. That is part of why the Sages' signs were derivable from the Torah's list: birds grouped by lifestyle often display similar observable traits.</p>
+  </div>
+
+  <!-- Index -->
+  <div class="index">
+    <div class="index-label">Jump to Order</div>
+    <div class="index-grid">
+      <a href="#accipitriformes">Accipitriformes</a><span class="sep">·</span>
+      <a href="#strigiformes">Strigiformes</a><span class="sep">·</span>
+      <a href="#ciconiiformes">Ciconiiformes</a><span class="sep">·</span>
+      <a href="#corvidae">Corvidae</a><span class="sep">·</span>
+      <a href="#upupiformes">Upupiformes</a><span class="sep">·</span>
+      <a href="#struthioniformes">Struthioniformes</a><span class="sep">·</span>
+      <a href="#chiroptera">Chiroptera</a>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- ORDER 1 — ACCIPITRIFORMES -->
+  <!-- ==================================================================== -->
+  <article class="order" id="accipitriformes">
+    <div class="order-head">
+      <div class="order-num">Order 1</div>
+      <h2 class="order-name">Raptors — hawks, eagles, vultures</h2>
+      <div class="order-latin">Accipitriformes (plus Falconiformes for falcons)</div>
+    </div>
+
+    <p class="ecology">Raptors hunt or scavenge with hooked beaks and powerful taloned feet. Some, like the griffon vulture, feed primarily on carrion; others, like the sparrowhawk, take live prey in flight. Most soar on thermal updrafts or wait motionless before striking. All share the hunting-specific anatomy: hooked beak, strong feet with curved claws, forward-facing eyes for depth perception.</p>
+
+    <div class="birds-in-order">
+      <div class="birds-label">Birds from Part B in this order</div>
+      <div class="birds-list">
+        <a class="bird-chip" href="#nesher"><span class="b-hebrew" lang="he" dir="rtl">נֶשֶׁר</span><span class="b-translit">nesher</span></a>
+        <a class="bird-chip" href="#peres"><span class="b-hebrew" lang="he" dir="rtl">פֶּרֶס</span><span class="b-translit">peres</span></a>
+        <a class="bird-chip" href="#ozniyah"><span class="b-hebrew" lang="he" dir="rtl">עׇזְנִיָּה</span><span class="b-translit">ozniyah</span></a>
+        <a class="bird-chip" href="#daah-raah"><span class="b-hebrew" lang="he" dir="rtl">דָּאָה / רָאָה</span><span class="b-translit">da'ah / ra'ah</span></a>
+        <a class="bird-chip" href="#ayah-dayah"><span class="b-hebrew" lang="he" dir="rtl">אַיָּה / דַּיָּה</span><span class="b-translit">ayah / dayah</span></a>
+        <a class="bird-chip" href="#netz"><span class="b-hebrew" lang="he" dir="rtl">נֵץ</span><span class="b-translit">netz</span></a>
+        <a class="bird-chip" href="#racham"><span class="b-hebrew" lang="he" dir="rtl">רָחָם</span><span class="b-translit">racham</span></a>
+      </div>
+    </div>
+
+    <div class="signs-observed">
+      <div class="signs-header">Observed alongside the birds in this group</div>
+      <div class="signs-grid">
+        <div class="sign-row commonly">
+          <div class="sign-row-label"><span lang="he" dir="rtl">דּוֹרֵס</span> · dores</div>
+          <div class="sign-row-value">commonly observed</div>
+        </div>
+        <div class="sign-row varies">
+          <div class="sign-row-label"><span lang="he" dir="rtl">אֶצְבַּע יְתֵרָה</span> · etzba yeseira</div>
+          <div class="sign-row-value">not relied on in this guide</div>
+        </div>
+        <div class="sign-row varies">
+          <div class="sign-row-label"><span lang="he" dir="rtl">זֶפֶק</span> · zefek</div>
+          <div class="sign-row-value">varies across the group</div>
+        </div>
+        <div class="sign-row varies">
+          <div class="sign-row-label"><span lang="he" dir="rtl">קֻרְקְבָן נִקְלָף</span> · kurkevan niklaf</div>
+          <div class="sign-row-value">not relied on in this guide</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="caveats">
+      <div class="caveats-label">Caveats</div>
+      <ul>
+        <li>Pure scavengers (<em>nesher</em> / griffon vulture, <em>racham</em> / Egyptian vulture) do not hunt live prey in the strict sense; whether they meet Rashi's or Rabbeinu Tam's definition of <em>dores</em> is a substantive question, treated in <a href="#four-signs">Part A</a>.</li>
+        <li>Chullin 61b notes that <em>peres</em> and <em>ozniyah</em> each possess one of the four signs, unlike the other listed birds; see <a href="#nesher">Part B</a> for the verbatim passage.</li>
+        <li>The <em>da'ah/ra'ah</em> and <em>ayah/dayah</em> rows are identified by Chullin 63b as one species each; see Part B rows 4 and 5 for the verbatim Talmudic text.</li>
+      </ul>
+    </div>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- ==================================================================== -->
+  <!-- ORDER 2 — STRIGIFORMES -->
+  <!-- ==================================================================== -->
+  <article class="order" id="strigiformes">
+    <div class="order-head">
+      <div class="order-num">Order 2</div>
+      <h2 class="order-name">Owls</h2>
+      <div class="order-latin">Strigiformes</div>
+    </div>
+
+    <p class="ecology">Owls are nocturnal hunters. Their eyes are forward-facing and exceptionally large for their skull size; asymmetrical ear openings allow them to locate prey by sound alone in total darkness; specialized wing feathers dampen airflow noise in flight. They hunt small mammals, other birds, and insects, swallowing prey whole and later regurgitating indigestible bone and fur as pellets.</p>
+
+    <div class="birds-in-order">
+      <div class="birds-label">Birds from Part B in this order</div>
+      <div class="birds-list">
+        <a class="bird-chip" href="#kos"><span class="b-hebrew" lang="he" dir="rtl">כּוֹס</span><span class="b-translit">kos</span></a>
+        <a class="bird-chip" href="#yanshuf"><span class="b-hebrew" lang="he" dir="rtl">יַנְשׁוּף</span><span class="b-translit">yanshuf</span></a>
+        <a class="bird-chip" href="#tinshemet"><span class="b-hebrew" lang="he" dir="rtl">תִּנְשֶׁמֶת</span><span class="b-translit">tinshemet</span></a>
+      </div>
+    </div>
+
+    <div class="signs-observed">
+      <div class="signs-header">Observed alongside the birds in this group</div>
+      <div class="signs-grid">
+        <div class="sign-row commonly">
+          <div class="sign-row-label"><span lang="he" dir="rtl">דּוֹרֵס</span> · dores</div>
+          <div class="sign-row-value">commonly observed</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">אֶצְבַּע יְתֵרָה</span> · etzba yeseira</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">זֶפֶק</span> · zefek</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">קֻרְקְבָן נִקְלָף</span> · kurkevan niklaf</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="caveats">
+      <div class="caveats-label">Caveats</div>
+      <ul>
+        <li>Rashi groups <em>kos</em> and <em>yanshuf</em> together as an owl-pair in his Old French gloss (<em>chouette / hibou</em>) without specifying internal allocation — see <a href="#kos">Part B rows 11</a> and <a href="#yanshuf">13</a>.</li>
+        <li><em>Tinshemet</em> is placed in this section tentatively on the strength of one traditional identification (barn owl); Rashi's own <span lang="he" dir="rtl">לעז</span> on <em>tinshemet</em> is the bat-word <em>calve soriz</em>, which creates an unresolved tension noted in <a href="#tinshemet">Part B row 14</a>.</li>
+      </ul>
+    </div>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- ==================================================================== -->
+  <!-- ORDER 3 — CICONIIFORMES -->
+  <!-- ==================================================================== -->
+  <article class="order" id="ciconiiformes">
+    <div class="order-head">
+      <div class="order-num">Order 3</div>
+      <h2 class="order-name">Storks and herons — long-legged waders</h2>
+      <div class="order-latin">Ciconiiformes (storks) and Pelecaniformes (herons)</div>
+    </div>
+
+    <p class="ecology">Long-legged waders feed in shallow water, spearing or seizing fish, frogs, small reptiles, and small mammals with dagger-like bills. Storks and herons share the long-legs / long-neck / long-bill body plan but differ in hunting style: herons stand motionless and strike; storks walk and grab more actively.</p>
+
+    <div class="birds-in-order">
+      <div class="birds-label">Birds from Part B in this order</div>
+      <div class="birds-list">
+        <a class="bird-chip" href="#chasidah"><span class="b-hebrew" lang="he" dir="rtl">חֲסִידָה</span><span class="b-translit">chasidah</span></a>
+        <a class="bird-chip" href="#anafah"><span class="b-hebrew" lang="he" dir="rtl">אֲנָפָה</span><span class="b-translit">anafah</span></a>
+      </div>
+    </div>
+
+    <div class="signs-observed">
+      <div class="signs-header">Observed alongside the birds in this group</div>
+      <div class="signs-grid">
+        <div class="sign-row commonly">
+          <div class="sign-row-label"><span lang="he" dir="rtl">דּוֹרֵס</span> · dores</div>
+          <div class="sign-row-value">predatory feeding observed</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">אֶצְבַּע יְתֵרָה</span> · etzba yeseira</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">זֶפֶק</span> · zefek</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">קֻרְקְבָן נִקְלָף</span> · kurkevan niklaf</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="caveats">
+      <div class="caveats-label">Caveats</div>
+      <ul>
+        <li>These are the only two Part B specimens anchored at <strong>Anchored (Rashi + Talmud)</strong> confidence via a Rashi Old French gloss (<em>cigogne</em> for chasidah, <em>heron</em> for anafah) plus verbatim Chullin 63a passages.</li>
+        <li>The <em>shalach</em> (<a href="#shalach">Part B row 12</a>) is traditionally placed among fish-catching birds but identified by Rashi and Rav Yehuda behaviorally, not zoologically. It is not placed in this order because its species is genuinely unresolved.</li>
+        <li>Whether the herons' and storks' spear-and-strike feeding maps to <em>dores</em> under any given Rishon's definition is exactly the question Part A presents — this row does not pre-judge it.</li>
+      </ul>
+    </div>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- ==================================================================== -->
+  <!-- ORDER 4 — CORVIDAE -->
+  <!-- ==================================================================== -->
+  <article class="order" id="corvidae">
+    <div class="order-head">
+      <div class="order-num">Order 4</div>
+      <h2 class="order-name">Ravens, crows, and related corvids</h2>
+      <div class="order-latin">Corvidae (within Passeriformes)</div>
+    </div>
+
+    <p class="ecology">Corvids are omnivorous — they eat seeds, fruit, insects, carrion, and small prey. They are not strict predators; they do not pursue live prey the way a hawk does, and they do not have the hooked beak or curved talons of the Accipitriformes. They are the one songbird family (Passeriformes) in the Torah's list.</p>
+
+    <div class="birds-in-order">
+      <div class="birds-label">Birds from Part B in this order</div>
+      <div class="birds-list">
+        <a class="bird-chip" href="#orev"><span class="b-hebrew" lang="he" dir="rtl">עֹרֵב</span><span class="b-translit">orev</span></a>
+        <a class="bird-chip" href="#orev-family"><span class="b-hebrew" lang="he" dir="rtl">לְמִינוֹ</span><span class="b-translit">orev l'mino</span></a>
+      </div>
+    </div>
+
+    <div class="signs-observed">
+      <div class="signs-header">Observed alongside the birds in this group</div>
+      <div class="signs-grid">
+        <div class="sign-row variably">
+          <div class="sign-row-label"><span lang="he" dir="rtl">דּוֹרֵס</span> · dores</div>
+          <div class="sign-row-value">variably observed</div>
+        </div>
+        <div class="sign-row present">
+          <div class="sign-row-label"><span lang="he" dir="rtl">אֶצְבַּע יְתֵרָה</span> · etzba yeseira</div>
+          <div class="sign-row-value">present</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">זֶפֶק</span> · zefek</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">קֻרְקְבָן נִקְלָף</span> · kurkevan niklaf</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="caveats">
+      <div class="caveats-label">Caveats</div>
+      <ul>
+        <li>Corvids possess a hind toe (hallux) that is visibly set apart from the three front toes, which matches one reading of <em>etzba yeseira</em> — but as <a href="#four-signs">Part A</a> notes, no verbatim Rashi definition of <em>etzba yeseira</em> was located, so whether corvid foot anatomy satisfies the sign halakhically is not a question this guide answers.</li>
+        <li>Corvid scavenging on carrion is well-observed; whether this counts as <em>dores</em> depends on which definition applies — see <a href="#four-signs">Part A Section II</a> (Rashi and Tosafot verbatim).</li>
+        <li>The <em>l'mino</em> expansion is given its own row in Part B per the Talmud's derivation at Chullin 63a (sub-kinds: valley raven, raven-with-dove-like-heads).</li>
+      </ul>
+    </div>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- ==================================================================== -->
+  <!-- ORDER 5 — UPUPIFORMES -->
+  <!-- ==================================================================== -->
+  <article class="order" id="upupiformes">
+    <div class="order-head">
+      <div class="order-num">Order 5</div>
+      <h2 class="order-name">Hoopoe</h2>
+      <div class="order-latin">Upupiformes (sometimes Bucerotiformes)</div>
+    </div>
+
+    <p class="ecology">The hoopoe is a ground-probing insectivore. It walks on short legs, uses its long curved bill to extract insects, grubs, and small reptiles from soil and crevices, and displays a fan-shaped erectable crest. It is the only species in its order found in the Levant.</p>
+
+    <div class="birds-in-order">
+      <div class="birds-label">Birds from Part B in this order</div>
+      <div class="birds-list">
+        <a class="bird-chip" href="#duchifat"><span class="b-hebrew" lang="he" dir="rtl">דּוּכִיפַת</span><span class="b-translit">duchifat</span></a>
+      </div>
+    </div>
+
+    <div class="signs-observed">
+      <div class="signs-header">Observed alongside the birds in this group</div>
+      <div class="signs-grid">
+        <div class="sign-row not-observed">
+          <div class="sign-row-label"><span lang="he" dir="rtl">דּוֹרֵס</span> · dores</div>
+          <div class="sign-row-value">not observed</div>
+        </div>
+        <div class="sign-row present">
+          <div class="sign-row-label"><span lang="he" dir="rtl">אֶצְבַּע יְתֵרָה</span> · etzba yeseira</div>
+          <div class="sign-row-value">present</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">זֶפֶק</span> · zefek</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">קֻרְקְבָן נִקְלָף</span> · kurkevan niklaf</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="caveats">
+      <div class="caveats-label">Caveats</div>
+      <ul>
+        <li>Duchifat is one of the four <strong>Anchored (Rashi + Talmud)</strong> rows in Part B. Rashi's <span lang="he" dir="rtl">לעז</span> (<em>huppe</em>, likely) and the Talmudic <span lang="he" dir="rtl">הודו כפות</span> ("its glory is bound," i.e. the crest) converge cleanly on this species.</li>
+        <li>It is also one of the few Torah birds that is not in any sense a predator. Its inclusion in the Torah's forbidden list is explicit; this guide does not infer a practical ruling from the signs.</li>
+      </ul>
+    </div>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- ==================================================================== -->
+  <!-- ORDER 6 — STRUTHIONIFORMES -->
+  <!-- ==================================================================== -->
+  <article class="order" id="struthioniformes">
+    <div class="order-head">
+      <div class="order-num">Order 6</div>
+      <h2 class="order-name">Ostrich</h2>
+      <div class="order-latin">Struthioniformes (ratites)</div>
+    </div>
+
+    <p class="ecology">Ratites are large flightless birds with reduced wing structures and powerful legs. The ostrich is the largest living bird. It is a ground-running omnivore, feeding on seeds, plants, and occasional small animals.</p>
+
+    <div class="birds-in-order">
+      <div class="birds-label">Birds from Part B in this order</div>
+      <div class="birds-list">
+        <a class="bird-chip" href="#yaanah"><span class="b-hebrew" lang="he" dir="rtl">בַּת הַיַּעֲנָה</span><span class="b-translit">bat ha-ya'anah</span></a>
+      </div>
+    </div>
+
+    <div class="signs-observed">
+      <div class="signs-header">Observed alongside the birds in this group</div>
+      <div class="signs-grid">
+        <div class="sign-row not-observed">
+          <div class="sign-row-label"><span lang="he" dir="rtl">דּוֹרֵס</span> · dores</div>
+          <div class="sign-row-value">not observed</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">אֶצְבַּע יְתֵרָה</span> · etzba yeseira</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+        <div class="sign-row absent">
+          <div class="sign-row-label"><span lang="he" dir="rtl">זֶפֶק</span> · zefek</div>
+          <div class="sign-row-value">absent</div>
+        </div>
+        <div class="sign-row present">
+          <div class="sign-row-label"><span lang="he" dir="rtl">קֻרְקְבָן נִקְלָף</span> · kurkevan niklaf</div>
+          <div class="sign-row-value">present</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="caveats">
+      <div class="caveats-label">Caveats</div>
+      <ul>
+        <li><strong>This is the classic case of signs vs. explicit prohibition.</strong> The ostrich has a peelable gizzard — a positive sign — yet the Torah names it explicitly as forbidden. <a href="#mesorah">Part A Section III</a> ("Why <em>Mesorah</em> Decides") discusses how the halakhic system treats signs as necessary but not sufficient; <em>bat ha-ya'anah</em> is the most cited example.</li>
+        <li>Other ratites (emu, rhea, cassowary) were not known in the biblical Levant. Whether they are included in the Torah's prohibition is a halakhic question not addressed in this guide.</li>
+      </ul>
+    </div>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- ==================================================================== -->
+  <!-- ORDER 7 — CHIROPTERA -->
+  <!-- ==================================================================== -->
+  <article class="order" id="chiroptera">
+    <div class="order-head">
+      <div class="order-num">Order 7</div>
+      <h2 class="order-name">Bats</h2>
+      <div class="order-latin">Chiroptera (mammal order, not bird)</div>
+    </div>
+
+    <p class="ecology">Bats are the only mammals capable of true powered flight. Most species in the Levant feed on insects caught in flight; the Egyptian fruit bat (common in Israel) feeds on dates, figs, and other fruit. They roost in caves, hollow trees, or abandoned structures and are active at dusk and night.</p>
+
+    <p class="ecology">The Torah lists <em>atalef</em> among the flying creatures in this passage. This guide follows the verse's placement without making a zoological claim from it.</p>
+
+    <div class="birds-in-order">
+      <div class="birds-label">Birds from Part B in this order</div>
+      <div class="birds-list">
+        <a class="bird-chip" href="#atalef"><span class="b-hebrew" lang="he" dir="rtl">עֲטַלֵּף</span><span class="b-translit">atalef</span></a>
+      </div>
+    </div>
+
+    <div class="signs-special-note">
+      <div class="ssn-label">Note on the Four Signs for this group</div>
+      <p>The Four Signs were stated by the Sages for birds. Bats do not possess avian anatomy, and the signs do not apply in the structural way they do for the other orders in this section. The <em>atalef</em> is forbidden by the Torah's explicit listing (Leviticus 11:19), which does not depend on the signs.</p>
+    </div>
+
+    <div class="caveats">
+      <div class="caveats-label">Caveats</div>
+      <ul>
+        <li>Rashi's <span lang="he" dir="rtl">לעז</span> for <em>tinshemet</em> (<a href="#tinshemet">Part B row 14</a>) is <em>calve soriz</em> = bat. This creates a structural question the document does not resolve: if <em>tinshemet</em> is a bat, what is <em>atalef</em>? The question is flagged in Part B and not re-argued here.</li>
+      </ul>
+    </div>
+
+    <a class="top-link" href="#top">↑ Top</a>
+  </article>
+
+  <!-- Closing -->
+  <div class="closing-section" id="closing">
+    <h2>Closing</h2>
+    <p>Across seven groupings, the Torah's forbidden birds cluster into lifestyles. Predators (Accipitriformes, Strigiformes, Ciconiiformes) share the absence of the positive signs and commonly display predatory feeding. Scavengers and omnivores (Corvidae, part of the vulture group) fall between. The ground-runners and crested insect-eaters (Struthioniformes, Upupiformes) have their own patterns. The <em>atalef</em> stands alone in the Torah's grouping on the strength of flight.</p>
+    <p>The Four Signs can be viewed alongside these ecological groupings, but this section does not derive halakhic conclusions from that comparison. The operative rules are in <a href="#part-a" style="color:var(--blue);">Part A</a>, and the verified per-bird analysis is in <a href="#part-b" style="color:var(--blue);">Part B</a>.</p>
+  </div>
+  </div>
+
+  <div class="footer">
+    <p><a href="#part-a">↑ Part A · Framework</a> &nbsp;·&nbsp; <a href="#part-b">↑ Part B · Specimens</a> &nbsp;·&nbsp; <a href="#part-c">↑ Part C · Orders</a></p>
+    <p style="margin-top:12px;">A Jewish Ornithology Guide — combined single-file edition. Verbatim Hebrew/Aramaic texts linked to Sefaria. Photographs via Wikimedia Commons.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
