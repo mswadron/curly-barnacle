@@ -36,29 +36,29 @@ function se(lang,t){return lang==="se"?seph(t):t;}
 function gl(l,k){return l==="se"?seph(G[k]):G[k];};
 
 /* ═══ SOURCES ═══ */
-function mkS(p,m,h,e,r){return{pasuk:p,mishnah:m,he:h,en:e,rambam:r||null};}
+function mkS(p,m,h,e,r,sf){return{pasuk:p,mishnah:m,he:h,en:e,rambam:r||null,sifra:sf||null};}
 const S={
-fourShades:mkS("ויקרא יג:ב","נגעים א:א","מראות נגעים שנים שהן ארבע","The appearances of nega'im are two that are four","א:א"),
-kohenOnly:mkS("ויקרא יג:ב","נגעים ג:א","הכהן מטמא ומטהר","Only a Kohen can declare tamei or tahor","א:א"),
-whiteHair:mkS("ויקרא יג:ג","נגעים ד:ד","שער לבן — סימן טומאה","White hair — a sign of tumah","ב:ב"),
-deeper:mkS("ויקרא יג:ג","נגעים א:א",'עמוק — כחמה לעומת צל (רש"י)',"Deeper — like sunlight vs. shade (Rashi)"),
-hesger:mkS("ויקרא יג:ד-ה","נגעים ג:ג","הסגיר — שבעת ימים","Hesger (confinement) — seven days"),
-spreading:mkS("ויקרא יג:ז","נגעים ג:ה","פשיון — סימן טומאה","Pisyon (spreading) — a sign of tumah"),
-michya:mkS("ויקרא יג:י","נגעים ד:ג","מחיית בשר חי — סימן טומאה","Michya (raw flesh) — a sign of tumah","ג:א"),
-fullBody:mkS("ויקרא יג:יב-יג","נגעים ח:א","פרחה בכולו — טהור","Entire body covered — tahor","ז:א"),
+fourShades:mkS("ויקרא יג:ב","נגעים א:א","מראות נגעים שנים שהן ארבע","The appearances of nega'im are two that are four","א:א","Sifra, Tazria Parashat Negaim, Section 1 4"),
+kohenOnly:mkS("ויקרא יג:ב","נגעים ג:א","הכהן מטמא ומטהר","Only a Kohen can declare tamei or tahor","א:א","Sifra, Tazria Parashat Negaim, Section 1 9"),
+whiteHair:mkS("ויקרא יג:ג","נגעים ד:ד","שער לבן — סימן טומאה","White hair — a sign of tumah","ב:ב","Sifra, Tazria Parashat Negaim, Chapter 2 4"),
+deeper:mkS("ויקרא יג:ג","נגעים א:א",'עמוק — כחמה לעומת צל (רש"י)',"Deeper — like sunlight vs. shade (Rashi)",null,"Sifra, Tazria Parashat Negaim, Chapter 2 5"),
+hesger:mkS("ויקרא יג:ד-ה","נגעים ג:ג","הסגיר — שבעת ימים","Hesger (confinement) — seven days",null,"Sifra, Tazria Parashat Negaim, Section 2 1"),
+spreading:mkS("ויקרא יג:ז","נגעים ג:ה","פשיון — סימן טומאה","Pisyon (spreading) — a sign of tumah",null,"Sifra, Tazria Parashat Negaim, Chapter 2* 13"),
+michya:mkS("ויקרא יג:י","נגעים ד:ג","מחיית בשר חי — סימן טומאה","Michya (raw flesh) — a sign of tumah","ג:א","Sifra, Tazria Parashat Negaim, Section 3 1"),
+fullBody:mkS("ויקרא יג:יב-יג","נגעים ח:א","פרחה בכולו — טהור","Entire body covered — tahor","ז:א","Sifra, Tazria Parashat Negaim, Chapter 4 1"),
 fullBodyRaw:mkS("ויקרא יג:יד-טו",null,"בשר חי בפורח — טמא","Raw flesh in full coverage — tamei","ז:א"),
 shechin:mkS("ויקרא יג:יח-כג","נגעים ט:א","שחין — שלא מחמת האש","Shechin — wound NOT caused by fire","ה:ג"),
 burn:mkS("ויקרא יג:כד-כח","נגעים ט:א","מכוית אש","Burn from fire/heat","ה:ג"),
 oneHesger:mkS("ויקרא יג:כא,כו","נגעים ג:ד","שחין/מכוה — הסגר אחד בלבד","Shechin/burn — only ONE hesger","ה:ג"),
 nesek:mkS("ויקרא יג:כט-לב","נגעים י:א","נתק — ראש/זקן","Nesek — nega on the head or beard","ח:א"),
-yellowHair:mkS("ויקרא יג:ל","נגעים י:א","שער צהוב דק — סימן בנתק","Thin yellow hair — the tumah sign in nesek","ח:ב"),
+yellowHair:mkS("ויקרא יג:ל","נגעים י:א","שער צהוב דק — סימן בנתק","Thin yellow hair — the tumah sign in nesek","ח:ב","Sifra, Tazria Parashat Negaim, Section 5 5"),
 nesekSpread:mkS("ויקרא יג:לה-לו","נגעים י:א","נתק פשה — לא יבקש לשער הצהוב","Nesek spread — no need to check yellow hair","ח:א"),
 shaving:mkS("ויקרא יג:לג","נגעים י:ה","גילוח סביב הנתק","Shave around the nesek, not the nesek itself","ח:א"),
 blackHair:mkS("ויקרא יג:לז","נגעים י:ט","שער שחור — סימן ריפוי","Black hair — a sign of healing"),
 bohak:mkS("ויקרא יג:לח-לט",null,"בהק — לבן כהה מתחת לארבע מראות. טהור","Bohak — dull white below the four shades. Tahor"),
-baldness:mkS("ויקרא יג:מ-מד","נגעים י:י","קרחת/גבחת — מחיה ופשיון בלבד","Karachas/Gabachas — signs are michya and spreading only","י:א"),
-metzora:mkS("ויקרא יג:מה-מו","נגעים יג:יב","בדד ישב מחוץ למחנה מושבו","He shall dwell alone, outside the camp"),
-clothing:mkS("ויקרא יג:מז-נט","נגעים יא:א","נגע בבגד צמר/פשתים","Nega in a garment of wool or linen","יב:א"),
+baldness:mkS("ויקרא יג:מ-מד","נגעים י:י","קרחת/גבחת — מחיה ופשיון בלבד","Karachas/Gabachas — signs are michya and spreading only","י:א","Sifra, Tazria Parashat Negaim, Chapter 11 1"),
+metzora:mkS("ויקרא יג:מה-מו","נגעים יג:יב","בדד ישב מחוץ למחנה מושבו","He shall dwell alone, outside the camp",null,"Sifra, Tazria Parashat Negaim, Chapter 12 7"),
+clothing:mkS("ויקרא יג:מז-נט","נגעים יא:א","נגע בבגד צמר/פשתים","Nega in a garment of wool or linen","יב:א","Sifra, Tazria Parashat Negaim, Chapter 13 1"),
 selfExam:mkS("—","נגעים ב:ה","חוץ מנגעי עצמו","A person may examine all nega'im except his own"),
 lightReq:mkS("—","נגעים ב:ב","אין רואין בשחרית/ערביים/בית","Nega'im may not be examined early morning, late afternoon, or indoors","ט:ו"),
 grisSize:mkS("—","נגעים ו:א","כגריס הקלקי מרובע","Minimum size — like a Cilician gris, squared","א:ג"),
@@ -94,6 +94,22 @@ const MN={"נגעים א:א":{h:"מראות נגעים שנים שהן ארבע.
 };
 const RM={"א:א":{h:'ארבע מראות נגעים... בהרת כשלג. שאת כצמר לבן. שניה לבהרת כסיד. שניה לשאת כקרום ביצה.',e:"Four appearances: Baheres=snow. S'eis=wool. Secondary to baheres=plaster. Secondary to s'eis=egg.",ref:"טומאת צרעת א:א"},"א:ג":{h:'שיעור הבהרת כגריס הקלקי מרובע, רחב ארבע שערות.',e:"Minimum: Cilician gris squared — width of four hairs.",ref:"טומאת צרעת א:ג"},"ב:ב":{h:'שער לבן — שתי שערות לא פחות, שיהפכו לבנות אחר הנגע.',e:"White hair: at least two, turned white after the nega.",ref:"טומאת צרעת ב:ב"},"ב:ט":{h:'ספק שער לבן קדם ספק בהרת קדמה — טמא.',e:"Uncertain which came first — tamei.",ref:"טומאת צרעת ב:ט"},"ג:א":{h:'מחיה — בשר כברייתו בתוך הבהרת, שיעורה כעדשה מרובעת.',e:"Michya: natural flesh inside the baheres, minimum lentil-square.",ref:"טומאת צרעת ג:א"},"ה:ג":{h:'צרבת השחין ומחית המכוה — בשער לבן ובפשיון, הסגר שבוע אחד.',e:"Shechin/burn crust — white hair and spreading, one week hesger.",ref:"טומאת צרעת ה:ג"},"ז:א":{h:'מי שהלבין כולו — טהור. נראה בשר חי — טמא.',e:"Entirely white — tahor. Raw flesh appears — tamei.",ref:"טומאת צרעת ז:א"},"ח:א":{h:'הנתקים — בשער צהוב דק ובפשיון.',e:"Nesakim: thin yellow hair and spreading.",ref:"טומאת צרעת ח:א"},"ח:ב":{h:'שער צהוב דק — שתי שערות, לא פחות.',e:"Thin yellow hair: two hairs, no fewer.",ref:"טומאת צרעת ח:ב"},"ט:ו":{h:'אין רואין הנגעים אלא בשעות ד ה ח ט.',e:"Examine only during hours 4, 5, 8, 9.",ref:"טומאת צרעת ט:ו"},"י:א":{h:'קרחת וגבחת — במחיה ובפשיון, הסגר שני שבועות.',e:"Karachas/gabachas: michya and spreading, two weeks hesger.",ref:"טומאת צרעת י:א"},"יב:א":{h:'נגע הבגדים — אינו בא אלא בצמר או פשתים או עור.',e:"Clothing nega'im: only wool, linen, or leather.",ref:"טומאת צרעת יב:א"}};
 
+/* ═══ TORAS KOHANIM / SIFRA — verbatim from Sefaria (Venice 1545 / Silverstein). Keyed by exact Sefaria ref. ═══ */
+const TK={
+"Sifra, Tazria Parashat Negaim, Section 1 9":{t:"ספרא — פרשתא א, ט",h:`אלא ללמד שאין טומאה וטהרה אלא מפי כהן. הא כיצד? חכם שבישראל רואה את הנגעים ואומר לכהן, אעפ"י שוטה – "אמור טמא", והוא אומר טמא. "אמור טהור", והוא אומר טהור.`,e:`To teach that the pronouncement of "tumah" and "taharah" must be made by a Cohein. How is this effected? An Israelite sage inspects the plague-spots and says to the Cohein, even if he himself is unversed: Say "tamei," and he says "tamei"; say "tahor," and he says "tahor."`},
+"Sifra, Tazria Parashat Negaim, Section 1 4":{t:"ספרא — פרשתא א, ד",h:`"שאת" – זו שאת. "בהרת" – זו בהרת. "ספחת" – זו שני לבהרת. מה לשון שאת? מוגבהת כמראה הצל שהם גבוהים ממראה החמה. מה לשון עמוק? עמוקה כמראה חמה שהם עמוקים מן הצל.`,e:`"se'eth": this is se'eth. "bahereth": this is bahereth. "sapachath": this is an adjunct to (a lesser form of) se'eth. What is signified by "se'eth"? A "rising," as the appearance of a shadow, which seems higher than that of the sun. What is signified by "deeper"? As the appearance of the sun, which seems deeper than that of the shadow.`},
+"Sifra, Tazria Parashat Negaim, Chapter 2 4":{t:"ספרא — פרק ב, ד",h:`"לבן" – לא אדום ולא ירוק ולא שחור. אוציא את כולם ולא אוציא שער צהוב? … ת"ל "שיער לבן" ולא צהוב.`,e:`"has turned white": and not red, and not green, and not black. I would exclude all of these, but not yellow… It is therefore written: "white hair," and not yellow.`},
+"Sifra, Tazria Parashat Negaim, Chapter 2 5":{t:"ספרא — פרק ב, ה",h:`"ומראה הנגע עמוק" – אין ממשו עמוק. "מראה הנגע עמוק" – אין מראה שער לבן עמוק.`,e:`"and the appearance … is deeper": but in actuality it is not deeper. "the appearance of the plague-spot is deep": but not the appearance of the white hair.`},
+"Sifra, Tazria Parashat Negaim, Section 3 1":{t:"ספרא — פרשתא ג, א",h:`"נגע צרעת כי תהיה באדם… וראה הכהן" – למדנו לשאת שהיא מטמא במחיה. ומנין לרבות שאר המראות?`,e:`From "and, behold, a white se'eth" we learn that a se'eth becomes tamei with a michyah. Whence do we derive the same for the other appearances?`},
+"Sifra, Tazria Parashat Negaim, Section 2 1":{t:"ספרא — פרשתא ב, א",h:`"בהרת לבנה" – אין לי אלא בהרת לבנה, מנין לרבות את השאת? ת"ל למטן "שאת לבנה". ומנין לרבות שאר המראות? ת"ל "אם בהרת".`,e:`This tells me only of a white bahereth. Whence do we derive for inclusion a (white) se'eth? From "a white se'eth." Whence are other (white) appearances derived? From "And if a bahereth."`},
+"Sifra, Tazria Parashat Negaim, Chapter 2* 13":{t:"ספרא — פרק ב, יג",h:`יכול יהיה הפשיון מטמא בתחלה? ת"ל "אחרי הראותו אל הכהן לטהרתו".`,e:`I might think that the spreading imparts tumah in the beginning (before the quarantine); it is therefore written "after he has shown himself to the Cohein."`},
+"Sifra, Tazria Parashat Negaim, Chapter 4 1":{t:"ספרא — פרק ד, א",h:`"צרעת" – מה ת"ל? שיכול אין לי פריחה מטהרת אלא בשאת בלבד, מנין לרבות שאר המראות? ת"ל הצרעת.`,e:`I might think that the blossoming is tahor only from a se'eth. Whence do I derive the same for the other appearances? From "the leprosy."`},
+"Sifra, Tazria Parashat Negaim, Section 5 5":{t:"ספרא — פרשתא ה, ה",h:`"ושער" – מיעט שער שתי שערות. "צהוב" – לא ירוק, לא אדום, ולא שחור… ת"ל "צהוב" – צהוב ולא לבן. ולמה הוא דומה? לתבנית הזהב.`,e:`"and … hair": the minimum of "hair," two hairs. "yellow": not green, not red, and not black… "yellow" — yellow and not white. And what shade is it similar to? To that of gold.`},
+"Sifra, Tazria Parashat Negaim, Chapter 11 1":{t:"ספרא — פרק יא, א",h:`"נגע לבן אדמדם" – מלמד שהיא מטמאה בפתוך. "צרעת" – מלמד שהיא מטמאה במחיה.`,e:`"a reddish-white plague-spot": we are taught that it confers tumah intermixed. "leprosy": we are taught that it confers tumah through (the eruption of) a michyah.`},
+"Sifra, Tazria Parashat Negaim, Chapter 12 7":{t:"ספרא — פרק יב, ז",h:`"ועל שפם יעטה" – חופה ראשו כאבל. "וטמא טמא יקרא" – אומר פרוש. אין לי אלא זה בלבד, מנין לרבות שאר המנוגעים? ת"ל "טמא טמא יקרא".`,e:`"and his upper lip ya'ateh": he covers his head like a mourner. "and 'Unclean! Unclean!' he shall cry": so that they separate from him. Whence do I derive that other afflicted ones are also included? From "'Unclean! Unclean!' he shall cry."`},
+"Sifra, Tazria Parashat Negaim, Chapter 13 1":{t:"ספרא — פרק יג, א",h:`"והבגד" – יכול השיראים והסריקין והכלך וצמר גפן וצמר גמלים וצמר ארנבים ונוצה של עזים? ת"ל "בבגד צמר או בבגד פשתים".`,e:`"And the garment": I might think this includes silk, cotton, camel wool, rabbit wool, and goat down; it is therefore written "in a garment of wool or in a garment of flax."`}};
+function tkUrl(r){return "https://www.sefaria.org/"+String(r||"").trim().replace(/ /g,"_").replace(/_(\d+)$/,".$1");}
+
 function parsePasuk(r){if(!r||r==="—")return null;return r.replace("ויקרא ","");}
 
 /* ═══ SOURCE MODAL ═══ */
@@ -102,6 +118,7 @@ let data=null,title="";
 if(type==="pasuk"){const k=parsePasuk(refKey);data=PK[k];title=`ויקרא ${k}`;}
 else if(type==="mishnah"){data=MN[refKey];title=`משנה ${refKey}`;}
 else if(type==="rambam"){data=RM[refKey];title=`רמב״ם ${data?.ref||refKey}`;}
+else if(type==="sifra"){data=TK[refKey];title=data?.t||"תורת כהנים · ספרא";}
 if(!data)return <div style={{position:"fixed",inset:0,zIndex:10000,background:"rgba(0,0,0,.4)",display:"flex",alignItems:"flex-end",justifyContent:"center"}} onClick={onClose}>
 <div style={{background:"var(--s)",borderRadius:"16px 16px 0 0",padding:24,maxWidth:480,width:"100%"}} onClick={e=>e.stopPropagation()}>
 <div style={{textAlign:"center",color:"var(--t3)",padding:40}}>Source not found: {refKey}</div></div></div>;
@@ -112,6 +129,7 @@ return <div style={{position:"fixed",inset:0,zIndex:10000,background:"rgba(0,0,0
 <div style={{fontFamily:"var(--fd)",fontSize:17,fontWeight:700,color:"var(--ac)",marginBottom:16,textAlign:"center",direction:"rtl"}}>{title}</div>
 <div style={{fontSize:17,lineHeight:2,color:"var(--t)",direction:"rtl",textAlign:"right",fontFamily:"var(--fd)",marginBottom:12,padding:"12px 16px",background:"rgba(139,105,64,.05)",borderRadius:10,border:"1px solid var(--bd)"}}>{data.h}</div>
 {lang!=="he"&&<div style={{fontSize:14,lineHeight:1.7,color:"var(--t2)",direction:"ltr",textAlign:"left",marginBottom:16}}>{se(lang,data.e)}</div>}
+{type==="sifra"&&<a href={tkUrl(refKey)} target="_blank" rel="noopener noreferrer" style={{display:"inline-block",fontFamily:"var(--fm)",fontSize:11,color:"var(--ac)",textDecoration:"none",borderBottom:"1px dotted var(--ac)",marginBottom:8}}>{tx(lang,"לצפייה בספריא ↗",`${refKey} ↗`)}</a>}
 {type==="pasuk"&&data.rh&&<><div style={{fontSize:13,fontWeight:600,color:"var(--ac)",marginBottom:8}}>{tx(lang,'רש"י',"Rashi")}</div>
 <div style={{fontSize:15,lineHeight:1.9,color:"var(--t)",direction:"rtl",textAlign:"right",fontFamily:"var(--fd)",padding:"10px 14px",background:"rgba(139,105,64,.06)",borderRight:"3px solid rgba(139,105,64,.2)",borderRadius:"0 8px 8px 0"}}>{data.rh}</div>
 {lang!=="he"&&<div style={{fontSize:13,lineHeight:1.7,color:"var(--t2)",direction:"ltr",textAlign:"left",marginTop:8}}>{se(lang,data.re)}</div>}</>}
@@ -119,11 +137,12 @@ return <div style={{position:"fixed",inset:0,zIndex:10000,background:"rgba(0,0,0
 </div></div>;}
 
 /* ═══ TAPPABLE SOURCES ═══ */
-function SRef({s}){const[m,setM]=useState(null);if(!s)return null;
+function SRef({s}){const[m,setM]=useState(null);const{lang}=useCtx();if(!s)return null;
 return <><div style={{display:"flex",flexWrap:"wrap",gap:6,marginTop:8}}>
 {s.pasuk&&s.pasuk!=="—"&&<span className="st" onClick={()=>setM({t:"pasuk",r:s.pasuk})}>📖 {s.pasuk}</span>}
 {s.mishnah&&<span className="st" onClick={()=>setM({t:"mishnah",r:s.mishnah})}>📜 {s.mishnah}</span>}
 {s.rambam&&<span className="st" style={{background:"rgba(46,107,58,.08)",borderColor:"rgba(46,107,58,.18)",color:"#2E6B3A"}} onClick={()=>setM({t:"rambam",r:s.rambam})}>📗 {s.rambam}</span>}
+{s.sifra&&<span className="st" style={{background:"rgba(90,20,33,.07)",borderColor:"rgba(90,20,33,.2)",color:"#5a1421"}} onClick={()=>setM({t:"sifra",r:s.sifra})}>📕 {tx(lang,"תורת כהנים","Toras Kohanim")}</span>}
 </div>{m&&<SourceModal type={m.t} refKey={m.r} onClose={()=>setM(null)}/>}</>;
 }
 function SNote({s,xh,xe}){const{lang}=useCtx();if(!s)return null;const x=lang==="he"?xh:xe;
