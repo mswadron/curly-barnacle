@@ -188,13 +188,31 @@
     const intro = isHE()
       ? `<span class="he">מִכְּלָל וּפְרָט וּכְלָל לְבִנְיַן אָב: שְׁלֹשֶׁת הַמִּינִים שׁוֹנִים זֶה מִזֶּה, וְהַצַּד הַשָּׁוֶה — אַרְבָּעָה סִימָנִים — הוּא הַכְּלָל.</span>`
       : `From klal-prat-klal to a binyan av: because the three kinds differ from one another, their common denominator — the four signs — becomes the operative rule, and even a long-headed locust qualifies.`;
-    return secHead(UI.derivation, intro) + `<div class="chain">${steps}</div>`;
+    const b = D.beraisos;
+    const berItems = b.items.map(it=>`<div class="step" style="margin-bottom:12px">
+        <div class="stage">${isHE()?`<span class="he">${esc(it.label.he)}</span>`:esc(t(it.label))} · ${esc(it.ref)}</div>
+        <div class="he">${esc(it.he)}</div>
+        ${isHE()?"":`<div class="en">${esc(it.en)}</div>`}
+        <div class="ref"><span class="badge direct">direct</span> <a href="${esc(it.sefaria)}" target="_blank" rel="noopener">${esc(it.ref)} →</a></div>
+      </div>`).join("");
+    const r = b.rashi;
+    const rNote = isHE()? r.note.he : r.note.en;
+    const berRashi = `<div class="step" style="margin-bottom:12px;border-left-color:var(--mute)">
+        <div class="stage">${isHE()?'<span class="he">רש״י</span>':"Rashi"} · ${esc(r.ref)}</div>
+        <div class="he">${esc(r.he)}</div>
+        <div style="font-size:12.5px;color:var(--mute);font-style:italic;margin-top:7px">${esc(rNote)}</div>
+        <div class="ref"><span class="badge direct">direct</span> <a href="${esc(r.sefaria)}" target="_blank" rel="noopener">${esc(r.ref)} →</a></div>
+      </div>`;
+    const berHead = `<div class="sec-head" style="margin-top:36px"><div class="titles"><span class="eyebrow">${esc(t(D.meta.sugya))}</span><h1 style="font-size:20px">${isHE()?`<span class="he">${esc(b.title.he)}</span>`:esc(t(b.title))}</h1></div></div>`
+      + (isHE()?`<p class="intro"><span class="he">${esc(b.intro.he)}</span></p>`:`<p class="intro">${esc(b.intro.en)}</p>`);
+    return secHead(UI.derivation, intro) + `<div class="chain">${steps}</div>` + berHead + `<div class="chain">${berItems}${berRashi}</div>`;
   }
 
   /* ===== TALMUD ACROSS SHAS ===== */
   function secTalmud() {
     const items = D.talmud.sugyot.map(s=>{
-      const note = s.note_en ? `<div style="font-size:12.5px;color:var(--mute);font-style:italic;margin-top:7px">${esc(s.note_en)}</div>` : "";
+      const noteTxt = isHE() ? (s.note_he||"") : (s.note_en||"");
+      const note = noteTxt ? `<div style="font-size:12.5px;color:var(--mute);font-style:italic;margin-top:7px">${esc(noteTxt)}</div>` : "";
       return `<div class="step" style="margin-bottom:12px">
         <div class="stage">${isHE()?`<span class="he">${esc(s.topic.he)}</span>`:esc(t(s.topic))} · ${esc(s.ref)}</div>
         <div class="he">${esc(s.he)}</div>

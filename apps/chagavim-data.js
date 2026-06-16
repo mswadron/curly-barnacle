@@ -344,6 +344,78 @@ window.CHAGAVIM_DATA = {
     ],
   },
 
+  /* ------------------------------------------ FULL BERAISOS (verbatim) */
+  /* The two beraisos the whole sugya rests on, quoted in full (William Davidson /
+     Torat Emet), instead of the one-line fragments used on the cards. */
+  beraisos: {
+    title: { he: "הַבָּרַיְתוֹת בִּשְׁלֵמוּתָן", se: "The full beraisos", en: "The beraisos in full" },
+    intro: {
+      he: "אֵלּוּ שְׁתֵּי הַבָּרַיְתוֹת שֶׁכָּל הַסּוּגְיָא נִבְנֵית עֲלֵיהֶן — בְּחולין ס״ה. (הַשֵּׁמוֹת) וּבְחולין ס״ה: (בֵּית רַבִּי יִשְׁמָעֵאל) — מוּבָאוֹת כָּאן בִּשְׁלֵמוּתָן, לֹא בִּקְטָעִים.",
+      en: "The two beraisos the entire sugya is built on — Chullin 65a (the vernacular names) and Chullin 65b (the school of R. Yishmael) — quoted here in full rather than as the one-line fragments shown on the cards.",
+    },
+    items: [
+      {
+        id: "b65a", label: { he: "בָּרַיְתָא ס״ה. — אַרְבַּעַת הַשֵּׁמוֹת וּ׳לְמִינֵהוּ׳", se: "65a — the four names", en: "65a — the four names & 'after its kind'" },
+        ref: "Chullin 65a:9", sefaria: "https://www.sefaria.org/Chullin.65a.9", badge: "direct",
+        he: "תָּנוּ רַבָּנַן: ״אֶת אֵלֶּה מֵהֶם תֹּאכֵלוּ אֶת הָאַרְבֶּה וְגוֹ׳״. אַרְבֶּה – זֶה גּוֹבַאי, סַלְעָם – זֶה רָשׁוֹן, חַרְגּוֹל – זֶה נִיפּוּל, חָגָב – זֶה נַדְיָאן. מָה תַּלְמוּד לוֹמַר ״לְמִינוֹ״ ״לְמִינֵהוּ״ ״לְמִינֵהוּ״ ״לְמִינֵהוּ״ אַרְבַּע פְּעָמִים? לְהָבִיא צִיפּוֹרֶת כְּרָמִים, וְיוֹחָנָא יְרוּשַׁלְמִית, וְהָעַרְצוּבְיָא, וְהָרַזְבָּנִית.",
+        en: "The Sages taught: 'These of them you may eat: the arbeh after its kinds…' The arbeh is the govai; the sol'am is the rashon; the ḥargol is the nippul; the ḥagav is the gadyan. Why does the verse say 'after its kinds' four times? To include four similar species: the vineyard bird (tzipporet keramim), the Jerusalem yoḥana, the artzuveya, and the razbanit — which are also kosher.",
+      },
+      {
+        id: "pappa", label: { he: "רַב פָּפָּא — רוֹב אֹרֶךְ וְרוֹב הֶקֵּף", se: "Rav Pappa", en: "Rav Pappa — length & circumference" },
+        ref: "Chullin 65a:7", sefaria: "https://www.sefaria.org/Chullin.65a.7", badge: "direct",
+        he: "מַאי רוּבּוֹ? אָמַר רַב יְהוּדָה אָמַר רַב: רוֹב אׇרְכּוֹ, וְאָמְרִי לַהּ: רוֹב הֶקֵּיפוֹ. אָמַר רַב פָּפָּא: הִלְכָּךְ בָּעֵינַן רוֹב אׇרְכּוֹ, וּבָעֵינַן רוֹב הֶקֵּיפוֹ.",
+        en: "What is 'most of it'? Rav Yehuda said in the name of Rav: most of its length; others say: most of its circumference. Rav Pappa said: therefore we require both — most of its length and most of its circumference.",
+      },
+      {
+        id: "b65b2", label: { he: "בֵּית ר׳ יִשְׁמָעֵאל — גַּבַּחַת: סָלְעָם=נִיפּוּל", se: "65b — smooth forehead", en: "65b — smooth forehead (sol'am = nippul)" },
+        ref: "Chullin 65b:2", sefaria: "https://www.sefaria.org/Chullin.65b.2", badge: "direct",
+        he: "אֵין לִי אֶלָּא הַבָּא וְאֵין לוֹ גַּבַּחַת. הַבָּא וְיֵשׁ לוֹ גַּבַּחַת מִנַּיִן? תַּלְמוּד לוֹמַר ״סׇלְעָם״ – זֶה נִיפּוּל, ״לְמִינֵהוּ״ – לְהָבִיא אֶת הָאוּשְׁכָּף.",
+        en: "I have derived only one that has no smooth forehead. One that has a smooth forehead — from where? The verse says 'sol'am' — this is the nippul (which has a smooth forehead); and 'after its kind' includes the ushkaf.",
+      },
+      {
+        id: "b65b3", label: { he: "זָנָב: חַרְגּוֹל=רָשׁוֹן", se: "65b — tail", en: "65b — tail (ḥargol = rashon)" },
+        ref: "Chullin 65b:3", sefaria: "https://www.sefaria.org/Chullin.65b.3", badge: "direct",
+        he: "וְאֵין לִי אֶלָּא הַבָּא וְאֵין לוֹ גַּבַּחַת. הַבָּא וְיֵשׁ לוֹ גַּבַּחַת, הַבָּא וְאֵין לוֹ זָנָב, הַבָּא וְיֵשׁ לוֹ זָנָב מִנַּיִן? תַּלְמוּד לוֹמַר ״חַרְגֹּל״ – זֶה רָשׁוֹן, ״לְמִינֵהוּ״ – לְהָבִיא אֶת הַכַּרְסֶפֶת וְאֶת הַשַּׁחֲלָנִית.",
+        en: "And I have only those without a tail. One that has a tail — from where? The verse says 'ḥargol' — this is the rashon (which has a tail); and 'after its kind' includes the karsefet and the shaḥlanit.",
+      },
+      {
+        id: "b65b4", label: { he: "רֹאשׁ אָרוֹךְ — מִנַּיִן?", se: "65b — long head", en: "65b — the long-headed question" },
+        ref: "Chullin 65b:4", sefaria: "https://www.sefaria.org/Chullin.65b.4", badge: "direct",
+        he: "וְאֵין לִי אֶלָּא הַבָּא וְאֵין לוֹ גַּבַּחַת, הַבָּא וְיֵשׁ לוֹ גַּבַּחַת, הַבָּא וְאֵין לוֹ זָנָב, הַבָּא וְיֵשׁ לוֹ זָנָב, הַבָּא וְאֵין רֹאשׁוֹ אָרוֹךְ, הַבָּא וְרֹאשׁוֹ אָרוֹךְ מִנַּיִן?",
+        en: "And I have only those without a smooth forehead, with one, without a tail, with a tail, and without a long head. One whose head is long — from where?",
+      },
+      {
+        id: "b65b5", label: { he: "בִּנְיַן אָב — הַצַּד הַשָּׁוֶה", se: "65b — binyan av", en: "65b — the common denominator" },
+        ref: "Chullin 65b:5", sefaria: "https://www.sefaria.org/Chullin.65b.5", badge: "direct",
+        he: "אָמַרְתָּ: הֲרֵי אַתָּה דָן בִּנְיַן אָב מִשְּׁלׇשְׁתָּן, לֹא רְאִי אַרְבֶּה כִּרְאִי חַרְגּוֹל, וְלֹא רְאִי חַרְגּוֹל כִּרְאִי אַרְבֶּה, וְלֹא רְאִי שְׁנֵיהֶם כִּרְאִי סׇלְעָם, וְלֹא רְאִי סׇלְעָם כִּרְאִי שְׁנֵיהֶם. הַצַּד הַשָּׁוֶה שֶׁבָּהֶן – שֶׁיֵּשׁ לוֹ אַרְבַּע רַגְלַיִם, וְאַרְבַּע כְּנָפַיִם, וְקַרְצוּלַּיִם, וּכְנָפָיו חוֹפִין אֶת רוּבּוֹ; אַף כֹּל שֶׁיֵּשׁ לוֹ אַרְבַּע רַגְלַיִם, וְאַרְבַּע כְּנָפַיִם, וְקַרְצוּלַּיִם, וּכְנָפָיו חוֹפִין אֶת רוּבּוֹ.",
+        en: "You derive a binyan av (paradigm) from the three: the arbeh is unlike the ḥargol, the ḥargol unlike the arbeh, and neither is like the sol'am. Their common denominator is four legs, four wings, jumping legs, and wings covering most of the body — so too any species with these is kosher, even if its head is long.",
+      },
+      {
+        id: "b65b6", label: { he: "הַצַּרְצוּר — ׳וּשְׁמוֹ חָגָב׳", se: "65b — the tzartzur", en: "65b — the tzartzur & the name" },
+        ref: "Chullin 65b:6", sefaria: "https://www.sefaria.org/Chullin.65b.6", badge: "direct",
+        he: "וַהֲלֹא הַצַּרְצוּר הַזֶּה יֵשׁ לוֹ אַרְבַּע רַגְלַיִם, וְאַרְבַּע כְּנָפַיִם, וְקַרְצוּלַּיִם, וּכְנָפָיו חוֹפִין אֶת רוּבּוֹ, יָכוֹל יְהֵא מוּתָּר? תַּלְמוּד לוֹמַר ״חָגָב״, שֶׁשְּׁמוֹ חָגָב.",
+        en: "But this tzartzur has four legs, four wings, jumping legs, and wings covering most of its body — might it be permitted? The verse says 'ḥagav' — [only one] whose name is ḥagav. (This includes all the species above, but not the tzartzur.)",
+      },
+      {
+        id: "b65b7", label: { he: "עַד שֶׁיְּהֵא בּוֹ כָּל הַסִּימָנִין", se: "65b — all signs required", en: "65b — name plus all signs" },
+        ref: "Chullin 65b:7", sefaria: "https://www.sefaria.org/Chullin.65b.7", badge: "direct",
+        he: "אִי שְׁמוֹ חָגָב, יָכוֹל אֵין בּוֹ כׇּל הַסִּימָנִין הַלָּלוּ? תַּלְמוּד לוֹמַר ״לְמִינֵהוּ״ – עַד שֶׁיְּהֵא בּוֹ כׇּל הַסִּימָנִין הַלָּלוּ. (סוֹף בָּרַיְתָא דְּבֵי רַבִּי יִשְׁמָעֵאל)",
+        en: "But if its name is ḥagav, might it be kosher even without all these signs? The verse says 'after its kind' — it is not kosher unless it has all these signs. (End of the beraisa of the school of R. Yishmael.)",
+      },
+      {
+        id: "achai", label: { he: "רַב אַחַאי — סָלְעָם יַתִּירָא → רֹאשׁ אָרוֹךְ", se: "Rav Aḥai", en: "Rav Aḥai — the redundant sol'am" },
+        ref: "Chullin 65b:10", sefaria: "https://www.sefaria.org/Chullin.65b.10", badge: "direct",
+        he: "אֶלָּא אָמַר רַב אַחַאי: סׇלְעָם יַתִּירָא הוּא, לָא לִיכְתּוֹב רַחֲמָנָא ״סׇלְעָם״, וְתֵיתֵי מֵאַרְבֶּה וּמֵחַרְגּוֹל… אִם אֵינוֹ עִנְיָן לְגוּפוֹ – תְּנֵהוּ עִנְיָן לְרֹאשׁוֹ אָרוֹךְ.",
+        en: "Rather Rav Aḥai said: 'sol'am' is redundant — it could have been derived from the arbeh and ḥargol together. If it is not needed for its own matter, apply it to the long-headed locust, to teach that it too is kosher.",
+      },
+    ],
+    rashi: {
+      ref: "Rashi on Chullin 65a:9", sefaria: "https://www.sefaria.org/Rashi_on_Chullin.65a.9",
+      he: "רשון ניפול גדיאן יוחנא ירושלמית - כך שמם: צפורת כרמים - מין ארבה דאין לו גבחת. יוחנא - מין סלעם דיש לו גבחת. ערצוביא - מין חרגול דיש לו זנב, ולשנים הראשונים אין זנב. הרזבנית - מין חגב ואינו דומה לאלו במראה.",
+      note: { he: "רש״י (חולין ס״ה. ובס״ה:) מְפָרֵשׁ אֶת הַשֵּׁמוֹת וּמְצַיֵּן בְּעַצְמוֹ אֶת הַחִילּוּף: ׳הָא אֲמַרַן לְעֵיל סָלְעָם הוּא רָשׁוֹן, וְהָכָא מְפָרֵשׁ לֵיהּ זֶה נִיפּוּל׳ (רש״י ס״ה: ד״ה ת״ל).", en: "Rashi glosses each vernacular name, and himself flags the 65a/65b reversal: 'we said above sol'am is rashon, yet here it is explained as nippul' (Rashi 65b)." },
+    },
+  },
+
   /* ------------------------------------------ MISC. PRIMARY-TEXT FRAGMENTS */
   extras: [
     { id: "zachal",
@@ -457,6 +529,7 @@ window.CHAGAVIM_DATA = {
         badge: "direct", research: "complete",
         ref: "Mishnah Berakhot 6:3", sefaria: "https://www.sefaria.org/Mishnah_Berakhot.6.3",
         note_en: "The Mishnah's word for locust here is govai — the same vernacular name the Chullin beraita gives for the arbeh. The blessing is she-hakol, the all-purpose blessing.",
+        note_he: "לְשׁוֹן הַמִּשְׁנָה כָּאן ׳גּוֹבַאי׳ — הוּא שֵׁם הָאַרְבֶּה בַּבָּרַיְתָא דְּחולין. הַבְּרָכָה: שֶׁהַכֹּל נִהְיֶה בִּדְבָרוֹ.",
       },
       {
         id: "no-shechita",
@@ -466,6 +539,7 @@ window.CHAGAVIM_DATA = {
         badge: "direct", research: "complete",
         ref: "Keritot 21a", sefaria: "https://www.sefaria.org/Keritot.21a.1",
         note_en: "Locusts, like fish, are eaten with no sheḥitah, and even their blood carries no prohibition. The slaughter-exemption is derived for fish from 'or if all the fish of the sea be gathered for them' (Chullin 27b) — mere gathering suffices — and locusts are grouped together with fish.",
+        note_he: "חֲגָבִים כְּדָגִים נֶאֱכָלִים בְּלֹא שְׁחִיטָה, וְאַף דָּמָם מֻתָּר. פְּטוֹר הַשְּׁחִיטָה נִלְמָד בְּדָגִים מִ׳אִם אֶת כָּל דְּגֵי הַיָּם יֵאָסֵף לָהֶם׳ (חולין כז ע״ב) — אֲסִיפָה בְּעָלְמָא דַּיָּהּ — וַחֲגָבִים בִּכְלָלָם.",
       },
       {
         id: "mesorah",
@@ -475,6 +549,7 @@ window.CHAGAVIM_DATA = {
         badge: "direct", research: "complete",
         ref: "Mishnah Chullin 3:7", sefaria: "https://www.sefaria.org/Mishnah_Chullin.3.7",
         note_en: "From this name-requirement the later authorities (Rosh on Chullin ch. 3; Shulḥan Arukh YD 85:1) rule that a locust may be eaten only where a continuous tradition (mesorah) holds the species kosher. This is why most communities no longer eat locusts, while Yemenite Jews, who preserved such a tradition, still do. — The 'mesorah' framing is from these later authorities, not an explicit line of the Gemara.",
+        note_he: "מִדְּרִישַׁת הַשֵּׁם לָמְדוּ הָאַחֲרוֹנִים (רֹא״שׁ חולין פֶּרֶק ג; שׁוּלְחָן עָרוּךְ יו״ד פ״ה) שֶׁאֵין אוֹכְלִין חָגָב אֶלָּא בְּמָקוֹם שֶׁיֵּשׁ מָסֹרֶת שֶׁהַמִּין כָּשֵׁר. לְפִיכָךְ רֹב הַקְּהִלּוֹת אֵינָן אוֹכְלוֹת חֲגָבִים, וְהַתֵּימָנִים שֶׁשָּׁמְרוּ מָסֹרֶת — אוֹכְלִים. עִנְיַן הַ׳מָּסֹרֶת׳ מִן הָאַחֲרוֹנִים, וְלֹא מַאֲמָר מְפֹרָשׁ בַּגְּמָרָא.",
         note_badge: "descript",
       },
       {
@@ -485,6 +560,7 @@ window.CHAGAVIM_DATA = {
         badge: "direct", research: "complete",
         ref: "Mishnah Eduyot 7:2", sefaria: "https://www.sefaria.org/Mishnah_Eduyot.7.2",
         note_en: "Unlike the brine of non-kosher fish, the liquid exuded by even non-kosher locusts conveys no prohibition — a testimony (eidut) recorded in the name of R. Zadok.",
+        note_he: "שֶׁלֹּא כְּצִיר דָּגִים טְמֵאִים, הַנּוֹזֵל מֵחֲגָבִים טְמֵאִים אֵינוֹ אוֹסֵר — עֵדוּת מִשּׁוּם רַבִּי צָדוֹק.",
       },
       {
         id: "storehouse",
@@ -494,6 +570,7 @@ window.CHAGAVIM_DATA = {
         badge: "direct", research: "complete",
         ref: "Mishnah Avodah Zarah 2:7", sefaria: "https://www.sefaria.org/Mishnah_Avodah_Zarah.2.7",
         note_en: "Locusts displayed loose in a gentile vendor's basket are forbidden — they may have been sprinkled with wine to preserve them — but those drawn from the bulk storeroom are permitted.",
+        note_he: "חֲגָבִים הַמּוּנָּחִים בְּסַל הַמּוֹכֵר הַגּוֹי — אֲסוּרִין, שֶׁמָּא רֻסְּסוּ בְּיַיִן; אֲבָל הַבָּאִים מִן הָאוֹצָר — מֻתָּרִין.",
       },
       {
         id: "chargol-remedy",
@@ -503,6 +580,7 @@ window.CHAGAVIM_DATA = {
         badge: "direct", research: "complete",
         ref: "Mishnah Shabbat 6:10", sefaria: "https://www.sefaria.org/Mishnah_Shabbat.6.10",
         note_en: "The ḥargol — one of the Torah's four kosher kinds — appears here outside the food laws entirely: its egg was carried as an amulet against earache. R. Meir permits it on Shabbat; the Sages forbid it as darkhei ha-Emori (superstition).",
+        note_he: "הַחַרְגּוֹל — אֶחָד מֵאַרְבַּעַת הַמִּינִים — מוֹפִיעַ כָּאן מִחוּץ לְדִינֵי אֲכִילָה: בֵּיצָתוֹ נִשֵּׂאת כִּסְגֻלָּה לִכְאֵב אֹזֶן. רַבִּי מֵאִיר מַתִּיר בְּשַׁבָּת; חֲכָמִים אוֹסְרִים אַף בְּחֹל מִשּׁוּם דַּרְכֵי הָאֱמוֹרִי.",
       },
     ],
   },
