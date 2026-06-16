@@ -28,6 +28,8 @@
     more:{he:"מִינִים נוֹסָפִים",se:"More Species",en:"More Species"},
     plates:{he:"לוּחוֹת",se:"Plates",en:"Plates"},
     talmud:{he:"בַּשַּׁ״ס",se:"Across Shas",en:"Across Shas"},
+    gemara:{he:"גְּמָרָא",se:"Gemara · Chullin 65",en:"Gemara · Chullin 65"},
+    tanach:{he:"בַּמִּקְרָא",se:"In Tanakh",en:"In Tanakh"},
     detail:{he:"פֵּרוּט",se:"Detail",en:"Detail"},
     selectHint:{he:"בְּחַר מִין לִרְאוֹת מָקוֹר וְשׁוֹרֶשׁ",se:"Select a kind for source & etymology",en:"Select a kind to see its source text and etymology"},
     sourceText:{he:"מָקוֹר",se:"Source",en:"Source text"},
@@ -53,7 +55,7 @@
 
   /* -------- header -------- */
   function header() {
-    const secs = ["kinds","signs","derivation","talmud","more","plates"];
+    const secs = ["kinds","signs","gemara","tanach","more","plates"];
     const nav = secs.map(s =>
       `<button data-sec="${s}" class="${SECTION===s?"on":""}">`+
       (isHE()? `<span class="he">${esc(UI[s].he)}</span>` : esc(t(UI[s])))+`</button>`).join("");
@@ -72,8 +74,8 @@
   function canvas() {
     if (SECTION==="kinds") return secKinds();
     if (SECTION==="signs") return secSigns();
-    if (SECTION==="derivation") return secDerivation();
-    if (SECTION==="talmud") return secTalmud();
+    if (SECTION==="gemara") return secGemara();
+    if (SECTION==="tanach") return secTanach();
     if (SECTION==="more") return secMore();
     if (SECTION==="plates") return secPlates();
     return "";
@@ -225,6 +227,74 @@
     return secHead(D.talmud.title, intro) + `<div class="chain">${items}</div>`;
   }
 
+  /* ===== GEMARA (merged: derivation + full beraisos + across Shas) ===== */
+  function secGemara() {
+    const eb = (he,en) => `<div style="margin:28px 0 10px"><span class="eyebrow">${isHE()?`<span class="he">${esc(he)}</span>`:esc(en)}</span></div>`;
+    // 1) derivation chain
+    const steps = D.derivation.steps.map((s,i)=>{
+      const stageLab = {klal:"כְּלָל / klal",prat:"פְּרָט / prat","binyan-av":"בִּנְיַן אָב","rav-achai":"רַב אַחַאי"}[s.stage]||s.stage;
+      const block = `<div class="step"><div class="stage">${esc(stageLab)}</div>${s.he?`<div class="he">${esc(s.he)}</div>`:""}${isHE()?"":`<div class="en">${esc(s.en)}</div>`}<div class="ref">${esc(s.ref)} · <a href="${esc(s.sefaria)}" target="_blank" rel="noopener">Sefaria</a></div></div>`;
+      return block + (i<D.derivation.steps.length-1?'<div class="connector"></div>':"");
+    }).join("");
+    // 2) full beraisos
+    const b = D.beraisos;
+    const berItems = b.items.map(it=>`<div class="step" style="margin-bottom:12px">
+        <div class="stage">${isHE()?`<span class="he">${esc(it.label.he)}</span>`:esc(t(it.label))} · ${esc(it.ref)}</div>
+        <div class="he">${esc(it.he)}</div>
+        ${isHE()?"":`<div class="en">${esc(it.en)}</div>`}
+        <div class="ref"><span class="badge direct">direct</span> <a href="${esc(it.sefaria)}" target="_blank" rel="noopener">${esc(it.ref)} →</a></div>
+      </div>`).join("");
+    const r = b.rashi; const rNote = isHE()? r.note.he : r.note.en;
+    const berRashi = `<div class="step" style="margin-bottom:12px;border-left-color:var(--mute)">
+        <div class="stage">${isHE()?'<span class="he">רש״י</span>':"Rashi"} · ${esc(r.ref)}</div>
+        <div class="he">${esc(r.he)}</div>
+        <div style="font-size:12.5px;color:var(--mute);font-style:italic;margin-top:7px">${esc(rNote)}</div>
+        <div class="ref"><span class="badge direct">direct</span> <a href="${esc(r.sefaria)}" target="_blank" rel="noopener">${esc(r.ref)} →</a></div>
+      </div>`;
+    // 3) across Shas
+    const tItems = D.talmud.sugyot.map(s=>{
+      const noteTxt = isHE()? (s.note_he||"") : (s.note_en||"");
+      const note = noteTxt ? `<div style="font-size:12.5px;color:var(--mute);font-style:italic;margin-top:7px">${esc(noteTxt)}</div>` : "";
+      return `<div class="step" style="margin-bottom:12px">
+        <div class="stage">${isHE()?`<span class="he">${esc(s.topic.he)}</span>`:esc(t(s.topic))} · ${esc(s.ref)}</div>
+        <div class="he">${esc(s.he)}</div>
+        ${isHE()?"":`<div class="en">${esc(s.en)}</div>`}
+        ${note}
+        <div class="ref"><span class="badge ${esc(s.badge)}">${esc(s.badge)}</span> <a href="${esc(s.sefaria)}" target="_blank" rel="noopener">${esc(s.ref)} →</a></div>
+      </div>`;
+    }).join("");
+    const intro = isHE()
+      ? `<span class="he">סוּגְיַת הַזִּהוּי בְּחוּלִּין ס״ה בִּשְׁלֵמוּתָהּ — הַדְּרָשָׁה, הַבָּרַיְתוֹת, וּמְקוֹמוֹת הֶחָגָב בִּשְׁאָר הַשַּׁ״ס.</span>`
+      : `The full identification sugya of Chullin 65 — the derivation, the complete beraisos, and where the locust appears elsewhere in the Talmud.`;
+    const head = `<div class="sec-head"><div class="titles"><span class="eyebrow">${esc(t(D.meta.sugya))} · ${esc(t(D.meta.verse))}</span><h1>${isHE()?`<span class="he">${esc(UI.gemara.he)}</span>`:esc(t(UI.gemara))}</h1></div></div>`
+      + `<p class="intro">${intro}</p>`;
+    return head
+      + eb("דְּרָשַׁת הַמִּינִים — כְּלָל וּפְרָט וּכְלָל","Deriving the kinds — klal-prat-klal") + `<div class="chain">${steps}</div>`
+      + eb("הַבָּרַיְתוֹת בִּשְׁלֵמוּתָן","The beraisos in full") + `<div class="chain">${berItems}${berRashi}</div>`
+      + eb("בְּכָל הַשַּׁ״ס — מֵעֵבֶר לְחוּלִּין ס״ה","Across Shas — beyond Chullin 65") + `<div class="chain">${tItems}</div>`;
+  }
+
+  /* ===== LOCUST ACROSS TANAKH ===== */
+  function secTanach() {
+    const intro = isHE()?`<span class="he">${esc(D.tanach.intro.he)}</span>`:esc(D.tanach.intro.en);
+    const head = `<div class="sec-head"><div class="titles"><span class="eyebrow">${isHE()?'<span class="he">תַּנַ״ךְ וּתְפִלָּה</span>':"Tanakh & liturgy"}</span><h1>${isHE()?`<span class="he">${esc(D.tanach.title.he)}</span>`:esc(t(D.tanach.title))}</h1></div></div><p class="intro">${intro}</p>`;
+    const body = D.tanach.groups.map(g=>{
+      const items = g.items.map(it=>{
+        const gist = (!isHE() && it.gist_en) ? `<div style="font-size:12.5px;color:var(--mute);font-style:italic;margin-top:7px">${esc(it.gist_en)}</div>` : "";
+        const word = it.word ? ` · <span style="font-family:var(--hebrew)">${esc(it.word)}</span>` : "";
+        return `<div class="step" style="margin-bottom:12px">
+          <div class="stage">${isHE()?`<span class="he">${esc(it.label.he)}</span>`:esc(t(it.label))} · ${esc(it.ref)}${word}</div>
+          <div class="he">${esc(it.he)}</div>
+          ${isHE()?"":`<div class="en">${esc(it.en)}</div>`}
+          ${gist}
+          <div class="ref"><a href="${esc(it.sefaria)}" target="_blank" rel="noopener">${esc(it.ref)} →</a></div>
+        </div>`;
+      }).join("");
+      return `<div style="margin:24px 0 10px"><span class="eyebrow">${isHE()?`<span class="he">${esc(g.cat.he)}</span>`:esc(t(g.cat))}</span></div><div class="chain">${items}</div>`;
+    }).join("");
+    return head + body;
+  }
+
   /* ===== MORE SPECIES ===== */
   function secMore() {
     const byParent = {};
@@ -292,8 +362,6 @@
       html += `<div class="rail-section"><div class="rail-empty">${esc(t(UI.selectHint))}</div></div>`;
     } else if (SECTION==="signs") {
       html += `<div class="rail-section"><h3>${esc(t(UI.baseSigns))}</h3>${pasuk(D.verses[0])}</div>`;
-    } else if (SECTION==="derivation") {
-      html += `<div class="rail-section"><h3>R. Yishmael</h3>${pasuk(D.verses[2])}</div>`;
     }
     // crux note always available
     const c = D.cruxes[0];
