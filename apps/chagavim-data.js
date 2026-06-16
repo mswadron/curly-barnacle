@@ -436,4 +436,74 @@ window.CHAGAVIM_DATA = {
     "Include a live ‘siman checker’ diagnostic (toggle the 4 base signs + 3 derived features → kosher/not), or keep it reference-only like the bird app?",
     "Should modern entomological identifications (e.g. Tettigonia viridissima for ḥargol) appear, clearly badged as lexicon/modern, or be omitted to avoid implying a halakhic mesorah on species ID?",
   ],
+
+  /* ============================================================================
+     CHAGAVIM ACROSS SHAS — every place locusts surface in the Mishnah/Talmud
+     OUTSIDE the Chullin 65 identification sugya. All text verbatim from Sefaria
+     (Torat Emet / William Davidson), each with a segment-level ref + link.
+     ========================================================================== */
+  talmud: {
+    title: { he: "בְּכָל הַשַּׁ״ס", se: "Across Shas", en: "Chagavim Across the Talmud" },
+    intro: {
+      he: "מִלְּבַד סוּגְיַת הַזִּהוּי בְּחולין ס״ה, הֶחָגָב מוֹפִיעַ בְּכַמָּה מְקוֹמוֹת בַּמִּשְׁנָה וּבַתַּלְמוּד — בִּבְרָכָה, בִּשְׁחִיטָה, בְּצִיר, בִּרְפוּאָה וּבְעֵרוּב.",
+      en: "Beyond the identification sugya of Chullin 65, the locust surfaces across the Mishnah and Talmud — in the laws of blessings, slaughter, brine, idolatry-suspicion, and even folk medicine. Each passage below is verbatim with a Sefaria link.",
+    },
+    sugyot: [
+      {
+        id: "bracha",
+        topic: { he: "בִּרְכַּת שֶׁהַכֹּל", se: "The blessing", en: "The blessing over locusts" },
+        he: "עַל הַחֹמֶץ וְעַל הַנּוֹבְלוֹת וְעַל הַגּוֹבַאי אוֹמֵר שֶׁהַכֹּל.",
+        en: "And over vinegar, over novelot (spoiled dates), and over locusts, one recites: she-hakol nihyeh bidvaro (by whose word all things came to be).",
+        badge: "direct", research: "complete",
+        ref: "Mishnah Berakhot 6:3", sefaria: "https://www.sefaria.org/Mishnah_Berakhot.6.3",
+        note_en: "The Mishnah's word for locust here is govai — the same vernacular name the Chullin beraita gives for the arbeh. The blessing is she-hakol, the all-purpose blessing.",
+      },
+      {
+        id: "no-shechita",
+        topic: { he: "אֵינָם טְעוּנִים שְׁחִיטָה", se: "No sheḥitah", en: "Eaten without slaughter" },
+        he: "דַּם דָּגִים דַּם חֲגָבִים – שֶׁכּוּלּוֹ הֶיתֵּר.",
+        en: "The blood of fish and the blood of locusts — for it is entirely permitted.",
+        badge: "direct", research: "complete",
+        ref: "Keritot 21a", sefaria: "https://www.sefaria.org/Keritot.21a.1",
+        note_en: "Locusts, like fish, are eaten with no sheḥitah, and even their blood carries no prohibition. The slaughter-exemption is derived for fish from 'or if all the fish of the sea be gathered for them' (Chullin 27b) — mere gathering suffices — and locusts are grouped together with fish.",
+      },
+      {
+        id: "mesorah",
+        topic: { he: "וּשְׁמוֹ חָגָב — מָסֹרֶת", se: "The name / mesorah", en: "The name requirement → mesorah" },
+        he: "רַבִּי יוֹסֵי אוֹמֵר, וּשְׁמוֹ חָגָב.",
+        en: "Rabbi Yosei says: and this applies only if the name of its species is ḥagav.",
+        badge: "direct", research: "complete",
+        ref: "Mishnah Chullin 3:7", sefaria: "https://www.sefaria.org/Mishnah_Chullin.3.7",
+        note_en: "From this name-requirement the later authorities (Rosh on Chullin ch. 3; Shulḥan Arukh YD 85:1) rule that a locust may be eaten only where a continuous tradition (mesorah) holds the species kosher. This is why most communities no longer eat locusts, while Yemenite Jews, who preserved such a tradition, still do. — The 'mesorah' framing is from these later authorities, not an explicit line of the Gemara.",
+        note_badge: "descript",
+      },
+      {
+        id: "brine",
+        topic: { he: "צִיר חֲגָבִים", se: "Locust brine", en: "Brine of locusts" },
+        he: "הֵעִיד רַבִּי צָדוֹק עַל צִיר חֲגָבִים טְמֵאִים, שֶׁהוּא טָהוֹר.",
+        en: "Rabbi Zadok testified concerning the brine of non-kosher locusts that it is pure (permitted).",
+        badge: "direct", research: "complete",
+        ref: "Mishnah Eduyot 7:2", sefaria: "https://www.sefaria.org/Mishnah_Eduyot.7.2",
+        note_en: "Unlike the brine of non-kosher fish, the liquid exuded by even non-kosher locusts conveys no prohibition — a testimony (eidut) recorded in the name of R. Zadok.",
+      },
+      {
+        id: "storehouse",
+        topic: { he: "חֲגָבִים מִן הַשּׁוּק", se: "From the vendor", en: "Locusts from a vendor" },
+        he: "הַחֲגָבִים הַבָּאִים מִן הַסְּלוּלָה, אֲסוּרִין. מִן הַהַפְתֵּק, מֻתָּרִין. וְכֵן לִתְרוּמָה.",
+        en: "Locusts that come from a salesman's basket are prohibited; those that come from the storeroom (heftek) are permitted; and likewise for teruma.",
+        badge: "direct", research: "complete",
+        ref: "Mishnah Avodah Zarah 2:7", sefaria: "https://www.sefaria.org/Mishnah_Avodah_Zarah.2.7",
+        note_en: "Locusts displayed loose in a gentile vendor's basket are forbidden — they may have been sprinkled with wine to preserve them — but those drawn from the bulk storeroom are permitted.",
+      },
+      {
+        id: "chargol-remedy",
+        topic: { he: "בֵּיצַת הַחַרְגּוֹל", se: "The ḥargol egg", en: "The ḥargol egg (folk remedy)" },
+        he: "יוֹצְאִין בְּבֵיצַת הַחַרְגּוֹל וּבְשֵׁן שׁוּעָל וּבְמַסְמֵר מִן הַצָּלוּב מִשּׁוּם רְפוּאָה, דִּבְרֵי רַבִּי מֵאִיר. וַחֲכָמִים אוֹמְרִים, אַף בְּחֹל אָסוּר מִשּׁוּם דַּרְכֵי הָאֱמוֹרִי.",
+        en: "One may go out on Shabbat with a ḥargol-locust egg, a fox's tooth, and a nail from a gallows, for healing — the words of Rabbi Meir. The Sages forbid these even on a weekday, as the ways of the Amorite.",
+        badge: "direct", research: "complete",
+        ref: "Mishnah Shabbat 6:10", sefaria: "https://www.sefaria.org/Mishnah_Shabbat.6.10",
+        note_en: "The ḥargol — one of the Torah's four kosher kinds — appears here outside the food laws entirely: its egg was carried as an amulet against earache. R. Meir permits it on Shabbat; the Sages forbid it as darkhei ha-Emori (superstition).",
+      },
+    ],
+  },
 };

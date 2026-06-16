@@ -27,6 +27,7 @@
     derivation:{he:"מִדְרָשׁ",se:"Derivation",en:"Derivation"},
     more:{he:"מִינִים נוֹסָפִים",se:"More Species",en:"More Species"},
     plates:{he:"לוּחוֹת",se:"Plates",en:"Plates"},
+    talmud:{he:"בַּשַּׁ״ס",se:"Across Shas",en:"Across Shas"},
     detail:{he:"פֵּרוּט",se:"Detail",en:"Detail"},
     selectHint:{he:"בְּחַר מִין לִרְאוֹת מָקוֹר וְשׁוֹרֶשׁ",se:"Select a kind for source & etymology",en:"Select a kind to see its source text and etymology"},
     sourceText:{he:"מָקוֹר",se:"Source",en:"Source text"},
@@ -52,7 +53,7 @@
 
   /* -------- header -------- */
   function header() {
-    const secs = ["kinds","signs","derivation","more","plates"];
+    const secs = ["kinds","signs","derivation","talmud","more","plates"];
     const nav = secs.map(s =>
       `<button data-sec="${s}" class="${SECTION===s?"on":""}">`+
       (isHE()? `<span class="he">${esc(UI[s].he)}</span>` : esc(t(UI[s])))+`</button>`).join("");
@@ -72,6 +73,7 @@
     if (SECTION==="kinds") return secKinds();
     if (SECTION==="signs") return secSigns();
     if (SECTION==="derivation") return secDerivation();
+    if (SECTION==="talmud") return secTalmud();
     if (SECTION==="more") return secMore();
     if (SECTION==="plates") return secPlates();
     return "";
@@ -187,6 +189,22 @@
       ? `<span class="he">מִכְּלָל וּפְרָט וּכְלָל לְבִנְיַן אָב: שְׁלֹשֶׁת הַמִּינִים שׁוֹנִים זֶה מִזֶּה, וְהַצַּד הַשָּׁוֶה — אַרְבָּעָה סִימָנִים — הוּא הַכְּלָל.</span>`
       : `From klal-prat-klal to a binyan av: because the three kinds differ from one another, their common denominator — the four signs — becomes the operative rule, and even a long-headed locust qualifies.`;
     return secHead(UI.derivation, intro) + `<div class="chain">${steps}</div>`;
+  }
+
+  /* ===== TALMUD ACROSS SHAS ===== */
+  function secTalmud() {
+    const items = D.talmud.sugyot.map(s=>{
+      const note = s.note_en ? `<div style="font-size:12.5px;color:var(--mute);font-style:italic;margin-top:7px">${esc(s.note_en)}</div>` : "";
+      return `<div class="step" style="margin-bottom:12px">
+        <div class="stage">${isHE()?`<span class="he">${esc(s.topic.he)}</span>`:esc(t(s.topic))} · ${esc(s.ref)}</div>
+        <div class="he">${esc(s.he)}</div>
+        ${isHE()?"":`<div class="en">${esc(s.en)}</div>`}
+        ${note}
+        <div class="ref"><span class="badge ${esc(s.badge)}">${esc(s.badge)}</span> <a href="${esc(s.sefaria)}" target="_blank" rel="noopener">${esc(s.ref)} →</a></div>
+      </div>`;
+    }).join("");
+    const intro = isHE()?`<span class="he">${esc(D.talmud.intro.he)}</span>`:esc(D.talmud.intro.en);
+    return secHead(D.talmud.title, intro) + `<div class="chain">${items}</div>`;
   }
 
   /* ===== MORE SPECIES ===== */
