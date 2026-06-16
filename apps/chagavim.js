@@ -29,6 +29,7 @@
     plates:{he:"לוּחוֹת",se:"Plates",en:"Plates"},
     talmud:{he:"בַּשַּׁ״ס",se:"Across Shas",en:"Across Shas"},
     gemara:{he:"גְּמָרָא",se:"Gemara · Chullin 65",en:"Gemara · Chullin 65"},
+    poskim:{he:"הֲלָכָה",se:"Halacha · Poskim",en:"Halacha · Poskim"},
     tanach:{he:"בַּמִּקְרָא",se:"In Tanakh",en:"In Tanakh"},
     detail:{he:"פֵּרוּט",se:"Detail",en:"Detail"},
     selectHint:{he:"בְּחַר מִין לִרְאוֹת מָקוֹר וְשׁוֹרֶשׁ",se:"Select a kind for source & etymology",en:"Select a kind to see its source text and etymology"},
@@ -55,7 +56,7 @@
 
   /* -------- header -------- */
   function header() {
-    const secs = ["kinds","signs","gemara","tanach","more","plates"];
+    const secs = ["kinds","signs","gemara","poskim","tanach","more","plates"];
     const nav = secs.map(s =>
       `<button data-sec="${s}" class="${SECTION===s?"on":""}">`+
       (isHE()? `<span class="he">${esc(UI[s].he)}</span>` : esc(t(UI[s])))+`</button>`).join("");
@@ -75,6 +76,7 @@
     if (SECTION==="kinds") return secKinds();
     if (SECTION==="signs") return secSigns();
     if (SECTION==="gemara") return secGemara();
+    if (SECTION==="poskim") return secPoskim();
     if (SECTION==="tanach") return secTanach();
     if (SECTION==="more") return secMore();
     if (SECTION==="plates") return secPlates();
@@ -272,6 +274,25 @@
       + eb("דְּרָשַׁת הַמִּינִים — כְּלָל וּפְרָט וּכְלָל","Deriving the kinds — klal-prat-klal") + `<div class="chain">${steps}</div>`
       + eb("הַבָּרַיְתוֹת בִּשְׁלֵמוּתָן","The beraisos in full") + `<div class="chain">${berItems}${berRashi}</div>`
       + eb("בְּכָל הַשַּׁ״ס — מֵעֵבֶר לְחוּלִּין ס״ה","Across Shas — beyond Chullin 65") + `<div class="chain">${tItems}</div>`;
+  }
+
+  /* ===== HALACHA / POSKIM ===== */
+  function secPoskim() {
+    const intro = isHE()?`<span class="he">${esc(D.poskim.intro.he)}</span>`:esc(D.poskim.intro.en);
+    const head = `<div class="sec-head"><div class="titles"><span class="eyebrow">${isHE()?'<span class="he">רַמְבַּ״ם · טוּר · שֻׁלְחָן עָרוּךְ</span>':"Rambam · Tur · Shulchan Arukh"}</span><h1>${isHE()?`<span class="he">${esc(D.poskim.title.he)}</span>`:esc(t(D.poskim.title))}</h1></div></div><p class="intro">${intro}</p>`;
+    const items = D.poskim.items.map(it=>{
+      const noteTxt = isHE()? (it.note_he||"") : (it.note_en||"");
+      const note = noteTxt ? `<div style="font-size:12.5px;color:var(--mute);font-style:italic;margin-top:7px">${esc(noteTxt)}</div>` : "";
+      const enBlock = (!isHE() && it.en) ? `<div class="en">${esc(it.en)}</div>` : "";
+      return `<div class="step" style="margin-bottom:12px">
+        <div class="stage">${isHE()?`<span class="he">${esc(it.label.he)}</span>`:esc(t(it.label))}</div>
+        <div class="he">${esc(it.he)}</div>
+        ${enBlock}
+        ${note}
+        <div class="ref"><span class="badge direct">direct</span> <a href="${esc(it.sefaria)}" target="_blank" rel="noopener">${esc(it.ref)} →</a></div>
+      </div>`;
+    }).join("");
+    return head + `<div class="chain">${items}</div>`;
   }
 
   /* ===== LOCUST ACROSS TANAKH ===== */
