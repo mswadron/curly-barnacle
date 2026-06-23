@@ -152,7 +152,50 @@ function naviUrl(rangeStr) {
   return "https://www.sefaria.org/" + ref + "?lang=bi&ven=" + KOREN;
 }
 const tr = (lang, o) => o ? o[lang] : "";
-const yuUrl = p => "https://www.yutorah.org/search?q=" + encodeURIComponent(p + " haftarah");
+const YU_SLUG = {
+  "Bereishit": "bereishit",
+  "Noach": "noach",
+  "Lech Lecha": "lech-lecha",
+  "Vayera": "vayeira",
+  "Chayei Sarah": "chayei-sara",
+  "Toldot": "toldot",
+  "Vayetzei": "vayeitzei",
+  "Vayishlach": "vayishlach",
+  "Vayeshev": "vayeishev",
+  "Miketz": "mikeitz",
+  "Vayigash": "vayigash",
+  "Vayechi": "vayechi",
+  "Shemot": "shemot",
+  "Vaera": "va-era",
+  "Bo": "bo",
+  "Beshalach": "beshalach",
+  "Yitro": "yitro",
+  "Mishpatim": "mishpatim",
+  "Terumah": "teruma",
+  "Tetzaveh": "tetzaveh",
+  "Ki Tisa": "ki-tisa",
+  "Vayakhel": "vayakhel",
+  "Pekudei": "pekudei",
+  "Vayikra": "vayikra",
+  "Tzav": "tzav",
+  "Shmini": "shemini",
+  "Tazria": "tazria",
+  "Metzora": "metzora",
+  "Acharei Mot": "acharei-mot",
+  "Kedoshim": "kedoshim",
+  "Emor": "emor",
+  "Behar": "behar",
+  "Bechukotai": "bechukotai",
+  "Bamidbar": "bamidbar",
+  "Naso": "naso",
+  "Beha'alotcha": "behaalotecha",
+  "Shelach": "shelach",
+  "Korach": "korach",
+  "Chukat": "chukat",
+  "Balak": "balak",
+  "Pinchas": "pinchas"
+};
+const yuUrl = p => YU_SLUG[p] ? "https://www.yutorah.org/categories/parsha/" + YU_SLUG[p] + "/" : null;
 const HLINKS = {
   "Bereishit": {
     nut: "https://www.chabad.org/parshah/article_cdo/aid/573554/jewish/Haftorah-in-a-Nutshell.htm",
@@ -1843,7 +1886,7 @@ function WeeklyRow({
       borderRadius: 999,
       padding: "2px 9px"
     }
-  }, tr(lang, T.torahorg), " ↗"), /*#__PURE__*/React.createElement("a", {
+  }, tr(lang, T.torahorg), " ↗"), yuUrl(w.p) && /*#__PURE__*/React.createElement("a", {
     href: yuUrl(w.p),
     target: "_blank",
     rel: "noreferrer",

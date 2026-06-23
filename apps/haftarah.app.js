@@ -54,7 +54,50 @@ function naviUrl(rangeStr) {
   return "https://www.sefaria.org/" + ref + "?lang=bi&ven=" + KOREN;
 }
 const tr = (lang, o) => (o ? o[lang] : "");
-const yuUrl = (p) => "https://www.yutorah.org/search?q=" + encodeURIComponent(p + " haftarah");
+const YU_SLUG = {
+  "Bereishit": "bereishit",
+  "Noach": "noach",
+  "Lech Lecha": "lech-lecha",
+  "Vayera": "vayeira",
+  "Chayei Sarah": "chayei-sara",
+  "Toldot": "toldot",
+  "Vayetzei": "vayeitzei",
+  "Vayishlach": "vayishlach",
+  "Vayeshev": "vayeishev",
+  "Miketz": "mikeitz",
+  "Vayigash": "vayigash",
+  "Vayechi": "vayechi",
+  "Shemot": "shemot",
+  "Vaera": "va-era",
+  "Bo": "bo",
+  "Beshalach": "beshalach",
+  "Yitro": "yitro",
+  "Mishpatim": "mishpatim",
+  "Terumah": "teruma",
+  "Tetzaveh": "tetzaveh",
+  "Ki Tisa": "ki-tisa",
+  "Vayakhel": "vayakhel",
+  "Pekudei": "pekudei",
+  "Vayikra": "vayikra",
+  "Tzav": "tzav",
+  "Shmini": "shemini",
+  "Tazria": "tazria",
+  "Metzora": "metzora",
+  "Acharei Mot": "acharei-mot",
+  "Kedoshim": "kedoshim",
+  "Emor": "emor",
+  "Behar": "behar",
+  "Bechukotai": "bechukotai",
+  "Bamidbar": "bamidbar",
+  "Naso": "naso",
+  "Beha'alotcha": "behaalotecha",
+  "Shelach": "shelach",
+  "Korach": "korach",
+  "Chukat": "chukat",
+  "Balak": "balak",
+  "Pinchas": "pinchas",
+};
+const yuUrl = (p) => YU_SLUG[p] ? ("https://www.yutorah.org/categories/parsha/" + YU_SLUG[p] + "/") : null;
 const HLINKS = {
   "Bereishit": { nut: "https://www.chabad.org/parshah/article_cdo/aid/573554/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3469983/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-bereishis/" },
   "Noach": { nut: "https://www.chabad.org/parshah/article_cdo/aid/578168/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3476758/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-5786-noach/" },
@@ -354,7 +397,7 @@ function WeeklyRow({ w, lang }) {
         {wl.nut && <a href={wl.nut} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 700, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 9px" }}>{tr(lang, T.nutshell)} ↗</a>}
         {wl.comp && <a href={wl.comp} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 700, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 9px" }}>{tr(lang, T.companion)} ↗</a>}
         {wl.torg && <a href={wl.torg} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 700, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 9px" }}>{tr(lang, T.torahorg)} ↗</a>}
-        <a href={yuUrl(w.p)} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 700, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 9px" }}>{tr(lang, T.yutorah)} ↗</a>
+        {yuUrl(w.p) && <a href={yuUrl(w.p)} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 700, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 9px" }}>{tr(lang, T.yutorah)} ↗</a>}
       </div>
       <div dir="rtl" className="heb" style={{ marginTop: 7, fontSize: 16, color: C.ink, lineHeight: 1.7 }}>
         {w.inc} <span style={{ color: C.sub }}>… עד …</span> {w.end}
