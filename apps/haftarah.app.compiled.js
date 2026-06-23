@@ -1119,6 +1119,41 @@ const DATA = [{
 }, {
   cat: "Festivals",
   occ: {
+    en: "Pesach · Day 8 (diaspora)",
+    he: "פֶּסַח · יוֹם ח׳"
+  },
+  torah: [{
+    label: {
+      en: "Kol HaB'chor",
+      he: "כָּל הַבְּכוֹר"
+    },
+    range: "Deut. 15:19–16:17"
+  }],
+  haftarot: [{
+    trad: "All",
+    layer: "baraita",
+    inc: "עוֹד הַיּוֹם בְּנֹב לַעֲמֹד",
+    en: "Isaiah’s Messianic prophecy",
+    range: "Isaiah 10:32–12:6"
+  }],
+  reason: {
+    text: {
+      en: "The last day of Pesach is linked to the future redemption, so the haftarah is Isaiah’s prophecy of the Messianic king.",
+      he: "יוֹם טוֹב הָאַחֲרוֹן שֶׁל פֶּסַח עִנְיָנוֹ הַגְּאֻלָּה הָעֲתִידָה, וְלָכֵן מַפְטִירִין בִּנְבוּאַת הַמָּשִׁיחַ שֶׁבִּישַׁעְיָה."
+    },
+    src: S.meg31a
+  },
+  change: null,
+  flags: [],
+  sources: [S.meg31a, S.ram(8)],
+  heb: "עוֹד הַיּוֹם בְּנֹב לַעֲמֹד, יְנֹפֵף יָדוֹ הַר בַּת צִיּוֹן גִּבְעַת יְרוּשָׁלִָם.",
+  hebSrc: {
+    en: "Isaiah 10:32–12:6; Megillah 31a",
+    he: "יְשַׁעְיָה י׳:לב–י״ב:ו; מְגִלָּה ל״א."
+  }
+}, {
+  cat: "Festivals",
+  occ: {
     en: "Shavuot — Day 1",
     he: "שָׁבוּעוֹת — יוֹם א׳"
   },
@@ -1243,6 +1278,111 @@ const DATA = [{
   hebSrc: {
     en: "Megillah 31a",
     he: "מְגִלָּה ל״א."
+  }
+}, {
+  cat: "Festivals",
+  occ: {
+    en: "Sukkot · Day 2 (diaspora)",
+    he: "סֻכּוֹת · יוֹם ב׳"
+  },
+  torah: [{
+    label: {
+      en: "Parashat Mo'adot",
+      he: "פָּרָשַׁת מוֹעֲדוֹת"
+    },
+    range: "Lev. 22:26–23:44"
+  }],
+  haftarot: [{
+    trad: "All",
+    layer: "baraita",
+    inc: "וַיִּקָּהֲלוּ אֶל הַמֶּלֶךְ שְׁלֹמֹה",
+    en: "Solomon’s dedication assembly",
+    range: "I Kings 8:2–21"
+  }],
+  reason: {
+    text: {
+      en: "Solomon assembled Israel for the Temple’s dedication on the festival of Sukkot.",
+      he: "שְׁלֹמֹה הִקְהִיל אֶת יִשְׂרָאֵל לַחֲנֻכַּת הַבַּיִת בְּחַג הַסֻּכּוֹת."
+    },
+    src: S.meg31a
+  },
+  change: null,
+  flags: [],
+  sources: [S.meg31a, S.ram(12)],
+  heb: "וַיִּקָּהֲלוּ אֶל הַמֶּלֶךְ שְׁלֹמֹה כָּל אִישׁ יִשְׂרָאֵל בְּיֶרַח הָאֵתָנִים בֶּחָג, הוּא הַחֹדֶשׁ הַשְּׁבִיעִי.",
+  hebSrc: {
+    en: "I Kings 8:2–21; Megillah 31a",
+    he: "מְלָכִים א׳ ח׳:ב–כא; מְגִלָּה ל״א."
+  }
+}, {
+  cat: "Festivals",
+  occ: {
+    en: "Sukkot · Shabbat Chol HaMoed",
+    he: "סֻכּוֹת · שַׁבָּת חוֹל הַמּוֹעֵד"
+  },
+  torah: [{
+    label: {
+      en: "Re'eh Atah",
+      he: "רְאֵה אַתָּה"
+    },
+    range: "Ex. 33:12–34:26"
+  }],
+  haftarot: [{
+    trad: "All",
+    layer: "baraita",
+    inc: "וְהָיָה בַּיּוֹם הַהוּא בְּיוֹם בּוֹא גוֹג",
+    en: "The war of Gog",
+    range: "Ezekiel 38:18–39:16"
+  }],
+  reason: {
+    text: {
+      en: "The war of Gog is foretold to occur in Tishrei, the month of Sukkot.",
+      he: "מִלְחֶמֶת גּוֹג עֲתִידָה לִהְיוֹת בְּתִשְׁרֵי, חֹדֶשׁ הֶחָג."
+    },
+    src: S.meg31a
+  },
+  change: null,
+  flags: [],
+  sources: [S.meg31a],
+  heb: "וְהָיָה בַּיּוֹם הַהוּא בְּיוֹם בּוֹא גוֹג עַל אַדְמַת יִשְׂרָאֵל, נְאֻם אֲדֹנָי ה׳.",
+  hebSrc: {
+    en: "Ezekiel 38:18–39:16; Megillah 31a",
+    he: "יְחֶזְקֵאל ל״ח:יח–ל״ט:טז; מְגִלָּה ל״א."
+  }
+}, {
+  cat: "Festivals",
+  occ: {
+    en: "Shemini Atzeret",
+    he: "שְׁמִינִי עֲצֶרֶת"
+  },
+  torah: [{
+    label: {
+      en: "Kol HaB'chor",
+      he: "כָּל הַבְּכוֹר"
+    },
+    range: "Deut. 14:22–16:17"
+  }],
+  haftarot: [{
+    trad: "All",
+    layer: "baraita",
+    inc: "וַיְהִי כְּכַלּוֹת שְׁלֹמֹה לְהִתְפַּלֵּל",
+    en: "Solomon blesses the people",
+    range: "I Kings 8:54–66"
+  }],
+  reason: {
+    text: {
+      en: "The haftarah continues Solomon’s dedication, ending on the eighth day when he sent the people home rejoicing.",
+      he: "הַהַפְטָרָה מַמְשִׁיכָה חֲנֻכַּת הַבַּיִת, וּמְסַיֶּמֶת בַּיּוֹם הַשְּׁמִינִי שֶׁשִּׁלַּח אֶת הָעָם."
+    },
+    src: S.meg31a
+  },
+  change: null,
+  flags: [],
+  sources: [S.meg31a, S.ram(12)],
+  heb: "וַיְהִי כְּכַלּוֹת שְׁלֹמֹה לְהִתְפַּלֵּל אֶל ה׳ אֵת כָּל הַתְּפִלָּה וְהַתְּחִנָּה הַזֹּאת.",
+  hebSrc: {
+    en: "I Kings 8:54–66; Megillah 31a",
+    he: "מְלָכִים א׳ ח׳:נד–סו; מְגִלָּה ל״א."
   }
 }, {
   cat: "Festivals",
