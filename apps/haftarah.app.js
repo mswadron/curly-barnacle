@@ -55,7 +55,49 @@ function naviUrl(rangeStr) {
 }
 const tr = (lang, o) => (o ? o[lang] : "");
 const yuUrl = (p) => "https://www.yutorah.org/search?q=" + encodeURIComponent(p + " haftarah");
-const chabadUrl = (p) => "https://www.google.com/search?q=" + encodeURIComponent("site:chabad.org Haftorah in a Nutshell " + p);
+const HLINKS = {
+  "Bereishit": { nut: "https://www.chabad.org/parshah/article_cdo/aid/573554/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3469983/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-bereishis/" },
+  "Noach": { nut: "https://www.chabad.org/parshah/article_cdo/aid/578168/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3476758/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-5786-noach/" },
+  "Lech Lecha": { nut: "https://www.chabad.org/parshah/article_cdo/aid/579794/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3476782/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-5786-lechlecha/" },
+  "Vayera": { nut: "https://www.chabad.org/parshah/article_cdo/aid/579813/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3490047/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-vayera/" },
+  "Chayei Sarah": { nut: "https://www.chabad.org/parshah/article_cdo/aid/585783/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3495198/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-chayeisarah/" },
+  "Toldot": { nut: "https://www.chabad.org/parshah/article_cdo/aid/587261/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3502319/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-5786-toldos/" },
+  "Vayetzei": { nut: "https://www.chabad.org/parshah/article_cdo/aid/593837/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3505968/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-vayeitzei/" },
+  "Vayishlach": { nut: "https://www.chabad.org/parshah/article_cdo/aid/596328/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3514794/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-5785-vayishlach/" },
+  "Vayeshev": { nut: "https://www.chabad.org/parshah/article_cdo/aid/1019527/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3523178/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-vayeishev/" },
+  "Miketz": { nut: "https://www.chabad.org/parshah/article_cdo/aid/605821/jewish/Haftorah-in-a-Nutshell.htm", torg: "https://torah.org/torah-portion/haftorah-miketz/" },
+  "Vayigash": { nut: "https://www.chabad.org/parshah/article_cdo/aid/610065/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3533432/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-vayigash/" },
+  "Vayechi": { nut: "https://www.chabad.org/parshah/article_cdo/aid/611890/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3549010/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-5786-vayechi/" },
+  "Shemot": { nut: "https://www.chabad.org/parshah/article_cdo/aid/615789/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3555178/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-shemos/" },
+  "Vaera": { nut: "https://www.chabad.org/parshah/article_cdo/aid/619492/jewish/Haftorah-in-a-Nutshell.htm", torg: "https://torah.org/torah-portion/haftorah-5786-vaera/" },
+  "Bo": { nut: "https://www.chabad.org/parshah/article_cdo/aid/619493/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3567754/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-5786-bo/" },
+  "Beshalach": { nut: "https://www.chabad.org/parshah/article_cdo/aid/626290/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3567861/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-5786-beshalach/" },
+  "Yitro": { nut: "https://www.chabad.org/parshah/article_cdo/aid/472350/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3582416/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-5786-yisro/" },
+  "Mishpatim": { nut: "https://www.chabad.org/parshah/article_cdo/aid/819841/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3948839/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/commentary-5786-mishpatim/" },
+  "Terumah": { nut: "https://www.chabad.org/parshah/article_cdo/aid/632637/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3591530/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-terumah/" },
+  "Tetzaveh": { nut: "https://www.chabad.org/parshah/article_cdo/aid/819846/jewish/Haftorah-in-a-Nutshell.htm", torg: "https://torah.org/torah-portion/haftorah-tetzaveh/" },
+  "Ki Tisa": { nut: "https://www.chabad.org/parshah/article_cdo/aid/819865/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/library/article_cdo/aid/3942331/jewish/The-Story-of-Elijah-and-the-Prophets-of-Baal-on-Mount-Carmel.htm", torg: "https://torah.org/torah-portion/haftorah-kisisa/" },
+  "Vayakhel": { nut: "https://www.chabad.org/parshah/article_cdo/aid/639863/jewish/Haftorah-in-a-Nutshell.htm", torg: "https://torah.org/torah-portion/haftorah-vayakhelpekudei/" },
+  "Pekudei": { nut: "https://www.chabad.org/parshah/article_cdo/aid/639933/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/4306414/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-pekudei/" },
+  "Vayikra": { nut: "https://www.chabad.org/parshah/article_cdo/aid/649861/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3630026/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-commentary-5786-vayikra/" },
+  "Tzav": { nut: "https://www.chabad.org/parshah/article_cdo/aid/651957/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3630531/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-commentary-5786-tzav/" },
+  "Shmini": { nut: "https://www.chabad.org/parshah/article_cdo/aid/657618/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3642101/jewish/Haftarah-Companion.htm" },
+  "Tazria": { nut: "https://www.chabad.org/parshah/article_cdo/aid/659332/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/4000720/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-tazria/" },
+  "Metzora": { nut: "https://www.chabad.org/parshah/article_cdo/aid/660997/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3651842/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-metzorah/" },
+  "Acharei Mot": { nut: "https://www.chabad.org/parshah/article_cdo/aid/663392/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3656650/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-achareimos/" },
+  "Kedoshim": { nut: "https://www.chabad.org/parshah/article_cdo/aid/668555/jewish/Haftorah-in-a-Nutshell.htm", torg: "https://torah.org/torah-portion/haftorah-kedoshim/" },
+  "Emor": { nut: "https://www.chabad.org/parshah/article_cdo/aid/671841/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3662332/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-5786-emor/" },
+  "Behar": { nut: "https://www.chabad.org/parshah/article_cdo/aid/671842/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/4029320/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-5786-behar/" },
+  "Bechukotai": { nut: "https://www.chabad.org/parshah/article_cdo/aid/671843/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3671013/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-bechukosai/" },
+  "Bamidbar": { nut: "https://www.chabad.org/parshah/article_cdo/aid/895213/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3677153/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-bamidbar/" },
+  "Naso": { nut: "https://www.chabad.org/parshah/article_cdo/aid/681090/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3680863/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-5786-naso/" },
+  "Beha'alotcha": { nut: "https://www.chabad.org/parshah/article_cdo/aid/598114/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3694187/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-behaaloscha/" },
+  "Shelach": { nut: "https://www.chabad.org/parshah/article_cdo/aid/691124/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/library/article_cdo/aid/3700192/jewish/Rahab-the-Harlot-and-the-Spies.htm", torg: "https://torah.org/torah-portion/haftorah-5785-shlach/" },
+  "Korach": { nut: "https://www.chabad.org/parshah/article_cdo/aid/1229167/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/4043037/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-5785-korach/" },
+  "Chukat": { nut: "https://www.chabad.org/parshah/article_cdo/aid/696127/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3709898/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-chukas/" },
+  "Balak": { nut: "https://www.chabad.org/parshah/article_cdo/aid/696140/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3715918/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-balak/" },
+  "Pinchas": { nut: "https://www.chabad.org/parshah/article_cdo/aid/1229209/jewish/Haftorah-in-a-Nutshell.htm", torg: "https://torah.org/torah-portion/haftorah-5757-pinchas/" },
+};
 
 const T = {
   eyebrow: { en: "Tosefta \u00b7 Talmud \u00b7 Pesikta \u00b7 Abudraham \u00b7 Rambam \u00b7 SA", he: "תּוֹסֶפְתָּא \u00b7 תַּלְמוּד \u00b7 פְּסִיקְתָּא \u00b7 אֲבוּדַרְהַם \u00b7 רַמְבַּ״ם \u00b7 שֻׁלְחָן עָרוּךְ" },
@@ -84,7 +126,9 @@ const T = {
   resolved: { en: "Resolved", he: "לַהֲלָכָה" },
   read: { en: "Read \u00b7 Koren", he: "עַיֵּן \u00b7 קֶרֶן" },
   identNote: { en: "verse numbers added", he: "מספור הפסוקים הוסף" },
-  nutshell: { en: "Connection · Chabad", he: "הֶקְשֵׁר · חב״ד" },
+  nutshell: { en: "Nutshell · Chabad", he: "תַּמְצִית · חב״ד" },
+  companion: { en: "Companion · Chabad", he: "מַדְרִיךְ · חב״ד" },
+  torahorg: { en: "Commentary · Torah.org", he: "בֵּאוּר · Torah.org" },
   yutorah: { en: "Shiur · YU", he: "שִׁעוּר · ישיבה" },
   connection: { en: "Connection", he: "הֶקְשֵׁר" },
   offSefaria: { en: "off-Sefaria · pre-modern", he: "מִחוּץ לְסֵפַרְיָא · קַדְמוֹן" },
@@ -294,6 +338,7 @@ function LayerBadge({ k, lang }) {
 function WeeklyRow({ w, lang }) {
   const [open, setOpen] = useState(false);
   const he = lang === "he";
+  const wl = HLINKS[w.p] || {};
   return (
     <div className="card" style={{ border: `1px solid ${C.line}`, borderRadius: 10, background: C.panel, marginBottom: 8, padding: "12px 14px" }} dir={he ? "rtl" : "ltr"}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 10 }}>
@@ -306,8 +351,10 @@ function WeeklyRow({ w, lang }) {
         <span style={{ fontSize: 12.5, color: C.gold, fontWeight: 700 }} className={he ? "heb" : ""}>{bookName(lang, w.book)} {w.range}</span>
         <span style={{ fontSize: 10.5, color: C.sub }}>{tr(lang, T.identNote)}</span>
         <a href={naviUrl(`${w.book} ${w.range}`)} target="_blank" rel="noreferrer" style={{ fontSize: 11, fontWeight: 700, textDecoration: "none", color: "#fff", background: C.tekhelet, borderRadius: 999, padding: "2px 10px" }}>{tr(lang, T.read)} ↗</a>
+        {wl.nut && <a href={wl.nut} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 700, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 9px" }}>{tr(lang, T.nutshell)} ↗</a>}
+        {wl.comp && <a href={wl.comp} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 700, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 9px" }}>{tr(lang, T.companion)} ↗</a>}
+        {wl.torg && <a href={wl.torg} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 700, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 9px" }}>{tr(lang, T.torahorg)} ↗</a>}
         <a href={yuUrl(w.p)} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 700, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 9px" }}>{tr(lang, T.yutorah)} ↗</a>
-        <a href={chabadUrl(w.p)} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 700, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 9px" }}>{tr(lang, T.nutshell)} ↗</a>
       </div>
       <div dir="rtl" className="heb" style={{ marginTop: 7, fontSize: 16, color: C.ink, lineHeight: 1.7 }}>
         {w.inc} <span style={{ color: C.sub }}>… עד …</span> {w.end}
