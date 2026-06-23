@@ -54,6 +54,8 @@ function naviUrl(rangeStr) {
   return "https://www.sefaria.org/" + ref + "?lang=bi&ven=" + KOREN;
 }
 const tr = (lang, o) => (o ? o[lang] : "");
+const yuUrl = (p) => "https://www.yutorah.org/search?q=" + encodeURIComponent(p + " haftarah");
+const chabadUrl = (p) => "https://www.google.com/search?q=" + encodeURIComponent("site:chabad.org Haftorah in a Nutshell " + p);
 
 const T = {
   eyebrow: { en: "Tosefta \u00b7 Talmud \u00b7 Pesikta \u00b7 Abudraham \u00b7 Rambam \u00b7 SA", he: "תּוֹסֶפְתָּא \u00b7 תַּלְמוּד \u00b7 פְּסִיקְתָּא \u00b7 אֲבוּדַרְהַם \u00b7 רַמְבַּ״ם \u00b7 שֻׁלְחָן עָרוּךְ" },
@@ -81,7 +83,11 @@ const T = {
   dispute: { en: "Dispute", he: "מַחֲלֹקֶת" },
   resolved: { en: "Resolved", he: "לַהֲלָכָה" },
   read: { en: "Read \u00b7 Koren", he: "עַיֵּן \u00b7 קֶרֶן" },
-  identNote: { en: "(verse range ident.)", he: "(זִהוּי הַפְּסוּקִים)" },
+  identNote: { en: "verse numbers added", he: "מספור הפסוקים הוסף" },
+  nutshell: { en: "Connection · Chabad", he: "הֶקְשֵׁר · חב״ד" },
+  yutorah: { en: "Shiur · YU", he: "שִׁעוּר · ישיבה" },
+  connection: { en: "Connection", he: "הֶקְשֵׁר" },
+  offSefaria: { en: "off-Sefaria · pre-modern", he: "מִחוּץ לְסֵפַרְיָא · קַדְמוֹן" },
   showSource: { en: "\u25b8 Show source text", he: "\u25c2 הַצֵּג לְשׁוֹן הַמָּקוֹר" },
   hideSource: { en: "\u25be Hide source text", he: "\u25be הַסְתֵּר לְשׁוֹן הַמָּקוֹר" },
   nothing: { en: "Nothing matches.", he: "אֵין תּוֹצָאוֹת." },
@@ -152,7 +158,8 @@ const WEEKLY = [
   { p: "Kedoshim", pHe: "קְדוֹשִׁים", inc: "הֲלִדְרֹשׁ אֹתִי אַתֶּם בָּאִים", end: "לָדַעַת כִּי אֲנִי ה׳ אֱלֹקֵיכֶם", book: "Ezekiel", range: "20:1–20", seg: 31 },
   { p: "Emor", pHe: "אֱמוֹר", inc: "וְהַכֹּהֲנִים הַלְוִיִּם", end: "לֹא יֹאכְלוּ הַכֹּהֲנִים", book: "Ezekiel", range: "44:15–31", seg: 32 },
   { p: "Behar", pHe: "בְּהַר", inc: "הִנֵּה חֲנַמְאֵל", end: "הֲמִמֶּנִּי יִפָּלֵא כָּל דָּבָר", book: "Jeremiah", range: "32:6–27", seg: 33 },
-  { p: "Bechukotai", pHe: "בְּחֻקֹּתַי", inc: "ה׳ עֻזִּי וּמָעֻזִּי", end: "כִּי תְהִלָּתִי אָתָּה", book: "Jeremiah", range: "16:19–17:14", seg: 34 },
+  { p: "Bechukotai", pHe: "בְּחֻקֹּתַי", inc: "ה׳ עֻזִּי וּמָעֻזִּי", end: "כִּי תְהִלָּתִי אָתָּה", book: "Jeremiah", range: "16:19–17:14", seg: 34,
+    reason: { text: { en: "Ezra ordained that the curses in Vayikra be read before Shavuot, so that the year and its curses conclude with the outgoing year.", he: "תִּקֵּן עֶזְרָא שֶׁיְּהוּ קוֹרִין קְלָלוֹת שֶׁבְּתוֹרַת כֹּהֲנִים קֹדֶם עֲצֶרֶת, כְּדֵי שֶׁתִּכְלֶה שָׁנָה וְקִלְלוֹתֶיהָ." }, heb: "כְּדֵי שֶׁתִּכְלֶה שָׁנָה וְקִלְלוֹתֶיהָ.", src: S.meg31b } },
   { p: "Bamidbar", pHe: "בְּמִדְבַּר", inc: "וְהָיָה מִסְפַּר בְּנֵי יִשְׂרָאֵל", end: "וְיָדַעַתְּ אֶת ה׳", book: "Hosea", range: "2:1–22", seg: 35 },
   { p: "Naso", pHe: "נָשֹׂא", inc: "וַיְהִי אִישׁ אֶחָד מִצָּרְעָה", end: "וּבֵין אֶשְׁתָּאֹל", book: "Judges", range: "13:2–25", seg: 36 },
   { p: "Beha'alotcha", pHe: "בְּהַעֲלֹתְךָ", inc: "רׇנִּי וְשִׂמְחִי", end: "חֵן חֵן לָהּ", book: "Zechariah", range: "2:14–4:7", seg: 37 },
@@ -299,10 +306,27 @@ function WeeklyRow({ w, lang }) {
         <span style={{ fontSize: 12.5, color: C.gold, fontWeight: 700 }} className={he ? "heb" : ""}>{bookName(lang, w.book)} {w.range}</span>
         <span style={{ fontSize: 10.5, color: C.sub }}>{tr(lang, T.identNote)}</span>
         <a href={naviUrl(`${w.book} ${w.range}`)} target="_blank" rel="noreferrer" style={{ fontSize: 11, fontWeight: 700, textDecoration: "none", color: "#fff", background: C.tekhelet, borderRadius: 999, padding: "2px 10px" }}>{tr(lang, T.read)} ↗</a>
+        <a href={yuUrl(w.p)} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 700, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 9px" }}>{tr(lang, T.yutorah)} ↗</a>
+        <a href={chabadUrl(w.p)} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 700, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 9px" }}>{tr(lang, T.nutshell)} ↗</a>
       </div>
       <div dir="rtl" className="heb" style={{ marginTop: 7, fontSize: 16, color: C.ink, lineHeight: 1.7 }}>
         {w.inc} <span style={{ color: C.sub }}>… עד …</span> {w.end}
       </div>
+      {w.reason && (
+        <div style={{ marginTop: 7, fontSize: 12.5, background: C.reasonSoft, border: "1px solid #4B7A45", borderRadius: 6, padding: "8px 10px", lineHeight: 1.5 }} className={he ? "heb" : ""}>
+          <span style={{ fontWeight: 700, color: C.reason }}>{tr(lang, T.reason)} · </span>{tr(lang, w.reason.text)}
+          <div dir="rtl" className="heb" style={{ fontSize: 15, color: C.ink, marginTop: 5, lineHeight: 1.7 }}>{w.reason.heb}</div>
+          <div style={{ fontSize: 11, color: C.sub, marginTop: 3 }}>{he ? w.reason.src.he : w.reason.src.label}</div>
+        </div>
+      )}
+      {w.conn && w.conn.heb && (
+        <div style={{ marginTop: 7, fontSize: 12.5, background: C.goldSoft, border: `1px solid ${C.rule}`, borderRadius: 6, padding: "8px 10px", lineHeight: 1.5 }} className={he ? "heb" : ""}>
+          <span style={{ fontWeight: 700, color: C.gold }}>{tr(lang, T.connection)} · </span>
+          <span style={{ fontSize: 9.5, fontWeight: 700, color: C.flag, background: "#fff", border: `1px solid ${C.flag}`, borderRadius: 4, padding: "1px 5px" }}>{tr(lang, T.offSefaria)}</span>
+          <div dir="rtl" className="heb" style={{ fontSize: 15, color: C.ink, marginTop: 5, lineHeight: 1.7 }}>{w.conn.heb}</div>
+          <div style={{ fontSize: 11, color: C.sub, marginTop: 3 }}>{he ? w.conn.src.he : w.conn.src.label}</div>
+        </div>
+      )}
       {w.vars && (
         <div className="no-print" style={{ marginTop: 4 }}>
           <button onClick={() => setOpen(o => !o)} style={{ fontSize: 11, fontWeight: 600, color: C.tekhelet, background: "none", border: "none", cursor: "pointer", padding: 0 }}>

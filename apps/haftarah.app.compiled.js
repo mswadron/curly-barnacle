@@ -152,6 +152,8 @@ function naviUrl(rangeStr) {
   return "https://www.sefaria.org/" + ref + "?lang=bi&ven=" + KOREN;
 }
 const tr = (lang, o) => o ? o[lang] : "";
+const yuUrl = p => "https://www.yutorah.org/search?q=" + encodeURIComponent(p + " haftarah");
+const chabadUrl = p => "https://www.google.com/search?q=" + encodeURIComponent("site:chabad.org Haftorah in a Nutshell " + p);
 const T = {
   eyebrow: {
     en: "Tosefta \u00b7 Talmud \u00b7 Pesikta \u00b7 Abudraham \u00b7 Rambam \u00b7 SA",
@@ -254,8 +256,24 @@ const T = {
     he: "עַיֵּן \u00b7 קֶרֶן"
   },
   identNote: {
-    en: "(verse range ident.)",
-    he: "(זִהוּי הַפְּסוּקִים)"
+    en: "verse numbers added",
+    he: "מספור הפסוקים הוסף"
+  },
+  nutshell: {
+    en: "Connection · Chabad",
+    he: "הֶקְשֵׁר · חב״ד"
+  },
+  yutorah: {
+    en: "Shiur · YU",
+    he: "שִׁעוּר · ישיבה"
+  },
+  connection: {
+    en: "Connection",
+    he: "הֶקְשֵׁר"
+  },
+  offSefaria: {
+    en: "off-Sefaria · pre-modern",
+    he: "מִחוּץ לְסֵפַרְיָא · קַדְמוֹן"
   },
   showSource: {
     en: "\u25b8 Show source text",
@@ -633,7 +651,15 @@ const WEEKLY = [{
   end: "כִּי תְהִלָּתִי אָתָּה",
   book: "Jeremiah",
   range: "16:19–17:14",
-  seg: 34
+  seg: 34,
+  reason: {
+    text: {
+      en: "Ezra ordained that the curses in Vayikra be read before Shavuot, so that the year and its curses conclude with the outgoing year.",
+      he: "תִּקֵּן עֶזְרָא שֶׁיְּהוּ קוֹרִין קְלָלוֹת שֶׁבְּתוֹרַת כֹּהֲנִים קֹדֶם עֲצֶרֶת, כְּדֵי שֶׁתִּכְלֶה שָׁנָה וְקִלְלוֹתֶיהָ."
+    },
+    heb: "כְּדֵי שֶׁתִּכְלֶה שָׁנָה וְקִלְלוֹתֶיהָ.",
+    src: S.meg31b
+  }
 }, {
   p: "Bamidbar",
   pHe: "בְּמִדְבַּר",
@@ -1570,7 +1596,33 @@ function WeeklyRow({
       borderRadius: 999,
       padding: "2px 10px"
     }
-  }, tr(lang, T.read), " ↗")), /*#__PURE__*/React.createElement("div", {
+  }, tr(lang, T.read), " ↗"), /*#__PURE__*/React.createElement("a", {
+    href: yuUrl(w.p),
+    target: "_blank",
+    rel: "noreferrer",
+    style: {
+      fontSize: 10.5,
+      fontWeight: 700,
+      textDecoration: "none",
+      color: C.tekhelet,
+      border: `1px solid ${C.tekhelet}`,
+      borderRadius: 999,
+      padding: "2px 9px"
+    }
+  }, tr(lang, T.yutorah), " ↗"), /*#__PURE__*/React.createElement("a", {
+    href: chabadUrl(w.p),
+    target: "_blank",
+    rel: "noreferrer",
+    style: {
+      fontSize: 10.5,
+      fontWeight: 700,
+      textDecoration: "none",
+      color: C.tekhelet,
+      border: `1px solid ${C.tekhelet}`,
+      borderRadius: 999,
+      padding: "2px 9px"
+    }
+  }, tr(lang, T.nutshell), " ↗")), /*#__PURE__*/React.createElement("div", {
     dir: "rtl",
     className: "heb",
     style: {
@@ -1583,7 +1635,79 @@ function WeeklyRow({
     style: {
       color: C.sub
     }
-  }, "… עד …"), " ", w.end), w.vars && /*#__PURE__*/React.createElement("div", {
+  }, "… עד …"), " ", w.end), w.reason && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 7,
+      fontSize: 12.5,
+      background: C.reasonSoft,
+      border: "1px solid #4B7A45",
+      borderRadius: 6,
+      padding: "8px 10px",
+      lineHeight: 1.5
+    },
+    className: he ? "heb" : ""
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontWeight: 700,
+      color: C.reason
+    }
+  }, tr(lang, T.reason), " · "), tr(lang, w.reason.text), /*#__PURE__*/React.createElement("div", {
+    dir: "rtl",
+    className: "heb",
+    style: {
+      fontSize: 15,
+      color: C.ink,
+      marginTop: 5,
+      lineHeight: 1.7
+    }
+  }, w.reason.heb), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: C.sub,
+      marginTop: 3
+    }
+  }, he ? w.reason.src.he : w.reason.src.label)), w.conn && w.conn.heb && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 7,
+      fontSize: 12.5,
+      background: C.goldSoft,
+      border: `1px solid ${C.rule}`,
+      borderRadius: 6,
+      padding: "8px 10px",
+      lineHeight: 1.5
+    },
+    className: he ? "heb" : ""
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontWeight: 700,
+      color: C.gold
+    }
+  }, tr(lang, T.connection), " · "), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 9.5,
+      fontWeight: 700,
+      color: C.flag,
+      background: "#fff",
+      border: `1px solid ${C.flag}`,
+      borderRadius: 4,
+      padding: "1px 5px"
+    }
+  }, tr(lang, T.offSefaria)), /*#__PURE__*/React.createElement("div", {
+    dir: "rtl",
+    className: "heb",
+    style: {
+      fontSize: 15,
+      color: C.ink,
+      marginTop: 5,
+      lineHeight: 1.7
+    }
+  }, w.conn.heb), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: C.sub,
+      marginTop: 3
+    }
+  }, he ? w.conn.src.he : w.conn.src.label)), w.vars && /*#__PURE__*/React.createElement("div", {
     className: "no-print",
     style: {
       marginTop: 4
