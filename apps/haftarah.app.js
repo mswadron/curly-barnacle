@@ -98,6 +98,43 @@ const YU_SLUG = {
   "Pinchas": "pinchas",
 };
 const yuUrl = (p) => "https://www.yutorah.org/search/?s=" + encodeURIComponent(p + " haftarah");
+const OU_AID = {
+  "Bereishit": 134795,
+  "Noach": 78074,
+  "Lech Lecha": 78455,
+  "Vayera": 109456,
+  "Chayei Sarah": 78778,
+  "Toldot": 79013,
+  "Vayetzei": 79286,
+  "Vayishlach": 79551,
+  "Vayeshev": 111653,
+  "Miketz": 80032,
+  "Vayigash": 80303,
+  "Vayechi": 80547,
+  "Shemot": 80832,
+  "Bo": 81565,
+  "Beshalach": 81734,
+  "Yitro": 81993,
+  "Mishpatim": 117613,
+  "Terumah": 117824,
+  "Tetzaveh": 82707,
+  "Ki Tisa": 118604,
+  "Vayikra": 83229,
+  "Tazria": 84173,
+  "Metzora": 84173,
+  "Acharei Mot": 84506,
+  "Kedoshim": 122672,
+  "Emor": 84776,
+  "Behar": 85035,
+  "Bechukotai": 85035,
+  "Bamidbar": 85260,
+  "Naso": 85545,
+  "Beha'alotcha": 85780,
+  "Shelach": 86097,
+  "Korach": 86359,
+  "Chukat": 86680,
+  "Balak": 87017,
+};
 const HLINKS = {
   "Bereishit": { nut: "https://www.chabad.org/parshah/article_cdo/aid/573554/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3469983/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-bereishis/" },
   "Noach": { nut: "https://www.chabad.org/parshah/article_cdo/aid/578168/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3476758/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-5786-noach/" },
@@ -172,6 +209,7 @@ const T = {
   nutshell: { en: "Nutshell · Chabad", he: "תַּמְצִית · חב״ד" },
   companion: { en: "Companion · Chabad", he: "מַדְרִיךְ · חב״ד" },
   torahorg: { en: "Commentary · Torah.org", he: "בֵּאוּר · Torah.org" },
+  ouhelper: { en: "Haftarah · OU", he: "הַפְטָרָה · OU" },
   yutorah: { en: "Shiur · YU", he: "שִׁעוּר · ישיבה" },
   connection: { en: "Connection", he: "הֶקְשֵׁר" },
   offSefaria: { en: "off-Sefaria · pre-modern", he: "מִחוּץ לְסֵפַרְיָא · קַדְמוֹן" },
@@ -389,14 +427,13 @@ function WeeklyRow({ w, lang }) {
         <a href={A(w.seg).url} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 600, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 8px" }}>{he ? A(w.seg).he : A(w.seg).label} ↗</a>
       </div>
       <div style={{ marginTop: 7, display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: 8 }}>
-        <LayerBadge k="abudraham" lang={lang} />
-        <span style={{ fontSize: 11, fontWeight: 700, color: "#0F766E", border: "1px solid #0F766E", borderRadius: 4, padding: "1px 6px" }}>{he ? "סְפָרַד" : "Sephardi"}</span>
         <span style={{ fontSize: 12.5, color: C.gold, fontWeight: 700 }} className={he ? "heb" : ""}>{bookName(lang, w.book)} {w.range}</span>
         <span style={{ fontSize: 10.5, color: C.sub }}>{tr(lang, T.identNote)}</span>
         <a href={naviUrl(`${w.book} ${w.range}`)} target="_blank" rel="noreferrer" style={{ fontSize: 11, fontWeight: 700, textDecoration: "none", color: "#fff", background: C.tekhelet, borderRadius: 999, padding: "2px 10px" }}>{tr(lang, T.read)} ↗</a>
         {wl.nut && <a href={wl.nut} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 700, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 9px" }}>{tr(lang, T.nutshell)} ↗</a>}
         {wl.comp && <a href={wl.comp} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 700, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 9px" }}>{tr(lang, T.companion)} ↗</a>}
         {wl.torg && <a href={wl.torg} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 700, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 9px" }}>{tr(lang, T.torahorg)} ↗</a>}
+        {OU_AID[w.p] && <a href={"https://outorah.org/p/" + OU_AID[w.p] + "/"} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 700, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 9px" }}>{tr(lang, T.ouhelper)} ↗</a>}
         {yuUrl(w.p) && <a href={yuUrl(w.p)} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 700, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 9px" }}>{tr(lang, T.yutorah)} ↗</a>}
       </div>
       <div dir="rtl" className="heb" style={{ marginTop: 7, fontSize: 16, color: C.ink, lineHeight: 1.7 }}>

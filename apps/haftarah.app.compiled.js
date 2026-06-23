@@ -196,6 +196,43 @@ const YU_SLUG = {
   "Pinchas": "pinchas"
 };
 const yuUrl = p => "https://www.yutorah.org/search/?s=" + encodeURIComponent(p + " haftarah");
+const OU_AID = {
+  "Bereishit": 134795,
+  "Noach": 78074,
+  "Lech Lecha": 78455,
+  "Vayera": 109456,
+  "Chayei Sarah": 78778,
+  "Toldot": 79013,
+  "Vayetzei": 79286,
+  "Vayishlach": 79551,
+  "Vayeshev": 111653,
+  "Miketz": 80032,
+  "Vayigash": 80303,
+  "Vayechi": 80547,
+  "Shemot": 80832,
+  "Bo": 81565,
+  "Beshalach": 81734,
+  "Yitro": 81993,
+  "Mishpatim": 117613,
+  "Terumah": 117824,
+  "Tetzaveh": 82707,
+  "Ki Tisa": 118604,
+  "Vayikra": 83229,
+  "Tazria": 84173,
+  "Metzora": 84173,
+  "Acharei Mot": 84506,
+  "Kedoshim": 122672,
+  "Emor": 84776,
+  "Behar": 85035,
+  "Bechukotai": 85035,
+  "Bamidbar": 85260,
+  "Naso": 85545,
+  "Beha'alotcha": 85780,
+  "Shelach": 86097,
+  "Korach": 86359,
+  "Chukat": 86680,
+  "Balak": 87017
+};
 const HLINKS = {
   "Bereishit": {
     nut: "https://www.chabad.org/parshah/article_cdo/aid/573554/jewish/Haftorah-in-a-Nutshell.htm",
@@ -512,6 +549,10 @@ const T = {
   torahorg: {
     en: "Commentary · Torah.org",
     he: "בֵּאוּר · Torah.org"
+  },
+  ouhelper: {
+    en: "Haftarah · OU",
+    he: "הַפְטָרָה · OU"
   },
   yutorah: {
     en: "Shiur · YU",
@@ -1810,19 +1851,7 @@ function WeeklyRow({
       alignItems: "baseline",
       gap: 8
     }
-  }, /*#__PURE__*/React.createElement(LayerBadge, {
-    k: "abudraham",
-    lang: lang
-  }), /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontSize: 11,
-      fontWeight: 700,
-      color: "#0F766E",
-      border: "1px solid #0F766E",
-      borderRadius: 4,
-      padding: "1px 6px"
-    }
-  }, he ? "סְפָרַד" : "Sephardi"), /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: 12.5,
       color: C.gold,
@@ -1886,7 +1915,20 @@ function WeeklyRow({
       borderRadius: 999,
       padding: "2px 9px"
     }
-  }, tr(lang, T.torahorg), " ↗"), yuUrl(w.p) && /*#__PURE__*/React.createElement("a", {
+  }, tr(lang, T.torahorg), " ↗"), OU_AID[w.p] && /*#__PURE__*/React.createElement("a", {
+    href: "https://outorah.org/p/" + OU_AID[w.p] + "/",
+    target: "_blank",
+    rel: "noreferrer",
+    style: {
+      fontSize: 10.5,
+      fontWeight: 700,
+      textDecoration: "none",
+      color: C.tekhelet,
+      border: `1px solid ${C.tekhelet}`,
+      borderRadius: 999,
+      padding: "2px 9px"
+    }
+  }, tr(lang, T.ouhelper), " ↗"), yuUrl(w.p) && /*#__PURE__*/React.createElement("a", {
     href: yuUrl(w.p),
     target: "_blank",
     rel: "noreferrer",
