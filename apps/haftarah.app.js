@@ -97,7 +97,7 @@ const YU_SLUG = {
   "Balak": "balak",
   "Pinchas": "pinchas",
 };
-const yuUrl = (p) => YU_SLUG[p] ? ("https://www.yutorah.org/categories/parsha/" + YU_SLUG[p] + "/") : null;
+const yuUrl = (p) => "https://www.yutorah.org/search/?s=" + encodeURIComponent(p + " haftarah");
 const HLINKS = {
   "Bereishit": { nut: "https://www.chabad.org/parshah/article_cdo/aid/573554/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3469983/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-bereishis/" },
   "Noach": { nut: "https://www.chabad.org/parshah/article_cdo/aid/578168/jewish/Haftorah-in-a-Nutshell.htm", comp: "https://www.chabad.org/parshah/article_cdo/aid/3476758/jewish/Haftarah-Companion.htm", torg: "https://torah.org/torah-portion/haftorah-5786-noach/" },
