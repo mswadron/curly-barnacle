@@ -2056,7 +2056,15 @@ function WeeklyRow({
       fontWeight: 700
     },
     className: he ? "heb" : ""
-  }, he ? w.pHe : w.p), /*#__PURE__*/React.createElement("a", {
+  }, he ? w.pHe : w.p)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 7,
+      display: "flex",
+      flexWrap: "wrap",
+      alignItems: "baseline",
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("a", {
     href: A(w.seg).url,
     target: "_blank",
     rel: "noreferrer",
@@ -2069,15 +2077,7 @@ function WeeklyRow({
       borderRadius: 999,
       padding: "2px 8px"
     }
-  }, he ? A(w.seg).he : A(w.seg).label, " ↗")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 7,
-      display: "flex",
-      flexWrap: "wrap",
-      alignItems: "baseline",
-      gap: 8
-    }
-  }, /*#__PURE__*/React.createElement("span", {
+  }, he ? A(w.seg).he : A(w.seg).label, " ↗"), /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: 12.5,
       color: C.gold,

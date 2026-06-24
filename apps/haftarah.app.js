@@ -452,9 +452,9 @@ function WeeklyRow({ w, lang }) {
     <div className="card" style={{ border: `1px solid ${C.line}`, borderRadius: 10, background: C.panel, marginBottom: 8, padding: "12px 14px" }} dir={he ? "rtl" : "ltr"}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 10 }}>
         <span style={{ fontSize: 15, fontWeight: 700 }} className={he ? "heb" : ""}>{he ? w.pHe : w.p}</span>
-        <a href={A(w.seg).url} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 600, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 8px" }}>{he ? A(w.seg).he : A(w.seg).label} ↗</a>
       </div>
       <div style={{ marginTop: 7, display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: 8 }}>
+        <a href={A(w.seg).url} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 600, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 8px" }}>{he ? A(w.seg).he : A(w.seg).label} ↗</a>
         <span style={{ fontSize: 12.5, color: C.gold, fontWeight: 700 }} className={he ? "heb" : ""}>{bookName(lang, w.book)} {w.range}</span>
         <a href={naviUrl(`${w.book} ${w.range}`)} target="_blank" rel="noreferrer" style={{ fontSize: 11, fontWeight: 700, textDecoration: "none", color: "#fff", background: C.tekhelet, borderRadius: 999, padding: "2px 10px" }}>{tr(lang, T.read)} ↗</a>
         {wl.nut && <a href={wl.nut} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 700, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 9px" }}>{tr(lang, T.nutshell)} ↗</a>}
