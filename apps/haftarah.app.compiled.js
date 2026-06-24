@@ -534,10 +534,6 @@ const T = {
     en: "Read \u00b7 Koren",
     he: "עַיֵּן \u00b7 קֶרֶן"
   },
-  identNote: {
-    en: "verse numbers added",
-    he: "מספור הפסוקים הוסף"
-  },
   nutshell: {
     en: "Nutshell · Chabad",
     he: "תַּמְצִית · חב״ד"
@@ -1998,12 +1994,7 @@ function WeeklyRow({
       fontWeight: 700
     },
     className: he ? "heb" : ""
-  }, bookName(lang, w.book), " ", w.range), /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontSize: 10.5,
-      color: C.sub
-    }
-  }, tr(lang, T.identNote)), /*#__PURE__*/React.createElement("a", {
+  }, bookName(lang, w.book), " ", w.range), /*#__PURE__*/React.createElement("a", {
     href: naviUrl(`${w.book} ${w.range}`),
     target: "_blank",
     rel: "noreferrer",

@@ -205,7 +205,6 @@ const T = {
   dispute: { en: "Dispute", he: "מַחֲלֹקֶת" },
   resolved: { en: "Resolved", he: "לַהֲלָכָה" },
   read: { en: "Read \u00b7 Koren", he: "עַיֵּן \u00b7 קֶרֶן" },
-  identNote: { en: "verse numbers added", he: "מספור הפסוקים הוסף" },
   nutshell: { en: "Nutshell · Chabad", he: "תַּמְצִית · חב״ד" },
   companion: { en: "Companion · Chabad", he: "מַדְרִיךְ · חב״ד" },
   torahorg: { en: "Commentary · Torah.org", he: "בֵּאוּר · Torah.org" },
@@ -452,7 +451,6 @@ function WeeklyRow({ w, lang }) {
       </div>
       <div style={{ marginTop: 7, display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: 8 }}>
         <span style={{ fontSize: 12.5, color: C.gold, fontWeight: 700 }} className={he ? "heb" : ""}>{bookName(lang, w.book)} {w.range}</span>
-        <span style={{ fontSize: 10.5, color: C.sub }}>{tr(lang, T.identNote)}</span>
         <a href={naviUrl(`${w.book} ${w.range}`)} target="_blank" rel="noreferrer" style={{ fontSize: 11, fontWeight: 700, textDecoration: "none", color: "#fff", background: C.tekhelet, borderRadius: 999, padding: "2px 10px" }}>{tr(lang, T.read)} ↗</a>
         {wl.nut && <a href={wl.nut} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 700, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 9px" }}>{tr(lang, T.nutshell)} ↗</a>}
         {wl.comp && <a href={wl.comp} target="_blank" rel="noreferrer" style={{ fontSize: 10.5, fontWeight: 700, textDecoration: "none", color: C.tekhelet, border: `1px solid ${C.tekhelet}`, borderRadius: 999, padding: "2px 9px" }}>{tr(lang, T.companion)} ↗</a>}
