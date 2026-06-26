@@ -548,16 +548,25 @@ function ZmanimMethods() {
       const prop = ((b.hi - b.lo) / (TWI_BOT - TWI_TOP)) * 360;
       b.h = Math.max(MINBAND, need, prop);
       b.top = top; top += b.h;
-      b.starY = (k) => b.top + PADT + k * LINE + LINE / 2;
-      b.tickY = (d) => b.top + ((Math.max(b.lo, Math.min(b.hi, d)) - b.lo) / (b.hi - b.lo)) * b.h;
+    });
+    const total = top;
+    // Dawn runs the other way: the sun rises, depression shrinks, sky brightens.
+    // Flip the column so Night sits at the top and Day at the bottom, so going down
+    // the chart tracks time toward sunrise (the inverse of the dusk view).
+    const morning = MORNING.has(concept);
+    const fy = (y) => (morning ? total - y : y);
+    bands.forEach((b) => {
+      b.dispTop = morning ? total - b.top - b.h : b.top;
+      b.starY = (k) => fy(b.top + PADT + k * LINE + LINE / 2);
+      b.tickY = (d) => fy(b.top + ((Math.max(b.lo, Math.min(b.hi, d)) - b.lo) / (b.hi - b.lo)) * b.h);
     });
     const depToY = (d) => {
       const dd = clamp(d);
       const b = bands.find((x) => dd >= x.lo && dd < x.hi) || bands[bands.length - 1];
       return b.tickY(dd);
     };
-    return { bands, total: top, depToY };
-  }, [rows, stars]);
+    return { bands, total, depToY, morning };
+  }, [rows, stars, concept]);
 
   // precise minutes-after-sunset (dusk) or minutes-before-sunrise (dawn) ruler for this date and place
   const minuteTicks = useMemo(() => {
@@ -740,10 +749,10 @@ function ZmanimMethods() {
               <div className="zm-twiband" style={{ height: `${twiLayout.total}px` }}>
               {twiLayout.bands.map((b, bi) => {
                 const next = twiLayout.bands[bi + 1];
-                const bg = next ? `linear-gradient(to bottom, ${b.color} 0%, ${b.color} 50%, ${next.color} 100%)` : b.color;
+                const bg = next ? `linear-gradient(to ${twiLayout.morning ? "top" : "bottom"}, ${b.color} 0%, ${b.color} 50%, ${next.color} 100%)` : b.color;
                 const pctLabel = b.lo < 0 ? "" : (b.hi >= 24 ? "all ~9,000 naked-eye stars" : `~${Math.round(skyPct(b.hi))}% of a pristine sky's stars`);
                 return (
-                  <div key={bi} className="zm-twizone" style={{ top: `${b.top}px`, height: `${b.h}px`, background: bg, color: b.ink }} title={b.gloss}>
+                  <div key={bi} className="zm-twizone" style={{ top: `${b.dispTop}px`, height: `${b.h}px`, background: bg, color: b.ink }} title={b.gloss}>
                     <span className="zm-twiname">{b.name} <span className="zm-twirange">{b.range}</span></span>
                     {pctLabel && <span className="zm-twipct">{pctLabel}</span>}
                   </div>
@@ -791,7 +800,7 @@ function ZmanimMethods() {
                 </div>
               );
             })()}
-            <div className="zm-twicap">Each numbered dot is the matching method above, placed by the sun's geometric depression. Tap a number to jump to that row. Daytime zmanim sit at the top in full day.</div>
+            <div className="zm-twicap">Each numbered dot is the matching method above, placed by the sun's geometric depression. Tap a number to jump to that row. Daytime zmanim sit at the {twiLayout.morning ? "bottom, at sunrise" : "top, in full day"}.</div>
 
             {stars.length > 0 && (
               <div className="zm-stars">
