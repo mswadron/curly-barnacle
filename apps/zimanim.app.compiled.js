@@ -787,7 +787,18 @@ function ZmanimMethods() {
         const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
         const acc = pos.coords.accuracy ? Math.round(pos.coords.accuracy) : null;
         setCustom({ name: "My location", lat, lon, tz, elev: pos.coords.altitude || 0 });
-        setGeo({ ok: true, text: "Located: " + Math.abs(lat).toFixed(4) + "\xB0" + (lat >= 0 ? "N" : "S") + ", " + Math.abs(lon).toFixed(4) + "\xB0" + (lon >= 0 ? "E" : "W") + " \xB7 " + tz + (acc ? " \xB7 \xB1" + acc + " m" : "") });
+        let best = null, bestD = Infinity;
+        for (const L of LOCATIONS) {
+          const dLat = (L.lat - lat) * Math.PI / 180, dLon = (L.lon - lon) * Math.PI / 180;
+          const A = Math.sin(dLat / 2) ** 2 + Math.cos(lat * Math.PI / 180) * Math.cos(L.lat * Math.PI / 180) * Math.sin(dLon / 2) ** 2;
+          const d = 2 * 6371 * Math.asin(Math.sqrt(A));
+          if (d < bestD) {
+            bestD = d;
+            best = L;
+          }
+        }
+        const near = best ? bestD < 40 ? " \xB7 near " + best.name : " \xB7 nearest " + best.name + " (" + Math.round(bestD) + " km)" : "";
+        setGeo({ ok: true, text: "Located: " + Math.abs(lat).toFixed(4) + "\xB0" + (lat >= 0 ? "N" : "S") + ", " + Math.abs(lon).toFixed(4) + "\xB0" + (lon >= 0 ? "E" : "W") + " \xB7 " + tz + (acc ? " \xB7 \xB1" + acc + " m" : "") + near });
       },
       (err) => {
         const m = err.code === 1 ? "Location permission denied \u2014 allow location for this site in your browser settings, then try again." : err.code === 2 ? "Location unavailable \u2014 turn on your device location services and check your connection, then try again." : err.code === 3 ? "Location request timed out \u2014 try again." : "Could not get your location: " + (err.message || "unknown error");
