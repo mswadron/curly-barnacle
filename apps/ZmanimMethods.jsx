@@ -686,6 +686,7 @@ function MainSundial({ ctx, loc }) {
 function ZmanimMethods() {
   const [locId, setLocId] = useState("newyork");
   const [custom, setCustom] = useState(null);
+  const [geo, setGeo] = useState(null);
   const [date, setDate] = useState(() => new Date().toISOString().slice(0, 10));
   const [concept, setConcept] = useState("tzeis");
   const [filter, setFilter] = useState("all");
@@ -782,10 +783,26 @@ function ZmanimMethods() {
   const spanMin = tmin && tmax ? spreadMin(tmin, tmax) : 0;
 
   const useMyLocation = () => {
-    if (!navigator.geolocation) return;
-    navigator.geolocation.getCurrentPosition((pos) => {
-      setCustom({ name: "My location", lat: +pos.coords.latitude.toFixed(4), lon: +pos.coords.longitude.toFixed(4), tz: Intl.DateTimeFormat().resolvedOptions().timeZone, elev: pos.coords.altitude || 0 });
-    });
+    if (!navigator.geolocation) { setGeo({ ok: false, text: "This browser does not support location lookup." }); return; }
+    if (!window.isSecureContext) { setGeo({ ok: false, text: "Location needs a secure (https) connection to work." }); return; }
+    setGeo({ ok: true, text: "Locating\u2026" });
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const lat = +pos.coords.latitude.toFixed(4), lon = +pos.coords.longitude.toFixed(4);
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const acc = pos.coords.accuracy ? Math.round(pos.coords.accuracy) : null;
+        setCustom({ name: "My location", lat, lon, tz, elev: pos.coords.altitude || 0 });
+        setGeo({ ok: true, text: "Located: " + Math.abs(lat).toFixed(4) + "\u00B0" + (lat >= 0 ? "N" : "S") + ", " + Math.abs(lon).toFixed(4) + "\u00B0" + (lon >= 0 ? "E" : "W") + " \u00B7 " + tz + (acc ? " \u00B7 \u00B1" + acc + " m" : "") });
+      },
+      (err) => {
+        const m = err.code === 1 ? "Location permission denied \u2014 allow location for this site in your browser settings, then try again."
+                : err.code === 2 ? "Location unavailable \u2014 turn on your device location services and check your connection, then try again."
+                : err.code === 3 ? "Location request timed out \u2014 try again."
+                : ("Could not get your location: " + (err.message || "unknown error"));
+        setGeo({ ok: false, text: m });
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
+    );
   };
 
   return (
@@ -811,6 +828,7 @@ function ZmanimMethods() {
           <button className="zm-geo" onClick={useMyLocation}>Use my location</button>
           <button className="zm-geo zm-moonbtn" onClick={() => setMoonOpen((o) => !o)}>{moonOpen ? "Hide" : "Moon & Molad"}</button>
         </div>
+        {geo && <div className={"zm-geostat" + (geo.ok ? "" : " is-err")}>{geo.text}</div>}
       </header>
 
       {moonOpen && moon && (
@@ -1275,6 +1293,8 @@ const CSS = `
 .zm-maindialsvg{width:100%;max-width:600px;height:auto;overflow:visible;}
 .zm-mdlbl{fill:var(--parch);font-size:12px;font-family:'Inter',sans-serif;font-weight:600;}
 .zm-mdtime{fill:var(--gold);font-size:11px;font-family:'Inter',sans-serif;}
+.zm-geostat{flex-basis:100%;width:100%;font-size:12.5px;color:var(--muted);font-family:'Inter',sans-serif;margin-top:8px;}
+.zm-geostat.is-err{color:#E58B6B;}
 @media (max-width:860px){.zm-body{flex-direction:column;}.zm-twilight{width:100%;position:static;border-left:none;padding-left:0;border-top:1px solid var(--line);padding-top:18px;margin-top:6px;}}
 @media (max-width:760px){.zm-head{align-items:flex-start;}.zm-rowtime{min-width:72px;}.zm-rowdetail{padding-left:14px;}.zm-vars{grid-template-columns:auto 1fr;gap:4px 10px;}}
 `;
