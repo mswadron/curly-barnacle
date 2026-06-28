@@ -582,15 +582,25 @@ function DayDial({ ctx, concept, loc }) {
           <path d={arcPath} fill="none" stroke="var(--gold)" strokeWidth="2" opacity="0.6" />
           {focusH != null && (() => { const [fx, fy] = pt(focusH / 12, R); return <line x1={cx} y1={cy} x2={fx} y2={fy} stroke="var(--gold)" strokeWidth="1" opacity="0.25" strokeDasharray="3 3" />; })()}
           {(() => {
-            // Fan the opinions as separate needles with angular spacing computed from
-            // the badge radius, so the numbered badges can never overlap on any dial.
+            // Place each needle PROPORTIONALLY to its time (later in the day = further
+            // along the arc), magnified into a readable fan centered on the zman's hour,
+            // then nudge apart only where the badges would actually touch. So the spacing
+            // reflects the real time gaps between opinions instead of being uniform.
             const f0 = focusH / 12, th0 = Math.PI * (1 - f0);
             const Rb = R + 15, rb = 8;
-            const step = 2 * Math.asin(rb / Rb) + 0.05;
-            const sorted = marks.slice().sort((a, b) => a.frac - b.frac);
+            const minStep = 2 * Math.asin(rb / Rb) + 0.04;
+            const FAN = 0.62;
+            const sorted = marks.slice().sort((a, b) => a.t - b.t);
             const N = sorted.length;
-            return sorted.map((m, rank) => {
-              const th = th0 + ((N - 1) / 2 - rank) * step;
+            const tmin = sorted[0].t.getTime(), tmax = sorted[N - 1].t.getTime(), span = tmax - tmin;
+            const ang = sorted.map((m, i) => {
+              const u = span > 0 ? (m.t.getTime() - tmin) / span : (N > 1 ? i / (N - 1) : 0.5);
+              return th0 + (0.5 - u) * FAN;
+            });
+            for (let i = 1; i < N; i++) if (ang[i - 1] - ang[i] < minStep) ang[i] = ang[i - 1] - minStep;
+            const shift = th0 - (ang[0] + ang[N - 1]) / 2;
+            return sorted.map((m, i) => {
+              const th = ang[i] + shift;
               const ex = cx + R * Math.cos(th), ey = cy - R * Math.sin(th);
               const b2x = cx + Rb * Math.cos(th), b2y = cy - Rb * Math.sin(th);
               return (
