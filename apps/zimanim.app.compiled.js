@@ -628,14 +628,16 @@ function DayDial({ ctx, concept, loc }) {
     const [fx, fy] = pt(focusH / 12, R);
     return /* @__PURE__ */ React.createElement("line", { x1: cx, y1: cy, x2: fx, y2: fy, stroke: "var(--gold)", strokeWidth: "1", opacity: "0.25", strokeDasharray: "3 3" });
   })(), (() => {
-    const f0 = focusH / 12;
+    const f0 = focusH / 12, th0 = Math.PI * (1 - f0);
+    const Rb = R + 15, rb = 8;
+    const step = 2 * Math.asin(rb / Rb) + 0.05;
     const sorted = marks.slice().sort((a, b) => a.frac - b.frac);
-    const N = sorted.length, SPREAD = 0.16;
+    const N = sorted.length;
     return sorted.map((m, rank) => {
-      const fd = N > 1 ? f0 + (rank - (N - 1) / 2) * (SPREAD / (N - 1)) : f0;
-      const [ex, ey] = pt(fd, R);
-      const [bxp, byp] = pt(fd, R + 13);
-      return /* @__PURE__ */ React.createElement("g", { key: "m" + m.n }, /* @__PURE__ */ React.createElement("line", { x1: cx, y1: cy, x2: ex, y2: ey, stroke: m.col, strokeWidth: "1.8", opacity: "0.92" }), /* @__PURE__ */ React.createElement("circle", { cx: bxp, cy: byp, r: "8.5", fill: "#0B1A2E", stroke: m.col, strokeWidth: "1.7" }), /* @__PURE__ */ React.createElement("text", { x: bxp, y: byp + 3.2, className: "zm-dialbadge", textAnchor: "middle" }, m.n));
+      const th = th0 + ((N - 1) / 2 - rank) * step;
+      const ex = cx + R * Math.cos(th), ey = cy - R * Math.sin(th);
+      const b2x = cx + Rb * Math.cos(th), b2y = cy - Rb * Math.sin(th);
+      return /* @__PURE__ */ React.createElement("g", { key: "m" + m.n }, /* @__PURE__ */ React.createElement("line", { x1: cx, y1: cy, x2: ex, y2: ey, stroke: m.col, strokeWidth: "1.8", opacity: "0.9" }), /* @__PURE__ */ React.createElement("circle", { cx: b2x, cy: b2y, r: rb, fill: "#0B1A2E", stroke: m.col, strokeWidth: "1.7" }), /* @__PURE__ */ React.createElement("text", { x: b2x, y: b2y + 3, className: "zm-dialbadge", textAnchor: "middle" }, m.n));
     });
   })(), /* @__PURE__ */ React.createElement("text", { x: ax, y: cy + 15, className: "zm-dialanchor", textAnchor: "start" }, "\u05E0\u05E5 " + fmt(sr, tz)), /* @__PURE__ */ React.createElement("text", { x: cx, y: pt(0.5, R)[1] - 7, className: "zm-dialanchor", textAnchor: "middle" }, "\u05D7\u05E6\u05D5\u05EA " + fmt(new Date(sr.getTime() + 6 * hourMs), tz)), /* @__PURE__ */ React.createElement("text", { x: bx, y: cy + 15, className: "zm-dialanchor", textAnchor: "end" }, fmt(ss, tz) + " \u05E9\u05E7\u05D9\u05E2\u05D4"))), /* @__PURE__ */ React.createElement("div", { className: "zm-sheethead" }, NAME[concept], " \u2014 five reckonings"), /* @__PURE__ */ React.createElement("div", { className: "zm-sheetsub" }, "Zoomed to the spread; each numbered marker matches the dial."), /* @__PURE__ */ React.createElement("div", { className: "zm-sheet" }, marks.map((m) => /* @__PURE__ */ React.createElement("div", { className: "zm-sheetrow", key: "r" + m.n }, /* @__PURE__ */ React.createElement("div", { className: "zm-sheetname" }, /* @__PURE__ */ React.createElement("span", { className: "zm-sheetnum", style: { borderColor: m.col, color: m.col } }, m.n), m.ab), /* @__PURE__ */ React.createElement("div", { className: "zm-sheetbar" }, /* @__PURE__ */ React.createElement("div", { className: "zm-sheettick is-focus", style: { left: `${BX(m.t.getTime())}%`, background: m.col }, title: m.ab + " \xB7 " + fmt(m.t, tz) })), /* @__PURE__ */ React.createElement("div", { className: "zm-sheettime" }, fmt(m.t, tz))))), /* @__PURE__ */ React.createElement("div", { className: "zm-twinote" }, "The sundial fixes where ", NAME[concept], " sits in the day (hour ", focusH, " of 12). Its clock time depends on the date, the place, and which dawn/dusk bounds the day \u2014 the five reckonings above. Full method details are listed on the left."));
 }

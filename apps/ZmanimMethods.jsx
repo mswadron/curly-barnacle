@@ -582,18 +582,22 @@ function DayDial({ ctx, concept, loc }) {
           <path d={arcPath} fill="none" stroke="var(--gold)" strokeWidth="2" opacity="0.6" />
           {focusH != null && (() => { const [fx, fy] = pt(focusH / 12, R); return <line x1={cx} y1={cy} x2={fx} y2={fy} stroke="var(--gold)" strokeWidth="1" opacity="0.25" strokeDasharray="3 3" />; })()}
           {(() => {
-            const f0 = focusH / 12;
+            // Fan the opinions as separate needles with angular spacing computed from
+            // the badge radius, so the numbered badges can never overlap on any dial.
+            const f0 = focusH / 12, th0 = Math.PI * (1 - f0);
+            const Rb = R + 15, rb = 8;
+            const step = 2 * Math.asin(rb / Rb) + 0.05;
             const sorted = marks.slice().sort((a, b) => a.frac - b.frac);
-            const N = sorted.length, SPREAD = 0.16;
+            const N = sorted.length;
             return sorted.map((m, rank) => {
-              const fd = N > 1 ? f0 + (rank - (N - 1) / 2) * (SPREAD / (N - 1)) : f0;
-              const [ex, ey] = pt(fd, R);
-              const [bxp, byp] = pt(fd, R + 13);
+              const th = th0 + ((N - 1) / 2 - rank) * step;
+              const ex = cx + R * Math.cos(th), ey = cy - R * Math.sin(th);
+              const b2x = cx + Rb * Math.cos(th), b2y = cy - Rb * Math.sin(th);
               return (
                 <g key={"m" + m.n}>
-                  <line x1={cx} y1={cy} x2={ex} y2={ey} stroke={m.col} strokeWidth="1.8" opacity="0.92" />
-                  <circle cx={bxp} cy={byp} r="8.5" fill="#0B1A2E" stroke={m.col} strokeWidth="1.7" />
-                  <text x={bxp} y={byp + 3.2} className="zm-dialbadge" textAnchor="middle">{m.n}</text>
+                  <line x1={cx} y1={cy} x2={ex} y2={ey} stroke={m.col} strokeWidth="1.8" opacity="0.9" />
+                  <circle cx={b2x} cy={b2y} r={rb} fill="#0B1A2E" stroke={m.col} strokeWidth="1.7" />
+                  <text x={b2x} y={b2y + 3} className="zm-dialbadge" textAnchor="middle">{m.n}</text>
                 </g>
               );
             });
