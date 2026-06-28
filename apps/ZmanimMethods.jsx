@@ -356,6 +356,37 @@ const CONCEPTS = [
     ],
   },
   {
+    id: "chatzos", title: "Chatzos HaYom", sub: "Midday \u2014 6 proportional hours",
+    basis: { ref: "Shulchan Arukh OC 233:1", url: "Shulchan_Arukh,_Orach_Chayim.233.1" },
+    note: "Chatzos is the midpoint of the day \u2014 the sun due south. It is the same instant whether the day is bounded sunrise-to-sunset or by symmetric dawn/dusk, so there is one time.",
+    items: [
+      { label: "Solar midday (chatzos)", type: "zmaniyos", eq: "N + 6H = (N + S) / 2", d: "The midpoint between sunrise and sunset; the sun is due south. Symmetric dawn/dusk boundings give the same instant.", ref: "Midpoint of the day; Shulchan Arukh OC 233:1", url: "Shulchan_Arukh,_Orach_Chayim.233.1", calc: (c) => c.prop(c.sr, c.ss, 6) },
+    ],
+  },
+  {
+    id: "mincha_gedola", title: "Mincha Gedola", sub: "6\u00BD proportional hours \u2014 earliest Mincha",
+    basis: { ref: "Berakhot 26b; Shulchan Arukh OC 233:1", url: "Shulchan_Arukh,_Orach_Chayim.233.1" },
+    note: "Earliest time for Mincha: half a proportional hour after chatzos. Some reckon the half-hour as a fixed 30 minutes, most as half a sha\u2019ah zmanis.",
+    items: [
+      { label: "Gra (sunrise to sunset)", type: "zmaniyos", eq: "N + 6.5H, H = (S\u2212N)/12", d: "Half a proportional hour past chatzos, the day measured sunrise to sunset.", ref: "Biur HaGra, SA OC 233:1", url: "Shulchan_Arukh,_Orach_Chayim.233.1", calc: (c) => c.prop(c.sr, c.ss, 6.5) },
+      { label: "30 minutes after chatzos (fixed)", type: "fixed", eq: "chatzos + 30 min", d: "Half-hour after midday read as a fixed thirty clock minutes.", ref: "Fixed half-hour reckoning (cf. MB 233)", calc: (c) => c.addMin(c.prop(c.sr, c.ss, 6), 30) },
+      { label: "MGA, day bounded 72 min", type: "fixed", eq: "A + 6.5H; A = N\u221272, T = S+72", d: "Half a proportional hour of a day stretched from the 72-minute dawn to the 72-minute nightfall.", ref: "Magen Avraham (alos 72 to tzeis 72)", calc: (c) => c.prop(c.addMin(c.sr, -72), c.addMin(c.ss, 72), 6.5) },
+      { label: "MGA, day bounded 90 min", type: "fixed", eq: "A + 6.5H; A = N\u221290, T = S+90", d: "The same, day running from the 90-minute dawn to the 90-minute nightfall.", ref: "MGA with 90-min day", calc: (c) => c.prop(c.addMin(c.sr, -90), c.addMin(c.ss, 90), 6.5) },
+      { label: "Baal HaTanya", type: "zmaniyos", eq: "A + 6.5H; A,T at \u03B8 = 1.583\u00B0", d: "Measured from netz amiti to shkia amiti (1.583\u00B0).", ref: "Shulchan Arukh HaRav OC 233", url: "Shulchan_Arukh_HaRav,_Orach_Chayim.233", calc: (c) => c.prop(c.dR(1.583), c.dS(1.583), 6.5) },
+    ],
+  },
+  {
+    id: "mincha_ketana", title: "Mincha Ketana", sub: "9\u00BD proportional hours \u2014 preferred Mincha",
+    basis: { ref: "Berakhot 26b; Shulchan Arukh OC 233:1", url: "Shulchan_Arukh,_Orach_Chayim.233.1" },
+    note: "The preferred time for Mincha: 9.5 proportional hours into the day, 2.5 hours before its end.",
+    items: [
+      { label: "Gra (sunrise to sunset)", type: "zmaniyos", eq: "N + 9.5H, H = (S\u2212N)/12", d: "Nine and a half proportional hours, the day measured sunrise to sunset.", ref: "Biur HaGra, SA OC 233:1", url: "Shulchan_Arukh,_Orach_Chayim.233.1", calc: (c) => c.prop(c.sr, c.ss, 9.5) },
+      { label: "MGA, day bounded 72 min", type: "fixed", eq: "A + 9.5H; A = N\u221272, T = S+72", d: "Nine and a half proportional hours of a 72-minute-bounded day.", ref: "Magen Avraham (alos 72 to tzeis 72)", calc: (c) => c.prop(c.addMin(c.sr, -72), c.addMin(c.ss, 72), 9.5) },
+      { label: "MGA, day bounded 90 min", type: "fixed", eq: "A + 9.5H; A = N\u221290, T = S+90", d: "The same with a 90-minute-bounded day.", ref: "MGA with 90-min day", calc: (c) => c.prop(c.addMin(c.sr, -90), c.addMin(c.ss, 90), 9.5) },
+      { label: "Baal HaTanya", type: "zmaniyos", eq: "A + 9.5H; A,T at \u03B8 = 1.583\u00B0", d: "Measured from netz amiti to shkia amiti (1.583\u00B0).", ref: "Shulchan Arukh HaRav OC 233", url: "Shulchan_Arukh_HaRav,_Orach_Chayim.233", calc: (c) => c.prop(c.dR(1.583), c.dS(1.583), 9.5) },
+    ],
+  },
+  {
     id: "plag", title: "Plag HaMincha", sub: "10.75 proportional hours into the day",
     basis: { ref: "Berakhot 26b; Shulchan Arukh OC 233:1", url: "Shulchan_Arukh,_Orach_Chayim.233.1" },
     items: [
@@ -478,6 +509,8 @@ const TWILIGHT = [
 const TWI_TOP = -6, TWI_BOT = 24;
 const twiY = (d) => ((Math.max(TWI_TOP, Math.min(TWI_BOT, d)) - TWI_TOP) / (TWI_BOT - TWI_TOP)) * 100;
 const MORNING = new Set(["alos", "misheyakir", "netz", "shma", "tfilla"]);
+// Proportional-hour daytime zmanim get a sundial, not the twilight graph.
+const DAYDIAL = new Set(["shma", "tfilla", "chatzos", "mincha_gedola", "mincha_ketana", "plag"]);
 
 function fmt(dt, tz) {
   if (!dt || isNaN(dt)) return "--";
@@ -491,6 +524,109 @@ const href = (url) => (url.startsWith("http") ? url : SEF + url);
 function SourceLink({ refText, url }) {
   if (url) return <a className="zm-src" href={href(url)} target="_blank" rel="noreferrer">{refText}</a>;
   return <small className="zm-srcplain">{refText}</small>;
+}
+
+
+// Sun-arc sundial for the proportional-hour daytime zmanim. Shows the day split
+// into 12 shaos zmaniyos with each zman at its hour and its wall-clock time, plus a
+// five-opinion comparison of how the proportional day shifts by day-bounding.
+function DayDial({ ctx, concept, loc }) {
+  if (!ctx || !ctx.sr || !ctx.ss) return null;
+  const tz = loc.tz, sr = ctx.sr, ss = ctx.ss, dayMs = ss - sr;
+  const hourMin = Math.round(dayMs / 12 / 60000);
+  const hourMs = dayMs / 12;
+  const HMAP = { shma: 3, tfilla: 4, chatzos: 6, mincha_gedola: 6.5, mincha_ketana: 9.5, plag: 10.75 };
+  const focusH = HMAP[concept];
+  const ZMANIM = [
+    { h: 3, en: "Shema", col: "#E9B949" },
+    { h: 4, en: "Tefila", col: "#C97B3C" },
+    { h: 6, en: "Chatzos", col: "#F3ECDD" },
+    { h: 6.5, en: "M. Gedola", col: "#6FA8A0" },
+    { h: 9.5, en: "M. Ketana", col: "#6FA8A0" },
+    { h: 10.75, en: "Plag", col: "#9B8FD6" },
+  ];
+  const zmanT = (h) => new Date(sr.getTime() + h * hourMs);
+
+  const W = 360, H = 222, cx = 180, cy = 198, R = 150;
+  const pt = (frac, r) => { const th = Math.PI * (1 - frac); return [cx + r * Math.cos(th), cy - r * Math.sin(th)]; };
+  const [ax, ay] = pt(0, R), [bx, by] = pt(1, R);
+  const arcPath = `M ${ax.toFixed(1)} ${ay.toFixed(1)} A ${R} ${R} 0 0 1 ${bx.toFixed(1)} ${by.toFixed(1)}`;
+
+  // five popular day-boundings on a shared clock axis
+  const OPS = [
+    { name: "Gra · sunrise–sunset", s: sr, e: ss },
+    { name: "MGA · 72 min", s: ctx.addMin(sr, -72), e: ctx.addMin(ss, 72) },
+    { name: "MGA · 90 min", s: ctx.addMin(sr, -90), e: ctx.addMin(ss, 90) },
+    { name: "MGA · 16.1°", s: ctx.dR(16.1), e: ctx.dS(16.1) },
+    { name: "Baal HaTanya · 1.583°", s: ctx.dR(1.583), e: ctx.dS(1.583) },
+  ].filter((o) => o.s && o.e && !isNaN(o.s) && !isNaN(o.e));
+  const t0 = Math.min(...OPS.map((o) => o.s.getTime()));
+  const t1 = Math.max(...OPS.map((o) => o.e.getTime()));
+  const X = (t) => ((t - t0) / (t1 - t0)) * 100;
+
+  return (
+    <aside className="zm-twilight">
+      <div className="zm-twihead">The day as a sundial</div>
+      <div className="zm-twisub">Sunrise to sunset, split into twelve <i>shaos zmaniyos</i>. One proportional hour is {hourMin} minutes long here today (Gra).</div>
+
+      <div className="zm-dialwrap">
+        <svg viewBox={`0 0 ${W} ${H}`} className="zm-dialsvg" role="img" aria-label="Sundial of the proportional-hour zmanim">
+          <line x1={ax} y1={cy} x2={bx} y2={cy} stroke="var(--line)" strokeWidth="1" />
+          {Array.from({ length: 13 }).map((_, h) => {
+            const f = h / 12, major = h === 0 || h === 6 || h === 12;
+            const [ix, iy] = pt(f, R);
+            const [lx, ly] = pt(f, R + 11);
+            return (
+              <g key={"g" + h}>
+                <line x1={cx} y1={cy} x2={ix} y2={iy} stroke="var(--line)" strokeWidth={major ? 1 : 0.5} opacity={major ? 0.55 : 0.22} />
+                <text x={lx} y={ly + 3} className="zm-dialhrnum" textAnchor="middle">{h}</text>
+              </g>
+            );
+          })}
+          <path d={arcPath} fill="none" stroke="var(--gold)" strokeWidth="2" opacity="0.65" />
+          {focusH != null && (() => { const [fx, fy] = pt(focusH / 12, R); return <line x1={cx} y1={cy} x2={fx} y2={fy} stroke="var(--gold)" strokeWidth="2.6" />; })()}
+          {ZMANIM.map((z, i) => {
+            const f = z.h / 12, [dx, dy] = pt(f, R), isF = z.h === focusH;
+            const up = f <= 0.5;
+            const [tx, ty] = pt(f, R - 30);
+            return (
+              <g key={"z" + i}>
+                <circle cx={dx} cy={dy} r={isF ? 6 : 4} fill={z.col} stroke="#0B1A2E" strokeWidth="1.3" />
+                <text x={tx} y={ty} className={`zm-diallbl ${isF ? "is-focus" : ""}`} textAnchor="middle">{z.en}</text>
+                <text x={tx} y={ty + 11} className="zm-dialtime" textAnchor="middle">{fmt(zmanT(z.h), tz)}</text>
+              </g>
+            );
+          })}
+          <text x={ax} y={cy + 15} className="zm-dialanchor" textAnchor="start">{"נץ " + fmt(sr, tz)}</text>
+          <text x={cx} y={pt(0.5, R)[1] - 8} className="zm-dialanchor" textAnchor="middle">{"חצות " + fmt(zmanT(6), tz)}</text>
+          <text x={bx} y={cy + 15} className="zm-dialanchor" textAnchor="end">{fmt(ss, tz) + " שקיעה"}</text>
+        </svg>
+      </div>
+
+      <div className="zm-sheethead">The same day under five popular reckonings</div>
+      <div className="zm-sheetsub">Each bar is that opinion's day on a shared clock; the marker is {ZMANIM.find((z) => z.h === focusH) ? ZMANIM.find((z) => z.h === focusH).en : "the zman"}. Wider bars = longer proportional hours.</div>
+      <div className="zm-sheet">
+        {OPS.map((o, i) => {
+          const oHour = (o.e - o.s) / 12;
+          const fz = focusH != null ? new Date(o.s.getTime() + focusH * oHour) : null;
+          return (
+            <div className="zm-sheetrow" key={"o" + i}>
+              <div className="zm-sheetname">{o.name}</div>
+              <div className="zm-sheetbar">
+                <div className="zm-sheetspan" style={{ left: `${X(o.s.getTime())}%`, width: `${X(o.e.getTime()) - X(o.s.getTime())}%` }} />
+                {ZMANIM.map((z, k) => {
+                  const t = o.s.getTime() + z.h * oHour, isF = z.h === focusH;
+                  return <div key={k} className={`zm-sheettick ${isF ? "is-focus" : ""}`} style={{ left: `${X(t)}%`, background: z.col }} title={`${z.en} · ${fmt(new Date(t), tz)}`} />;
+                })}
+              </div>
+              <div className="zm-sheettime">{fz ? fmt(fz, tz) : "--"}</div>
+            </div>
+          );
+        })}
+      </div>
+      <div className="zm-twinote">The sundial fixes the structure: sunrise and sunset bound a 12-hour day, and each zman sits at its proportional hour (Shema 3, Tefila 4, chatzos 6, Mincha Gedola 6.5, Mincha Ketana 9.5, Plag 10.75). The clock time of each depends on the date, the place, and which dawn/dusk bounds the day — which is what the five bars compare.</div>
+    </aside>
+  );
 }
 
 function ZmanimMethods() {
@@ -734,7 +870,7 @@ function ZmanimMethods() {
         </div>
           </div>
 
-          <aside className="zm-twilight">
+          {DAYDIAL.has(concept) ? <DayDial ctx={ctx} concept={concept} loc={loc} /> : <aside className="zm-twilight">
             <div className="zm-twihead">{MORNING.has(concept) ? "Dawn" : "Dusk"} twilight</div>
             <div className="zm-twisub">Scientific stages by the sun's depression below the horizon{MORNING.has(concept) ? " as it rises" : " as it sets"}.</div>
             <div className="zm-rulercap">{MORNING.has(concept) ? "Minutes before sunrise" : "Minutes after sunset"}, precise for this date and place</div>
@@ -824,7 +960,7 @@ function ZmanimMethods() {
             <div className="zm-twinote">Dark-sky count: a pristine pre-electric sky shows about 9,000 stars to the naked eye over the whole sky, roughly 2,500 above the horizon at once. The band labels give the share of that total visible at each stage; in bright twilight only a fraction of a percent is out, and the rest emerge by full night.</div>
 
             <div className="zm-twinote">Satellites, for fun: the ISS (about 420 km) stays sunlit until the sun is about {SAT_DEP(420).toFixed(0)}° down and Starlink (about 550 km) until about {SAT_DEP(550).toFixed(0)}°, so they are catchable from late civil through astronomical twilight, sun roughly 6 to 18° down, lit against a dark sky. Exact pass times need live orbital elements, so check Heavens-Above or NASA Spot the Station for tonight.</div>
-          </aside>
+          </aside>}
         </div>
 
         {SOURCES[concept] && (
@@ -1051,6 +1187,23 @@ const CSS = `
 .zm-vars dd{margin:0;font-size:13px;line-height:1.5;color:#E4E9F1;}
 .zm-methhe{font-family:'Frank Ruhl Libre',serif;font-size:18px;line-height:1.75;margin:6px 0 10px;text-align:right;color:var(--parch);border-right:2px solid rgba(233,185,73,.4);padding-right:12px;}
 .zm-methnote{font-size:12px;color:var(--muted);font-style:italic;line-height:1.55;border-top:1px solid var(--line);padding-top:12px;}
+.zm-dialwrap{margin:10px 0 6px;}
+.zm-dialsvg{width:100%;height:auto;overflow:visible;}
+.zm-dialhrnum{fill:var(--muted);font-size:9px;font-family:'Inter',sans-serif;}
+.zm-diallbl{fill:var(--parch);font-size:10.5px;font-family:'Inter',sans-serif;font-weight:600;}
+.zm-diallbl.is-focus{fill:var(--gold);}
+.zm-dialtime{fill:var(--muted);font-size:9px;font-family:'Inter',sans-serif;}
+.zm-dialanchor{fill:var(--muted);font-size:10px;font-family:'Frank Ruhl Libre',serif;}
+.zm-sheethead{margin-top:14px;font-family:'Frank Ruhl Libre',serif;font-size:15px;color:var(--parch);}
+.zm-sheetsub{font-size:12px;color:var(--muted);line-height:1.5;margin:2px 0 10px;}
+.zm-sheet{display:flex;flex-direction:column;gap:9px;}
+.zm-sheetrow{display:grid;grid-template-columns:120px 1fr 56px;align-items:center;gap:8px;}
+.zm-sheetname{font-size:11px;color:var(--parch);font-family:'Inter',sans-serif;text-align:right;line-height:1.2;}
+.zm-sheetbar{position:relative;height:16px;background:rgba(243,236,221,.05);border-radius:3px;}
+.zm-sheetspan{position:absolute;top:5px;height:6px;background:rgba(233,185,73,.28);border-radius:3px;}
+.zm-sheettick{position:absolute;top:1px;width:3px;height:14px;border-radius:1px;transform:translateX(-1.5px);opacity:.85;}
+.zm-sheettick.is-focus{top:-2px;height:20px;width:4px;box-shadow:0 0 0 1px #0B1A2E;}
+.zm-sheettime{font-size:11px;color:var(--gold);font-family:'Inter',sans-serif;text-align:left;}
 @media (max-width:860px){.zm-body{flex-direction:column;}.zm-twilight{width:100%;position:static;border-left:none;padding-left:0;border-top:1px solid var(--line);padding-top:18px;margin-top:6px;}}
 @media (max-width:760px){.zm-head{align-items:flex-start;}.zm-rowtime{min-width:72px;}.zm-rowdetail{padding-left:14px;}.zm-vars{grid-template-columns:auto 1fr;gap:4px 10px;}}
 `;
