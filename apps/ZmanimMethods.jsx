@@ -528,7 +528,7 @@ function SourceLink({ refText, url }) {
 
 
 // Sun-arc sundial, SECTION mode: one arc (the Gra day, twelve shaos zmaniyos),
-// every opinion's zman plotted as a numbered dot. Overlap is fine, like the twilight graph.
+// every opinion's zman as a numbered dot, with a shaded band spanning first to last.
 function DayDial({ ctx, concept, loc }) {
   if (!ctx || !ctx.sr || !ctx.ss) return null;
   const tz = loc.tz, sr = ctx.sr, ss = ctx.ss, dayMs = ss - sr;
@@ -542,7 +542,7 @@ function DayDial({ ctx, concept, loc }) {
     { ab: "Gra", s: sr, e: ss, col: "#E9B949" },
     { ab: "MGA 72", s: ctx.addMin(sr, -72), e: ctx.addMin(ss, 72), col: "#C97B3C" },
     { ab: "MGA 90", s: ctx.addMin(sr, -90), e: ctx.addMin(ss, 90), col: "#6FA8A0" },
-    { ab: "MGA 16.1\u00B0", s: ctx.dR(16.1), e: ctx.dS(16.1), col: "#9B8FD6" },
+    { ab: "MGA 16.1°", s: ctx.dR(16.1), e: ctx.dS(16.1), col: "#9B8FD6" },
     { ab: "B'Tanya", s: ctx.dR(1.583), e: ctx.dS(1.583), col: "#D98E45" },
   ].filter((o) => o.s && o.e && !isNaN(o.s) && !isNaN(o.e)).map((o, i) => {
     const day = o.e - o.s, zt = new Date(o.s.getTime() + focusH * (day / 12));
@@ -554,6 +554,11 @@ function DayDial({ ctx, concept, loc }) {
   const a0 = pt(0, R), a1 = pt(1, R);
   const arc = `M ${a0[0].toFixed(1)} ${a0[1].toFixed(1)} A ${R} ${R} 0 0 1 ${a1[0].toFixed(1)} ${a1[1].toFixed(1)}`;
 
+  const fracs = OPS.map((o) => o.frac);
+  const bMin = Math.min(...fracs), bMax = Math.max(...fracs);
+  const bp0 = pt(bMin, R), bp1 = pt(bMax, R);
+  const band = `M ${bp0[0].toFixed(1)} ${bp0[1].toFixed(1)} A ${R} ${R} 0 0 1 ${bp1[0].toFixed(1)} ${bp1[1].toFixed(1)}`;
+
   const ts = OPS.map((o) => o.zt.getTime());
   let lo = Math.min(...ts), hi = Math.max(...ts);
   if (hi - lo < 8 * 60000) { const m = (lo + hi) / 2; lo = m - 4 * 60000; hi = m + 4 * 60000; }
@@ -563,7 +568,7 @@ function DayDial({ ctx, concept, loc }) {
   return (
     <aside className="zm-twilight">
       <div className="zm-twihead">{NAME[concept]} on the sundial</div>
-      <div className="zm-twisub">Sunrise to sunset, twelve <i>shaos zmaniyos</i> (one is {hourMin} min today, Gra). Each numbered dot is one opinion's {NAME[concept]}; they cluster near hour {focusH}.</div>
+      <div className="zm-twisub">Sunrise to sunset, twelve <i>shaos zmaniyos</i> (one is {hourMin} min today, Gra). The shaded band spans the opinions; each numbered dot is one opinion's {NAME[concept]}.</div>
       <div className="zm-dialwrap">
         <svg viewBox={`0 0 ${W} ${H}`} className="zm-dialsvg" role="img" aria-label={NAME[concept] + " on the sundial"}>
           <line x1={a0[0]} y1={cy} x2={a1[0]} y2={cy} stroke="var(--line)" />
@@ -577,29 +582,30 @@ function DayDial({ ctx, concept, loc }) {
               </g>
             );
           })}
-          <path d={arc} fill="none" stroke="var(--gold)" strokeWidth="2" opacity="0.6" />
-          {focusH != null && (() => { const fp = pt(focusH / 12, R); return <line x1={cx} y1={cy} x2={fp[0]} y2={fp[1]} stroke="var(--gold)" strokeWidth="1" opacity="0.3" strokeDasharray="3 3" />; })()}
+          <path d={arc} fill="none" stroke="var(--gold)" strokeWidth="2" opacity="0.55" />
+          <path d={band} fill="none" stroke="var(--gold)" strokeWidth="13" opacity="0.2" strokeLinecap="round" />
+          {focusH != null && (() => { const fp = pt(focusH / 12, R); return <line x1={cx} y1={cy} x2={fp[0]} y2={fp[1]} stroke="var(--gold)" strokeWidth="1" opacity="0.25" strokeDasharray="3 3" />; })()}
           {OPS.map((o) => {
             const p = pt(o.frac, R);
             return (
               <g key={"m" + o.n}>
-                <circle cx={p[0]} cy={p[1]} r="9" fill="#0B1A2E" stroke={o.col} strokeWidth="1.7" />
-                <text x={p[0]} y={p[1] + 3.3} className="zm-dialbadge" textAnchor="middle">{o.n}</text>
+                <circle cx={p[0]} cy={p[1]} r="6.5" fill="#0B1A2E" stroke={o.col} strokeWidth="1.5" />
+                <text x={p[0]} y={p[1] + 2.6} className="zm-dialbadge" textAnchor="middle" style={{ fontSize: "8px" }}>{o.n}</text>
               </g>
             );
           })}
-          <text x={a0[0]} y={cy + 15} className="zm-dialanchor" textAnchor="start">{"\u05E0\u05E5 " + fmt(sr, tz)}</text>
-          <text x={cx} y={pt(0.5, R)[1] - 7} className="zm-dialanchor" textAnchor="middle">{"\u05D7\u05E6\u05D5\u05EA " + fmt(new Date(sr.getTime() + 6 * (dayMs / 12)), tz)}</text>
-          <text x={a1[0]} y={cy + 15} className="zm-dialanchor" textAnchor="end">{fmt(ss, tz) + " \u05E9\u05E7\u05D9\u05E2\u05D4"}</text>
+          <text x={a0[0]} y={cy + 15} className="zm-dialanchor" textAnchor="start">{"נץ " + fmt(sr, tz)}</text>
+          <text x={cx} y={pt(0.5, R)[1] - 7} className="zm-dialanchor" textAnchor="middle">{"חצות " + fmt(new Date(sr.getTime() + 6 * (dayMs / 12)), tz)}</text>
+          <text x={a1[0]} y={cy + 15} className="zm-dialanchor" textAnchor="end">{fmt(ss, tz) + " שקיעה"}</text>
         </svg>
       </div>
-      <div className="zm-sheethead">{NAME[concept]} \u2014 side by side</div>
+      <div className="zm-sheethead">{NAME[concept]} — side by side</div>
       <div className="zm-sheetsub">Zoomed to the spread; each numbered marker matches the dial.</div>
       <div className="zm-sheet">
         {OPS.map((o) => (
           <div className="zm-sheetrow" key={"r" + o.n}>
             <div className="zm-sheetname"><span className="zm-sheetnum" style={{ borderColor: o.col, color: o.col }}>{o.n}</span>{o.ab}</div>
-            <div className="zm-sheetbar"><div className="zm-sheettick is-focus" style={{ left: `${BX(o.zt.getTime())}%`, background: o.col }} title={o.ab + " \u00B7 " + fmt(o.zt, tz)} /></div>
+            <div className="zm-sheetbar"><div className="zm-sheettick is-focus" style={{ left: `${BX(o.zt.getTime())}%`, background: o.col }} title={o.ab + " · " + fmt(o.zt, tz)} /></div>
             <div className="zm-sheettime">{fmt(o.zt, tz)}</div>
           </div>
         ))}
