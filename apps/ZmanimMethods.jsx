@@ -527,16 +527,15 @@ function SourceLink({ refText, url }) {
 }
 
 
-// Sun-arc sundial. SECTION mode (a specific zman): show that zman's opinions on the
-// dial as numbered badges laddered along its hour-spoke, plus a zoomed numbered bar.
+// Sun-arc sundial, SECTION mode: one small dial per opinion (small multiples),
+// each showing that opinion's own day with the zman at its proportional hour.
 function DayDial({ ctx, concept, loc }) {
   if (!ctx || !ctx.sr || !ctx.ss) return null;
-  const tz = loc.tz, sr = ctx.sr, ss = ctx.ss, dayMs = ss - sr, hourMs = dayMs / 12;
+  const tz = loc.tz, sr = ctx.sr, ss = ctx.ss, dayMs = ss - sr;
   const hourMin = Math.round(dayMs / 12 / 60000);
   const HMAP = { shma: 3, tfilla: 4, chatzos: 6, mincha_gedola: 6.5, mincha_ketana: 9.5, plag: 10.75 };
   const NAME = { shma: "Shema", tfilla: "Tefila", chatzos: "Chatzos", mincha_gedola: "Mincha Gedola", mincha_ketana: "Mincha Ketana", plag: "Plag" };
   const focusH = HMAP[concept];
-  const clampf = (x) => Math.max(0, Math.min(1, x));
 
   const OPS = [
     { ab: "Gra", s: sr, e: ss, col: "#E9B949" },
@@ -544,92 +543,55 @@ function DayDial({ ctx, concept, loc }) {
     { ab: "MGA 90", s: ctx.addMin(sr, -90), e: ctx.addMin(ss, 90), col: "#6FA8A0" },
     { ab: "MGA 16.1°", s: ctx.dR(16.1), e: ctx.dS(16.1), col: "#9B8FD6" },
     { ab: "B'Tanya", s: ctx.dR(1.583), e: ctx.dS(1.583), col: "#D98E45" },
-  ].filter((o) => o.s && o.e && !isNaN(o.s) && !isNaN(o.e));
-  const marks = OPS.map((o, k) => {
-    const oh = (o.e - o.s) / 12, t = new Date(o.s.getTime() + focusH * oh);
-    return { n: k + 1, ab: o.ab, col: o.col, t, frac: clampf((t - sr) / dayMs) };
+  ].filter((o) => o.s && o.e && !isNaN(o.s) && !isNaN(o.e)).map((o, i) => {
+    const day = o.e - o.s;
+    return { ...o, n: i + 1, zt: new Date(o.s.getTime() + focusH * (day / 12)) };
   });
 
-  const W = 360, H = 206, cx = 180, cy = 188, R = 150;
+  const W = 150, H = 98, cx = 75, cy = 86, R = 64;
   const pt = (fr, r) => { const th = Math.PI * (1 - fr); return [cx + r * Math.cos(th), cy - r * Math.sin(th)]; };
-  const [ax, ay] = pt(0, R), [bx, by] = pt(1, R);
-  const arcPath = `M ${ax.toFixed(1)} ${ay.toFixed(1)} A ${R} ${R} 0 0 1 ${bx.toFixed(1)} ${by.toFixed(1)}`;
+  const a0 = pt(0, R), a1 = pt(1, R);
+  const arc = `M ${a0[0].toFixed(1)} ${a0[1].toFixed(1)} A ${R} ${R} 0 0 1 ${a1[0].toFixed(1)} ${a1[1].toFixed(1)}`;
+  const tip = pt(focusH / 12, R);
 
-  // zoomed bar axis: span of opinion times, padded, with an 8-minute floor
-  const tms = marks.map((m) => m.t.getTime());
-  let lo = Math.min(...tms), hi = Math.max(...tms);
-  if (hi - lo < 8 * 60000) { const mid = (lo + hi) / 2; lo = mid - 4 * 60000; hi = mid + 4 * 60000; }
+  const ts = OPS.map((o) => o.zt.getTime());
+  let lo = Math.min(...ts), hi = Math.max(...ts);
+  if (hi - lo < 8 * 60000) { const m = (lo + hi) / 2; lo = m - 4 * 60000; hi = m + 4 * 60000; }
   const pd = (hi - lo) * 0.18; lo -= pd; hi += pd;
   const BX = (t) => ((t - lo) / (hi - lo)) * 100;
 
   return (
     <aside className="zm-twilight">
       <div className="zm-twihead">{NAME[concept]} on the sundial</div>
-      <div className="zm-twisub">Sunrise to sunset, twelve <i>shaos zmaniyos</i> — one is {hourMin} min today (Gra). {NAME[concept]} sits near hour {focusH}; each numbered needle is one opinion (fanned for legibility — exact times below).</div>
-      <div className="zm-dialwrap">
-        <svg viewBox={`0 0 ${W} ${H}`} className="zm-dialsvg" role="img" aria-label={NAME[concept] + " on the sundial"}>
-          <line x1={ax} y1={cy} x2={bx} y2={cy} stroke="var(--line)" />
-          {Array.from({ length: 13 }).map((_, h) => {
-            const fr = h / 12, major = h === 0 || h === 6 || h === 12;
-            const [ix, iy] = pt(fr, R), [lx, ly] = pt(fr, R + 11);
-            return (
-              <g key={"g" + h}>
-                <line x1={cx} y1={cy} x2={ix} y2={iy} stroke="var(--line)" strokeWidth={major ? 1 : 0.5} opacity={major ? 0.5 : 0.2} />
-                <text x={lx} y={ly + 3} className="zm-dialhrnum" textAnchor="middle">{h}</text>
-              </g>
-            );
-          })}
-          <path d={arcPath} fill="none" stroke="var(--gold)" strokeWidth="2" opacity="0.6" />
-          {focusH != null && (() => { const [fx, fy] = pt(focusH / 12, R); return <line x1={cx} y1={cy} x2={fx} y2={fy} stroke="var(--gold)" strokeWidth="1" opacity="0.25" strokeDasharray="3 3" />; })()}
-          {(() => {
-            // Place each needle PROPORTIONALLY to its time (later in the day = further
-            // along the arc), magnified into a readable fan centered on the zman's hour,
-            // then nudge apart only where the badges would actually touch. So the spacing
-            // reflects the real time gaps between opinions instead of being uniform.
-            const f0 = focusH / 12, th0 = Math.PI * (1 - f0);
-            const Rb = R + 15, rb = 8;
-            const minStep = 2 * Math.asin(rb / Rb) + 0.04;
-            const FAN = 0.62;
-            const sorted = marks.slice().sort((a, b) => a.t - b.t);
-            const N = sorted.length;
-            const tmin = sorted[0].t.getTime(), tmax = sorted[N - 1].t.getTime(), span = tmax - tmin;
-            const ang = sorted.map((m, i) => {
-              const u = span > 0 ? (m.t.getTime() - tmin) / span : (N > 1 ? i / (N - 1) : 0.5);
-              return th0 + (0.5 - u) * FAN;
-            });
-            for (let i = 1; i < N; i++) if (ang[i - 1] - ang[i] < minStep) ang[i] = ang[i - 1] - minStep;
-            const shift = th0 - (ang[0] + ang[N - 1]) / 2;
-            return sorted.map((m, i) => {
-              const th = ang[i] + shift;
-              const ex = cx + R * Math.cos(th), ey = cy - R * Math.sin(th);
-              const b2x = cx + Rb * Math.cos(th), b2y = cy - Rb * Math.sin(th);
-              return (
-                <g key={"m" + m.n}>
-                  <line x1={cx} y1={cy} x2={ex} y2={ey} stroke={m.col} strokeWidth="1.8" opacity="0.9" />
-                  <circle cx={b2x} cy={b2y} r={rb} fill="#0B1A2E" stroke={m.col} strokeWidth="1.7" />
-                  <text x={b2x} y={b2y + 3} className="zm-dialbadge" textAnchor="middle">{m.n}</text>
-                </g>
-              );
-            });
-          })()}
-          <text x={ax} y={cy + 15} className="zm-dialanchor" textAnchor="start">{"נץ " + fmt(sr, tz)}</text>
-          <text x={cx} y={pt(0.5, R)[1] - 7} className="zm-dialanchor" textAnchor="middle">{"חצות " + fmt(new Date(sr.getTime() + 6 * hourMs), tz)}</text>
-          <text x={bx} y={cy + 15} className="zm-dialanchor" textAnchor="end">{fmt(ss, tz) + " שקיעה"}</text>
-        </svg>
-      </div>
-
-      <div className="zm-sheethead">{NAME[concept]} — five reckonings</div>
-      <div className="zm-sheetsub">Zoomed to the spread; each numbered marker matches the dial.</div>
-      <div className="zm-sheet">
-        {marks.map((m) => (
-          <div className="zm-sheetrow" key={"r" + m.n}>
-            <div className="zm-sheetname"><span className="zm-sheetnum" style={{ borderColor: m.col, color: m.col }}>{m.n}</span>{m.ab}</div>
-            <div className="zm-sheetbar"><div className="zm-sheettick is-focus" style={{ left: `${BX(m.t.getTime())}%`, background: m.col }} title={m.ab + " · " + fmt(m.t, tz)} /></div>
-            <div className="zm-sheettime">{fmt(m.t, tz)}</div>
+      <div className="zm-twisub">Each opinion is its own dial: that opinion's day, sunrise to sunset, split into twelve <i>shaos zmaniyos</i>, with {NAME[concept]} at hour {focusH}.</div>
+      <div className="zm-minis">
+        {OPS.map((o) => (
+          <div className="zm-mini" key={o.n}>
+            <svg viewBox={`0 0 ${W} ${H}`} className="zm-minisvg" role="img" aria-label={o.ab}>
+              <line x1={a0[0]} y1={cy} x2={a1[0]} y2={cy} stroke="var(--line)" />
+              {[0, 3, 6, 9, 12].map((h) => { const p = pt(h / 12, R); return <line key={h} x1={cx} y1={cy} x2={p[0]} y2={p[1]} stroke="var(--line)" strokeWidth="0.5" opacity="0.3" />; })}
+              <path d={arc} fill="none" stroke="var(--gold)" strokeWidth="1.4" opacity="0.45" />
+              <line x1={cx} y1={cy} x2={tip[0]} y2={tip[1]} stroke={o.col} strokeWidth="2.4" />
+              <circle cx={tip[0]} cy={tip[1]} r="3.6" fill={o.col} stroke="#0B1A2E" strokeWidth="1.2" />
+            </svg>
+            <div className="zm-mininame"><span className="zm-sheetnum" style={{ borderColor: o.col, color: o.col }}>{o.n}</span>{o.ab}</div>
+            <div className="zm-minitime">{fmt(o.zt, tz)}</div>
+            <div className="zm-miniends">{fmt(o.s, tz)} – {fmt(o.e, tz)}</div>
           </div>
         ))}
       </div>
-      <div className="zm-twinote">The sundial fixes where {NAME[concept]} sits in the day (hour {focusH} of 12). Its clock time depends on the date, the place, and which dawn/dusk bounds the day — the five reckonings above. Full method details are listed on the left.</div>
+      <div className="zm-sheethead">{NAME[concept]} — side by side</div>
+      <div className="zm-sheetsub">Zoomed to the spread; each numbered marker matches its dial. One sha'ah zmanis is {hourMin} min today (Gra).</div>
+      <div className="zm-sheet">
+        {OPS.map((o) => (
+          <div className="zm-sheetrow" key={"r" + o.n}>
+            <div className="zm-sheetname"><span className="zm-sheetnum" style={{ borderColor: o.col, color: o.col }}>{o.n}</span>{o.ab}</div>
+            <div className="zm-sheetbar"><div className="zm-sheettick is-focus" style={{ left: `${BX(o.zt.getTime())}%`, background: o.col }} title={o.ab + " · " + fmt(o.zt, tz)} /></div>
+            <div className="zm-sheettime">{fmt(o.zt, tz)}</div>
+          </div>
+        ))}
+      </div>
+      <div className="zm-twinote">{NAME[concept]} always sits at hour {focusH} of the day; the dials differ only in which dawn/dusk bounds the day, which stretches the proportional hour and shifts the clock time. Full method details are on the left.</div>
     </aside>
   );
 }
@@ -1211,6 +1173,12 @@ const CSS = `
 .zm-sheettick{position:absolute;top:1px;width:3px;height:14px;border-radius:1px;transform:translateX(-1.5px);opacity:.85;}
 .zm-sheettick.is-focus{top:-2px;height:20px;width:4px;box-shadow:0 0 0 1px #0B1A2E;}
 .zm-sheettime{font-size:11px;color:var(--gold);font-family:'Inter',sans-serif;text-align:left;}
+.zm-minis{display:grid;grid-template-columns:1fr 1fr;gap:12px 10px;margin:10px 0 8px;}
+.zm-mini{text-align:center;}
+.zm-minisvg{width:100%;height:auto;overflow:visible;}
+.zm-mininame{font-size:11px;color:var(--parch);font-family:'Inter',sans-serif;margin-top:1px;}
+.zm-minitime{font-size:14px;color:var(--gold);font-family:'Inter',sans-serif;font-weight:700;line-height:1.15;}
+.zm-miniends{font-size:9.5px;color:var(--muted);font-family:'Inter',sans-serif;}
 @media (max-width:860px){.zm-body{flex-direction:column;}.zm-twilight{width:100%;position:static;border-left:none;padding-left:0;border-top:1px solid var(--line);padding-top:18px;margin-top:6px;}}
 @media (max-width:760px){.zm-head{align-items:flex-start;}.zm-rowtime{min-width:72px;}.zm-rowdetail{padding-left:14px;}.zm-vars{grid-template-columns:auto 1fr;gap:4px 10px;}}
 `;
