@@ -460,16 +460,16 @@ function TableView() {
       el.style.maxHeight = "none";
       el.style.height = "auto";
       const vtop = el.getBoundingClientRect().top;
-      let h = Math.max(240, window.innerHeight - vtop - 12);
+      const avail = window.innerHeight - vtop - 14;
+      const contentH = el.scrollHeight;
+      const h = Math.max(240, Math.min(avail, contentH));
       el.style.height = h + "px";
-      const over = document.documentElement.scrollHeight - window.innerHeight;
-      if (over > 0) { h = Math.max(240, h - over - 2); el.style.height = h + "px"; }
     }
     fit();
     const t = setTimeout(fit, 60);
     window.addEventListener("resize", fit);
     return () => { clearTimeout(t); window.removeEventListener("resize", fit); };
-  }, []);
+  }, [z]);
   return (
     <div className="tableview">
       <div className="zoombar">
