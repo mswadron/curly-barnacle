@@ -527,8 +527,8 @@ function SourceLink({ refText, url }) {
 }
 
 
-// Sun-arc sundial, SECTION mode: one arc (the Gra day, twelve shaos zmaniyos),
-// every opinion's zman as a numbered dot, with a shaded band spanning first to last.
+// Sun-arc sundial, SECTION mode: one arc (the Gra day, twelve shaos zmaniyos).
+// Opinions numbered by time (earliest = 1); a shaded wedge spans first to last.
 function DayDial({ ctx, concept, loc }) {
   if (!ctx || !ctx.sr || !ctx.ss) return null;
   const tz = loc.tz, sr = ctx.sr, ss = ctx.ss, dayMs = ss - sr;
@@ -538,16 +538,18 @@ function DayDial({ ctx, concept, loc }) {
   const focusH = HMAP[concept];
   const clampf = (x) => Math.max(0, Math.min(1, x));
 
-  const OPS = [
+  const arr = [
     { ab: "Gra", s: sr, e: ss, col: "#E9B949" },
     { ab: "MGA 72", s: ctx.addMin(sr, -72), e: ctx.addMin(ss, 72), col: "#C97B3C" },
     { ab: "MGA 90", s: ctx.addMin(sr, -90), e: ctx.addMin(ss, 90), col: "#6FA8A0" },
     { ab: "MGA 16.1°", s: ctx.dR(16.1), e: ctx.dS(16.1), col: "#9B8FD6" },
     { ab: "B'Tanya", s: ctx.dR(1.583), e: ctx.dS(1.583), col: "#D98E45" },
-  ].filter((o) => o.s && o.e && !isNaN(o.s) && !isNaN(o.e)).map((o, i) => {
+  ].filter((o) => o.s && o.e && !isNaN(o.s) && !isNaN(o.e)).map((o) => {
     const day = o.e - o.s, zt = new Date(o.s.getTime() + focusH * (day / 12));
-    return { ...o, n: i + 1, zt, frac: clampf((zt - sr) / dayMs) };
+    return { ...o, zt, frac: clampf((zt - sr) / dayMs) };
   });
+  arr.sort((a, b) => a.zt - b.zt);
+  const OPS = arr.map((o, i) => ({ ...o, n: i + 1 }));
 
   const W = 360, H = 200, cx = 180, cy = 184, R = 150;
   const pt = (fr, r) => { const th = Math.PI * (1 - fr); return [cx + r * Math.cos(th), cy - r * Math.sin(th)]; };
@@ -555,9 +557,8 @@ function DayDial({ ctx, concept, loc }) {
   const arc = `M ${a0[0].toFixed(1)} ${a0[1].toFixed(1)} A ${R} ${R} 0 0 1 ${a1[0].toFixed(1)} ${a1[1].toFixed(1)}`;
 
   const fracs = OPS.map((o) => o.frac);
-  const bMin = Math.min(...fracs), bMax = Math.max(...fracs);
-  const bp0 = pt(bMin, R), bp1 = pt(bMax, R);
-  const band = `M ${bp0[0].toFixed(1)} ${bp0[1].toFixed(1)} A ${R} ${R} 0 0 1 ${bp1[0].toFixed(1)} ${bp1[1].toFixed(1)}`;
+  const bp0 = pt(Math.min(...fracs), R), bp1 = pt(Math.max(...fracs), R);
+  const wedge = `M ${cx} ${cy} L ${bp0[0].toFixed(1)} ${bp0[1].toFixed(1)} A ${R} ${R} 0 0 1 ${bp1[0].toFixed(1)} ${bp1[1].toFixed(1)} Z`;
 
   const ts = OPS.map((o) => o.zt.getTime());
   let lo = Math.min(...ts), hi = Math.max(...ts);
@@ -568,10 +569,11 @@ function DayDial({ ctx, concept, loc }) {
   return (
     <aside className="zm-twilight">
       <div className="zm-twihead">{NAME[concept]} on the sundial</div>
-      <div className="zm-twisub">Sunrise to sunset, twelve <i>shaos zmaniyos</i> (one is {hourMin} min today, Gra). The shaded band spans the opinions; each numbered dot is one opinion's {NAME[concept]}.</div>
+      <div className="zm-twisub">Sunrise to sunset, twelve <i>shaos zmaniyos</i> (one is {hourMin} min today, Gra). The shaded wedge spans the opinions, numbered by time (earliest = 1).</div>
       <div className="zm-dialwrap">
         <svg viewBox={`0 0 ${W} ${H}`} className="zm-dialsvg" role="img" aria-label={NAME[concept] + " on the sundial"}>
           <line x1={a0[0]} y1={cy} x2={a1[0]} y2={cy} stroke="var(--line)" />
+          <path d={wedge} fill="var(--gold)" opacity="0.16" />
           {Array.from({ length: 13 }).map((_, h) => {
             const fr = h / 12, major = h === 0 || h === 6 || h === 12;
             const ip = pt(fr, R), lp = pt(fr, R + 11);
@@ -583,8 +585,6 @@ function DayDial({ ctx, concept, loc }) {
             );
           })}
           <path d={arc} fill="none" stroke="var(--gold)" strokeWidth="2" opacity="0.55" />
-          <path d={band} fill="none" stroke="var(--gold)" strokeWidth="13" opacity="0.2" strokeLinecap="round" />
-          {focusH != null && (() => { const fp = pt(focusH / 12, R); return <line x1={cx} y1={cy} x2={fp[0]} y2={fp[1]} stroke="var(--gold)" strokeWidth="1" opacity="0.25" strokeDasharray="3 3" />; })()}
           {OPS.map((o) => {
             const p = pt(o.frac, R);
             return (
@@ -600,7 +600,7 @@ function DayDial({ ctx, concept, loc }) {
         </svg>
       </div>
       <div className="zm-sheethead">{NAME[concept]} — side by side</div>
-      <div className="zm-sheetsub">Zoomed to the spread; each numbered marker matches the dial.</div>
+      <div className="zm-sheetsub">Earliest first; each numbered marker matches the dial.</div>
       <div className="zm-sheet">
         {OPS.map((o) => (
           <div className="zm-sheetrow" key={"r" + o.n}>

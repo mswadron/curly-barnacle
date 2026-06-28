@@ -591,16 +591,18 @@ function DayDial({ ctx, concept, loc }) {
   const NAME = { shma: "Shema", tfilla: "Tefila", chatzos: "Chatzos", mincha_gedola: "Mincha Gedola", mincha_ketana: "Mincha Ketana", plag: "Plag" };
   const focusH = HMAP[concept];
   const clampf = (x) => Math.max(0, Math.min(1, x));
-  const OPS = [
+  const arr = [
     { ab: "Gra", s: sr, e: ss, col: "#E9B949" },
     { ab: "MGA 72", s: ctx.addMin(sr, -72), e: ctx.addMin(ss, 72), col: "#C97B3C" },
     { ab: "MGA 90", s: ctx.addMin(sr, -90), e: ctx.addMin(ss, 90), col: "#6FA8A0" },
     { ab: "MGA 16.1\xB0", s: ctx.dR(16.1), e: ctx.dS(16.1), col: "#9B8FD6" },
     { ab: "B'Tanya", s: ctx.dR(1.583), e: ctx.dS(1.583), col: "#D98E45" }
-  ].filter((o) => o.s && o.e && !isNaN(o.s) && !isNaN(o.e)).map((o, i) => {
+  ].filter((o) => o.s && o.e && !isNaN(o.s) && !isNaN(o.e)).map((o) => {
     const day = o.e - o.s, zt = new Date(o.s.getTime() + focusH * (day / 12));
-    return { ...o, n: i + 1, zt, frac: clampf((zt - sr) / dayMs) };
+    return { ...o, zt, frac: clampf((zt - sr) / dayMs) };
   });
+  arr.sort((a, b) => a.zt - b.zt);
+  const OPS = arr.map((o, i) => ({ ...o, n: i + 1 }));
   const W = 360, H = 200, cx = 180, cy = 184, R = 150;
   const pt = (fr, r) => {
     const th = Math.PI * (1 - fr);
@@ -609,9 +611,8 @@ function DayDial({ ctx, concept, loc }) {
   const a0 = pt(0, R), a1 = pt(1, R);
   const arc = `M ${a0[0].toFixed(1)} ${a0[1].toFixed(1)} A ${R} ${R} 0 0 1 ${a1[0].toFixed(1)} ${a1[1].toFixed(1)}`;
   const fracs = OPS.map((o) => o.frac);
-  const bMin = Math.min(...fracs), bMax = Math.max(...fracs);
-  const bp0 = pt(bMin, R), bp1 = pt(bMax, R);
-  const band = `M ${bp0[0].toFixed(1)} ${bp0[1].toFixed(1)} A ${R} ${R} 0 0 1 ${bp1[0].toFixed(1)} ${bp1[1].toFixed(1)}`;
+  const bp0 = pt(Math.min(...fracs), R), bp1 = pt(Math.max(...fracs), R);
+  const wedge = `M ${cx} ${cy} L ${bp0[0].toFixed(1)} ${bp0[1].toFixed(1)} A ${R} ${R} 0 0 1 ${bp1[0].toFixed(1)} ${bp1[1].toFixed(1)} Z`;
   const ts = OPS.map((o) => o.zt.getTime());
   let lo = Math.min(...ts), hi = Math.max(...ts);
   if (hi - lo < 8 * 6e4) {
@@ -623,17 +624,14 @@ function DayDial({ ctx, concept, loc }) {
   lo -= pd;
   hi += pd;
   const BX = (t) => (t - lo) / (hi - lo) * 100;
-  return /* @__PURE__ */ React.createElement("aside", { className: "zm-twilight" }, /* @__PURE__ */ React.createElement("div", { className: "zm-twihead" }, NAME[concept], " on the sundial"), /* @__PURE__ */ React.createElement("div", { className: "zm-twisub" }, "Sunrise to sunset, twelve ", /* @__PURE__ */ React.createElement("i", null, "shaos zmaniyos"), " (one is ", hourMin, " min today, Gra). The shaded band spans the opinions; each numbered dot is one opinion's ", NAME[concept], "."), /* @__PURE__ */ React.createElement("div", { className: "zm-dialwrap" }, /* @__PURE__ */ React.createElement("svg", { viewBox: `0 0 ${W} ${H}`, className: "zm-dialsvg", role: "img", "aria-label": NAME[concept] + " on the sundial" }, /* @__PURE__ */ React.createElement("line", { x1: a0[0], y1: cy, x2: a1[0], y2: cy, stroke: "var(--line)" }), Array.from({ length: 13 }).map((_, h) => {
+  return /* @__PURE__ */ React.createElement("aside", { className: "zm-twilight" }, /* @__PURE__ */ React.createElement("div", { className: "zm-twihead" }, NAME[concept], " on the sundial"), /* @__PURE__ */ React.createElement("div", { className: "zm-twisub" }, "Sunrise to sunset, twelve ", /* @__PURE__ */ React.createElement("i", null, "shaos zmaniyos"), " (one is ", hourMin, " min today, Gra). The shaded wedge spans the opinions, numbered by time (earliest = 1)."), /* @__PURE__ */ React.createElement("div", { className: "zm-dialwrap" }, /* @__PURE__ */ React.createElement("svg", { viewBox: `0 0 ${W} ${H}`, className: "zm-dialsvg", role: "img", "aria-label": NAME[concept] + " on the sundial" }, /* @__PURE__ */ React.createElement("line", { x1: a0[0], y1: cy, x2: a1[0], y2: cy, stroke: "var(--line)" }), /* @__PURE__ */ React.createElement("path", { d: wedge, fill: "var(--gold)", opacity: "0.16" }), Array.from({ length: 13 }).map((_, h) => {
     const fr = h / 12, major = h === 0 || h === 6 || h === 12;
     const ip = pt(fr, R), lp = pt(fr, R + 11);
     return /* @__PURE__ */ React.createElement("g", { key: "g" + h }, /* @__PURE__ */ React.createElement("line", { x1: cx, y1: cy, x2: ip[0], y2: ip[1], stroke: "var(--line)", strokeWidth: major ? 1 : 0.5, opacity: major ? 0.5 : 0.2 }), /* @__PURE__ */ React.createElement("text", { x: lp[0], y: lp[1] + 3, className: "zm-dialhrnum", textAnchor: "middle" }, h));
-  }), /* @__PURE__ */ React.createElement("path", { d: arc, fill: "none", stroke: "var(--gold)", strokeWidth: "2", opacity: "0.55" }), /* @__PURE__ */ React.createElement("path", { d: band, fill: "none", stroke: "var(--gold)", strokeWidth: "13", opacity: "0.2", strokeLinecap: "round" }), focusH != null && (() => {
-    const fp = pt(focusH / 12, R);
-    return /* @__PURE__ */ React.createElement("line", { x1: cx, y1: cy, x2: fp[0], y2: fp[1], stroke: "var(--gold)", strokeWidth: "1", opacity: "0.25", strokeDasharray: "3 3" });
-  })(), OPS.map((o) => {
+  }), /* @__PURE__ */ React.createElement("path", { d: arc, fill: "none", stroke: "var(--gold)", strokeWidth: "2", opacity: "0.55" }), OPS.map((o) => {
     const p = pt(o.frac, R);
     return /* @__PURE__ */ React.createElement("g", { key: "m" + o.n }, /* @__PURE__ */ React.createElement("circle", { cx: p[0], cy: p[1], r: "6.5", fill: "#0B1A2E", stroke: o.col, strokeWidth: "1.5" }), /* @__PURE__ */ React.createElement("text", { x: p[0], y: p[1] + 2.6, className: "zm-dialbadge", textAnchor: "middle", style: { fontSize: "8px" } }, o.n));
-  }), /* @__PURE__ */ React.createElement("text", { x: a0[0], y: cy + 15, className: "zm-dialanchor", textAnchor: "start" }, "\u05E0\u05E5 " + fmt(sr, tz)), /* @__PURE__ */ React.createElement("text", { x: cx, y: pt(0.5, R)[1] - 7, className: "zm-dialanchor", textAnchor: "middle" }, "\u05D7\u05E6\u05D5\u05EA " + fmt(new Date(sr.getTime() + 6 * (dayMs / 12)), tz)), /* @__PURE__ */ React.createElement("text", { x: a1[0], y: cy + 15, className: "zm-dialanchor", textAnchor: "end" }, fmt(ss, tz) + " \u05E9\u05E7\u05D9\u05E2\u05D4"))), /* @__PURE__ */ React.createElement("div", { className: "zm-sheethead" }, NAME[concept], " \u2014 side by side"), /* @__PURE__ */ React.createElement("div", { className: "zm-sheetsub" }, "Zoomed to the spread; each numbered marker matches the dial."), /* @__PURE__ */ React.createElement("div", { className: "zm-sheet" }, OPS.map((o) => /* @__PURE__ */ React.createElement("div", { className: "zm-sheetrow", key: "r" + o.n }, /* @__PURE__ */ React.createElement("div", { className: "zm-sheetname" }, /* @__PURE__ */ React.createElement("span", { className: "zm-sheetnum", style: { borderColor: o.col, color: o.col } }, o.n), o.ab), /* @__PURE__ */ React.createElement("div", { className: "zm-sheetbar" }, /* @__PURE__ */ React.createElement("div", { className: "zm-sheettick is-focus", style: { left: `${BX(o.zt.getTime())}%`, background: o.col }, title: o.ab + " \xB7 " + fmt(o.zt, tz) })), /* @__PURE__ */ React.createElement("div", { className: "zm-sheettime" }, fmt(o.zt, tz))))), /* @__PURE__ */ React.createElement("div", { className: "zm-twinote" }, NAME[concept], " sits at hour ", focusH, " of the day; the opinions differ only in which dawn/dusk bounds the day, shifting the clock time a few minutes. Full method details are on the left."));
+  }), /* @__PURE__ */ React.createElement("text", { x: a0[0], y: cy + 15, className: "zm-dialanchor", textAnchor: "start" }, "\u05E0\u05E5 " + fmt(sr, tz)), /* @__PURE__ */ React.createElement("text", { x: cx, y: pt(0.5, R)[1] - 7, className: "zm-dialanchor", textAnchor: "middle" }, "\u05D7\u05E6\u05D5\u05EA " + fmt(new Date(sr.getTime() + 6 * (dayMs / 12)), tz)), /* @__PURE__ */ React.createElement("text", { x: a1[0], y: cy + 15, className: "zm-dialanchor", textAnchor: "end" }, fmt(ss, tz) + " \u05E9\u05E7\u05D9\u05E2\u05D4"))), /* @__PURE__ */ React.createElement("div", { className: "zm-sheethead" }, NAME[concept], " \u2014 side by side"), /* @__PURE__ */ React.createElement("div", { className: "zm-sheetsub" }, "Earliest first; each numbered marker matches the dial."), /* @__PURE__ */ React.createElement("div", { className: "zm-sheet" }, OPS.map((o) => /* @__PURE__ */ React.createElement("div", { className: "zm-sheetrow", key: "r" + o.n }, /* @__PURE__ */ React.createElement("div", { className: "zm-sheetname" }, /* @__PURE__ */ React.createElement("span", { className: "zm-sheetnum", style: { borderColor: o.col, color: o.col } }, o.n), o.ab), /* @__PURE__ */ React.createElement("div", { className: "zm-sheetbar" }, /* @__PURE__ */ React.createElement("div", { className: "zm-sheettick is-focus", style: { left: `${BX(o.zt.getTime())}%`, background: o.col }, title: o.ab + " \xB7 " + fmt(o.zt, tz) })), /* @__PURE__ */ React.createElement("div", { className: "zm-sheettime" }, fmt(o.zt, tz))))), /* @__PURE__ */ React.createElement("div", { className: "zm-twinote" }, NAME[concept], " sits at hour ", focusH, " of the day; the opinions differ only in which dawn/dusk bounds the day, shifting the clock time a few minutes. Full method details are on the left."));
 }
 function ZmanimMethods() {
   const [locId, setLocId] = useState("newyork");
