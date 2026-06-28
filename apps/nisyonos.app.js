@@ -435,6 +435,24 @@ function TCell({ items }) {
 function TableView() {
   const [z, setZ] = useState(1);
   const clamp = (v) => Math.min(2.6, Math.max(0.5, Math.round(v * 10) / 10));
+  const wrapRef = React.useRef(null);
+  React.useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    function fit() {
+      el.style.maxHeight = "none";
+      el.style.height = "auto";
+      const vtop = el.getBoundingClientRect().top;
+      let h = Math.max(240, window.innerHeight - vtop - 12);
+      el.style.height = h + "px";
+      const over = document.documentElement.scrollHeight - window.innerHeight;
+      if (over > 0) { h = Math.max(240, h - over - 2); el.style.height = h + "px"; }
+    }
+    fit();
+    const t = setTimeout(fit, 60);
+    window.addEventListener("resize", fit);
+    return () => { clearTimeout(t); window.removeEventListener("resize", fit); };
+  }, []);
   return (
     <div className="tableview">
       <div className="zoombar">
@@ -444,7 +462,7 @@ function TableView() {
         <button onClick={() => setZ((v) => clamp(v + 0.1))} aria-label="הַגְדֵּל">+</button>
         <button className="zoom-reset" onClick={() => setZ(1)}>אִפּוּס</button>
       </div>
-      <div className="table-wrap">
+      <div className="table-wrap" ref={wrapRef}>
         <table className="bigtable" style={{ zoom: z }}>
         <thead>
           <tr>
