@@ -527,104 +527,91 @@ function SourceLink({ refText, url }) {
 }
 
 
-// Sun-arc sundial for the proportional-hour daytime zmanim. Shows the day split
-// into 12 shaos zmaniyos with each zman at its hour and its wall-clock time, plus a
-// five-opinion comparison of how the proportional day shifts by day-bounding.
+// Sun-arc sundial. SECTION mode (a specific zman): show that zman's opinions on the
+// dial as numbered badges laddered along its hour-spoke, plus a zoomed numbered bar.
 function DayDial({ ctx, concept, loc }) {
   if (!ctx || !ctx.sr || !ctx.ss) return null;
-  const tz = loc.tz, sr = ctx.sr, ss = ctx.ss, dayMs = ss - sr;
+  const tz = loc.tz, sr = ctx.sr, ss = ctx.ss, dayMs = ss - sr, hourMs = dayMs / 12;
   const hourMin = Math.round(dayMs / 12 / 60000);
-  const hourMs = dayMs / 12;
   const HMAP = { shma: 3, tfilla: 4, chatzos: 6, mincha_gedola: 6.5, mincha_ketana: 9.5, plag: 10.75 };
+  const NAME = { shma: "Shema", tfilla: "Tefila", chatzos: "Chatzos", mincha_gedola: "Mincha Gedola", mincha_ketana: "Mincha Ketana", plag: "Plag" };
   const focusH = HMAP[concept];
-  const ZMANIM = [
-    { h: 3, en: "Shema", col: "#E9B949" },
-    { h: 4, en: "Tefila", col: "#C97B3C" },
-    { h: 6, en: "Chatzos", col: "#F3ECDD" },
-    { h: 6.5, en: "M. Gedola", col: "#6FA8A0" },
-    { h: 9.5, en: "M. Ketana", col: "#6FA8A0" },
-    { h: 10.75, en: "Plag", col: "#9B8FD6" },
-  ];
-  const zmanT = (h) => new Date(sr.getTime() + h * hourMs);
+  const clampf = (x) => Math.max(0, Math.min(1, x));
 
-  const W = 360, H = 222, cx = 180, cy = 198, R = 150;
-  const pt = (frac, r) => { const th = Math.PI * (1 - frac); return [cx + r * Math.cos(th), cy - r * Math.sin(th)]; };
+  const OPS = [
+    { ab: "Gra", s: sr, e: ss, col: "#E9B949" },
+    { ab: "MGA 72", s: ctx.addMin(sr, -72), e: ctx.addMin(ss, 72), col: "#C97B3C" },
+    { ab: "MGA 90", s: ctx.addMin(sr, -90), e: ctx.addMin(ss, 90), col: "#6FA8A0" },
+    { ab: "MGA 16.1°", s: ctx.dR(16.1), e: ctx.dS(16.1), col: "#9B8FD6" },
+    { ab: "B'Tanya", s: ctx.dR(1.583), e: ctx.dS(1.583), col: "#D98E45" },
+  ].filter((o) => o.s && o.e && !isNaN(o.s) && !isNaN(o.e));
+  const marks = OPS.map((o, k) => {
+    const oh = (o.e - o.s) / 12, t = new Date(o.s.getTime() + focusH * oh);
+    return { n: k + 1, ab: o.ab, col: o.col, t, frac: clampf((t - sr) / dayMs) };
+  });
+
+  const W = 360, H = 206, cx = 180, cy = 188, R = 150;
+  const pt = (fr, r) => { const th = Math.PI * (1 - fr); return [cx + r * Math.cos(th), cy - r * Math.sin(th)]; };
   const [ax, ay] = pt(0, R), [bx, by] = pt(1, R);
   const arcPath = `M ${ax.toFixed(1)} ${ay.toFixed(1)} A ${R} ${R} 0 0 1 ${bx.toFixed(1)} ${by.toFixed(1)}`;
 
-  // five popular day-boundings on a shared clock axis
-  const OPS = [
-    { name: "Gra · sunrise–sunset", s: sr, e: ss },
-    { name: "MGA · 72 min", s: ctx.addMin(sr, -72), e: ctx.addMin(ss, 72) },
-    { name: "MGA · 90 min", s: ctx.addMin(sr, -90), e: ctx.addMin(ss, 90) },
-    { name: "MGA · 16.1°", s: ctx.dR(16.1), e: ctx.dS(16.1) },
-    { name: "Baal HaTanya · 1.583°", s: ctx.dR(1.583), e: ctx.dS(1.583) },
-  ].filter((o) => o.s && o.e && !isNaN(o.s) && !isNaN(o.e));
-  const t0 = Math.min(...OPS.map((o) => o.s.getTime()));
-  const t1 = Math.max(...OPS.map((o) => o.e.getTime()));
-  const X = (t) => ((t - t0) / (t1 - t0)) * 100;
+  // zoomed bar axis: span of opinion times, padded, with an 8-minute floor
+  const tms = marks.map((m) => m.t.getTime());
+  let lo = Math.min(...tms), hi = Math.max(...tms);
+  if (hi - lo < 8 * 60000) { const mid = (lo + hi) / 2; lo = mid - 4 * 60000; hi = mid + 4 * 60000; }
+  const pd = (hi - lo) * 0.18; lo -= pd; hi += pd;
+  const BX = (t) => ((t - lo) / (hi - lo)) * 100;
 
   return (
     <aside className="zm-twilight">
-      <div className="zm-twihead">The day as a sundial</div>
-      <div className="zm-twisub">Sunrise to sunset, split into twelve <i>shaos zmaniyos</i>. One proportional hour is {hourMin} minutes long here today (Gra).</div>
-
+      <div className="zm-twihead">{NAME[concept]} on the sundial</div>
+      <div className="zm-twisub">Sunrise to sunset, twelve <i>shaos zmaniyos</i> — one is {hourMin} min today (Gra). {NAME[concept]} sits at hour {focusH}; the numbers are the opinions below.</div>
       <div className="zm-dialwrap">
-        <svg viewBox={`0 0 ${W} ${H}`} className="zm-dialsvg" role="img" aria-label="Sundial of the proportional-hour zmanim">
-          <line x1={ax} y1={cy} x2={bx} y2={cy} stroke="var(--line)" strokeWidth="1" />
+        <svg viewBox={`0 0 ${W} ${H}`} className="zm-dialsvg" role="img" aria-label={NAME[concept] + " on the sundial"}>
+          <line x1={ax} y1={cy} x2={bx} y2={cy} stroke="var(--line)" />
           {Array.from({ length: 13 }).map((_, h) => {
-            const f = h / 12, major = h === 0 || h === 6 || h === 12;
-            const [ix, iy] = pt(f, R);
-            const [lx, ly] = pt(f, R + 11);
+            const fr = h / 12, major = h === 0 || h === 6 || h === 12;
+            const [ix, iy] = pt(fr, R), [lx, ly] = pt(fr, R + 11);
             return (
               <g key={"g" + h}>
-                <line x1={cx} y1={cy} x2={ix} y2={iy} stroke="var(--line)" strokeWidth={major ? 1 : 0.5} opacity={major ? 0.55 : 0.22} />
+                <line x1={cx} y1={cy} x2={ix} y2={iy} stroke="var(--line)" strokeWidth={major ? 1 : 0.5} opacity={major ? 0.5 : 0.2} />
                 <text x={lx} y={ly + 3} className="zm-dialhrnum" textAnchor="middle">{h}</text>
               </g>
             );
           })}
-          <path d={arcPath} fill="none" stroke="var(--gold)" strokeWidth="2" opacity="0.65" />
-          {focusH != null && (() => { const [fx, fy] = pt(focusH / 12, R); return <line x1={cx} y1={cy} x2={fx} y2={fy} stroke="var(--gold)" strokeWidth="2.6" />; })()}
-          {ZMANIM.map((z, i) => {
-            const f = z.h / 12, [dx, dy] = pt(f, R), isF = z.h === focusH;
-            const up = f <= 0.5;
-            const [tx, ty] = pt(f, R - 30);
+          <path d={arcPath} fill="none" stroke="var(--gold)" strokeWidth="2" opacity="0.6" />
+          {focusH != null && (() => { const [fx, fy] = pt(focusH / 12, R); return <line x1={cx} y1={cy} x2={fx} y2={fy} stroke="var(--gold)" strokeWidth="2.4" />; })()}
+          {marks.slice().sort((a, b) => a.t - b.t).map((m, rank) => {
+            const [dx, dy] = pt(m.frac, R);
+            const br = R - 16 - rank * 13;
+            const [px, py] = pt(focusH / 12, br);
             return (
-              <g key={"z" + i}>
-                <circle cx={dx} cy={dy} r={isF ? 6 : 4} fill={z.col} stroke="#0B1A2E" strokeWidth="1.3" />
-                <text x={tx} y={ty} className={`zm-diallbl ${isF ? "is-focus" : ""}`} textAnchor="middle">{z.en}</text>
-                <text x={tx} y={ty + 11} className="zm-dialtime" textAnchor="middle">{fmt(zmanT(z.h), tz)}</text>
+              <g key={"m" + m.n}>
+                <line x1={dx} y1={dy} x2={px} y2={py} stroke={m.col} strokeWidth="0.8" opacity="0.5" />
+                <circle cx={dx} cy={dy} r="3" fill={m.col} stroke="#0B1A2E" strokeWidth="1" />
+                <circle cx={px} cy={py} r="8.5" fill="#0B1A2E" stroke={m.col} strokeWidth="1.6" />
+                <text x={px} y={py + 3.2} className="zm-dialbadge" textAnchor="middle">{m.n}</text>
               </g>
             );
           })}
           <text x={ax} y={cy + 15} className="zm-dialanchor" textAnchor="start">{"נץ " + fmt(sr, tz)}</text>
-          <text x={cx} y={pt(0.5, R)[1] - 8} className="zm-dialanchor" textAnchor="middle">{"חצות " + fmt(zmanT(6), tz)}</text>
+          <text x={cx} y={pt(0.5, R)[1] - 7} className="zm-dialanchor" textAnchor="middle">{"חצות " + fmt(new Date(sr.getTime() + 6 * hourMs), tz)}</text>
           <text x={bx} y={cy + 15} className="zm-dialanchor" textAnchor="end">{fmt(ss, tz) + " שקיעה"}</text>
         </svg>
       </div>
 
-      <div className="zm-sheethead">The same day under five popular reckonings</div>
-      <div className="zm-sheetsub">Each bar is that opinion's day on a shared clock; the marker is {ZMANIM.find((z) => z.h === focusH) ? ZMANIM.find((z) => z.h === focusH).en : "the zman"}. Wider bars = longer proportional hours.</div>
+      <div className="zm-sheethead">{NAME[concept]} — five reckonings</div>
+      <div className="zm-sheetsub">Zoomed to the spread; each numbered marker matches the dial.</div>
       <div className="zm-sheet">
-        {OPS.map((o, i) => {
-          const oHour = (o.e - o.s) / 12;
-          const fz = focusH != null ? new Date(o.s.getTime() + focusH * oHour) : null;
-          return (
-            <div className="zm-sheetrow" key={"o" + i}>
-              <div className="zm-sheetname">{o.name}</div>
-              <div className="zm-sheetbar">
-                <div className="zm-sheetspan" style={{ left: `${X(o.s.getTime())}%`, width: `${X(o.e.getTime()) - X(o.s.getTime())}%` }} />
-                {ZMANIM.map((z, k) => {
-                  const t = o.s.getTime() + z.h * oHour, isF = z.h === focusH;
-                  return <div key={k} className={`zm-sheettick ${isF ? "is-focus" : ""}`} style={{ left: `${X(t)}%`, background: z.col }} title={`${z.en} · ${fmt(new Date(t), tz)}`} />;
-                })}
-              </div>
-              <div className="zm-sheettime">{fz ? fmt(fz, tz) : "--"}</div>
-            </div>
-          );
-        })}
+        {marks.map((m) => (
+          <div className="zm-sheetrow" key={"r" + m.n}>
+            <div className="zm-sheetname"><span className="zm-sheetnum" style={{ borderColor: m.col, color: m.col }}>{m.n}</span>{m.ab}</div>
+            <div className="zm-sheetbar"><div className="zm-sheettick is-focus" style={{ left: `${BX(m.t.getTime())}%`, background: m.col }} title={m.ab + " · " + fmt(m.t, tz)} /></div>
+            <div className="zm-sheettime">{fmt(m.t, tz)}</div>
+          </div>
+        ))}
       </div>
-      <div className="zm-twinote">The sundial fixes the structure: sunrise and sunset bound a 12-hour day, and each zman sits at its proportional hour (Shema 3, Tefila 4, chatzos 6, Mincha Gedola 6.5, Mincha Ketana 9.5, Plag 10.75). The clock time of each depends on the date, the place, and which dawn/dusk bounds the day — which is what the five bars compare.</div>
+      <div className="zm-twinote">The sundial fixes where {NAME[concept]} sits in the day (hour {focusH} of 12). Its clock time depends on the date, the place, and which dawn/dusk bounds the day — the five reckonings above. Full method details are listed on the left.</div>
     </aside>
   );
 }
@@ -1190,6 +1177,8 @@ const CSS = `
 .zm-dialwrap{margin:10px 0 6px;}
 .zm-dialsvg{width:100%;height:auto;overflow:visible;}
 .zm-dialhrnum{fill:var(--muted);font-size:9px;font-family:'Inter',sans-serif;}
+.zm-dialbadge{fill:var(--parch);font-size:9px;font-weight:700;font-family:'Inter',sans-serif;}
+.zm-sheetnum{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border:1px solid;border-radius:50%;font-size:9px;font-weight:700;margin-right:5px;vertical-align:middle;}
 .zm-diallbl{fill:var(--parch);font-size:10.5px;font-family:'Inter',sans-serif;font-weight:600;}
 .zm-diallbl.is-focus{fill:var(--gold);}
 .zm-dialtime{fill:var(--muted);font-size:9px;font-family:'Inter',sans-serif;}
@@ -1197,7 +1186,7 @@ const CSS = `
 .zm-sheethead{margin-top:14px;font-family:'Frank Ruhl Libre',serif;font-size:15px;color:var(--parch);}
 .zm-sheetsub{font-size:12px;color:var(--muted);line-height:1.5;margin:2px 0 10px;}
 .zm-sheet{display:flex;flex-direction:column;gap:9px;}
-.zm-sheetrow{display:grid;grid-template-columns:120px 1fr 56px;align-items:center;gap:8px;}
+.zm-sheetrow{display:grid;grid-template-columns:84px 1fr 54px;align-items:center;gap:8px;}
 .zm-sheetname{font-size:11px;color:var(--parch);font-family:'Inter',sans-serif;text-align:right;line-height:1.2;}
 .zm-sheetbar{position:relative;height:16px;background:rgba(243,236,221,.05);border-radius:3px;}
 .zm-sheetspan{position:absolute;top:5px;height:6px;background:rgba(233,185,73,.28);border-radius:3px;}
