@@ -813,6 +813,9 @@ function ZmanimMethods() {
     );
   };
 
+  // Default to the user's location on load; New York remains the fallback if denied/unavailable.
+  React.useEffect(() => { useMyLocation(); }, []);
+
   return (
     <div className="zm-root">
       <style>{CSS}</style>

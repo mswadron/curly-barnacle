@@ -807,6 +807,9 @@ function ZmanimMethods() {
       { enableHighAccuracy: true, timeout: 1e4, maximumAge: 6e4 }
     );
   };
+  React.useEffect(() => {
+    useMyLocation();
+  }, []);
   return /* @__PURE__ */ React.createElement("div", { className: "zm-root" }, /* @__PURE__ */ React.createElement("style", null, CSS), /* @__PURE__ */ React.createElement("header", { className: "zm-head" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "zm-eyebrow" }, "\u05D6\u05B0\u05DE\u05B7\u05E0\u05B4\u05BC\u05D9\u05DD \xB7 one zman, every method"), /* @__PURE__ */ React.createElement("h1", { className: "zm-title" }, "Where the Opinions Diverge"), /* @__PURE__ */ React.createElement("p", { className: "zm-sub" }, "Same moment in halacha, computed three ways: by degrees below the horizon, by fixed clock minutes, or by zmaniyos (proportional) hours. Pick a zman and watch them spread. Tap a source to open it on Sefaria.")), /* @__PURE__ */ React.createElement("div", { className: "zm-controls" }, /* @__PURE__ */ React.createElement("label", { className: "zm-field" }, /* @__PURE__ */ React.createElement("span", null, "Place"), /* @__PURE__ */ React.createElement("select", { value: custom ? "custom" : locId, onChange: (e) => {
     if (e.target.value !== "custom") {
       setCustom(null);
