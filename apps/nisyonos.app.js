@@ -433,13 +433,22 @@ function TCell({ items }) {
   );
 }
 function TableView() {
+  const [z, setZ] = useState(1);
+  const clamp = (v) => Math.min(2.6, Math.max(0.5, Math.round(v * 10) / 10));
   return (
-    <div className="table-wrap">
-      <table className="bigtable">
+    <div className="tableview">
+      <div className="zoombar">
+        <span className="zoombar-lab">זוּם</span>
+        <button onClick={() => setZ((v) => clamp(v - 0.1))} aria-label="הַקְטֵן">−</button>
+        <span className="zoom-val">{Math.round(z * 100)}%</span>
+        <button onClick={() => setZ((v) => clamp(v + 0.1))} aria-label="הַגְדֵּל">+</button>
+        <button className="zoom-reset" onClick={() => setZ(1)}>אִפּוּס</button>
+      </div>
+      <div className="table-wrap">
+        <table className="bigtable" style={{ zoom: z }}>
         <thead>
           <tr>
-            <th>#</th>
-            <th>הַנִּסָּיוֹן</th>
+            <th className="tc-name">הַנִּסָּיוֹן</th>
             <th>הַתְּלוּנָה / הַמַּעֲשֶׂה</th>
             <th>תְּגוּבַת הַקָּדוֹשׁ בָּרוּךְ הוּא</th>
             <th>תְּגוּבַת מֹשֶׁה</th>
@@ -452,8 +461,8 @@ function TableView() {
         <tbody>
           {STATIONS.map((s, i) => (
             <tr key={s.id} className={s.within ? "" : "row-beyond"}>
-              <td className="tc-num">{i + 1}</td>
               <td className="tc-name">
+                <span className="tc-rownum">{i + 1}</span>
                 <span className="tc-he">{s.he}</span>
                 <span className="tc-place">{s.place}</span>
                 <span className={"tc-tag" + (s.within ? "" : " tag-beyond")}>{s.tag}</span>
@@ -472,7 +481,8 @@ function TableView() {
             </tr>
           ))}
         </tbody>
-      </table>
+        </table>
+      </div>
     </div>
   );
 }
