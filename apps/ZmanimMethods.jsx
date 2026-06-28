@@ -620,10 +620,12 @@ function DayDial({ ctx, concept, loc }) {
   );
 }
 
-// MAIN sundial tab: all of the day's zmanim plotted for ONE opinion at a time.
+// MAIN sundial tab: all of the day's zmanim plotted for ONE opinion at a time,
+// on the real sun-path (sunrise to sunset). Each zman sits at its true clock time,
+// so toggling the opinion moves the dots.
 function MainSundial({ ctx, loc }) {
   if (!ctx || !ctx.sr || !ctx.ss) return null;
-  const tz = loc.tz, sr = ctx.sr, ss = ctx.ss;
+  const tz = loc.tz, sr = ctx.sr, ss = ctx.ss, gDay = ss - sr;
   const OPS = [
     { ab: "Gra", s: sr, e: ss },
     { ab: "MGA 72", s: ctx.addMin(sr, -72), e: ctx.addMin(ss, 72) },
@@ -643,6 +645,8 @@ function MainSundial({ ctx, loc }) {
     { h: 10.75, en: "Plag", col: "#D98E45" },
   ];
   const zt = (h) => new Date(op.s.getTime() + h * hourMs);
+  const clampf = (x) => Math.max(0, Math.min(1, x));
+  const realFrac = (t) => clampf((t.getTime() - sr.getTime()) / gDay);
   const W = 560, H = 330, cx = 280, cy = 300, R = 250;
   const pt = (fr, r) => { const th = Math.PI * (1 - fr); return [cx + r * Math.cos(th), cy - r * Math.sin(th)]; };
   const a0 = pt(0, R), a1 = pt(1, R);
@@ -652,34 +656,28 @@ function MainSundial({ ctx, loc }) {
       <div className="zm-optabs">
         {OPS.map((o, i) => <button key={o.ab} className={"zm-opt " + (i === oi ? "is-on" : "")} onClick={() => setOi(i)}>{o.ab}</button>)}
       </div>
-      <div className="zm-maindialsub">{op.ab} day: {fmt(op.s, tz)} – {fmt(op.e, tz)} · one sha'ah zmanis = {hourMin} min</div>
+      <div className="zm-maindialsub">{op.ab} day: {fmt(op.s, tz)} – {fmt(op.e, tz)} · one sha'ah zmanis = {hourMin} min · dots are real clock times on the sunrise–sunset path</div>
       <svg viewBox={`0 0 ${W} ${H}`} className="zm-maindialsvg" role="img" aria-label="The day as a sundial">
         <line x1={a0[0]} y1={cy} x2={a1[0]} y2={cy} stroke="var(--line)" />
-        {Array.from({ length: 13 }).map((_, h) => {
-          const fr = h / 12, major = h === 0 || h === 6 || h === 12;
-          const ip = pt(fr, R), lp = pt(fr, R + 13);
-          return (
-            <g key={"g" + h}>
-              <line x1={cx} y1={cy} x2={ip[0]} y2={ip[1]} stroke="var(--line)" strokeWidth={major ? 1 : 0.5} opacity={major ? 0.5 : 0.18} />
-              <text x={lp[0]} y={lp[1] + 3} className="zm-dialhrnum" textAnchor="middle">{h}</text>
-            </g>
-          );
+        {[0, 3, 6, 9, 12].map((h) => {
+          const fr = h / 12, ip = pt(fr, R);
+          return <line key={"g" + h} x1={cx} y1={cy} x2={ip[0]} y2={ip[1]} stroke="var(--line)" strokeWidth="0.6" opacity="0.25" />;
         })}
         <path d={arc} fill="none" stroke="var(--gold)" strokeWidth="2.5" opacity="0.6" />
         {Z.map((z, i) => {
-          const fr = z.h / 12, p = pt(fr, R), lp = pt(fr, R - 34 - (i % 2) * 24);
+          const fr = realFrac(zt(z.h)), p = pt(fr, R), lp = pt(fr, R - 34 - (i % 2) * 24);
           return (
             <g key={"z" + i}>
-              <line x1={cx} y1={cy} x2={p[0]} y2={p[1]} stroke={z.col} strokeWidth="1.2" opacity="0.4" />
+              <line x1={cx} y1={cy} x2={p[0]} y2={p[1]} stroke={z.col} strokeWidth="1.2" opacity="0.45" />
               <circle cx={p[0]} cy={p[1]} r="6" fill={z.col} stroke="#0B1A2E" strokeWidth="1.4" />
               <text x={lp[0]} y={lp[1]} className="zm-mdlbl" textAnchor="middle">{z.en}</text>
               <text x={lp[0]} y={lp[1] + 13} className="zm-mdtime" textAnchor="middle">{fmt(zt(z.h), tz)}</text>
             </g>
           );
         })}
-        <text x={a0[0]} y={cy + 18} className="zm-dialanchor" textAnchor="start">{"נץ " + fmt(op.s, tz)}</text>
-        <text x={cx} y={pt(0.5, R)[1] - 10} className="zm-dialanchor" textAnchor="middle">{"חצות " + fmt(zt(6), tz)}</text>
-        <text x={a1[0]} y={cy + 18} className="zm-dialanchor" textAnchor="end">{fmt(op.e, tz) + " שקיעה"}</text>
+        <text x={a0[0]} y={cy + 18} className="zm-dialanchor" textAnchor="start">{"נץ " + fmt(sr, tz)}</text>
+        <text x={cx} y={pt(0.5, R)[1] - 10} className="zm-dialanchor" textAnchor="middle">{"חצות " + fmt(new Date((sr.getTime() + ss.getTime()) / 2), tz)}</text>
+        <text x={a1[0]} y={cy + 18} className="zm-dialanchor" textAnchor="end">{fmt(ss, tz) + " שקיעה"}</text>
       </svg>
     </div>
   );

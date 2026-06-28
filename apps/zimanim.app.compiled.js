@@ -642,7 +642,7 @@ function DayDial({ ctx, concept, loc }) {
 }
 function MainSundial({ ctx, loc }) {
   if (!ctx || !ctx.sr || !ctx.ss) return null;
-  const tz = loc.tz, sr = ctx.sr, ss = ctx.ss;
+  const tz = loc.tz, sr = ctx.sr, ss = ctx.ss, gDay = ss - sr;
   const OPS = [
     { ab: "Gra", s: sr, e: ss },
     { ab: "MGA 72", s: ctx.addMin(sr, -72), e: ctx.addMin(ss, 72) },
@@ -662,6 +662,8 @@ function MainSundial({ ctx, loc }) {
     { h: 10.75, en: "Plag", col: "#D98E45" }
   ];
   const zt = (h) => new Date(op.s.getTime() + h * hourMs);
+  const clampf = (x) => Math.max(0, Math.min(1, x));
+  const realFrac = (t) => clampf((t.getTime() - sr.getTime()) / gDay);
   const W = 560, H = 330, cx = 280, cy = 300, R = 250;
   const pt = (fr, r) => {
     const th = Math.PI * (1 - fr);
@@ -669,14 +671,13 @@ function MainSundial({ ctx, loc }) {
   };
   const a0 = pt(0, R), a1 = pt(1, R);
   const arc = `M ${a0[0].toFixed(1)} ${a0[1].toFixed(1)} A ${R} ${R} 0 0 1 ${a1[0].toFixed(1)} ${a1[1].toFixed(1)}`;
-  return /* @__PURE__ */ React.createElement("div", { className: "zm-maindial" }, /* @__PURE__ */ React.createElement("div", { className: "zm-optabs" }, OPS.map((o, i) => /* @__PURE__ */ React.createElement("button", { key: o.ab, className: "zm-opt " + (i === oi ? "is-on" : ""), onClick: () => setOi(i) }, o.ab))), /* @__PURE__ */ React.createElement("div", { className: "zm-maindialsub" }, op.ab, " day: ", fmt(op.s, tz), " \u2013 ", fmt(op.e, tz), " \xB7 one sha'ah zmanis = ", hourMin, " min"), /* @__PURE__ */ React.createElement("svg", { viewBox: `0 0 ${W} ${H}`, className: "zm-maindialsvg", role: "img", "aria-label": "The day as a sundial" }, /* @__PURE__ */ React.createElement("line", { x1: a0[0], y1: cy, x2: a1[0], y2: cy, stroke: "var(--line)" }), Array.from({ length: 13 }).map((_, h) => {
-    const fr = h / 12, major = h === 0 || h === 6 || h === 12;
-    const ip = pt(fr, R), lp = pt(fr, R + 13);
-    return /* @__PURE__ */ React.createElement("g", { key: "g" + h }, /* @__PURE__ */ React.createElement("line", { x1: cx, y1: cy, x2: ip[0], y2: ip[1], stroke: "var(--line)", strokeWidth: major ? 1 : 0.5, opacity: major ? 0.5 : 0.18 }), /* @__PURE__ */ React.createElement("text", { x: lp[0], y: lp[1] + 3, className: "zm-dialhrnum", textAnchor: "middle" }, h));
+  return /* @__PURE__ */ React.createElement("div", { className: "zm-maindial" }, /* @__PURE__ */ React.createElement("div", { className: "zm-optabs" }, OPS.map((o, i) => /* @__PURE__ */ React.createElement("button", { key: o.ab, className: "zm-opt " + (i === oi ? "is-on" : ""), onClick: () => setOi(i) }, o.ab))), /* @__PURE__ */ React.createElement("div", { className: "zm-maindialsub" }, op.ab, " day: ", fmt(op.s, tz), " \u2013 ", fmt(op.e, tz), " \xB7 one sha'ah zmanis = ", hourMin, " min \xB7 dots are real clock times on the sunrise\u2013sunset path"), /* @__PURE__ */ React.createElement("svg", { viewBox: `0 0 ${W} ${H}`, className: "zm-maindialsvg", role: "img", "aria-label": "The day as a sundial" }, /* @__PURE__ */ React.createElement("line", { x1: a0[0], y1: cy, x2: a1[0], y2: cy, stroke: "var(--line)" }), [0, 3, 6, 9, 12].map((h) => {
+    const fr = h / 12, ip = pt(fr, R);
+    return /* @__PURE__ */ React.createElement("line", { key: "g" + h, x1: cx, y1: cy, x2: ip[0], y2: ip[1], stroke: "var(--line)", strokeWidth: "0.6", opacity: "0.25" });
   }), /* @__PURE__ */ React.createElement("path", { d: arc, fill: "none", stroke: "var(--gold)", strokeWidth: "2.5", opacity: "0.6" }), Z.map((z, i) => {
-    const fr = z.h / 12, p = pt(fr, R), lp = pt(fr, R - 34 - i % 2 * 24);
-    return /* @__PURE__ */ React.createElement("g", { key: "z" + i }, /* @__PURE__ */ React.createElement("line", { x1: cx, y1: cy, x2: p[0], y2: p[1], stroke: z.col, strokeWidth: "1.2", opacity: "0.4" }), /* @__PURE__ */ React.createElement("circle", { cx: p[0], cy: p[1], r: "6", fill: z.col, stroke: "#0B1A2E", strokeWidth: "1.4" }), /* @__PURE__ */ React.createElement("text", { x: lp[0], y: lp[1], className: "zm-mdlbl", textAnchor: "middle" }, z.en), /* @__PURE__ */ React.createElement("text", { x: lp[0], y: lp[1] + 13, className: "zm-mdtime", textAnchor: "middle" }, fmt(zt(z.h), tz)));
-  }), /* @__PURE__ */ React.createElement("text", { x: a0[0], y: cy + 18, className: "zm-dialanchor", textAnchor: "start" }, "\u05E0\u05E5 " + fmt(op.s, tz)), /* @__PURE__ */ React.createElement("text", { x: cx, y: pt(0.5, R)[1] - 10, className: "zm-dialanchor", textAnchor: "middle" }, "\u05D7\u05E6\u05D5\u05EA " + fmt(zt(6), tz)), /* @__PURE__ */ React.createElement("text", { x: a1[0], y: cy + 18, className: "zm-dialanchor", textAnchor: "end" }, fmt(op.e, tz) + " \u05E9\u05E7\u05D9\u05E2\u05D4")));
+    const fr = realFrac(zt(z.h)), p = pt(fr, R), lp = pt(fr, R - 34 - i % 2 * 24);
+    return /* @__PURE__ */ React.createElement("g", { key: "z" + i }, /* @__PURE__ */ React.createElement("line", { x1: cx, y1: cy, x2: p[0], y2: p[1], stroke: z.col, strokeWidth: "1.2", opacity: "0.45" }), /* @__PURE__ */ React.createElement("circle", { cx: p[0], cy: p[1], r: "6", fill: z.col, stroke: "#0B1A2E", strokeWidth: "1.4" }), /* @__PURE__ */ React.createElement("text", { x: lp[0], y: lp[1], className: "zm-mdlbl", textAnchor: "middle" }, z.en), /* @__PURE__ */ React.createElement("text", { x: lp[0], y: lp[1] + 13, className: "zm-mdtime", textAnchor: "middle" }, fmt(zt(z.h), tz)));
+  }), /* @__PURE__ */ React.createElement("text", { x: a0[0], y: cy + 18, className: "zm-dialanchor", textAnchor: "start" }, "\u05E0\u05E5 " + fmt(sr, tz)), /* @__PURE__ */ React.createElement("text", { x: cx, y: pt(0.5, R)[1] - 10, className: "zm-dialanchor", textAnchor: "middle" }, "\u05D7\u05E6\u05D5\u05EA " + fmt(new Date((sr.getTime() + ss.getTime()) / 2), tz)), /* @__PURE__ */ React.createElement("text", { x: a1[0], y: cy + 18, className: "zm-dialanchor", textAnchor: "end" }, fmt(ss, tz) + " \u05E9\u05E7\u05D9\u05E2\u05D4")));
 }
 function ZmanimMethods() {
   const [locId, setLocId] = useState("newyork");
