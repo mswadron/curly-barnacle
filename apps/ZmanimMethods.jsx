@@ -527,8 +527,9 @@ function SourceLink({ refText, url }) {
 }
 
 
-// Sun-arc sundial, SECTION mode: one small dial per opinion (small multiples),
-// each showing that opinion's own day with the zman at its proportional hour.
+// Sun-arc sundial, SECTION mode: all opinions baked into ONE graph on a shared
+// real-time axis. Each opinion is a nested day-arc (its own sunrise->sunset), so
+// longer days (MGA) span wider; the numbered dot is that opinion's zman at its true time.
 function DayDial({ ctx, concept, loc }) {
   if (!ctx || !ctx.sr || !ctx.ss) return null;
   const tz = loc.tz, sr = ctx.sr, ss = ctx.ss, dayMs = ss - sr;
@@ -541,18 +542,22 @@ function DayDial({ ctx, concept, loc }) {
     { ab: "Gra", s: sr, e: ss, col: "#E9B949" },
     { ab: "MGA 72", s: ctx.addMin(sr, -72), e: ctx.addMin(ss, 72), col: "#C97B3C" },
     { ab: "MGA 90", s: ctx.addMin(sr, -90), e: ctx.addMin(ss, 90), col: "#6FA8A0" },
-    { ab: "MGA 16.1°", s: ctx.dR(16.1), e: ctx.dS(16.1), col: "#9B8FD6" },
+    { ab: "MGA 16.1\u00B0", s: ctx.dR(16.1), e: ctx.dS(16.1), col: "#9B8FD6" },
     { ab: "B'Tanya", s: ctx.dR(1.583), e: ctx.dS(1.583), col: "#D98E45" },
   ].filter((o) => o.s && o.e && !isNaN(o.s) && !isNaN(o.e)).map((o, i) => {
     const day = o.e - o.s;
     return { ...o, n: i + 1, zt: new Date(o.s.getTime() + focusH * (day / 12)) };
   });
 
-  const W = 150, H = 98, cx = 75, cy = 86, R = 64;
+  const t0 = Math.min(...OPS.map((o) => o.s.getTime()));
+  const t1 = Math.max(...OPS.map((o) => o.e.getTime()));
+  const F = (t) => (t - t0) / (t1 - t0);
+
+  const W = 360, H = 200, cx = 180, cy = 184, Rmax = 150, step = 16;
   const pt = (fr, r) => { const th = Math.PI * (1 - fr); return [cx + r * Math.cos(th), cy - r * Math.sin(th)]; };
-  const a0 = pt(0, R), a1 = pt(1, R);
-  const arc = `M ${a0[0].toFixed(1)} ${a0[1].toFixed(1)} A ${R} ${R} 0 0 1 ${a1[0].toFixed(1)} ${a1[1].toFixed(1)}`;
-  const tip = pt(focusH / 12, R);
+  const x0 = pt(0, Rmax)[0], x1 = pt(1, Rmax)[0];
+  const noonF = F((sr.getTime() + ss.getTime()) / 2);
+  const np = pt(noonF, Rmax + 4);
 
   const ts = OPS.map((o) => o.zt.getTime());
   let lo = Math.min(...ts), hi = Math.max(...ts);
@@ -563,35 +568,38 @@ function DayDial({ ctx, concept, loc }) {
   return (
     <aside className="zm-twilight">
       <div className="zm-twihead">{NAME[concept]} on the sundial</div>
-      <div className="zm-twisub">Each opinion is its own dial: that opinion's day, sunrise to sunset, split into twelve <i>shaos zmaniyos</i>, with {NAME[concept]} at hour {focusH}.</div>
-      <div className="zm-minis">
-        {OPS.map((o) => (
-          <div className="zm-mini" key={o.n}>
-            <svg viewBox={`0 0 ${W} ${H}`} className="zm-minisvg" role="img" aria-label={o.ab}>
-              <line x1={a0[0]} y1={cy} x2={a1[0]} y2={cy} stroke="var(--line)" />
-              {[0, 3, 6, 9, 12].map((h) => { const p = pt(h / 12, R); return <line key={h} x1={cx} y1={cy} x2={p[0]} y2={p[1]} stroke="var(--line)" strokeWidth="0.5" opacity="0.3" />; })}
-              <path d={arc} fill="none" stroke="var(--gold)" strokeWidth="1.4" opacity="0.45" />
-              <line x1={cx} y1={cy} x2={tip[0]} y2={tip[1]} stroke={o.col} strokeWidth="2.4" />
-              <circle cx={tip[0]} cy={tip[1]} r="3.6" fill={o.col} stroke="#0B1A2E" strokeWidth="1.2" />
-            </svg>
-            <div className="zm-mininame"><span className="zm-sheetnum" style={{ borderColor: o.col, color: o.col }}>{o.n}</span>{o.ab}</div>
-            <div className="zm-minitime">{fmt(o.zt, tz)}</div>
-            <div className="zm-miniends">{fmt(o.s, tz)} – {fmt(o.e, tz)}</div>
-          </div>
-        ))}
+      <div className="zm-twisub">One graph, shared clock: each ring is an opinion's day (dawn to nightfall) \u2014 the longer MGA days span wider. The numbered dot is that opinion's {NAME[concept]}.</div>
+      <div className="zm-dialwrap">
+        <svg viewBox={`0 0 ${W} ${H}`} className="zm-dialsvg" role="img" aria-label={NAME[concept] + " across opinions"}>
+          <line x1={x0} y1={cy} x2={x1} y2={cy} stroke="var(--line)" />
+          <line x1={cx} y1={cy} x2={np[0]} y2={np[1]} stroke="var(--line)" strokeWidth="0.6" opacity="0.35" strokeDasharray="3 3" />
+          <text x={np[0]} y={np[1] - 4} className="zm-dialhrnum" textAnchor="middle">\u05D7\u05E6\u05D5\u05EA</text>
+          {OPS.map((o, i) => {
+            const R = Rmax - i * step;
+            const ps = pt(F(o.s.getTime()), R), pe = pt(F(o.e.getTime()), R), pz = pt(F(o.zt.getTime()), R);
+            return (
+              <g key={o.n}>
+                <path d={`M ${ps[0].toFixed(1)} ${ps[1].toFixed(1)} A ${R} ${R} 0 0 1 ${pe[0].toFixed(1)} ${pe[1].toFixed(1)}`} fill="none" stroke={o.col} strokeWidth="2.2" opacity="0.6" />
+                <line x1={cx} y1={cy} x2={pz[0]} y2={pz[1]} stroke={o.col} strokeWidth="0.9" opacity="0.3" />
+                <circle cx={pz[0]} cy={pz[1]} r="8" fill="#0B1A2E" stroke={o.col} strokeWidth="1.7" />
+                <text x={pz[0]} y={pz[1] + 3.2} className="zm-dialbadge" textAnchor="middle">{o.n}</text>
+              </g>
+            );
+          })}
+        </svg>
       </div>
-      <div className="zm-sheethead">{NAME[concept]} — side by side</div>
-      <div className="zm-sheetsub">Zoomed to the spread; each numbered marker matches its dial. One sha'ah zmanis is {hourMin} min today (Gra).</div>
+      <div className="zm-sheethead">{NAME[concept]} \u2014 side by side</div>
+      <div className="zm-sheetsub">Zoomed to the spread; each numbered marker matches the graph. One sha'ah zmanis is {hourMin} min today (Gra).</div>
       <div className="zm-sheet">
         {OPS.map((o) => (
           <div className="zm-sheetrow" key={"r" + o.n}>
             <div className="zm-sheetname"><span className="zm-sheetnum" style={{ borderColor: o.col, color: o.col }}>{o.n}</span>{o.ab}</div>
-            <div className="zm-sheetbar"><div className="zm-sheettick is-focus" style={{ left: `${BX(o.zt.getTime())}%`, background: o.col }} title={o.ab + " · " + fmt(o.zt, tz)} /></div>
+            <div className="zm-sheetbar"><div className="zm-sheettick is-focus" style={{ left: `${BX(o.zt.getTime())}%`, background: o.col }} title={o.ab + " \u00B7 " + fmt(o.zt, tz)} /></div>
             <div className="zm-sheettime">{fmt(o.zt, tz)}</div>
           </div>
         ))}
       </div>
-      <div className="zm-twinote">{NAME[concept]} always sits at hour {focusH} of the day; the dials differ only in which dawn/dusk bounds the day, which stretches the proportional hour and shifts the clock time. Full method details are on the left.</div>
+      <div className="zm-twinote">Rings nested inward: Gra (sunrise\u2013sunset) is the shortest day; the MGA and Baal HaTanya days start earlier and end later, so each proportional hour is longer and {NAME[concept]} shifts. Full method details are on the left.</div>
     </aside>
   );
 }
