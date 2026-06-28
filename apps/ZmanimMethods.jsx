@@ -291,6 +291,11 @@ const Q = {
 
 const CONCEPTS = [
   {
+    id: "sundial", title: "Sundial", sub: "All the day's zmanim, one opinion at a time",
+    basis: { ref: "Shulchan Arukh OC 233:1", url: "Shulchan_Arukh,_Orach_Chayim.233.1" },
+    items: [],
+  },
+  {
     id: "alos", title: "Alot HaShachar", sub: "Dawn / start of the MGA day",
     basis: { ref: "Pesachim 94a; Shulchan Arukh OC 89:1", url: "Pesachim.94a" },
     items: [
@@ -615,6 +620,71 @@ function DayDial({ ctx, concept, loc }) {
   );
 }
 
+// MAIN sundial tab: all of the day's zmanim plotted for ONE opinion at a time.
+function MainSundial({ ctx, loc }) {
+  if (!ctx || !ctx.sr || !ctx.ss) return null;
+  const tz = loc.tz, sr = ctx.sr, ss = ctx.ss;
+  const OPS = [
+    { ab: "Gra", s: sr, e: ss },
+    { ab: "MGA 72", s: ctx.addMin(sr, -72), e: ctx.addMin(ss, 72) },
+    { ab: "MGA 90", s: ctx.addMin(sr, -90), e: ctx.addMin(ss, 90) },
+    { ab: "MGA 16.1°", s: ctx.dR(16.1), e: ctx.dS(16.1) },
+    { ab: "B'Tanya", s: ctx.dR(1.583), e: ctx.dS(1.583) },
+  ].filter((o) => o.s && o.e && !isNaN(o.s) && !isNaN(o.e));
+  const [oi, setOi] = useState(0);
+  const op = OPS[Math.min(oi, OPS.length - 1)];
+  const day = op.e - op.s, hourMs = day / 12, hourMin = Math.round(hourMs / 60000);
+  const Z = [
+    { h: 3, en: "Shema", col: "#E9B949" },
+    { h: 4, en: "Tefila", col: "#C97B3C" },
+    { h: 6, en: "Chatzos", col: "#F3ECDD" },
+    { h: 6.5, en: "Mincha Gedola", col: "#6FA8A0" },
+    { h: 9.5, en: "Mincha Ketana", col: "#9B8FD6" },
+    { h: 10.75, en: "Plag", col: "#D98E45" },
+  ];
+  const zt = (h) => new Date(op.s.getTime() + h * hourMs);
+  const W = 560, H = 330, cx = 280, cy = 300, R = 250;
+  const pt = (fr, r) => { const th = Math.PI * (1 - fr); return [cx + r * Math.cos(th), cy - r * Math.sin(th)]; };
+  const a0 = pt(0, R), a1 = pt(1, R);
+  const arc = `M ${a0[0].toFixed(1)} ${a0[1].toFixed(1)} A ${R} ${R} 0 0 1 ${a1[0].toFixed(1)} ${a1[1].toFixed(1)}`;
+  return (
+    <div className="zm-maindial">
+      <div className="zm-optabs">
+        {OPS.map((o, i) => <button key={o.ab} className={"zm-opt " + (i === oi ? "is-on" : "")} onClick={() => setOi(i)}>{o.ab}</button>)}
+      </div>
+      <div className="zm-maindialsub">{op.ab} day: {fmt(op.s, tz)} – {fmt(op.e, tz)} · one sha'ah zmanis = {hourMin} min</div>
+      <svg viewBox={`0 0 ${W} ${H}`} className="zm-maindialsvg" role="img" aria-label="The day as a sundial">
+        <line x1={a0[0]} y1={cy} x2={a1[0]} y2={cy} stroke="var(--line)" />
+        {Array.from({ length: 13 }).map((_, h) => {
+          const fr = h / 12, major = h === 0 || h === 6 || h === 12;
+          const ip = pt(fr, R), lp = pt(fr, R + 13);
+          return (
+            <g key={"g" + h}>
+              <line x1={cx} y1={cy} x2={ip[0]} y2={ip[1]} stroke="var(--line)" strokeWidth={major ? 1 : 0.5} opacity={major ? 0.5 : 0.18} />
+              <text x={lp[0]} y={lp[1] + 3} className="zm-dialhrnum" textAnchor="middle">{h}</text>
+            </g>
+          );
+        })}
+        <path d={arc} fill="none" stroke="var(--gold)" strokeWidth="2.5" opacity="0.6" />
+        {Z.map((z, i) => {
+          const fr = z.h / 12, p = pt(fr, R), lp = pt(fr, R - 34 - (i % 2) * 24);
+          return (
+            <g key={"z" + i}>
+              <line x1={cx} y1={cy} x2={p[0]} y2={p[1]} stroke={z.col} strokeWidth="1.2" opacity="0.4" />
+              <circle cx={p[0]} cy={p[1]} r="6" fill={z.col} stroke="#0B1A2E" strokeWidth="1.4" />
+              <text x={lp[0]} y={lp[1]} className="zm-mdlbl" textAnchor="middle">{z.en}</text>
+              <text x={lp[0]} y={lp[1] + 13} className="zm-mdtime" textAnchor="middle">{fmt(zt(z.h), tz)}</text>
+            </g>
+          );
+        })}
+        <text x={a0[0]} y={cy + 18} className="zm-dialanchor" textAnchor="start">{"נץ " + fmt(op.s, tz)}</text>
+        <text x={cx} y={pt(0.5, R)[1] - 10} className="zm-dialanchor" textAnchor="middle">{"חצות " + fmt(zt(6), tz)}</text>
+        <text x={a1[0]} y={cy + 18} className="zm-dialanchor" textAnchor="end">{fmt(op.e, tz) + " שקיעה"}</text>
+      </svg>
+    </div>
+  );
+}
+
 function ZmanimMethods() {
   const [locId, setLocId] = useState("newyork");
   const [custom, setCustom] = useState(null);
@@ -794,7 +864,7 @@ function ZmanimMethods() {
           </div>
         </div>
 
-        <div className="zm-body">
+        {concept === "sundial" ? <MainSundial ctx={ctx} loc={loc} /> : <div className="zm-body">
           <div className="zm-left">
         {(concept === "netz" || concept === "shkia") && sunAz && (
           <div className="zm-dir">
@@ -947,7 +1017,7 @@ function ZmanimMethods() {
 
             <div className="zm-twinote">Satellites, for fun: the ISS (about 420 km) stays sunlit until the sun is about {SAT_DEP(420).toFixed(0)}° down and Starlink (about 550 km) until about {SAT_DEP(550).toFixed(0)}°, so they are catchable from late civil through astronomical twilight, sun roughly 6 to 18° down, lit against a dark sky. Exact pass times need live orbital elements, so check Heavens-Above or NASA Spot the Station for tonight.</div>
           </aside>}
-        </div>
+        </div>}
 
         {SOURCES[concept] && (
           <div className="zm-source">
@@ -1198,6 +1268,15 @@ const CSS = `
 .zm-mininame{font-size:11px;color:var(--parch);font-family:'Inter',sans-serif;margin-top:1px;}
 .zm-minitime{font-size:14px;color:var(--gold);font-family:'Inter',sans-serif;font-weight:700;line-height:1.15;}
 .zm-miniends{font-size:9.5px;color:var(--muted);font-family:'Inter',sans-serif;}
+.zm-maindial{width:100%;display:flex;flex-direction:column;align-items:center;gap:12px;padding:8px 0 6px;}
+.zm-optabs{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;}
+.zm-opt{background:rgba(243,236,221,.04);border:1px solid var(--line);color:var(--parch);border-radius:8px;padding:6px 13px;font-size:13px;font-family:inherit;cursor:pointer;transition:all .15s;}
+.zm-opt:hover{border-color:rgba(233,185,73,.4);}
+.zm-opt.is-on{background:var(--gold);color:#0B1A2E;border-color:var(--gold);font-weight:600;}
+.zm-maindialsub{font-size:13px;color:var(--muted);font-family:'Inter',sans-serif;}
+.zm-maindialsvg{width:100%;max-width:600px;height:auto;overflow:visible;}
+.zm-mdlbl{fill:var(--parch);font-size:12px;font-family:'Inter',sans-serif;font-weight:600;}
+.zm-mdtime{fill:var(--gold);font-size:11px;font-family:'Inter',sans-serif;}
 @media (max-width:860px){.zm-body{flex-direction:column;}.zm-twilight{width:100%;position:static;border-left:none;padding-left:0;border-top:1px solid var(--line);padding-top:18px;margin-top:6px;}}
 @media (max-width:760px){.zm-head{align-items:flex-start;}.zm-rowtime{min-width:72px;}.zm-rowdetail{padding-left:14px;}.zm-vars{grid-template-columns:auto 1fr;gap:4px 10px;}}
 `;
