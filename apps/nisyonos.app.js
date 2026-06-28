@@ -430,6 +430,63 @@ function TimelineView() {
   );
 }
 
+/* ═══════════════════════ VIEW (TABLE) — ALL NISYONOS ═══════════════════════ */
+function TCell({ items }) {
+  if (!items || !items.length) return <span className="tc-none">—</span>;
+  return (
+    <React.Fragment>
+      {items.map((q, i) => (
+        <div className="tc-q" key={i}>
+          {q.label && <span className="tc-lab">{q.label}</span>}
+          <span className="tc-txt">{q.he}</span> <Src cite={q.ref} url={q.url} />
+        </div>
+      ))}
+    </React.Fragment>
+  );
+}
+function TableView() {
+  return (
+    <div className="table-wrap">
+      <table className="bigtable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>הַנִּסָּיוֹן</th>
+            <th>הַתְּלוּנָה / הַמַּעֲשֶׂה</th>
+            <th>תְּגוּבַת הַקָּדוֹשׁ בָּרוּךְ הוּא</th>
+            <th>תְּגוּבַת מֹשֶׁה</th>
+            <th>תְּפִלָּה / הִשְׁתַּדְּלוּת</th>
+            <th>הָעֹנֶשׁ</th>
+            <th>מִנְיַן הַמֵּתִים</th>
+            <th>בַּמִּנְיָן</th>
+          </tr>
+        </thead>
+        <tbody>
+          {STATIONS.map((s, i) => (
+            <tr key={s.id} className={s.within ? "" : "row-beyond"}>
+              <td className="tc-num">{i + 1}</td>
+              <td className="tc-name">
+                <span className="tc-he">{s.he}</span>
+                <span className="tc-place">{s.place}</span>
+                <span className={"tc-tag" + (s.within ? "" : " tag-beyond")}>{s.tag}</span>
+              </td>
+              <td className="qcol"><TCell items={s.complaint} /></td>
+              <td className="qcol"><TCell items={s.hashem} /></td>
+              <td className="qcol"><TCell items={s.moshe} /></td>
+              <td className="qcol"><TCell items={s.interjection} /></td>
+              <td className="qcol"><TCell items={s.punishment} /></td>
+              <td className={"tc-death" + (s.deaths.none ? " none" : "")}>
+                <span className="tc-txt">{s.deaths.he}</span> <Src cite={s.deaths.ref} url={s.deaths.url} />
+              </td>
+              <td className="tc-in">{s.within ? <span className="in-yes">✓</span> : <span className="in-no">מִחוּץ</span>}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 /* ═══════════════════════ VIEW 3 — THE TEN (MATRIX) ═══════════════════════ */
 function cellGlyph(v) {
   if (v === "y") return <span className="cell yes">✓</span>;
@@ -521,6 +578,7 @@ function TenView() {
 const VIEWS = [
   ["cards", "הַנְּסִיוֹנוֹת"],
   ["timeline", "צִיר הַזְּמַן"],
+  ["table", "טַבְלָה"],
   ["ten", "עֲשָׂרָה נִסְיוֹנוֹת"],
 ];
 function App() {
@@ -543,6 +601,7 @@ function App() {
       <main className="bd">
         {view === "cards" && <CardView />}
         {view === "timeline" && <TimelineView />}
+        {view === "table" && <TableView />}
         {view === "ten" && <TenView />}
       </main>
       <footer className="ft">

@@ -86,6 +86,32 @@ body{background:var(--bg);color:var(--ink);font-family:var(--hebrew);line-height
 .tl-deaths strong{color:var(--death);font-weight:700;}
 .tl-toll{color:var(--death);font-weight:700;}
 
+/* ---- big table ---- */
+.table-wrap{overflow-x:auto;border:1px solid var(--rule);background:var(--paper);-webkit-overflow-scrolling:touch;}
+.bigtable{border-collapse:collapse;width:100%;min-width:1180px;font-family:var(--hebrew);}
+.bigtable th,.bigtable td{border:1px solid var(--rule);padding:8px 10px;text-align:right;vertical-align:top;font-size:15px;line-height:1.62;}
+.bigtable thead th{background:var(--maroon);color:#fff;font-weight:700;font-size:12.5px;position:sticky;top:0;z-index:2;white-space:nowrap;}
+.bigtable tbody tr:nth-child(even) td{background:#fbfafa;}
+.bigtable tr.row-beyond td{background:#eff5f5;}
+.bigtable tr.row-beyond:nth-child(even) td{background:#e8f1f1;}
+.bigtable td.qcol{min-width:215px;}
+.tc-num{font-family:var(--display);font-weight:800;color:var(--maroon);text-align:center;width:30px;}
+.tc-name{min-width:148px;}
+.tc-name .tc-he{display:block;font-weight:700;font-size:16px;color:var(--maroon-ink);line-height:1.35;}
+.tc-name .tc-place{display:block;font-size:12px;color:var(--mute);margin-top:1px;}
+.tc-name .tc-tag{display:inline-block;font-size:11px;font-weight:700;color:var(--maroon);margin-top:4px;}
+.tc-name .tc-tag.tag-beyond{color:var(--beyond);}
+.tc-q{margin-bottom:7px;}
+.tc-q:last-child{margin-bottom:0;}
+.tc-lab{display:inline-block;font-family:var(--display);font-weight:700;font-size:9px;letter-spacing:.05em;color:#fff;background:var(--maroon);padding:1px 6px;border-radius:3px;margin-left:5px;vertical-align:middle;direction:ltr;}
+.tc-none{color:var(--mute-soft);}
+.tc-death{min-width:150px;color:var(--death);font-weight:500;}
+.tc-death.none{color:var(--mute);font-weight:400;}
+.tc-in{text-align:center;width:62px;}
+.in-yes{color:#1c7a3d;font-weight:800;font-size:17px;}
+.in-no{color:var(--beyond);font-weight:700;font-size:12px;white-space:nowrap;}
+@media(max-width:560px){ .bigtable th,.bigtable td{font-size:14px;} }
+
 /* ---- the ten ---- */
 .ten-intro{font-size:17px;line-height:1.8;background:var(--paper);border:1px solid var(--rule);border-top:3px solid var(--gold);padding:14px 16px;margin:0 0 16px;}
 .matrix-wrap{overflow-x:auto;border:1px solid var(--rule);background:var(--paper);}
