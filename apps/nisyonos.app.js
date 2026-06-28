@@ -43,16 +43,13 @@ const STATIONS = [
       { label: "יְרִידָה", he: "הֲמִבְּלִי אֵין־קְבָרִים בְּמִצְרַיִם לְקַחְתָּנוּ לָמוּת בַּמִּדְבָּר", ref: "שמות יד, יא", url: "https://www.sefaria.org/Exodus.14.11" },
       { label: "עֲלִיָּה", he: "וַיַּמְרוּ עַל־יָם בְּיַם־סוּף — מְלַמֵּד שֶׁהָיוּ מִקְּטַנֵּי אֲמָנָה", ref: "תהלים קו, ז · ערכין טו.", url: "https://www.sefaria.org/Arakhin.15a" },
     ],
+    hashem: [
+      { he: "מַה־תִּצְעַק אֵלָי דַּבֵּר אֶל־בְּנֵי־יִשְׂרָאֵל וְיִסָּעוּ", ref: "שמות יד, טו", url: "https://www.sefaria.org/Exodus.14.15" },
+    ],
     moshe: [
       { he: "אַל־תִּירָאוּ הִתְיַצְּבוּ וּרְאוּ אֶת־יְשׁוּעַת ה'... ה' יִלָּחֵם לָכֶם וְאַתֶּם תַּחֲרִשׁוּן", ref: "שמות יד, יג–יד", url: "https://www.sefaria.org/Exodus.14.13" },
     ],
-    interjection: [
-      { he: "וַיִּצְעֲקוּ בְנֵי־יִשְׂרָאֵל אֶל־ה'", ref: "שמות יד, י", url: "https://www.sefaria.org/Exodus.14.10" },
-    ],
-    punishment: [
-      { he: "אֵין עֹנֶשׁ לְיִשְׂרָאֵל — וַיַּרְא יִשְׂרָאֵל אֶת־מִצְרַיִם מֵת עַל־שְׂפַת הַיָּם", ref: "שמות יד, ל", url: "https://www.sefaria.org/Exodus.14.30" },
-    ],
-    deaths: { none: true, he: "אֵין מִסְפָּר בַּכָּתוּב (הַמֵּתִים — מִצְרַיִם)" },
+    deaths: null,
   },
   {
     id: "marah", he: "מָרָה", en: "The Bitter Waters", place: "מָרָה",
@@ -66,10 +63,7 @@ const STATIONS = [
     interjection: [
       { he: "וַיִּצְעַק אֶל־ה'", ref: "שמות טו, כה", url: "https://www.sefaria.org/Exodus.15.25" },
     ],
-    punishment: [
-      { he: "אֵין עֹנֶשׁ — וְהַבְטָחַת \"כָּל־הַמַּחֲלָה... לֹא־אָשִׂים עָלֶיךָ כִּי אֲנִי ה' רֹפְאֶךָ\"", ref: "שמות טו, כו", url: "https://www.sefaria.org/Exodus.15.26" },
-    ],
-    deaths: { none: true, he: "אֵין מִסְפָּר בַּכָּתוּב" },
+    deaths: null,
   },
   {
     id: "man", he: "מִדְבַּר סִין — הַמָּן", en: "The Manna", place: "מִדְבַּר סִין",
@@ -87,10 +81,7 @@ const STATIONS = [
     moshe: [
       { he: "וְנַחְנוּ מָה כִּי תַלִּינוּ עָלֵינוּ... לֹא־עָלֵינוּ תְלֻנֹּתֵיכֶם כִּי עַל־ה'", ref: "שמות טז, ז–ח", url: "https://www.sefaria.org/Exodus.16.7" },
     ],
-    punishment: [
-      { he: "הַנּוֹתָר הִתְלִיעַ וְהִבְאִישׁ; אֵין עֹנֶשׁ מַעֲבָר לְכָךְ", ref: "שמות טז, כ", url: "https://www.sefaria.org/Exodus.16.20" },
-    ],
-    deaths: { none: true, he: "אֵין מִסְפָּר בַּכָּתוּב" },
+    deaths: null,
   },
   {
     id: "refidim", he: "רְפִידִים — מַסָּה וּמְרִיבָה", en: "Massah & Merivah", place: "רְפִידִים",
@@ -107,10 +98,7 @@ const STATIONS = [
     interjection: [
       { he: "וַיִּצְעַק מֹשֶׁה אֶל־ה' לֵאמֹר מָה אֶעֱשֶׂה לָעָם הַזֶּה עוֹד מְעַט וּסְקָלֻנִי", ref: "שמות יז, ד", url: "https://www.sefaria.org/Exodus.17.4" },
     ],
-    punishment: [
-      { he: "אֵין עֹנֶשׁ — וַיִּקְרָא שֵׁם הַמָּקוֹם מַסָּה וּמְרִיבָה... הֲיֵשׁ ה' בְּקִרְבֵּנוּ אִם־אָיִן", ref: "שמות יז, ז", url: "https://www.sefaria.org/Exodus.17.7" },
-    ],
-    deaths: { none: true, he: "אֵין מִסְפָּר בַּכָּתוּב" },
+    deaths: null,
   },
   {
     id: "egel", he: "חֵטְא הָעֵגֶל", en: "The Golden Calf", place: "חוֹרֵב",
@@ -232,7 +220,7 @@ const STATIONS = [
     punishment: [
       { he: "יַעַן לֹא־הֶאֱמַנְתֶּם בִּי לְהַקְדִּישֵׁנִי... לָכֵן לֹא תָבִיאוּ אֶת־הַקָּהָל הַזֶּה אֶל־הָאָרֶץ", ref: "במדבר כ, יב", url: "https://www.sefaria.org/Numbers.20.12" },
     ],
-    deaths: { none: true, he: "הָעֹנֶשׁ עַל מֹשֶׁה וְאַהֲרֹן — שֶׁלֹּא יִכָּנְסוּ לָאָרֶץ" },
+    deaths: null,
   },
   {
     id: "nechashim", he: "הַנְּחָשִׁים הַשְּׂרָפִים", en: "The Serpents", place: "דֶּרֶךְ יַם־סוּף",
@@ -263,11 +251,9 @@ const STATIONS = [
     moshe: [
       { he: "וַיֹּאמֶר מֹשֶׁה אֶל־שֹׁפְטֵי יִשְׂרָאֵל הִרְגוּ אִישׁ אֲנָשָׁיו הַנִּצְמָדִים לְבַעַל פְּעוֹר", ref: "במדבר כה, ה", url: "https://www.sefaria.org/Numbers.25.5" },
     ],
-    interjection: [
-      { he: "פִּינְחָס... וַיִּקַּח רֹמַח בְּיָדוֹ... וַיִּדְקֹר אֶת־שְׁנֵיהֶם — וַתֵּעָצַר הַמַּגֵּפָה מֵעַל בְּנֵי יִשְׂרָאֵל", ref: "במדבר כה, ז–ח", url: "https://www.sefaria.org/Numbers.25.7" },
-    ],
     punishment: [
-      { he: "וַיִּהְיוּ הַמֵּתִים בַּמַּגֵּפָה אַרְבָּעָה וְעֶשְׂרִים אָלֶף", ref: "במדבר כה, ט", url: "https://www.sefaria.org/Numbers.25.9" },
+      { label: "הַמַּגֵּפָה", he: "וַיִּהְיוּ הַמֵּתִים בַּמַּגֵּפָה אַרְבָּעָה וְעֶשְׂרִים אָלֶף", ref: "במדבר כה, ט", url: "https://www.sefaria.org/Numbers.25.9" },
+      { label: "עֲצִירָתָהּ — פִּינְחָס", he: "פִּינְחָס... וַיִּקַּח רֹמַח בְּיָדוֹ... וַיִּדְקֹר אֶת־שְׁנֵיהֶם — וַתֵּעָצַר הַמַּגֵּפָה מֵעַל בְּנֵי יִשְׂרָאֵל", ref: "במדבר כה, ז–ח", url: "https://www.sefaria.org/Numbers.25.7" },
     ],
     deaths: { he: "אַרְבָּעָה וְעֶשְׂרִים אָלֶף (24,000)", ref: "במדבר כה, ט", url: "https://www.sefaria.org/Numbers.25.9" },
   },
@@ -379,13 +365,15 @@ function CardView() {
                     </div>
                   ) : null
                 )}
-                <div className={"facet deaths" + (s.deaths.none ? " none" : "")}>
-                  <div className="facet-label">מִנְיַן הַמֵּתִים</div>
-                  <div className="quote">
-                    <span className="qtext">{s.deaths.he}</span>
-                    <Src cite={s.deaths.ref} url={s.deaths.url} />
+                {s.deaths && (
+                  <div className={"facet deaths" + (s.deaths.none ? " none" : "")}>
+                    <div className="facet-label">מִנְיַן הַמֵּתִים</div>
+                    <div className="quote">
+                      <span className="qtext">{s.deaths.he}</span>
+                      <Src cite={s.deaths.ref} url={s.deaths.url} />
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             )}
           </div>
@@ -419,7 +407,7 @@ function TimelineView() {
                 <div className="tl-deaths">
                   <strong>הָעֹנֶשׁ:</strong>{" "}
                   {s.punishment && s.punishment[0] ? s.punishment[0].he : "—"}
-                  {!s.deaths.none && <span className="tl-toll"> · {s.deaths.he}</span>}
+                  {s.deaths && !s.deaths.none && <span className="tl-toll"> · {s.deaths.he}</span>}
                 </div>
               </div>
             </div>
@@ -475,8 +463,10 @@ function TableView() {
               <td className="qcol"><TCell items={s.moshe} /></td>
               <td className="qcol"><TCell items={s.interjection} /></td>
               <td className="qcol"><TCell items={s.punishment} /></td>
-              <td className={"tc-death" + (s.deaths.none ? " none" : "")}>
-                <span className="tc-txt">{s.deaths.he}</span> <Src cite={s.deaths.ref} url={s.deaths.url} />
+              <td className={"tc-death" + (s.deaths && s.deaths.none ? " none" : "")}>
+                {s.deaths
+                  ? (<React.Fragment><span className="tc-txt">{s.deaths.he}</span> <Src cite={s.deaths.ref} url={s.deaths.url} /></React.Fragment>)
+                  : <span className="tc-none">—</span>}
               </td>
               <td className="tc-in">{s.within ? <span className="in-yes">✓</span> : <span className="in-no">מִחוּץ</span>}</td>
             </tr>
