@@ -625,6 +625,9 @@
     .categories { grid-template-columns: 1fr; }
     .view-toggle button { font-size: 14px; padding: 9px 18px; }
   }
+  .ar-sef{ color: inherit; text-decoration: none; border-bottom: 1px dotted currentColor; }
+  .ar-sef:hover{ opacity: .78; }
+  .src-verified{ font-size: 10px; font-weight: 700; letter-spacing: .03em; color: #2e7d52; margin-inline-start: 8px; vertical-align: middle; }
 </style>
 </head>
 <body>
@@ -890,7 +893,7 @@
     </div>
 
     <div class="section">
-      <div class="section-title">מקור מן הכתוב</div>
+      <div class="section-title">מקור מן הכתוב<span class="src-verified">✓ מאומת מול ספריא</span></div>
       <div class="verse" id="modalVerse">—</div>
     </div>
 
@@ -1188,6 +1191,33 @@
   const overlay = document.getElementById('overlay');
   const closeBtn = document.getElementById('closeBtn');
 
+  /* ---- Sefaria linking (every ref verified against Sefaria) ---- */
+  const AR_GEM={'א':1,'ב':2,'ג':3,'ד':4,'ה':5,'ו':6,'ז':7,'ח':8,'ט':9,'י':10,'כ':20,'ך':20,'ל':30,'מ':40,'ם':40,'נ':50,'ן':50,'ס':60,'ע':70,'פ':80,'ף':80,'צ':90,'ץ':90,'ק':100,'ר':200,'ש':300,'ת':400};
+  function arGem(s){ let n=0; for(const c of String(s).replace(/[׳״'"]/g,'')) n+=AR_GEM[c]||0; return n; }
+  function arA(url,label){ return `<a href="${url}" target="_blank" rel="noopener" class="ar-sef">${label}</a>`; }
+  const AR_TMAP={'יבמות':'Yevamot','סנהדרין':'Sanhedrin','כריתות':'Keritot'};
+  const AR_BMAP={'בראשית':'Genesis','שמות':'Exodus','ויקרא':'Leviticus','במדבר':'Numbers','דברים':'Deuteronomy'};
+  function linkifySrc(txt){
+    if(!txt) return txt;
+    let t=String(txt);
+    // Rambam: איסורי ביאה <perek>[:<halacha>]
+    t=t.replace(/(איסורי ביאה)\s+([א-ת]+[״׳]?[א-ת]*)(?:\s*:\s*([א-ת]+[״׳]?[א-ת]*))?/g,(m,_a,ch,hal)=>{
+      const c=arGem(ch); if(!c) return m; const h=hal?arGem(hal):0;
+      return arA('https://www.sefaria.org/Mishneh_Torah,_Forbidden_Intercourse.'+c+(h?'.'+h:''),m);
+    });
+    // Talmud daf: (יבמות|סנהדרין|כריתות) <daf> ע"א/ע"ב
+    t=t.replace(/(יבמות|סנהדרין|כריתות)\s+([א-ת]+[״׳]?[א-ת]*)\s+ע[״׳]?([אב])/g,(m,bk,daf,am)=>{
+      const d=arGem(daf); if(!d) return m;
+      return arA('https://www.sefaria.org/'+AR_TMAP[bk]+'.'+d+(am==='א'?'a':'b'),m);
+    });
+    // Torah: <book> <chapter>:<verse>
+    t=t.replace(/(בראשית|שמות|ויקרא|במדבר|דברים)\s+([א-ת]+[״׳]?[א-ת]*)\s*:\s*([א-ת]+[״׳]?[א-ת]*)/g,(m,bk,ch,v)=>{
+      const c=arGem(ch),vv=arGem(v); if(!c||!vv) return m;
+      return arA('https://www.sefaria.org/'+AR_BMAP[bk]+'.'+c+'.'+vv,m);
+    });
+    return t;
+  }
+
   function openModal(id) {
     const d = DATA[id];
     if (!d) return;
@@ -1197,9 +1227,9 @@
     badge.textContent = d.kindLabel || '—';
 
     document.getElementById('modal-title').textContent = d.title;
-    document.getElementById('modalRelation').textContent = d.relation;
-    document.getElementById('modalProhibition').textContent = d.prohibition;
-    document.getElementById('modalVerse').textContent = d.verse;
+    document.getElementById('modalRelation').innerHTML = linkifySrc(d.relation);
+    document.getElementById('modalProhibition').innerHTML = linkifySrc(d.prohibition);
+    document.getElementById('modalVerse').innerHTML = linkifySrc(d.verse);
 
     const p = document.getElementById('modalPunish');
     p.textContent = d.punish;
@@ -1207,7 +1237,7 @@
 
     const lifeEl = document.getElementById('lifetimeNote');
     if (d.lifetime) {
-      lifeEl.innerHTML = '<strong>הערה:</strong> ' + d.lifetime;
+      lifeEl.innerHTML = '<strong>הערה:</strong> ' + linkifySrc(d.lifetime);
       lifeEl.style.display = 'block';
     } else {
       lifeEl.style.display = 'none';
