@@ -831,6 +831,12 @@
     line-height: 1.75;
     color: var(--ink);
   }
+  .yk-badge{ font-size: 9px; letter-spacing: .06em; padding: 1px 6px; border-radius: 3px; vertical-align: middle; margin-inline-end: 5px; font-weight: 700; }
+  .yk-badge.direct{ background: var(--crimson-deep); color: #fff; }
+  .yk-badge.adapt{ background: #7a5f16; color: #fff; }
+  .yk-sef{ color: inherit; text-decoration: none; border-bottom: 1px dotted currentColor; }
+  .yk-sef:hover{ opacity: .8; }
+  .yk-adapt-note{ font-size: 11px; opacity: .68; font-style: italic; margin-top: 7px; }
   .section-content.rambam .ref{
     display: block;
     font-family: 'Frank Ruhl Libre', serif;
@@ -1410,6 +1416,31 @@ const phases = [
 // ============================================
 const schedule = document.getElementById('schedule');
 
+/* ---- Sefaria linking (refs verified against Sefaria) ---- */
+const YK_SEF_PASUK = {
+  "ויקרא טז, ד":"Leviticus.16.4","ויקרא טז, ו":"Leviticus.16.6","ויקרא טז, ז–ט":"Leviticus.16.7-9",
+  "ויקרא טז, יא":"Leviticus.16.11","ויקרא טז, יב":"Leviticus.16.12","ויקרא טז, יב–יג":"Leviticus.16.12-13",
+  "ויקרא טז, יד":"Leviticus.16.14","ויקרא טז, טו":"Leviticus.16.15","ויקרא טז, טז":"Leviticus.16.16",
+  "ויקרא טז, יח–יט":"Leviticus.16.18-19","ויקרא טז, כא":"Leviticus.16.21","ויקרא טז, כא–כב":"Leviticus.16.21-22",
+  "ויקרא טז, כב":"Leviticus.16.22","ויקרא טז, כג–כד":"Leviticus.16.23-24","ויקרא טז, כד":"Leviticus.16.24",
+  "ויקרא טז, כה; כז":"Leviticus.16.25","ויקרא טז, כט":"Leviticus.16.29",
+  "במדבר כח, ג–ד":"Numbers.28.3-4","במדבר כח, ד; ח":"Numbers.28.4","במדבר כט, ז–יא":"Numbers.29.7-11",
+  "שמות ל, ז":"Exodus.30.7"
+};
+const YK_GEM = {'א':1,'ב':2,'ג':3,'ד':4,'ה':5,'ו':6,'ז':7,'ח':8,'ט':9,'י':10};
+function ykRefUrl(ref){
+  ref = String(ref || '');
+  if (YK_SEF_PASUK[ref]) return 'https://www.sefaria.org/' + YK_SEF_PASUK[ref];
+  const m = ref.match(/פרק\s+([א-י]).*?הלכה\s+([א-י])/);
+  if (m && YK_GEM[m[1]] && YK_GEM[m[2]])
+    return 'https://www.sefaria.org/Mishneh_Torah,_Service_on_the_Day_of_Atonement.' + YK_GEM[m[1]] + '.' + YK_GEM[m[2]];
+  return null;
+}
+function ykLink(ref){
+  const u = ykRefUrl(ref);
+  return u ? `<a href="${u}" target="_blank" rel="noopener" class="yk-sef">${ref} ↗</a>` : ref;
+}
+
 stations.forEach((s, i) => {
   const phase = phases.find(p => p.startIdx === i);
   if (phase){
@@ -1482,87 +1513,12 @@ function openModal(idx){
   if (s.pesukim && s.pesukim.length){
     body += `<div class="section"><span class="section-label crimson">פְּסוּקִים</span><div class="section-content tanach">`;
     s.pesukim.forEach(p => {
-      body += `<span class="verse-ref">${p.ref}</span><span class="verse">${p.text}</span>`;
+      body += `<span class="verse-ref"><span class="yk-badge direct">מִקְרָא</span>${ykLink(p.ref)}</span><span class="verse">${p.text}</span>`;
     });
     body += `</div></div>`;
   }
   if (s.rambam){
     body += `
       <div class="section">
-        <span class="section-label gold">רַמְבַּ"ם</span>
-        <div class="section-content rambam">
-          <span class="ref">${s.rambam.ref}</span>
-          ${s.rambam.text}
-        </div>
-      </div>
-    `;
-  }
-
-  document.getElementById('mBody').innerHTML = body;
-
-  mCount.textContent = `${idx + 1} / ${stations.length}`;
-  mPrev.disabled = idx === 0;
-  mNext.disabled = idx === stations.length - 1;
-
-  document.getElementById('mBody').scrollTop = 0;
-  modal.scrollTop = 0;
-
-  overlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal(){
-  overlay.classList.remove('open');
-  document.body.style.overflow = '';
-  currentIdx = -1;
-}
-
-function navStation(delta){
-  const next = currentIdx + delta;
-  if (next >= 0 && next < stations.length) openModal(next);
-}
-
-closeBtn.addEventListener('click', closeModal);
-mHome.addEventListener('click', closeModal);
-mPrev.addEventListener('click', () => navStation(-1));
-mNext.addEventListener('click', () => navStation(1));
-
-overlay.addEventListener('click', e => {
-  if (e.target === overlay) closeModal();
-});
-
-document.addEventListener('keydown', e => {
-  if (!overlay.classList.contains('open')) return;
-  if (e.key === 'Escape') closeModal();
-  else if (e.key === 'ArrowRight') navStation(-1);
-  else if (e.key === 'ArrowLeft')  navStation(1);
-});
-
-// TOP NAV
-document.getElementById('homeBtn').addEventListener('click', () => {
-  if (overlay.classList.contains('open')) closeModal();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-document.querySelectorAll('.chip').forEach(chip => {
-  chip.addEventListener('click', () => {
-    const target = document.getElementById(chip.dataset.jump);
-    if (target){
-      const navHeight = document.getElementById('navbar').offsetHeight;
-      const top = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 12;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
-  });
-});
-
-const toTopBtn = document.getElementById('toTopBtn');
-window.addEventListener('scroll', () => {
-  if (window.pageYOffset > 600) toTopBtn.classList.add('show');
-  else toTopBtn.classList.remove('show');
-});
-toTopBtn.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-</script>
-</body>
-</html>
+        <span class="section-label gold">רַמְבַּ"ם · עִבּוּד</span>
+        <div class="section-conten
