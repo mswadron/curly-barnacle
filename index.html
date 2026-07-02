@@ -3,155 +3,231 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Torah Interactive · Study Apps</title>
+<title>Torah Interactive · לימוד</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --maroon:#5a1421; --maroon-deep:#3d0d18; --maroon-ink:#2a0810;
-  --ink:#16110f; --paper:#ffffff; --paper-soft:#fafaf9; --paper-tint:#fbf7f6;
-  --bg:#f7ecec; --rule:#e6e6e6; --dotted:#d8d2cf; --mute:#6e6663; --mute-soft:#9a9290;
-  --display:'Bricolage Grotesque',system-ui,sans-serif;
-  --body:'Crimson Pro',Georgia,serif;
+  --paper:#f7f2e9; --paper-deep:#f1eadd; --ink:#241d15; --ink-soft:#5c5344;
+  --maroon:#5a1421; --maroon-deep:#3d0d18; --rule:#c9bfae; --rule-soft:#ddd5c6;
   --hebrew:'Frank Ruhl Libre',serif;
+  --body:'Crimson Pro',Georgia,serif;
 }
 *{box-sizing:border-box;}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);}
-header{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--maroon);padding:14px 28px;display:flex;align-items:baseline;justify-content:space-between;z-index:5;}
-.brand{font-family:var(--display);font-weight:800;font-size:17px;letter-spacing:-0.01em;color:var(--maroon-ink);}
-.brand .he{font-family:var(--hebrew);font-weight:700;margin-left:8px;}
-.crumb{font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--mute);}
-main{max-width:1080px;margin:0 auto;padding:26px 28px 64px;}
-.section-head{display:flex;align-items:baseline;gap:14px;margin:6px 0 16px;}
-.eyebrow{font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--maroon);}
-h1{font-family:var(--display);font-weight:800;font-size:30px;letter-spacing:-0.01em;margin:0 0 4px;}
-.lede{font-size:16px;line-height:1.6;color:var(--mute);max-width:62ch;margin:0 0 26px;}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px;}
-.card{display:block;background:var(--paper);border:1px solid var(--rule);border-top:3px solid var(--maroon);padding:14px 16px 13px;text-decoration:none;color:var(--ink);}
-.card:hover{background:var(--paper-tint);}
-.card .he-title{font-family:var(--hebrew);font-weight:700;font-size:22px;direction:rtl;text-align:right;color:var(--maroon-ink);line-height:1.4;}
-.card .en-title{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:0.04em;margin-top:2px;}
-.card p{font-size:14.5px;line-height:1.55;margin:7px 0 9px;color:var(--ink);}
-.card .ref{font-family:var(--display);font-weight:700;font-size:9.5px;letter-spacing:0.15em;text-transform:uppercase;color:var(--mute-soft);}
-.subnote{margin-top:8px;font-size:13px;}
-.subnote a{color:var(--maroon);font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;margin-right:12px;}
-.subnote a:hover{text-decoration:underline;}
-footer{border-top:1px solid var(--rule);margin-top:44px;padding-top:14px;font-family:var(--display);font-weight:600;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mute-soft);}
+html{background:var(--paper);}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.55;}
+
+/* ---- Title page ---- */
+.shaar{max-width:820px;margin:0 auto;padding:54px 24px 10px;text-align:center;}
+.shaar .rule-top{border-top:1px solid var(--ink);border-bottom:3px double var(--ink);height:6px;margin-bottom:34px;}
+.shaar h1{font-family:var(--hebrew);font-weight:900;font-size:56px;margin:0;line-height:1.15;color:var(--maroon-deep);}
+.shaar .en-name{font-variant:small-caps;letter-spacing:0.08em;font-size:24px;font-weight:600;margin-top:6px;color:var(--ink);}
+.shaar .lede{font-size:19px;font-style:italic;color:var(--ink-soft);max-width:56ch;margin:14px auto 0;}
+.shaar .rule-bottom{border-top:3px double var(--ink);border-bottom:1px solid var(--ink);height:6px;margin-top:34px;}
+
+/* ---- Sections ---- */
+main{max-width:820px;margin:0 auto;padding:8px 24px 70px;}
+.seder{margin-top:44px;}
+.seder-head{text-align:center;margin-bottom:6px;}
+.seder-head .he{font-family:var(--hebrew);font-weight:700;font-size:26px;color:var(--maroon);}
+.seder-head .en{font-variant:small-caps;letter-spacing:0.06em;font-size:16px;color:var(--ink-soft);margin-top:-2px;}
+.seder-rule{border:none;border-top:1px solid var(--rule);margin:10px 0 0;}
+
+/* ---- Entries: table-of-contents rows ---- */
+.entry{display:block;text-decoration:none;color:inherit;padding:18px 10px 16px;border-bottom:1px solid var(--rule-soft);}
+.entry:hover{background:var(--paper-deep);}
+.entry-line{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;}
+.entry-line .en-title{font-variant:small-caps;letter-spacing:0.05em;font-weight:700;font-size:20px;color:var(--maroon-deep);}
+.entry-line .he-title{font-family:var(--hebrew);font-weight:700;font-size:23px;direction:rtl;color:var(--ink);}
+.entry p{margin:5px 0 4px;font-size:17.5px;color:var(--ink);max-width:70ch;}
+.entry .src{font-style:italic;font-size:15.5px;color:var(--ink-soft);}
+.entry .parts{font-size:15.5px;margin-top:3px;}
+.entry .parts a{color:var(--maroon);font-style:italic;text-decoration:none;margin-right:14px;}
+.entry .parts a:hover{text-decoration:underline;}
+
+footer{max-width:820px;margin:0 auto;padding:0 24px 60px;text-align:center;}
+footer .rule{border:none;border-top:1px solid var(--rule);margin:0 0 16px;}
+footer p{font-size:15.5px;font-style:italic;color:var(--ink-soft);margin:0;}
+@media (max-width:560px){
+  .shaar h1{font-size:40px;}
+  .entry-line .he-title{font-size:20px;}
+}
 </style>
 </head>
 <body>
-<header>
-  <div class="brand">TORAH INTERACTIVE<span class="he">לימוד</span></div>
-  <div class="crumb">Interactive Study Apps</div>
+
+<header class="shaar">
+  <div class="rule-top"></div>
+  <h1>לימוד</h1>
+  <div class="en-name">Torah Interactive</div>
+  <p class="lede">Tools for learning the inyanim that are easier to see than to read — every source quoted verbatim and linked to where it lives.</p>
+  <div class="rule-bottom"></div>
 </header>
+
 <main>
-  <div class="section-head"><span class="eyebrow">Library</span></div>
-  <h1>Interactive Halachic Learning</h1>
-  <p class="lede">Source-grounded interactive tools pairing classical rabbinic literature with modern presentation. Hebrew · transliteration · English throughout.</p>
-  <div class="grid">
 
-    <a class="card" href="apps/nisyonos.html">
-      <div class="he-title">נִסְיוֹנוֹת הַמִּדְבָּר</div>
-      <div class="en-title">NISYONOS IN THE MIDBAR</div>
-      <p>Every rebellion and complaint of Klal Yisroel in the wilderness — the act, Hashem's and Moshe's response, his intercession, the punishment and the death toll — with the machlokes of which fall among the ten nisyonos of Avos.</p>
-      <div class="ref">Shemos · Bamidbar · Avos 5:4 · Arachin 15</div>
+  <section class="seder">
+    <div class="seder-head">
+      <div class="he">חומש</div>
+      <div class="en">Chumash</div>
+    </div>
+    <hr class="seder-rule" />
+
+    <a class="entry" href="apps/nisyonos.html">
+      <div class="entry-line">
+        <span class="en-title">Nisyonos in the Midbar</span>
+        <span class="he-title">נִסְיוֹנוֹת הַמִּדְבָּר</span>
+      </div>
+      <p>Every complaint and rebellion of Klal Yisroel in the midbar — what happened, how Hashem and Moshe answered, what Moshe was mispallel for, and what it cost — with the machlokes over which fall among the ten nisyonos.</p>
+      <div class="src">Shemos · Bamidbar · Avos 5:4 · Arachin 15</div>
     </a>
 
+    <a class="entry" href="apps/Counts.html">
+      <div class="entry-line">
+        <span class="en-title">The Counts</span>
+        <span class="he-title">פְּקוּדִים</span>
+      </div>
+      <p>All the countings of Klal Yisroel on one sheet — the eight counts in the Torah, the countings in Nach, and the one still to come, le&rsquo;asid lavo — with the midrash of the ten countings brought as written.</p>
+      <div class="src">Bereishis 46 · Shemos · Bamidbar · Bamidbar Rabbah 2:11</div>
+    </a>
+  </section>
 
-    <a class="card" href="apps/tumah.html">
-      <div class="he-title">מְקוֹרוֹת הַטֻּמְאָה</div>
-      <div class="en-title">TUMAH TREE A</div>
-      <p>The 44 sources of tumah — avi avos, avos, and toldos — as a navigable state machine with levels, creates-chains, and purification paths.</p>
-      <div class="ref">Ohalos · Keilim · Parah</div>
+  <section class="seder">
+    <div class="seder-head">
+      <div class="he">קדשים וטהרות</div>
+      <div class="en">Kodashim &amp; Taharos</div>
+    </div>
+    <hr class="seder-rule" />
+
+    <a class="entry" href="apps/tumah.html">
+      <div class="entry-line">
+        <span class="en-title">Tumah Tree</span>
+        <span class="he-title">מְקוֹרוֹת הַטֻּמְאָה</span>
+      </div>
+      <p>The 44 sources of tumah — avi avos, avos, and toldos — what each one is, what it makes tamei, how far the tumah travels, and the way back to taharah.</p>
+      <div class="src">Ohalos · Keilim · Parah</div>
     </a>
 
-    <a class="card" href="apps/negaim.html">
-      <div class="he-title">נְגָעִים</div>
-      <div class="en-title">TZARA'AS DIAGNOSTIC</div>
-      <p>Step-by-step halachic diagnostic for negaim of the person, clothing, and house, with full decision tree and trilingual sources.</p>
-      <div class="ref">Vayikra 13–14 · Negaim</div>
+    <a class="entry" href="apps/negaim.html">
+      <div class="entry-line">
+        <span class="en-title">Tzara&rsquo;as Diagnostic</span>
+        <span class="he-title">נְגָעִים</span>
+      </div>
+      <p>Which mark is tahor, which needs hesger, and which is muchlat — the step-by-step din of negaim of the person, of clothing, and of houses.</p>
+      <div class="src">Vayikra 13–14 · Negaim</div>
     </a>
 
-    <a class="card" href="apps/arayot-v6.html">
-      <div class="he-title">אִילַן הָעֲרָיוֹת</div>
-      <div class="en-title">ARAYOT TREE</div>
-      <p>Genealogical and thematic visualization of the forbidden relationships, with seven-category thematic toggle.</p>
-      <div class="ref">Vayikra 18 · 20</div>
+    <a class="entry" href="apps/mumim.html">
+      <div class="entry-line">
+        <span class="en-title">Mumim Catalog</span>
+        <span class="he-title">מוּמִים</span>
+      </div>
+      <p>Every mum that pasuls a kohen or a korban — each term with its sources brought as written, and an honest accounting of what is and is not known about what it means.</p>
+      <div class="src">Vayikra 21–22 · Bechoros</div>
     </a>
 
-    <a class="card" href="apps/mumim.html">
-      <div class="he-title">מוּמִים</div>
-      <div class="en-title">MUMIM CATALOG</div>
-      <p>Catalog of the blemishes of kohen and korban — every term with sourcing badges and anti-hallucination schema.</p>
-      <div class="ref">Vayikra 21–22 · Bechoros</div>
+    <a class="entry" href="apps/yom_kippur_avodah.html">
+      <div class="entry-line">
+        <span class="en-title">Avodas Yom HaKippurim</span>
+        <span class="he-title">עֲבוֹדַת יוֹם הַכִּפּוּרִים</span>
+      </div>
+      <p>The avodos of the Kohen Gadol from morning to night, as a departures board — following the Rambam&rsquo;s seder, with a toggle for the Mishnah&rsquo;s. Hebrew interface.</p>
+      <div class="src">Yoma · Rambam, Avodas Yom HaKippurim</div>
     </a>
+  </section>
 
-    <a class="card" href="apps/Counts.html">
-      <div class="he-title">פְּקוּדִים</div>
-      <div class="en-title">THE COUNTS</div>
-      <p>Census analysis across the eight formal counts of Bnei Yisroel in the Torah, in nine comparative views.</p>
-      <div class="ref">Shemos · Bamidbar</div>
-    </a>
+  <section class="seder">
+    <div class="seder-head">
+      <div class="he">כשרות</div>
+      <div class="en">Kashrus</div>
+    </div>
+    <hr class="seder-rule" />
 
-    <a class="card" href="apps/Karnayim.html">
-      <div class="he-title">קַרְנַיִם</div>
-      <div class="en-title">KARNAYIM</div>
-      <p>Horn anatomy primer keyed to the kashrut signs of Chullin 59b.</p>
-      <div class="ref">Chullin 59b</div>
-    </a>
-
-    <a class="card" href="apps/yom_kippur_avodah.html">
-      <div class="he-title">עֲבוֹדַת יוֹם הַכִּפּוּרִים</div>
-      <div class="en-title">AVODAS YOM HAKIPPURIM</div>
-      <p>The 28 stations of the Kohen Gadol's service as a departures board. Fully Hebrew interface.</p>
-      <div class="ref">Yoma · Seder HaAvodah</div>
-    </a>
-
-    <div class="card" style="border-top:3px solid var(--maroon);">
+    <div class="entry">
       <a href="apps/jewish_ornithology_guide.html" style="text-decoration:none;color:inherit;display:block;">
-        <div class="he-title">עוֹפוֹת טְמֵאִים</div>
-        <div class="en-title">JEWISH ORNITHOLOGY GUIDE</div>
-        <p>Classroom guide to the Torah's 24 forbidden birds — verbatim sources only, six-tier confidence taxonomy.</p>
-        <div class="ref">Vayikra 11 · Chullin 59a–63b</div>
+        <div class="entry-line">
+          <span class="en-title">The Forbidden Birds</span>
+          <span class="he-title">עוֹפוֹת טְמֵאִים</span>
+        </div>
+        <p>The Torah&rsquo;s forbidden birds — every Hebrew and Aramaic source brought verbatim, every modern identification graded by how strong its evidence actually is, and the machlokes over whether the count is twenty-four or twenty-three.</p>
+        <div class="src">Vayikra 11 · Devarim 14 · Chullin 59a–63b</div>
       </a>
-      <div class="subnote">
+      <div class="parts">
         <a href="apps/01_framework.html">Part 1 · Framework</a>
         <a href="apps/02_specimens.html">Part 2 · Specimens</a>
         <a href="apps/03_orders.html">Part 3 · Orders</a>
       </div>
     </div>
 
-    <a class="card" href="apps/chagavim.html">
-      <div class="he-title">חֲגָבִים טְהוֹרִים</div>
-      <div class="en-title">KOSHER LOCUSTS</div>
-      <p>The four permitted locust kinds — arbeh, sol'am, chargol, and chagav — with the leaping-leg signs, an interactive kashrus checker, and per-claim sourcing badges.</p>
-      <div class="ref">Vayikra 11:20–23 · Chullin 65</div>
+    <a class="entry" href="apps/chagavim.html">
+      <div class="entry-line">
+        <span class="en-title">Kosher Locusts</span>
+        <span class="he-title">חֲגָבִים טְהוֹרִים</span>
+      </div>
+      <p>Which locusts are kosher and how to tell — arbeh, sol&rsquo;am, chargol, and chagav, the leaping-leg simanim, and a checker to work through a specimen.</p>
+      <div class="src">Vayikra 11:20–23 · Chullin 65</div>
     </a>
 
-    <a class="card" href="apps/haftarah.html">
-      <div class="he-title">הַפְטָרוֹת וּקְרִיאוֹת הַמּוֹעֲדִים</div>
-      <div class="en-title">HAFTARAH REFERENCE</div>
-      <p>Reference for the weekly haftaros and the special Torah and haftarah readings of the festivals and occasions.</p>
-      <div class="ref">Haftaros · Moadim</div>
+    <a class="entry" href="apps/Karnayim.html">
+      <div class="entry-line">
+        <span class="en-title">Karnayim</span>
+        <span class="he-title">קַרְנַיִם</span>
+      </div>
+      <p>What horns tell you about kashrus — the simanim that distinguish a chayah from a beheimah, keyed to the horn&rsquo;s anatomy.</p>
+      <div class="src">Chullin 59b</div>
+    </a>
+  </section>
+
+  <section class="seder">
+    <div class="seder-head">
+      <div class="he">זרעים</div>
+      <div class="en">Zeraim</div>
+    </div>
+    <hr class="seder-rule" />
+
+    <a class="entry" href="apps/talmudflora.html">
+      <div class="entry-line">
+        <span class="en-title">Talmud Flora — Plants of Kilayim</span>
+        <span class="he-title">כִּלְאַיִם · צִמְחֵי הַמִּשְׁנָה</span>
+      </div>
+      <p>Every plant named in Maseches Kilayim — the Mishnah and Rambam brought as written, what each plant is according to the scholars who studied them, and why the pairs are or are not kilayim with one another.</p>
+      <div class="src">Mishnah Kilayim · Zeraim · 77 plants</div>
+    </a>
+  </section>
+
+  <section class="seder">
+    <div class="seder-head">
+      <div class="he">לוח</div>
+      <div class="en">Luach &amp; Reference</div>
+    </div>
+    <hr class="seder-rule" />
+
+    <a class="entry" href="apps/zmanim.html">
+      <div class="entry-line">
+        <span class="en-title">Zmanim — One Zman, Every Method</span>
+        <span class="he-title">זְמַנִּים</span>
+      </div>
+      <p>Every shitah for each zman of the day — degrees, fixed minutes, sha&rsquo;os zmaniyos, horizon — computed live for your location, with the sources for each method inside.</p>
+      <div class="src">Brachos · Shabbos · Pesachim · Shulchan Aruch OC</div>
     </a>
 
-    <a class="card" href="apps/zimanim.html">
-      <div class="he-title">זְמַנִּים</div>
-      <div class="en-title">ZIMANIM — ONE ZMAN, EVERY METHOD</div>
-      <p>Every shitah for each daily zman — degrees, fixed minutes, zmaniyos, horizon — computed live from a NOAA/Meeus solar engine, with verbatim sources.</p>
-      <div class="ref">Berakhos · Shabbos · Pesachim · SA OC</div>
+    <a class="entry" href="apps/haftarah.html">
+      <div class="entry-line">
+        <span class="en-title">Haftarah Reference</span>
+        <span class="he-title">הַפְטָרוֹת וּקְרִיאוֹת הַמּוֹעֲדִים</span>
+      </div>
+      <p>Which haftarah is read when — the weekly haftaros, and the special Torah readings and haftaros of the moadim.</p>
+      <div class="src">Haftaros · Moadim</div>
     </a>
+  </section>
 
-    <a class="card" href="apps/talmudflora.html">
-      <div class="he-title">כִּלְאַיִם · צִמְחֵי הַמִּשְׁנָה</div>
-      <div class="en-title">TALMUD FLORA — PLANTS OF KILAYIM</div>
-      <p>Every plant named in Masechet Kilayim — verbatim Mishnah and Rambam with Sefaria links, a scholarship-based identification, botanical family, Latin etymology, and a computed halacha-vs-botany analysis.</p>
-      <div class="ref">Mishnah Kilayim · Zeraim · 77 plants</div>
-    </a>
-
-  </div>
-  <footer>Torah Interactive · Built with source discipline · No invented citations</footer>
 </main>
+
+<footer>
+  <hr class="rule" />
+  <p>Torah Interactive · every citation links to its source on Sefaria, quoted as written.</p>
+</footer>
+
 </body>
 </html>

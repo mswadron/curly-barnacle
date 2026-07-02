@@ -38,6 +38,12 @@ function sefariaUrl(ref, commentator){
   if(commentator) r = commentator + ' on ' + r;
   // Normalize en/em dashes to hyphens for ranges
   r = r.replace(/[–—]/g, '-');
+  // Midrash Rabbah keeps its Hebrew book name on Sefaria — don't run it
+  // through the Chumash book-name substitutions below.
+  if(/^Bamidbar Rabbah\b/.test(r)){
+    r = r.replace(/:/g, '.').replace(/ (?=\d)/, '.').replace(/ /g, '_');
+    return 'https://www.sefaria.org/' + encodeURI(r);
+  }
   // Hebrew-transliterated book names → Sefaria's English titles (longer first)
   const books = [
     ['Divrei Hayamim II', 'II Chronicles'],
@@ -121,7 +127,6 @@ function renderViewNav(){
     { id:'levites',  label:'Levites' },
     { id:'excluded', label:'Excluded' },
     { id:'growth',   label:'Growth' },
-    { id:'tanach',   label:'Tanach' },
     { id:'halacha',  label:'Halacha' }
   ];
   const html = views.map(v => `
@@ -229,6 +234,7 @@ function renderTimeline(){
     </div>
     <div class="tl-rail">${rows}</div>
     <div class="foot-note">Verses verified against Sefaria · Bereishis 46, Shemos 1/12/30/38, Bamidbar 1/3/4/26</div>
+    ${nachSectionHtml()}
   `;
 }
 
@@ -933,19 +939,22 @@ function renderExcluded(){
 }
 
 /* ============================================================
-   TANACH VIEW
+   TANACH CARDS — shared card builder, used by the Timeline's
+   Nach section (formerly its own view)
    ============================================================ */
-function renderTanach(){
-  const counts = D.tanachCounts;
-  const cards = counts.map(c => {
+function tanachCardsHtml(){
+  return D.tanachCounts.map(c => {
     const totalDisplay = c.kind === 'silence'
       ? `<div class="tn-total-silence">no count</div>`
+      : c.kind === 'future'
+      ? `<div class="tn-total-future">yet to be counted</div>`
       : `<div class="tn-total">${fmt(c.total)}</div>`;
     const eyebrow = c.kind === 'silence' ? 'Silence · land basis carried forward' :
                     c.kind === 'pre-war' ? 'Pre-war muster' :
                     c.kind === 'catastrophe' ? 'Catastrophic · plague follows' :
                     c.kind === 'labor' ? 'Labor census' :
-                    c.kind === 'return' ? 'Restoration · post-Exile' : '';
+                    c.kind === 'return' ? 'Restoration · post-Exile' :
+                    c.kind === 'future' ? 'The tenth counting · days of Moshiach' : '';
     return `
       <div class="tn-card" data-kind="${c.kind}" data-id="tanach-${c.id}">
         <div class="tn-left">
@@ -963,19 +972,30 @@ function renderTanach(){
       </div>
     `;
   }).join('');
+}
 
+/* The Nach section appended to the Timeline: divider, midrash quote, cards */
+function nachSectionHtml(){
+  const m = D.midrashTen;
   return `
-    <div class="section-hdr">
-      <div>
-        <div class="section-eyebrow">Counts beyond Chumash</div>
-        <div class="section-title">Tanach ${state.langs.he ? '<span class="he">תָּנָ"ךְ</span>' : ''}</div>
+    <div class="nach-section">
+      <div class="section-hdr">
+        <div>
+          <div class="section-eyebrow">Counts beyond Chumash</div>
+          <div class="section-title">Nach ${state.langs.he ? '<span class="he">נ״ך</span>' : ''}</div>
+        </div>
+        <div class="section-meta">
+          <div class="section-stat">From Yehoshua's silence to <strong>le'asid lavo</strong></div>
+        </div>
       </div>
-      <div class="section-meta">
-        <div class="section-stat">From Yehoshua's silence to the return from Bavel</div>
+      <div class="nach-note">The eight Torah counts above follow this sheet's own textual criterion — counts recorded with explicit totals in the pesukim. The midrash counts differently: ten countings of Yisrael across Tanach and history. The midrash's list includes the 600,000 of yetzias Mitzrayim (Shemos 12:37, listed above) but does not count the Shemos 38 adnei-hamishkan tally or the Levi counts as separate countings; conversely, Shlomo's workforce census and the Yehoshua entry below are on this sheet but are not among the midrash's ten.</div>
+      <div class="nach-midrash">
+        ${state.langs.he ? `<div class="nach-midrash-he" dir="rtl">${m.he}</div>` : ''}
+        <div class="pasuk-ref"><a href="${m.url}" target="_blank" rel="noopener" class="sef-link">${m.ref}</a></div>
       </div>
+      <div class="tn">${tanachCardsHtml()}</div>
+      <div class="foot-note">${linkRef('Bamidbar 26:53-54')} · ${linkRef('Shmuel I 11:8')} · ${linkRef('Shmuel I 15:4')} · ${linkRef('Shmuel II 24:9')} · ${linkRef('Divrei Hayamim I 21:5')} · ${linkRef('Melachim I 5:27-30')} · ${linkRef('Ezra 2:64')} · ${linkRef('Yirmiyahu 33:13')} · ${linkRef('Bamidbar Rabbah 2:11')} · ${linkRef('Yoma 22b')}</div>
     </div>
-    <div class="tn">${cards}</div>
-    <div class="foot-note">${linkRef('Bamidbar 26:53-54')} · ${linkRef('Shmuel I 11:8')} · ${linkRef('Shmuel I 15:4')} · ${linkRef('Shmuel II 24:9')} · ${linkRef('Divrei Hayamim I 21:5')} · ${linkRef('Melachim I 5:27-30')} · ${linkRef('Ezra 2:64')} · ${linkRef('Yoma 22b')}</div>
   `;
 }
 
@@ -1064,7 +1084,6 @@ function renderAll(){
   else if(state.view === 'levites') main.innerHTML = renderLevites();
   else if(state.view === 'excluded') main.innerHTML = renderExcluded();
   else if(state.view === 'growth') main.innerHTML = renderGrowth();
-  else if(state.view === 'tanach') main.innerHTML = renderTanach();
   else if(state.view === 'halacha') main.innerHTML = renderHalacha();
 
   $('#rail').innerHTML = renderRail();

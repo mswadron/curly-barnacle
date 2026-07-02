@@ -1,5 +1,5 @@
 /* counts-data.js
- * All counts data — source-grounded.
+ * All counts data — source-grounded (incl. Nach + le'asid lavo).
  * Numbers verified against Sefaria (Bereishis 46, Shemos 1/12/30/38, Bamidbar 1/3/4/26).
  * Shape per item: { he, se, en, ref? } where applicable.
  */
@@ -746,8 +746,29 @@ window.COUNTS_DATA = {
       summary: { en: 'The remnant counted back into the Land.' },
       detail: { en: 'The first formal Israelite count since David — about 500 years. Ezra 2 organizes by family and city of return, recalling the Bamidbar method of "bet av." The aggregate 42,360 is dramatically smaller than any Torah count, reflecting the post-Exile reality. The doubled register (Ezra 2 and Nechemiah 7) is nearly identical with minor numerical variations — a classical interpretive question (see Ibn Ezra on Ezra 2:64).' },
       sources: ['Ezra 2:1-67', 'Ezra 2:64', 'Nechemiah 7:6-67']
+    },
+    {
+      id: 'leasid',
+      label: { he: 'לֶעָתִיד לָבוֹא', en: 'Le\'asid lavo — the future counting' },
+      kind: 'future',
+      total: null,
+      summary: { en: 'The tenth counting per the midrash — still ahead.' },
+      detail: { en: 'Bamidbar Rabbah 2:11 lists ten countings of Yisrael, and closes the list with one that has not yet happened: "ve-echad le\'asid lavo" — from Yirmiyahu 33:13, "עֹד תַּעֲבֹרְנָה הַצֹּאן עַל יְדֵי מוֹנֶה" — the flock will again pass under the hand of one who counts them, in the days of Moshiach.' },
+      sources: ['Yirmiyahu 33:13', 'Bamidbar Rabbah 2:11']
     }
   ],
+
+  /* ============================================================
+   * THE MIDRASH OF THE TEN COUNTINGS
+   * Verbatim Hebrew per Sefaria's "Midrash Rabbah — TE" edition
+   * (Aramaic asides elided with "...").
+   * ============================================================ */
+  midrashTen: {
+    ref: 'Bamidbar Rabbah 2:11',
+    url: 'https://www.sefaria.org/Bamidbar_Rabbah.2.11',
+    edition: 'Midrash Rabbah — TE (Sefaria)',
+    he: 'בַּעֲשָׂרָה מְקוֹמוֹת נִמְנוּ יִשְׂרָאֵל, אֶחָד בִּירִידָתָן לְמִצְרַיִם (דברים י, כב): בְּשִׁבְעִים נֶפֶשׁ יָרְדוּ אֲבֹתֶיךָ וגו\', וְאֶחָד בַּעֲלִיָּתָן (שמות יב, לז): וַיִּסְעוּ בְנֵי יִשְׂרָאֵל מֵרַעְמְסֵס סֻכֹּתָה כְּשֵׁשׁ מֵאוֹת אֶלֶף רַגְלִי וגו\', וְאֶחָד אַחַר מַעֲשֵׂה הָעֵגֶל (שמות ל, יב): כִּי תִשָֹּׂא אֶת רֹאשׁ בְּנֵי יִשְׂרָאֵל וגו\', וּשְׁנַיִם בְּחֻמָּשׁ הַפְּקוּדִים, אֶחָד בַּדְּגָלִים וְאֶחָד בְּחִלּוּק הָאָרֶץ, וּשְׁנַיִם בִּימֵי שָׁאוּל (שמואל א טו, ד): וַיִּפְקְדֵם בַּטְּלָאִים, (שמואל א יא, ח): וַיִּפְקְדֵם בְּבָזֶק... וְאֶחָד בִּימֵי דָּוִד (שמואל ב כד, ט): וַיִּתֵּן יוֹאָב אֶת מִסְפַּר מִפְקַד הָעָם... וְאֶחָד בִּימֵי עֶזְרָא (עזרא ב, סד): כָּל הַקָּהָל כְּאֶחָד אַרְבַּע רִבּוֹא וגו\', וְאֶחָד לֶעָתִיד לָבוֹא (ירמיה לג, יג): עֹד תַּעֲבֹרְנָה הַצֹּאן עַל יְדֵי מוֹנֶה.'
+  },
 
   /* ============================================================
    * HALACHA — what each count became as binding law
