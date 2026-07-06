@@ -1,71 +1,112 @@
-# TRUP PROJECT — HANDOFF (2026-07-03)
+# TRUP PROJECT — HANDOFF
 
-Continuation doc for the Ta'amei HaMikra site. Everything below is verified state, not aspiration. Owner: Mordy (Ashkenazi, hears Litvish leining 3×/week — he is the ground-truth ear).
+Continuation doc for the Ta'amei HaMikra ("trup") interactive. Owner: **Mordy** (mswadron@gmail.com) — Ashkenazi, hears Litvish leining ~3×/week; he is the ground-truth ear for the first cell. Last substantive update: 2026-07-06.
 
-## Files (all in `apps/`)
+**The point of the project is big.** It is a **complete, comparative atlas of ta'amei ha-mikra — every Jewish community's mesorah, across every kind of leining — with every melody _measured_ from a real recording, not guessed.** The current build is deliberately narrowed to the **yeshivish/Litvish** cell; that was a scoping choice, chosen first to *get the method right* (measurement pipeline + a sound Mordy trusts + the UI) before scaling to all the other communities and reading-types. Do not mistake the current narrowness for the goal.
+
+---
+
+## THE PROMPT
+
+*Paste this into a fresh session to pick the project back up. It is self-contained.*
+
+> You're continuing the **Ta'amei HaMikra ("trup") interactive** for Mordy (mswadron@gmail.com), an Ashkenazi/Litvish ground-truth listener. **The real goal is a complete, comparative atlas of cantillation — EVERY community's mesorah (Ashkenazi: Litvish/Polish/Yekkish/Western; Sephardic: S&P/Moroccan/Jerusalem; Mizrahi: Iraqi/Syrian/Egyptian/Persian; Yemenite; Italian) across EVERY reading-type (Torah, Haftarah, Esther, Eicha, Shir/Rus/Koheles, Yamim Noraim, Tehillim/Emes, and learning-nusach) — each melody _measured_ from a real recording of that community, evidence-graded.** It is deliberately narrowed right now to the yeshivish/Litvish cell to perfect the method first; do not treat that narrowness as the scope. This lives inside his **"Torah Interactive · לימוד"** study site at **github.com/mswadron/curly-barnacle** (GitHub Pages, **main** branch → https://mswadron.github.io/curly-barnacle/), alongside his other apps (nisyonos, negaim, tumah, mumim, Counts, chagavim, talmudflora, yom_kippur_avodah, the Jewish-ornithology guide, haftarah, zmanim). He separately runs **bloomline** (github.com/mswadron/bloomline → bloomline.app, a wildflower-route finder; sources in C:\Users\mswad\Dropbox\BLOOMLINE) — unrelated. **Do NOT push anything to his "limud labs" repo.**
+>
+> The active piece is `apps/`**`trup-real.html`** — a sound lab that plays *measured* pitch contours back through a browser clarinet. It currently carries **55 measured motifs**: **Your Voice** (Mordy's 10 own-voice recordings = ground truth for the yeshivish cell, embedded mp3 for A/B) and a proof-of-scale **Torah** (22) + **Haftarah** (23) set pitch-measured from **PocketTorah** (`rneiss/PocketTorahTrope`, GPL-3), shifted −12 st into his register. These are the **first cells of the atlas**, not the whole thing. Default playback is **CLARINET** (discrete, articulated notes) — he dislikes pitch **"slope"/glide**, which is only a secondary toggle. Own-voice recordings keep embedded audio; measured-from-source tropes are **link-only** (*Source ↗*). Also present: legacy `Trup.html` + `trup.js` + `trup-data.js`, `trup-calibrate.html`, and GPT's `taamim_clarinet_synth.html` (origin file: his 10 own-voice mp3s + librosa contours).
+>
+> **To scale:** the same extraction pipeline (below) fills any **community × reading-type** cell from that community's recordings. Grow the UI from today's single toggle into a **two-axis selector (community × reading-type)**.
+>
+> **House rules.** Yeshivish/Ashkenazi transliteration by default (Sephardic terms stay Sephardic). No "Claude-y" design — no Bricolage Grotesque, no eyebrow microlabels, no letterspaced-uppercase chips, no AI-defensive copy. Sefer aesthetic: Frank Ruhl Libre + Crimson Pro, maroon `#5a1421`, Hebrew RTL baked in. Evidence-graded, **no fake mesorah** — every motif needs a named source + grade; measured-from-recording = grade A-derived.
+>
+> **When you finish a change:** edit files on Windows (source of truth), then run git **via Desktop Commander** in the repo at `C:\Users\mswad\Claude\Projects\Torah JSX (1)` — `git config core.longpaths true`, set repo-local identity (`git config user.name mswadron` / `user.email mswadron@gmail.com`), commit, and **push to `origin` (github.com/mswadron/curly-barnacle) `main`**. **NEVER** run git inside the sandbox mount, and **NEVER** push to limud labs. Then report the live URL.
+
+---
+
+## The mission — all communities, all leining
+
+The end state is a matrix. Each **cell = one community × one reading-type**, populated with motifs **measured from a real recording** of that community and evidence-graded. Yeshivish/Litvish was done first *only* to prove out the method; the same pipeline fills every other cell.
+
+**Communities (mesoros / nusachim):**
+
+- **Ashkenazi** — Lithuanian (Litvish / yeshivish), Polish–Hungarian (Chassidish), German (Yekkish; Reuchlin/Böschenstein 1518), Western-European.
+- **Sephardic** — Spanish-Portuguese (S&P / Gaster, London–Amsterdam), Moroccan, Jerusalem-Sephardi.
+- **Mizrahi / Eastern** — Iraqi (Baghdadi), Syrian (Aleppo / Halab), Egyptian, Persian.
+- **Yemenite** — Baladi / Shami (the Babylonian eight-motif system).
+- **Italian** — Italki.
+
+**Reading-types (each has its own melody-set):**
+
+- Torah (weekly kriah) · Haftarah · Megillas Esther · Eicha · Shir HaShirim / Rus / Koheles (often distinct tunes) · Yamim Noraim (High-Holy-Day Torah) · Tehillim / Ta'amei Emes (Iyov · Mishlei · Tehillim) · learning-nusach (Mishnah / Gemara) where it exists.
+
+**Where we are in the matrix:** one community (Ashkenazi, via Mordy's own voice as ground truth + a full PocketTorah proof-set) across two reading-types (Torah, Haftarah). Everything else is open — and reachable with the pipeline below.
+
+## Current state — `apps/trup-real.html` (the proving ground)
+
+A single self-contained HTML sound lab, in Mordy's design system (maroon, sharp corners, Frank Ruhl Libre RTL Hebrew, trilingual he/se/en). Today's toggle:
+
+| Toggle | Count | Source | Audio |
+|---|---|---|---|
+| Your Voice | 10 | Mordy's own recordings — ground truth for the yeshivish cell | embedded mp3 (`Original`) |
+| Torah | 22 | PocketTorah, measured (pipeline proof-of-scale) | link-only (`Source ↗`) |
+| Haftarah | 23 | PocketTorah, measured (incl. mercha-kefula) | link-only (`Source ↗`) |
+
+*(This toggle is the seed of the eventual community × reading-type matrix — right now it mixes "source" and "reading-type" on one axis; splitting it into two axes is the next structural step.)*
+
+**Two playback modes:**
+
+- **Clarinet (default)** — measured note events as discrete, articulated pitches, *no sliding*. Timbre: chalumeau-register odd-harmonic spectrum (strong 1/3/5/7/9, near-silent evens = the hollow woody tone), a ~1.5 kHz body-resonance formant peak, a soft reed-breath onset, and vibrato that only enters after a note settles. The mode Mordy wants — he rejected pitch glide as unrealistic.
+- **Glide (secondary)** — one oscillator slides through the measured contour (original GPT behavior). Comparison only.
+
+Controls: transpose (default +12), tempo, brightness, breath, vibrato. Phrase builder + preset chains. Pitch-contour scope + extracted-event readout in the rail.
+
+## Files (all in `apps/` unless noted)
 
 | File | Role |
 |---|---|
-| `Trup.html` | Shell + all CSS (design-system compliant: maroon `#5a1421`, sharp corners, `--bg #f7ecec`). Loads abcjs\@6.4.4 (jsDelivr) + Taamey Frank CLM font (jsDelivr ← Sefaria repo, verified live) |
-| `trup-data.js` | ALL data → `window.TRUP_DATA`. Taamim (26 prose + 16 emes, trilingual he/se/en), 8 kriya systems, 10 traditions w/ earliest-documentation records, 21-event dated timeline, motif banks, 6 MAM specimen texts, phrases, recordings registry, `measuredPT` |
-| `trup.js` | Render + engines. Views: Map, Pesukim, Kriyos, Tehillim, Timeline, Mesoros, Kolos. Sticky top bar = kriya-system chips + tradition chips + grade badge. `window.TRUP_DEBUG={parseVerse,resolveSeq,shiftNote,seqToABC,state}` |
-| `trup-calibrate.html` | **THE ACTIVE ITEM.** Standalone listening panel: pashta/munach/zarka × 11 candidates each, YES/~ marking, report line at bottom. Candidate #11 of each = MEASURED from PocketTorah recording |
+| `trup-real.html` | **THE ACTIVE ITEM.** 55-motif measured sound lab. Self-contained; data + engine inlined. |
+| `taamim_clarinet_synth.html` | GPT's origin file — embeds Mordy's 10 own-voice mp3s + librosa contours. Archive/reference. |
+| `Trup.html` + `trup.js` + `trup-data.js` | Legacy design-system app: Map / Pesukim / Kriyos / Tehillim / Timeline / Mesoros / Kolos; live Unicode ta'am parser; JE-1905 & measured banks; abcjs staff + MIDI export. It already models **multiple traditions × systems** — the natural home for the full matrix. |
+| `trup-calibrate.html` | Standalone listening / calibration panel. |
+| `TRUP-HANDOFF.md` / `../TRUP-HANDOFF.md` | This document. |
+| `trup_full.json` (repo root) | Raw measured dataset for all 45 PocketTorah tropes (Torah + Haftarah). |
 
-## Engines (all working, verified by node smoke tests)
+## Extraction pipeline (the engine that fills every cell)
 
-- **Parser**: live Unicode ta'am parser (codepoints U+0591–05AE), prose + emes resolution incl. paseq-combos (munach→munach-legarmeh, kadma+paseq→azla-legarmeh, oleh v'yored via U+05AB, revia mugrash via U+059D+U+0597). 40-assertion test suite passed against real MAM text.
-- **Audio**: clarinet-style synth (odd harmonics 1/3/5, sustained envelope, lowpass) — replaced piano per Mordy ("Eastern European → clarinet"). Recitative pacing: 0.30s/beat base, short notes clipped 15%, word gaps 0.12 beats. Tempo control ♩−/♩+ (60–170%) + transpose ±6 st in rail; tonic key marked on keyboard.
-- **ABC layer**: `seqToABC()` converts motif arrays on the fly → abcjs staff notation in rail + Download MIDI button. Single source of truth stays the `[[note,beats]]` arrays.
-- **Grades UI**: banks carry `_grade`; C shows warning ("pedagogic approximation…"), D/E show PROTOTYPE label + grey play. Top bar shows current grade badge.
+Measuring any community's recording into motifs — proven, browser-based (the sandbox cannot fetch binary/CORS; the live Chrome connection can). This is the tool for the whole matrix, not just PocketTorah:
+
+1. **Source map.** For a name-drill track (PocketTorah `torah-N`/`haftarah-N` = a cantor singing trope names): `data/text/<track>.xml` names the trope per `<w>` (HTML-entity-encoded Hebrew — decode, then strip niqqud + cantillation marks to a consonant skeleton → id); `data/labels/<track>.txt` = comma-separated onset time per word; segment `i` runs `labels[i] → labels[i+1]`. For a continuous reading, align to word timestamps or hand-mark segments instead.
+2. **Fetch + decode** (normal https page; `raw.githubusercontent.com` is CORS-`*`): `fetch` mp3 → `decodeAudioData` → downmix mono → downsample to 16 kHz.
+3. **Pitch track:** autocorrelation, 55 ms window / 20 ms hop, 85–400 Hz, parabolic-interpolated peak, octave-snap to local median, median-5 smoothing.
+4. **Build** `{duration, medianMidi, events:[{t,d,m,hz}], contour:[{t,m,p}]}`; trim unvoiced ends; segment events by grouping frames within ~0.75 st.
+5. **Register-normalize** per source (−12 st for PocketTorah) so different mouths sit in a common register.
+
+**Gotchas (2026-07-06):** GitHub throttles after many raw fetches → run extraction as a **fault-tolerant background IIFE** with a `Promise.race` per-fetch timeout (AbortController did *not* reliably fire); poll `window` state; it recovers timed-out tracks on later passes. Heavy autocorrelation blocks the renderer, so CDP calls time out mid-compute but the job keeps running — poll, don't assume failure. **Getting data out:** chunked reads truncate (~1.45 k chars), clipboard needs focus, Chrome blocks a 2nd auto-download — what works is rendering the JSON into the page DOM and reading it whole with `get_page_text`, then verifying by asserting a known half equals a trusted earlier download.
 
 ## Locked rules (consensus PRD — do not relitigate)
 
-- Evidence grades A–E; **No Fake Mesorah**: nothing sounds "official" below grade B; every motif needs named source + grade.
-- de Pinna 1699 = "early and highly important published notation" (NOT "earliest"). 1911 Aisbeda/Asriqi = "early phonograph recordings". Baer 1852 = emes *grammar* source.
-- Maqam map locked (per pizmonim.org): Torah Sigah · Mishlei Sigah-variant · Tehillim Nahwand(Syr)/Rast(Eg) · Iyov "undeveloped Rast", frame read like Rus until 3:2 · Shir Bayat · Rus Hoseni · Eicha Ajam · Esther Saba-Mouhayar · Mishnah Nawah.
-- Emes = separate system (dechi, oleh v'yored, revia katan/gadol/mugrash, tzinnor); never mixed with liturgical psalm nusach. Mercha kefulah = prose rarity (5× Torah).
-- REJECTED as hallucinations: "OpenMabin", "Vicki Cantillation Project", Leipzig-Mahzor-notation claim.
-- Recordings layer = link-only; rights stay with source sites.
+- Evidence grades A–E; **No Fake Mesorah**: nothing sounds "official" below grade B; every motif needs a named source + grade. Measured-from-recording = grade A-derived.
+- **Recordings layer is link-only** — rights stay with the source (own-voice is the embedded exception). Applies to every community's audio.
+- Each community keeps its own transliteration where the term is inherently that community's; yeshivish/Ashkenazi is the default voice.
+- Maqam map locked (pizmonim.org) for the Sephardic/Mizrahi cells: Torah Sigah · Mishlei Sigah-variant · Tehillim Nahwand(Syr)/Rast(Eg) · Iyov "undeveloped Rast" · Shir Bayat · Rus Hoseni · Eicha Ajam · Esther Saba-Mouhayar · Mishnah Nawah.
+- Emes = separate system (dechi, oleh v'yored, revia katan/gadol/mugrash, tzinnor); never mixed with liturgical psalm nusach.
+- de Pinna 1699 = "early and highly important published notation" (NOT "earliest"). 1911 Aisbeda/Asriqi = early phonograph recordings. Baer 1852 = emes grammar source.
+- REJECTED as hallucinations: "OpenMabin", "Vicki Cantillation Project", the Leipzig-Mahzor-notation claim.
 
-## Sources established
+## Roadmap — filling the matrix
 
-- **JE 1905 plates** (Cohen, Jewish Encyclopedia III pp. 539–547, Wikimedia Commons): comparative notation, rows "Ashkenazim 1902" (Litvish), "Ashkenazim 1518" (Yekkish/Reuchlin), Sephardim, Morocco, Egypt&Syria, Bagdad, Penitential, Prophets, Esther, Lamentations, Ruth. p. 539 = fully worked Bereishis 22:1 + coda. I transcribed both Ashkenazi Torah rows from screenshots → current grade-B banks (frame: tonic G4, reciting B4, tenor D5).
-- **PocketTorah** (`rneiss/PocketTorahTrope`, GPL-3): `data/audio/*.mp3` = sung trope NAMES; `data/labels/*.txt` = comma-sep start-times per name; `data/text/*.xml` = which trope each segment is. torah-1: tipcha/esnachta/munach/mercha · torah-2: sof-pasuk · torah-3: katan/pashta/mahpach/kadma · torah-4: revia · torah-5: kadma-azla · torah-6: gershayim/geresh · torah-7: darga/tevir · torah-8: telishos · torah-9: pazer · torah-10: yetiv · torah-11: zakef-gadol · torah-12: zarka/segol.
-- **Extraction method (proven)**: in-browser (Chrome tab on any page) fetch repo mp3 → decodeAudioData → autocorrelation (50ms win/20ms hop, 85–400Hz, half-lag octave check, median-5 smoothing, octave-snap to local median) → segments `[midi, sec]`. Code pattern saved as `window.ptClean` in the session; rewrite from this spec.
-- Timeline anchors: Nechemiah 8:8 → Bavli letter-notation (geonic) → Palestinian dots → Tiberian 7th–9th c. → Cairo Codex 895 → Aleppo ~930 + Dikdukei HaTe'amim → Leningrad 1008 → ibn Bil'am 11th c. → Ovadiah HaGer c. 1102–50 → 13th c. universal → Reuchlin/Böschenstein 1518 → de Pinna 1699 → Bagdad 1743 → Baer 1852 → JE 1905 → 1911 recordings → Idelsohn 1914–32 → Rosowsky/Binder/Jacobson.
-
-## THE OPEN PROBLEM
-
-Mordy rejects the synthesized sounds ("almost none reflect reality"). Fixed so far: tempo (his #1 complaint) + clarinet timbre. Two competing pitch-frames now on the table:
-
-1. **JE-1905 frame** (current banks): tonic G, reciting a THIRD up (B). 
-2. **PocketTorah measured frame** (`TRUP_DATA.measuredPT`, 8 taamim, real durations): tonic G, reciting a FIFTH up (D). Different school. E.g. munach = A3·D4·C4·A3 (leap-4th, walk down); zarka = long descent D4→G3; pashta descends home.
-
-**WAITING ON**: Mordy's picks from `trup-calibrate.html` (his report line, e.g. "pashta #3, munach #11, zarka none, transpose +2"). Then:
-- If #11s win → run the extraction over all torah-1…12 (+ haftarah/esther/eicha/megillot files) and rebuild the ashkE banks from measured data (grade A-derived).
-- If the classic candidates win → adjust JE bank to the picked shapes.
-- If nothing wins → repeat extraction against Virtual Cantor mp3s (virtualcantor.com, Eastern-Ashkenazi standard) or Judaica Press Leining Master (most yeshivish).
-
-## TropeTrainer findings (architecture to borrow, data untouchable)
-
-Next.js + Firestore; melodies as **ABC notation** via abcjs (adopted ✓); per-sefer voicing slots incl. SEPARATE Shir/Rus/Koheles (we still lump "3 Megillos" — split pending); voicing systems credited to named notators (Binder, Rosowsky, Goldenberg, Chabad, British-W-Europe, Gaster S&P, Aleppo…) = our grade system in commercial form; settings: vocal-range presets (Child…Bass), divineNameMode, trope-group coloring, sheva-na marks in text, ta'am elyon/tachton toggle; React model ships precomputed `wordTropes` + `tropeGroups` + per-passage `custom_voicing` exceptions (their Az Yashir/Dibros/Chazak mechanism). Word spans id'd `passage-chapter-verse-word`, font = Taamey Frank (adopted ✓).
-
-## Roadmap queue (in order)
-
-1. Calibration verdict → rebuild banks from confirmed school (extraction pipeline above).
-2. Full-sefer extraction: PocketTorah also has complete parsha/haftarah recordings w/ word timestamps — could align measured audio to our parsed pesukim for word-by-word real playback.
-3. Precompute wordTropes/tropeGroups JSON per sefer (build step; live parser stays as generator).
-4. `custom_voicing` exceptions layer (Az Yashir, Dibros elyon, Masa'os, Chazak coda).
-5. Split 3-Megillos into separate system slots; vocal-range presets over transpose.
-6. Deploy to GitHub Pages (curly-barnacle repo; commit via Desktop Commander on Windows — NEVER git inside the sandbox mount).
+1. **Method is proven on the Ashkenazi cell.** Confirm the sound with Mordy (his ear), lock the clarinet engine and UI.
+2. **Split the toggle into two axes** — **community** × **reading-type** — so cells can be added without reshuffling.
+3. **Add reading-types for the community in hand:** 3-Megillos / Esther / Eicha / Yamim Noraim / Tehillim-Emes (PocketTorah already has esther / eicha / 3megillot / hhd tracks — same pipeline).
+4. **Add communities, each measured from real recordings:** Litvish (Mordy's own voice or Virtual Cantor, Eastern-Ashkenazi), then Sephardic (S&P, Moroccan), Yemenite, Mizrahi (Syrian/Iraqi via pizmonim.org / Sephardic Pizmonim Project), Italian. Sources must be CORS-reachable or uploaded.
+5. **Fold the measured engine into the legacy `Trup.html`** map/pesukim views (it already has the tradition × system scaffolding).
 
 ## Environment gotchas (Cowork-specific)
 
-- Sandbox mount of the project folder serves **stale truncated file sizes** after edits. To verify: PowerShell (Desktop Commander) `Copy-Item` the file to a NEW name (`_v.bin`), wait for sync loop in bash, `node --check` the copy. Node is NOT installed on Mordy's Windows.
-- Chrome extension can't navigate `file://`; test headlessly (fake-DOM boot script) instead.
-- web_fetch can't read raw-wikitext/binary; use Chrome tab JS fetch for APIs/binary analysis (CORS: github raw + api = open).
-- MAM Hebrew from Sefaria contains HTML artifacts (`<span class="mam-…">`, `&thinsp;`, paseq as separate token) — parser handles; keep `.replace(/<[^>]*>/g,'')` discipline.
+- **Never** run git inside the sandbox mount — it corrupts `.git` objects and serves stale/truncated reads. Edit on Windows, run git via **Desktop Commander** (native), `core.longpaths true`, repo-local identity (no global identity on LENOVO-II). Push to `origin` = curly-barnacle only.
+- PowerShell one-liners eat `$` in this harness — avoid `$env:`/`$var`; use `git -c core.editor=true …` to keep rebases non-interactive.
+- Node exists only in the sandbox (headless verification with a stubbed AudioContext + canvas); Windows has Python 3.12.
+- Chrome extension can't navigate `file://`; test HTML headlessly. web_fetch can't read binary — use the live Chrome tab's `fetch` for mp3/API/binary work.
 
 ## Voice & style
 
-Concise, direct, minimal fluff. Yeshivish transliteration in `se` fields (esnachta, zakef, sof pasuk, Bereishis). Design system: no gradients/gold/rounded corners; Hebrew RTL baked in; maroon everywhere. He responds well to honest evidence-grading and being told exactly what is guess vs. measured.
+Concise, direct, minimal fluff. Yeshivish transliteration in `se` fields (esnachta, zakef, sof pasuk, Bereishis) except where a term is inherently Sephardic. Design system: no gradients/gold/rounded corners; Hebrew RTL baked in; maroon everywhere. Mordy responds well to honest evidence-grading and being told exactly what is guess vs. measured.
