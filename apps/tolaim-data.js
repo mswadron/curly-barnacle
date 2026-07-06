@@ -2,7 +2,7 @@
    TOLAEI HA-MAZON  ·  Parasites of Food & the Sugya of Tola'im
    Chullin 66b–67b  ·  Shulchan Arukh YD 84  ·  contemporary teshuvot
    This map does NOT pasken. It places each organism into the category the
-   Talmud / SA discuss, and states the lomdish question on which poskim are
+   Talmud / SA discuss, and states the she'eilah on which poskim are
    stringent or lenient. Primary sources (Talmud, SA) first; teshuvot follow.
    ========================================================================== */
 window.TOLAIM_DATA = {
@@ -14,7 +14,7 @@ window.TOLAIM_DATA = {
   },
 
   principle: {
-    en: "The Torah engages only הַשֶּׁרֶץ הַשֹּׁרֵץ עַל הָאָרֶץ — a creature that crawls upon the earth. So two facts about any real organism drive the whole sugya: where it was generated (inside a food/host, or outside), and whether it ever פֵּירֵשׁ — separated onto a surface, the ground, or the open air. Modern parasitology answers those two questions for each creature. What the halacha then IS — where to be machmir or meikil on a lomdish technicality — is the work of the poskim, not of this map.",
+    en: "The Torah engages only הַשֶּׁרֶץ הַשֹּׁרֵץ עַל הָאָרֶץ — a creature that crawls upon the earth. So two facts about any real organism drive the whole sugya: where it was generated (inside a food/host, or outside), and whether it ever פֵּירֵשׁ — separated onto a surface, the ground, or the open air. Modern parasitology answers those two questions for each creature. What the halacha then IS — where to be machmir or meikil — whether the she'eilah is one of מְצִיאוּת or of din — is the work of the poskim, not of this map.",
     sources: [
       { ref: "Chullin 67b", he: "שֶׁלֹּא אָסְרָה תּוֹרָה אֶלָּא שֶׁרֶץ הַשּׁוֹרֵץ עַל הָאָרֶץ", se: "she-lo asra Torah ela sheretz ha-shoretz al ha-aretz", en: "The Torah engaged only a swarming thing that swarms upon the earth." },
       { ref: "Chullin 67b", he: "וְהָנֵי כִּי קָא גָבְלָן — בְּהֶתֵּירָא קָא גָבְלָן", se: "ve-hanei ki ka gavlan — be-hetera ka gavlan", en: "And when these [fish worms] form, they form in a permitted domain." }
@@ -36,7 +36,7 @@ window.TOLAIM_DATA = {
           biology: "Microscopic crustaceans that breed almost exclusively in STILL and slow water — ponds, cisterns, barrels, reservoirs — clinging to algae along quiet banks. Moving current washes them out, so fast streams and springs are largely free of them. They are the intermediate host of the guinea worm and the fish tapeworm, and are precisely the organism found in NYC's unfiltered reservoir tap water.",
           match: "The Talmud and SA treat fin-less creatures found in בּוֹרוֹת שִׁיחִין וּמְעָרוֹת and in כֵּלִים as a category apart from flowing water, because that water is 'עֲצוּרִין כְּכֵלִים' — contained and still. That is exactly where copepods genuinely breed: the halachic category and the real breeding domain coincide.",
           exclusivity: "Near-exclusive to still water. Current physically removes them, so their presence is a strong signal of standing water — the same distinction the sugya draws between still and flowing.",
-          question: "Whether reservoir copepods engage the din at all is the classic modern machlokes. R' Belsky was lenient — the reservoirs have the status of מֵי בּוֹרוֹת (SA 84:1), and after a century of unnoticed drinking they are arguably not נִרְאֶה לָעֵינַיִם nor a מִיעוּט הַמָּצוּי in a given cup. The OU followed R' Schachter to require filtering. The paradigm of a lomdish technicality left to the poskim.",
+          question: "Whether reservoir copepods engage the din at all is the classic modern machlokes. R' Belsky was lenient — the reservoirs have the status of מֵי בּוֹרוֹת (SA 84:1), and after a century of unnoticed drinking they are arguably not נִרְאֶה לָעֵינַיִם nor a מִיעוּט הַמָּצוּי in a given cup. The OU followed R' Schachter to require filtering — a she'eilah resting partly on מְצִיאוּת (are they נִרְאֶה לָעֵינַיִם, how common) and partly on din (the status of reservoir water), left to the poskim.",
           sources: [
             { ref: "Chullin 67a", he: "מַאי מַיעֵט? בּוֹרוֹת שִׁיחִין וּמְעָרוֹת", se: "mai me'et? borot shichin u-me'arot", en: "What does it exclude [from the flowing-water category]? Pits, ditches and caves." },
             { ref: "Chullin 67a", he: "מְרַבֶּה אֲנִי בּוֹרוֹת שִׁיחִין וּמְעָרוֹת שֶׁהֵן עֲצוּרִים כְּכֵלִים", se: "merabeh ani borot shichin u-me'arot she-hen atzurin ke-kelim", en: "I include pits, ditches and caves, which are contained like vessels [still water]." },
@@ -90,7 +90,7 @@ window.TOLAIM_DATA = {
           biology: "Eggs hatch in seawater; larvae are eaten by copepods; fish eat the copepods. The larvae burrow through the fish's GUT WALL and encyst on the viscera — then migrate into the edible FLESH, especially post-mortem during cold storage (documented at 0–4°C over 1–3 days). Its origin is unquestionably OUTSIDE the fish, entering through the food chain and lodging first in the gut.",
           match: "The sharpest match in the whole sugya. YD 84:16 distinguishes worms in a fish's מֵעַיִם from those in its flesh, and the Gemara's own objection to the origin question — 'if they came from outside they would be found by way of the digestive tract' — is literally true of Anisakis, which IS found in the gut.",
           exclusivity: null,
-          question: "The live machlokes turns on which fact the din follows. R' Belsky and R' Vaye (and, it is reported, earlier poskim) were lenient — the worm completes its growth in the flesh, and at its ingested microscopic stage it was below the threshold of a sheretz; many Eretz-Yisrael poskim signed a kol koreh to be stringent — it demonstrably came from outside/the water. A textbook lomdish divide over מְצִיאוּת.",
+          question: "The live machlokes turns on which fact the din follows. R' Belsky and R' Vaye (and, it is reported, earlier poskim) were lenient — the worm completes its growth in the flesh, and at its ingested microscopic stage it was below the threshold of a sheretz; many Eretz-Yisrael poskim signed a kol koreh to be stringent — it demonstrably came from outside/the water. This is now less a machlokes in the מְצִיאוּת — the pathway itself is not really in doubt — than a question of din: whether the heter follows where the worm is found, in the flesh, or where it originated, outside.",
           sources: [
             { ref: "Chullin 67b", he: "דַּרְנֵי דְּבִשְׂרָא — אֲסִירִי, דְּכַוְּורֵי — שַׁרְיָין", se: "darnei d-visra asiri, d-kavarei sharyan", en: "The Gemara: worms of [animal] flesh are engaged; those of fish are treated as formed-in-place." },
             { ref: "Chullin 67b", he: "אִי מֵעָלְמָא אָתוּ — לִישְׁתַּכְּחוּ דֶּרֶךְ בֵּית הָרֶעִי", se: "i me-alma atu — lishtakchu derech beit ha-re'i", en: "If they came from outside, they should be found by way of the digestive tract." },
