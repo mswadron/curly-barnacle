@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trup Calibration · כיוון — Pashta, Munach, Zarka</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+@font-face{ font-family:'Taamey Frank CLM'; font-weight:400; font-style:normal;
+  src:url('https://cdn.jsdelivr.net/gh/Sefaria/Sefaria-Project@master/static/fonts/Taamey-Frank/TaameyFrankCLM-Medium.ttf') format('truetype'); font-display:swap; }
+@font-face{ font-family:'Taamey Frank CLM'; font-weight:700; font-style:normal;
+  src:url('https://cdn.jsdelivr.net/gh/Sefaria/Sefaria-Project@master/static/fonts/Taamey-Frank/TaameyFrankCLM-Bold.ttf') format('truetype'); font-display:swap; }
+:root{
+  --maroon:#5a1421; --maroon-deep:#3d0d18; --maroon-ink:#2a0810;
+  --ink:#16110f; --paper:#ffffff; --paper-soft:#fafaf9; --paper-tint:#fbf7f6;
+  --bg:#f7ecec; --rule:#e6e6e6; --dotted:#d8d2cf; --mute:#6e6663; --mute-soft:#9a9290;
+  --display:'Bricolage Grotesque',system-ui,sans-serif;
+  --body:'Crimson Pro',Georgia,serif;
+  --hebrew:'Taamey Frank CLM','Frank Ruhl Libre',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.6;padding:0 0 80px}
+header{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--maroon);
+  display:flex;align-items:center;gap:16px;padding:10px 22px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:800;font-size:16px;color:var(--maroon-ink)}
+.brand .he-run{font-family:var(--hebrew);font-weight:900;color:var(--maroon);margin-right:8px;font-size:17px}
+.he-run{font-family:var(--hebrew);direction:rtl;unicode-bidi:isolate}
+.eyebrow{font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon)}
+main{max-width:900px;margin:0 auto;padding:20px 22px}
+.lede{max-width:75ch;margin-bottom:8px}
+.controls{display:flex;gap:18px;align-items:center;flex-wrap:wrap;background:var(--paper);border:1px solid var(--rule);padding:10px 14px;margin:14px 0}
+.ctl{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon)}
+.ctl input{accent-color:var(--maroon)}
+.ctl .val{color:var(--ink);min-width:44px}
+.frame-btn{font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--maroon);color:var(--paper);border:none;padding:8px 12px;cursor:pointer}
+.frame-btn:hover{background:var(--maroon-deep)}
+h2.sec{font-family:var(--display);font-weight:800;font-size:20px;margin:26px 0 4px}
+h2.sec .he-run{font-size:22px;color:var(--maroon);font-weight:700}
+.sec-sub{font-size:13px;color:var(--mute);margin-bottom:10px;max-width:80ch}
+.cand{display:flex;align-items:center;gap:12px;background:var(--paper);border:1px solid var(--rule);border-left:3px solid var(--maroon);padding:8px 12px;margin-bottom:6px}
+.cand:hover{background:var(--paper-tint)}
+.cnum{font-family:var(--display);font-weight:800;font-size:15px;color:var(--maroon);min-width:26px;text-align:center}
+.cplay{font-family:var(--display);font-weight:700;font-size:11px;background:var(--paper);border:1px solid var(--maroon);color:var(--maroon);width:34px;height:30px;cursor:pointer}
+.cplay:hover,.cplay.on{background:var(--maroon);color:var(--paper)}
+.cnotes{font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:.06em;color:var(--maroon-ink);min-width:210px}
+.cdesc{font-size:13px;color:var(--mute);flex:1}
+.pick{margin-left:auto;display:flex;gap:4px}
+.pick button{font-family:var(--display);font-weight:700;font-size:9px;letter-spacing:.08em;border:1px solid var(--rule);background:var(--paper);color:var(--mute);padding:4px 8px;cursor:pointer}
+.pick button.sel-yes{background:var(--maroon);border-color:var(--maroon);color:var(--paper)}
+.pick button.sel-close{background:var(--p, #4a2a5a);border-color:#4a2a5a;color:var(--paper)}
+.report{position:sticky;bottom:0;background:var(--maroon);color:var(--paper);padding:12px 22px;font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.04em;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.report .rline{flex:1;min-width:280px}
+.report button{background:var(--paper);color:var(--maroon);border:none;font-family:var(--display);font-weight:800;font-size:10px;letter-spacing:.1em;padding:8px 12px;cursor:pointer}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="he-run">כִּוּוּן</span>TRUP CALIBRATION</div>
+  <span class="eyebrow">Pashta · Munach · Zarka — Ashkenaz (weekly Torah reading)</span>
+</header>
+<main>
+  <p class="lede">Ten candidates per ta'am. Tap <b>▶</b> to hear each one, then mark <b>YES</b> (that's it) or <b>~</b> (close). The strip at the bottom builds a one-line report — send me that line. If the whole page feels pitched wrong for your voice, use <b>transpose</b>; if everything is too slow or fast, use <b>tempo</b> — recognition often hides in those two knobs. <b>Orient</b> plays the frame (do–mi–sol–do) all candidates live in.</p>
+  <div class="controls">
+    <button class="frame-btn" onclick="orient()">▶ Orient (do–mi–sol–do)</button>
+    <label class="ctl">Transpose <input type="range" min="-7" max="7" value="0" step="1" oninput="TR=+this.value;document.getElementById('trv').textContent=(TR>0?'+':'')+TR+' st'"> <span class="val" id="trv">0 st</span></label>
+    <label class="ctl">Tempo <input type="range" min="55" max="130" value="100" step="5" oninput="TEMPO=.42*100/+this.value;document.getElementById('tpv').textContent=this.value+'%'"> <span class="val" id="tpv">100%</span></label>
+  </div>
+  <div id="sections"></div>
+</main>
+<div class="report">
+  <span class="rline" id="rline">Your picks: (none yet)</span>
+  <button onclick="navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('rline').textContent)">COPY</button>
+</div>
+<script>
+'use strict';
+/* ---- audio ---- */
+const NN=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+const midi=n=>{const m=n.match(/^([A-G]#?)(\d)$/);return (+m[2])*12+NN.indexOf(m[1]);};
+const nm=m=>NN[((m%12)+12)%12]+Math.floor(m/12);
+const freq=n=>440*Math.pow(2,(midi(n)-57)/12);
+let TR=0, TEMPO=0.42, ctx=null, tok=0;
+function AC(){ if(!ctx) ctx=new (window.AudioContext||window.webkitAudioContext)(); if(ctx.state==='suspended')ctx.resume(); return ctx; }
+function tone(f,t0,d){const c=AC(),g=c.createGain();
+ const lp=c.createBiquadFilter();lp.type='lowpass';lp.frequency.value=Math.min(f*6,4200);lp.Q.value=.7;
+ lp.connect(g);g.connect(c.destination);
+ const A=.045,R=.09,S=.22;
+ g.gain.setValueAtTime(.0001,t0);g.gain.linearRampToValueAtTime(S,t0+A);
+ g.gain.setValueAtTime(S,Math.max(t0+A,t0+d-.02));g.gain.exponentialRampToValueAtTime(.0001,t0+d+R);
+ [[1,.9],[2,.06],[3,.35],[5,.14]].forEach(([m,a])=>{const o=c.createOscillator(),og=c.createGain();
+  o.type='sine';o.frequency.value=f*m;og.gain.value=a;o.connect(og);og.connect(lp);o.start(t0);o.stop(t0+d+R+.05);});}
+function play(seq,btn){const c=AC();const my=++tok;let t=c.currentTime+.06,acc=0;
+ seq.forEach(([n,b])=>{ if(n) tone(freq(nm(midi(n)+TR)),t+acc,b*TEMPO); acc+=b*TEMPO; });
+ if(btn){btn.classList.add('on');setTimeout(()=>{if(my===tok)btn.classList.remove('on');},acc*1000+200);}}
+function orient(){ play([['G4',.6],['B4',.6],['D5',.6],['G5',.9]]); }
+
+/* ---- candidates: frame do=G4, mi=B4 (reciting), sol=D5 ---- */
+const S = {
+  pashta: { he:'פַּשְׁטָא֙', sub:'The "stretcher" before zakef katan. All end suspended — pashta never rests.',
+    c:[
+      [[['A4',.25],['B4',.25],['D5',1.3]], 'my JE-plate reading: passing-tone rise to held sol'],
+      [[['B4',.4],['E5',1.3]], 'straight leap up a fourth from reciting tone, hold'],
+      [[['B4',.35],['E5',.8],['D5',.5]], 'leap up a fourth, fall back one step ("dee-DAH-da")'],
+      [[['B4',.4],['D5',1.2]], 'leap up a third, hold'],
+      [[['B4',.3],['C5',.3],['D5',.6],['C5',.4]], 'stepwise climb with a turn back down'],
+      [[['B4',.4],['C5',1.1]], 'single small step up, hold'],
+      [[['G4',.25],['B4',.25],['D5',1.2]], 'low pickup (do) then leap to held sol'],
+      [[['B4',.3],['E5',.5],['D5',.4],['E5',.6]], 'up a fourth with a re-kick at the top'],
+      [[['B4',.25],['C5',.25],['D5',.35],['E5',.9]], 'four-note ladder ending high on la'],
+      [[['D5',.5],['E5',.9],['D5',.4]], 'starts already high: sol–la–sol arch'],
+      [[['E5',.15],['C5',.2],['A4',.1],['G4',.5]], 'MEASURED from PocketTorah recording — steps down and settles home']
+    ]},
+  munach: { he:'מֻנַּ֣ח', sub:'The everyday servant (before esnachta, zakef, segol…). Short by nature.',
+    c:[
+      [[['B4',.7]], 'one plain note on the reciting tone (mi)'],
+      [[['A4',.35],['B4',.7]], 'my JE-plate reading: step up onto the reciting tone (re–mi)'],
+      [[['C5',.35],['B4',.7]], 'step DOWN onto the reciting tone (fa–mi)'],
+      [[['B4',.35],['B4',.6]], 'same note twice ("mu-nach")'],
+      [[['G4',.7]], 'one plain LOW note (do)'],
+      [[['G4',.35],['B4',.6]], 'low do rising a third to mi'],
+      [[['A4',.35],['A4',.6]], 're–re, repeated below the reciting tone'],
+      [[['G4',.35],['A4',.6]], 'do–re, low rising pair'],
+      [[['B4',.25],['A4',.25],['B4',.5]], 'dip-and-return turn (mi–re–mi)'],
+      [[['A4',1]], 'one long low re, slightly leaned into'],
+      [[['A4',.1],['D5',.3],['C5',.25],['A4',.4]], 'MEASURED from PocketTorah recording — leap up a fourth, walk back down']
+    ]},
+  zarka: { he:'זַרְקָא֮', sub:'The "scatterer" — a winding throw that must end hanging, because segol always follows.',
+    c:[
+      [[['A4',.4],['B4',.25],['C5',.25],['B4',.25],['C5',.25],['D5',.25],['C5',.25],['B4',.2],['A4',.2],['G4',.2],['A4',.5]], 'my JE-plate reading: long double-wave, settles low'],
+      [[['B4',.25],['C5',.25],['B4',.25],['C5',.3],['D5',.4],['E5',.8]], 'wave then climb, ends hanging HIGH on la'],
+      [[['B4',.3],['A4',.3],['B4',.3],['C5',.3],['D5',.8]], 'dip below first, then climb to sol'],
+      [[['B4',.25],['C5',.25],['B4',.25],['A4',.25],['B4',.25],['C5',.25],['D5',.35],['E5',.6],['D5',.4]], 'the long bar-mitzvah-table snake: dip, climb, cap, settle'],
+      [[['B4',.3],['D5',.35],['C5',.3],['D5',.7]], 'short hook: leap, dip, back up'],
+      [[['A4',.3],['G4',.3],['A4',.3],['B4',.3],['C5',.8]], 'low scoop rising to fa'],
+      [[['B4',.25],['C5',.25],['D5',.25],['C5',.25],['D5',.3],['E5',.35],['D5',.6]], 'triplet turns stacked upward, settle on sol'],
+      [[['G4',.3],['B4',.3],['A4',.3],['C5',.3],['B4',.3],['D5',.7]], 'zigzag in thirds climbing to sol'],
+      [[['B4',.3],['C5',.3],['D5',.3],['C5',.3],['B4',.6]], 'rise and fall back to where it started'],
+      [[['A4',.25],['B4',.25],['C5',.25],['B4',.25],['C5',.25],['D5',.25],['C5',.25],['D5',.3],['E5',.7]], 'long ornamented ascent, ends hanging on la'],
+      [[['D5',.9],['C5',.2],['A4',.35],['B4',.2],['A4',.1],['G4',.75]], 'MEASURED from PocketTorah recording — long descending wind coming to rest']
+    ]}
+};
+const picks={pashta:{},munach:{},zarka:{}};
+function mark(taam,i,kind,btn){
+  const row=picks[taam];
+  if(row[i]===kind){ delete row[i]; } else { row[i]=kind; }
+  const parent=btn.parentElement;
+  [...parent.children].forEach(b=>b.className='');
+  if(row[i]) btn.className = row[i]==='yes'?'sel-yes':'sel-close';
+  const parts=Object.keys(S).map(t=>{
+    const r=picks[t]; const ys=Object.keys(r).filter(k=>r[k]==='yes').map(k=>+k+1);
+    const cl=Object.keys(r).filter(k=>r[k]==='close').map(k=>+k+1);
+    let s=t+': ';
+    s+= ys.length? ('#'+ys.join(',#')) : (cl.length?'—':'none');
+    if(cl.length) s+=' (close: #'+cl.join(',#')+')';
+    return s;
+  });
+  document.getElementById('rline').textContent='Your picks — '+parts.join(' · ')+' — transpose '+(TR>0?'+':'')+TR;
+}
+const root=document.getElementById('sections');
+Object.keys(S).forEach(taam=>{
+  const sec=S[taam];
+  const h=document.createElement('h2'); h.className='sec';
+  h.innerHTML='<span class="he-run">'+sec.he+'</span> &nbsp;'+taam.toUpperCase();
+  root.appendChild(h);
+  const sub=document.createElement('div'); sub.className='sec-sub'; sub.textContent=sec.sub;
+  root.appendChild(sub);
+  sec.c.forEach((cand,i)=>{
+    const [seq,desc]=cand;
+    const row=document.createElement('div'); row.className='cand';
+    const num=document.createElement('span'); num.className='cnum'; num.textContent=(i+1);
+    const p=document.createElement('button'); p.className='cplay'; p.textContent='▶';
+    p.onclick=()=>play(seq,p);
+    const notes=document.createElement('span'); notes.className='cnotes';
+    notes.textContent=seq.map(x=>x[0]).join('·');
+    const d=document.createElement('span'); d.className='cdesc'; d.textContent=desc;
+    const pick=document.createElement('span'); pick.className='pick';
+    const y=document.createElement('button'); y.textContent='YES'; y.onclick=()=>mark(taam,i,'yes',y);
+    const c2=document.createElement('button'); c2.textContent='~'; c2.onclick=()=>mark(taam,i,'close',c2);
+    pick.appendChild(y); pick.appendChild(c2);
+    row.appendChild(num); row.appendChild(p); row.appendChild(notes); row.appendChild(d); row.appendChild(pick);
+    root.appendChild(row);
+  });
+});
+</script>
+</body>
+</html>
