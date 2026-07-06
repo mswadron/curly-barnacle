@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>תולעים · Tolaim in Food</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&display=swap');
+:root{
+  --bg:#F5F1E8; --panel:#FBF8F1; --ink:#1B2230; --sub:#586074; --line:#D9D2C2;
+  --tekhelet:#1F4E79; --tekheletSoft:#E5ECF4; --gold:#946321; --goldSoft:#FBF1DD;
+  --rule:#C9B79A; --flag:#8A3A2E; --flagSoft:#F7E7E2; --reason:#3C6336; --reasonSoft:#E8F0E6;
+  --serif:Georgia,'Times New Roman',serif; --heb:'Frank Ruhl Libre','Times New Roman',serif;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.55;}
+.heb{font-family:var(--heb);}
+.wrap{max-width:820px;margin:0 auto;padding:28px 18px 70px;}
+
+/* header */
+header.top{border-bottom:2px solid var(--tekhelet);padding-bottom:14px;margin-bottom:8px;}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;}
+h1.title{margin:8px 0 0;font-size:28px;font-weight:800;letter-spacing:-.01em;}
+h1.title .heb{font-weight:700;margin-right:10px;}
+.subtitle{margin:8px 0 0;font-size:14px;color:var(--sub);line-height:1.55;}
+
+/* framing box */
+.provbox{margin:16px 0;border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:14px 18px;font-size:13.5px;color:var(--ink);line-height:1.55;}
+.provbox b{color:var(--tekhelet);}
+
+/* controls */
+#controls{margin:14px 0 6px;}
+.catrow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;}
+.pill{font-family:var(--serif);font-size:13px;font-weight:600;padding:6px 13px;border-radius:999px;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--sub);}
+.pill.on{background:var(--tekhelet);border-color:var(--tekhelet);color:#fff;}
+.langrow{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:6px;}
+.langlbl{font-size:12px;color:var(--sub);font-weight:700;}
+.langpill{font-family:var(--serif);font-size:12px;font-weight:700;padding:4px 11px;border-radius:999px;cursor:pointer;border:1px solid var(--tekhelet);background:transparent;color:var(--tekhelet);}
+.langpill.on{background:var(--tekhelet);color:#fff;}
+
+/* section heads (All view) */
+.sec-head{display:flex;align-items:baseline;gap:10px;margin:22px 0 2px;padding-top:8px;border-top:1px solid var(--line);}
+.sec-he{font-size:22px;font-weight:700;color:var(--tekhelet);}
+.sec-en{font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--gold);}
+.sec-lead{font-size:13.5px;color:var(--sub);line-height:1.55;margin:2px 0 12px;}
+.sec-lead.solo{margin-top:8px;}
+
+/* card */
+.card{border:1px solid var(--line);border-radius:10px;background:var(--panel);margin-bottom:10px;overflow:hidden;}
+.card.open{border-color:var(--tekhelet);}
+.card-head{padding:13px 16px;cursor:pointer;}
+.row1{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;}
+.nm{font-size:16px;font-weight:700;color:var(--ink);}
+.nm-he{font-size:18px;font-weight:700;color:var(--ink);}
+.org{font-style:italic;font-size:13px;color:var(--sub);margin-top:2px;}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;}
+.badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;white-space:nowrap;}
+.b-born{background:var(--reasonSoft);color:var(--reason);border:1px solid var(--reason);}
+.b-crawled{background:var(--flagSoft);color:var(--flag);border:1px solid var(--flag);}
+.b-contested{background:var(--goldSoft);color:var(--gold);border:1px solid var(--gold);}
+.b-wt{background:#fff;color:var(--sub);border:1px solid var(--line);}
+.b-grade{background:var(--tekheletSoft);color:var(--tekhelet);border:1px solid var(--tekhelet);}
+.sugyacat{margin-top:9px;font-size:12.5px;color:var(--gold);font-weight:700;}
+.toggle{margin-top:9px;font-size:11.5px;font-weight:600;color:var(--tekhelet);}
+
+/* detail */
+.detail{border-top:1px solid var(--line);background:#fff;padding:14px 16px;}
+.blk{font-size:14px;line-height:1.62;color:var(--ink);margin-bottom:11px;}
+.blk.sub{color:var(--sub);font-size:13.5px;}
+.blk b{color:var(--ink);}
+.box-label{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;}
+.box-label.tekh{color:var(--tekhelet);}
+.box-label.gold{color:var(--gold);}
+.box-label.maroon{color:var(--flag);}
+.box-label.mt{margin-top:6px;}
+
+/* source box */
+.srcbox{background:var(--tekheletSoft);border-left:3px solid var(--tekhelet);border-radius:0 6px 6px 0;padding:9px 12px;margin-bottom:9px;}
+.src-he{font-family:var(--heb);text-align:right;font-weight:500;font-size:18px;line-height:1.8;color:var(--ink);}
+.src-tr{font-style:italic;font-size:13px;color:#5b4a44;line-height:1.5;margin-top:4px;}
+.src-en{font-size:13.5px;color:var(--ink);line-height:1.5;margin-top:4px;}
+.src-ref{display:inline-block;margin-top:7px;font-size:11px;font-weight:700;color:var(--tekhelet);text-decoration:none;}
+.src-ref:hover{text-decoration:underline;}
+
+/* gbif */
+.gbifbox{background:var(--tekheletSoft);border:1px solid var(--tekhelet);border-radius:8px;padding:10px 12px;margin-bottom:11px;}
+.gbif-load{color:var(--sub);font-style:italic;font-size:13px;}
+.gbif-fail{color:var(--sub);font-style:italic;font-size:12.5px;}
+.gbif-name{font-style:italic;font-weight:700;font-size:15px;color:var(--ink);}
+.gbif-rank{font-style:normal;font-weight:700;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--tekhelet);padding:2px 6px;border-radius:3px;margin-left:5px;vertical-align:middle;}
+.taxrow{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+.tax{font-size:11px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:4px;padding:2px 7px;}
+.tax b{color:var(--tekhelet);font-weight:700;font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;margin-right:2px;}
+.gbif-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:9px;flex-wrap:wrap;}
+.gcount{font-size:13px;color:var(--ink);}
+.gcount b{font-weight:800;color:var(--tekhelet);font-size:15px;margin-right:3px;}
+.glink{font-size:11px;font-weight:700;color:var(--tekhelet);text-decoration:none;white-space:nowrap;}
+.glink:hover{text-decoration:underline;}
+.gbif-attr{font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--sub);margin-top:8px;}
+
+/* teshuvos */
+.teshbox{background:var(--goldSoft);border:1px solid var(--rule);border-radius:8px;padding:10px 12px;margin-bottom:11px;}
+.tesh-note{font-size:12px;font-style:italic;color:var(--sub);line-height:1.45;margin-bottom:7px;}
+.tlink{display:block;font-size:13px;font-weight:600;color:var(--tekhelet);text-decoration:none;padding:5px 0;border-bottom:1px dotted var(--rule);}
+.tlink:last-child{border-bottom:none;}
+.tlink:hover{text-decoration:underline;}
+
+/* she'eilah box */
+.qbox{background:var(--flagSoft);border:1px solid var(--flag);border-radius:8px;padding:10px 12px;}
+.qbox .blk{margin-bottom:8px;}
+.grade-note{font-size:12px;color:var(--sub);}
+.grade-note b{color:var(--flag);}
+
+footer{max-width:820px;margin:0 auto;padding:16px 18px 40px;font-size:12px;color:var(--sub);line-height:1.6;border-top:1px solid var(--line);}
+
+@media(max-width:560px){ h1.title{font-size:23px;} .nm-he{font-size:16px;} }
+</style>
+</head>
+<body>
+
+<a id="lib-home" href="../index.html" aria-label="All apps" title="כל האפליקציות · All apps" style="position:fixed;bottom:14px;left:14px;z-index:9000;width:44px;height:44px;border-radius:50%;background:#5a1421;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(0,0,0,.3);text-decoration:none;-webkit-tap-highlight-color:transparent;transition:transform .15s ease,background .15s ease" onmouseover="this.style.transform='scale(1.08)';this.style.background='#7a1c2d'" onmouseout="this.style.transform='none';this.style.background='#5a1421'"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg></a>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">Chullin 66b–67b · Yoreh De’ah 84</div>
+    <h1 class="title"><span class="heb" dir="rtl">תּוֹלָעִים בַּמַּאֲכָל</span>Tolaim in Food</h1>
+    <p class="subtitle">Every insect and parasite that gets into food — in water, fish, produce and meat — set against the sugya of tolaim. For each creature: where it was really born, and whether it ever came out — with a live scientific reading of the organism itself.</p>
+  </header>
+
+  <div class="provbox">
+    This is a map of the sugya, not a psak. It places each creature in the category the Gemara and <b>Shulchan Aruch</b> discuss — born in its place, or come from outside and separated — and states the she’eilah on which the poskim are machmir or meikil, without deciding it. Every source is quoted as written and linked to Sefaria; the scientific layer on each creature is pulled live from <b>GBIF</b>.
+  </div>
+
+  <div id="controls"></div>
+  <div id="list"></div>
+</div>
+
+<footer>
+  Sources quoted verbatim from the Wm. Davidson Talmud and Shulchan Aruch, Yoreh De’ah 84, on Sefaria; contemporary teshuvos are linked, not adjudicated. Scientific taxonomy and occurrence counts are fetched live from GBIF.org and require a connection.
+</footer>
+
+<script src="tolaim-data.js"></script>
+<script src="tolaim.js"></script>
+</body>
+</html>
