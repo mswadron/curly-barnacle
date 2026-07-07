@@ -173,6 +173,19 @@ a{color:var(--green);}
 .anc-use{font-size:13.5px;color:var(--ink);margin-bottom:9px;line-height:1.55;}
 .anc .src{margin:0;}
 
+/* Rambam gloss decoder */
+.gloss{background:#fff;border:1px solid var(--line);border-left:3px solid var(--lexicon);border-radius:7px;padding:10px 12px;margin:8px 0;}
+.gloss-h{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--lexicon);margin-bottom:7px;}
+.gl-row{display:flex;gap:8px;margin:4px 0;font-size:13px;line-height:1.5;}
+.gl-k{font-family:var(--mono);font-size:8.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--mute-soft);min-width:92px;padding-top:3px;flex-shrink:0;}
+.gl-v{flex:1;}
+.gl-term{font-size:15px;font-weight:700;color:var(--green-deep);}
+.gl-v i{color:var(--muted);}
+.gl-lang{font-family:var(--mono);font-size:8.5px;color:var(--mute-soft);text-transform:uppercase;letter-spacing:.04em;}
+.gl-note{font-size:11.5px;color:var(--muted);font-style:italic;margin-top:3px;line-height:1.45;}
+.gl-crux{font-size:12px;color:var(--ink);margin-top:7px;padding-top:7px;border-top:1px dotted var(--dotted);line-height:1.5;}
+.gl-crux b{color:var(--conjectural);}
+
 /* aspect sections in detail */
 .asec{border:1px solid var(--line);border-left:3px solid var(--green);border-radius:7px;padding:11px 13px;margin-bottom:11px;background:#fff;}
 .asec.acc-k{border-left-color:var(--k);} .asec.acc-ma{border-left-color:var(--ma);}
@@ -209,6 +222,7 @@ a{color:var(--green);}
 <script src="zeraim-tithes-matrix.js"></script>
 <script src="zeraim-culinary-data.js"></script>
 <script src="zeraim-ancient-data.js"></script>
+<script src="zeraim-glosses-data.js"></script>
 <script src="zeraim-core.js"></script>
 <script src="zeraim.js"></script>
 </body>

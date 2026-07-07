@@ -9,6 +9,7 @@
   var RAMBAM = REG.rambamKilayim || {};
   var CULINARY = window.ZERAIM_CULINARY || {};
   var ANCIENT = window.ZERAIM_ANCIENT || {};
+  var GLOSSES = window.ZERAIM_GLOSSES || {};
   var APP = document.getElementById("app");
   var byId = REG.species;
 
@@ -118,6 +119,10 @@
     framework: { he: "מִסְגֶּרֶת הַמַּסֶּכֶת", en: "Masechta framework" },
     culinary: { he: "שִׁמּוּשׁ קוּלִינָרִי", en: "Culinary use" },
     ancient: { he: "שִׁמּוּשׁ בִּימֵי הַמִּשְׁנָה", en: "Use in Mishnaic times" },
+    glosses: { he: "פֵּעֲנוּחַ הַלְּשׁוֹנוֹת · עֲרָבִית וְלַעַז", en: "Decoding the gloss — Arabic & laaz" },
+    gArabic: { he: "עֲרָבִית (רַמְבַּ״ם)", en: "Arabic (Rambam's own)" },
+    gLaaz: { he: "לַעַז (הַמְתַרְגֵּם)", en: "Laaz (the translator's)" },
+    gCrux: { he: "הֶעָרָה", en: "Note" },
     cuisine: { he: "מִטְבָּח", en: "Cuisine" },
     photo: { he: "תַּצְלוּם · iNaturalist", en: "Photograph · iNaturalist" }
   };
@@ -321,6 +326,7 @@
       var url = RAMBAM["url_" + a.mishnah_ref.replace(":", "_")] || "https://www.sefaria.org/Rambam_on_Mishnah_Kilayim." + a.mishnah_ref.replace(":", ".");
       out += srcBlock((isHE() ? "רַמְבַּ״ם · פֵּירוּשׁ הַמִּשְׁנָיוֹת" : "Rambam · Peirush HaMishnayot"), "Kilayim " + a.mishnah_ref, RAMBAM[a.rambam], url);
     }
+    out += glossHTML(s);
     if (a.pair) {
       out += '<div class="kv"><span class="kk">' + esc(tx(UI.pairL)) + '</span><span class="vv">' +
         '<span class="rel" data-goto="' + esc(a.pair.id) + '"><span class="he">' + esc(a.pair.he) + "</span></span>" +
@@ -359,6 +365,22 @@
     return '<div class="asec acc-' + ACCENT[key] + '"><div class="asec-h"><span class="dot"></span><span class="he">' + esc(m.he) + "</span> " + esc(m.en) + "</div>" + inner + "</div>";
   }
 
+  function glossHTML(s) {
+    var g = GLOSSES[s.id]; if (!g) return "";
+    function line(label, o) {
+      if (!o) return "";
+      return '<div class="gl-row"><span class="gl-k">' + esc(label) + '</span><span class="gl-v">' +
+        '<span class="he gl-term">' + esc(o.term) + "</span> <i>" + esc(o.translit) + "</i>" +
+        (o.lang ? ' <span class="gl-lang">' + esc(tx(o.lang)) + "</span>" : "") +
+        " — " + esc(tx(o.meaning)) +
+        (o.note ? '<div class="gl-note' + (isHE() ? " he" : "") + '">' + esc(tx(o.note)) + "</div>" : "") +
+        "</span></div>";
+    }
+    var rows = line(tx(UI.gArabic), g.arabic) + line(tx(UI.gLaaz), g.laaz);
+    if (g.note) rows += '<div class="gl-note' + (isHE() ? " he" : "") + '">' + esc(tx(g.note)) + "</div>";
+    if (g.crux) rows += '<div class="gl-crux' + (isHE() ? " he" : "") + '"><b>' + esc(tx(UI.gCrux)) + ":</b> " + esc(tx(g.crux)) + "</div>";
+    return '<div class="gloss"><div class="gloss-h">' + esc(tx(UI.glosses)) + "</div>" + rows + "</div>";
+  }
   function culinaryHTML(s) {
     var c = CULINARY[s.id]; if (!c) return "";
     var cz = (c.cuisines && c.cuisines.length) ?
