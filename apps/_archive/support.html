@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Support · Torah Interactive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f7f2e9; --paper-deep:#f1eadd; --ink:#241d15; --ink-soft:#5c5344;
+  --maroon:#5a1421; --maroon-deep:#3d0d18; --rule:#c9bfae; --rule-soft:#ddd5c6;
+  --hebrew:'Frank Ruhl Libre',serif;
+  --body:'Crimson Pro',Georgia,serif;
+}
+*{box-sizing:border-box;}
+html{background:var(--paper);}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.6;}
+
+.shaar{max-width:720px;margin:0 auto;padding:54px 24px 10px;text-align:center;}
+.shaar .rule-top{border-top:1px solid var(--ink);border-bottom:3px double var(--ink);height:6px;margin-bottom:34px;}
+.shaar h1{font-family:var(--hebrew);font-weight:900;font-size:52px;margin:0;line-height:1.15;color:var(--maroon-deep);}
+.shaar .en-name{font-variant:small-caps;letter-spacing:0.08em;font-size:22px;font-weight:600;margin-top:6px;color:var(--ink);}
+.shaar .lede{font-size:19px;font-style:italic;color:var(--ink-soft);max-width:52ch;margin:14px auto 0;}
+.shaar .rule-bottom{border-top:3px double var(--ink);border-bottom:1px solid var(--ink);height:6px;margin-top:34px;}
+
+main{max-width:640px;margin:0 auto;padding:20px 24px 40px;}
+main p{margin:0 0 18px;}
+main .he-line{font-family:var(--hebrew);font-weight:500;font-size:22px;text-align:center;direction:rtl;color:var(--maroon-deep);margin:6px 0 22px;}
+
+.give{text-align:center;margin:30px 0 10px;}
+.give a{display:inline-block;background:var(--maroon);color:var(--paper);text-decoration:none;
+  font-variant:small-caps;letter-spacing:0.06em;font-weight:700;font-size:20px;
+  padding:13px 34px;border:1px solid var(--maroon-deep);transition:background .15s ease;}
+.give a:hover{background:var(--maroon-deep);}
+.give .note{font-size:14.5px;font-style:italic;color:var(--ink-soft);margin-top:12px;}
+
+footer{max-width:640px;margin:0 auto;padding:10px 24px 70px;text-align:center;}
+footer .rule{border:none;border-top:1px solid var(--rule);margin:0 0 16px;}
+footer a{color:var(--maroon);text-decoration:none;font-variant:small-caps;letter-spacing:0.05em;}
+footer a:hover{text-decoration:underline;}
+@media (max-width:560px){ .shaar h1{font-size:38px;} }
+</style>
+</head>
+<body>
+
+<header class="shaar">
+  <div class="rule-top"></div>
+  <h1>תְּרוּמָה</h1>
+  <div class="en-name">Support the Work</div>
+  <p class="lede">Everything here is free to learn, and will stay that way.</p>
+  <div class="rule-bottom"></div>
+</header>
+
+<main>
+  <p class="he-line">כָּל הַמְזַכֶּה אֶת הָרַבִּים — זְכוּת הָרַבִּים תְּלוּיָה בּוֹ</p>
+
+  <p>Torah Interactive is a personal project, built to make the inyanim that are easier to <em>see</em> than to read a little clearer — every source brought verbatim and linked to where it lives.</p>
+
+  <p>It is given freely and stays free. If it has been of use to your learning and you would like to help it grow — more apps, deeper sourcing, and keeping it running — a contribution goes directly toward that avodah. It is a way to have a share in harbatzas Torah. Every amount is appreciated; none is expected.</p>
+
+  <div class="give">
+    <a id="give-btn" href="https://www.paypal.com/paypalme/swadron" rel="noopener" target="_blank">Contribute via PayPal</a>
+    <div class="note">Secure, through PayPal. A one-time gift or as you wish.</div>
+  </div>
+</main>
+
+<footer>
+  <hr class="rule" />
+  <a href="index.html">← Back to the library</a>
+</footer>
+
+<script defer src="site-chrome.js"></script>
+</body>
+</html>
