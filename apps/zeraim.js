@@ -8,6 +8,7 @@
   var TITHES = window.ZERAIM_TITHES;
   var RAMBAM = REG.rambamKilayim || {};
   var CULINARY = window.ZERAIM_CULINARY || {};
+  var ANCIENT = window.ZERAIM_ANCIENT || {};
   var APP = document.getElementById("app");
   var byId = REG.species;
 
@@ -33,17 +34,29 @@
     var b = (s.taxonomy && s.taxonomy.binomial) || "";
     var parts = b.replace(/\s+var\.\s+/g, " ").replace(/\s+subsp\.\s+/g, " ").split(/\s+/);
     if (parts.length < 2) return null; // family-level / blank — no species photo
-    return parts[0] + " " + parts[1];
+    return parts.slice(0, 3).join(" "); // keep subspecies/variety so distinct taxa differ
+  }
+  function _reqPhoto(query, ranked) {
+    var url = "https://api.inaturalist.org/v1/taxa?q=" + encodeURIComponent(query) +
+      (ranked ? "&rank=species,subspecies,variety" : "") +
+      "&per_page=1&order=desc&order_by=observations_count";
+    return fetch(url).then(function (r) { return r.json(); }).then(function (j) {
+      return j && j.results && j.results[0];
+    });
   }
   function fetchPhoto(query) {
     if (photoCache[query]) return Promise.resolve(photoCache[query]);
-    var url = "https://api.inaturalist.org/v1/taxa?q=" + encodeURIComponent(query) +
-      "&rank=species&per_page=1&order=desc&order_by=observations_count";
-    return fetch(url).then(function (r) { return r.json(); }).then(function (j) {
-      var t = j && j.results && j.results[0];
+    var two = query.split(" ").slice(0, 2).join(" ");
+    return _reqPhoto(query, true).then(function (t) {
+      // fall back to the plain species if a subspecies/variety has no taxon/photo
+      if ((!t || !t.default_photo) && two !== query) return _reqPhoto(two, false);
+      return t;
+    }).then(function (t) {
       var p = t && t.default_photo;
+      var base = p ? (p.medium_url || p.square_url || "") : "";
+      var small = base.replace("/medium.", "/small.").replace("/square.", "/small.");
       var out = p ? {
-        square: p.square_url, medium: p.medium_url || p.square_url,
+        thumb: small || p.square_url, medium: p.medium_url || p.square_url,
         attribution: p.attribution || "", url: "https://www.inaturalist.org/taxa/" + t.id
       } : { none: true };
       photoCache[query] = out; return out;
@@ -62,8 +75,8 @@
     el.classList.add("done");
     var query = el.getAttribute("data-q"); if (!query) return;
     fetchPhoto(query).then(function (p) {
-      if (p.none || !p.square) { el.classList.add("noimg"); return; }
-      el.style.backgroundImage = "url('" + p.square + "')";
+      if (p.none || !p.thumb) { el.classList.add("noimg"); return; }
+      el.style.backgroundImage = "url('" + p.thumb + "')";
       el.classList.add("has");
     });
   }
@@ -104,6 +117,7 @@
     pairL: { he: "בֶּן זוּג", en: "Wild/domestic pair" },
     framework: { he: "מִסְגֶּרֶת הַמַּסֶּכֶת", en: "Masechta framework" },
     culinary: { he: "שִׁמּוּשׁ קוּלִינָרִי", en: "Culinary use" },
+    ancient: { he: "שִׁמּוּשׁ בִּימֵי הַמִּשְׁנָה", en: "Use in Mishnaic times" },
     cuisine: { he: "מִטְבָּח", en: "Cuisine" },
     photo: { he: "תַּצְלוּם · iNaturalist", en: "Photograph · iNaturalist" }
   };
@@ -355,6 +369,12 @@
       '<div class="culi-src">' + esc(c.src.title) + ' · <a href="' + esc(c.src.url) + '" target="_blank" rel="noopener">Wikipedia ↗</a></div>' +
       cz + "</div></div>";
   }
+  function ancientHTML(s) {
+    var a = ANCIENT[s.id]; if (!a) return "";
+    var use = '<div class="anc-use' + (isHE() ? " he" : "") + '">' + esc(isHE() ? a.use_he : a.use_en) + "</div>";
+    return '<div class="sec"><div class="sec-h">' + esc(tx(UI.ancient)) + '</div><div class="anc">' + use +
+      srcBlock(tx(a.src), a.ref, a.he, a.url) + "</div></div>";
+  }
   function photoHTML(s) {
     var pq = photoQuery(s); if (!pq) return "";
     return '<div class="dphoto" data-dq="' + esc(pq) + '"><div class="dphoto-ph">' +
@@ -384,6 +404,7 @@
         "</div>" : "") +
       (asects ? '<div class="sec"><div class="sec-h">' + esc(tx(UI.aspects)) + "</div>" + asects + "</div>" : "") +
       culinaryHTML(s) +
+      ancientHTML(s) +
       (ety ? '<div class="sec"><div class="sec-h">' + esc(tx(UI.ety)) + "</div>" + ety + "</div>" : "") +
       '<div class="sec"><div class="sec-h">' + esc(tx(UI.sci)) + '</div><div class="sci-wall' + (isHE() ? " he" : "") + '">' + esc(tx(UI.sciTxt)) + "</div></div>" +
       "</div></div></div>";
