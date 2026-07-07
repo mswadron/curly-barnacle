@@ -108,4 +108,9 @@ window.ZERAIM_GLOSSES = {
     arabic: { term: "אלקנאריה", translit: "al-qanniriya", meaning: { he: "קִנְרָס — חַרְשָׁף / אַרְטִישׁוֹק", en: "cardoon / artichoke" } } },
   pishtan: { ref: "Kilayim 9:1",
     note: { he: "'שֵׁשׁ' שֶׁבַּתּוֹרָה הוּא הַפִּשְׁתָּן (לְפִי הָרַמְבַּם).", en: "The biblical 'shesh' is flax (per Rambam)." } }
+,
+  nitzpa: { ref: "Demai 1:1",
+    arabic: { term: 'קפא"ד', translit: "al-kabbar", meaning: { he: "צָלָף / נִצְפָּה (Capparis)", en: "caper (Capparis)" } } },
+  "bnos-shuach": { ref: "Demai 1:1",
+    note: { he: "רַמְבַּם: מִין תְּאֵנִים לְבָנִים הַנּוֹתְנִים פִּרְיָם מִשָּׁלֹשׁ שָׁנִים לְשָׁלֹשׁ.", en: "Rambam: a kind of white fig that yields its fruit once every three years." } }
 };

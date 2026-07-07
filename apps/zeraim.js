@@ -10,6 +10,21 @@
   var CULINARY = window.ZERAIM_CULINARY || {};
   var ANCIENT = window.ZERAIM_ANCIENT || {};
   var GLOSSES = window.ZERAIM_GLOSSES || {};
+  var USETYPE = window.ZERAIM_USETYPE || {};
+  var USE = {
+    edible: { he: "מַאֲכָל", en: "Edible", c: "u-ed" },
+    fiber: { he: "סִיב/בַּד", en: "Fiber", c: "u-fi" },
+    dye: { he: "צֶבַע", en: "Dye", c: "u-dy" },
+    aromatic: { he: "בֹּשֶׂם", en: "Aromatic", c: "u-ar" },
+    ornamental: { he: "נוֹי", en: "Ornamental", c: "u-ot" },
+    marker: { he: "סִימָן", en: "Marker", c: "u-ot" },
+    timber: { he: "עֵץ", en: "Timber", c: "u-ot" },
+    material: { he: "חֹמֶר", en: "Material", c: "u-ot" },
+    medicinal: { he: "רְפוּאָה", en: "Medicinal", c: "u-ot" },
+    nonfood: { he: "לֹא־מַאֲכָל", en: "Non-food", c: "u-ot" }
+  };
+  function useTags(s) { return USETYPE[s.id] || ["edible"]; }
+  function useChips(s) { return useTags(s).map(function (t) { var u = USE[t] || USE.edible; return '<span class="uc ' + u.c + '">' + esc(tx(u)) + "</span>"; }).join(""); }
   var APP = document.getElementById("app");
   var byId = REG.species;
 
@@ -18,6 +33,7 @@
   var q = "";
   var sortMode = "tax";  // tax | alpha | source
   var fFamily = null;
+  var fUse = null;
   var sel = null;
 
   function esc(s) { return (s == null ? "" : String(s)).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
@@ -97,6 +113,7 @@
     sortAlpha: { he: "אָלֶף־בֵּית", en: "Alphabetical" },
     sortSource: { he: "מָקוֹר", en: "Source order" },
     family: { he: "מִשְׁפָּחָה", en: "Family" },
+    useF: { he: "שִׁמּוּשׁ", en: "Use" },
     clear: { he: "נַקֵּה", en: "Clear" },
     ident: { he: "זִהוּי", en: "Identification" },
     ety: { he: "שׁוֹרֶשׁ הַשֵּׁם הַלָּטִינִי", en: "Latin etymology" },
@@ -147,6 +164,7 @@
     var list = speciesList().filter(function (s) {
       if (focus !== "all" && !hasAspect(s, focus)) return false;
       if (fFamily && (!s.taxonomy || s.taxonomy.family !== fFamily)) return false;
+      if (fUse && useTags(s).indexOf(fUse) < 0) return false;
       if (qq) {
         var hay = (s.names.he + " " + s.names.translit + " " + enName(s) + " " +
           (s.taxonomy ? s.taxonomy.binomial + " " + s.taxonomy.family : "")).toLowerCase();
@@ -226,12 +244,14 @@
       return '<span class="pill ' + (fFamily === f ? "on" : "") + '" data-fam="' + esc(f) + '">' +
         esc(f.replace(" (uncertain)", "?")) + "</span>";
     }).join("");
-    var clear = (fFamily || q || sortMode !== "tax") ?
+    var usePills = ["edible", "fiber", "dye", "aromatic", "ornamental"].map(function (t) { var u = USE[t]; return '<span class="pill ' + (fUse === t ? "on" : "") + '" data-usef="' + t + '">' + esc(tx(u)) + "</span>"; }).join("");
+    var clear = (fFamily || fUse || q || sortMode !== "tax") ?
       '<span class="pill clr" data-clear="1">✕ ' + esc(tx(UI.clear)) + "</span>" : "";
 
     var panels = '<div class="panel"><input class="search" id="q" placeholder="' + esc(tx(UI.search)) + '" value="' + esc(q) + '">' +
       '<div class="fg"><div class="fg-h">' + esc(tx(UI.sort)) + '</div>' + sorts + '</div>' +
       '<div class="fg"><div class="fg-h">' + esc(tx(UI.family)) + '</div>' + famPills + '</div>' +
+      '<div class="fg"><div class="fg-h">' + esc(tx(UI.useF)) + '</div>' + usePills + '</div>' +
       (clear ? '<div class="fg">' + clear + "</div>" : "") + "</div>";
 
     if (focus === "all" || focus === "terumos" || focus === "maasros" || focus === "maaser_sheini") panels += graphHTML();
@@ -293,6 +313,7 @@
       '<div class="ct">' + esc(s.names.translit) + " · " + esc(enName(s)) + '</div>' +
       (s.taxonomy ? '<div class="cbi serif">' + esc(s.taxonomy.binomial) + '</div>' +
         '<div class="cfam">' + esc(s.taxonomy.family) + "</div>" : "") +
+      '<div class="ucrow">' + useChips(s) + "</div>" +
       focusLine + "</div>";
   }
   function focusChip(s) {
@@ -422,6 +443,7 @@
         kv("binomial", '<span class="serif" style="font-style:italic">' + esc(tax.binomial) + "</span>") +
         kv("family", esc(tax.family)) +
         kv("confidence", '<span class="conf ' + tax.confidence + '">' + tax.confidence + "</span>") +
+        kv(isHE() ? "שִׁמּוּשׁ" : "use", '<span class="ucrow">' + useChips(s) + "</span>") +
         (tax.id_source ? kv(isHE() ? "מְקוֹר הַזִּהוּי" : "id source", '<span class="badge ' + (tax.badge || "lexicon") + '">' + (tax.badge || "lexicon") + "</span> " + esc(tax.id_source)) : "") +
         "</div>" : "") +
       (asects ? '<div class="sec"><div class="sec-h">' + esc(tx(UI.aspects)) + "</div>" + asects + "</div>" : "") +
@@ -463,11 +485,12 @@
   function wire() {
     APP.querySelectorAll("[data-lang]").forEach(function (b) { b.onclick = function () { L = b.getAttribute("data-lang"); render(); }; });
     APP.querySelectorAll("[data-focus]").forEach(function (b) {
-      b.onclick = function () { focus = b.getAttribute("data-focus"); if (sortMode === "source" && focus === "all") sortMode = "tax"; fFamily = null; render(); };
+      b.onclick = function () { focus = b.getAttribute("data-focus"); if (sortMode === "source" && focus === "all") sortMode = "tax"; fFamily = null; fUse = null; render(); };
     });
     APP.querySelectorAll("[data-sort]").forEach(function (b) { b.onclick = function () { sortMode = b.getAttribute("data-sort"); render(); }; });
     APP.querySelectorAll("[data-fam]").forEach(function (b) { b.onclick = function () { var v = b.getAttribute("data-fam"); fFamily = (fFamily === v ? null : v); render(); }; });
-    APP.querySelectorAll("[data-clear]").forEach(function (b) { b.onclick = function () { fFamily = null; q = ""; sortMode = "tax"; render(); }; });
+    APP.querySelectorAll("[data-usef]").forEach(function (b) { b.onclick = function () { var v = b.getAttribute("data-usef"); fUse = (fUse === v ? null : v); render(); }; });
+    APP.querySelectorAll("[data-clear]").forEach(function (b) { b.onclick = function () { fFamily = null; fUse = null; q = ""; sortMode = "tax"; render(); }; });
     APP.querySelectorAll("[data-id]").forEach(function (b) { b.onclick = function () { openDetail(b.getAttribute("data-id")); }; });
     var qi = document.getElementById("q");
     if (qi) qi.oninput = function () {

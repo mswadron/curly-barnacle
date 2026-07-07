@@ -115,7 +115,15 @@
     ingestKilayim();
     [window.ZERAIM_MODULE_MAASROS, window.ZERAIM_MODULE_TERUMOS, window.ZERAIM_MODULE_MAASER_SHEINI]
       .forEach(function (m) { if (m) ingestModule(m); });
+    (window.ZERAIM_SPECIES_EXTRA || []).forEach(function (e) {
+      var s = ensureSpecies(e.id);
+      if (!s.names) s.names = e.names;
+      if (!s.taxonomy) s.taxonomy = e.taxonomy;
+      if (e.etymology_latin && (!s.etymology_latin || !Object.keys(s.etymology_latin).length)) s.etymology_latin = e.etymology_latin;
+      s._seeds.push("extra");
+    });
 
+    // sort masechtos by seder order (Zeraim tractate order)
     // sort masechtos by seder order (Zeraim tractate order)
     REG.masechtos.sort(function (a, b) { return (a.order || 99) - (b.order || 99); });
 
@@ -123,7 +131,7 @@
     REG.masechtaByKey = {};
     REG.masechtos.forEach(function (m) { REG.masechtaByKey[m.key] = m; });
     REG.list = REG.order.map(function (id) { return REG.species[id]; })
-      .filter(function (s) { return s.names; }); // guard against pure-reference ids
+      .filter(function (s) { return s.names; });
     return REG;
   }
 

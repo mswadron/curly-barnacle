@@ -60,4 +60,11 @@ window.ZERAIM_ANCIENT = {
   charuvin: { use_he: "מַאֲכַל עֹנִי — ״דַּי לוֹ בְּקַב חָרוּבִין מֵעֶרֶב שַׁבָּת לְעֶרֶב שַׁבָּת״ (ר׳ חֲנִינָא בֶּן דּוֹסָא). לֶחֶם דַּלּוּת.", use_en: "A poor man's food — R' Chanina ben Dosa subsisted on 'a kav of carobs from one Shabbos eve to the next' (Berachos 17b); the bread of poverty.",
     src: { he: "בַּבְלִי · בְּרָכוֹת", en: "Bavli · Berachos" }, ref: "17b", url: "https://www.sefaria.org/Berakhot.17b.3",
     he: "כָּל הָעוֹלָם כּוּלּוֹ נִזּוֹנִין בִּשְׁבִיל חֲנִינָא בְּנִי, וַחֲנִינָא בְּנִי דַּי לוֹ בְּקַב חָרוּבִין מֵעֶרֶב שַׁבָּת לְעֶרֶב שַׁבָּת." }
+,
+  nitzpa: { use_he: "הַצָּלָף — נֶאֱכָלִים תְּמָרָיו (נִצְפָּה), אֶבְיוֹנוֹתָיו וְעָלָיו; מִן הַקַּלִּין שֶׁבַּדְּמַאי, פְּרִי בָּר.", use_en: "The caper — its buds (nitzpa), berries and shoots were eaten; among the fruits lenient for demai, a wild plant.",
+    src: { he: "מִשְׁנָה · דְּמַאי", en: "Mishnah · Demai" }, ref: "1:1", url: "https://www.sefaria.org/Mishnah_Demai.1.1",
+    he: "הַקַּלִּין שֶׁבַּדְּמַאי... וְהַגֻּפְנִין, וְהַנִּצְפָּה." },
+  "bnos-shuach": { use_he: "תְּאֵנִים לְבָנוֹת שֶׁמַּבְשִׁילוֹת אַחַת לְשָׁלֹשׁ שָׁנִים; מִן הַקַּלִּין שֶׁבַּדְּמַאי, פְּרִי בָּר שֶׁל הֶהָרִים.", use_en: "White figs that ripen once in three years; among the fruits lenient for demai, a wild hill fruit.",
+    src: { he: "מִשְׁנָה · דְּמַאי", en: "Mishnah · Demai" }, ref: "1:1", url: "https://www.sefaria.org/Mishnah_Demai.1.1",
+    he: "הַקַּלִּין שֶׁבַּדְּמַאי, הַשִּׁיתִין, וְהָרִימִין וְהָעֻזְרָדִין, וּבְנוֹת שׁוּחַ, וּבְנוֹת שִׁקְמָה." }
 };
