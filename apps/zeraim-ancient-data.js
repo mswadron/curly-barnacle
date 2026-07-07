@@ -53,4 +53,11 @@ window.ZERAIM_ANCIENT = {
   og: { use_he: "אוֹג יְהוּדָה — נֶאֱכַל; רַמְבַּם: אִילָנוֹת עוֹשִׂין אֶשְׁכּוֹלוֹת אֲדֻמּוֹת וְיֹאכְלֵם. מִן הַקַּלִּין שֶׁבַּדְּמַאי בִּיהוּדָה.", use_en: "Sumac of Judea — eaten; Rambam: trees that make red clusters, and one eats them. Among the fruits lenient for demai in Judea.",
     src: { he: "מִשְׁנָה · דְּמַאי", en: "Mishnah · Demai" }, ref: "1:1", url: "https://www.sefaria.org/Mishnah_Demai.1.1",
     he: "וּבִיהוּדָה, הָאוֹג, וְהַחֹמֶץ שֶׁבִּיהוּדָה, וְהַכֻּסְבָּר." }
+,
+  shikma: { use_he: "בְּנוֹת שִׁקְמָה — תְּאֵנֵי הַשִּׁקְמָה הַמִּדְבָּרִיּוֹת (רַמְבַּם: גֻּמַּיְז); מִן הַקַּלִּין שֶׁבַּדְּמַאי, פְּרִי בָּר שֶׁל הֶהָרִים.", use_en: "Sycamore-figs — the wild figs of the sycamore (Rambam: jummayz); among the fruits lenient for demai, a wild hill fruit gathered rather than farmed.",
+    src: { he: "מִשְׁנָה · דְּמַאי", en: "Mishnah · Demai" }, ref: "1:1", url: "https://www.sefaria.org/Mishnah_Demai.1.1",
+    he: "הַקַּלִּין שֶׁבַּדְּמַאי, הַשִּׁיתִין, וְהָרִימִין וְהָעֻזְרָדִין, וּבְנוֹת שׁוּחַ, וּבְנוֹת שִׁקְמָה." },
+  charuvin: { use_he: "מַאֲכַל עֹנִי — ״דַּי לוֹ בְּקַב חָרוּבִין מֵעֶרֶב שַׁבָּת לְעֶרֶב שַׁבָּת״ (ר׳ חֲנִינָא בֶּן דּוֹסָא). לֶחֶם דַּלּוּת.", use_en: "A poor man's food — R' Chanina ben Dosa subsisted on 'a kav of carobs from one Shabbos eve to the next' (Berachos 17b); the bread of poverty.",
+    src: { he: "בַּבְלִי · בְּרָכוֹת", en: "Bavli · Berachos" }, ref: "17b", url: "https://www.sefaria.org/Berakhot.17b.3",
+    he: "כָּל הָעוֹלָם כּוּלּוֹ נִזּוֹנִין בִּשְׁבִיל חֲנִינָא בְּנִי, וַחֲנִינָא בְּנִי דַּי לוֹ בְּקַב חָרוּבִין מֵעֶרֶב שַׁבָּת לְעֶרֶב שַׁבָּת." }
 };
