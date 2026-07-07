@@ -1,0 +1,64 @@
+/* ============================================================================
+   SEDER ZERAIM · culinary overlay  →  window.ZERAIM_CULINARY
+   ----------------------------------------------------------------------------
+   One VERBATIM culinary sentence per food-plant, quoted from English Wikipedia
+   with the source article linked. Editorial layer (badge "descript" context):
+   the quote itself is verbatim + attributed; inclusion/selection is editorial.
+   Keyed by species id. Non-food species (weeds, ornamentals) simply omitted.
+   ============================================================================ */
+window.ZERAIM_CULINARY = {
+  /* grains & legumes */
+  chitim:      { text: `Worldwide, bread wheat has proved well adapted to modern industrial baking, and has displaced many of the other wheat, barley, and rye species that were once commonly used for bread making, particularly in Europe.`, cuisines: ["Europe"], src: { title: "Common wheat", url: "https://en.wikipedia.org/wiki/Common_wheat" } },
+  seorim:      { text: `It is used in soups and stews and in barley bread of various cultures.`, cuisines: [], src: { title: "Barley", url: "https://en.wikipedia.org/wiki/Barley" } },
+  kusmin:      { text: `In Armenian cuisine, emmer pilaf is cooked in sunflower oil.`, cuisines: ["Armenian"], src: { title: "Emmer", url: "https://en.wikipedia.org/wiki/Emmer" } },
+  shifon:      { text: `In Scandinavia, rye is widely used to make crispbread (Knäckebröd); in the Middle Ages it was a staple food in the region, and it remains popular in the 21st century.`, cuisines: ["Scandinavia"], src: { title: "Rye", url: "https://en.wikipedia.org/wiki/Rye" } },
+  pol:         { text: `…though their stronger flavour is preferred in some human food recipes, such as falafel.`, cuisines: ["falafel"], src: { title: "Vicia faba", url: "https://en.wikipedia.org/wiki/Vicia_faba" } },
+  tofeach:     { text: `Flour made from grass peas (Spanish: almorta) is the main ingredient for the gachas manchegas or gachas de almorta.`, cuisines: ["La Mancha (Spain)"], src: { title: "Lathyrus sativus", url: "https://en.wikipedia.org/wiki/Lathyrus_sativus" } },
+  "pol-lavan": { text: `In Bangladesh and West Bengal, the green pods along with the beans, known as śim (Bengali: শিম), are cooked as vegetables or cooked with fish as a curry.`, cuisines: ["Bangladesh", "West Bengal"], src: { title: "Lablab", url: "https://en.wikipedia.org/wiki/Lablab" } },
+  sheuim:      { text: `A common snack in Africa is koki or moin-moin, where the cowpeas are mashed into a paste, mixed with spices and steamed in banana leaves.`, cuisines: ["Africa"], src: { title: "Cowpea", url: "https://en.wikipedia.org/wiki/Cowpea" } },
+  turmos:      { text: `In Greece, especially on the island of Crete and in the Peloponnese area, lupin seeds are a very common snack during Lent.`, cuisines: ["Greece"], src: { title: "Lupinus albus", url: "https://en.wikipedia.org/wiki/Lupinus_albus" } },
+  tiltan:      { text: `Fresh fenugreek leaves are an ingredient in some curries, such as with potatoes in Indian cuisines to make aloo methi (potato fenugreek) curry.`, cuisines: ["Indian"], src: { title: "Fenugreek", url: "https://en.wikipedia.org/wiki/Fenugreek" } },
+  /* brassicas & alliums */
+  chardal:         { text: `The seeds are commonly used in Indian cuisine, for example in curry, where it is known as rai.`, cuisines: ["Indian"], src: { title: "Brassica nigra", url: "https://en.wikipedia.org/wiki/Brassica_nigra" } },
+  "chardal-mitzri":{ text: `Sinapis alba is used to make the commonplace yellow table mustard, with additional yellow coloring provided by turmeric in some formulations.`, cuisines: [], src: { title: "White mustard", url: "https://en.wikipedia.org/wiki/Sinapis_alba" } },
+  lefes:       { text: `Turnip greens are a common side dish in southeastern US cooking, primarily during late fall and winter.`, cuisines: ["Southeastern US"], src: { title: "Turnip", url: "https://en.wikipedia.org/wiki/Turnip" } },
+  kruv:        { text: `They can be prepared many different ways for eating; they can be pickled, fermented (for dishes such as sauerkraut and kimchi), steamed, stewed, roasted, sautéed, braised, or eaten raw.`, cuisines: ["sauerkraut", "kimchi"], src: { title: "Cabbage", url: "https://en.wikipedia.org/wiki/Cabbage" } },
+  terovtor:    { text: `Cauliflower can be used as a low-calorie, gluten-free alternative to rice and flour.`, cuisines: [], src: { title: "Cauliflower", url: "https://en.wikipedia.org/wiki/Cauliflower" } },
+  tzenon:      { text: `In Mexican cuisine, sliced radishes are used in combination with shredded lettuce as garnish for traditional dishes such as tostadas, sopes, enchiladas and pozole.`, cuisines: ["Mexican"], src: { title: "Radish", url: "https://en.wikipedia.org/wiki/Radish" } },
+  shum:        { text: `Garlic is essential in Middle Eastern and Arabic cooking, with its presence in many food items.`, cuisines: ["Middle Eastern", "Arabic"], src: { title: "Garlic", url: "https://en.wikipedia.org/wiki/Garlic" } },
+  batzal:      { text: `Yellow onions turn a rich, dark brown when caramelised and are used to add a sweet flavour to various dishes, such as French onion soup.`, cuisines: ["French"], src: { title: "Onion", url: "https://en.wikipedia.org/wiki/Onion" } },
+  kreishim:    { text: `Whole boiled leeks, served cold with vinaigrette, are popular in France, where leeks are nicknamed asperges du pauvre 'poor man's asparagus'.`, cuisines: ["France"], src: { title: "Leek", url: "https://en.wikipedia.org/wiki/Leek" } },
+  teradim:     { text: `Chard is one of the most common ingredients of Croatian cuisine in the Dalmatia region, being known as "queen of the Dalmatian garden" and used in various ways (boiled, in stews, in Soparnik, etc.).`, cuisines: ["Croatian (Dalmatia)"], src: { title: "Chard", url: "https://en.wikipedia.org/wiki/Chard" } },
+  /* greens, herbs & cucurbits */
+  chazeret:    { text: `Romaine lettuce is often used for Caesar salads.`, cuisines: ["Caesar salad"], src: { title: "Lettuce", url: "https://en.wikipedia.org/wiki/Lettuce" } },
+  ulshin:      { text: `In parts of Southern Italy, escarole is commonly cooked through smothering, and at Christmas in Naples is eaten stuffed with raisins, pine nuts, olives, capers, cheese and breadcrumbs.`, cuisines: ["Southern Italy", "Naples"], src: { title: "Endive", url: "https://en.wikipedia.org/wiki/Endive" } },
+  "ulshei-sadeh":{ text: `Chicory includes types such as radicchio, puntarelle, and Belgian endive.`, cuisines: [], src: { title: "Endive", url: "https://en.wikipedia.org/wiki/Endive" } },
+  kusbar:      { text: `It is included in Peruvian, Mexican, Indian and Southeast Asian cuisines.`, cuisines: ["Peruvian", "Mexican", "Indian", "Southeast Asian"], src: { title: "Coriander", url: "https://en.wikipedia.org/wiki/Coriander" } },
+  kishut:      { text: `Pickled Armenian cucumber is sold in Middle Eastern markets as "pickled wild cucumber".`, cuisines: ["Middle Eastern"], src: { title: "Armenian cucumber", url: "https://en.wikipedia.org/wiki/Armenian_cucumber" } },
+  melafefon:   { text: `Melons in genus Cucumis are culinary fruits, and include the majority of culinary melons.`, cuisines: [], src: { title: "Melon", url: "https://en.wikipedia.org/wiki/Melon" } },
+  avatiach:    { text: `Watermelon rinds are eaten pickled, stir-fried or stewed.`, cuisines: [], src: { title: "Watermelon", url: "https://en.wikipedia.org/wiki/Watermelon" } },
+  delaat:      { text: `The calabash is frequently used in southern Chinese cuisine in either a stir-fry dish or a soup.`, cuisines: ["Southern Chinese"], src: { title: "Calabash", url: "https://en.wikipedia.org/wiki/Calabash" } },
+  leunim:      { text: `The leaves are edible.`, cuisines: [], src: { title: "Atriplex halimus", url: "https://en.wikipedia.org/wiki/Atriplex_halimus" } },
+  peigam:      { text: `Rue is used as a traditional flavouring in Greece and other Mediterranean countries.`, cuisines: ["Greece", "Mediterranean"], src: { title: "Ruta graveolens", url: "https://en.wikipedia.org/wiki/Ruta_graveolens" } },
+  /* tree fruit */
+  gefen:       { text: `Grapes are eaten raw, dried (as raisins, currants and sultanas), or cooked.`, cuisines: [], src: { title: "Grape", url: "https://en.wikipedia.org/wiki/Grape" } },
+  zayit:       { text: `Researchers and historians have identified the olive as a defining characteristic of both ancient and contemporary Mediterranean culture, geography, and cuisine.`, cuisines: ["Mediterranean"], src: { title: "Olive", url: "https://en.wikipedia.org/wiki/Olive" } },
+  teena:       { text: `Figs can be eaten fresh or dried, and used in jam-making.`, cuisines: [], src: { title: "Fig", url: "https://en.wikipedia.org/wiki/Fig" } },
+  tapuach:     { text: `Apples are consumed as juice, raw in salads, baked in pies, cooked into sauces and apple butter, or baked.`, cuisines: [], src: { title: "Apple", url: "https://en.wikipedia.org/wiki/Apple" } },
+  parskim:     { text: `They are highly perishable, so are typically consumed or canned within two weeks of harvest.`, cuisines: [], src: { title: "Peach", url: "https://en.wikipedia.org/wiki/Peach" } },
+  shkedin:     { text: `In Saudi Arabia, almonds are a typical embellishment for the rice dish kabsa.`, cuisines: ["Saudi Arabian"], src: { title: "Almond", url: "https://en.wikipedia.org/wiki/Almond" } },
+  agasim:      { text: `The pear was cultivated by the Romans, who ate the fruits raw or cooked, just like apples.`, cuisines: ["Roman"], src: { title: "Pear", url: "https://en.wikipedia.org/wiki/Pear" } },
+  perishim:    { text: `Quince is used in the Levant, especially in Syria.`, cuisines: ["Levantine", "Syrian"], src: { title: "Quince", url: "https://en.wikipedia.org/wiki/Quince" } },
+  shizafin:    { text: `In Korea, jujubes are called daechu (대추) and are used in daechucha, yakshik and samgyetang.`, cuisines: ["Korean"], src: { title: "Jujube", url: "https://en.wikipedia.org/wiki/Jujube" } },
+  /* tithing produce & misc */
+  rimon:       { text: `Before tomatoes arrived in West Asia, pomegranate juice, pomegranate molasses, and vinegar were widely used in Iranian cuisine; this mixture is found in traditional recipes such as fesenjān, a thick sauce made from pomegranate juice and ground walnuts, usually spooned over duck or other poultry and rice.`, cuisines: ["Iranian"], src: { title: "Pomegranate", url: "https://en.wikipedia.org/wiki/Pomegranate" } },
+  temarim:     { text: `Dates can also be chopped and used in a range of sweet and savory dishes, from tajines (tagines) in Morocco to puddings, ka'ak (types of Arab cookies) and other dessert items.`, cuisines: ["Moroccan", "Arab"], src: { title: "Date palm", url: "https://en.wikipedia.org/wiki/Date_palm" } },
+  egozim:      { text: `Its high-quality fruits are eaten both fresh or pressed for their richly flavoured oil; numerous cultivars have been selected for larger nuts with thinner shells.`, cuisines: [], src: { title: "Juglans regia", url: "https://en.wikipedia.org/wiki/Juglans_regia" } },
+  charuvin:    { text: `In Lebanon the molasses is called debs el kharrub (literally: molasses of the carob), but people generally shorten it to debs.`, cuisines: ["Lebanese"], src: { title: "Carob", url: "https://en.wikipedia.org/wiki/Carob" } },
+  og:          { text: `The dried fruits are used as a spice, particularly in combination with other spices in the mixture called za'atar.`, cuisines: ["Middle Eastern (za'atar)"], src: { title: "Rhus coriaria", url: "https://en.wikipedia.org/wiki/Rhus_coriaria" } },
+  tutim:       { text: `Often, jams and sherbets are made from the fruit in this region.`, cuisines: ["Persian / Middle Eastern"], src: { title: "Morus nigra", url: "https://en.wikipedia.org/wiki/Morus_nigra" } },
+  etrog:       { text: `In Iran the citron's thick white rind is used to make jam; in Pakistan the fruit is used to make jam but is also pickled; in South Indian cuisine, some varieties of citron are widely used in pickles and preserves.`, cuisines: ["Iranian", "Pakistani", "South Indian"], src: { title: "Citron", url: "https://en.wikipedia.org/wiki/Citron" } },
+  kanbos:      { text: `Hemp seeds can also be made into a slurry used for baking or beverages, such as hemp milk and tisanes.`, cuisines: [], src: { title: "Hemp", url: "https://en.wikipedia.org/wiki/Hemp" } },
+  charuv:      { text: `They are also used in stir-fries in Chinese cuisine, Thai cuisine and Kerala cuisine.`, cuisines: ["Chinese", "Thai", "Kerala"], src: { title: "Yardlong bean", url: "https://en.wikipedia.org/wiki/Yardlong_bean" } },
+  "pol-mitzri":{ text: `A common snack in Africa is koki or moin-moin, where the cowpeas are mashed into a paste, mixed with spices and steamed in banana leaves.`, cuisines: ["Africa"], src: { title: "Cowpea", url: "https://en.wikipedia.org/wiki/Cowpea" } }
+};

@@ -1,12 +1,13 @@
 /* ============================================================================
    SEDER ZERAIM — unified renderer. Reads window.ZERAIM (registry),
-   window.ZERAIM_TITHES (juxtaposition matrix), window.KILAYIM_FLORA (rambam).
-   Vanilla JS, no build step. Science is a springboard; sources are primary.
+   window.ZERAIM_TITHES (matrix), window.ZERAIM_CULINARY, window.KILAYIM_FLORA.
+   Photos: live from iNaturalist (lazy, cached). Science is a springboard.
    ============================================================================ */
 (function () {
   var REG = window.ZERAIM;
   var TITHES = window.ZERAIM_TITHES;
   var RAMBAM = REG.rambamKilayim || {};
+  var CULINARY = window.ZERAIM_CULINARY || {};
   var APP = document.getElementById("app");
   var byId = REG.species;
 
@@ -25,6 +26,47 @@
 
   var ACCENT = { kilayim: "k", maasros: "ma", terumos: "te", maaser_sheini: "ms" };
   var MLABEL = {}; REG.masechtos.forEach(function (m) { MLABEL[m.key] = m; });
+
+  /* ---------- iNaturalist photos (client-side, lazy, cached) ---------- */
+  var photoCache = {};
+  function photoQuery(s) {
+    var b = (s.taxonomy && s.taxonomy.binomial) || "";
+    var parts = b.replace(/\s+var\.\s+/g, " ").replace(/\s+subsp\.\s+/g, " ").split(/\s+/);
+    if (parts.length < 2) return null; // family-level / blank — no species photo
+    return parts[0] + " " + parts[1];
+  }
+  function fetchPhoto(query) {
+    if (photoCache[query]) return Promise.resolve(photoCache[query]);
+    var url = "https://api.inaturalist.org/v1/taxa?q=" + encodeURIComponent(query) +
+      "&rank=species&per_page=1&order=desc&order_by=observations_count";
+    return fetch(url).then(function (r) { return r.json(); }).then(function (j) {
+      var t = j && j.results && j.results[0];
+      var p = t && t.default_photo;
+      var out = p ? {
+        square: p.square_url, medium: p.medium_url || p.square_url,
+        attribution: p.attribution || "", url: "https://www.inaturalist.org/taxa/" + t.id
+      } : { none: true };
+      photoCache[query] = out; return out;
+    }).catch(function () { var o = { none: true }; photoCache[query] = o; return o; });
+  }
+  var _io = null;
+  function observeThumbs() {
+    if (typeof IntersectionObserver === "undefined") { APP.querySelectorAll(".thumb[data-q]").forEach(loadThumb); return; }
+    if (_io) _io.disconnect();
+    _io = new IntersectionObserver(function (ents) {
+      ents.forEach(function (e) { if (e.isIntersecting) { loadThumb(e.target); _io.unobserve(e.target); } });
+    }, { rootMargin: "200px" });
+    APP.querySelectorAll(".thumb[data-q]:not(.done)").forEach(function (el) { _io.observe(el); });
+  }
+  function loadThumb(el) {
+    el.classList.add("done");
+    var query = el.getAttribute("data-q"); if (!query) return;
+    fetchPhoto(query).then(function (p) {
+      if (p.none || !p.square) { el.classList.add("noimg"); return; }
+      el.style.backgroundImage = "url('" + p.square + "')";
+      el.classList.add("has");
+    });
+  }
 
   var UI = {
     eyebrow: { he: "סֵדֶר זְרָעִים · מִשְׁנָה", en: "Seder Zeraim · Mishnah" },
@@ -60,7 +102,10 @@
     category: { he: "סוּג", en: "Category" },
     appliesMS: { he: "חָל מַעֲשֵׂר שֵׁנִי", en: "Maaser Sheni applies" },
     pairL: { he: "בֶּן זוּג", en: "Wild/domestic pair" },
-    framework: { he: "מִסְגֶּרֶת הַמַּסֶּכֶת", en: "Masechta framework" }
+    framework: { he: "מִסְגֶּרֶת הַמַּסֶּכֶת", en: "Masechta framework" },
+    culinary: { he: "שִׁמּוּשׁ קוּלִינָרִי", en: "Culinary use" },
+    cuisine: { he: "מִטְבָּח", en: "Cuisine" },
+    photo: { he: "תַּצְלוּם · iNaturalist", en: "Photograph · iNaturalist" }
   };
 
   var CAT = {
@@ -148,12 +193,12 @@
     var layout = '<div class="layout"><aside class="rail">' + railHTML(list) + '</aside><main>' + main + "</main></div>";
     APP.innerHTML = '<div class="wrap">' + mast + layout + disclaimerHTML() + "</div>";
     wire();
+    observeThumbs();
     if (sel) openDetail(sel);
   }
 
   function railHTML(list) {
     var sorts = [["tax", UI.sortTax], ["alpha", UI.sortAlpha], ["source", UI.sortSource]].map(function (p) {
-      var dis = (p[0] === "source" && focus === "all") ? "" : "";
       return '<span class="pill ' + (sortMode === p[0] ? "on" : "") + '" data-sort="' + p[0] + '">' + esc(tx(p[1])) + "</span>";
     }).join("");
 
@@ -170,11 +215,7 @@
       '<div class="fg"><div class="fg-h">' + esc(tx(UI.family)) + '</div>' + famPills + '</div>' +
       (clear ? '<div class="fg">' + clear + "</div>" : "") + "</div>";
 
-    // juxtaposition graph — show for tithing focus or All
-    if (focus === "all" || focus === "terumos" || focus === "maasros" || focus === "maaser_sheini") {
-      panels += graphHTML();
-    }
-    // masechta framework panel when a masechta is focused
+    if (focus === "all" || focus === "terumos" || focus === "maasros" || focus === "maaser_sheini") panels += graphHTML();
     if (focus !== "all") panels += frameworkHTML(MLABEL[focus]);
     return panels;
   }
@@ -186,8 +227,7 @@
       gifts.map(function (g) { return '<div class="jx-cell jx-gift"><span class="he">' + esc(g.he) + "</span></div>"; }).join("") + "</div>";
     var rows = cats.map(function (c) {
       var cells = gifts.map(function (g) {
-        var lv = TITHES.grid[c.key][g.key];
-        var L2 = TITHES.levels[lv];
+        var lv = TITHES.grid[c.key][g.key]; var L2 = TITHES.levels[lv];
         return '<div class="jx-cell ' + L2.cls + '" title="' + esc(tx(L2)) + '">' + esc(tx(L2)) + "</div>";
       }).join("");
       return '<div class="jx-row"><div class="jx-cat"><span class="he">' + esc(c.he) + '</span><span class="jx-eg">' + esc(tx(c.eg)) + "</span></div>" + cells + "</div>";
@@ -225,9 +265,10 @@
       var on = (focus === m.key) ? " on" : "";
       return '<span class="ac ac-' + ACCENT[m.key] + on + '" title="' + esc(m.translit) + '"><span class="he">' + esc(m.he) + "</span></span>";
     }).join("");
-    var focusLine = "";
-    if (focus !== "all") focusLine = focusChip(s);
-    return '<div class="card conf-' + conf + '" data-id="' + esc(s.id) + '">' +
+    var focusLine = (focus !== "all") ? focusChip(s) : "";
+    var pq = photoQuery(s);
+    var thumb = pq ? '<div class="thumb" data-q="' + esc(pq) + '"></div>' : "";
+    return '<div class="card conf-' + conf + '" data-id="' + esc(s.id) + '">' + thumb +
       '<div class="ac-row">' + chips + '</div>' +
       '<div class="cn he">' + esc(s.names.he) + '</div>' +
       '<div class="ct">' + esc(s.names.translit) + " · " + esc(enName(s)) + '</div>' +
@@ -258,7 +299,6 @@
   function kilayimSection(s) {
     var a = s.aspects.kilayim; if (!a) return "";
     var out = "";
-    // sources
     var t = REG.texts.kilayim || {};
     var m = t[a.mishnah_ref];
     if (m) out += srcBlock(isHE() ? "מִשְׁנָה" : "Mishnah", "Kilayim " + a.mishnah_ref, m.he, m.sefaria);
@@ -267,14 +307,11 @@
       var url = RAMBAM["url_" + a.mishnah_ref.replace(":", "_")] || "https://www.sefaria.org/Rambam_on_Mishnah_Kilayim." + a.mishnah_ref.replace(":", ".");
       out += srcBlock((isHE() ? "רַמְבַּ״ם · פֵּירוּשׁ הַמִּשְׁנָיוֹת" : "Rambam · Peirush HaMishnayot"), "Kilayim " + a.mishnah_ref, RAMBAM[a.rambam], url);
     }
-    // pair
     if (a.pair) {
-      var po = byId[a.pair.id];
       out += '<div class="kv"><span class="kk">' + esc(tx(UI.pairL)) + '</span><span class="vv">' +
         '<span class="rel" data-goto="' + esc(a.pair.id) + '"><span class="he">' + esc(a.pair.he) + "</span></span>" +
         (a.pair.note ? '<div class="note">' + esc(a.pair.note) + "</div>" : "") + "</span></div>";
     }
-    // relations
     var rels = (a.relations || []).map(function (k) {
       var o = byId[k.with]; var nm = o ? o.names.he : k.with;
       var cls = k.ruling === "kilayim" ? "k" : "nk";
@@ -297,7 +334,6 @@
     if (a.goren) out += kv(tx(UI.goren), '<span class="he">' + esc(a.goren.he) + "</span>" + (a.goren.ref ? ' <span class="fw-ref">' + esc(a.goren.ref) + "</span>" : ""));
     if (a.applies) out += kv(tx(UI.appliesMS), isHE() ? "כֵּן" : "yes");
     if (a.note) out += '<div class="note' + (isHE() ? " he" : "") + '">' + esc(tx(a.note)) + "</div>";
-    // source text: prefer the onah/aspect ref
     var ref = (a.onah && a.onah.ref) || a.ref || (a.goren && a.goren.ref);
     if (ref && t[ref]) out += srcBlock('<span class="he">' + esc(m.he) + "</span>", m.translit + " " + ref, t[ref].he, t[ref].sefaria, t[ref].en);
     return aspectWrap(key, out);
@@ -307,6 +343,22 @@
   function aspectWrap(key, inner) {
     var m = MLABEL[key];
     return '<div class="asec acc-' + ACCENT[key] + '"><div class="asec-h"><span class="dot"></span><span class="he">' + esc(m.he) + "</span> " + esc(m.en) + "</div>" + inner + "</div>";
+  }
+
+  function culinaryHTML(s) {
+    var c = CULINARY[s.id]; if (!c) return "";
+    var cz = (c.cuisines && c.cuisines.length) ?
+      '<div class="cuis"><span class="cuis-k">' + esc(tx(UI.cuisine)) + ":</span> " +
+      c.cuisines.map(function (x) { return '<span class="cz">' + esc(x) + "</span>"; }).join("") + "</div>" : "";
+    return '<div class="sec"><div class="sec-h">' + esc(tx(UI.culinary)) + "</div>" +
+      '<div class="culi"><span class="q">' + "“" + "</span>" + esc(c.text) + '<span class="q">' + "”" + "</span>" +
+      '<div class="culi-src">' + esc(c.src.title) + ' · <a href="' + esc(c.src.url) + '" target="_blank" rel="noopener">Wikipedia ↗</a></div>' +
+      cz + "</div></div>";
+  }
+  function photoHTML(s) {
+    var pq = photoQuery(s); if (!pq) return "";
+    return '<div class="dphoto" data-dq="' + esc(pq) + '"><div class="dphoto-ph">' +
+      (isHE() ? "טוֹעֵן תַּצְלוּם…" : "Loading photo…") + "</div></div>";
   }
 
   function detailHTML(s) {
@@ -323,7 +375,7 @@
       '<div class="hn he">' + esc(s.names.he) + '</div>' +
       '<div class="ht">' + esc(s.names.translit) + " · " + esc(enName(s)) + '</div>' +
       (tax.binomial ? '<div class="hbi serif">' + esc(tax.binomial) + "</div>" : "") + "</div>" +
-      '<div class="detail-b">' +
+      '<div class="detail-b">' + photoHTML(s) +
       (tax.binomial ? '<div class="sec"><div class="sec-h">' + esc(tx(UI.ident)) + "</div>" +
         kv("binomial", '<span class="serif" style="font-style:italic">' + esc(tax.binomial) + "</span>") +
         kv("family", esc(tax.family)) +
@@ -331,6 +383,7 @@
         (tax.id_source ? kv(isHE() ? "מְקוֹר הַזִּהוּי" : "id source", '<span class="badge ' + (tax.badge || "lexicon") + '">' + (tax.badge || "lexicon") + "</span> " + esc(tax.id_source)) : "") +
         "</div>" : "") +
       (asects ? '<div class="sec"><div class="sec-h">' + esc(tx(UI.aspects)) + "</div>" + asects + "</div>" : "") +
+      culinaryHTML(s) +
       (ety ? '<div class="sec"><div class="sec-h">' + esc(tx(UI.ety)) + "</div>" + ety + "</div>" : "") +
       '<div class="sec"><div class="sec-h">' + esc(tx(UI.sci)) + '</div><div class="sci-wall' + (isHE() ? " he" : "") + '">' + esc(tx(UI.sciTxt)) + "</div></div>" +
       "</div></div></div>";
@@ -345,13 +398,20 @@
     ov.querySelectorAll("[data-goto]").forEach(function (b) {
       b.onclick = function (e) { e.stopPropagation(); closeDetail(); openDetail(b.getAttribute("data-goto")); };
     });
+    var dp = ov.querySelector(".dphoto[data-dq]");
+    if (dp) fetchPhoto(dp.getAttribute("data-dq")).then(function (p) {
+      if (p.none || !p.medium) { dp.innerHTML = '<div class="dphoto-ph">' + (isHE() ? "אֵין תַּצְלוּם צִבּוּרִי" : "No public photo") + "</div>"; return; }
+      dp.innerHTML = '<img src="' + p.medium + '" alt="" loading="lazy">' +
+        '<div class="dphoto-cap"><span class="dphoto-attr">' + esc(p.attribution || "") + '</span>' +
+        '<a href="' + esc(p.url) + '" target="_blank" rel="noopener">iNaturalist ↗</a></div>';
+    });
   }
   function closeDetail() { sel = null; var ov = document.getElementById("ov"); if (ov) ov.parentNode.removeChild(ov); }
 
   function disclaimerHTML() {
     return '<div class="disc' + (isHE() ? " he" : "") + '">' +
-      (isHE() ? "כָּל טֶקְסְט מוּבָא כִּלְשׁוֹנוֹ מִסֶּפַרְיָא עִם קִישּׁוּר. הַהֲלָכָה מִן הַמִּשְׁנָה וְהָרַמְבַּ״ם; הַמַּדָּע — קֶרֶשׁ קְפִיצָה בִּלְבַד." :
-        "Every quoted text is verbatim from Sefaria with a link. Halacha is from the Mishnah and Rambam; the science is a springboard only.") +
+      (isHE() ? "כָּל טֶקְסְט הֲלָכָתִי מוּבָא כִּלְשׁוֹנוֹ מִסֶּפַרְיָא עִם קִישּׁוּר. תַּצְלוּמִים חַיִּים מֵ־iNaturalist; שׁוּרוֹת קוּלִינָרִיּוֹת מְצֻטָּטוֹת מִוִּיקִיפֶּדְיָה. הַמַּדָּע — קֶרֶשׁ קְפִיצָה בִּלְבַד." :
+        "Every halachic text is verbatim from Sefaria with a link. Photos are live from iNaturalist; culinary lines are quoted from Wikipedia. The science is a springboard only.") +
       ' <span class="badge lexicon">lexicon</span> ' + (isHE() ? "זִהוּי חוֹקְרִים · " : "named authority · ") +
       '<span class="badge direct">direct</span> ' + (isHE() ? "מָקוֹר רִאשׁוֹן" : "primary source") + ".</div>";
   }
@@ -367,8 +427,9 @@
     APP.querySelectorAll("[data-clear]").forEach(function (b) { b.onclick = function () { fFamily = null; q = ""; sortMode = "tax"; render(); }; });
     APP.querySelectorAll("[data-id]").forEach(function (b) { b.onclick = function () { openDetail(b.getAttribute("data-id")); }; });
     var qi = document.getElementById("q");
-    if (qi) qi.oninput = function () { q = qi.value; var list = filtered(); var g = APP.querySelector(".grid"); var c = APP.querySelector(".count");
-      if (g) { g.innerHTML = list.map(cardHTML).join(""); g.querySelectorAll("[data-id]").forEach(function (b) { b.onclick = function () { openDetail(b.getAttribute("data-id")); }; }); }
+    if (qi) qi.oninput = function () {
+      q = qi.value; var list = filtered(); var g = APP.querySelector(".grid"); var c = APP.querySelector(".count");
+      if (g) { g.innerHTML = list.map(cardHTML).join(""); g.querySelectorAll("[data-id]").forEach(function (b) { b.onclick = function () { openDetail(b.getAttribute("data-id")); }; }); observeThumbs(); }
       if (c) c.innerHTML = list.length + " / " + speciesList().length + (isHE() ? " צְמָחִים" : " plants") + (focus !== "all" ? ' · <span class="he">' + esc(MLABEL[focus].he) + "</span>" : "");
     };
   }

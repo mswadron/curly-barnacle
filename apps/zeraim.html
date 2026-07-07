@@ -82,6 +82,9 @@ a{color:var(--green);}
 .card .ct{font-style:italic;font-size:12px;color:var(--muted);}
 .card .cbi{font-family:var(--display);font-weight:600;font-size:13px;margin-top:6px;color:var(--ink);}
 .card .cfam{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute-soft);margin-top:3px;}
+.thumb{height:96px;margin:-11px -13px 8px;background-color:#e7eae0;background-size:cover;background-position:center;border-bottom:1px solid var(--line);position:relative;}
+.thumb.noimg{background:repeating-linear-gradient(45deg,#eef0e6,#eef0e6 8px,#e7eae0 8px,#e7eae0 16px);}
+.thumb.noimg::after{content:"no photo";position:absolute;bottom:4px;right:6px;font-family:var(--mono);font-size:8px;color:var(--mute-soft);text-transform:uppercase;letter-spacing:.08em;}
 .ac-row{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:2px;}
 .ac{font-size:10px;font-weight:700;padding:1px 6px;border-radius:3px;border:1px solid;opacity:.5;transition:.12s;}
 .ac .he{font-size:11px;}
@@ -148,6 +151,23 @@ a{color:var(--green);}
 .ety{font-size:13px;margin:3px 0;}
 .ety b{font-family:var(--display);font-style:italic;color:var(--green-deep);}
 
+/* detail photo */
+.dphoto{border-radius:8px;overflow:hidden;border:1px solid var(--line);margin-bottom:16px;background:#e7eae0;}
+.dphoto img{display:block;width:100%;max-height:300px;object-fit:cover;}
+.dphoto-ph{padding:26px 12px;text-align:center;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute-soft);}
+.dphoto-cap{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 10px;background:var(--card);flex-wrap:wrap;}
+.dphoto-attr{font-size:10px;color:var(--muted);line-height:1.3;}
+.dphoto-cap a{font-family:var(--mono);font-size:9.5px;text-decoration:none;color:var(--green);border-bottom:1px dotted var(--green);white-space:nowrap;}
+
+/* culinary */
+.culi{background:var(--paper-soft);border:1px solid var(--line);border-left:3px solid var(--disputed);border-radius:7px;padding:11px 13px;font-family:var(--display);font-size:14.5px;line-height:1.6;color:var(--ink);}
+.culi .q{font-family:var(--display);color:var(--disputed);font-weight:700;}
+.culi-src{font-family:var(--mono);font-size:9.5px;color:var(--mute-soft);margin-top:7px;}
+.culi-src a{color:var(--green);text-decoration:none;border-bottom:1px dotted var(--green);}
+.cuis{margin-top:8px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;}
+.cuis-k{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute-soft);}
+.cz{font-family:var(--body);font-size:10.5px;background:var(--ma-soft);color:#8a6410;padding:2px 8px;border-radius:999px;}
+
 /* aspect sections in detail */
 .asec{border:1px solid var(--line);border-left:3px solid var(--green);border-radius:7px;padding:11px 13px;margin-bottom:11px;background:#fff;}
 .asec.acc-k{border-left-color:var(--k);} .asec.acc-ma{border-left-color:var(--ma);}
@@ -182,6 +202,7 @@ a{color:var(--green);}
 <script src="zeraim-terumos-data.js"></script>
 <script src="zeraim-maaser-sheini-data.js"></script>
 <script src="zeraim-tithes-matrix.js"></script>
+<script src="zeraim-culinary-data.js"></script>
 <script src="zeraim-core.js"></script>
 <script src="zeraim.js"></script>
 </body>
