@@ -173,6 +173,10 @@
       else p = isHE()?'זָנָב בְּלֹא גַּבַּחַת: אֵינוֹ אֶחָד מִן הַתְּאָרִים שֶׁבַּבָּרַיְתָא, אַךְ נִכְלָל בְּבִנְיַן הָאָב':'tail without smooth forehead — not a named profile, yet included by the binyan-av';
       if(r) p += isHE()? ' · רֹאשׁ אָרוֹךְ — נִכְלָל מִ״סָלְעָם הַיָּתֵר״ (רַב אַחַאי)' : ' · long-headed — included via the redundant sol‘am (Rav Aḥai)';
       profile = `<div class="profile">${esc(p)}</div>`;
+      const caveat = isHE()
+        ? 'וּלְמַעֲשֶׂה אֵין הַסִּימָנִים לְבַדָּם מַתִּירִים: אֵין אוֹכְלִים שׁוּם חָגָב אֶלָּא בְּמָסֹרֶת שֶׁזֶּהוּ מִין טָהוֹר (רֹא״שׁ חולין ג; שו״ע יו״ד פה, א) — וְלָכֵן רֹב הַקְּהִלּוֹת אֵינָן אוֹכְלוֹת חֲגָבִים כְּלָל.'
+        : 'In practice the simanim alone do not permit it: a locust is eaten only where a living mesorah identifies the species as kosher (Rosh, Chullin ch. 3; Shulchan Aruch YD 85:1) — which is why most communities eat no locusts at all, while Yemenite communities, who kept such a tradition, do.';
+      profile += `<div class="profile" style="margin-top:6px">${esc(caveat)}</div>`;
     }
     return `<div class="verdict ${cls}"><div class="status">${esc(status)}</div><div class="why">${why}</div>${profile}</div>`;
   }

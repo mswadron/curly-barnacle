@@ -304,8 +304,8 @@ const MN = {
     e: "Everyone qualified to examine, but tumah/taharah through a Kohen."
   },
   "נגעים ג:ג": {
-    h: "כל הנגעים — בתחילה כהן רואהו. פשה — טמא. עמד — מסגירו שבעת ימים.",
-    e: "All nega'im — Kohen sees first. Spread=tamei. Same=confine 7 days."
+    h: "עוֹר הַבָּשָׂר מִטַּמֵּא בִשְׁנֵי שָׁבוּעוֹת וּבִשְׁלשָׁה סִימָנִין, בְּשֵׂעָר לָבָן וּבְמִחְיָה וּבְפִסְיוֹן. בְּשֵׂעָר לָבָן וּבְמִחְיָה, בַּתְּחִלָּה, וּבְסוֹף שָׁבוּעַ רִאשׁוֹן, וּבְסוֹף שָׁבוּעַ שֵׁנִי, לְאַחַר הַפְּטוּר. וּבְפִסְיוֹן, בְּסוֹף שָׁבוּעַ רִאשׁוֹן, וּבְסוֹף שָׁבוּעַ שֵׁנִי, לְאַחַר הַפְּטוּר. וּמִטַּמֵּא בִשְׁנֵי שָׁבוּעוֹת, שֶׁהֵן שְׁלשָׁה עָשָׂר יוֹם.",
+    e: "Skin of the flesh becomes tamei over two weeks and through three signs: white hair, michya, and spreading. White hair and michya — at the outset, at the end of week one, at the end of week two, and after release; spreading — at the end of week one, at the end of week two, and after release. Two weeks, meaning thirteen days."
   },
   "נגעים ג:ד": {
     h: "שחין ומכוה — מסגירן שבעת ימים. פשה — טמא, לאו — טהור.",
@@ -522,6 +522,68 @@ function parsePasuk(r) {
   return r.replace("ויקרא ", "");
 }
 
+/* Hebrew-numeral → number, and a Sefaria URL for every source type */
+function heNum(s) {
+  s = String(s || "").replace(/[׳״'"]/g, "");
+  const v = {
+    "א": 1,
+    "ב": 2,
+    "ג": 3,
+    "ד": 4,
+    "ה": 5,
+    "ו": 6,
+    "ז": 7,
+    "ח": 8,
+    "ט": 9,
+    "י": 10,
+    "כ": 20,
+    "ך": 20,
+    "ל": 30,
+    "מ": 40,
+    "ם": 40,
+    "נ": 50,
+    "ן": 50,
+    "ס": 60,
+    "ע": 70,
+    "פ": 80,
+    "ף": 80,
+    "צ": 90,
+    "ץ": 90,
+    "ק": 100,
+    "ר": 200,
+    "ש": 300,
+    "ת": 400
+  };
+  let n = 0;
+  for (const c of s) n += v[c] || 0;
+  return n || null;
+}
+function srcUrl(type, refKey) {
+  if (type === "sifra") return tkUrl(refKey);
+  if (type === "pasuk") {
+    const k = parsePasuk(refKey);
+    if (!k) return null;
+    const p = k.split(":");
+    const ch = heNum(p[0]),
+      vs = heNum((p[1] || "").split(/[-,–]/)[0]);
+    return ch && vs ? `https://www.sefaria.org/Leviticus.${ch}.${vs}` : null;
+  }
+  if (type === "mishnah") {
+    const k = String(refKey).replace("נגעים ", "");
+    const p = k.split(":");
+    const ch = heNum(p[0]),
+      ms = heNum(p[1]);
+    return ch && ms ? `https://www.sefaria.org/Mishnah_Negaim.${ch}.${ms}` : null;
+  }
+  if (type === "rambam") {
+    const p = String(refKey).split(":");
+    const ch = heNum(p[0]),
+      hl = heNum(p[1]);
+    return ch && hl ? `https://www.sefaria.org/Mishneh_Torah,_Defilement_by_Leprosy.${ch}.${hl}` : null;
+  }
+  return null;
+}
+
 /* ═══ SOURCE MODAL ═══ */
 function SourceModal({
   type,
@@ -548,6 +610,7 @@ function SourceModal({
     data = TK[refKey];
     title = data?.t || "תורת כהנים · ספרא";
   }
+  const su = srcUrl(type, refKey);
   if (!data) return /*#__PURE__*/React.createElement("div", {
     style: {
       position: "fixed",
@@ -641,8 +704,16 @@ function SourceModal({
       textAlign: "left",
       marginBottom: 16
     }
-  }, se(lang, data.e)), type === "sifra" && /*#__PURE__*/React.createElement("a", {
-    href: tkUrl(refKey),
+  }, se(lang, data.e)), (type === "mishnah" || type === "rambam") && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "var(--t3)",
+      direction: "rtl",
+      textAlign: "right",
+      margin: "-6px 0 10px"
+    }
+  }, tx(lang, 'הנוסח כאן ע"פ המקור — הלשון המלא בספריא', "Text follows the source — full wording on Sefaria")), su && /*#__PURE__*/React.createElement("a", {
+    href: su,
     target: "_blank",
     rel: "noopener noreferrer",
     style: {
@@ -654,14 +725,14 @@ function SourceModal({
       borderBottom: "1px dotted var(--ac)",
       marginBottom: 8
     }
-  }, tx(lang, "לצפייה בספריא ↗", `${refKey} ↗`)), type === "pasuk" && data.rh && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+  }, tx(lang, "לצפייה בספריא ↗", "View on Sefaria ↗")), type === "pasuk" && data.rh && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
       fontWeight: 600,
       color: "var(--ac)",
       marginBottom: 8
     }
-  }, tx(lang, 'רש"י', "Rashi")), /*#__PURE__*/React.createElement("div", {
+  }, tx(lang, 'ע"פ רש"י', "Rashi (abridged)")), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 15,
       lineHeight: 1.9,

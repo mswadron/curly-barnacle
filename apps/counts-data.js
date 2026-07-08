@@ -57,14 +57,14 @@ window.COUNTS_DATA = {
         {
           source: 'Rashi',
           ref: 'Bereishis 46:15',
-          he: 'מנה הכתוב למעלה בניו של יעקב ל"ג, ואי אתה מוצא אלא ל"ב, אלא זו יוכבד שנולדה בין החומות בכניסתן לעיר.',
-          en: 'The text lists 33 of Yaakov\'s descendants here but only 32 names are found. The thirty-third is Yocheved, born "between the walls" as they entered Egypt — rounding the count to seventy.'
+          he: 'שְׁלֹשִׁים וְשָׁלֹשׁ — וּבִפְרָטָן אִי אַתָּה מוֹצֵא אֶלָּא שְׁלֹשִׁים וּשְׁנַיִם, אֶלָּא זוֹ יוֹכֶבֶד שֶׁנּוֹלְדָה בֵין הַחוֹמוֹת בִּכְנִיסָתָן לָעִיר, שֶׁנֶּאֱמַר אֲשֶׁר יָלְדָה אֹתָהּ לְלֵוִי בְּמִצְרָיִם – לֵדָתָהּ בְּמִצְרַיִם וְאֵין הוֹרָתָהּ בְּמִצְרַיִם.',
+          en: 'Rashi (on "thirty-three"): in the itemized list you find only thirty-two — the missing one is Yocheved, born between the walls as they entered the city, as it says "whom she bore to Levi in Egypt" — her birth in Egypt, her conception not in Egypt.'
         },
         {
-          source: 'Ramban',
-          ref: 'Bereishis 46:15',
-          he: 'והנכון בעיני… שהשבעים כוללים את יעקב עצמו.',
-          en: 'Ramban prefers the reading in which Yaakov himself is counted in the seventy — an alternative to Rashi\'s "Yocheved at the gates" solution.'
+          source: 'Ibn Ezra',
+          ref: 'Bereishis 46:27',
+          he: 'והנכון בעיני שיעקב בחשבון וממנו יחל, כאילו אמר כל נפש בניו ובנותיו עם נפשו שלשים ושלש… ג"כ זה הכתוב לעד כי יעקב נכנס בחשבון כי נפש יש לו והוא העיקר.',
+          en: 'Ibn Ezra: Yaakov himself is in the count and heads it — "all the souls of his sons and daughters, with his own soul: thirty-three." The alternative to Rashi\'s Yocheved reading; the Ramban there (46:15) defends Chazal against it.'
         }
       ]
     },
