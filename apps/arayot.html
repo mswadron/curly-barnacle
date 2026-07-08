@@ -627,7 +627,6 @@
   }
   .ar-sef{ color: inherit; text-decoration: none; border-bottom: 1px dotted currentColor; }
   .ar-sef:hover{ opacity: .78; }
-  .src-verified{ font-size: 10px; font-weight: 700; letter-spacing: .03em; color: #2e7d52; margin-inline-start: 8px; vertical-align: middle; }
 </style>
 </head>
 <body>
@@ -664,10 +663,12 @@
           <div class="node structural">אֲבִי אָבִיו<span class="note">—</span></div>
           <div class="node rabbinic" data-clickable="true" data-id="paternal-grandmother">אֵם אָבִיו<span class="tag">שנִיָּה</span></div>
         </div>
+        <div class="node rabbinic" data-clickable="true" data-id="wife-of-paternal-grandfather">אֵשֶׁת אֲבִי אָבִיו<span class="tag">שנִיָּה</span></div>
         <div class="couple">
           <div class="node structural">אֲבִי אִמּוֹ<span class="note">—</span></div>
           <div class="node rabbinic" data-clickable="true" data-id="maternal-grandmother">אֵם אִמּוֹ<span class="tag">שנִיָּה</span></div>
         </div>
+        <div class="node rabbinic" data-clickable="true" data-id="wife-of-maternal-grandfather">אֵשֶׁת אֲבִי אִמּוֹ<span class="tag">שנִיָּה</span></div>
       </div>
 
       <div class="generation">
@@ -675,6 +676,7 @@
           <div class="node karet" data-clickable="true" data-id="father-brother-wife">אֵשֶׁת אֲחִי אָב<span class="tag">כרת ומלקות</span></div>
           <div class="node structural">אֲחִי אָב<span class="note">דוד</span></div>
         </div>
+        <div class="node rabbinic" data-clickable="true" data-id="father-half-brother-wife">אֵשֶׁת אֲחִי אָב מִן הָאֵם<span class="tag">שנִיָּה</span></div>
         <div class="node karet" data-clickable="true" data-id="father-sister">אֲחוֹת אָב<span class="tag">כרת ומלקות</span></div>
         <div class="couple">
           <div class="node structural">אָב<span class="note">—</span></div>
@@ -690,6 +692,7 @@
           <div class="node structural">חָם<span class="note">אבי אשתו</span></div>
           <div class="node mb-death" data-clickable="true" data-id="mother-in-law">חֲמוֹתוֹ<span class="tag">שריפה וכרת</span></div>
         </div>
+        <div class="node mb-death" data-clickable="true" data-id="grandmother-in-law">אֵם חֲמוֹתוֹ / אֵם חָמִיו<span class="tag">שריפה — מחלוקת</span></div>
       </div>
 
       <div class="generation">
@@ -703,7 +706,7 @@
           <div class="node structural">אִשְׁתִּי<span class="note">מותרת</span></div>
         </div>
         <div class="node karet" data-clickable="true" data-id="wife-sister" style="margin-bottom:12px;">אֲחוֹת אִשְׁתּוֹ<span class="tag">כרת ומלקות</span><span class="condition">רק בחיי אשתו</span></div>
-        <div class="node karet" data-clickable="true" data-id="married-woman">אֵשֶׁת אִישׁ<span class="tag">חנק וכרת</span></div>
+        <div class="node mb-death" data-clickable="true" data-id="married-woman">אֵשֶׁת אִישׁ<span class="tag">חנק וכרת</span></div>
       </div>
 
       <div class="generation">
@@ -713,12 +716,15 @@
         </div>
         <div class="node mb-death" data-clickable="true" data-id="daughter">בַּת<span class="tag">שריפה וכרת</span></div>
         <div class="node mb-death" data-clickable="true" data-id="wife-daughter" style="margin-bottom:12px;">בַּת אִשְׁתּוֹ<span class="tag">שריפה וכרת</span><span class="condition">בחיי אשתו; אחר — כרת</span></div>
+        <div class="node mb-death" data-clickable="true" data-id="wife-son-daughter">בַּת בֵּן אִשְׁתּוֹ<span class="tag">שריפה וכרת</span></div>
+        <div class="node mb-death" data-clickable="true" data-id="wife-daughter-daughter">בַּת בַּת אִשְׁתּוֹ<span class="tag">שריפה וכרת</span></div>
       </div>
 
       <div class="generation">
         <div class="node mb-death" data-clickable="true" data-id="son-daughter">בַּת הַבֵּן<span class="tag">שריפה וכרת</span></div>
         <div class="node mb-death" data-clickable="true" data-id="daughter-daughter">בַּת הַבַּת<span class="tag">שריפה וכרת</span></div>
         <div class="node rabbinic" data-clickable="true" data-id="grandson-wife">כַּלַּת בְּנוֹ<span class="tag">שנִיָּה</span></div>
+        <div class="node rabbinic" data-clickable="true" data-id="great-grandson-wife">כַּלַּת בֶּן בְּנוֹ<span class="tag">שנִיָּה</span></div>
       </div>
 
     </div>
@@ -844,13 +850,12 @@
           <div class="pill mb-death" data-id="wife-son-daughter">בַּת בֵּן אִשְׁתּוֹ <span class="pill-tag">שריפה וכרת</span></div>
           <div class="pill mb-death" data-id="wife-daughter-daughter">בַּת בַּת אִשְׁתּוֹ <span class="pill-tag">שריפה וכרת</span></div>
           <div class="pill karet" data-id="wife-sister">אֲחוֹת אִשְׁתּוֹ <span class="pill-tag">כרת בחייה</span></div>
+          <div class="pill mb-death" data-id="grandmother-in-law">אֵם חֲמוֹתוֹ / אֵם חָמִיו <span class="pill-tag">שריפה — מחלוקת</span></div>
         </div>
       </div>
       <div class="cat-section">
         <div class="cat-section-title">שניות מדרבנן</div>
-        <div class="pill-list">
-          <div class="pill rabbinic" data-id="grandmother-in-law">אֵם חֲמוֹתוֹ / אֵם חָמִיו <span class="pill-tag">מחלוקת</span></div>
-        </div>
+        <div class="no-rabbinic">אם חמותו ואם חמיו — במשנה (סנהדרין ט׳:א׳) בין הנשרפין, וכן פסק הרמב״ם; לדעת הרא״ש שניות מדרבנן. ראה בפנים.</div>
       </div>
     </div>
 
@@ -862,7 +867,7 @@
       <div class="cat-section">
         <div class="cat-section-title">מן התורה</div>
         <div class="pill-list">
-          <div class="pill karet" data-id="married-woman">אֵשֶׁת אִישׁ <span class="pill-tag">חנק וכרת</span></div>
+          <div class="pill mb-death" data-id="married-woman">אֵשֶׁת אִישׁ <span class="pill-tag">חנק וכרת</span></div>
         </div>
       </div>
       <div class="cat-section">
@@ -893,7 +898,7 @@
     </div>
 
     <div class="section">
-      <div class="section-title">מקור מן הכתוב<span class="src-verified">✓ מאומת מול ספריא</span></div>
+      <div class="section-title">מקור מן הכתוב</div>
       <div class="verse" id="modalVerse">—</div>
     </div>
 
@@ -994,13 +999,13 @@
     },
     "grandmother-in-law": {
       title: "אֵם חֲמוֹתוֹ / אֵם חָמִיו",
-      kind: "rabbinic",
-      kindLabel: "מחלוקת ראשונים",
+      kind: "mb-death",
+      kindLabel: "מחלוקת ראשונים — שריפה או שנייה",
       relation: "אם האם או האב של אשתו",
-      prohibition: "לדעת הרמב״ם (איסורי ביאה ב׳:ז׳) אם חמיו ואם חמותו אסורות מן התורה, בשריפה בחיי אשתו וכרת אחריו. לדעת הרא״ש וחלק מהפוסקים — הן שניות מדרבנן בלבד.",
-      verse: "ויקרא י״ח:י״ז; רמב״ם איסורי ביאה ב׳:ז׳; רא״ש ביבמות.",
-      punish: "לרמב״ם — מן התורה; לאחרים — שניה מדרבנן",
-      punishKind: "rabbinic",
+      prohibition: "במשנה (סנהדרין ט׳:א׳) נמנו חמותו ואם חמותו ואם חמיו בין הנשרפין, וכן פסק הרמב״ם (איסורי ביאה ב׳:ז׳): אסורות מן התורה, בשריפה בחיי אשתו וכרת אחריו. לדעת הרא״ש וחלק מהפוסקים — הן שניות מדרבנן בלבד.",
+      verse: "״ובת בנה ואת בת בתה… שארה הנה זמה הִוא״ (ויקרא י״ח:י״ז); משנה סנהדרין ט׳:א׳; רמב״ם איסורי ביאה ב׳:ז׳; רא״ש ביבמות.",
+      punish: "לרמב״ם — שריפה וכרת מן התורה; לרא״ש — שנייה מדרבנן",
+      punishKind: "mb-death",
       lifetime: "הדין המעשי מחמיר כשתי הדעות — אסורה לעולם."
     },
     "wife-son-daughter": {
@@ -1092,14 +1097,14 @@
     },
     "married-woman": {
       title: "אֵשֶׁת אִישׁ",
-      kind: "karet",
+      kind: "mb-death",
       kindLabel: "ערוה מן התורה — חנק וכרת",
       relation: "אשה הנשואה לאיש אחר",
       prohibition: "אשת איש אסורה לכל אדם זולת בעלה; הבא עליה והיא — שניהם חייבים.",
       verse: "״לא תנאף״ (שמות כ׳:י״ג); ״ואיש אשר ינאף את אשת איש… מות יומת הנואף והנואפת״ (ויקרא כ׳:י׳).",
       punish: "חנק וכרת",
-      punishKind: "karet",
-      lifetime: "סתם מיתה בתורה — חנק (סנהדרין י״א:א׳); הנואף והנואפת כאחד."
+      punishKind: "mb-death",
+      lifetime: "סתם מיתה בתורה — חנק, והבא על אשת איש נמנה בנחנקין (סנהדרין י״א:א׳); הנואף והנואפת כאחד."
     },
 
     // ===== עריות: מיתת בית דין וכרת =====
@@ -1109,7 +1114,7 @@
       kindLabel: "ערוה מן התורה — סקילה וכרת",
       relation: "האם יולדתו",
       prohibition: "ערות אמו — החמורה שבעריות. הבא עליה חייב משום אמו ומשום אשת אביו.",
-      verse: "״ערות אביך וערות אמך לא תגלה, אמך הִוא״ (ויקרא י״ח:ז׳); ״מות יומתו שניהם״ (ויקרא כ׳:י״א).",
+      verse: "״ערות אביך וערות אמך לא תגלה, אמך הִוא לא תגלה ערותה״ (ויקרא י״ח:ז׳); ״מות יומתו שניהם״ (ויקרא כ׳:י״א).",
       punish: "סקילה וכרת",
       punishKind: "mb-death",
       lifetime: "כשאמו היתה אשת אביו — שני איסורים חלים."
@@ -1130,7 +1135,7 @@
       kindLabel: "ערוה מן התורה — שריפה וכרת",
       relation: "אם אשתו",
       prohibition: "אם אשתו אסורה עליו לעולם. בחיי אשתו — בשריפה. לדעת הרמב״ם אף אם חמותו ואם חמיו דאורייתא.",
-      verse: "״ואיש אשר יקח את אשה ואת אמה, זמה הִוא — באש ישרפו אֹתוֹ ואתהן״ (ויקרא כ׳:י״ד).",
+      verse: "״ואיש אשר יקח את אשה ואת אמה, זמה הִוא — באש ישרפו אֹתוֹ ואתהן, ולא תהיה זמה בתוככם״ (ויקרא כ׳:י״ד).",
       punish: "שריפה וכרת",
       punishKind: "mb-death",
       lifetime: "אסורה לעולם (רמב״ם איסורי ביאה ב׳:ז׳)."
@@ -1141,7 +1146,7 @@
       kindLabel: "ערוה מן התורה — סקילה וכרת",
       relation: "אשת בנו",
       prohibition: "כלתו אסורה עליו לעולם — בחיי בנו, אחריו, ואף אם התגרשה.",
-      verse: "״ערות כלתך לא תגלה, אשת בנך הִוא״ (ויקרא י״ח:ט״ו); ״ואיש אשר ישכב את כלתו, מות יומתו שניהם, תבל עשו״ (ויקרא כ׳:י״ב).",
+      verse: "״ערות כלתך לא תגלה, אשת בנך הִוא לא תגלה ערותה״ (ויקרא י״ח:ט״ו); ״ואיש אשר ישכב את כלתו, מות יומתו שניהם, תבל עשו — דמיהם בם״ (ויקרא כ׳:י״ב).",
       punish: "סקילה וכרת",
       punishKind: "mb-death"
     },
@@ -1151,7 +1156,7 @@
       kindLabel: "ערוה מן התורה — שריפה וכרת",
       relation: "בתו מאשתו או מאשה אחרת",
       prohibition: "בתו אסורה עליו, נלמדה בקל וחומר מבת בתו המפורשת (יבמות ג׳ ע״א; סנהדרין ע״ה ע״א).",
-      verse: "נלמדה מ״ערות בת בנך או בת בתך״ (ויקרא י״ח:י׳) ומ״זמה״ (י״ח:י״ז).",
+      verse: "נלמדה מ״ערות בת בנך או בת בתך״ (ויקרא י״ח:י׳) ומ״זמה״ (ויקרא י״ח:י״ז).",
       punish: "שריפה וכרת",
       punishKind: "mb-death"
     },
@@ -1182,7 +1187,7 @@
       kindLabel: "ערוה מן התורה — שריפה וכרת",
       relation: "בת בתו — נכדה מן הבת",
       prohibition: "בת בתו אסורה עליו כבתו ממש.",
-      verse: "״ערות בת בנך או בת בתך לא תגלה ערותן״ (ויקרא י״ח:י׳); ״זמה הִוא״ (י״ח:י״ז).",
+      verse: "״ערות בת בנך או בת בתך לא תגלה ערותן״ (ויקרא י״ח:י׳); ״זמה הִוא״ (ויקרא י״ח:י״ז).",
       punish: "שריפה וכרת",
       punishKind: "mb-death"
     }
@@ -1209,6 +1214,11 @@
     t=t.replace(/(יבמות|סנהדרין|כריתות)\s+([א-ת]+[״׳]?[א-ת]*)\s+ע[״׳]?([אב])/g,(m,bk,daf,am)=>{
       const d=arGem(daf); if(!d) return m;
       return arA('https://www.sefaria.org/'+AR_TMAP[bk]+'.'+d+(am==='א'?'a':'b'),m);
+    });
+    // Mishnah: (יבמות|סנהדרין|כריתות) <perek>:<mishnah>
+    t=t.replace(/(יבמות|סנהדרין|כריתות)\s+([א-ת]+[״׳]?[א-ת]*)\s*:\s*([א-ת]+[״׳]?[א-ת]*)/g,(m,bk,ch,ms)=>{
+      const c=arGem(ch),mm=arGem(ms); if(!c||!mm) return m;
+      return arA('https://www.sefaria.org/Mishnah_'+AR_TMAP[bk]+'.'+c+'.'+mm,m);
     });
     // Torah: <book> <chapter>:<verse>
     t=t.replace(/(בראשית|שמות|ויקרא|במדבר|דברים)\s+([א-ת]+[״׳]?[א-ת]*)\s*:\s*([א-ת]+[״׳]?[א-ת]*)/g,(m,bk,ch,v)=>{

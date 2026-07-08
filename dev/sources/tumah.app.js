@@ -1050,8 +1050,8 @@ function ModalityChipDisplay({ id, dashed }) {
 }
 
 // Build a Sefaria URL from a Hebrew ref. Direct link for Chumash pesukim,
-// search fallback for mishnah/gemara/rambam/etc.
-function sefariaUrl(refStr) {
+// direct links for mishnah/gemara/rambam/sifra; search only as last resort.
+function sefariaUrl(refStr, kind) {
   const books = {
     'בראשית': 'Genesis', 'שמות': 'Exodus', 'ויקרא': 'Leviticus',
     'במדבר': 'Numbers', 'דברים': 'Deuteronomy',
@@ -1079,6 +1079,55 @@ function sefariaUrl(refStr) {
       }
     }
   }
+  // Mishnah: "TRACTATE PEREK, MISHNAH"
+  const T_MISHNAH = {
+    'אהלות':'Oholot','זבים':'Zavim','חולין':'Chullin','טהרות':'Tahorot','כלים':'Kelim',
+    'כריתות':'Keritot','מגילה':'Megillah','מקואות':'Mikvaot','נגעים':'Negaim','נדה':'Niddah',
+    'עבודה זרה':'Avodah_Zarah','עדויות':'Eduyot','פרה':'Parah',
+  };
+  if (kind === 'mishnah') {
+    const mm = refStr.match(/^([א-ת ]+?)\s+([א-ת״׳"']+),\s*([א-ת״׳"']+)/);
+    if (mm && T_MISHNAH[mm[1].trim()]) {
+      const p = gem(mm[2]), n = gem(mm[3]);
+      if (p > 0 && n > 0) return `https://www.sefaria.org/Mishnah_${T_MISHNAH[mm[1].trim()]}.${p}.${n}?lang=bi`;
+    }
+  }
+  // Gemara: "TRACTATE DAF ע"א/ע"ב"
+  const T_BAVLI = {
+    'זבחים':'Zevachim','חגיגה':'Chagigah','חולין':'Chullin','יומא':'Yoma','מועד קטן':'Moed_Katan',
+    'נדה':'Niddah','נזיר':'Nazir','סוטה':'Sotah','סוכה':'Sukkah','עבודה זרה':'Avodah_Zarah',
+    'פסחים':'Pesachim','שבת':'Shabbat',
+  };
+  if (kind === 'gemara') {
+    const gg = refStr.match(/^([א-ת ]+?)\s+([א-ת״׳"']+)\s+ע["״׳']?([אב])/);
+    if (gg && T_BAVLI[gg[1].trim()]) {
+      const d = gem(gg[2]);
+      if (d > 0) return `https://www.sefaria.org/${T_BAVLI[gg[1].trim()]}.${d}${gg[3] === 'א' ? 'a' : 'b'}?lang=bi`;
+    }
+  }
+  // Rambam: "HILCHOS PEREK, HALACHA" — titles verified against Sefaria
+  const T_RAMBAM = {
+    'איסורי ביאה':'Forbidden_Intercourse','טומאת מת':'Defilement_by_a_Corpse',
+    'טומאת צרעת':'Defilement_by_Leprosy','מטמאי משכב ומושב':'Those_Who_Defile_Bed_or_Seat',
+    'עבודת כוכבים':'Foreign_Worship_and_Customs_of_the_Nations','פרה אדומה':'Red_Heifer',
+    'שאר אבות הטומאות':'Other_Sources_of_Defilement',
+  };
+  if (kind === 'rambam') {
+    const rm = refStr.match(/^([א-ת ]+?)\s+([א-ת״׳"']+),\s*([א-ת״׳"']+)$/);
+    if (rm && T_RAMBAM[rm[1].trim()]) {
+      const p = gem(rm[2]), h = gem(rm[3]);
+      if (p > 0 && h > 0) return `https://www.sefaria.org/Mishneh_Torah,_${T_RAMBAM[rm[1].trim()]}.${p}.${h}?lang=bi`;
+    }
+  }
+  // Sifra / Sifrei Zuta: hand-mapped structural refs
+  const T_SIFRA = {
+    'תורת כהנים, אחרי מות, פרק יג':'Sifra,_Acharei_Mot,_Chapter_13',
+    'תורת כהנים, מצורע, זבים פרק ד':'Sifra,_Metzora_Parashat_Zavim,_Chapter_4',
+    'תורת כהנים, מצורע, זבים פרק ה':'Sifra,_Metzora_Parashat_Zavim,_Chapter_5',
+    'תורת כהנים, מצורע, זבים פרק ח':'Sifra,_Metzora_Parashat_Zavim,_Chapter_8',
+    'תורת כהנים, מצורע, פרשת זבים':'Sifra,_Metzora_Parashat_Zavim',
+  };
+  if (T_SIFRA[refStr.trim()]) return 'https://www.sefaria.org/' + T_SIFRA[refStr.trim()];
   return `https://www.sefaria.org/search?q=${encodeURIComponent(refStr)}`;
 }
 
@@ -1094,7 +1143,7 @@ function SourceLine({ s }) {
     ref: { he: 'הַפְנָיָה', en: 'Ref' },
   };
   const kl = kindLabels[s.kind] || { he: s.kind, en: s.kind };
-  const url = sefariaUrl(s.ref);
+  const url = sefariaUrl(s.ref, s.kind);
   return (
     <a
       href={url}
@@ -1109,7 +1158,7 @@ function SourceLine({ s }) {
         <span className="text-stone-800 group-hover:text-stone-950 group-hover:underline decoration-stone-400 underline-offset-2" style={{ fontFamily: "'Frank Ruhl Libre', serif" }}>{s.ref}</span>
       </div>
       {s.text && (
-        <div className="mt-1 pl-[100px] text-stone-700 italic leading-relaxed" style={{ fontFamily: "'Frank Ruhl Libre', serif", direction: 'rtl', textAlign: 'right', fontSize: '14px' }}>
+        <div className="mt-1 pl-4 md:pl-[100px] text-stone-700 italic leading-relaxed" style={{ fontFamily: "'Frank Ruhl Libre', serif", direction: 'rtl', textAlign: 'right', fontSize: '14px' }}>
           {s.text}
         </div>
       )}
@@ -1296,7 +1345,7 @@ function TumahTreeInner() {
         <header className="mb-10 pb-8 border-b-2 border-stone-800/30">
           <div className="flex items-center justify-between mb-6">
             <div className="text-[10px] tracking-[0.3em] text-stone-500 uppercase font-mono">
-              {t(lang, 'אִילָן א · מְקוֹרוֹת הַטֻּמְאָה', 'Tree A · Sources of Tumah')}
+              {t(lang, 'מְקוֹרוֹת הַטֻּמְאָה', 'Sources of Tumah')}
             </div>
             <LanguageToggle />
           </div>
@@ -1419,20 +1468,17 @@ function TumahTreeInner() {
             </div>
             <div>
               <div className="text-[11px] uppercase tracking-[0.2em] text-stone-500 mb-2 font-mono">
-                {t(lang, 'עִקָּרֵי הַפְּסִיקָה', 'Established Rulings')}
+                {t(lang, 'הַנָּחוֹת הַתַּרְשִׁים', 'Working Assumptions of this Chart')}
               </div>
               <ul className="space-y-1.5 text-[14px] text-stone-700">
-                <li>✓ {t(lang, 'הרגשה — מוּנחת כַּנּוֹכֶחֶת', 'Hargasha — assumed present')}</li>
-                <li>✓ {t(lang, 'כתמים — מדרבנן', "Kesamim — d'rabbanan")}</li>
-                <li>✓ {t(lang, 'חומרא דר\' זירא — אופציה', "Chumra d'Rabbi Zeira — optional")}</li>
+                <li>✓ {t(lang, 'הרגשה — מוּנחת כַּנּוֹכֶחֶת (נדה נז ע"ב)', 'Hargasha — assumed present (Niddah 57b)')}</li>
+                <li>✓ {t(lang, 'כתמים — מדרבנן (נדה נח ע"ב)', "Kesamim — d'rabbanan (Niddah 58b)")}</li>
+                <li>✓ {t(lang, 'חומרא דר\' זירא (נדה סו ע"א) — מוצגת כאופציה', "Chumra d'Rabbi Zeira (Niddah 66a) — shown as an option")}</li>
                 <li>✓ {t(lang, 'דאורייתא בלבד — אופציה', "D'oraisa-only view — optional")}</li>
-                <li>✓ {t(lang, 'עם הארץ ונכרי — בחזקת טמאים', "Am ha'aretz + nachri — presumed tamei")}</li>
-                <li>✓ {t(lang, 'רמב"ם לכתחילה', 'Rambam default psak')}</li>
+                <li>✓ {t(lang, 'עם הארץ ונכרי — בחזקת טמאים (משנה טהרות ז-ח; רמב"ם משכב ומושב י)', "Am ha'aretz + nachri — presumed tamei (Mishnah Tahorot 7-8; Rambam, Mishkav u'Moshav 10)")}</li>
+                <li>✓ {t(lang, 'סידור התרשים ע"פ הרמב"ם', 'Chart arranged per the Rambam')}</li>
               </ul>
             </div>
-          </div>
-          <div className="mt-8 text-center text-[11px] text-stone-400 font-mono tracking-widest uppercase">
-            · {t(lang, 'אילן א\' מתוך ה\' · הבא: דרכי מגע', 'Tree A of E · Next: Contact Modalities')} ·
           </div>
         </footer>
       </div>
