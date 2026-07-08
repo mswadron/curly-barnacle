@@ -284,6 +284,54 @@ const PK = {
     e: "Tzara'as in a garment of wool or linen.",
     rh: "צמר או פשתים — ולא בשאר מינים. כשעטנז.",
     re: "Wool or linen only — like sha'atnez, mentioned together."
+  },
+  "יג:נב": {
+    h: "וְשָׂרַף אֶת־הַבֶּגֶד אוֹ אֶת־הַשְּׁתִי אוֹ אֶת־הָעֵרֶב בַּצֶּמֶר אוֹ בַפִּשְׁתִּים אוֹ אֶת־כָּל־כְּלִי הָעוֹר אֲשֶׁר־יִהְיֶה בוֹ הַנָּגַע כִּי־צָרַעַת מַמְאֶרֶת הִוא בָּאֵשׁ תִּשָּׂרֵף.",
+    e: "He shall burn the garment — warp or woof, in wool or in linen, or any leather article bearing the nega — for it is a mameres tzara'as; in fire it shall be burned."
+  },
+  "יד:ב-ז": {
+    h: "זֹאת תִּהְיֶה תּוֹרַת הַמְּצֹרָע בְּיוֹם טָהֳרָתוֹ וְהוּבָא אֶל־הַכֹּהֵן... וְלָקַח לַמִּטַּהֵר שְׁתֵּי־צִפֳּרִים חַיּוֹת טְהֹרוֹת וְעֵץ אֶרֶז וּשְׁנִי תוֹלַעַת וְאֵזֹב... וְהִזָּה עַל הַמִּטַּהֵר מִן־הַצָּרַעַת שֶׁבַע פְּעָמִים וְטִהֲרוֹ וְשִׁלַּח אֶת־הַצִּפֹּר הַחַיָּה עַל־פְּנֵי הַשָּׂדֶה.",
+    e: "This shall be the law of the metzora on the day of his taharah: he is brought to the Kohen... two live tahor birds, cedar wood, scarlet thread, and hyssop... he sprinkles seven times on the one becoming tahor, declares him tahor, and sends the live bird out over the open field.",
+    rh: "צפרים — לפי שהנגעים באים על לשון הרע, שהוא מעשה פטפוטי דברים, לפיכך הוזקקו צפרים שמפטפטין תמיד. עץ ארז — לפי שהנגעים באים על גסות הרוח. ושני תולעת ואזוב — ישפיל עצמו כתולעת וכאזוב.",
+    re: "Birds — negaim come from lashon hara, an act of chatter; so chattering birds. Cedar — negaim come from haughtiness. Scarlet-worm and hyssop — let him lower himself like a worm and like hyssop."
+  },
+  "יד:ח-ט": {
+    h: "וְכִבֶּס הַמִּטַּהֵר אֶת־בְּגָדָיו וְגִלַּח אֶת־כָּל־שְׂעָרוֹ וְרָחַץ בַּמַּיִם וְטָהֵר... וְהָיָה בַיּוֹם הַשְּׁבִיעִי יְגַלַּח אֶת־כָּל־שְׂעָרוֹ אֶת־רֹאשׁוֹ וְאֶת־זְקָנוֹ וְאֵת גַּבֹּת עֵינָיו וְאֶת־כָּל־שְׂעָרוֹ יְגַלֵּחַ.",
+    e: "He washes his clothes, shaves all his hair, immerses in water, and becomes tahor... and on the seventh day he shaves all his hair — his head, his beard, his eyebrows — all his hair he shaves."
+  },
+  "יד:י-כ": {
+    h: "וּבַיּוֹם הַשְּׁמִינִי יִקַּח שְׁנֵי־כְבָשִׂים תְּמִימִם וְכַבְשָׂה אַחַת בַּת־שְׁנָתָהּ תְּמִימָה וּשְׁלֹשָׁה עֶשְׂרֹנִים סֹלֶת מִנְחָה בְּלוּלָה בַשֶּׁמֶן וְלֹג אֶחָד שָׁמֶן.",
+    e: "On the eighth day he takes two unblemished lambs, one unblemished ewe in its first year, three esronim of fine flour mixed with oil as a minchah, and one log of oil."
+  },
+  "יד:לג-נג": {
+    h: "כִּי תָבֹאוּ אֶל־אֶרֶץ כְּנַעַן אֲשֶׁר אֲנִי נֹתֵן לָכֶם לַאֲחֻזָּה וְנָתַתִּי נֶגַע צָרַעַת בְּבֵית אֶרֶץ אֲחֻזַּתְכֶם. וּבָא אֲשֶׁר־לוֹ הַבַּיִת וְהִגִּיד לַכֹּהֵן לֵאמֹר כְּנֶגַע נִרְאָה לִי בַּבָּיִת.",
+    e: "When you come into the land of Canaan which I give you as a possession, I will place a tzara'as nega in a house of the land of your possession. The owner of the house comes and tells the Kohen: something like a nega has appeared to me in the house.",
+    rh: "ונתתי נגע צרעת — בשורה היא להם שהנגעים באים עליהם, לפי שהטמינו אמוריים מטמוניות של זהב בקירות בתיהם, ועל ידי הנגע נותץ הבית ומוצאן. כנגע נראה לי — אפילו תלמיד חכם שיודע שהוא נגע ודאי, לא יפסוק דבר ברור לומר נגע נראה לי, אלא כנגע נראה לי.",
+    re: "'I will place a nega' — good news: the Emorim hid gold treasures in their walls; through the nega he demolishes the house and finds them. 'Like a nega' — even a talmid chacham certain it is a nega says 'something like a nega', not 'a nega'."
+  },
+  "יד:לו": {
+    h: "וְצִוָּה הַכֹּהֵן וּפִנּוּ אֶת־הַבַּיִת בְּטֶרֶם יָבֹא הַכֹּהֵן לִרְאוֹת אֶת־הַנֶּגַע וְלֹא יִטְמָא כָּל־אֲשֶׁר בַּבָּיִת וְאַחַר כֵּן יָבֹא הַכֹּהֵן לִרְאוֹת אֶת־הַבָּיִת.",
+    e: "The Kohen orders the house emptied before the Kohen comes to see the nega, so that everything in the house not become tamei; afterwards the Kohen comes to see the house.",
+    rh: "שאם לא יפנהו ויבא הכהן ויראה הנגע, נזקק להסגר, וכל מה שבתוכו יטמא. ועל מה חסה תורה? על כלי חרסו, שאין להם טהרה במקוה.",
+    re: "If not emptied first, once the Kohen sees it and confines, everything inside becomes tamei. What did the Torah spare? His earthenware — which has no taharah in a mikveh."
+  },
+  "יד:לז": {
+    h: "וְרָאָה אֶת־הַנֶּגַע וְהִנֵּה הַנֶּגַע בְּקִירֹת הַבַּיִת שְׁקַעֲרוּרֹת יְרַקְרַקֹּת אוֹ אֲדַמְדַּמֹּת וּמַרְאֵיהֶן שָׁפָל מִן־הַקִּיר.",
+    e: "He sees the nega: in the walls of the house — sunken streaks, deep green or deep red, their appearance lower than the wall.",
+    rh: "שקערורות — שוקעות במראיהן.",
+    re: "Shekaruros — sunken in their appearance."
+  },
+  "יד:מג-מה": {
+    h: "וְאִם־יָשׁוּב הַנֶּגַע וּפָרַח בַּבַּיִת... צָרַעַת מַמְאֶרֶת הִוא בַּבַּיִת טָמֵא הוּא. וְנָתַץ אֶת־הַבַּיִת אֶת־אֲבָנָיו וְאֶת־עֵצָיו וְאֵת כָּל־עֲפַר הַבָּיִת וְהוֹצִיא אֶל־מִחוּץ לָעִיר אֶל־מָקוֹם טָמֵא.",
+    e: "If the nega returns and erupts in the house... it is a mameres tzara'as in the house — it is tamei. He demolishes the house — its stones, its wood, and all the plaster of the house — and takes it outside the city to a tamei place."
+  },
+  "יד:מח": {
+    h: "וְאִם־בֹּא יָבֹא הַכֹּהֵן וְרָאָה וְהִנֵּה לֹא־פָשָׂה הַנֶּגַע בַּבַּיִת אַחֲרֵי הִטֹּחַ אֶת־הַבָּיִת וְטִהַר הַכֹּהֵן אֶת־הַבַּיִת כִּי נִרְפָּא הַנָּגַע.",
+    e: "If the Kohen comes and sees that the nega did not spread in the house after the house was replastered, the Kohen declares the house tahor, for the nega has healed."
+  },
+  "יד:מח-נג": {
+    h: "וְלָקַח לְחַטֵּא אֶת־הַבַּיִת שְׁתֵּי צִפֳּרִים וְעֵץ אֶרֶז וּשְׁנִי תוֹלַעַת וְאֵזֹב... וְשִׁלַּח אֶת־הַצִּפֹּר הַחַיָּה אֶל־מִחוּץ לָעִיר אֶל־פְּנֵי הַשָּׂדֶה וְכִפֶּר עַל־הַבַּיִת וְטָהֵר.",
+    e: "To purge the house he takes two birds, cedar wood, scarlet thread, and hyssop... he sends the live bird outside the city over the open field, atones for the house, and it is tahor."
   }
 };
 const MN = {

@@ -102,7 +102,8 @@ function tri(obj, opts){
   const parts = [];
   if(state.langs.he && obj.he) parts.push(`<div class="${opts.heClass||'he-text'}" dir="rtl">${obj.he}</div>`);
   if(state.langs.se && obj.se) parts.push(`<div class="trans">${obj.se}</div>`);
-  if(state.langs.en && obj.en) parts.push(`<div>${obj.en}</div>`);
+  /* en renders when toggled on — or as fallback when the entry has no other language, so cards never go blank */
+  if(obj.en && (state.langs.en || !parts.length)) parts.push(`<div>${obj.en}</div>`);
   return parts.join('');
 }
 
@@ -962,11 +963,11 @@ function tanachCardsHtml(){
           ${state.langs.he ? `<div class="tn-name-he">${c.label.he}</div>` : ''}
           <div class="tn-name-en">${c.label.en}</div>
           ${totalDisplay}
-          ${c.breakdown ? `<div class="tn-breakdown">${c.breakdown.en}</div>` : ''}
+          ${c.breakdown ? `<div class="tn-breakdown">${tri(c.breakdown)}</div>` : ''}
         </div>
         <div class="tn-right">
-          <div class="tn-summary">${c.summary.en}</div>
-          <div class="tn-detail">${c.detail.en}</div>
+          <div class="tn-summary">${tri(c.summary)}</div>
+          <div class="tn-detail">${tri(c.detail)}</div>
           <div class="tn-sources">${linkRefList(c.sources)}</div>
         </div>
       </div>
@@ -1030,7 +1031,7 @@ function renderHalacha(){
             <div class="hl-name-en">${h.label.en}</div>
           </div>
         </div>
-        <div class="hl-summary">${h.summary.en}</div>
+        <div class="hl-summary">${tri(h.summary)}</div>
         <div class="hl-grid">
           <div class="hl-col">
             <div class="hl-row-lbl">Torah source</div>
@@ -1045,10 +1046,10 @@ function renderHalacha(){
             ${rabbinicHtml}
           </div>
         </div>
-        <div class="hl-detail">${h.detail.en}</div>
+        <div class="hl-detail">${tri(h.detail)}</div>
         <div class="hl-today">
           <div class="hl-today-lbl">Today</div>
-          ${h.today.en}
+          ${tri(h.today)}
         </div>
       </div>
     `;
