@@ -4,9 +4,9 @@ const {
 
 // Data shape per item: { he, se, en, ref }
 const SIGNS = [{
-  id: "mefutzalot",
+  id: "mefutzalos",
   he: "מְפֻצָּלוֹת",
-  se: "mefutzalot",
+  se: "mefutzalos",
   en: "branched / forked",
   color: "var(--p-mita)",
   rashi: {
@@ -35,9 +35,9 @@ const SIGNS = [{
     ref: "Rashi, Chullin 59b s.v. והרי צבי דאין מפוצלות"
   }
 }, {
-  id: "keruchot",
+  id: "keruchos",
   he: "כְּרוּכוֹת",
-  se: "keruchot",
+  se: "keruchos",
   en: "wrapped, layered in concentric sheaths",
   color: "var(--p-rabbinic)",
   rashi: {
@@ -49,7 +49,7 @@ const SIGNS = [{
   talmud: {
     he: "וַהֲרֵי שׁוֹר, דִּכְרוּכוֹת, וְחֶלְבּוֹ אָסוּר",
     se: "va-harei shor, dikhruchot, ve-chelbo asur",
-    en: "But the ox is keruchot — and its cheilev is forbidden! (Therefore keruchot alone is insufficient.)",
+    en: "But the ox is keruchos — and its cheilev is forbidden! (Therefore keruchos alone is insufficient.)",
     ref: "Chullin 59b"
   },
   anatomy: {
@@ -62,9 +62,9 @@ const SIGNS = [{
     en: "ox"
   }
 }, {
-  id: "charukot",
+  id: "charukos",
   he: "חֲרוּקוֹת",
-  se: "charukot",
+  se: "charukos",
   en: "notched, ridged",
   color: "var(--p-karet)",
   rashi: {
@@ -94,21 +94,21 @@ const SIGNS = [{
     ref: "Rashi, Chullin 59b s.v. דמיבלע חירקייהו"
   }
 }, {
-  id: "chadurot",
+  id: "chaduros",
   he: "חֲדוּרוֹת",
-  se: "chadurot",
+  se: "chaduros",
   en: "tapered / sharp at the apex",
   color: "var(--p-structural)",
   rashi: {
     he: "חֲדוּרוֹת כְּעֵין קַרְנֵי אַיָּל וּצְבִי שֶׁחַדִּין לְמַעְלָה",
-    se: "chadurot ke-ein karnei ayal u-tzvi she-chadin lemala",
-    en: "Chadurot like the horns of deer and gazelle, which taper sharply upward.",
+    se: "chaduros ke-ein karnei ayal u-tzvi she-chadin lemala",
+    en: "Chaduros like the horns of deer and gazelle, which taper sharply upward.",
     ref: "Rashi, Chullin 59b s.v. חדורות"
   },
   talmud: {
     he: "וַהֲרֵי צְבִי, דְּאֵין מְפוּצָּלוֹת, וְחֶלְבּוֹ מוּתָּר? חֲדוּרוֹת בָּעֵינַן",
-    se: "va-harei tzvi, de-ein mefutzalot, ve-chelbo mutar? chadurot ba'einan",
-    en: "But the tzvi is not forked, and its cheilev is permitted! [Answer:] We require chadurot.",
+    se: "va-harei tzvi, de-ein mefutzalos, ve-chelbo mutar? chaduros ba'einan",
+    en: "But the tzvi is not forked, and its cheilev is permitted! [Answer:] We require chaduros.",
     ref: "Chullin 59b"
   },
   anatomy: {
@@ -128,25 +128,25 @@ const SIGNS = [{
 const CASES = [{
   animal: "עֵז",
   se: "ez",
-  has: "Horns + hooves, charukot, keruchot",
-  fails: "Not mefutzal; charukot NOT absorbed",
+  has: "Horns + hooves, charukos, keruchos",
+  fails: "Not mefutzal; charukos NOT absorbed",
   verdict: "behema · cheilev אסור"
 }, {
   animal: "שׁוֹר",
   se: "shor",
-  has: "Horns + hooves, keruchot",
-  fails: "Not mefutzal, not charukot",
+  has: "Horns + hooves, keruchos",
+  fails: "Not mefutzal, not charukos",
   verdict: "behema · cheilev אסור"
 }, {
   animal: "צְבִי",
   se: "tzvi",
-  has: "Keruchot, chadurot, charukot with absorbed notches",
+  has: "Keruchos, chaduros, charukos with absorbed notches",
   fails: "—",
   verdict: "chaya · cheilev מותר"
 }, {
   animal: "אַיָּל",
   se: "ayal",
-  has: "Mefutzalot",
+  has: "Mefutzalos",
   fails: "—",
   verdict: "chaya · cheilev מותר (sufficient alone)"
 }, {
@@ -214,19 +214,19 @@ const ANATOMY_PLATES = [{
   credit: "Wikimedia Commons · CC BY-SA"
 }];
 const SPECIMENS = {
-  mefutzalot: {
+  mefutzalos: {
     src: "https://upload.wikimedia.org/wikipedia/commons/3/33/Red_Deer_Stag%2C_Badminton_Park%2C_Gloucestershire_-_geograph.org.uk_-_8210733.jpg",
     credit: "Red deer · Wikimedia · geograph.org.uk · CC BY-SA"
   },
-  keruchot: {
+  keruchos: {
     src: "https://upload.wikimedia.org/wikipedia/commons/f/f3/Hereford_bull_large.jpg",
     credit: "Hereford bull · Wikimedia · public domain"
   },
-  charukot: {
+  charukos: {
     src: "https://upload.wikimedia.org/wikipedia/commons/8/80/Alpensteinbock%2C_Capra_ibex_01.JPG",
     credit: "Alpine ibex · Wikimedia · Böhringer · CC BY-SA"
   },
-  chadurot: {
+  chaduros: {
     src: "https://upload.wikimedia.org/wikipedia/commons/7/79/Gazella_gazella.jpg",
     credit: "Mountain gazelle · Wikimedia"
   }
@@ -273,7 +273,7 @@ function App() {
     se: false,
     en: true
   });
-  const [activeSign, setActiveSign] = useState("mefutzalot");
+  const [activeSign, setActiveSign] = useState("mefutzalos");
   const [view, setView] = useState("signs");
   const toggleLang = k => setLang(l => {
     if (k === "he") return l;
@@ -328,7 +328,7 @@ function App() {
     className: "he"
   }, "סִימָנֵי הַקַּרְנַיִם"), /*#__PURE__*/React.createElement("h1", null, "On the Anatomy of Horns"), /*#__PURE__*/React.createElement("p", {
     className: "dek"
-  }, "Modern zoological anatomy paired with the four kashrut signs set down by the Gemara and glossed by Rashi.")), /*#__PURE__*/React.createElement("section", {
+  }, "Modern zoological anatomy paired with the four kashrus signs set down by the Gemara and glossed by Rashi.")), /*#__PURE__*/React.createElement("section", {
     style: {
       marginBottom: 36
     }
@@ -411,7 +411,7 @@ function App() {
     className: "translit"
   }, "heicha de-mipatzla — la dina ve-la dayyana"), lang.en && /*#__PURE__*/React.createElement("div", {
     className: "flow-en"
-  }, "Where it is forked, no judgment and no judge. Mefutzalot alone settles it: chaya, cheilev permitted."), /*#__PURE__*/React.createElement("div", {
+  }, "Where it is forked, no judgment and no judge. Mefutzalos alone settles it: chaya, cheilev permitted."), /*#__PURE__*/React.createElement("div", {
     className: "flow-ref"
   }, "Chullin 59b"))), /*#__PURE__*/React.createElement("div", {
     className: "flow-branch"
@@ -516,7 +516,7 @@ function App() {
     className: "foot"
   }, /*#__PURE__*/React.createElement("div", {
     className: "eyebrow"
-  }, "Colophon"), /*#__PURE__*/React.createElement("div", null, "Primary text and Rashi from Sefaria (William Davidson Vocalized Aramaic; Vilna Rashi). Rambam from Mishneh Torah, Hilchot Maachalot Asurot 1:10. Anatomical content is standard zoology of Bovidae and Cervidae — memory-grounded, not from Sefaria. Images from Wikimedia Commons (CC licensed where indicated)."))), /*#__PURE__*/React.createElement("aside", {
+  }, "Colophon"), /*#__PURE__*/React.createElement("div", null, "Primary text and Rashi from Sefaria (William Davidson Vocalized Aramaic; Vilna Rashi). Rambam from Mishneh Torah, Hilchos Maachalos Asuros 1:10. Anatomical content is standard zoology of Bovidae and Cervidae — memory-grounded, not from Sefaria. Images from Wikimedia Commons (CC licensed where indicated)."))), /*#__PURE__*/React.createElement("aside", {
     className: "rail"
   }, /*#__PURE__*/React.createElement("div", {
     className: "rail-sticky"

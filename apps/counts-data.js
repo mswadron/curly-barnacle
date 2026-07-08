@@ -78,7 +78,7 @@ window.COUNTS_DATA = {
       totalLabel: 'c. 600,000',
       label: {
         he: 'יְצִיאַת מִצְרַיִם — הַמִּסְפָּר הַסִּפּוּרִי',
-        se: 'Yetziat Mitzrayim — ha-mispar ha-sippuri',
+        se: 'Yetzias Mitzrayim — ha-mispar ha-sippuri',
         en: 'Exodus headcount (narrative)'
       },
       timing: {
@@ -109,8 +109,8 @@ window.COUNTS_DATA = {
       refs: ['Shemos 12:37'],
       pasuk: {
         he: 'וַיִּסְעוּ בְנֵי־יִשְׂרָאֵל מֵרַעְמְסֵס סֻכֹּתָה כְּשֵׁשׁ־מֵאוֹת אֶלֶף רַגְלִי הַגְּבָרִים לְבַד מִטָּף׃',
-        se: 'va-yis\'u venei Yisrael me-Ra\'amses Sukkotah ke-shesh me\'ot elef ragli ha-gevarim levad mi-taf',
-        en: 'The Israelites journeyed from Ra\'amses to Sukkot, about six hundred thousand men on foot, besides children.',
+        se: 'va-yis\'u venei Yisrael me-Ra\'amses Sukkosah ke-shesh me\'ot elef ragli ha-gevarim levad mi-taf',
+        en: 'The Israelites journeyed from Ra\'amses to Sukkos, about six hundred thousand men on foot, besides children.',
         ref: 'Shemos 12:37'
       },
       commentary: [
@@ -135,12 +135,12 @@ window.COUNTS_DATA = {
       },
       timing: {
         he: 'מַחֲלוֹקֶת רִאשׁוֹנִים: רמב"ן — לְאַחַר יוֹם הַכִּפּוּרִים; אַחֵרִים — כְּמִפְקָד בְּמִדְבַּר א׳',
-        se: 'Machloket rishonim: Ramban — after Yom Kippur; others — same as Bamidbar 1',
+        se: 'Machlokes rishonim: Ramban — after Yom Kippur; others — same as Bamidbar 1',
         en: 'Disputed: Ramban places it after Yom Kippur of year 1; others identify it with the Bamidbar 1 census'
       },
       method: {
         he: 'מַחֲצִית הַשֶּׁקֶל — סְפִירַת מַטְבְּעוֹת, לֹא רָאשִׁים',
-        se: 'machatzit ha-shekel — sefirat matbe\'ot, lo rashim',
+        se: 'machatzis ha-shekel — sefiras matbeos, lo rashim',
         en: 'Each man brings a half-shekel — coins are counted, not heads'
       },
       age: {
@@ -428,7 +428,7 @@ window.COUNTS_DATA = {
       leviteSubtotal: 23000,
       label: {
         he: 'מִפְקַד עַרְבוֹת מוֹאָב',
-        se: 'Mifkad Arvot Moav',
+        se: 'Mifkad Arvos Moav',
         en: 'Plains of Moav census'
       },
       timing: {
@@ -555,7 +555,7 @@ window.COUNTS_DATA = {
       label: { he: 'בְּמִסְפַּר שֵׁמוֹת', se: 'Be-mispar shemot', en: 'Name-by-name census' },
       events: ['bamidbar1', 'bamidbar26'],
       what: { en: 'Full personal census: every male 20+ by tribe, family, and household, called by name "le-gulgelotam".' },
-      counts: { en: 'Used at Sinai (year 2) for organizing the camp, and at Arvot Moav (year 40) for inheritance distribution.' },
+      counts: { en: 'Used at Sinai (year 2) for organizing the camp, and at Arvos Moav (year 40) for inheritance distribution.' },
       excludes: { en: 'Levites counted separately under different criteria. Women not enumerated.' }
     },
     {
@@ -784,7 +784,7 @@ window.COUNTS_DATA = {
         { ref: 'Megillah 13b', display: 'Megillah 13b' }
       ],
       rambam: { ref: 'Mishneh Torah, Shekel Dues 1:1', display: 'Rambam, Shekel Dues 1:1' },
-      today: { en: 'No longer collected in the absence of the Mikdash, but the obligation underlies the custom of "zecher le-machatzit ha-shekel" — three half-coins given to tzedakah before Purim (Rama, Orach Chaim 694:1).' },
+      today: { en: 'No longer collected in the absence of the Mikdash, but the obligation underlies the custom of "zecher le-machatzis ha-shekel" — three half-coins given to tzedakah before Purim (Rama, Orach Chaim 694:1).' },
       detail: { en: 'From the first of Adar, courts publicly announce the obligation. By the first of Nissan, all funds must be collected — used to purchase that year\'s communal offerings and replenish the silver vessels of the Mikdash. The one-time Shemos 30 count generalizes into a permanent annual ritual of the same indirect method.' }
     },
     {

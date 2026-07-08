@@ -17,7 +17,7 @@ window.ZERAIM_MODULE_TERUMOS = {
       shiur: {
         he: "תְּרוּמָה גְּדוֹלָה — אֵין לָהּ שִׁעוּר מִן הַתּוֹרָה; מִדְּרַבָּנָן: עַיִן יָפָה אֶחָד מֵאַרְבָּעִים, בֵּינוֹנִית מֵחֲמִשִּׁים, רָעָה מִשִּׁשִּׁים. תְּרוּמַת מַעֲשֵׂר — אֶחָד מֵעֲשָׂרָה מִן הַמַּעֲשֵׂר.",
         en: "Terumah gedolah has no Torah measure; Rabbinically 1/40 (generous), 1/50 (average), 1/60 (stingy). Terumas maaser is a fixed 1/10 of the Levite's maaser rishon.",
-        ref: "Terumot 4:3"
+        ref: "Terumos 4:3"
       },
       obligated: {
         he: "מִן הַתּוֹרָה רַק דָּגָן תִּירוֹשׁ וְיִצְהָר; שְׁאָר פֵּרוֹת וִירָקוֹת — מִדְּרַבָּנָן.",

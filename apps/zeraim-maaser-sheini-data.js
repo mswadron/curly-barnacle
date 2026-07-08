@@ -34,13 +34,13 @@ window.ZERAIM_MODULE_MAASER_SHEINI = {
   },
   species: [
     { id: "gefen", aspect: { applies: true, category: "tirosh", liquid: true,
-      note: { he: "יֵין מַעֲשֵׂר שֵׁנִי — נֶאֱכָל/נִשְׁתֶּה בִּירוּשָׁלַיִם בְּטָהֳרָה.", en: "Maaser-sheni wine — drunk in Jerusalem in purity; alone with oil it may be produced as liquid." }, ref: "Terumot 11:3" } },
+      note: { he: "יֵין מַעֲשֵׂר שֵׁנִי — נֶאֱכָל/נִשְׁתֶּה בִּירוּשָׁלַיִם בְּטָהֳרָה.", en: "Maaser-sheni wine — drunk in Jerusalem in purity; alone with oil it may be produced as liquid." }, ref: "Terumos 11:3" } },
     { id: "zayit", aspect: { applies: true, category: "yitzhar", liquid: true,
-      note: { he: "שֶׁמֶן מַעֲשֵׂר שֵׁנִי — עוֹלֶה לִירוּשָׁלַיִם.", en: "Maaser-sheni oil — brought up to Jerusalem." }, ref: "Terumot 11:3" } },
+      note: { he: "שֶׁמֶן מַעֲשֵׂר שֵׁנִי — עוֹלֶה לִירוּשָׁלַיִם.", en: "Maaser-sheni oil — brought up to Jerusalem." }, ref: "Terumos 11:3" } },
     { id: "chitim", aspect: { applies: true, category: "dagan" } },
     { id: "seorim", aspect: { applies: true, category: "dagan" } },
     { id: "teena", aspect: { applies: true, category: "peiros" } },
     { id: "temarim", aspect: { applies: true, category: "peiros",
-      note: { he: "לֹא עוֹשִׂין תְּמָרִים דְּבַשׁ בְּמַעֲשֵׂר שֵׁנִי (עַיֵּן תְּרוּמוֹת יא:ג).", en: "Dates are not made into honey as maaser sheni (Terumot 11:3)." }, ref: "Terumot 11:3" } }
+      note: { he: "לֹא עוֹשִׂין תְּמָרִים דְּבַשׁ בְּמַעֲשֵׂר שֵׁנִי (עַיֵּן תְּרוּמוֹת יא:ג).", en: "Dates are not made into honey as maaser sheni (Terumos 11:3)." }, ref: "Terumos 11:3" } }
   ]
 };

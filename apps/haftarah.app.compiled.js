@@ -487,11 +487,11 @@ const T = {
     he: "עֹגֶן חַבַּ״ד — שֻׁלְחָן עָרוּךְ הָרַב או״ח רפ״ד. הַכְּלָל (סְעִיף א׳): ״וְקָרְאוּ בִּנְבִיאִים מֵעִנְיַן הַפָּרָשָׁה.״ וּמִנְהַג חַבַּ״ד הַמְיֻחָד (סְעִיף י״א): ״וְיֵשׁ נוֹהֲגִים מִטַּעַם הַיָּדוּעַ לָהֶם... אֶלָּא הֵם בְּעַצְמָם קוֹרִין הַהַפְטָרָה.״"
   },
   remaining: {
-    en: "Remaining parshiyot",
+    en: "Remaining parshiyos",
     he: "שְׁאָר הַפָּרָשִׁיּוֹת"
   },
   weeklyTail: {
-    en: "Matot, Masei, Devarim, Va'etchanan, Eikev, Re'eh, Shoftim, Ki Tetze, Ki Tavo, Nitzavim, Vayelech, Ha'azinu — these fall after 17 Tammuz, so their haftarot are the seasonal ones (3 rebuke / 7 consolation / 2 repentance), not parsha-matched. (Abudraham \u00a743.)",
+    en: "Matot, Masei, Devarim, Va'etchanan, Eikev, Re'eh, Shoftim, Ki Tetze, Ki Tavo, Nitzavim, Vayelech, Ha'azinu — these fall after 17 Tammuz, so their haftaros are the seasonal ones (3 rebuke / 7 consolation / 2 repentance), not parsha-matched. (Abudraham \u00a743.)",
     he: "מַטּוֹת, מַסְעֵי, דְּבָרִים, וָאֶתְחַנַּן, עֵקֶב, רְאֵה, שׁוֹפְטִים, כִּי תֵצֵא, כִּי תָבוֹא, נִצָּבִים, וַיֵּלֶךְ, הַאֲזִינוּ — בָּאוֹת לְאַחַר י״ז בְּתַמּוּז, וְעַל כֵּן הַפְטָרוֹתֵיהֶן הֵן שֶׁל הַמַּחֲזוֹר (ג׳ דְּפֻרְעָנוּתָא / ז׳ דְּנֶחָמְתָּא / ב׳ דְּתִיּוּבְתָּא), וְלֹא לְפִי הַפָּרָשָׁה. (אֲבוּדַרְהַם \u00a7מ״ג.)"
   },
   torah: {
@@ -514,8 +514,8 @@ const T = {
     en: "Change over time",
     he: "שִׁנּוּי בְּמֶשֶׁךְ הַדּוֹרוֹת"
   },
-  machloket: {
-    en: "MACHLOKET",
+  machlokes: {
+    en: "MACHLOKES",
     he: "מַחֲלֹקֶת"
   },
   changed: {
@@ -595,7 +595,7 @@ const LINEAGE = [{
   layer: "geniza",
   anchor: "cited",
   what: {
-    en: "Palestinian triennial-cycle haftarot, paired with each seder (often via piyyut). The earliest physical evidence of fixed weekly haftarot — but a different system from our annual cycle, so no one-to-one map.",
+    en: "Palestinian triennial-cycle haftaros, paired with each seder (often via piyyut). The earliest physical evidence of fixed weekly haftaros — but a different system from our annual cycle, so no one-to-one map.",
     he: "הַפְטָרוֹת הַמַּחֲזוֹר הַתְּלָת־שְׁנָתִי שֶׁל אֶרֶץ יִשְׂרָאֵל, מְחֻבָּרוֹת לְכָל סֵדֶר (לִפְעָמִים דֶּרֶךְ פִּיּוּט). הָעֵדוּת הַגַּשְׁמִית הַקַּדְמוּתִית בְּיוֹתֵר לְהַפְטָרוֹת שְׁבוּעִיּוֹת קְבוּעוֹת — אַךְ שִׁיטָה אַחֶרֶת מִמַּחֲזוֹרֵנוּ הַשְּׁנָתִי, וְאֵין הַתְאָמָה אַחַת לְאַחַת."
   },
   cite: {
@@ -945,7 +945,7 @@ const WEEKLY = [{
   seg: 34,
   reason: {
     text: {
-      en: "Ezra ordained that the curses in Vayikra be read before Shavuot, so that the year and its curses conclude with the outgoing year.",
+      en: "Ezra ordained that the curses in Vayikra be read before Shavuos, so that the year and its curses conclude with the outgoing year.",
       he: "תִּקֵּן עֶזְרָא שֶׁיְּהוּ קוֹרִין קְלָלוֹת שֶׁבְּתוֹרַת כֹּהֲנִים קֹדֶם עֲצֶרֶת, כְּדֵי שֶׁתִּכְלֶה שָׁנָה וְקִלְלוֹתֶיהָ."
     },
     heb: "כְּדֵי שֶׁתִּכְלֶה שָׁנָה וְקִלְלוֹתֶיהָ.",
@@ -1016,14 +1016,14 @@ const WEEKLY = [{
   range: "18:46–19:21",
   seg: 42
 }];
-const CATS = ["All", "Weekly Cycle", "Festivals", "Yamim Nora'im", "Seasonal Cycle", "Arba Parshiyot", "Other"];
+const CATS = ["All", "Weekly Cycle", "Festivals", "Yamim Nora'im", "Seasonal Cycle", "Arba Parshiyos", "Other"];
 const CATS_HE = {
   All: "הַכֹּל",
   "Weekly Cycle": "מַחֲזוֹר שְׁבוּעִי",
   Festivals: "מוֹעֲדִים",
   "Yamim Nora'im": "יָמִים נוֹרָאִים",
   "Seasonal Cycle": "מַחֲזוֹר הַשָּׁנָה",
-  "Arba Parshiyot": "אַרְבַּע פָּרָשִׁיּוֹת",
+  "Arba Parshiyos": "אַרְבַּע פָּרָשִׁיּוֹת",
   Other: "שְׁאָר"
 };
 const catName = (lang, c) => lang === "he" ? CATS_HE[c] : c;
@@ -1034,7 +1034,7 @@ const TRAD_HE = {
   Baraita: "בָּרַיְתָא",
   Settled: "לַהֲלָכָה",
   SA: "שֻׁלְחָן עָרוּךְ",
-  "2nd Shabbat": "שַׁבָּת ב׳"
+  "2nd Shabbos": "שַׁבָּת ב׳"
 };
 const tradName = (lang, t) => lang === "he" ? TRAD_HE[t] || t : t;
 const DATA = [{
@@ -1056,7 +1056,7 @@ const DATA = [{
     },
     range: "Ex. 12:21–51"
   }],
-  haftarot: [{
+  haftaros: [{
     trad: "All",
     layer: "baraita",
     inc: "בְּפֶסַח גִּלְגָּל",
@@ -1093,7 +1093,7 @@ const DATA = [{
     },
     range: "Ex. 13:17–15:26"
   }],
-  haftarot: [{
+  haftaros: [{
     trad: "All",
     layer: "baraita",
     inc: "וַיְדַבֵּר דָּוִד",
@@ -1129,7 +1129,7 @@ const DATA = [{
     },
     range: "Deut. 15:19–16:17"
   }],
-  haftarot: [{
+  haftaros: [{
     trad: "All",
     layer: "baraita",
     inc: "עוֹד הַיּוֹם בְּנֹב לַעֲמֹד",
@@ -1154,7 +1154,7 @@ const DATA = [{
 }, {
   cat: "Festivals",
   occ: {
-    en: "Shavuot — Day 1",
+    en: "Shavuos — Day 1",
     he: "שָׁבוּעוֹת — יוֹם א׳"
   },
   torah: [{
@@ -1164,14 +1164,14 @@ const DATA = [{
     },
     range: "Ex. 19:1–20:23"
   }],
-  haftarot: [{
+  haftaros: [{
     trad: "All",
     layer: "pesak",
     inc: "מַעֲשֵׂה מֶרְכָּבָה",
     en: "The Chariot of Ezekiel",
     range: "Ezekiel 1, ending 3:12"
   }],
-  machloket: {
+  machlokes: {
     dispute: {
       en: "Talmud: TK (Habakkuk) vs Acherim (Merkava).",
       he: "תַּלְמוּד: ת״ק (חֲבַקּוּק) מוּל אֲחֵרִים (מֶרְכָּבָה)."
@@ -1210,7 +1210,7 @@ const DATA = [{
 }, {
   cat: "Festivals",
   occ: {
-    en: "Shavuot — Day 2 (diaspora)",
+    en: "Shavuos — Day 2 (diaspora)",
     he: "שָׁבוּעוֹת — יוֹם ב׳"
   },
   torah: [{
@@ -1220,7 +1220,7 @@ const DATA = [{
     },
     range: "Deut. 15:19–16:17"
   }],
-  haftarot: [{
+  haftaros: [{
     trad: "All",
     layer: "pesak",
     inc: "וַה׳ בְּהֵיכַל קׇדְשׁוֹ",
@@ -1246,7 +1246,7 @@ const DATA = [{
 }, {
   cat: "Festivals",
   occ: {
-    en: "Sukkot — Day 1",
+    en: "Sukkos — Day 1",
     he: "סֻכּוֹת — יוֹם א׳"
   },
   torah: [{
@@ -1256,7 +1256,7 @@ const DATA = [{
     },
     range: "Lev. 22:26–23:44"
   }],
-  haftarot: [{
+  haftaros: [{
     trad: "All",
     layer: "baraita",
     inc: "הִנֵּה יוֹם בָּא לַה׳",
@@ -1265,7 +1265,7 @@ const DATA = [{
   }],
   reason: {
     text: {
-      en: "Zechariah 14 is read because it speaks explicitly of keeping the festival of Sukkot.",
+      en: "Zechariah 14 is read because it speaks explicitly of keeping the festival of Sukkos.",
       he: "מַפְטִירִין בִּזְכַרְיָה י״ד לְפִי שֶׁנֶּאֱמַר בּוֹ בְּפֵרוּשׁ ״לָחֹג אֶת חַג הַסֻּכּוֹת״."
     },
     heb: "הִנֵּה יוֹם בָּא לַה׳ — דִּכְתִיב בֵּיהּ לָחֹג אֶת חַג הַסֻּכּוֹת.",
@@ -1282,7 +1282,7 @@ const DATA = [{
 }, {
   cat: "Festivals",
   occ: {
-    en: "Sukkot · Day 2 (diaspora)",
+    en: "Sukkos · Day 2 (diaspora)",
     he: "סֻכּוֹת · יוֹם ב׳"
   },
   torah: [{
@@ -1292,7 +1292,7 @@ const DATA = [{
     },
     range: "Lev. 22:26–23:44"
   }],
-  haftarot: [{
+  haftaros: [{
     trad: "All",
     layer: "baraita",
     inc: "וַיִּקָּהֲלוּ אֶל הַמֶּלֶךְ שְׁלֹמֹה",
@@ -1301,7 +1301,7 @@ const DATA = [{
   }],
   reason: {
     text: {
-      en: "Solomon assembled Israel for the Temple’s dedication on the festival of Sukkot.",
+      en: "Solomon assembled Israel for the Temple’s dedication on the festival of Sukkos.",
       he: "שְׁלֹמֹה הִקְהִיל אֶת יִשְׂרָאֵל לַחֲנֻכַּת הַבַּיִת בְּחַג הַסֻּכּוֹת."
     },
     src: S.meg31a
@@ -1317,7 +1317,7 @@ const DATA = [{
 }, {
   cat: "Festivals",
   occ: {
-    en: "Sukkot · Shabbat Chol HaMoed",
+    en: "Sukkos · Shabbos Chol HaMoed",
     he: "סֻכּוֹת · שַׁבָּת חוֹל הַמּוֹעֵד"
   },
   torah: [{
@@ -1327,7 +1327,7 @@ const DATA = [{
     },
     range: "Ex. 33:12–34:26"
   }],
-  haftarot: [{
+  haftaros: [{
     trad: "All",
     layer: "baraita",
     inc: "וְהָיָה בַּיּוֹם הַהוּא בְּיוֹם בּוֹא גוֹג",
@@ -1336,7 +1336,7 @@ const DATA = [{
   }],
   reason: {
     text: {
-      en: "The war of Gog is foretold to occur in Tishrei, the month of Sukkot.",
+      en: "The war of Gog is foretold to occur in Tishrei, the month of Sukkos.",
       he: "מִלְחֶמֶת גּוֹג עֲתִידָה לִהְיוֹת בְּתִשְׁרֵי, חֹדֶשׁ הֶחָג."
     },
     src: S.meg31a
@@ -1362,7 +1362,7 @@ const DATA = [{
     },
     range: "Deut. 14:22–16:17"
   }],
-  haftarot: [{
+  haftaros: [{
     trad: "All",
     layer: "baraita",
     inc: "וַיְהִי כְּכַלּוֹת שְׁלֹמֹה לְהִתְפַּלֵּל",
@@ -1387,7 +1387,7 @@ const DATA = [{
 }, {
   cat: "Festivals",
   occ: {
-    en: "Simchat Torah",
+    en: "Simchas Torah",
     he: "שִׂמְחַת תּוֹרָה"
   },
   torah: [{
@@ -1397,7 +1397,7 @@ const DATA = [{
     },
     range: "Deut. 33–34"
   }],
-  haftarot: [{
+  haftaros: [{
     trad: "Baraita",
     layer: "baraita",
     inc: "וַיַּעֲמֹד שְׁלֹמֹה",
@@ -1410,7 +1410,7 @@ const DATA = [{
     en: "Joshua",
     range: "Joshua 1"
   }],
-  machloket: {
+  machlokes: {
     dispute: {
       en: "Talmud: Vayaamod Shlomo.",
       he: "תַּלְמוּד: וַיַּעֲמֹד שְׁלֹמֹה."
@@ -1442,14 +1442,14 @@ const DATA = [{
     },
     range: "Gen. 21"
   }],
-  haftarot: [{
+  haftaros: [{
     trad: "Settled",
     layer: "pesak",
     inc: "וַיְהִי אִישׁ אֶחָד",
     en: "Hannah",
     range: "I Samuel 1:1–2:10"
   }],
-  machloket: {
+  machlokes: {
     dispute: {
       en: "Talmud: TK (Haben Yakir) vs Yesh Omrim (Hannah).",
       he: "תַּלְמוּד: ת״ק (הֲבֵן יַקִּיר) מוּל יֵשׁ אוֹמְרִים (חַנָּה)."
@@ -1495,7 +1495,7 @@ const DATA = [{
     },
     range: "Lev. 16"
   }],
-  haftarot: [{
+  haftaros: [{
     trad: "All",
     layer: "baraita",
     inc: "כִּי כֹה אָמַר רָם וְנִשָּׂא",
@@ -1531,7 +1531,7 @@ const DATA = [{
     },
     range: "Lev. 18"
   }],
-  haftarot: [{
+  haftaros: [{
     trad: "All",
     layer: "baraita",
     inc: "יוֹנָה",
@@ -1558,7 +1558,7 @@ const DATA = [{
       he: "(פָּרָשִׁיּוֹת שְׁבוּעִיּוֹת, י״ז תַּמּוּז ← ט׳ בְּאָב)"
     }
   }],
-  haftarot: [{
+  haftaros: [{
     trad: "SA",
     layer: "pesak",
     inc: "דִּבְרֵי יִרְמְיָהוּ",
@@ -1577,7 +1577,7 @@ const DATA = [{
     en: "3. Vision of Isaiah",
     range: "Isa. 1:1–27"
   }],
-  machloket: {
+  machlokes: {
     dispute: {
       en: "Rambam's set ends with Isaiah 1:21.",
       he: "סִדְרַת הָרַמְבַּ״ם מְסַיֶּמֶת בִּ״אֵיכָה הָיְתָה לְזוֹנָה״ (יְשַׁעְיָה א׳:כא)."
@@ -1617,7 +1617,7 @@ const DATA = [{
       he: "(פָּרָשִׁיּוֹת שְׁבוּעִיּוֹת, ט׳ בְּאָב ← רֹאשׁ הַשָּׁנָה)"
     }
   }],
-  haftarot: [{
+  haftaros: [{
     trad: "SA",
     layer: "pesak",
     inc: "נַחֲמוּ נַחֲמוּ",
@@ -1682,11 +1682,11 @@ const DATA = [{
   },
   torah: [{
     label: {
-      en: "Tzom Gedalia (mincha) · Shabbat Shuva",
+      en: "Tzom Gedalia (mincha) · Shabbos Shuva",
       he: "צוֹם גְּדַלְיָה (מִנְחָה) · שַׁבָּת שׁוּבָה"
     }
   }],
-  haftarot: [{
+  haftaros: [{
     trad: "SA",
     layer: "pesak",
     inc: "דִּרְשׁוּ ה׳",
@@ -1696,7 +1696,7 @@ const DATA = [{
     trad: "SA",
     layer: "pesak",
     inc: "שׁוּבָה יִשְׂרָאֵל",
-    en: "Shabbat Shuva",
+    en: "Shabbos Shuva",
     range: "Hosea 14:2–10"
   }],
   change: null,
@@ -1708,7 +1708,7 @@ const DATA = [{
     he: "שו״ע או״ח תכ״ח:ח"
   }
 }, {
-  cat: "Arba Parshiyot",
+  cat: "Arba Parshiyos",
   occ: {
     en: "Shekalim",
     he: "שְׁקָלִים"
@@ -1720,7 +1720,7 @@ const DATA = [{
     },
     range: "Ex. 30:11–16"
   }],
-  haftarot: [{
+  haftaros: [{
     trad: "All",
     layer: "mishnah",
     inc: "יְהוֹיָדָע הַכֹּהֵן",
@@ -1739,7 +1739,7 @@ const DATA = [{
     he: "תּוֹסֶפְתָּא מְגִלָּה ג׳; מְגִלָּה ל׳."
   }
 }, {
-  cat: "Arba Parshiyot",
+  cat: "Arba Parshiyos",
   occ: {
     en: "Zachor",
     he: "זָכוֹר"
@@ -1751,7 +1751,7 @@ const DATA = [{
     },
     range: "Deut. 25:17–19"
   }],
-  haftarot: [{
+  haftaros: [{
     trad: "All",
     layer: "mishnah",
     inc: "פָּקַדְתִּי אֵת אֲשֶׁר עָשָׂה עֲמָלֵק",
@@ -1767,7 +1767,7 @@ const DATA = [{
     he: "תּוֹסֶפְתָּא מְגִלָּה ג׳; מְגִלָּה ל׳."
   }
 }, {
-  cat: "Arba Parshiyot",
+  cat: "Arba Parshiyos",
   occ: {
     en: "Parah",
     he: "פָּרָה"
@@ -1779,7 +1779,7 @@ const DATA = [{
     },
     range: "Num. 19:1–22"
   }],
-  haftarot: [{
+  haftaros: [{
     trad: "All",
     layer: "mishnah",
     inc: "וְזָרַקְתִּי עֲלֵיכֶם",
@@ -1798,7 +1798,7 @@ const DATA = [{
     he: "תּוֹסֶפְתָּא מְגִלָּה ג׳; מְגִלָּה ל׳."
   }
 }, {
-  cat: "Arba Parshiyot",
+  cat: "Arba Parshiyos",
   occ: {
     en: "HaChodesh",
     he: "הַחֹדֶשׁ"
@@ -1810,7 +1810,7 @@ const DATA = [{
     },
     range: "Ex. 12:1–20"
   }],
-  haftarot: [{
+  haftaros: [{
     trad: "All",
     layer: "mishnah",
     inc: "בָּרִאשׁוֹן בְּאֶחָד לַחֹדֶשׁ",
@@ -1841,14 +1841,14 @@ const DATA = [{
     },
     range: "Numbers 7"
   }],
-  haftarot: [{
+  haftaros: [{
     trad: "All",
     layer: "baraita",
     inc: "נֵרוֹת דִּזְכַרְיָה",
     en: "Lamps of Zechariah",
     range: "Zechariah 2:14–4:7"
   }, {
-    trad: "2nd Shabbat",
+    trad: "2nd Shabbos",
     layer: "baraita",
     inc: "נֵרוֹת שְׁלֹמֹה",
     en: "Lamps of Solomon",
@@ -1856,7 +1856,7 @@ const DATA = [{
   }],
   change: {
     text: {
-      en: "Two Shabbatot in Chanukah: 1st Nerot Zechariah, 2nd Nerot Shlomo.",
+      en: "Two Shabbosos in Chanukah: 1st Nerot Zechariah, 2nd Nerot Shlomo.",
       he: "שְׁתֵּי שַׁבָּתוֹת בַּחֲנֻכָּה: א׳ נֵרוֹת זְכַרְיָה, ב׳ נֵרוֹת שְׁלֹמֹה."
     },
     src: S.meg31a
@@ -1865,7 +1865,7 @@ const DATA = [{
   sources: [S.meg31a],
   reason: {
     text: {
-      en: "Zechariah's menorah vision; the second Shabbat reads Solomon's menorahs.",
+      en: "Zechariah's menorah vision; the second Shabbos reads Solomon's menorahs.",
       he: "מַרְאֵה הַמְּנוֹרָה דִּזְכַרְיָה; וּבַשַּׁבָּת הַשְּׁנִיָּה נֵרוֹת שְׁלֹמֹה."
     },
     heb: "נֵרוֹת דִּזְכַרְיָה — רָנִּי וְשִׂמְחִי, עַל שֵׁם רָאִיתִי וְהִנֵּה מְנוֹרַת זָהָב כֻּלָּהּ. נֵרוֹת דִּשְׁלֹמֹה — וַיַּעַשׂ חִירוֹם... אֶת הַמְּנוֹרוֹת חָמֵשׁ.",
@@ -1889,14 +1889,14 @@ const DATA = [{
     },
     range: "Deut. 4:25–40"
   }],
-  haftarot: [{
+  haftaros: [{
     trad: "All",
     layer: "haidna",
     inc: "אָסֹף אֲסִיפֵם",
     en: "I will utterly consume them",
     range: "Jeremiah 8:13–9:23"
   }],
-  machloket: {
+  machlokes: {
     dispute: {
       en: "Talmud lists several options (Rav: Isaiah 1:21).",
       he: "הַתַּלְמוּד מוֹנֶה כַּמָּה (רַב: ״אֵיכָה הָיְתָה״, יְשַׁעְיָה א׳:כא)."
@@ -1970,7 +1970,7 @@ const CHABAD_TEASER = {
   "Tazria": "This week's haftorah describes how a prophet miraculously cured an Aramite general of his tzara'at ailment.",
   "Metzora": "This week's haftorah discusses the story of four men stricken by tzara'at, a skin ailment caused by sins — one of the main topics of this week's Torah reading.",
   "Acharei Mot": "This week's haftorah foretells the exiles and punishments that will befall the Jews because they strayed after the ways of the heathens — behavior that this week's Torah reading proscribes.",
-  "Kedoshim": "This week's haftorah mentions G‑d's repeated enjoinders to observe the commandments, keep the Shabbat and eschew idol worship; reflective of this week's Torah portion, which discusses many commandments, including the obligation to sanctify the Shabbat and reject idolatry.",
+  "Kedoshim": "This week's haftorah mentions G‑d's repeated enjoinders to observe the commandments, keep the Shabbos and eschew idol worship; reflective of this week's Torah portion, which discusses many commandments, including the obligation to sanctify the Shabbos and reject idolatry.",
   "Behar": "This week's haftorah discusses the purchase of a field by Jeremiah, echoing one of the themes of this week's Torah portion—the purchase and redemption of real estate.",
   "Bechukotai": "This follows the theme of this week's Torah reading which details at length the blessings and curses.",
   "Bamidbar": "An appropriate reading for the first Torah reading of the Book of Numbers.",
@@ -2355,7 +2355,7 @@ function Row({
       flexWrap: "wrap",
       justifyContent: "flex-end"
     }
-  }, d.machloket && /*#__PURE__*/React.createElement("span", {
+  }, d.machlokes && /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: 10,
       fontWeight: 700,
@@ -2364,7 +2364,7 @@ function Row({
       padding: "2px 7px",
       borderRadius: 999
     }
-  }, tr(lang, T.machloket)), d.change && /*#__PURE__*/React.createElement("span", {
+  }, tr(lang, T.machlokes)), d.change && /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: 10,
       fontWeight: 700,
@@ -2403,7 +2403,7 @@ function Row({
       flexDirection: "column",
       gap: 7
     }
-  }, d.haftarot.map((h, i) => /*#__PURE__*/React.createElement("div", {
+  }, d.haftaros.map((h, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
     style: {
       display: "flex",
@@ -2441,7 +2441,7 @@ function Row({
       color: C.gold,
       fontWeight: 600
     }
-  }, "[", h.range, "]")))), d.machloket && /*#__PURE__*/React.createElement("div", {
+  }, "[", h.range, "]")))), d.machlokes && /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 10,
       fontSize: 12.5,
@@ -2457,7 +2457,7 @@ function Row({
       fontWeight: 700,
       color: C.tekhelet
     }
-  }, tr(lang, T.dispute), " · "), tr(lang, d.machloket.dispute)), /*#__PURE__*/React.createElement("div", {
+  }, tr(lang, T.dispute), " · "), tr(lang, d.machlokes.dispute)), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 3
     }
@@ -2466,11 +2466,11 @@ function Row({
       fontWeight: 700,
       color: C.tekhelet
     }
-  }, tr(lang, T.resolved), " · "), tr(lang, d.machloket.resolution), " ", /*#__PURE__*/React.createElement("span", {
+  }, tr(lang, T.resolved), " · "), tr(lang, d.machlokes.resolution), " ", /*#__PURE__*/React.createElement("span", {
     style: {
       color: C.sub
     }
-  }, "(", he ? d.machloket.src.he : d.machloket.src.label, ")"))), d.change && /*#__PURE__*/React.createElement("div", {
+  }, "(", he ? d.machlokes.src.he : d.machlokes.src.label, ")"))), d.change && /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 8,
       fontSize: 12.5,
@@ -2581,7 +2581,7 @@ function Row({
       color: C.sub
     },
     className: he ? "heb" : ""
-  }, tr(lang, T.haftaraText), ":"), d.haftarot.filter(h => naviUrl(h.range)).map((h, i) => /*#__PURE__*/React.createElement("a", {
+  }, tr(lang, T.haftaraText), ":"), d.haftaros.filter(h => naviUrl(h.range)).map((h, i) => /*#__PURE__*/React.createElement("a", {
     key: i,
     href: naviUrl(h.range),
     target: "_blank",
@@ -2626,23 +2626,26 @@ function Row({
     }
   }, he ? s.he : s.label, " ↗")))));
 }
+function foldT(s) {
+  return String(s).toLowerCase().replace(/shabbos/g, "shabbat").replace(/sukkos/g, "sukkot").replace(/shavuos/g, "shavuot").replace(/simchas/g, "simchat").replace(/haftaros/g, "haftarot").replace(/machlokes/g, "machloket").replace(/parshiyos/g, "parshiyot").replace(/bereishis/g, "bereishit").replace(/shemos/g, "shemot").replace(/sukkot\b/g, "sukkot");
+}
 function HaftarahReference() {
   const [cat, setCat] = useState("All");
   const [q, setQ] = useState("");
   const [lang, setLang] = useState("en");
   const he = lang === "he";
   const rows = useMemo(() => {
-    const term = q.trim().toLowerCase();
+    const term = foldT(q.trim());
     return DATA.filter(d => cat === "All" || d.cat === cat).filter(d => {
       if (!term) return true;
-      const hay = (d.occ.en + " " + d.occ.he + " " + d.heb + " " + d.haftarot.map(h => h.en + h.inc + h.range + h.trad).join(" ")).toLowerCase();
+      const hay = foldT(d.occ.en + " " + d.occ.he + " " + d.heb + " " + d.haftaros.map(h => h.en + h.inc + h.range + h.trad).join(" "));
       return hay.includes(term);
     });
   }, [cat, q]);
   const weeklyRows = useMemo(() => {
-    const term = q.trim().toLowerCase();
+    const term = foldT(q.trim());
     if (!(cat === "All" || cat === "Weekly Cycle")) return [];
-    return WEEKLY.filter(w => !term || (w.p + w.pHe + w.inc + w.end + w.book + w.range).toLowerCase().includes(term));
+    return WEEKLY.filter(w => !term || foldT(w.p + w.pHe + w.inc + w.end + w.book + w.range).includes(term));
   }, [cat, q]);
   const btn = active => ({
     fontSize: 12.5,

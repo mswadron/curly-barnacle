@@ -261,7 +261,7 @@ function timelineLabel(ev){
     levi_chodesh:'Iyyar Yr 2',
     bechorot:   'Iyyar Yr 2',
     levi_avodah:'Iyyar Yr 2',
-    bamidbar26: 'Arvot Moav'
+    bamidbar26: 'Arvos Moav'
   };
   return map[ev.id] || '';
 }
@@ -557,7 +557,7 @@ function renderMethod(){
   const disp = D.shemosBamidbarMachloket;
   const dispHtml = `
     <div class="mth-disp">
-      <div class="mth-disp-hd">Machloket Rishonim ${state.langs.he ? '<span class="he">מַחֲלוֹקֶת רִאשׁוֹנִים</span>' : ''}</div>
+      <div class="mth-disp-hd">Machlokes Rishonim ${state.langs.he ? '<span class="he">מַחֲלוֹקֶת רִאשׁוֹנִים</span>' : ''}</div>
       <div class="mth-disp-q">${disp.question.en}</div>
       ${disp.positions.map(p => `
         <div class="mth-pos">
@@ -624,7 +624,7 @@ function renderGrowth(){
     {
       lbl:'Yr 1 → Yr 2',
       num:'0% change',
-      body:'Both Shemos 38:26 and Bamidbar 1:46 record 603,550. Whether this reflects one census or two near-simultaneous ones is the classical Ramban-vs-Rashi machloket.'
+      body:'Both Shemos 38:26 and Bamidbar 1:46 record 603,550. Whether this reflects one census or two near-simultaneous ones is the classical Ramban-vs-Rashi machlokes.'
     },
     {
       lbl:'Yr 2 → Yr 40',
