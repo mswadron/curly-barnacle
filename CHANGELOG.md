@@ -18,6 +18,9 @@ All notable changes to **Torah Interactive**. Format loosely follows
 ### Wired
 - Added the `site-chrome.js` include before `</body>` in all 20 live app pages and `index.html` (relative `../site-chrome.js` in `apps/`, `site-chrome.js` at root).
 
+### Added (zmanim defaults)
+- The Zmanim app now remembers your defaults: chosen location, the view (concept + filter), and a preferred shita per zman. Tap the star (★) on any method to set it as your default — the row highlights. Saved per-device with no login needed; when signed in, it syncs across devices via Firestore (`users/{uid}`). Login is additive — the Torah content and the app stay fully open.
+
 ### Changed
 - Reorganized the repository for a smaller working set:
   - `apps/_archive/` now holds orphan / superseded / experimental pages that are **not** linked from `index.html`: `Trup.html` (+ `trup.js`, `trup-data.js`), `arayot-v6.html`, `clarinet-lab.html`, `trup-calibrate.html`, `zimanim.html`.

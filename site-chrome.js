@@ -244,7 +244,9 @@
       fb.auth.onAuthStateChanged(function (u) {
         fb.user = u;
         renderAuth();
+        syncZmanimDown(u);
       });
+      window.addEventListener("zm-prefs-changed", syncZmanimUp);
     } catch (e) { disconnected(); }
   }
 
@@ -295,5 +297,32 @@
       els.ta.value = els.ta.value + "";
       alert("Could not send just now — please try again.");
     });
+  }
+
+  /* Cross-device sync of zmanim defaults (location + preferred shitos) --- */
+  var ZKEYS = ["zm_locId", "zm_custom", "zm_concept", "zm_filter", "zm_prefShita"];
+  function syncZmanimDown(user) {
+    if (!fb.ready || !user) return;
+    fb.db.collection("users").doc(user.uid).get().then(function (snap) {
+      if (!snap.exists) return;
+      var data = snap.data() || {};
+      var z = data.zmanim;
+      if (!z) return;
+      var changed = false;
+      ZKEYS.forEach(function (k) {
+        if (z[k] != null) { try { localStorage.setItem(k, z[k]); changed = true; } catch (e) {} }
+      });
+      if (changed) window.dispatchEvent(new CustomEvent("zm-cloud-prefs"));
+    })["catch"](function () {});
+  }
+  var zUpTimer = null;
+  function syncZmanimUp() {
+    if (!fb.ready || !fb.user) return;
+    clearTimeout(zUpTimer);
+    zUpTimer = setTimeout(function () {
+      var z = {};
+      ZKEYS.forEach(function (k) { try { var v = localStorage.getItem(k); if (v != null) z[k] = v; } catch (e) {} });
+      fb.db.collection("users").doc(fb.user.uid).set({ zmanim: z }, { merge: true })["catch"](function () {});
+    }, 600);
   }
 })();
