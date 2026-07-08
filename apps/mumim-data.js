@@ -1,0 +1,193 @@
+/* mumim-data.js — the mumim of Vayikra 21 (kohen) and Vayikra 22 (korban).
+ * Every Hebrew quotation is verbatim (pesukim: Miqra per the Masorah, trup stripped;
+ * Rashi: Silbermann ed.; Mishnah: Torat Emet; Rambam: Torat Emet) — pulled and
+ * verified against Sefaria 2026-07-08. Bavli references are linked, not quoted.
+ */
+window.MUMIM_DATA = {
+
+  intro: {
+    he: "אִישׁ מִזַּרְעֲךָ לְדֹרֹתָם אֲשֶׁר יִהְיֶה בוֹ מוּם לֹא יִקְרַב לְהַקְרִיב לֶחֶם אֱלֹהָיו",
+    ref: "ויקרא כא, יז",
+    url: "https://www.sefaria.org/Leviticus.21.17",
+    en: "Two parallel catalogues: the mumim that disqualify a kohen from avodah (Vayikra 21), and the mumim that disqualify an animal from the mizbeach (Vayikra 22). The Torah names each defect in a word or two; what each word means is worked out in Bechoros (ch. 6–7 and dapim 38–45). Every quotation below is brought as written; where the meaning is a machlokes, the machlokes is shown."
+  },
+
+  klalim: [
+    {
+      id: "klal-kohen",
+      he: "הַכְּלָל בְּכֹהֵן",
+      en: "The rule for a kohen",
+      sources: [
+        { label: "רמב״ם, ביאת המקדש ו, א",
+          he: "כָּל כֹּהֵן שֶׁיֵּשׁ בּוֹ מוּם בֵּין מוּם קָבוּעַ בֵּין מוּם עוֹבֵר לֹא יִכָּנֵס לַמִּקְדָּשׁ מִן הַמִּזְבֵּחַ וּלְפָנִים... וְאִם עָבַד בַּמִּקְדָּשׁ פָּסַל וְחִלֵּל עֲבוֹדָה וְלוֹקֶה עַל הָעֲבוֹדָה, שֶׁנֶּאֱמַר אֲשֶׁר יִהְיֶה בוֹ מוּם לֹא יִקְרַב.",
+          url: "https://www.sefaria.org/Mishneh_Torah,_Admission_into_the_Sanctuary.6.1" },
+        { label: "משנה בכורות ז, א",
+          he: "מוּמִין אֵלּוּ, בֵּין קְבוּעִין בֵּין עוֹבְרִין, פּוֹסְלִין בָּאָדָם. יוֹתֵר עֲלֵיהֶן בָּאָדָם: הַכִּילוֹן, וְהַלַּפְתָּן, הַמַּקָּבָן, וְשֶׁרֹאשׁוֹ שָׁקוּעַ, וּשְׁקִיפָס. וּבַעֲלֵי הַחֲטוֹטֶרֶת — רַבִּי יְהוּדָה מַכְשִׁיר, וַחֲכָמִים פּוֹסְלִין.",
+          url: "https://www.sefaria.org/Mishnah_Bekhorot.7.1" }
+      ],
+      note: "A kohen with a mum — permanent or passing — may not serve; if he served, the avodah is chullin and he is lokeh. The Mishnah adds kohen-specific mumim beyond the animal list (head-shape, and the chatoteres in machlokes). A baal mum still eats kodshim (Vayikra 21:22)."
+    },
+    {
+      id: "klal-behemah",
+      he: "הַכְּלָל בְּקָרְבָּן",
+      en: "The rule for a korban",
+      sources: [
+        { label: "רמב״ם, איסורי מזבח א, א",
+          he: "מִצְוַת עֲשֵׂה לִהְיוֹת כָּל הַקָּרְבָּנוֹת תְּמִימִין וּמֻבְחָרִין, שֶׁנֶּאֱמַר תָּמִים יִהְיֶה לְרָצוֹן — זוֹ מִצְוַת עֲשֵׂה.",
+          url: "https://www.sefaria.org/Mishneh_Torah,_Things_Forbidden_on_the_Altar.1.1" },
+        { label: "רש״י ויקרא כב, כב",
+          he: "לֹא תַקְרִיבוּ — שָׁלוֹשׁ פְּעָמִים, לְהַזְהִיר עַל הַקְדָּשָׁתָן וְעַל שְׁחִיטָתָן וְעַל זְרִיקַת דָּמָן (תמורה ו).",
+          url: "https://www.sefaria.org/Rashi_on_Leviticus.22.22.6" },
+        { label: "משנה בכורות ו, יב",
+          he: "וְזָקֵן, וְחוֹלֶה, וּמְזֻהָם, וְשֶׁנֶּעֶבְדָה בוֹ עֲבֵרָה... וְטֻמְטוּם וְאַנְדְּרוֹגִינוֹס — לֹא בַמִּקְדָּשׁ וְלֹא בַמְּדִינָה. רַבִּי יִשְׁמָעֵאל אוֹמֵר: אֵין מוּם גָּדוֹל מִזֶּה. וַחֲכָמִים אוֹמְרִים: אֵינוֹ בְכוֹר, אֶלָּא נִגְזָז וְנֶעֱבָד.",
+          url: "https://www.sefaria.org/Mishnah_Bekhorot.6.12" }
+      ],
+      note: "Offering a baal mum is warned three times over — hekdesh, shechitah, and zerikah each carry their own lav (Rashi from Temurah). Beyond the Torah's named mumim, the Mishnah lists conditions that bar an animal from the mizbeach without permitting it outside (zaken, choleh, mezuham), ending with the tumtum/androginos machlokes."
+    }
+  ],
+
+  sections: [
+    {
+      id: "kohen",
+      he: "מוּמֵי כֹּהֲנִים",
+      en: "Mumim of a Kohen",
+      lead: "שנים־עשר מומים נמנו בפרשה (ויקרא כא, יח–כ); המשנה בבכורות פרק ז מוסיפה עליהם. Twelve named in the parsha; Bechoros ch. 7 adds more.",
+      pesukim: [
+        { he: "כִּי כָל־אִישׁ אֲשֶׁר־בּוֹ מוּם לֹא יִקְרָב, אִישׁ עִוֵּר אוֹ פִסֵּחַ אוֹ חָרֻם אוֹ שָׂרוּעַ׃", ref: "ויקרא כא, יח", url: "https://www.sefaria.org/Leviticus.21.18" },
+        { he: "אוֹ אִישׁ אֲשֶׁר־יִהְיֶה בוֹ שֶׁבֶר רָגֶל אוֹ שֶׁבֶר יָד׃", ref: "ויקרא כא, יט", url: "https://www.sefaria.org/Leviticus.21.19" },
+        { he: "אוֹ־גִבֵּן אוֹ־דַק אוֹ תְבַלֻּל בְּעֵינוֹ, אוֹ גָרָב אוֹ יַלֶּפֶת, אוֹ מְרוֹחַ אָשֶׁךְ׃", ref: "ויקרא כא, כ", url: "https://www.sefaria.org/Leviticus.21.20" }
+      ],
+      terms: [
+        { id: "iver", he: "עִוֵּר", translit: "iver", en: "blind",
+          pasukRef: "ויקרא כא, יח", pasukUrl: "https://www.sefaria.org/Leviticus.21.18",
+          note: "Blindness — even in one eye (the eye-mumim of the Mishnah open the bechor catalogue). Rashi glosses the verse's opening instead: it is simply not fitting that he draw near — כְּמוֹ הַקְרִיבֵהוּ נָא לְפֶחָתֶךָ (מלאכי א).",
+          bavli: { label: "משנה בכורות ו, ב ואילך", url: "https://www.sefaria.org/Mishnah_Bekhorot.6.2" } },
+        { id: "piseach", he: "פִסֵּחַ", translit: "piseach", en: "lame",
+          pasukRef: "ויקרא כא, יח", pasukUrl: "https://www.sefaria.org/Leviticus.21.18",
+          note: "Lame in the leg. The Torah names it without gloss; the Mishnah's leg-mumim are in Bechoros ch. 6–7.",
+          bavli: { label: "בכורות מ", url: "https://www.sefaria.org/Bekhorot.40a" } },
+        { id: "charum", he: "חָרֻם", translit: "charum", en: "sunken nose",
+          pasukRef: "ויקרא כא, יח", pasukUrl: "https://www.sefaria.org/Leviticus.21.18",
+          rashi: { he: "שֶׁחָטְמוֹ שָׁקוּעַ בֵּין שְׁתֵּי הָעֵינַיִם, שֶׁכּוֹחֵל שְׁתֵּי עֵינָיו כְּאַחַת (ספרא; בכורות מ״ג).", ref: "רש״י שם", url: "https://www.sefaria.org/Rashi_on_Leviticus.21.18.2" },
+          note: "Rashi's formulation is the narrow one — a nose so sunken one could paint both eyes in a single stroke. In Bechoros 43b that is Aba Yosei's line, and the Chachamim answer that charum applies even where the bridge is not that sunken; the Sifra extends the word to further nose-conditions. Narrow versus broad is a live machlokes.",
+          bavli: { label: "בכורות מג ע״ב", url: "https://www.sefaria.org/Bekhorot.43b" } },
+        { id: "sarua-kohen", he: "שָׂרוּעַ", translit: "sarua", en: "mismatched limb",
+          pasukRef: "ויקרא כא, יח", pasukUrl: "https://www.sefaria.org/Leviticus.21.18",
+          rashi: { he: "שֶׁאֶחָד מֵאֵבָרָיו גָּדוֹל מֵחֲבֵרוֹ — עֵינוֹ אַחַת גְּדוֹלָה וְעֵינוֹ אַחַת קְטַנָּה, אוֹ שׁוֹקוֹ אַחַת אֲרֻכָּה מֵחֲבֶרְתָּהּ (ספרא; בכורות מ).", ref: "רש״י שם", url: "https://www.sefaria.org/Rashi_on_Leviticus.21.18.3" },
+          note: "One limb outgrown relative to its pair. The same word appears among the animal mumim (22:23) — with a different din there: see sarua in the korban list.",
+          bavli: { label: "בכורות מ", url: "https://www.sefaria.org/Bekhorot.40a" } },
+        { id: "shever-regel", he: "שֶׁבֶר רָגֶל", translit: "shever regel", en: "broken leg",
+          pasukRef: "ויקרא כא, יט", pasukUrl: "https://www.sefaria.org/Leviticus.21.19",
+          note: "A broken leg. Named plainly by the pasuk; the parallel animal term is שָׁבוּר (22:22).",
+          bavli: { label: "משנה בכורות ז, ד ואילך", url: "https://www.sefaria.org/Mishnah_Bekhorot.7.4" } },
+        { id: "shever-yad", he: "שֶׁבֶר יָד", translit: "shever yad", en: "broken hand/arm",
+          pasukRef: "ויקרא כא, יט", pasukUrl: "https://www.sefaria.org/Leviticus.21.19",
+          note: "A broken hand or arm — listed in the kohen's parsha though absent from the animal list as such.",
+          bavli: { label: "משנה בכורות ז, ד ואילך", url: "https://www.sefaria.org/Mishnah_Bekhorot.7.4" } },
+        { id: "giben", he: "גִּבֵּן", translit: "giben", en: "overgrown brows",
+          pasukRef: "ויקרא כא, כ", pasukUrl: "https://www.sefaria.org/Leviticus.21.20",
+          rashi: { he: "שׁורי״ציולש בְּלַעַז, שֶׁגְּבִינֵי עֵינָיו שְׂעָרָן אָרֹךְ וְשׁוֹכֵב.", ref: "רש״י שם", url: "https://www.sefaria.org/Rashi_on_Leviticus.21.20.1" },
+          note: "Per Rashi: eyebrows whose hair is long and lies flat (the לעז sourcils). Not the hunchback of common translation — that condition (chatoteres) is the Mishnah's machlokes at Bechoros 7:2.",
+          bavli: { label: "בכורות מג ע״ב", url: "https://www.sefaria.org/Bekhorot.43b" } },
+        { id: "dak", he: "דַּק", translit: "dak", en: "eye film",
+          pasukRef: "ויקרא כא, כ", pasukUrl: "https://www.sefaria.org/Leviticus.21.20",
+          rashi: { he: "שֶׁיֵּשׁ לוֹ בְעֵינָיו דֹּק, שֶׁקּוֹרִים טיל״א, כְּמוֹ הַנּוֹטֶה כַדֹּק (ישעיהו מ).", ref: "רש״י שם", url: "https://www.sefaria.org/Rashi_on_Leviticus.21.20.2" },
+          note: "A film (telah) over the eye — the word borrowed from ha-noteh cha-dok, the heavens stretched like gauze.",
+          bavli: { label: "בכורות לח", url: "https://www.sefaria.org/Bekhorot.38a" } },
+        { id: "tevalul", he: "תְּבַלֻּל בְּעֵינוֹ", translit: "tevalul b'eino", en: "streak breaking the iris ring",
+          pasukRef: "ויקרא כא, כ", pasukUrl: "https://www.sefaria.org/Leviticus.21.20",
+          rashi: { he: "דָּבָר הַמְבַלְבֵּל אֶת הָעַיִן, כְּגוֹן חוּט לָבָן הַנִּמְשָׁךְ מִן הַלֹּבֶן וּפוֹסֵק בַּסִּירָא, שֶׁהוּא עֹגֶל הַמַּקִּיף אֶת הַשָּׁחֹר... וְתַרְגּוּם תְּבַלּוּל חִלִּיז, לְשׁוֹן חִלָּזוֹן... וְכֵן כִּנּוּהוּ חַכְמֵי יִשְׂרָאֵל בְּמוּמֵי הַבְּכוֹר: חִלָּזוֹן, נָחָשׁ, עֵינָב (בכורות ל״ח).", ref: "רש״י שם", url: "https://www.sefaria.org/Rashi_on_Leviticus.21.20.3" },
+          note: "A white thread running from the white of the eye and breaking into the ring around the iris — what the Mishnah's bechor-mumim call chilazon, nachash, einav.",
+          bavli: { label: "בכורות לח ע״ב", url: "https://www.sefaria.org/Bekhorot.38b" } },
+        { id: "garav-kohen", he: "גָרָב", translit: "garav", en: "dry boil (cheres)",
+          pasukRef: "ויקרא כא, כ", pasukUrl: "https://www.sefaria.org/Leviticus.21.20",
+          rashi: { he: "גָּרָב זוֹ הַחֶרֶס, שְׁחִין הַיָּבֵשׁ מִבִּפְנִים וּמִבַּחוּץ... וּבְמָקוֹם אַחֵר קוֹרֵא לַגָּרָב שְׁחִין הַלַּח מִבַּחוּץ וְיָבֵשׁ מִבִּפְנִים... כָּךְ מְפֹרָשׁ בִּבְכוֹרוֹת (דף מ״א).", ref: "רש״י שם (ד״ה גרב או ילפת)", url: "https://www.sefaria.org/Rashi_on_Leviticus.21.20.4" },
+          note: "A type of shechin. Rashi shows the word shifts: next to cheres (Devarim 28) garav means the wet-outside kind; next to yalefes (here) it means the fully dry cheres — as worked out in Bechoros 41.",
+          bavli: { label: "בכורות מא", url: "https://www.sefaria.org/Bekhorot.41a" } },
+        { id: "yalefes-kohen", he: "יַלֶּפֶת", translit: "yalefes", en: "chazazis ha-mitzris",
+          pasukRef: "ויקרא כא, כ", pasukUrl: "https://www.sefaria.org/Leviticus.21.20",
+          rashi: { he: "יַלֶּפֶת הִיא חֲזָזִית הַמִּצְרִית. וְלָמָּה נִקְרֵאת יַלֶּפֶת? שֶׁמְּלַפֶּפֶת וְהוֹלֶכֶת עַד יוֹם הַמִּיתָה, וְהוּא לַח מִבַּחוּץ וְיָבֵשׁ מִבִּפְנִים.", ref: "רש״י שם (ד״ה גרב או ילפת)", url: "https://www.sefaria.org/Rashi_on_Leviticus.21.20.4" },
+          note: "The Egyptian chazazis — named for how it wraps on (melapefes) and does not let go.",
+          bavli: { label: "בכורות מא", url: "https://www.sefaria.org/Bekhorot.41a" } },
+        { id: "meroach", he: "מְרוֹחַ אָשֶׁךְ", translit: "meroach ashech", en: "crushed testes (disputed)",
+          pasukRef: "ויקרא כא, כ", pasukUrl: "https://www.sefaria.org/Leviticus.21.20",
+          rashi: { he: "לְפִי הַתַּרְגּוּם מְרַס פַּחֲדִין, שֶׁפְּחָדָיו מְרֻסָּסִין — שֶׁבֵּיצִים שֶׁלּוֹ כְתוּתִין, פְּחָדִין כְּמוֹ גִּידֵי פַחֲדָו יְשֹׂרָגוּ (איוב מ).", ref: "רש״י שם", url: "https://www.sefaria.org/Rashi_on_Leviticus.21.20.5" },
+          note: "Rashi follows Onkelos: crushed testes. The gemara in Bechoros 44b carries a three-way tannaitic machlokes on the phrase itself — crushed (nimrechu), wind-swollen (ruach b'ashachav), or darkened appearance (mar'av chashuchin, reading the words as a notarikon). Distinct from the animal terms ma'uch/kasus/nasuk/karus (22:24), which are filed separately even though the injuries overlap.",
+          bavli: { label: "בכורות מד ע״ב", url: "https://www.sefaria.org/Bekhorot.44b" } }
+      ]
+    },
+    {
+      id: "behemah",
+      he: "מוּמֵי קָרְבָּן",
+      en: "Mumim of a Korban",
+      lead: "המומים הפוסלים בבהמה (ויקרא כב, כב–כד) — ובכללם שרוע וקלוט שדינם חלוק, וארבעת מומי הביצים. The animal catalogue, including the sarua/kalut middle case and the four testicular terms.",
+      pesukim: [
+        { he: "עַוֶּרֶת אוֹ שָׁבוּר אוֹ־חָרוּץ אוֹ־יַבֶּלֶת אוֹ גָרָב אוֹ יַלֶּפֶת — לֹא־תַקְרִיבוּ אֵלֶּה לַה', וְאִשֶּׁה לֹא־תִתְּנוּ מֵהֶם עַל־הַמִּזְבֵּחַ לַה'׃", ref: "ויקרא כב, כב", url: "https://www.sefaria.org/Leviticus.22.22" },
+        { he: "וְשׁוֹר וָשֶׂה שָׂרוּעַ וְקָלוּט — נְדָבָה תַּעֲשֶׂה אֹתוֹ, וּלְנֵדֶר לֹא יֵרָצֶה׃", ref: "ויקרא כב, כג", url: "https://www.sefaria.org/Leviticus.22.23" },
+        { he: "וּמָעוּךְ וְכָתוּת וְנָתוּק וְכָרוּת לֹא תַקְרִיבוּ לַה', וּבְאַרְצְכֶם לֹא תַעֲשׂוּ׃", ref: "ויקרא כב, כד", url: "https://www.sefaria.org/Leviticus.22.24" }
+      ],
+      terms: [
+        { id: "averes", he: "עַוֶּרֶת", translit: "averes", en: "blindness",
+          pasukRef: "ויקרא כב, כב", pasukUrl: "https://www.sefaria.org/Leviticus.22.22",
+          rashi: { he: "שֵׁם דָּבָר שֶׁל מוּם עִוָּרוֹן בְּלָשׁוֹן נְקֵבָה — שֶׁלֹּא יְהֵא בוֹ מוּם שֶׁל עִוָּרוֹן.", ref: "רש״י שם", url: "https://www.sefaria.org/Rashi_on_Leviticus.22.22.1" },
+          note: "Not an adjective but the noun 'blindness' — the animal may bear no blindness-mum.",
+          bavli: { label: "משנה בכורות ו, ב", url: "https://www.sefaria.org/Mishnah_Bekhorot.6.2" } },
+        { id: "shavur", he: "שָׁבוּר", translit: "shavur", en: "broken-limbed",
+          pasukRef: "ויקרא כב, כב", pasukUrl: "https://www.sefaria.org/Leviticus.22.22",
+          rashi: { he: "לֹא יִהְיֶה.", ref: "רש״י שם", url: "https://www.sefaria.org/Rashi_on_Leviticus.22.22.2" },
+          note: "Broken — Rashi adds only that it shall not be. The Mishnah's broken-limb mumim (leg, tail, rib per shitos) are detailed through Bechoros ch. 6.",
+          bavli: { label: "משנה בכורות ו, ז ואילך", url: "https://www.sefaria.org/Mishnah_Bekhorot.6.7" } },
+        { id: "charutz", he: "חָרוּץ", translit: "charutz", en: "split lid or lip",
+          pasukRef: "ויקרא כב, כב", pasukUrl: "https://www.sefaria.org/Leviticus.22.22",
+          rashi: { he: "רִיס שֶׁל עַיִן שֶׁנִּסְדַּק אוֹ שֶׁנִּפְגַּם, וְכֵן שְׂפָתוֹ שֶׁנִּסְדְּקָה אוֹ נִפְגְּמָה (בכורות ל״ח).", ref: "רש״י שם", url: "https://www.sefaria.org/Rashi_on_Leviticus.22.22.3" },
+          note: "An eyelid split or notched, and likewise a split lip.",
+          bavli: { label: "בכורות לח", url: "https://www.sefaria.org/Bekhorot.38a" } },
+        { id: "yabeles", he: "יַבֶּלֶת", translit: "yabeles", en: "wart",
+          pasukRef: "ויקרא כב, כב", pasukUrl: "https://www.sefaria.org/Leviticus.22.22",
+          rashi: { he: "ורו״אה בְּלַעַז.", ref: "רש״י שם", url: "https://www.sefaria.org/Rashi_on_Leviticus.22.22.4" },
+          note: "A wart (the לעז verrue). The Mishnah lists the baal yabeles among those barred from the mizbeach (Bechoros 6:12); the gemara distinguishes where on the body a yabeles counts as a full mum.",
+          bavli: { label: "בכורות מ ע״ב", url: "https://www.sefaria.org/Bekhorot.40b" } },
+        { id: "garav-behemah", he: "גָרָב", translit: "garav", en: "chazazis",
+          pasukRef: "ויקרא כב, כב", pasukUrl: "https://www.sefaria.org/Leviticus.22.22",
+          rashi: { he: "מִין חֲזָזִית, וְכֵן יַלֶּפֶת. וּלְשׁוֹן יַלֶּפֶת כְּמוֹ וַיִּלְפֹּת שִׁמְשׁוֹן (שופטים טז) — שֶׁאֲחוּזָה בוֹ עַד יוֹם מִיתָה, שֶׁאֵין לָהּ רְפוּאָה.", ref: "רש״י שם", url: "https://www.sefaria.org/Rashi_on_Leviticus.22.22.5" },
+          note: "The same word-pair as in the kohen's parsha; Rashi's fuller cross-analysis of garav/cheres/yalefes is on 21:20.",
+          bavli: { label: "בכורות מא", url: "https://www.sefaria.org/Bekhorot.41a" } },
+        { id: "yalefes-behemah", he: "יַלֶּפֶת", translit: "yalefes", en: "gripping chazazis",
+          pasukRef: "ויקרא כב, כב", pasukUrl: "https://www.sefaria.org/Leviticus.22.22",
+          rashi: { he: "וּלְשׁוֹן יַלֶּפֶת כְּמוֹ וַיִּלְפֹּת שִׁמְשׁוֹן — שֶׁאֲחוּזָה בוֹ עַד יוֹם מִיתָה, שֶׁאֵין לָהּ רְפוּאָה.", ref: "רש״י שם", url: "https://www.sefaria.org/Rashi_on_Leviticus.22.22.5" },
+          note: "Named for its grip — like va-yilpos Shimshon — a condition that holds until death.",
+          bavli: { label: "בכורות מא", url: "https://www.sefaria.org/Bekhorot.41a" } },
+        { id: "sarua-behemah", he: "שָׂרוּעַ", translit: "sarua", en: "outgrown limb — the middle case",
+          pasukRef: "ויקרא כב, כג", pasukUrl: "https://www.sefaria.org/Leviticus.22.23",
+          rashi: { he: "אֵבֶר גָּדוֹל מֵחֲבֵרוֹ. נְדָבָה תַּעֲשֶׂה אֹתוֹ — לְבֶדֶק הַבַּיִת. וּלְנֵדֶר — לַמִּזְבֵּחַ.", ref: "רש״י שם", url: "https://www.sefaria.org/Rashi_on_Leviticus.22.23.1" },
+          note: "The same defect that disqualifies a kohen has a split din in an animal: it may be dedicated as nedavah — per Rashi, to bedek ha-bayis — but is not accepted for a neder to the mizbeach. The pasuk itself carves out the middle ground.",
+          bavli: { label: "תמורה ז", url: "https://www.sefaria.org/Temurah.7a" } },
+        { id: "kalut", he: "קָלוּט", translit: "kalut", en: "closed hooves",
+          pasukRef: "ויקרא כב, כג", pasukUrl: "https://www.sefaria.org/Leviticus.22.23",
+          rashi: { he: "פַּרְסוֹתָיו קְלוּטוֹת (בכורות מ).", ref: "רש״י שם", url: "https://www.sefaria.org/Rashi_on_Leviticus.22.23.2" },
+          note: "Hooves closed like a donkey's rather than split. Shares the nedavah-but-not-neder din with sarua.",
+          bavli: { label: "בכורות מ", url: "https://www.sefaria.org/Bekhorot.40a" } },
+        { id: "mauch", he: "מָעוּךְ", translit: "ma'uch", en: "crushed by hand",
+          pasukRef: "ויקרא כב, כד", pasukUrl: "https://www.sefaria.org/Leviticus.22.24",
+          rashi: { he: "וּמָעוּךְ וְכָתוּת וְנָתוּק וְכָרוּת — בַּבֵּיצִים אוֹ בַגִּיד. מָעוּךְ — בֵּיצָיו מְעוּכִין בַּיָּד.", ref: "רש״י שם", url: "https://www.sefaria.org/Rashi_on_Leviticus.22.24.1" },
+          note: "First of the four grades of testicular injury — crushed by hand. The pasuk closes with וּבְאַרְצְכֶם לֹא תַעֲשׂוּ, which Rashi reads as the issur of sirus in any animal.",
+          bavli: { label: "בכורות לט", url: "https://www.sefaria.org/Bekhorot.39a" } },
+        { id: "kasus", he: "כָּתוּת", translit: "kasus", en: "crushed further",
+          pasukRef: "ויקרא כב, כד", pasukUrl: "https://www.sefaria.org/Leviticus.22.24",
+          rashi: { he: "כְּתוּשִׁים יוֹתֵר מִמָּעוּךְ.", ref: "רש״י שם", url: "https://www.sefaria.org/Rashi_on_Leviticus.22.24.3" },
+          note: "More thoroughly crushed than ma'uch — the second rung of Rashi's ladder.",
+          bavli: { label: "בכורות לט", url: "https://www.sefaria.org/Bekhorot.39a" } },
+        { id: "nasuk", he: "נָתוּק", translit: "nasuk", en: "detached, still in the sac",
+          pasukRef: "ויקרא כב, כד", pasukUrl: "https://www.sefaria.org/Leviticus.22.24",
+          rashi: { he: "תְּלוּשִׁין בַּיָּד עַד שֶׁנִּפְסְקוּ חוּטִים שֶׁתְּלוּיִים בָּהֶן, אֲבָל נְתוּנִים הֵם בְּתוֹךְ הַכִּיס, וְהַכִּיס לֹא נִתְלַשׁ.", ref: "רש״י שם", url: "https://www.sefaria.org/Rashi_on_Leviticus.22.24.4" },
+          note: "Torn loose by hand — the cords severed — but still sitting within the sac.",
+          bavli: { label: "בכורות לט", url: "https://www.sefaria.org/Bekhorot.39a" } },
+        { id: "karus", he: "כָּרוּת", translit: "karus", en: "cut by instrument",
+          pasukRef: "ויקרא כב, כד", pasukUrl: "https://www.sefaria.org/Leviticus.22.24",
+          rashi: { he: "כְּרוּתִין בִּכְלִי וְעוֹדָן בַּכִּיס (בכורות ל״ט).", ref: "רש״י שם", url: "https://www.sefaria.org/Rashi_on_Leviticus.22.24.5" },
+          note: "Severed with an instrument, still in the sac — the last of the four terms, each one step past the one before.",
+          bavli: { label: "בכורות לט", url: "https://www.sefaria.org/Bekhorot.39a" } }
+      ]
+    }
+  ]
+};

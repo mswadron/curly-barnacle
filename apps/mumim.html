@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>מומים · Mumim of Kohen and Korban</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&display=swap');
+:root{
+  --bg:#F5F1E8; --panel:#FBF8F1; --ink:#1B2230; --sub:#586074; --line:#D9D2C2;
+  --tekhelet:#1F4E79; --tekheletSoft:#E5ECF4; --gold:#946321; --goldSoft:#FBF1DD;
+  --rule:#C9B79A; --flag:#8A3A2E; --flagSoft:#F7E7E2;
+  --serif:Georgia,'Times New Roman',serif; --heb:'Frank Ruhl Libre','Times New Roman',serif;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.55;}
+.heb{font-family:var(--heb);}
+.wrap{max-width:820px;margin:0 auto;padding:28px 18px 70px;}
+
+header.top{border-bottom:2px solid var(--tekhelet);padding-bottom:14px;margin-bottom:8px;}
+h1.title{margin:8px 0 0;font-size:28px;font-weight:800;letter-spacing:-.01em;}
+h1.title .heb{font-weight:700;margin-right:10px;}
+.subtitle{margin:8px 0 0;font-size:14px;color:var(--sub);line-height:1.55;}
+
+.provbox{margin:16px 0;border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:14px 18px;font-size:13.5px;line-height:1.6;}
+.provbox .heb{display:block;direction:rtl;text-align:right;font-size:17px;line-height:1.85;margin-bottom:6px;}
+.provbox .pref{font-size:11.5px;color:var(--gold);font-weight:700;}
+.provbox .pen{color:var(--sub);margin-top:6px;}
+
+.klal{border:1px solid var(--line);border-right:4px solid var(--tekhelet);border-radius:10px;background:var(--panel);padding:13px 16px;margin:10px 0;}
+.klal-he{font-family:var(--heb);font-weight:700;font-size:17px;direction:rtl;text-align:right;}
+.klal-en{font-size:12.5px;color:var(--gold);font-weight:700;margin-top:1px;}
+.klal .src{margin-top:9px;}
+
+.sec-head{display:flex;align-items:baseline;gap:10px;margin:26px 0 2px;padding-top:10px;border-top:1px solid var(--line);}
+.sec-he{font-family:var(--heb);font-size:22px;font-weight:700;color:var(--tekhelet);}
+.sec-en{font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--gold);}
+.sec-lead{font-size:13.5px;color:var(--sub);line-height:1.55;margin:2px 0 10px;}
+
+.pasukbox{border:1px solid var(--line);border-radius:10px;background:#fff;padding:11px 15px;margin:8px 0;}
+.pasukbox .heb{display:block;direction:rtl;text-align:right;font-size:18px;line-height:1.9;}
+.pasukbox .ref{font-size:11.5px;margin-top:4px;}
+
+.card{border:1px solid var(--line);border-radius:10px;background:var(--panel);margin-bottom:10px;overflow:hidden;}
+.card.open{border-color:var(--tekhelet);}
+.card-head{padding:12px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;}
+.nm-he{font-family:var(--heb);font-size:20px;font-weight:700;}
+.nm-tr{font-style:italic;font-size:13px;color:var(--sub);}
+.nm-en{font-size:13.5px;color:var(--sub);}
+.chev{font-size:12px;color:var(--tekhelet);font-weight:700;}
+.detail{border-top:1px solid var(--line);background:#fff;padding:13px 16px;}
+.box-label{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin:8px 0 5px;}
+.box-label.tekh{color:var(--tekhelet);}
+.box-label.gold{color:var(--gold);}
+.rashi{border:1px solid var(--line);border-right:4px solid var(--gold);border-radius:8px;background:var(--goldSoft);padding:10px 13px;}
+.rashi .heb{display:block;direction:rtl;text-align:right;font-size:16.5px;line-height:1.85;}
+.note{font-size:14px;line-height:1.62;color:var(--ink);margin:9px 0 3px;}
+.refrow{margin-top:9px;font-size:12px;display:flex;gap:14px;flex-wrap:wrap;}
+a.sef{color:var(--tekhelet);text-decoration:none;border-bottom:1px dotted var(--tekhelet);}
+a.sef:hover{border-bottom-style:solid;}
+footer.ft{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--sub);text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1 class="title"><span class="heb">מוּמִים</span>Mumim of Kohen and Korban</h1>
+    <p class="subtitle">The defects that bar a kohen from avodah and an animal from the mizbeach — each term of Vayikra 21–22 with its pasuk, Rashi as written, and where its meaning is a machlokes, the machlokes.</p>
+  </header>
+  <div id="app"></div>
+  <footer class="ft">ויקרא כא–כב · משנה בכורות ו–ז · בכורות לח–מה · רמב״ם ביאת המקדש ו · איסורי מזבח א–ב</footer>
+</div>
+<script src="mumim-data.js"></script>
+<script src="mumim.js"></script>
+<script defer src="../site-chrome.js"></script>
+</body>
+</html>
