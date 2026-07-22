@@ -186,12 +186,12 @@ const T = {
   print: { en: "Print / Save PDF", he: "הַדְפֵּס / שְׁמֹר PDF" },
   provTitle: { en: "Provenance of the weekly haftarah", he: "שַׁלְשֶׁלֶת הַהַפְטָרָה הַשְּׁבוּעִית" },
   provIntro: { en: "No tannaitic or Talmudic source fixes the ordinary weekly haftarah (Tosefta Meg. 3 and Megillah 31a cover only special days). The weekly cycle is post-Talmudic. Its lineage:", he: "אֵין מָקוֹר תַּנָּאִי אוֹ תַּלְמוּדִי הַקּוֹבֵעַ אֶת הַהַפְטָרָה הַשְּׁבוּעִית הָרְגִילָה (הַתּוֹסֶפְתָּא וּמְגִלָּה ל״א. עוֹסְקוֹת רַק בְּיָמִים מְיֻחָדִים). הַמַּחֲזוֹר הַשְּׁבוּעִי בָּתַר־תַּלְמוּדִי. וְזוֹ שַׁלְשַׁלְתּוֹ:" },
-  onSefaria: { en: "ON SEFARIA", he: "בְּסֵפַרְיָא" },
+  onSefaria: { en: "LINKED SOURCE", he: "מָקוֹר מְקֻשָּׁר" },
   citedOnly: { en: "CITED ONLY", he: "צִיטוּט בִּלְבַד" },
   source: { en: "Source", he: "מָקוֹר" },
   weeklyHeader: { en: "Weekly cycle — Abudraham (Sephardi)", he: "מַחֲזוֹר שְׁבוּעִי — אֲבוּדַרְהַם (סְפָרַד)" },
   riteCoverage: { en: "Rite coverage", he: "מִנְהֲגֵי הָעֵדוֹת" },
-  riteNote: { en: "This list is the Sephardi rite (Abudraham), with his own 'yesh maftirin' variants where he gives them. Ashkenaz, Chabad, Teiman, and Italki diverge mainly on the closing verse, but no pre-modern Sefaria text enumerates those boundaries rite-by-rite. Teiman largely follows Rambam; Chabad's haftarah law is in Shulchan Arukh HaRav OC 284.", he: "רְשִׁימָה זוֹ הִיא מִנְהַג סְפָרַד (אֲבוּדַרְהַם), עִם חִלּוּפֵי ״וְיֵשׁ מַפְטִירִין״ שֶׁלּוֹ. אַשְׁכְּנַז, חַבַּ״ד, תֵּימָן וְאִיטַלְיָא חוֹלְקִים בְּעִקָּר בִּפְסוּק הַסִּיּוּם, אַךְ אֵין מָקוֹר קַדְמוֹן בְּסֵפַרְיָא הַמּוֹנֶה אֶת הַגְּבוּלוֹת לְפִי כָּל עֵדָה. תֵּימָן הוֹלֶכֶת בְּעִקָּר אַחַר הָרַמְבַּ״ם; דִּין הַהַפְטָרָה לְחַבַּ״ד בְּשֻׁלְחָן עָרוּךְ הָרַב או״ח רפ״ד." },
+  riteNote: { en: "This list is the Sephardi rite (Abudraham), with his own 'yesh maftirin' variants where he gives them. Ashkenaz, Chabad, Teiman, and Italki diverge mainly on the closing verse, but no pre-modern text in the linked library enumerates those boundaries rite-by-rite. Teiman largely follows Rambam; Chabad's haftarah law is in Shulchan Arukh HaRav OC 284.", he: "רְשִׁימָה זוֹ הִיא מִנְהַג סְפָרַד (אֲבוּדַרְהַם), עִם חִלּוּפֵי ״וְיֵשׁ מַפְטִירִין״ שֶׁלּוֹ. אַשְׁכְּנַז, חַבַּ״ד, תֵּימָן וְאִיטַלְיָא חוֹלְקִים בְּעִקָּר בִּפְסוּק הַסִּיּוּם, אַךְ אֵין מָקוֹר קַדְמוֹן מְקֻשָּׁר הַמּוֹנֶה אֶת הַגְּבוּלוֹת לְפִי כָּל עֵדָה. תֵּימָן הוֹלֶכֶת בְּעִקָּר אַחַר הָרַמְבַּ״ם; דִּין הַהַפְטָרָה לְחַבַּ״ד בְּשֻׁלְחָן עָרוּךְ הָרַב או״ח רפ״ד." },
   chabadNote: { en: "Chabad anchor — Shulchan Arukh HaRav (Alter Rebbe), OC 284. The principle (§1): the haftarah is read 'from the theme of the portion' (me'inyan ha-parsha). The distinctive Chabad practice (§11): the congregation does not rely on hearing alone — 'they themselves read the haftarah, for a reason known to them.'", he: "עֹגֶן חַבַּ״ד — שֻׁלְחָן עָרוּךְ הָרַב או״ח רפ״ד. הַכְּלָל (סְעִיף א׳): ״וְקָרְאוּ בִּנְבִיאִים מֵעִנְיַן הַפָּרָשָׁה.״ וּמִנְהַג חַבַּ״ד הַמְיֻחָד (סְעִיף י״א): ״וְיֵשׁ נוֹהֲגִים מִטַּעַם הַיָּדוּעַ לָהֶם... אֶלָּא הֵם בְּעַצְמָם קוֹרִין הַהַפְטָרָה.״" },
   remaining: { en: "Remaining parshiyot", he: "שְׁאָר הַפָּרָשִׁיּוֹת" },
   weeklyTail: { en: "Matot, Masei, Devarim, Va'etchanan, Eikev, Re'eh, Shoftim, Ki Tetze, Ki Tavo, Nitzavim, Vayelech, Ha'azinu — these fall after 17 Tammuz, so their haftarot are the seasonal ones (3 rebuke / 7 consolation / 2 repentance), not parsha-matched. (Abudraham \u00a743.)", he: "מַטּוֹת, מַסְעֵי, דְּבָרִים, וָאֶתְחַנַּן, עֵקֶב, רְאֵה, שׁוֹפְטִים, כִּי תֵצֵא, כִּי תָבוֹא, נִצָּבִים, וַיֵּלֶךְ, הַאֲזִינוּ — בָּאוֹת לְאַחַר י״ז בְּתַמּוּז, וְעַל כֵּן הַפְטָרוֹתֵיהֶן הֵן שֶׁל הַמַּחֲזוֹר (ג׳ דְּפֻרְעָנוּתָא / ז׳ דְּנֶחָמְתָּא / ב׳ דְּתִיּוּבְתָּא), וְלֹא לְפִי הַפָּרָשָׁה. (אֲבוּדַרְהַם \u00a7מ״ג.)" },
@@ -212,12 +212,12 @@ const T = {
   mmref: { en: "Mechon Mamre", he: "מְכוֹן מַמְרֵא" },
   yutorah: { en: "Shiur · YU", he: "שִׁעוּר · ישיבה" },
   connection: { en: "Connection", he: "הֶקְשֵׁר" },
-  offSefaria: { en: "off-Sefaria · pre-modern", he: "מִחוּץ לְסֵפַרְיָא · קַדְמוֹן" },
+  offSefaria: { en: "cited · pre-modern", he: "מְצֻטָּט · קַדְמוֹן" },
   showSource: { en: "\u25b8 Show source text", he: "\u25c2 הַצֵּג לְשׁוֹן הַמָּקוֹר" },
   hideSource: { en: "\u25be Hide source text", he: "\u25be הַסְתֵּר לְשׁוֹן הַמָּקוֹר" },
   nothing: { en: "Nothing matches.", he: "אֵין תּוֹצָאוֹת." },
   search: { en: "Search parsha, occasion, reading, or Hebrew incipit\u2026", he: "חַפֵּשׂ פָּרָשָׁה, מוֹעֵד, הַפְטָרָה אוֹ פְּתִיחָה\u2026" },
-  footer: { en: "Hebrew is the public-domain source text, verbatim. The 'Read \u00b7 Koren' links open the passage on Sefaria in the Koren Jerusalem Bible (switch to JPS 1917 or Hebrew inside Sefaria). Weekly endpoints are Abudraham's own words; verse ranges are identifications. The Cairo Geniza layer is cited (Mann, Internet Archive; B\u00fcchler JQR 1893\u201394; T-S Cambridge), reflecting the triennial cycle. Chabad law via Shulchan Arukh HaRav. All else via the Sefaria connector.", he: "הַלָּשׁוֹן הָעִבְרִית הִיא לְשׁוֹן הַמָּקוֹר, כִּלְשׁוֹנָהּ. קִשּׁוּרֵי ״עַיֵּן · קֶרֶן״ פּוֹתְחִים אֶת הַכָּתוּב בְּסֵפַרְיָא בְּתַרְגּוּם קֶרֶן. פְּסוּקֵי הַסִּיּוּם הַשְּׁבוּעִיִּים הֵם לְשׁוֹן אֲבוּדַרְהַם; טְוַח הַפְּסוּקִים הוּא זִהוּי. שִׁכְבַת הַגְּנִיזָה בְּצִיטוּט (מַאן; בִּיכְלֶר; קַיְמְבְּרִידְג׳), וּמְשַׁקֶּפֶת אֶת הַמַּחֲזוֹר הַתְּלָת־שְׁנָתִי. דִּין חַבַּ״ד מִשֻּׁלְחָן עָרוּךְ הָרַב. הַשְּׁאָר מִסֵּפַרְיָא." },
+  footer: { en: "Hebrew is the public-domain source text, verbatim. The 'Read \u00b7 Koren' links open the passage in the Koren Jerusalem Bible (JPS 1917 and the Hebrew are available at the link). Weekly endpoints are Abudraham's own words; verse ranges are identifications. The Cairo Geniza layer is cited (Mann, Internet Archive; B\u00fcchler JQR 1893\u201394; T-S Cambridge), reflecting the triennial cycle. Chabad law via Shulchan Arukh HaRav. All else from the linked digital library.", he: "הַלָּשׁוֹן הָעִבְרִית הִיא לְשׁוֹן הַמָּקוֹר, כִּלְשׁוֹנָהּ. קִשּׁוּרֵי ״עַיֵּן · קֶרֶן״ פּוֹתְחִים אֶת הַכָּתוּב בְּתַרְגּוּם קֶרֶן. פְּסוּקֵי הַסִּיּוּם הַשְּׁבוּעִיִּים הֵם לְשׁוֹן אֲבוּדַרְהַם; טְוַח הַפְּסוּקִים הוּא זִהוּי. שִׁכְבַת הַגְּנִיזָה בְּצִיטוּט (מַאן; בִּיכְלֶר; קַיְמְבְּרִידְג׳), וּמְשַׁקֶּפֶת אֶת הַמַּחֲזוֹר הַתְּלָת־שְׁנָתִי. דִּין חַבַּ״ד מִשֻּׁלְחָן עָרוּךְ הָרַב. הַשְּׁאָר מִן הַסִּפְרִיָּה הַמְּקֻשֶּׁרֶת." },
 };
 
 const LINEAGE = [
@@ -237,7 +237,7 @@ const LINEAGE = [
     cites: [S.pesikta43],
   },
   {
-    tier: { en: "Earliest clean enumeration (on Sefaria)", he: "הַמִּנְיָן הַמְּסֻדָּר הַקַּדְמוּתִי (בְּסֵפַרְיָא)" }, layer: "abudraham", anchor: "sefaria",
+    tier: { en: "Earliest clean enumeration (linked)", he: "הַמִּנְיָן הַמְּסֻדָּר הַקַּדְמוּתִי (מְקֻשָּׁר)" }, layer: "abudraham", anchor: "sefaria",
     what: { en: "Sefer Abudraham (R. David Abudraham, Seville, c. 1340) lists every parsha's haftarah by opening and closing words. Reflects the Sephardi rite. This is the live weekly data below.", he: "סֵפֶר אֲבוּדַרְהַם (ר׳ דָּוִד אֲבוּדַרְהַם, סְבִילְיָה, ~1340) מוֹנֶה אֶת הַפְטָרַת כָּל פָּרָשָׁה לְפִי תֵּבוֹת הַפְּתִיחָה וְהַסִּיּוּם. מְשַׁקֵּף מִנְהַג סְפָרַד. אֵלּוּ הַנְּתוּנִים הַשְּׁבוּעִיִּים לְהַלָּן." },
     cite: { en: "Abudraham, Order of Parashiot and Haftarot §1ff.", he: "אֲבוּדַרְהַם, סֵדֶר הַפָּרָשִׁיּוֹת וְהַהַפְטָרוֹת §א׳ וְאֵילָךְ." },
     cites: [A(1)],

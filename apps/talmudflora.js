@@ -149,7 +149,7 @@
     return '<div class="src"><div class="sh he">' + esc(he) + '</div>' +
       (en && !isHE() ? '<div class="se">' + esc(en) + '</div>' : "") +
       '<div class="sm"><span class="sr">' + esc(cat) + " · " + esc(ref) + '</span>' +
-      '<span><span class="badge ' + badge + '">' + badge + '</span> <a href="' + esc(url) + '" target="_blank" rel="noopener">Sefaria ↗</a></span></div></div>';
+      '<span><span class="badge ' + badge + '">' + badge + '</span> <a href="' + esc(url) + '" target="_blank" rel="noopener">' + (isHE() ? "מקור" : "Source") + ' ↗</a></span></div></div>';
   }
   function detailHTML(p) {
     var srcs = "";
@@ -210,7 +210,7 @@
 
   function disclaimerHTML() {
     return '<div class="disc' + (isHE() ? " he" : "") + '">' +
-      (isHE() ? "כָּל טֶקְסְט מוּבָא כִּלְשׁוֹנוֹ מִסֶּפַרְיָא עִם קִישּׁוּר. " : "Every quoted text is verbatim from Sefaria with a link. ") +
+      (isHE() ? "כָּל טֶקְסְט מוּבָא כִּלְשׁוֹנוֹ מִן הַמָּקוֹר עִם קִישּׁוּר. " : "Every text is quoted as written, with a link to its source. ") +
       '<span class="badge direct">direct</span> ' + (isHE() ? "מָקוֹר רִאשׁוֹן · " : "primary source · ") +
       '<span class="badge lexicon">lexicon</span> ' + (isHE() ? "זִהוּי חוֹקְרִים · " : "named authority · ") +
       '<span class="badge descript">descript</span> ' + (isHE() ? "תֵּאוּר" : "editorial") + '.</div>';

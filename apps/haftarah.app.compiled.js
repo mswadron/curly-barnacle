@@ -459,8 +459,8 @@ const T = {
     he: "אֵין מָקוֹר תַּנָּאִי אוֹ תַּלְמוּדִי הַקּוֹבֵעַ אֶת הַהַפְטָרָה הַשְּׁבוּעִית הָרְגִילָה (הַתּוֹסֶפְתָּא וּמְגִלָּה ל״א. עוֹסְקוֹת רַק בְּיָמִים מְיֻחָדִים). הַמַּחֲזוֹר הַשְּׁבוּעִי בָּתַר־תַּלְמוּדִי. וְזוֹ שַׁלְשַׁלְתּוֹ:"
   },
   onSefaria: {
-    en: "ON SEFARIA",
-    he: "בְּסֵפַרְיָא"
+    en: "LINKED SOURCE",
+    he: "מָקוֹר מְקֻשָּׁר"
   },
   citedOnly: {
     en: "CITED ONLY",
@@ -479,8 +479,8 @@ const T = {
     he: "מִנְהֲגֵי הָעֵדוֹת"
   },
   riteNote: {
-    en: "This list is the Sephardi rite (Abudraham), with his own 'yesh maftirin' variants where he gives them. Ashkenaz, Chabad, Teiman, and Italki diverge mainly on the closing verse, but no pre-modern Sefaria text enumerates those boundaries rite-by-rite. Teiman largely follows Rambam; Chabad's haftarah law is in Shulchan Arukh HaRav OC 284.",
-    he: "רְשִׁימָה זוֹ הִיא מִנְהַג סְפָרַד (אֲבוּדַרְהַם), עִם חִלּוּפֵי ״וְיֵשׁ מַפְטִירִין״ שֶׁלּוֹ. אַשְׁכְּנַז, חַבַּ״ד, תֵּימָן וְאִיטַלְיָא חוֹלְקִים בְּעִקָּר בִּפְסוּק הַסִּיּוּם, אַךְ אֵין מָקוֹר קַדְמוֹן בְּסֵפַרְיָא הַמּוֹנֶה אֶת הַגְּבוּלוֹת לְפִי כָּל עֵדָה. תֵּימָן הוֹלֶכֶת בְּעִקָּר אַחַר הָרַמְבַּ״ם; דִּין הַהַפְטָרָה לְחַבַּ״ד בְּשֻׁלְחָן עָרוּךְ הָרַב או״ח רפ״ד."
+    en: "This list is the Sephardi rite (Abudraham), with his own 'yesh maftirin' variants where he gives them. Ashkenaz, Chabad, Teiman, and Italki diverge mainly on the closing verse, but no pre-modern text in the linked library enumerates those boundaries rite-by-rite. Teiman largely follows Rambam; Chabad's haftarah law is in Shulchan Arukh HaRav OC 284.",
+    he: "רְשִׁימָה זוֹ הִיא מִנְהַג סְפָרַד (אֲבוּדַרְהַם), עִם חִלּוּפֵי ״וְיֵשׁ מַפְטִירִין״ שֶׁלּוֹ. אַשְׁכְּנַז, חַבַּ״ד, תֵּימָן וְאִיטַלְיָא חוֹלְקִים בְּעִקָּר בִּפְסוּק הַסִּיּוּם, אַךְ אֵין מָקוֹר קַדְמוֹן מְקֻשָּׁר הַמּוֹנֶה אֶת הַגְּבוּלוֹת לְפִי כָּל עֵדָה. תֵּימָן הוֹלֶכֶת בְּעִקָּר אַחַר הָרַמְבַּ״ם; דִּין הַהַפְטָרָה לְחַבַּ״ד בְּשֻׁלְחָן עָרוּךְ הָרַב או״ח רפ״ד."
   },
   chabadNote: {
     en: "Chabad anchor — Shulchan Arukh HaRav (Alter Rebbe), OC 284. The principle (§1): the haftarah is read 'from the theme of the portion' (me'inyan ha-parsha). The distinctive Chabad practice (§11): the congregation does not rely on hearing alone — 'they themselves read the haftarah, for a reason known to them.'",
@@ -563,8 +563,8 @@ const T = {
     he: "הֶקְשֵׁר"
   },
   offSefaria: {
-    en: "off-Sefaria · pre-modern",
-    he: "מִחוּץ לְסֵפַרְיָא · קַדְמוֹן"
+    en: "cited · pre-modern",
+    he: "מְצֻטָּט · קַדְמוֹן"
   },
   showSource: {
     en: "\u25b8 Show source text",
@@ -583,8 +583,8 @@ const T = {
     he: "חַפֵּשׂ פָּרָשָׁה, מוֹעֵד, הַפְטָרָה אוֹ פְּתִיחָה\u2026"
   },
   footer: {
-    en: "Hebrew is the public-domain source text, verbatim. The 'Read \u00b7 Koren' links open the passage on Sefaria in the Koren Jerusalem Bible (switch to JPS 1917 or Hebrew inside Sefaria). Weekly endpoints are Abudraham's own words; verse ranges are identifications. The Cairo Geniza layer is cited (Mann, Internet Archive; B\u00fcchler JQR 1893\u201394; T-S Cambridge), reflecting the triennial cycle. Chabad law via Shulchan Arukh HaRav. All else via the Sefaria connector.",
-    he: "הַלָּשׁוֹן הָעִבְרִית הִיא לְשׁוֹן הַמָּקוֹר, כִּלְשׁוֹנָהּ. קִשּׁוּרֵי ״עַיֵּן · קֶרֶן״ פּוֹתְחִים אֶת הַכָּתוּב בְּסֵפַרְיָא בְּתַרְגּוּם קֶרֶן. פְּסוּקֵי הַסִּיּוּם הַשְּׁבוּעִיִּים הֵם לְשׁוֹן אֲבוּדַרְהַם; טְוַח הַפְּסוּקִים הוּא זִהוּי. שִׁכְבַת הַגְּנִיזָה בְּצִיטוּט (מַאן; בִּיכְלֶר; קַיְמְבְּרִידְג׳), וּמְשַׁקֶּפֶת אֶת הַמַּחֲזוֹר הַתְּלָת־שְׁנָתִי. דִּין חַבַּ״ד מִשֻּׁלְחָן עָרוּךְ הָרַב. הַשְּׁאָר מִסֵּפַרְיָא."
+    en: "Hebrew is the public-domain source text, verbatim. The 'Read \u00b7 Koren' links open the passage in the Koren Jerusalem Bible (JPS 1917 and the Hebrew are available at the link). Weekly endpoints are Abudraham's own words; verse ranges are identifications. The Cairo Geniza layer is cited (Mann, Internet Archive; B\u00fcchler JQR 1893\u201394; T-S Cambridge), reflecting the triennial cycle. Chabad law via Shulchan Arukh HaRav. All else from the linked digital library.",
+    he: "הַלָּשׁוֹן הָעִבְרִית הִיא לְשׁוֹן הַמָּקוֹר, כִּלְשׁוֹנָהּ. קִשּׁוּרֵי ״עַיֵּן · קֶרֶן״ פּוֹתְחִים אֶת הַכָּתוּב בְּתַרְגּוּם קֶרֶן. פְּסוּקֵי הַסִּיּוּם הַשְּׁבוּעִיִּים הֵם לְשׁוֹן אֲבוּדַרְהַם; טְוַח הַפְּסוּקִים הוּא זִהוּי. שִׁכְבַת הַגְּנִיזָה בְּצִיטוּט (מַאן; בִּיכְלֶר; קַיְמְבְּרִידְג׳), וּמְשַׁקֶּפֶת אֶת הַמַּחֲזוֹר הַתְּלָת־שְׁנָתִי. דִּין חַבַּ״ד מִשֻּׁלְחָן עָרוּךְ הָרַב. הַשְּׁאָר מִן הַסִּפְרִיָּה הַמְּקֻשֶּׁרֶת."
   }
 };
 const LINEAGE = [{
@@ -629,8 +629,8 @@ const LINEAGE = [{
   cites: [S.pesikta43]
 }, {
   tier: {
-    en: "Earliest clean enumeration (on Sefaria)",
-    he: "הַמִּנְיָן הַמְּסֻדָּר הַקַּדְמוּתִי (בְּסֵפַרְיָא)"
+    en: "Earliest clean enumeration (linked)",
+    he: "הַמִּנְיָן הַמְּסֻדָּר הַקַּדְמוּתִי (מְקֻשָּׁר)"
   },
   layer: "abudraham",
   anchor: "sefaria",

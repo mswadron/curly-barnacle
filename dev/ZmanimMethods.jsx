@@ -824,7 +824,7 @@ function ZmanimMethods() {
         <div>
           <div className="zm-eyebrow">זְמַנִּים · one zman, every method</div>
           <h1 className="zm-title">Where the Opinions Diverge</h1>
-          <p className="zm-sub">Same moment in halacha, computed three ways: by degrees below the horizon, by fixed clock minutes, or by zmaniyos (proportional) hours. Pick a zman and watch them spread. Tap a source to open it on Sefaria.</p>
+          <p className="zm-sub">Same moment in halacha, computed three ways: by degrees below the horizon, by fixed clock minutes, or by zmaniyos (proportional) hours. Pick a zman and watch them spread. Tap a source to open it.</p>
         </div>
         <div className="zm-controls">
           <label className="zm-field"><span>Place</span>
@@ -1102,7 +1102,7 @@ function ZmanimMethods() {
                 <p>A degree row is not a duration. It fires when the sun's true depression {"\u03B8"} reaches a set angle, which the engine computes exactly for the date and place. The common {"\u03B8"} values were chosen so they reproduce a minute-shiur at the Yerushalayim equinox, for instance 16.1{"\u00B0"} matches 72 minutes and 3.7{"\u00B0"} matches 13.5 there. Away from that latitude and date they part ways: the angle stays fixed to the real sky while the fixed minutes do not, which is the whole reason the two columns disagree in summer and at high latitude. So the {"\u03B8"} = X{"\u00B0"} equation is the primary statement for those rows, and the minute equivalence next to it is only the calibration it was born from.</p>
               </div>
 
-              <div className="zm-methnote">The two gemaras and the Biur Halacha above are quoted verbatim from Sefaria. The 18 / 22.5 / 24 split and its attributions are from Biur Halacha 459:2. The degree-to-minute equivalences are approximate calibrations, not exact identities.</div>
+              <div className="zm-methnote">The two gemaras and the Biur Halacha above are quoted verbatim. The 18 / 22.5 / 24 split and its attributions are from Biur Halacha 459:2. The degree-to-minute equivalences are approximate calibrations, not exact identities.</div>
             </div>
           )}
         </div>
@@ -1112,7 +1112,7 @@ function ZmanimMethods() {
         <span>{loc.name} · {loc.lat}, {loc.lon}</span>
         <span>
           Engine ported from <a href="https://github.com/KosherJava/zmanim" target="_blank" rel="noreferrer">KosherJava</a> (LGPL), NOAA / Meeus.
-          Degree figures follow Yisrael Vehazmanim. Classical refs link to Sefaria; Igros Moshe and the Tukachinsky luach are cited by sefer.
+          Degree figures follow Yisrael Vehazmanim. Classical refs are linked; Igros Moshe and the Tukachinsky luach are cited by sefer.
           For practical halacha follow your rav and local luach.
         </span>
       </footer>

@@ -333,7 +333,7 @@
     return '<div class="src"><div class="sh he">' + esc(he) + "</div>" +
       (en && !isHE() ? '<div class="se">' + esc(en) + "</div>" : "") +
       '<div class="sm"><span class="sr">' + esc(cat) + (ref ? " · " + esc(ref) : "") + "</span>" +
-      (url ? '<a href="' + esc(url) + '" target="_blank" rel="noopener">Sefaria ↗</a>' : "") + "</div></div>";
+      (url ? '<a href="' + esc(url) + '" target="_blank" rel="noopener">' + (isHE() ? "מקור" : "Source") + ' ↗</a>' : "") + "</div></div>";
   }
 
   function kilayimSection(s) {
@@ -475,8 +475,8 @@
 
   function disclaimerHTML() {
     return '<div class="disc' + (isHE() ? " he" : "") + '">' +
-      (isHE() ? "כָּל טֶקְסְט הֲלָכָתִי מוּבָא כִּלְשׁוֹנוֹ מִסֶּפַרְיָא עִם קִישּׁוּר. תַּצְלוּמִים חַיִּים מֵ־iNaturalist; שׁוּרוֹת קוּלִינָרִיּוֹת מְצֻטָּטוֹת מִוִּיקִיפֶּדְיָה. הַמַּדָּע — קֶרֶשׁ קְפִיצָה בִּלְבַד." :
-        "Every halachic text is verbatim from Sefaria with a link. Photos are live from iNaturalist; culinary lines are quoted from Wikipedia. The science is a springboard only.") +
+      (isHE() ? "כָּל טֶקְסְט הֲלָכָתִי מוּבָא כִּלְשׁוֹנוֹ עִם קִישּׁוּר לַמָּקוֹר. תַּצְלוּמִים חַיִּים מֵ־iNaturalist; שׁוּרוֹת קוּלִינָרִיּוֹת מְצֻטָּטוֹת מִוִּיקִיפֶּדְיָה. הַמַּדָּע — קֶרֶשׁ קְפִיצָה בִּלְבַד." :
+        "Every halachic text is quoted as written, with a link to its source. Photos are live from iNaturalist; culinary lines are quoted from Wikipedia. The science is a springboard only.") +
       ' <span class="badge lexicon">lexicon</span> ' + (isHE() ? "זִהוּי חוֹקְרִים · " : "named authority · ") +
       '<span class="badge direct">direct</span> ' + (isHE() ? "מָקוֹר רִאשׁוֹן" : "primary source") + ".</div>";
   }

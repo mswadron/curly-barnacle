@@ -518,7 +518,7 @@ window.CHAGAVIM_DATA = {
     title: { he: "בְּכָל הַשַּׁ״ס", se: "Across Shas", en: "Chagavim Across the Talmud" },
     intro: {
       he: "מִלְּבַד סוּגְיַת הַזִּהוּי בְּחולין ס״ה, הֶחָגָב מוֹפִיעַ בְּכַמָּה מְקוֹמוֹת בַּמִּשְׁנָה וּבַתַּלְמוּד — בִּבְרָכָה, בִּשְׁחִיטָה, בְּצִיר, בִּרְפוּאָה וּבְעֵרוּב.",
-      en: "Beyond the identification sugya of Chullin 65, the locust surfaces across the Mishnah and Talmud — in the laws of blessings, slaughter, brine, idolatry-suspicion, and even folk medicine. Each passage below is verbatim with a Sefaria link.",
+      en: "Beyond the identification sugya of Chullin 65, the locust surfaces across the Mishnah and Talmud — in the laws of blessings, slaughter, brine, idolatry-suspicion, and even folk medicine. Each passage below is verbatim with a source link.",
     },
     sugyot: [
       {

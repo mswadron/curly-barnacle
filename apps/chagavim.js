@@ -189,7 +189,7 @@
         <div class="stage">${esc(stageLab)}</div>
         ${s.he?`<div class="he">${esc(s.he)}</div>`:""}
         ${isHE()?"":`<div class="en">${esc(s.en)}</div>`}
-        <div class="ref">${esc(s.ref)} · <a href="${esc(s.sefaria)}" target="_blank" rel="noopener">Sefaria</a></div>
+        <div class="ref">${esc(s.ref)} · <a href="${esc(s.sefaria)}" target="_blank" rel="noopener">${isHE()?"מקור":"source"}</a></div>
       </div>`;
       return block + (i<D.derivation.steps.length-1?'<div class="connector"></div>':"");
     }).join("");
@@ -239,7 +239,7 @@
     // 1) derivation chain
     const steps = D.derivation.steps.map((s,i)=>{
       const stageLab = {klal:"כְּלָל / klal",prat:"פְּרָט / prat","binyan-av":"בִּנְיַן אָב","rav-achai":"רַב אַחַאי"}[s.stage]||s.stage;
-      const block = `<div class="step"><div class="stage">${esc(stageLab)}</div>${s.he?`<div class="he">${esc(s.he)}</div>`:""}${isHE()?"":`<div class="en">${esc(s.en)}</div>`}<div class="ref">${esc(s.ref)} · <a href="${esc(s.sefaria)}" target="_blank" rel="noopener">Sefaria</a></div></div>`;
+      const block = `<div class="step"><div class="stage">${esc(stageLab)}</div>${s.he?`<div class="he">${esc(s.he)}</div>`:""}${isHE()?"":`<div class="en">${esc(s.en)}</div>`}<div class="ref">${esc(s.ref)} · <a href="${esc(s.sefaria)}" target="_blank" rel="noopener">${isHE()?"מקור":"source"}</a></div></div>`;
       return block + (i<D.derivation.steps.length-1?'<div class="connector"></div>':"");
     }).join("");
     // 2) full beraisos
@@ -392,7 +392,7 @@
     const c = D.cruxes[0];
     html += `<div class="rail-section"><h3>${isHE()?`<span class="he">${esc(c.title.he)}</span>`:esc(t(c.title))}</h3>
       <p style="font-size:13px;color:var(--ink);margin:0">${esc(isHE()? "בְּחולין ס״ה. — סָלְעָם הוּא רָשׁוֹן וְחַרְגֹּל הוּא נִיפּוּל; בְּחולין ס״ה: — סָלְעָם הוּא נִיפּוּל וְחַרְגֹּל הוּא רָשׁוֹן. שְׁתֵּי הַבָּרַיְתוֹת מוּבָאוֹת כִּלְשׁוֹנָן." : c.body_en)}</p></div>`;
-    html += `<div class="disc"><b>Sourcing.</b> ${isHE()?"כל טקסט מובא כלשונו עם קישור לספריא; נתוני שורש מסומנים lexicon. ":"Every quoted text is verbatim with a Sefaria link; lexical data is badged ‘lexicon’. "}<span class="badge direct">direct</span> <span class="badge lexicon">lexicon</span> <span class="badge descript">descriptive</span></div>`;
+    html += `<div class="disc"><b>Sourcing.</b> ${isHE()?"כל טקסט מובא כלשונו עם קישור למקור; נתוני שורש מסומנים lexicon. ":"Every quoted text is verbatim with a source link; lexical data is badged ‘lexicon’. "}<span class="badge direct">direct</span> <span class="badge lexicon">lexicon</span> <span class="badge descript">descriptive</span></div>`;
     return html;
   }
 
@@ -401,7 +401,7 @@
     return `<div class="pasuk"><div class="he">${esc(v.he)}</div>
       ${L==="se"?`<div class="tr">${esc(v.se)}</div>`:""}
       ${L==="en"?`<div class="en">${esc(v.en)}</div>`:""}
-      <div class="ref"><span class="r">${esc(v.ref)}</span><a href="${esc(v.sefaria)}" target="_blank" rel="noopener">Sefaria →</a></div></div>`;
+      <div class="ref"><span class="r">${esc(v.ref)}</span><a href="${esc(v.sefaria)}" target="_blank" rel="noopener">${isHE()?"מקור":"Source"} →</a></div></div>`;
   }
 
   function detail(ty) {
@@ -412,7 +412,7 @@
     const srcBlock = `<div class="rail-section"><h3>${esc(t(UI.sourceText))}</h3>
       <div class="pasuk"><div class="he">${esc(src.he)}</div>
         ${isHE()?"":`<div class="en">${esc(src.en)}</div>`}
-        <div class="ref"><span class="r">${esc(src.ref)}</span><a href="${esc(src.sefaria)}" target="_blank" rel="noopener">Sefaria →</a></div></div></div>`;
+        <div class="ref"><span class="r">${esc(src.ref)}</span><a href="${esc(src.sefaria)}" target="_blank" rel="noopener">${isHE()?"מקור":"Source"} →</a></div></div></div>`;
     const etyms = (ty.etymology||[]).map(e=>{
       const latin = /[A-Za-z]/.test(e.forms) && !/[\u0590-\u05FF]/.test(e.forms);
       return `<div class="etym"><div class="lang">${esc(e.lang)} <span class="badge lexicon">lexicon</span></div>

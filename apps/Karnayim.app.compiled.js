@@ -516,7 +516,7 @@ function App() {
     className: "foot"
   }, /*#__PURE__*/React.createElement("div", {
     className: "eyebrow"
-  }, "Colophon"), /*#__PURE__*/React.createElement("div", null, "Primary text and Rashi from Sefaria (William Davidson Vocalized Aramaic; Vilna Rashi). Rambam from Mishneh Torah, Hilchos Maachalos Asuros 1:10. Anatomical content is standard zoology of Bovidae and Cervidae — memory-grounded, not from Sefaria. Images from Wikimedia Commons (CC licensed where indicated)."))), /*#__PURE__*/React.createElement("aside", {
+  }, "Colophon"), /*#__PURE__*/React.createElement("div", null, "Primary text: William Davidson vocalized Aramaic; Rashi: Vilna edition. Rambam: Mishneh Torah, Hilchos Maachalos Asuros 1:10. Anatomical content is standard zoology of Bovidae and Cervidae — memory-grounded, not from the quoted texts. Images from Wikimedia Commons (CC licensed where indicated)."))), /*#__PURE__*/React.createElement("aside", {
     className: "rail"
   }, /*#__PURE__*/React.createElement("div", {
     className: "rail-sticky"

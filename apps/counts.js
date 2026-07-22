@@ -234,7 +234,7 @@ function renderTimeline(){
       </div>
     </div>
     <div class="tl-rail">${rows}</div>
-    <div class="foot-note">Verses verified against Sefaria · Bereishis 46, Shemos 1/12/30/38, Bamidbar 1/3/4/26</div>
+    <div class="foot-note">Verses verified pasuk by pasuk · Bereishis 46, Shemos 1/12/30/38, Bamidbar 1/3/4/26</div>
     ${nachSectionHtml()}
   `;
 }
@@ -881,7 +881,7 @@ function renderPurpose(){
       <div class="pm-legend-item"><span class="pm-dot minor"></span> Chibah / love-marker (Rashi's meta-purpose, applies to most)</div>
     </div>
     <div class="pm-defs">${defs}</div>
-    <div class="foot-note">Sources verifiable on Sefaria · click any reference</div>
+    <div class="foot-note">Click any reference to open the source</div>
   `;
 }
 

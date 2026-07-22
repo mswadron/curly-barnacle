@@ -760,7 +760,7 @@ function SourceModal({
       textAlign: "right",
       margin: "-6px 0 10px"
     }
-  }, tx(lang, 'הנוסח כאן ע"פ המקור — הלשון המלא בספריא', "Text follows the source — full wording on Sefaria")), su && /*#__PURE__*/React.createElement("a", {
+  }, tx(lang, 'הנוסח כאן ע"פ המקור — הלשון המלא בקישור', "Text follows the source — full wording at the link")), su && /*#__PURE__*/React.createElement("a", {
     href: su,
     target: "_blank",
     rel: "noopener noreferrer",
@@ -773,7 +773,7 @@ function SourceModal({
       borderBottom: "1px dotted var(--ac)",
       marginBottom: 8
     }
-  }, tx(lang, "לצפייה בספריא ↗", "View on Sefaria ↗")), type === "pasuk" && data.rh && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+  }, tx(lang, "לצפייה במקור ↗", "View source ↗")), type === "pasuk" && data.rh && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
       fontWeight: 600,
