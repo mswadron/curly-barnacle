@@ -6,6 +6,7 @@ All notable changes to **Torah Interactive**. Format loosely follows
 ## [Unreleased]
 
 ### Added
+- `apps/arba_minim.html` (+ `-data.js`, `.js`) and index tile: The Four Species as Plants. Botany x sugya for esrog, lulav, hadas, aravah; grafting vs cross-breeding vs cross-pollination and what DNA can see; Deri; meshulash; esrog blemish guide by region. Sources verbatim from Sukkah 32a-36a, OC 645-648, Magen Avraham 648:23. (2026-09-27)
 - `docs/` — documentation set: a master index (`docs/README.md`) plus one sub-doc per live tile (16 tiles).
 - `CHANGELOG.md` — this file.
 - `site-chrome.js` — one shared UI layer injected into every app and the index. Provides: a "Beta" chip with an expandable note (framed as a feature, links back to the מקור ethos); a redesigned **home button** (house icon, replaces the old 2×2 grid glyph; auto-removes the legacy inline `#lib-home`); and a **"Leave a note"** feedback panel with Google sign-in. Trigger icon: outlined speech bubble (option A).

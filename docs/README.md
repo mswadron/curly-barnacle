@@ -44,6 +44,7 @@ Grouped by seder, in the order they appear on the index page.
 |------|-----|---------|
 | Seder Zeraim — Plants & Land-Mitzvos | [zeraim.html](../apps/zeraim.html) | [zeraim.md](zeraim.md) |
 | Talmud Flora — Plants of Kilayim | [talmudflora.html](../apps/talmudflora.html) | [talmudflora.md](talmudflora.md) |
+| The Four Species as Plants | [arba_minim.html](../apps/arba_minim.html) | [arba-minim.md](arba-minim.md) |
 
 ### לוח · Luach & Reference
 
