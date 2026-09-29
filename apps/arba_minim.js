@@ -24,7 +24,7 @@
   }
 
   function srcBox(s){
-    const u = refUrl(s.ref);
+    const u = s.url || refUrl(s.ref);
     return `<div class="srcbox">
       <div class="src-he">${esc(s.he)}</div>
       ${state.showTr && s.se ? `<div class="src-tr">${esc(s.se)}</div>` : ""}

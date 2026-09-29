@@ -1,0 +1,179 @@
+/* ============================================================================
+   ARBA MINIM · Esrog lineages (added 2026-09-28)
+   Orchard-by-orchard: how each line was established, what was claimed against
+   it, and who relied on it; plus the acharonim on the murkav signs.
+   Loads after arba_minim-data.js and inserts itself right after the Esrog
+   section. Does not pasken.
+   Main secondary source: Toraland halachic-agricultural encyclopedia, entry
+   "אתרוג - בירור זני האתרוגים" (Hebrew, footnoted to the teshuvos, Gur 1966,
+   Amar, Esrogei Eretz Yisrael 2011). Quoted verbatim from that page.
+   ========================================================================== */
+(function(){
+  var TL = "https://www.toraland.org.il/%D7%90%D7%A0%D7%A6%D7%99%D7%A7%D7%9C%D7%95%D7%A4%D7%93%D7%99%D7%94-%D7%94%D7%9C%D7%9B%D7%AA%D7%99%D7%AA-%D7%97%D7%A7%D7%9C%D7%90%D7%99%D7%AA/%D7%90%D7%AA%D7%A8%D7%95%D7%92-%D7%91%D7%99%D7%A8%D7%95%D7%A8-%D7%96%D7%A0%D7%99-%D7%94%D7%90%D7%AA%D7%A8%D7%95%D7%92%D7%99%D7%9D/";
+  var TLREF = "Toraland encyclopedia, esrog strains";
+  var S = function(ref, url){ return { ref: ref, url: url }; };
+
+  var cat = {
+    id: "lineage",
+    name: { he: "נאכל במסורת", se: "ne'echal be-mesorah", en: "Esrog lineages" },
+    latin: "Orchards, mesorah and the murkav question",
+    lead: "The Chasam Sofer's rule is that an esrog is like a kosher bird: it is accepted on mesorah, not on signs. So every line on the market today rests on one of three foundations: a continuous tradition on a place, growers who did not know how to graft, or a new orchard started from a verified fruit in front of witnesses. These cards go orchard by orchard: how each was established, what was claimed against it, and who relied on it. The first card is the acharonim on the murkav signs, which is why it all comes down to the orchard.",
+    nodes: [
+
+      { id:"lin-signs",
+        name:{ he:"וסימנים אלו מובהקים אצלנו", en:"The murkav signs in the acharonim: local, then tested, then set aside" },
+        organism:"Responsa of Rema 126 → Chasam Sofer OC 183, 207 → Aruch HaShulchan 648:28 → Mishnah Berurah 648:65",
+        layer:"sugya", status:"cond",
+        biology:"The three signs (smooth skin, protruding oketz, wide juicy pulp with thin rind) and the Levush's fourth (seeds lying crosswise) are each a lemon trait. An esrog scion on lemon roots does not bear fruit like that: no genes cross a graft union, and the root only shifts rind thickness, juiciness and size by degree. So the signs fit a lemon or a citron-lemon hybrid, or a lemon branch grafted onto an esrog tree, far better than they fit an esrog branch on lemon roots.",
+        match:"The acharonim reached the same place from the texts and from testing. R' Yehuda of Padua gave the signs for the grafted fruit \"הגדלים בארצנו\" and said they were clear \"אצלנו\". The Chasam Sofer (207) ruled they are not d'oraisa, not in Shas, and prove nothing for fruit from elsewhere; the esrog goes by mesorah like a kosher bird, and without it one needs a written hechsher. In 183 he rejects the Maharam Alshich's idea that a scion becomes the rootstock's fruit (\"ולא שישתנה הפרי ויעשה מאגוז תפוח\", which is modern botany), then grounds the psul in \"כח אחר מעורב בו\", and allows relying on the two outer signs. The Aruch HaShulchan says the signs were only what they saw in Italy; Corfu, Eretz Yisrael and Moroccan esrogim are often smooth, and the inner signs did not hold up when tested. The Bikkurei Yaakov and the Kaf HaChayim tested the seed sign and found seeds lengthwise, crosswise and diagonal in one ungrafted esrog. Eretz Hemdah states the modern botany outright.",
+        question:"What survives is the psul itself, which never depended on the signs: the Maharam Alshich (the fruit belongs to the lemon tree), the Levush (grown through an aveirah), Chasam Sofer 183 (\"כח אחר מעורב בו\"; the rootstock does physically change the fruit), and the Magen Avraham (\"לא מקרי אתרוג כלל\"). Which reason governs, and whether 183's reliance on two outer signs or 207's rejection of all signs is the practical rule, is left to the poskim. The Shulchan Aruch HaRav codifies all four signs as written.",
+        sources:[
+          { ref:"Responsa of Rema 126:1", url:"https://www.sefaria.org/Responsa_of_Rema.126.1", he:"ואני כותב למכ\"ת ג' סימנים אשר תוכל להכיר בהם המורכבים הגדלים בארצנו ... וסימנים אלו מובהקים אצלנו.", se:"ve-simanim elu muvhakim etzlenu", en:"I am writing you three signs by which you can recognize the grafted ones that grow in our land ... and these signs are clear by us." },
+          { ref:"Chatam Sofer OC 207", url:"https://www.sefaria.org/Responsa_Chatam_Sofer,_Orach_Chayim.207", he:"כבר כתבתי בתשו' אחרת כי כל אלו הסימנים לאו דאוריי' ולא נזכרו בש\"ס ובשום מקום ומן הדין דינו של אתרוג כדין עוף טהור נאכל במסורת", se:"dino shel esrog ke-din of tahor ne'echal be-mesores", en:"I already wrote in another teshuvah that all these signs are not d'oraisa and are not mentioned in Shas or anywhere; by law an esrog is like a kosher bird, eaten on mesorah." },
+          { ref:"Chatam Sofer OC 207", url:"https://www.sefaria.org/Responsa_Chatam_Sofer,_Orach_Chayim.207", he:"אבל הבאים בוודאי מאיים אחרים אפילו יש להם אותן הסימנים אין ראי' שאינם מורכבים ... העולה מזה כל האתרוגי' שאינם מיעניווע אין ליקח בלי כתב הכשר שיודע המעיד שאינם מהמורכבים ואין לסמוך על סימני'", se:"afilu yesh lahem osan ha-simanim ein ra'ayah she-einam murkavim", en:"But those that certainly come from other islands, even if they have those signs, there is no proof they are not grafted ... The conclusion: any esrogim not from Yanova are not to be taken without a written hechsher in which the witness knows they are not grafted, and one may not rely on signs." },
+          { ref:"Chatam Sofer OC 183", url:"https://www.sefaria.org/Responsa_Chatam_Sofer,_Orach_Chayim.183", he:"מה ענין ילדה בטלה בזקנה לכאן התם לענין ביטול איסורים מיירי ולא שישתנה הפרי ויעשה מאגוז תפוח ... אך לפי האמת דעכ\"פ כח אחר מעורב בו בלי ספק שאיננו פרי עץ הדר", se:"ve-lo she-yishtaneh ha-pri ve-ya'aseh me-egoz tapuach ... ko'ach acher me'orav bo", en:"What does a young branch nullified in an old tree have to do with this? That is about nullifying prohibitions, not that the fruit changes and a walnut becomes an apple ... But in truth, at any rate another force is mixed into it without doubt, so it is not the fruit of a hadar tree." },
+          { ref:"Chatam Sofer OC 183", url:"https://www.sefaria.org/Responsa_Chatam_Sofer,_Orach_Chayim.183", he:"ולפ\"ז באתרוגים שיש להם סי' שבחוץ שקוע ובליטות הרבה הו\"ל ב' סימני' ושוב אין לנו לחוש שמא ימצא בסימנים הפנימים היפוך מזה", se:"shaku'a u-velitos harbeh havei leh beis simanim", en:"Accordingly, esrogim that have the outer signs, a sunken stem and many bumps, have two signs, and we need not worry that the inner signs will be found to the contrary." },
+          { ref:"Arukh HaShulchan OC 648:28", url:"https://www.sefaria.org/Arukh_HaShulchan,_Orach_Chaim.648.28", he:"ואין הסימנים מקובלים מהקדמונים, אלא מה שראו במדינתם. ... דהא אתרוגי קורפ\"ו ... הם חלקים לגמרי, והרבה שהעוקץ בולט. ... והרי גם אתרוגי ארץ ישראל ואתרוגי מאראק\"א – גם כן הרבה שהם חלקים. ... וגם בהסימנים שבפנים בדקנו, ולא נתברר לנו. ולכן קשה להעמיד על סימנים להלכה למעשה.", se:"ein ha-simanim mekubalim me-ha-kadmonim, ela mah she-ra'u bi-medinasam", en:"The signs are not received from the ancients, only what they saw in their own country. Corfu esrogim are completely smooth, many with a protruding stem; Eretz Yisrael and Moroccan esrogim are also often smooth. We also checked the inner signs and they were not confirmed. So it is hard to rely on signs in practice." },
+          { ref:"Mishnah Berurah 648:65", url:"https://www.sefaria.org/Mishnah_Berurah.648.65", he:"ובבכורי יעקב כתב שבדק באתרוגים הרגילים אצלנו ושיש להם כל סימני אתרוג כשר שלפעמים הגרעינים שוכבים באורך ולפעמים ברוחב ע\"ש וע\"כ ע\"י סימן זה א\"א להבחין כלל", se:"al yedei siman zeh i efshar le-havchin klal", en:"The Bikkurei Yaakov wrote that he checked our usual esrogim that have all the signs of a kosher esrog, and sometimes the seeds lie lengthwise and sometimes crosswise; so by this sign one cannot tell at all." },
+          { ref:"Kaf HaChayim OC 648:136", url:"https://www.sefaria.org/Kaf_HaChayim_on_Shulchan_Arukh,_Orach_Chayim.648.136", he:"בדקנו כמה פעמים באתרוגים שאינם מורכבים ומצאנו באתרוג אחד שהגרעין שלו יש מהם מושכבים לאורך ויש מהם מושכבים לרוחב ויש מושכבים באלכסון", se:"yesh me-hem mushkavim la-orech ve-yesh la-rochav ve-yesh ba-alachson", en:"We checked several times in ungrafted esrogim and found in one esrog seeds lying lengthwise, crosswise and diagonally." },
+          { ref:"Mishpetei Uziel I, OC 24:8", url:"https://www.sefaria.org/Mishpetei_Uziel,_Volume_I,_Orach_Chayim.24.8", he:"סימן הגרעין ויתר הסימנים שהוזכרו אינם סימנים מקובלים: אלא סימנים למודיים מתוך הנסיון באתרוגים שבמדינת איטליא ... וכל שלא נשתנה האתרוג בצורתו טעמו וריחו הוא עומד בחזקת כשרות", se:"simanim limudiyim mi-toch ha-nisayon", en:"The seed sign and the other signs are not received signs, only signs learned from experience with the esrogim of Italy ... and any esrog whose shape, taste and smell are unchanged stands in its presumption of kashrus." },
+          { ref:"B'Mareh HaBazak III 52:7", url:"https://www.sefaria.org/B'Mareh_HaBazak_Volume_III.52.7", he:"כבר אמרו המומחים, כי גם באתרוג מורכב יתכנו כל הסימנים שנמנו בבלתי-מורכב, שכן ה\"רוכב\" (הענף שאותו מרכיבים) אינו מושפע מן ה\"כנה\" (העץ שעליו מרכיבים את הרוכב) בנושא זה.", se:"ha-rochev eino mushpa min ha-kanah", en:"The experts have already said that a grafted esrog can have all the signs listed for an ungrafted one, since the scion is not affected by the rootstock in this respect." },
+          { ref:"Shulchan Arukh HaRav OC 648:31", url:"https://www.sefaria.org/Shulchan_Arukh_HaRav,_Orach_Chayim.648.31", he:"אֶתְרוֹג הַמֻּרְכָּב, דְּהַיְנוּ שֶׁהִרְכִּיבוּ עָנָף מֵאִילָן אַחֵר לְתוֹךְ אִילַן הָאֶתְרוֹג וְגָדַל מֵהֶן מִין הַדּוֹמֶה לְאֶתְרוֹג — פָּסוּל, שֶׁזֶּה אֵינוֹ אֶתְרוֹג כְּלָל אֶלָּא הוּא בְּרִיָּה בִּפְנֵי עַצְמָהּ.", se:"hirkivu anaf me-ilan acher le-soch ilan ha-esrog", en:"A grafted esrog, that is, a branch from another tree was grafted into the esrog tree and a species resembling an esrog grew from them, is pasul, since it is not an esrog at all but a creation of its own." }
+        ],
+        reading:[
+          { t:"Toraland (Amar): Grafted and hybrid etrogim", u:"https://en.toraland.org.il/beit-midrash/articles/around-the-jewish-year/sukkot/grafted-and-hybrid-etrogim/" }
+        ] },
+
+      { id:"lin-method",
+        name:{ he:"כדין עוף טהור נאכל במסורת", en:"How a line is established, and why grafting spread" },
+        organism:"Mesorah on a place · growers who could not graft · new orchards from a verified fruit under witnesses",
+        layer:"market", status:"hiddur",
+        biology:"Grafting became widespread after gummosis (Phytophthora root and collar rot) broke out in Madeira in 1832 and spread to Spain, Calabria and the Jaffa groves. Sour orange and sweet lime rootstocks resist it, so growers put their citrus on those roots. For a grower selling to the candied-peel trade that is simply good practice. Several of today's mesorah lines were started from seed, which is the one route by which a hybrid could enter genetically (a seed can carry foreign pollen; a cutting cannot). The comparative DNA study of twelve strains found no hybrid among them.",
+        match:"Three foundations recur. (1) A continuous tradition on a place: the Chasam Sofer's model, applied to Yanova for Ashkenaz and to Yemen and Morocco. (2) Growers who did not know how to graft: the core argument for the old Eretz Yisrael fruit. (3) A new orchard from a verified fruit: Rav Kook's condition for his 1905 hechsher on the Pri Etz Hadar growers was to clarify the seeds' origin in wild, ungrafted esrogim. Grafting esrog onto esrog is not a psul: the Mishnah Berurah brings the Bach that grafting a small-fruited esrog branch onto a large-fruited esrog tree is kosher, and Rav Kook's supervised trees were grafted that way.",
+        question:"Whether a cutting taken from an esrog scion that stood on lemon roots, and then rooted on its own, is kosher; some understood Rav Kook to permit grafting such cuttings onto ungrafted esrog roots, and the Chazon Ish reportedly objected to grafting done under his instructions. Left to the poskim.",
+        sources:[
+          { ref:TLREF, url:TL, he:"מחלה זו גרמה להתרבות גדולה של ההרכבה מכיוון שעצי החושחש והלימטה המתוקה היו עמידים בפני מחלה זו, ולכן הרכיבו הדרים על גביהם", se:"ve-lachen hirkivu hadarim al gabeihem", en:"This disease caused a great increase in grafting, since sour orange and sweet lime trees were resistant to it, and so citrus was grafted onto them." },
+          { ref:TLREF, url:TL, he:"באדר תרס\"ה כתב להם הרב קוק שהוא מוכן לתת להם כשרות אך התנה זאת בכמה תנאים ביניהם \"לברר בפני בברור גמור את יסוד הגרעינים שמהם נתגדלו עצי האתרוגים של כבודם שנלקחו מפרי האתרוגים הגדלים פרא שאין עליהם חשש הרכבה\"", se:"levarer lefanai be-verur gamur es yesod ha-gar'inim", en:"In Adar 1905 Rav Kook wrote that he was ready to give them kashrus on conditions, among them: to clarify before me with complete clarity the origin of the seeds from which your esrog trees grew, that they were taken from esrogim growing wild, with no concern of grafting." },
+          { ref:"Rav Kook, Igros HaRe'iyah 52 (via Toraland)", url:TL, he:"ובאמת גם הכשרים בבירור הם ג\"כ מורכבים, אבל ההרכבה נעשית מב' מיני אתרוג, שנמצאים עם פטמות ובלא פטמות וכיוצ\"ב", se:"ha-harkavah na'asis mi-beis minei esrog", en:"In truth even the clearly kosher ones are also grafted, but the grafting is between two kinds of esrog, found with pitoms and without pitoms and the like." },
+          { ref:"Mishnah Berurah 648:65", url:"https://www.sefaria.org/Mishnah_Berurah.648.65", he:"אבל אם הרכיב משני אילני אתרוג ביחד כגון ענף אילן שפירותיו דקים וקטנים לתוך אילן שפירותיו גסים כשר. א\"ר בשם ב\"ח", se:"im hirkiv mi-shnei ilanei esrog yachad ... kasher", en:"But if one grafted two esrog trees together, such as a branch of a tree whose fruit is thin and small into a tree whose fruit is large, it is kosher (Eliyah Rabbah in the name of the Bach)." },
+          { ref:TLREF, url:TL, he:"לאור ממצאים אלה ניתן לומר במידה ניכרת של וודאות שהאתרוגים שבידינו כולם אהובים כולם ברורים, כולם אתרוגים אמיתיים ואינם תוצרי הכלאה של אתרוג עם לימון או מין הדר אחר", se:"kulam esrogim amitiyim ve-einam totzrei hachla'ah", en:"(Prof. Goldschmidt, after the genetic study of twelve strains) In light of these findings one can say with considerable certainty that the esrogim we have are all true esrogim and not products of crossing esrog with lemon or another citrus." }
+        ],
+        reading:[
+          { t:"Toraland encyclopedia: אתרוג, בירור זני האתרוגים (Hebrew)", u:TL }
+        ] },
+
+      { id:"lin-yanova",
+        name:{ he:"אתרוגי יאנווע - קלבריה", en:"Yanova and Calabria (Chabad; historic Ashkenaz)" },
+        organism:"Calabrian citron (Liscia Diamante), shipped historically through Genoa; Santa Maria del Cedro",
+        layer:"market", status:"cond",
+        biology:"Southern Calabria is Italy's main citron district, and its crop is mostly candied. Most local trees today are grafted against frost and disease; the Diamante DOP rules permit propagation by cuttings or by grafting on sour orange and Volkamer lemon. Kosher fruit therefore comes from identified ungrafted trees under supervision, not from the region as such.",
+        match:"The oldest Ashkenazi mesorah. The Chasam Sofer: the Yanova esrogim are kosher on the tradition of our fathers and need no sign. Calabrian fruit is named explicitly from 1846, called Yanova because it shipped through Genoa. From about 1950, when grafting was found at the source, supervision of specific ungrafted trees began and stock was planted in Kfar Chabad. Chabad takes Calabrian esrogim specifically and requires two mashgichim at harvest. The Luria line in Kfar Chabad grew from the seeds of the esrog the Rebbe bentched on in 1967, planted by Eliyahu Leib Rivkin in front of witnesses; in 2023 a new Calabrian orchard grown from seeds of the Rebbe's esrogim under round-the-clock video was certified by the Edah HaChareidis.",
+        question:"Claims against: some doubted Yanova itself and relied only on Calabrian fruit shipped through it; some held that all later Italian esrogim are suspect of grafting (Nefesh Chaya citing R' Shlomo Kluger); R' Yeshaye Gross's inspection report found grafting at the source. The answer given is tree-level supervision.",
+        sources:[
+          { ref:"Chatam Sofer OC 207", url:"https://www.sefaria.org/Responsa_Chatam_Sofer,_Orach_Chayim.207", he:"ע\"כ אותן הבאים מיעניווע שמסורת בידינו מאבות אבותינו ורבותינו חכמי הצרפתים אשר מעולם יושבי מדינו' אשכנז שיי\"ח באתרוגי' הבאים מיעניווע הן הנה הכשרי' ואין צריך לשום סימן", se:"hen hena ha-kesherim ve-ein tzarich le-shum siman", en:"Therefore those that come from Yanova, on which we have a tradition from our forefathers and our French rabbis who always lived in Ashkenaz that one fulfills the obligation with esrogim from Yanova, they are the kosher ones and need no sign." },
+          { ref:TLREF, url:TL, he:"משנת תש\"י והלאה שהתעוררו ספיקות אודות אתרוגים אלו, והתברר שהתחילו להרכיב אתרוגים אלו במקום גידולם, התחיל להיות פיקוח על אתרוגים אלו שלא מרכיבים אותם, ולקחו משם אתרוגים ושתלו בכפר חב\"ד", se:"hischil lihyos pikuach al esrogim elu she-lo markivim osam", en:"From 1950 on, when doubts arose about these esrogim and it emerged that they had begun grafting them where they grow, supervision began that they not be grafted, and esrogim were taken from there and planted in Kfar Chabad." },
+          { ref:TLREF, url:TL, he:"בשנת תשכ\"ז החזיר לו הרבי, לבקשתו, את האתרוג שעליו בירך. ריבקין נטע בנוכחות עדים, מזרעי אותו אתרוג.", se:"Rivkin nata be-nochechus eidim, mi-zar'ei oso esrog", en:"In 1967 the Rebbe returned to him, at his request, the esrog on which he had made the bracha. Rivkin planted, in the presence of witnesses, from the seeds of that esrog." }
+        ],
+        reading:[
+          { t:"Chabad.org: Why an Italian Etrog?", u:"https://www.chabad.org/library/article_cdo/aid/4129263/jewish/Why-an-Italian-Etrog.htm" },
+          { t:"Rabbi Andrea Zanardo: Are All Italian Cedri Kosher Etrogim?", u:"https://rabbiandreazanardo.substack.com/p/are-all-italian-cedri-kosher-etrogim" },
+          { t:"Anash.org: the Rebbe's esrog replanted in Calabria (2023)", u:"https://anash.org/revolutionary-breakthrough-the-rebbes-esrog-re-planted-in-calabria/" }
+        ] },
+
+      { id:"lin-corfu",
+        name:{ he:"אתרוגי יוון - קורפו", en:"Corfu and the Greek islands (no longer used)" },
+        organism:"Greek citron: Corfu, Parga and the Ionian islands; today Naxos and Halki for liqueur and candied peel",
+        layer:"market", status:"pasul",
+        biology:"Small, beautiful fruit, often with a persistent pitom, greener than the Eretz Yisrael esrogim and juicier; some bumpy, some smooth, the stem usually sunken. The significant grafting concerns date from after about 1840; some tie them to a citrus disease in 1875 that growers overcame by grafting.",
+        match:"For a period the main esrog of Europe. The rabbis of Corfu rejected the 1846 doubts about fruit from around the island as commercially motivated. The great controversies were in 1876 and 1891. By 1907 to 1908 Rav Kook wrote that Corfu esrogim were now certainly grafted, where before they had been only a doubt. The strain is not in use today; some say the Ordang line in Israel descends from Corfu stock brought to Jaffa before the grafting fears.",
+        question:"The grounds were mixed, which is the lesson of this case: the price cartel, a real grafting concern, the wish not to support Greek growers who had harmed Jews (the 1891 blood libel), and a preference for Eretz Yisrael fruit. Some, in the name of R' Daniel of Horodna, said to bless without Shem u-Malchus; many poskim opposed them and some supported them.",
+        sources:[
+          { ref:TLREF, url:TL, he:"הדיונים על אתרוגים אלו היו מכמה סיבות: מחמת יוקר האתרוגים, מחמת חשש הרכבה שהתעורר בהם, מעדיפות שלא לפרנס את בעלי האתרוגים ביוון שפגעו ביהודים, ומחמת העדפת אתרוגי ארץ ישראל", se:"machmas yoker ha-esrogim, machmas chashash harkavah", en:"The debates about these esrogim were for several reasons: their high price, the concern of grafting that arose in them, a preference not to support the esrog owners in Greece who harmed Jews, and a preference for Eretz Yisrael esrogim." },
+          { ref:TLREF, url:TL, he:"בשנים תרס\"ז-תרס\"ח כתב הרב קוק שהאתרוגים מקורפו כעת וודאי מורכבים, ואף שבעבר היו רק ספק מורכבים", se:"ka'es vadai murkavim", en:"In 1907 to 1908 Rav Kook wrote that the esrogim from Corfu are now certainly grafted, even though in the past they were only a doubt." }
+        ],
+        reading:[
+          { t:"Wikipedia: Greek citron (Corfu controversy)", u:"https://en.wikipedia.org/wiki/Greek_citron" }
+        ] },
+
+      { id:"lin-ey",
+        name:{ he:"אתרוגי ארץ ישראל המקוריים", en:"The old Eretz Yisrael esrog (Balady: Umm el-Fahm, Shechem, Tzfas, Tiberias)" },
+        organism:"Balady citron, grown by Arab farmers in the Galilee and Samaria; Kfar Hittin (R' Chaim Elazar Wax, 1875)",
+        layer:"market", status:"cond",
+        biology:"Described as very large (reports up to 6 kg), usually without a pitom, little juice, a protruding stem, large bumps, reddish rather than green. Prof. Amar argues this matches Chazal's esrog: often no pitom, can be large, has pulp but the white is the main edible part. Note that this fruit fails R' Yehuda of Padua's signs (protruding stem), which confirms the Aruch HaShulchan's point that the signs were Italian.",
+        match:"The Maharam Alshich (1586) reports that all the earlier Tzfas sages forbade grafted esrogim; in 1721 Aleppo took Tzfas fruit because it was ungrafted, not Sidon's. Until about 1840 Jerusalem took esrogim from Umm el-Fahm, grown by Arabs who did not know how to graft. R' Meir Auerbach, R' Shmuel Salant and the Rishon LeTzion R' Yaakov Shaul Elyashar certified them. In 1877 the Jerusalem rabbis sent a delegation through the growing villages; it found no grafted tree and nobody who knew how to graft, and the Ashkenazi beis din certified them on the mesorah of the earlier sages. Exports rose from about 6,000 in 1875 to about 300,000 before the First World War.",
+        question:"Claims against: that the land had been desolate, so there was no mesorah (the Radziner Rebbe); that most Eretz Yisrael esrogim were grafted (R' Shlomo Eliezer Alfandari); a Tiberias orchard taken over by an Arab after the 1837 earthquake was rumored grafted, which R' Meir Auerbach rejected; the Jaffa plantings of Corfu stock from about 1840 were resisted by Ashkenazi buyers as possibly grafted. Many poskim supported the Eretz Yisrael fruit.",
+        sources:[
+          { ref:TLREF, url:TL, he:"עד שנת ת\"ר לקחו אנשי ירושלים אתרוגים מאום אל פחם וסביבתה, אתרוגים אלו גדלו ע\"י ערבים שלא ידעו להרכיב", se:"arvim she-lo yad'u le-harkiv", en:"Until about 1840 the people of Jerusalem took esrogim from Umm el-Fahm and its surroundings; these esrogim were grown by Arabs who did not know how to graft." },
+          { ref:TLREF, url:TL, he:"נשלחה משלחת בשנת תרל\"ז מטעם רבני ירושלים לבדוק את שאר האתרוגים בארץ ישראל: סביבות אום אל פחם, אלמא אל שעוב, נצרא, אזור טבריה, כפר חיטין. ובכל המקומות האלו לא נמצא שום אתרוג מורכב, ולא ידעו להרכיב.", se:"lo nimtza shum esrog murkav, ve-lo yad'u le-harkiv", en:"In 1877 a delegation was sent by the rabbis of Jerusalem to examine the other esrogim in Eretz Yisrael: around Umm el-Fahm, Alma al-Sha'ab, Nazareth, the Tiberias area, Kfar Hittin. In all these places no grafted esrog was found, and they did not know how to graft." },
+          { ref:TLREF, url:TL, he:"הרב מאיר אוירבאך, רבה של ירושלים באותה תקופה כתב ופרסם כמה פעמים שהאתרוגים מארץ ישראל אין עליהם פקפוק ואינם מורכבים, וכן כתב גם הרב שמואל סלנט.", se:"ein aleihem pikpuk ve-einam murkavim", en:"R' Meir Auerbach, the rabbi of Jerusalem at the time, wrote and published several times that the esrogim of Eretz Yisrael are beyond doubt and are not grafted, and R' Shmuel Salant wrote the same." }
+        ],
+        reading:[
+          { t:"Wikipedia: Balady citron", u:"https://en.wikipedia.org/wiki/Balady_citron" }
+        ] },
+
+      { id:"lin-chazonish",
+        name:{ he:"חזון איש", en:"The Chazon Ish lines (Halperin, Lefkovitz) and Kibilevitz" },
+        organism:"Descendants of the old Eretz Yisrael esrog; Bnei Brak and growers' orchards",
+        layer:"market", status:"hiddur",
+        biology:"Two lines are grown under the Chazon Ish's name. Halperin fruit is broader at the top; Lefkovitz fruit is longer with a conical tip. The Lefkovitz mother tree grew from seed, which is unusual for citron, and bore for over fifty years; growers were allowed to take cuttings. Intensive cultivation and controlled spraying to keep the pitom from falling mean that \"Chazon Ish\" esrogim on the market now come in many shapes, so the name marks a lineage, not a look. Kibilevitz fruit is rarely clean, mostly without pitoms, with large bumps and hollows; fruit left on the tree past Sukkos approaches Yemenite size.",
+        match:"Halperin: grown by R' Yaakov Halperin on the Chazon Ish's instruction, from stock traced to Nachal Amud by Tzfas or to Shechem. Lefkovitz: the Chazon Ish gave R' Michel Yehuda Lefkovitz seeds from his own Sukkos esrog to plant in his yard, and chose his esrog from that tree each year. Kibilevitz: traced to a tree found at Wadi Qelt around 1910, or to Shechem or Umm el-Fahm (possibly several lines share the name); the Chazon Ish and R' Shlomo Zalman Auerbach took from it, with strong testimony on its lineage.",
+        question:"None raised against the lines themselves in the sources checked. The open point is market labeling: because shape now varies, a buyer relies on the grower's chain of custody to the named mother trees.",
+        sources:[
+          { ref:TLREF, url:TL, he:"חזו\"א הלפרין: אתרוגים שגודלו על ידי ר' יעקב הלפרין על פי הנחיית החזו\"א, אתרוגים אלו מקורם בנחל עמוד שליד צפת, או בשכם", se:"mekoram be-Nachal Amud she-le-yad Tzfas, o bi-Shechem", en:"Chazon Ish Halperin: esrogim grown by R' Yaakov Halperin on the Chazon Ish's instruction; their origin is Nachal Amud near Tzfas, or Shechem." },
+          { ref:TLREF, url:TL, he:"חזו\"א לפקוביץ: אתרוגים שגודלו על ידי ר' מיכל יהודה לפקוביץ' על פי הנחיית החזו\"א, באתרוגים אלו הפרי מאורך עם צורת חוטם חרוטי", se:"ha-pri me'urach im tzuras chotem charuti", en:"Chazon Ish Lefkovitz: esrogim grown by R' Michel Yehuda Lefkovitz on the Chazon Ish's instruction; the fruit is elongated with a conical tip." },
+          { ref:TLREF, url:TL, he:"בשל טיפוח אינטנסיבי, ריסוס מבוקר למניעת נשירת הפיטם, ניתן למצוא היום בשוק צורות שונות ומגוונות של אתרוגי \"החזון-איש\"", se:"tzuros shonos u-mgunanos", en:"Because of intensive cultivation and controlled spraying to prevent the pitom from falling, one finds on the market today many different shapes of \"Chazon Ish\" esrogim." },
+          { ref:TLREF, url:TL, he:"מזן זה נטלו החזו\"א, הגרש\"ז אויערבאך, ויש עליו עדויות חזקות על ייחוסו", se:"yesh alav eduyos chazakos al yichuso", en:"(Kibilevitz) The Chazon Ish and R' Shlomo Zalman Auerbach took from this strain, and there is strong testimony on its lineage." }
+        ],
+        reading:[
+          { t:"Wikipedia: Michel Yehuda Lefkowitz (the seed from the Chazon Ish's esrog)", u:"https://en.wikipedia.org/wiki/Michel_Yehuda_Lefkowitz" }
+        ] },
+
+      { id:"lin-otherey",
+        name:{ he:"גידול אתרוגים נוספים בארץ ישראל", en:"Other Israeli lines: Ordang (Chadera), Braverman, Ludmir, Shlomai" },
+        organism:"Twentieth-century Israeli orchards descended from Shechem, Umm el-Fahm, Jaffa or Wadi Qelt stock",
+        layer:"market", status:"cond",
+        biology:"Ordang (Chadera): relatively small, fine bumps and hollows, pointed tip, with pitoms; very common on the market. Braverman: barrel-shaped, rough, no pitom, can grow large, hard to grow and prone to insects; little demand. Ludmir: small to medium, fine bumps, pointed tip ending in a pitom. Shlomai: rounded, pointed tip, nearly smooth, mostly without pitom. Shlomai deliberately cross-pollinated his types to get beautiful fruit; that is esrog on esrog, not a hybrid, but Prof. Amar notes the original Shechem traits were not preserved.",
+        match:"Ordang: planted in Chadera in 1927 by Shraga Feivush Ordang, certified by various rabbis; origin said to be Shechem, or Jaffa and so possibly Corfu. The orchard dried up in 1956; today's Chadera esrogim come from cuttings taken at different times, some before the doubts, grown at scale by R' Avraham Gross. Braverman-Diskin: identified with the old Eretz Yisrael fruit; the attribution to the Maharil Diskin's esrog is disputed. Ludmir: from about 1904 by R' Mordechai Zeidel Ludmir, certified by various rabbis. Shlomai (Kfar HaRoeh): from Shechem, plus a fruit found at Umm el-Fahm in 1967; descendants grow at Tirat Zvi and Kfar Maimon.",
+        question:"Against Ordang: a rumor in the name of the Chazon Ish that he doubted it. Against Braverman-Diskin: only the disputed Diskin attribution, not its Eretz Yisrael origin.",
+        sources:[
+          { ref:TLREF, url:TL, he:"אתרוגי אורדנג נטעו ע\"י שרגא פייבוש אורדנג בשנת תרפ\"ז בחדרה, אתרוגים אלו קיבלו הכשר על ידי רבנים שונים. אולם בשם החזו\"א ישנה שמועה שפקפק על אתרוגי אורדנג", se:"be-shem ha-Chazon Ish yeshnah shmu'ah she-pikpek", en:"The Ordang esrogim were planted by Shraga Feivush Ordang in 1927 in Chadera and received hechsherim from various rabbis. However there is a rumor in the name of the Chazon Ish that he doubted the Ordang esrogim." },
+          { ref:TLREF, url:TL, he:"שלומאי טיפח את האתרוגים וגרם להאבקה בין הטיפוסים השונים וכך יצר אתרוגים יפים ומהודרים", se:"garam le-ha'avakah bein ha-tipusim ha-shonim", en:"Shlomai cultivated the esrogim and cross-pollinated the different types, and so produced beautiful, choice esrogim." }
+        ] },
+
+      { id:"lin-morocco",
+        name:{ he:"אתרוגי מרוקו", en:"Moroccan (Assads, Anti-Atlas)" },
+        organism:"Moroccan citron, Assads valley near Taroudant; traditionally Berber-grown canyon orchards",
+        layer:"market", status:"kosher",
+        biology:"Grown in isolation from other citrus, so neither grafting nor cross-pollination is a realistic concern. Distinct traits: cream-white flowers rather than the pink-tinged flowers of other citrons, many fruits with a pitom, many (especially the elongated ones) without seeds, and acidless, fairly dry flesh. A 1995 inspection delegation led by Prof. Goldschmidt found no grafted trees.",
+        match:"Testimony on their kashrus from the 1860s on. Relied on by the Jerusalem sages, the Aruch LaNer, R' Shlomo Kluger, the Aruch HaShulchan and the Chazon Ish; in our time the Minchas Yitzchak and the Agudas HaRabbonim of America and Canada.",
+        question:"Claims against: R' Nathan Adler and the London rabbis before him did not accept them for fear of grafting, though the Sefardim in London took them; one kuntres wrote that without the Bikkurei Yaakov it would have suspected they are not esrog at all. Genetically they are nearly identical to the other lines, so treating them as safer than the Eretz Yisrael lines is not supported by the DNA.",
+        sources:[
+          { ref:TLREF, url:TL, he:"האתרוגים במרוקו גדלים במקום שלא היה בו חשש של הרכבה ומשום כך יש בהם פחות חשש של תולדות המורכב. כמו כן אתרוגים אלו גדלים בנפרד ממקומות גידול של הדרים אחרים, ואין בהם חשש של האבקה מהדרים אחרים", se:"ve-ein bahem chashash shel ha'avakah me-hadarim acherim", en:"The esrogim in Morocco grow where there was no concern of grafting, so there is less concern of descendants of a graft. They also grow apart from other citrus, so there is no concern of pollination from other citrus." },
+          { ref:TLREF, url:TL, he:"מנקודת מבט גנטית ההתייחסות לאתרוג תימני ומרוקי כבטוח יותר מאשר האתרוג הארץ ישראלי אינה מוצדקת מכיוון שהם כמעט זהים להם בהרכבם הגנטי", se:"hem kim'at zehim lahem be-harkavam ha-geneti", en:"From a genetic standpoint, treating the Yemenite and Moroccan esrog as safer than the Eretz Yisrael esrog is not justified, since they are nearly identical in genetic makeup." }
+        ],
+        reading:[
+          { t:"Wikipedia: Moroccan citron", u:"https://en.wikipedia.org/wiki/Moroccan_citron" },
+          { t:"Times of Israel: Morocco's etrog industry (2022)", u:"https://www.timesofisrael.com/peace-with-israel-jewish-agricultural-law-have-moroccos-etrog-industry-blossoming/" }
+        ] },
+
+      { id:"lin-yemen",
+        name:{ he:"אתרוגים תימניים", en:"Yemenite" },
+        organism:"Yemenite citron; very large (2.5 kg is not rare), essentially no sour pulp",
+        layer:"market", status:"cond",
+        biology:"The juice sacs that normally fill each segment mostly never form, so the fruit is rind and white albedo around the seeds. It breeds true because the line is propagated from its own trees. DNA confirms it is Citrus medica and places it with the Mediterranean citrons. (A general note: citrus in Yemen today is often grafted onto sour orange or rough lemon; that concerns Yemeni citrus generally, not the mesorah lines grown in Israel.)",
+        match:"Presumed ungrafted because, as far as is known, esrogim were not grafted in Yemen, either for lack of need or of know-how. Many relied on them and saw them as preferable for having no grafting concern; some argued that this is exactly how an esrog should look.",
+        question:"The opposite complaint from every other line: no sour pulp and few bumps, so \"not the esrog our fathers took\" (Moadim u-Zmanim), since the poskim assume an esrog has inner pulp (Tosefta Terumos 10). The same Moadim u-Zmanim records that the Chazon Ish ruled it an esrog, kosher to bless on. R' Ratzabi argued the reverse, that an esrog with sour pulp is the grafted one; Prof. Amar rejects his proof.",
+        sources:[
+          { ref:TLREF, url:TL, he:"אתרוגים תימניים מוחזקים שאינם מורכבים משום שככל הידוע לא הרכיבו בתימן אתרוגים, משום שלא הוצרכו לכך או לא ידעו להרכיב", se:"lo hitztarchu le-chach o lo yad'u le-harkiv", en:"Yemenite esrogim are presumed ungrafted because, as far as is known, esrogim were not grafted in Yemen, either because there was no need or because they did not know how to graft." },
+          { ref:TLREF, url:TL, he:"מטעם זה יש שפקפקו שאין זה דומה לאתרוגים אותם היו רגילים בני העדות האחרות ליטול, אך רבים סמכו על אתרוגים אלו וראו בהם עדיפות שאין בהם חשש הרכבה, ויש שטענו שאדרבה דווקא כך צריך להיראות אתרוג", se:"adraba davka kach tzarich lehera'os esrog", en:"For this reason some doubted it, as it does not resemble the esrogim the other communities used to take; but many relied on these esrogim and saw an advantage in their having no concern of grafting, and some argued that, on the contrary, this is exactly how an esrog should look." }
+        ],
+        reading:[
+          { t:"Wikipedia: Yemenite citron", u:"https://en.wikipedia.org/wiki/Yemenite_citron" }
+        ] }
+    ]
+  };
+
+  var D = window.ARBA_DATA;
+  var i = D.categories.findIndex(function(c){ return c.id === "esrog"; });
+  D.categories.splice(i + 1, 0, cat);
+})();

@@ -13,6 +13,7 @@ Vayikra 23:40 · Mishnah Sukkah 3:1-6 · Sukkah 32a-36a · Shulchan Aruch OC 645
 ## Files
 - `apps/arba_minim.html` (page, tolaim house skin)
 - `apps/arba_minim-data.js` (four species, principle, regions, 12 blemishes; `window.ARBA_DATA`)
+- `apps/arba_minim-lineage.js` (Esrog lineages section, added 2026-09-28: acharonim on the murkav signs, how lines are established, Yanova/Calabria, Corfu, old Eretz Yisrael, Chazon Ish + Kibilevitz, other Israeli lines, Moroccan, Yemenite; inserts itself after the Esrog section)
 - `apps/arba_minim.js` (renderer: All / per-species / Blemish guide views, source language toggles, SVG region filter)
 
 ## Notes
@@ -21,3 +22,6 @@ Vayikra 23:40 · Mishnah Sukkah 3:1-6 · Sukkah 32a-36a · Shulchan Aruch OC 645
 - Sunburn is flagged as not named in the sugya; placed under shinui mar'eh as an open question.
 - Canary palm (kaneri) question is noted, not decided; no source fetched for it yet.
 - Open: rov meshulash line; hormone-retained pitom; Corfu history card if wanted.
+- 2026-09-28: lineage section sourced mainly from the Toraland encyclopedia entry "אתרוג - בירור זני האתרוגים" (quoted verbatim, linked) plus Sefaria (Rema 126, Chasam Sofer OC 183/207, Aruch HaShulchan 648:28, MB 648:65, Kaf HaChayim 648:136, Mishpetei Uziel I OC 24:8, B'Mareh HaBazak III 52:7, SA HaRav 648:31). Sources may carry an explicit `url` field; renderer uses it before refUrl().
+- 2026-09-28: corrected the strains card; it had said the Chazon Ish trees trace to a "Salant orchard". Correct: Halperin from Nachal Amud or Shechem stock; Lefkovitz from a seed of the Chazon Ish's own esrog.
+- Open: HebrewBooks search for acharonim on an own-rooted cutting taken from a grafted esrog scion; Yeshurun 33 article on Chazon Ish lineage not yet read directly.

@@ -19,8 +19,9 @@
 
 ## Done / in work / planned
 - Done 2026-09-27: apps/arba_minim (Four Species as Plants) pushed as b0cc726.
+- Done 2026-09-28: Esrog lineages section added to apps/arba_minim (arba_minim-lineage.js).
 - In work: none.
 - Planned: Chibuk verbatim fetches; Tumah Tree B (awaiting five decisions); Ornithology Part D render approval; Sugya Scout / Source Dock.
 
 ## Open questions
-- arba_minim: rov meshulash line; kaneri (Canary palm) sources; Corfu history card.
+- arba_minim: rov meshulash line; kaneri (Canary palm) sources; HebrewBooks search on own-rooted cutting from a grafted esrog scion; read Yeshurun 33 on Chazon Ish lineage directly.

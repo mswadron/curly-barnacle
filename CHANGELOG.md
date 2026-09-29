@@ -6,6 +6,7 @@ All notable changes to **Torah Interactive**. Format loosely follows
 ## [Unreleased]
 
 ### Added
+- `apps/arba_minim-lineage.js`: Esrog lineages section in The Four Species as Plants. Orchard-by-orchard history (Yanova/Calabria, Corfu, old Eretz Yisrael, Chazon Ish, Ordang/Braverman/Ludmir/Shlomai, Moroccan, Yemenite), what was claimed against each and who relied on it, plus the acharonim on the murkav signs. Also corrected the Chazon Ish provenance line in the strains card. (2026-09-28)
 - `apps/arba_minim.html` (+ `-data.js`, `.js`) and index tile: The Four Species as Plants. Botany x sugya for esrog, lulav, hadas, aravah; grafting vs cross-breeding vs cross-pollination and what DNA can see; Deri; meshulash; esrog blemish guide by region. Sources verbatim from Sukkah 32a-36a, OC 645-648, Magen Avraham 648:23. (2026-09-27)
 - `docs/` — documentation set: a master index (`docs/README.md`) plus one sub-doc per live tile (16 tiles).
 - `CHANGELOG.md` — this file.
