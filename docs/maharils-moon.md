@@ -11,6 +11,7 @@ Sections:
 1. The night: moon and sun altitude from sunset to sunrise, twilight bands, alos (sun at 16 degrees below), the hour before alos marked.
 2. Forty Hoshana Rabbahs: date of Hoshana Rabbah vs moonrise after sunset, sunset, moonrise, or moon height before alos; click a dot to select the year; full table.
 3. The ellipse: the lunar orbit at true shape or stretched x5, the moon's path through Tishrei, distance on the pre-dawn of Hoshana Rabbah.
+3b. Why it rises when it does: for the selected year, each night of Sukkos (15 to 22 Tishrei) the moonrise delay vs the 49-minute average, split into the north-south swing and the speed along the ellipse (residual under half a minute), with the moon's declination and direction; plus the 18.6-year cycle of the moon's maximum declination across 1387 to 1426.
 4. Brightness: phase, distance and altitude factors; moonlight compared with twilight levels.
 5. The cloud layer: optical depth slider, time of night slider, moon height slider (actual or by hand) with a strip showing which years had the moon at that height; rendered sky from east to SSW; slant path through the cloud; moonlight vs real twilight through the night.
 6. For teaching: the page's times are clock times for modern readers; the community reckoned in sha'os zmaniyos, readable by day from the sun, while at night the hour had to be judged by other, less exact means.

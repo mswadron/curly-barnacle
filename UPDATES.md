@@ -3,3 +3,4 @@
 2026-09-30 · Added Maharil's Moon (apps/maharils_moon.html) + index tile in Luach & Reference + docs/maharils-moon.md + changelog.
 2026-09-30 · Maharil's Moon: full check (desktop + phone, light + dark, all controls, no script errors); charts scroll sideways on phones instead of shrinking, night chart opens at the pre-dawn end.
 2026-09-30 · Maharil's Moon: past-dawn indicator in the cloud panel (status pill, sky banner, shaded past-dawn region in the light chart, description switches at alos and sunrise); time slider now reaches sunrise.
+2026-09-30 · Maharil's Moon: new section 3b, why the moon rises when it does (nightly delay for 15-22 Tishrei split into north-south swing vs speed along the ellipse; 18.6-year cycle chart).
