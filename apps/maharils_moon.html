@@ -50,6 +50,7 @@ section .lede{margin:0;color:var(--ink-2);max-width:70ch}
 .stat b{display:block;font:500 18px var(--mono);font-variant-numeric:tabular-nums}
 .stat span{font-size:11.5px;color:var(--ink-3);letter-spacing:.03em}
 .chart{position:relative;width:100%;overflow-x:auto}
+@media (max-width:680px){#nightChart>svg,#yearsChart>svg,#glowChart>svg,#hStrip>svg{min-width:660px}.chart.wide::after{content:'Scroll sideways to see the whole chart';display:block;font:11px var(--mono);color:var(--ink-3);padding-top:4px;position:sticky;left:0}}
 svg{display:block;width:100%;height:auto}
 svg text{fill:var(--ink-3);font:11px var(--mono)}
 .tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--panel);font:12px/1.4 var(--mono);padding:6px 8px;border-radius:6px;white-space:nowrap;transform:translate(-50%,-110%);opacity:0;transition:opacity .12s}
@@ -109,7 +110,7 @@ footer{font-size:12px;color:var(--ink-3)}
   <h2 id="nightTitle">The night</h2>
   <p class="lede">Height of the moon and the sun above the horizon from sunset to sunrise. Shaded bands are the stages of darkness; the dashed line marks alos (sun 16° below the horizon), and the hatched hour before it is when the mistake would have happened.</p>
   <div class="stats" id="nightStats"></div>
-  <div class="chart" id="nightChart"><div class="tip" id="nightTip"></div></div>
+  <div class="chart wide" id="nightChart"><div class="tip" id="nightTip"></div></div>
   <div class="legend"><span><i style="background:var(--moon)"></i>Moon altitude</span><span><i style="background:var(--sun)"></i>Sun altitude</span><span><i class="box" style="background:var(--band-night)"></i>Full night</span><span><i class="box" style="background:var(--band-astro)"></i>Astronomical twilight</span><span><i class="box" style="background:var(--band-naut)"></i>Nautical</span><span><i class="box" style="background:var(--band-civil)"></i>Civil</span></div>
 </section>
 
@@ -118,7 +119,7 @@ footer{font-size:12px;color:var(--ink-3)}
   <h2>Forty Hoshana Rabbahs</h2>
   <p class="lede">Each dot is one year. Across the bottom is the date of Hoshana Rabbah, which slides almost a month because the Hebrew calendar is lunar. Switch what the dots measure. Click a dot to select that year.</p>
   <div class="seg" id="metricSeg"><button data-v="gap" aria-pressed="true">Moonrise after sunset</button><button data-v="sunset" aria-pressed="false">Sunset time</button><button data-v="moonrise" aria-pressed="false">Moonrise time</button><button data-v="alt" aria-pressed="false">Moon height before alos</button></div>
-  <div class="chart" id="yearsChart"><div class="tip" id="yearsTip"></div></div>
+  <div class="chart wide" id="yearsChart"><div class="tip" id="yearsTip"></div></div>
   <p class="note" id="yearsNote"></p>
   <details><summary>Table of all years</summary><div class="tblwrap"><table id="yearsTbl"><thead><tr><th>Year</th><th>Hoshana Rabbah</th><th>Sunset</th><th>Moonrise</th><th>After sunset</th><th>Alos</th><th>Sunrise</th><th>Moonset</th><th>Lit</th><th>Distance km</th></tr></thead><tbody></tbody></table></div></details>
 </section>
@@ -161,7 +162,7 @@ footer{font-size:12px;color:var(--ink-3)}
   <div class="slider"><label for="tau" class="eyebrow">Cloud optical depth τ</label><input type="range" id="tau" min="0" max="40" step="0.1" value="6"><output id="tauOut">6.0</output></div>
   <div class="slider"><label for="tod" class="eyebrow">Time of night</label><input type="range" id="tod" min="0" max="10" step="1" value="0"><output id="todOut">--:--</output><button id="todReset" type="button">Hour before alos</button></div>
   <div class="slider"><label for="mAlt" class="eyebrow">Moon height</label><input type="range" id="mAlt" min="2" max="90" step="1" value="60"><output id="mAltOut">--</output><div class="seg" id="altSeg"><button data-v="real" aria-pressed="true">Actual for this time</button><button data-v="hand" aria-pressed="false">Set by hand</button></div></div>
-  <div class="chart" id="hStrip"><div class="tip" id="hTip"></div></div>
+  <div class="chart wide" id="hStrip"><div class="tip" id="hTip"></div></div>
   <p class="note" id="hNote"></p>
   <div class="stats" id="cloudStats"></div>
   <div class="two">
@@ -171,7 +172,7 @@ footer{font-size:12px;color:var(--ink-3)}
     </div>
     <dl class="kv" id="cloudKv"></dl>
   </div>
-  <div class="chart" id="glowChart"><div class="tip" id="glowTip"></div></div>
+  <div class="chart wide" id="glowChart"><div class="tip" id="glowTip"></div></div>
   <div class="legend"><span><i style="background:var(--moon)"></i>Moonlight through the cloud, reaching the ground</span><span><i style="background:var(--sun)"></i>Real twilight through the same cloud</span><span><i style="background:var(--accent)"></i>Selected time</span></div>
   <p class="note">Drag the height slider to see which years had the moon at that height at the same time relative to alos. "Set by hand" moves only the moon's height, keeping everything else about the chosen moment, so you can see the angle's effect on its own. The night-long chart always uses the real heights.</p>
   <p class="note">Why the moon's height matters: τ is fixed by the cloud, but light coming in at a slant crosses more of it. The path is τ ÷ sin(height). A moon 65° up crosses 1.1 times the layer; at 30° it crosses 2 times; at 10° almost 6 times. The same cloud that only dims a high moon can hide a low one completely.</p>
