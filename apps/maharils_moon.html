@@ -74,6 +74,12 @@ svg text{fill:var(--ink-3);font:11px var(--mono)}
 .slider output{font:500 14px var(--mono);min-width:7ch}
 canvas{display:block;width:100%;max-width:100%;border-radius:8px;image-rendering:auto}
 .regime{font:600 17px var(--display);margin:0}
+.pill{display:inline-flex;align-items:center;gap:6px;font:600 12px var(--body);letter-spacing:.04em;text-transform:uppercase;padding:5px 10px;border-radius:999px;border:1px solid var(--rule);background:var(--chip);color:var(--ink-2)}
+.pill::before{content:'';width:9px;height:9px;border-radius:50%;background:var(--ink-3)}
+.pill.dawn{background:color-mix(in srgb,var(--sun) 16%,var(--panel));border-color:var(--sun);color:var(--ink)}
+.pill.dawn::before{background:var(--sun)}
+.pill.day{background:color-mix(in srgb,var(--sun) 32%,var(--panel));border-color:var(--sun);color:var(--ink)}
+.pill.day::before{background:var(--sun);box-shadow:0 0 0 3px color-mix(in srgb,var(--sun) 35%,transparent)}
 .kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;font-size:13px;margin:0}
 .kv dt{color:var(--ink-3)} .kv dd{margin:0;font-family:var(--mono);font-variant-numeric:tabular-nums}
 table{border-collapse:collapse;font-size:12.5px;width:100%}
@@ -160,7 +166,7 @@ footer{font-size:12px;color:var(--ink-3)}
   <p class="lede">Slide the cloud thickness. Thickness is measured as optical depth: the number of times, on average, a ray of light is scattered on its way through. The picture is the sky looking east to south-southwest in the selected year, with the moon where it actually stood. Move through the night with the time slider, or click the chart below it.</p>
   <canvas id="skyCanvas" width="400" height="130" aria-label="Rendered sky from east to south-southwest"></canvas>
   <div class="slider"><label for="tau" class="eyebrow">Cloud optical depth τ</label><input type="range" id="tau" min="0" max="40" step="0.1" value="6"><output id="tauOut">6.0</output></div>
-  <div class="slider"><label for="tod" class="eyebrow">Time of night</label><input type="range" id="tod" min="0" max="10" step="1" value="0"><output id="todOut">--:--</output><button id="todReset" type="button">Hour before alos</button></div>
+  <div class="slider"><label for="tod" class="eyebrow">Time of night</label><input type="range" id="tod" min="0" max="10" step="1" value="0"><output id="todOut">--:--</output><span class="pill" id="dawnPill" role="status" aria-live="polite">Night</span><button id="todReset" type="button">Hour before alos</button></div>
   <div class="slider"><label for="mAlt" class="eyebrow">Moon height</label><input type="range" id="mAlt" min="2" max="90" step="1" value="60"><output id="mAltOut">--</output><div class="seg" id="altSeg"><button data-v="real" aria-pressed="true">Actual for this time</button><button data-v="hand" aria-pressed="false">Set by hand</button></div></div>
   <div class="chart wide" id="hStrip"><div class="tip" id="hTip"></div></div>
   <p class="note" id="hNote"></p>
@@ -173,7 +179,7 @@ footer{font-size:12px;color:var(--ink-3)}
     <dl class="kv" id="cloudKv"></dl>
   </div>
   <div class="chart wide" id="glowChart"><div class="tip" id="glowTip"></div></div>
-  <div class="legend"><span><i style="background:var(--moon)"></i>Moonlight through the cloud, reaching the ground</span><span><i style="background:var(--sun)"></i>Real twilight through the same cloud</span><span><i style="background:var(--accent)"></i>Selected time</span></div>
+  <div class="legend"><span><i style="background:var(--moon)"></i>Moonlight through the cloud, reaching the ground</span><span><i style="background:var(--sun)"></i>Real twilight through the same cloud</span><span><i style="background:var(--accent)"></i>Selected time</span><span><i class="box" style="background:color-mix(in srgb,var(--sun) 25%,transparent)"></i>Past dawn</span></div>
   <p class="note">Drag the height slider to see which years had the moon at that height at the same time relative to alos. "Set by hand" moves only the moon's height, keeping everything else about the chosen moment, so you can see the angle's effect on its own. The night-long chart always uses the real heights.</p>
   <p class="note">Why the moon's height matters: τ is fixed by the cloud, but light coming in at a slant crosses more of it. The path is τ ÷ sin(height). A moon 65° up crosses 1.1 times the layer; at 30° it crosses 2 times; at 10° almost 6 times. The same cloud that only dims a high moon can hide a low one completely.</p>
   <p class="note">Model: direct beam transmitted as e<sup>−τ/μ</sup> (μ is the sine of the moon's height). Cloud reflectance R = [(1 − g)τ + (2/3 − μ)(1 − e<sup>−τ/μ</sup>)] ÷ [4/3 + (1 − g)τ] (two-stream, no absorption), transmission 1 − R, asymmetry g = 0.85. The forward glow around the moon widens as τ grows, because each scattering spreads the light further, until the layer glows evenly. The rendering is a sketch of that physics, not a photograph.</p>
@@ -270,6 +276,7 @@ function drawNight(){
     tip.innerHTML=`${fmt(q[0])}<br>Moon ${q[1].toFixed(0)}° high, bearing ${q[2].toFixed(0)}°<br>Sun ${q[3].toFixed(0)}°`;
     tip.style.left=(X(q[0])/W*r.width)+'px'; tip.style.top=(Yv(Math.max(q[1],0))/H*r.height)+'px'; tip.style.opacity=1; }
   hit.addEventListener('pointermove',mv); hit.addEventListener('pointerleave',()=>{tip.style.opacity=0;[cross,dm,ds].forEach(e=>e.setAttribute('opacity',0));});
+  box.scrollLeft=box.scrollWidth; // phones: open on the pre-dawn end
 }
 
 // ---------- 2. years chart
@@ -370,13 +377,16 @@ const G=0.85;
 function sunAtMistake(y){ const c=y.curve; let best=c[0]; c.forEach(p=>{ if(Math.abs(p[0]-y.mistake)<Math.abs(best[0]-y.mistake)) best=p; }); return best[3]; }
 function hg(cos,g){ return (1-g*g)/Math.pow(1+g*g-2*g*cos,1.5); }
 function cloudT(tau,mu){ if(mu<=0) return {dir:0,tot:0}; const dir=Math.exp(-tau/mu); const R=((1-G)*tau+(2/3-mu)*(1-dir))/(4/3+(1-G)*tau); return {dir, tot:Math.max(0,Math.min(1,1-R))}; }
-function nightPts(y){ return y.curve.filter(p=>p[0]>=Math.max(y.moonrise,y.sunset+0.5)-0.01 && p[0]<=y.sunrise+0.01); }
+function nightPts(y){ return y.curve.filter(p=>p[0]>=Math.max(y.moonrise,y.sunset+0.5)-0.01 && p[0]<=y.sunrise+0.34); }
 let todIdx=null, altMode='real';
 function pointAt(y){ const P=nightPts(y); const tod=$('tod'); tod.max=P.length-1; if(todIdx===null||todIdx>P.length-1){ let bi=0; P.forEach((p,i)=>{ if(Math.abs(p[0]-y.mistake)<Math.abs(P[bi][0]-y.mistake)) bi=i; }); todIdx=bi; } tod.value=todIdx; return {P,p:P[todIdx]}; }
 function glowAt(y,p,tau){ const alt=p[1], mu=Math.sin(Math.max(alt,0)*Math.PI/180); const ct=cloudT(tau,mu); const clear=alt>0?moonLux(y,alt,y.distKm).lux:0; const twi=skyLux(p[3]); const twT=cloudT(tau,0.5).tot; return {alt,mu,ct,clear,moonGround:clear*ct.tot,moonDif:clear*Math.max(0,ct.tot-ct.dir),twi:twi*twT}; }
 function drawClouds(){
   const y=Y[sel], tau=+$('tau').value; $('tauOut').textContent=tau.toFixed(1);
   const pa0=pointAt(y), P=pa0.P; let p=pa0.p; $('todOut').textContent=fmt(p[0]);
+  const tNow=pa0.p[0], pastAlos=tNow>=y.alos-1e-6, pastSun=tNow>=y.sunrise-1e-6;
+  const pill=$('dawnPill'); pill.className='pill'+(pastSun?' day':pastAlos?' dawn':'');
+  pill.textContent= pastSun? 'Sunrise: day' : pastAlos? 'Past dawn: alos '+fmt(y.alos) : 'Night: alos in '+dur(y.alos-tNow);
   const ma=$('mAlt'); if(altMode==='hand'){ p=[p[0],+ma.value,p[2],p[3]]; } else { ma.value=Math.max(2,Math.round(p[1])); }
   $('mAltOut').textContent=(altMode==='hand'?+ma.value:p[1]).toFixed(0)+'°';
   const alt=p[1], az=p[2], sunAlt=p[3], up=alt>0;
@@ -413,6 +423,8 @@ function drawClouds(){
   ctx.fillStyle='rgba(230,235,245,.85)'; ctx.font='9px IBM Plex Mono, monospace'; ctx.textAlign='center';
   [[90,'E'],[135,'SE'],[180,'S'],[202.5,'SSW']].forEach(([a,n])=>ctx.fillText(n,(a-azMin)/(azMax-azMin)*w,h-1));
   ctx.textAlign='left'; ctx.fillText(`${y.hr.slice(0,4)} · ${fmt(p[0])} · moon ${up?alt.toFixed(0)+'°':'down'}`,5,11);
+  if(pastAlos){ const lbl=pastSun?'SUNRISE':'PAST DAWN'; ctx.font='bold 10px IBM Plex Sans, sans-serif'; const tw=ctx.measureText(lbl).width+14; ctx.fillStyle=pastSun?'rgba(235,104,52,.95)':'rgba(235,104,52,.85)'; ctx.fillRect(w-tw-4,3,tw,15); ctx.fillStyle='#fff'; ctx.textAlign='center'; ctx.fillText(lbl,w-4-tw/2,14); }
+  else { ctx.font='9px IBM Plex Mono, monospace'; ctx.fillStyle='rgba(230,235,245,.8)'; ctx.textAlign='right'; ctx.fillText('night · alos in '+dur(y.alos-tNow),w-5,11); }
   // readouts
   const eqSun=sunAltForLux(g.moonDif+g.twi), eastRatio=eastVal/maxVal;
   let reg, txt;
@@ -423,6 +435,8 @@ function drawClouds(){
   else if(slant<15){reg='Even overcast, lit from above';txt='The moon cannot be located. The whole cloud deck glows evenly, the eastern horizon as bright as anywhere else. This is what the sky looks like shortly before sunrise on an overcast morning: the false dawn.';}
   else {reg='Thick cloud';txt='Most of the light is reflected back up off the top of the cloud. The sky turns dim grey. If thicker cloud slides in over a thinner layer, this is the moment the sky "goes dark".';}
   if(up && g.twi>g.moonDif*1.5 && sunAlt>-12){reg='Real dawn taking over';txt='The twilight coming through the cloud now outshines the moonlight. From here on the sky only gets brighter.';}
+  if(pastSun){reg='Sunrise';txt='The sun is up. Whatever the clouds are doing, this is day.';}
+  else if(pastAlos){reg='Past dawn: real alos';txt='The sun is no longer more than 16° below the horizon. This is true alos, the time the community was waiting for. '+(g.twi>g.moonGround?'Twilight now outshines the moon, and from here on the sky only gets brighter.':'Under this cloud the moonlight is still brighter than the new twilight, so by eye the sky may look no different from the false dawn an hour earlier.');}
   $('regime').textContent=reg; $('regimeText').textContent=txt;
   $('cloudKv').innerHTML=`<dt>Moon disc visible</dt><dd>${up?(Tdir*100).toFixed(Tdir<0.01?2:0)+'% of its clear-sky light':'n/a'}</dd><dt>Scattered moon glow</dt><dd>${up?(Tdif*100).toFixed(0)+'% of the clear-sky light':'n/a'}</dd><dt>Moonlight on the ground</dt><dd>${g.moonGround.toPrecision(2)} lux</dd><dt>Twilight on the ground</dt><dd>${g.twi.toPrecision(2)} lux</dd><dt>Eastern horizon vs brightest sky</dt><dd>${(eastRatio*100).toFixed(0)}%</dd><dt>Sky looks like a dawn with sun at</dt><dd>${tau<0.3&&up?'n/a':eqSun.toFixed(1)+'°'}</dd><dt>Real sun</dt><dd>${sunAlt.toFixed(1)}°</dd>`;
   drawGlow(y,P,tau);
@@ -435,7 +449,8 @@ function drawGlow(y,P,tau){
   const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Moonlight versus twilight through the cloud, through the night'}); box.insertBefore(svg,$('glowTip'));
   for(let q=lmin;q<=lmax;q++){ el('line',{x1:L,x2:W-R,y1:V(10**q),y2:V(10**q),stroke:'var(--grid)'},svg); const tx=el('text',{x:L-6,y:V(10**q)+4,'text-anchor':'end'},svg); tx.textContent=(10**q>=1?10**q:+(10**q).toPrecision(1))+' lx'; }
   for(let h=Math.ceil(x0);h<=x1;h++){ const tx=el('text',{x:X(h),y:H-10,'text-anchor':'middle'},svg); tx.textContent=fmt(h); }
-  el('line',{x1:X(y.alos),x2:X(y.alos),y1:T,y2:H-B,stroke:'var(--ink-3)','stroke-dasharray':'4 4'},svg); const at=el('text',{x:X(y.alos)+4,y:T+10},svg); at.textContent='alos';
+  el('rect',{x:X(y.alos),y:T,width:Math.max(0,X(Math.min(y.sunrise,x1))-X(y.alos)),height:H-T-B,fill:'var(--sun)',opacity:.1},svg);
+  el('line',{x1:X(y.alos),x2:X(y.alos),y1:T,y2:H-B,stroke:'var(--sun)','stroke-width':1.5},svg); const at=el('text',{x:X(y.alos)+4,y:T+10,style:'fill:var(--ink-2)'},svg); at.textContent='past dawn (alos '+fmt(y.alos)+')';
   const gl=P.map(p=>glowAt(y,p,tau));
   const path=f=>P.map((p,i)=>(i?'L':'M')+X(p[0]).toFixed(1)+' '+V(f(gl[i])).toFixed(1)).join('');
   el('path',{d:path(g=>g.twi),fill:'none',stroke:'var(--sun)','stroke-width':2},svg);
