@@ -23,5 +23,8 @@
 - In work: none.
 - Planned: Chibuk verbatim fetches; Tumah Tree B (awaiting five decisions); Ornithology Part D render approval; Sugya Scout / Source Dock.
 
+- Done 2026-09-30: apps/maharils_moon (Maharil's Moon, Hoshana Rabbah sky over Mainz 1387 to 1426) + index tile in Luach & Reference.
+
 ## Open questions
+- maharils_moon: Sefer Maharil's own wording of the incident not yet checked (not on Sefaria); year of the incident not in the sources.
 - arba_minim: rov meshulash line; kaneri (Canary palm) sources; HebrewBooks search on own-rooted cutting from a grafted esrog scion; read Yeshurun 33 on Chazon Ish lineage directly.
