@@ -66,6 +66,21 @@ svg text{fill:var(--ink-3);font:11px var(--mono)}
 .bar b{font:500 13px var(--mono);text-align:right;font-variant-numeric:tabular-nums}
 @media (max-width:480px){.bar{grid-template-columns:110px minmax(0,1fr) 60px}}
 .note{font-size:12.5px;color:var(--ink-3);margin:0;max-width:75ch}
+.edu{border:1px dashed var(--accent);border-radius:8px;background:color-mix(in srgb,var(--accent) 6%,var(--panel));padding:0 14px}
+.edu>summary{cursor:pointer;list-style:none;padding:10px 0;font:600 13px var(--body);color:var(--accent);display:flex;align-items:center;gap:8px}
+.edu>summary::-webkit-details-marker{display:none}
+.edu>summary::before{content:'+';display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;border:1.5px solid var(--accent);font:600 13px/1 var(--mono)}
+.edu[open]>summary::before{content:'−'}
+.edu .edu-body{padding:0 0 14px;display:flex;flex-direction:column;gap:10px;font-size:14px;color:var(--ink-2)}
+.edu h4{margin:4px 0 0;font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.edu p,.edu ol,.edu ul{margin:0;max-width:72ch}
+.edu ol,.edu ul{padding-left:20px;display:flex;flex-direction:column;gap:4px}
+.edu .qa{display:flex;flex-direction:column;gap:6px}
+.edu .qa details{background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:6px 10px}
+.edu .qa summary{cursor:pointer;color:var(--ink)}
+.edu .qa details p{margin-top:6px}
+.edu-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+
 .callout{background:var(--chip);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;font-size:13.5px;color:var(--ink-2)}
 .callout strong{color:var(--ink);font-weight:600}
 .callout p{margin:0;max-width:75ch}
@@ -102,6 +117,24 @@ footer{font-size:12px;color:var(--ink-3)}
   <div class="quote"><span class="heb">וכ' בשם מהרי"ל פ"א היו סבורים שעלה עמוד השחר ושגגו שעדיין הלבנה זורחת ואחר כך החשיך והמתינו כמעט שעה עד שעלה עמוד השחר</span><small>Sha'arei Teshuvah on Shulchan Aruch, Orach Chaim 664:1 · <a href="https://www.sefaria.org/Sha'arei_Teshuvah_on_Shulchan_Arukh%2C_Orach_Chayim.664.1" target="_blank" rel="noopener" style="color:var(--accent)">מָקוֹר</a></small></div>
 </header>
 
+<aside class="panel" id="eduGuide" style="background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:10px">
+  <div class="eyebrow">Educator's guide</div>
+  <p class="lede" style="margin:0">Each section below has a <b>For educators</b> panel with the goal, steps to run it in class, questions with answers, and common mistakes. The answers start closed so you can ask first.</p>
+  <div class="edu-bar"><button type="button" id="eduOpen">Open all educator notes</button><button type="button" id="eduClose">Close all</button></div>
+  <details class="edu"><summary>Lesson plan and background</summary><div class="edu-body">
+    <h4>Who it is for</h4><p>Older talmidim and adults. No astronomy background needed; the page does the computing. Works projected on a screen or on students' phones.</p>
+    <h4>Big idea</h4><p>A whole community, awake and watching for dawn, read the sky wrong. The source tells us what they saw and what they did about it. The page lets students rebuild that night and see why the mistake was easy to make.</p>
+    <h4>Suggested flow (about 45 minutes)</h4><ol>
+      <li><b>The text (5 min).</b> Read the Sha'arei Teshuvah aloud. List what it says happened, in order: they thought dawn had come, the moon was still shining, it grew dark, they waited almost an hour, and on Erev Rosh Chodesh Cheshvan they fasted.</li>
+      <li><b>Section 1 (8 min).</b> Find the moon before dawn: where it was, how high, how bright.</li>
+      <li><b>Sections 2, 3 and 3b (12 min).</b> Why the moon on Hoshana Rabbah is up so early, and why that changes from year to year.</li>
+      <li><b>Section 5 (12 min).</b> Recreate the false dawn with the cloud slider; then watch real dawn take over.</li>
+      <li><b>For teaching (8 min).</b> Clock hours versus how they reckoned the night; close with what the community did afterwards.</li></ol>
+    <h4>Keep separate</h4><p>What the source says, what the astronomy shows, and what is interpretation. The source says the moon was still shining and it later grew dark. That cloud explains the darkening, and that the moon's position looked like a later hour, are readings, not sources. The year is not recorded.</p>
+    <h4>Source</h4><p class="heb" style="max-width:none">וכ' בשם מהרי"ל פ"א היו סבורים שעלה עמוד השחר ושגגו שעדיין הלבנה זורחת ואחר כך החשיך והמתינו כמעט שעה עד שעלה עמוד השחר וערב ר"ח חשון גזר מהרי"ל וכל הקהל שיתענו ולקרות ויחל ולומר סליחות על שהניחו טלית ותפילין ואמרו פסוקי דזמרה בעוד לילה</p><p>Sha'arei Teshuvah on Shulchan Aruch, Orach Chaim 664:1.</p>
+  </div></details>
+</aside>
+
 <div class="controls" role="group" aria-label="Chart controls">
   <label for="yearSel">Year</label>
   <button id="prevY" aria-label="Previous year">‹</button>
@@ -118,6 +151,13 @@ footer{font-size:12px;color:var(--ink-3)}
   <div class="stats" id="nightStats"></div>
   <div class="chart wide" id="nightChart"><div class="tip" id="nightTip"></div></div>
   <div class="legend"><span><i style="background:var(--moon)"></i>Moon altitude</span><span><i style="background:var(--sun)"></i>Sun altitude</span><span><i class="box" style="background:var(--band-night)"></i>Full night</span><span><i class="box" style="background:var(--band-astro)"></i>Astronomical twilight</span><span><i class="box" style="background:var(--band-naut)"></i>Nautical</span><span><i class="box" style="background:var(--band-civil)"></i>Civil</span></div>
+
+  <details class="edu"><summary>For educators</summary><div class="edu-body">
+    <h4>Goal</h4><p>See where the moon actually was on Hoshana Rabbah night, and that it was high and bright, not rising, in the hour before dawn.</p>
+    <h4>Use it in class</h4><ol><li>Pick 1410 with the Year control. Read the tiles: sunset, moonrise, alos, moonset.</li><li>On the chart, find the hatched hour before alos. Hover or tap the blue line there to read the moon's height.</li><li>Point out the moonset tile: the moon sets late morning, hours after sunrise.</li><li>Flip through a few other years with the arrows. The moon is always high before dawn.</li></ol>
+    <h4>Ask</h4><div class="qa"><details><summary>Where was the moon an hour before dawn?</summary><p>High in the south-southeast, about 50° to 67° above the horizon depending on the year. Not low in the east.</p></details><details><summary>Could the darkening have been the moon setting?</summary><p>No. On every one of these mornings the moon set between about 11:30 AM and 2:30 PM, Mainz solar time. Something else made the sky go dark.</p></details><details><summary>Why does the source say the moon was still shining (עדיין)?</summary><p>Because it had been up since the evening. It was not a new light; it was the same moon everyone had seen all night.</p></details></div>
+    <h4>Watch for</h4><p>Students often assume the moon rose just before dawn and was mistaken for the sun. The chart shows it rose in the evening. The page uses 16° for alos; other shitos exist (see the Zmanim app on this site), and the point of the lesson does not depend on which one.</p>
+  </div></details>
 </section>
 
 <section class="panel" id="years">
@@ -128,6 +168,13 @@ footer{font-size:12px;color:var(--ink-3)}
   <div class="chart wide" id="yearsChart"><div class="tip" id="yearsTip"></div></div>
   <p class="note" id="yearsNote"></p>
   <details><summary>Table of all years</summary><div class="tblwrap"><table id="yearsTbl"><thead><tr><th>Year</th><th>Hoshana Rabbah</th><th>Sunset</th><th>Moonrise</th><th>After sunset</th><th>Alos</th><th>Sunrise</th><th>Moonset</th><th>Lit</th><th>Distance km</th></tr></thead><tbody></tbody></table></div></details>
+
+  <details class="edu"><summary>For educators</summary><div class="edu-body">
+    <h4>Goal</h4><p>See that the date of Hoshana Rabbah moves almost a month on the solar calendar, and that the moonrise moves with it.</p>
+    <h4>Use it in class</h4><ol><li>Leave the chart on 'Moonrise after sunset'. Ask students to describe the trend before you explain it.</li><li>Switch to 'Sunset time', then 'Moon height before alos'.</li><li>Click the earliest and the latest dots and compare their Section 1 charts.</li><li>Open the table if students want exact numbers.</li></ol>
+    <h4>Ask</h4><div class="qa"><details><summary>Why does Hoshana Rabbah fall on different solar dates?</summary><p>The Hebrew month follows the moon, so 21 Tishrei drifts against the sun's calendar, between about 23 September and 21 October in these years (Gregorian reckoning).</p></details><details><summary>Which years had the moon rise soonest after sunset?</summary><p>The late-September years, about 1.5 to 2 hours after sunset. Late-October years run 3.5 to 4.5 hours.</p></details><details><summary>Did the moon ever rise after midnight in these years?</summary><p>No. The latest was about 4.5 hours after sunset.</p></details></div>
+    <h4>Watch for</h4><p>The common rule 'the moon rises 50 minutes later each day, so on the 21st it rises around midnight' does not hold at Sukkos. Sections 3 and 3b show why.</p>
+  </div></details>
 </section>
 
 <section class="panel" id="orbit">
@@ -145,6 +192,13 @@ footer{font-size:12px;color:var(--ink-3)}
       <p class="note">The shape does not change the rising time much. What moves moonrise from year to year is mostly the moon's north-south swing; section 3b splits the two apart. Distance mostly changes how big and bright the moon looks.</p>
     </div>
   </div>
+
+  <details class="edu"><summary>For educators</summary><div class="edu-body">
+    <h4>Goal</h4><p>Show that the moon's path is an ellipse, so its distance and speed change, and that this changes how big and bright it looks more than when it rises.</p>
+    <h4>Use it in class</h4><ol><li>Start on 'True shape'. Ask: is this a circle? Then switch to 'Stretch ×5'.</li><li>Find the large dot (Hoshana Rabbah morning) and read its distance.</li><li>Step through several years and watch the dot land on different parts of the ellipse.</li></ol>
+    <h4>Ask</h4><div class="qa"><details><summary>How much closer is the moon at its nearest than at its farthest?</summary><p>About 13%, roughly 363,000 km against 405,000 km.</p></details><details><summary>Why does the Hoshana Rabbah dot move from year to year?</summary><p>The moon goes from nearest point to nearest point in about 27.5 days, but the month is about 29.5 days, so the nearest point falls on a different day of the Hebrew month each time.</p></details><details><summary>Is the ellipse the main reason the moon rises early at Sukkos?</summary><p>No. It moves the daily delay by only a few minutes. Section 3b shows the bigger cause.</p></details></div>
+    <h4>Watch for</h4><p>The perigee is drawn on the left for clarity. In reality the ellipse itself slowly turns, about once every 8.85 years.</p>
+  </div></details>
 </section>
 
 <section class="panel" id="why">
@@ -163,6 +217,13 @@ footer{font-size:12px;color:var(--ink-3)}
   <div class="chart wide" id="nodeChart"><div class="tip" id="nodeTip"></div></div>
   <p class="note" id="nodeNote"></p>
   <p class="note">Method: consecutive moonrises computed for Mainz, then split with the rising-time formula: the moon's eastward motion at average speed, the change in its rising point from its change in declination, and the difference made by its actual speed. What is left over is under half a minute on every night.</p>
+
+  <details class="edu"><summary>For educators</summary><div class="edu-body">
+    <h4>Goal</h4><p>Separate the two causes of the moon's changing rise time, and show which one matters at Sukkos.</p>
+    <h4>Use it in class</h4><ol><li>Read the summary line above the charts aloud.</li><li>In the first chart, compare each bar with the dashed 49-minute average. Note the labels under the bars: the moon heading north.</li><li>In the second chart, compare the blue bars (north-south swing) with the green bars (speed).</li><li>Click two or three dots on the 18.6-year chart and watch the bars change.</li></ol>
+    <h4>Ask</h4><div class="qa"><details><summary>Why is the delay so short in the first nights of Sukkos?</summary><p>The moon is moving north each night, so it comes up farther north along the eastern horizon, and at Mainz's latitude that point clears the horizon sooner.</p></details><details><summary>Which cause is bigger?</summary><p>The north-south swing. Across all forty years it changes a night's delay by up to about 36 minutes; the speed along the ellipse by at most about 8.</p></details><details><summary>Why does this always happen at Sukkos and not in other months?</summary><p>The full moon of Tishrei sits opposite the sun near the autumn equinox, which is where the moon's path rises most steeply northward. This is the 'harvest moon' effect.</p></details></div>
+    <h4>Watch for</h4><p>The split is computed, not estimated: the two parts add up to the real delay within half a minute on every night.</p>
+  </div></details>
 </section>
 
 <section class="panel" id="bright">
@@ -176,6 +237,13 @@ footer{font-size:12px;color:var(--ink-3)}
     </div>
   </div>
   <p class="note">Brightness by phase: Krisciunas and Schaefer (1991). Distance follows the inverse square law. Air absorption uses 0.2 magnitudes per airmass. Twilight levels are typical published values for a clear sky and are approximate.</p>
+
+  <details class="edu"><summary>For educators</summary><div class="edu-body">
+    <h4>Goal</h4><p>Show that the moon's light is not constant, and compare it with the light of real dawn.</p>
+    <h4>Use it in class</h4><ol><li>Read the four bars from the top: phase, distance, height, combined.</li><li>On the right-hand chart, compare 'This moon, clear sky' with 'Sky at alos'.</li><li>Change years and see which factor moves most.</li></ol>
+    <h4>Ask</h4><div class="qa"><details><summary>What changes the moon's brightness most?</summary><p>Its phase. A moon two-thirds to three-quarters lit gives only about a fifth of a full moon's light. Distance changes it by about 15% either way.</p></details><details><summary>Is a gibbous moon brighter than the sky at alos?</summary><p>Yes, many times brighter. In a clear sky you can still see it is the moon. Section 5 shows what happens under cloud.</p></details></div>
+    <h4>Watch for</h4><p>Twilight values on the chart are typical published figures and approximate.</p>
+  </div></details>
 </section>
 
 <section class="panel" id="clouds">
@@ -201,6 +269,13 @@ footer{font-size:12px;color:var(--ink-3)}
   <p class="note">Drag the height slider to see which years had the moon at that height at the same time relative to alos. "Set by hand" moves only the moon's height, keeping everything else about the chosen moment, so you can see the angle's effect on its own. The night-long chart always uses the real heights.</p>
   <p class="note">Why the moon's height matters: τ is fixed by the cloud, but light coming in at a slant crosses more of it. The path is τ ÷ sin(height). A moon 65° up crosses 1.1 times the layer; at 30° it crosses 2 times; at 10° almost 6 times. The same cloud that only dims a high moon can hide a low one completely.</p>
   <p class="note">Model: direct beam transmitted as e<sup>−τ/μ</sup> (μ is the sine of the moon's height). Cloud reflectance R = [(1 − g)τ + (2/3 − μ)(1 − e<sup>−τ/μ</sup>)] ÷ [4/3 + (1 − g)τ] (two-stream, no absorption), transmission 1 − R, asymmetry g = 0.85. The forward glow around the moon widens as τ grows, because each scattering spreads the light further, until the layer glows evenly. The rendering is a sketch of that physics, not a photograph.</p>
+
+  <details class="edu"><summary>For educators</summary><div class="edu-body">
+    <h4>Goal</h4><p>Recreate the false dawn: show how a cloud layer turns a high moon into an even grey sky that looks like morning, and how real dawn differs.</p>
+    <h4>Use it in class</h4><ol><li>Click 'Hour before alos'. Set cloud thickness to 0: a sharp moon, a dark east.</li><li>Slowly raise the thickness to about 6. Watch the moon disappear and the whole sky, including the east, glow evenly.</li><li>Read 'Sky looks like a dawn with sun at' and compare it with 'Real sun'.</li><li>Move the time slider forward past alos. The label turns to Past dawn; on the chart below, see where real twilight overtakes the moonlight.</li><li>Use the Moon height slider to show how a lower moon would be hidden by the same cloud.</li></ol>
+    <h4>Ask</h4><div class="qa"><details><summary>What made the sky look like dawn?</summary><p>With the moon behind a cloud layer, its light spreads across the whole sky and the eastern horizon is as bright as anywhere. With no moon disc to see, a grey sky reads as morning.</p></details><details><summary>What could have made it grow dark again?</summary><p>A thicker cloud bank, or the thin layer breaking up. Either fits the word החשיך. This is a reading of the physics; the source does not say why.</p></details><details><summary>How is real dawn different?</summary><p>It starts in the east and only gets brighter. A moonlit sky changes with every cloud.</p></details><details><summary>Why does the moon's height matter for cloud?</summary><p>Light coming in at a slant crosses more cloud. A moon at 30° crosses twice the cloud of one overhead.</p></details></div>
+    <h4>Watch for</h4><p>The picture is a model, not a photograph. Keep the distinction for students: the text gives what they saw; the slider shows one way it could have happened.</p>
+  </div></details>
 </section>
 
 <section class="panel" id="teaching">
@@ -209,6 +284,12 @@ footer{font-size:12px;color:var(--ink-3)}
   <p class="lede">Every hour and minute on this page is clock time. Gaps like "moonrise 2h 56m after sunset" or "an hour before alos" are given so a reader today can follow the astronomy. They are not how the people in Mainz experienced that night.</p>
   <p class="lede">They reckoned in sha'os zmaniyos, seasonal hours. By day those can be read from the sun, with a sundial. At night there is no sun to read, so the hour has to be judged by other means: the stars, the moon, candles, the length of the learning. All of these are far harder and less exact than a sundial.</p>
   <p class="lede">So when this page says the moon rose 1h 35m after sunset in one year and 4h 31m in another, that is a precision nobody that night had. For them it was a judgment made by eye in the dark, and the text shows the final call was made by looking at the sky: <span class="heb">היו סבורים שעלה עמוד השחר</span>, "they thought dawn had risen."</p>
+
+  <details class="edu"><summary>For educators</summary><div class="edu-body">
+    <h4>Goal</h4><p>Close the lesson: the precise times on the page are ours, not theirs.</p>
+    <h4>Use it in class</h4><ol><li>Ask how students would know the time at night without a clock.</li><li>Read the section aloud.</li><li>Return to the source: the decision was made by looking at the sky.</li></ol>
+    <h4>Ask</h4><div class="qa"><details><summary>Why can sha'os zmaniyos be measured by day but hardly at night?</summary><p>By day the sun's position shows the hour, for example with a sundial. At night there is no sun to read.</p></details><details><summary>What did the community do after the mistake?</summary><p>On Erev Rosh Chodesh Cheshvan, the Maharil and the whole community fasted, read Vayechal and said selichos, because they had put on tallis and tefillin and said Pesukei D'Zimra while it was still night.</p></details><details><summary>Why wait until Erev Rosh Chodesh Cheshvan?</summary><p>The source gives the date but not the reason. Students can be asked to suggest reasons, marked as their own.</p></details></div>
+  </div></details>
 </section>
 
 <footer>
@@ -574,6 +655,8 @@ $('mAlt').addEventListener('input',()=>{ if(altMode!=='hand'){ altMode='hand'; $
 seg('altSeg',v=>{ altMode=v; drawClouds(); });
 $('tau').addEventListener('input',drawClouds);
 
+document.getElementById('eduOpen').addEventListener('click',()=>document.querySelectorAll('details.edu').forEach(d=>d.open=true));
+document.getElementById('eduClose').addEventListener('click',()=>document.querySelectorAll('details.edu').forEach(d=>d.open=false));
 function renderAll(){ drawNight(); drawYears(); drawTable(); drawOrbit(); drawWhy(); drawBright(); drawClouds(); }
 ys.value=sel; renderAll();
 matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',drawClouds);

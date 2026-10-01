@@ -16,6 +16,9 @@ Sections:
 5. The cloud layer: optical depth slider, time of night slider, moon height slider (actual or by hand) with a strip showing which years had the moon at that height; rendered sky from east to SSW; slant path through the cloud; moonlight vs real twilight through the night.
 6. For teaching: the page's times are clock times for modern readers; the community reckoned in sha'os zmaniyos, readable by day from the sun, while at night the hour had to be judged by other, less exact means.
 
+## Educator's guide
+Embedded in the page. An overview panel under the header (audience, big idea, 45-minute lesson flow, what is source vs astronomy vs interpretation, the source text) with Open all / Close all buttons, and a closed "For educators" panel at the end of every section: goal, steps to run it in class, questions with answers hidden until clicked, and what to watch for.
+
 ## Sources
 Sha'arei Teshuvah on Shulchan Aruch OC 664:1 (Maginei Eretz, Lemberg 1893), quoted verbatim.
 
