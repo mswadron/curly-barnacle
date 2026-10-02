@@ -1,0 +1,419 @@
+{
+ "canonical_master": "Dropbox /simchos/TRUP (TRUP REG + HAFTORAH are shared folders) — never edit there",
+ "this_folder": "curly-barnacle dev/trup/own-voice — verified working copy (renamed: lowercase, underscores)",
+ "verified": "2026-10-02, every file byte-matched to Dropbox content_hash",
+ "voice_attribution": "UNCONFIRMED — ask Mordy (own voice vs. teacher recording)",
+ "not_copied": [
+  "/simchos/TRUP/pashta katon (11 KB, no extension, unidentified)"
+ ],
+ "files": [
+  {
+   "file": "kadma_v_azlah.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/kadma v'azlah.mp3",
+   "recorded": "2014-09-13",
+   "size": 363616,
+   "sha256": "afe845658e4d529817916c6580041be491cb9cca76e49178dc7d652a0aa44d0d"
+  },
+  {
+   "file": "kotoin.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/kotoin.mp3",
+   "recorded": "2014-09-13",
+   "size": 363616,
+   "sha256": "4d920d2560a92008904d1586a0d2d303123b43b679557d86c7121a06abc4f0d5"
+  },
+  {
+   "file": "mahpach.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/mahpach.mp3",
+   "recorded": "2014-09-13",
+   "size": 363616,
+   "sha256": "3aeaebdc98594d51df5d6239cf128607b42fbafbf575bc061e3cde7eeefafdfb"
+  },
+  {
+   "file": "mercha.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/mercha.mp3",
+   "recorded": "2014-09-13",
+   "size": 363616,
+   "sha256": "d2ec070e1e3aedf688b2a8bd71a766dddff26fe36894d4f4cc288aa9c7c91536"
+  },
+  {
+   "file": "munach.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/munach.mp3",
+   "recorded": "2014-09-13",
+   "size": 363616,
+   "sha256": "eeb90ab9b628a1526914ef593e3ac519b8cca303c8e233da3b1b2d05a1209ed8"
+  },
+  {
+   "file": "munach_asnachtah.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/munach asnachtah.mp3",
+   "recorded": "2014-09-13",
+   "size": 363616,
+   "sha256": "c74cda602f2765cf3b828a9745a22b0a29f342e3151bb2020e3a4d93ce8180b8"
+  },
+  {
+   "file": "munach_segol.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/munach segol.mp3",
+   "recorded": "2014-09-13",
+   "size": 363616,
+   "sha256": "7ba60dfc4f7b8230d0f407f25568d99dc2a7eefb06ae17c58f5807801561d58c"
+  },
+  {
+   "file": "munach_zarkah.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/munach zarkah.mp3",
+   "recorded": "2014-09-13",
+   "size": 368836,
+   "sha256": "1accc72fbeaee4a2072aabab4ec0d2f7824c975d8789bb6cf47f3d299e6d701f"
+  },
+  {
+   "file": "pashtah.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/pashtah.mp3",
+   "recorded": "2014-09-13",
+   "size": 363616,
+   "sha256": "04e94f453da8ce2493bb10ddd98fe12a96e6a9c4b7f4a47216af0120523f3c05"
+  },
+  {
+   "file": "puzair.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/puzair.mp3",
+   "recorded": "2014-09-13",
+   "size": 363616,
+   "sha256": "735d6710136bf638fae8acc8fe25014f85d6bb2fab371a25fbd6f8f3d1c5b2b1"
+  },
+  {
+   "file": "tlishah_gedoilah.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/tlishah  gedoilah.mp3",
+   "recorded": "2014-09-13",
+   "size": 363616,
+   "sha256": "078b562ce4e480b7441826f193cf81eb1cdb8c0d6fb006ed98d3dc1e418658d2"
+  },
+  {
+   "file": "zakef_kotoin.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/zakef kotoin.mp3",
+   "recorded": "2014-09-13",
+   "size": 363616,
+   "sha256": "fb40ceeee8ca7a1c28b953cd2a3ff711b20618e4dafdfca885a8d53178f7eb40"
+  },
+  {
+   "file": "zakef_godoil.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/zakef godoil.mp3",
+   "recorded": "2014-09-13",
+   "size": 394936,
+   "sha256": "85011573a32d11b8c2708ec6184965dd80ac8c43921ded55368d791e544e2f9f"
+  },
+  {
+   "file": "gershayim.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/gershayim.mp3",
+   "recorded": "2014-09-13",
+   "size": 363616,
+   "sha256": "78bdb0a6ea09f4ec061039716cf26b00f30f6fe4aa9fc92845ec3e7ad88ee381"
+  },
+  {
+   "file": "tlishah_ketanuh.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/tlishah ketanuh.mp3",
+   "recorded": "2014-09-13",
+   "size": 363616,
+   "sha256": "1a67f842aede6d5d90e6ea69aa440ec335d769b1c072c7b0f7053e3b7436eb19"
+  },
+  {
+   "file": "azlah_geresh.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/azlah geresh.mp3",
+   "recorded": "2014-09-13",
+   "size": 363616,
+   "sha256": "d7d6da761e30c7551e1978792fe9869c9a58de5506486ce286034ad3fa86ae9b"
+  },
+  {
+   "file": "dargah.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/dargah.mp3",
+   "recorded": "2014-09-13",
+   "size": 363616,
+   "sha256": "470b59a8a2583b735957b8d03121b2535636f4414c8040e42237fc5599460c25"
+  },
+  {
+   "file": "tipcha.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/tipcha.mp3",
+   "recorded": "2014-09-13",
+   "size": 363616,
+   "sha256": "c763beadd41637a0d5ccc2d936fe41b3bfb12f3233e39289d6b29ac15c53c38a"
+  },
+  {
+   "file": "fancy_munach.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/fancy munach.mp3",
+   "recorded": "2014-09-13",
+   "size": 363616,
+   "sha256": "d3b9f9aa9baf8d20dd308deb099fe0ac9dcd6ededbaa8a8aed0bf43943f24b56"
+  },
+  {
+   "file": "sevir.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/sevir.mp3",
+   "recorded": "2014-09-13",
+   "size": 363616,
+   "sha256": "ed75b581f58d571f9b79237c6eb2bd7d7ed738e5578965d4ddd8bf14d7eaff81"
+  },
+  {
+   "file": "yisiv.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/yisiv.mp3",
+   "recorded": "2014-09-13",
+   "size": 243556,
+   "sha256": "d593107767f3482859d04af77536b7fdeee8fb73ad31cde2121c16433695829f"
+  },
+  {
+   "file": "soif_pasuk.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/soif pasuk.mp3",
+   "recorded": "2014-09-13",
+   "size": 363616,
+   "sha256": "c7c21043d275ff61045a06d2e02abfe27c0f40db4cbc1a5d4e4253c43059520f"
+  },
+  {
+   "file": "revii.mp3",
+   "set": "torah",
+   "dropbox_source": "/simchos/TRUP/TRUP REG/revi'i.mp3",
+   "recorded": "2014-09-13",
+   "size": 363616,
+   "sha256": "8a3f120113ab057ec7a9831535925678bb4145d8440572c0b3587d40e5e19164"
+  },
+  {
+   "file": "haftorah/01_munach_zarka.m4a",
+   "set": "haftorah",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/01 Munach Zarka (haftorah).m4a",
+   "recorded": "2014-12-08",
+   "size": 124555,
+   "sha256": "55393eed650f314cacb6398313eaf14224411c3644aa369710530c1a2ab42baf"
+  },
+  {
+   "file": "haftorah/02_munach_segol.m4a",
+   "set": "haftorah",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/02 Munach Segol (haftorah).m4a",
+   "recorded": "2014-12-08",
+   "size": 113128,
+   "sha256": "7ef9de7d581b57fccbf6dba613a9ea2fce0a856b76e9a9d91947275ccb08b635"
+  },
+  {
+   "file": "haftorah/03_munach.m4a",
+   "set": "haftorah",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/03 Munach (haftorah).m4a",
+   "recorded": "2014-12-08",
+   "size": 91800,
+   "sha256": "414335ac1445d876774549c063547dd1837c34b37588e721f00ee53e758bb784"
+  },
+  {
+   "file": "haftorah/04_munach_revii.m4a",
+   "set": "haftorah",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/04 Munach Revi'i (haftorah).m4a",
+   "recorded": "2014-12-08",
+   "size": 151923,
+   "sha256": "bc55224d606afc9f2bd636100c2d56b884dacec5ae3fb96d265a4ad92db5e243"
+  },
+  {
+   "file": "haftorah/05_mahpach.m4a",
+   "set": "haftorah",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/05 Mahpach (haftorah).m4a",
+   "recorded": "2014-12-08",
+   "size": 89535,
+   "sha256": "716d0af198003aabb5cb94bf96596a9a22fd200625f245210bcd94dcd565e92a"
+  },
+  {
+   "file": "haftorah/06_pashta.m4a",
+   "set": "haftorah",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/06 Pashta (haftorah).m4a",
+   "recorded": "2014-12-08",
+   "size": 87252,
+   "sha256": "7830d82de056e984c6d285e6f1fa39f28b7c5984df6c69535514c022cd788b84"
+  },
+  {
+   "file": "haftorah/07_zakeif.m4a",
+   "set": "haftorah",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/07 Zakeif (haftorah).m4a",
+   "recorded": "2014-12-08",
+   "size": 96375,
+   "sha256": "3e9711a45b8befa5337c6d7d587189004abaad02f22940cbd9f8f3b43fc77139"
+  },
+  {
+   "file": "haftorah/08_katon.m4a",
+   "set": "haftorah",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/08 Katon (haftorah).m4a",
+   "recorded": "2014-12-08",
+   "size": 74708,
+   "sha256": "5133d47bcca99523d2c2906555510ff4b7376da3e3af6849757170cdeba44a99"
+  },
+  {
+   "file": "haftorah/09_zakeif_gadol.m4a",
+   "set": "haftorah",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/09 Zakeif Gadol (haftorah).m4a",
+   "recorded": "2014-12-08",
+   "size": 102861,
+   "sha256": "4f830573816df0d1a12a500178c41b13e9c95e3d36c5ecdb1fd25547aca86e11"
+  },
+  {
+   "file": "haftorah/10_mercha.m4a",
+   "set": "haftorah",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/10 Mercha (haftorah).m4a",
+   "recorded": "2014-12-08",
+   "size": 87655,
+   "sha256": "9a747888b7d488ab098ca99b132bf16d15f03f1f67ded3a194b342b1386ed62c"
+  },
+  {
+   "file": "haftorah/11_tipcha.m4a",
+   "set": "haftorah",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/11 Tipcha (haftorah).m4a",
+   "recorded": "2014-12-08",
+   "size": 88012,
+   "sha256": "2e672ec6167dd7a32f97a7be256832b987cece4617b2f153abd8578a6ae17bbb"
+  },
+  {
+   "file": "haftorah/12_munach_esnachta.m4a",
+   "set": "haftorah",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/12 Munach Esnachta (haftorah).m4a",
+   "recorded": "2014-12-08",
+   "size": 98698,
+   "sha256": "211faa58c8b2414e4049f50068afc48f59f9ee783fde4a61e50f012aa324ecf2"
+  },
+  {
+   "file": "haftorah/13_pazeir.m4a",
+   "set": "haftorah",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/13 Pazeir (haftorah).m4a",
+   "recorded": "2014-12-08",
+   "size": 120726,
+   "sha256": "4efbe9c7fd2d12031eb9cd980f434983daca88b341cfb26b1b49e0ee3fba440c"
+  },
+  {
+   "file": "haftorah/14_telisha_ketana.m4a",
+   "set": "haftorah",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/14 Telisha Ketana (haftorah).m4a",
+   "recorded": "2014-12-08",
+   "size": 116897,
+   "sha256": "3725121644dbff4a2e79b1d22c259edd9f7fd6756008bdbc59ad9d57967043e7"
+  },
+  {
+   "file": "haftorah/15_telisha_gedolah.m4a",
+   "set": "haftorah",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/15 Telisha Gedolah (haftorah).m4a",
+   "recorded": "2014-12-08",
+   "size": 111992,
+   "sha256": "0a87e5fbf8bde1289ac997897a2dbd9f3d65cfe3921b63e8119411b283c88e50"
+  },
+  {
+   "file": "haftorah/16_kadma_vazla.m4a",
+   "set": "haftorah",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/16 Kadma V'azla (haftorah).m4a",
+   "recorded": "2014-12-08",
+   "size": 105152,
+   "sha256": "b00e4bffebb8d5b7ad0fe37dcdc6c19ea38d90fd2bc72ddb4d8d3a73b32dea31"
+  },
+  {
+   "file": "haftorah/17_azla_geresh.m4a",
+   "set": "haftorah",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/17 Azla Geresh (haftorah).m4a",
+   "recorded": "2014-12-08",
+   "size": 107800,
+   "sha256": "56ecaa8b6ad1580be37e316cb4fe6d20f466c7b32b9bc57ac199a01709780ad6"
+  },
+  {
+   "file": "haftorah/18_gershayim.m4a",
+   "set": "haftorah",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/18 Gershayim (haftorah).m4a",
+   "recorded": "2014-12-08",
+   "size": 107762,
+   "sha256": "27076b5a450a82d19ccc92dc32f20848cee46ff156e84e62bed27b1ddcf31400"
+  },
+  {
+   "file": "haftorah/19_darga.m4a",
+   "set": "haftorah",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/19 Darga.m4a",
+   "recorded": "2014-12-08",
+   "size": 94826,
+   "sha256": "59a45c63755e3054509306b34973bb3bbbfd6c9785d84719f370ab890449857e"
+  },
+  {
+   "file": "haftorah/20_seviir.m4a",
+   "set": "haftorah",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/20 Seviir (haftorah).m4a",
+   "recorded": "2014-12-08",
+   "size": 81927,
+   "sha256": "dd3ed89b8169ee7b00d5a1738c2926a9235f77ba9a7fe696f4c66a4228143955"
+  },
+  {
+   "file": "haftorah/21_sof_posuk.m4a",
+   "set": "haftorah",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/21 Sof Posuk (haftorah).m4a",
+   "recorded": "2014-12-08",
+   "size": 97536,
+   "sha256": "c7dbfc05e007602d3457537aa9915d34d9ac56acfe4c3308a5bd862166ae1b21"
+  },
+  {
+   "file": "haftorah/22_bracha_before.m4a",
+   "set": "haftorah-brachos",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/22 Birchas Haftorah (1st bracha).m4a",
+   "recorded": "2014-12-08",
+   "size": 852494,
+   "sha256": "34defe57095678182fb5a1b58bf3fe0ac2014080f7bff75a1b22ab14cc60d80b"
+  },
+  {
+   "file": "haftorah/23_bracha_after_1.m4a",
+   "set": "haftorah-brachos",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/Bracha #1 After Haftorah.m4a",
+   "recorded": "2014-12-08",
+   "size": 1105714,
+   "sha256": "5f82f1a1cca92c93f88bf48e1da747dc24357fbeeeefe17221179b619ebc87e6"
+  },
+  {
+   "file": "haftorah/24_bracha_after_2.m4a",
+   "set": "haftorah-brachos",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/Bracha #2 After Haftorah.m4a",
+   "recorded": "2014-12-08",
+   "size": 412750,
+   "sha256": "98ec96d5135a45716e4423a5a0f024398bc08672cb6814eb73e885e4b620151e"
+  },
+  {
+   "file": "haftorah/25_bracha_after_3.m4a",
+   "set": "haftorah-brachos",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/Bracha #3 After HAftorah.m4a",
+   "recorded": "2014-12-08",
+   "size": 808767,
+   "sha256": "60f359e4aeef0eacadb586acfd15c16bcc44bd03430fd8351c01c08f2b2ccafe"
+  },
+  {
+   "file": "haftorah/26_bracha_after_4.m4a",
+   "set": "haftorah-brachos",
+   "dropbox_source": "/simchos/TRUP/HAFTORAH/Bracha #4 After Haftorah.m4a",
+   "recorded": "2014-12-08",
+   "size": 869275,
+   "sha256": "5ed47258a3849ed53432718a4c7328f10b82a43a54863aa670041521b455ed5b"
+  },
+  {
+   "file": "charts/trup1.pdf",
+   "set": "chart",
+   "dropbox_source": "/simchos/TRUP/trup1.pdf",
+   "recorded": "2014-11-30",
+   "size": 307767,
+   "sha256": "5b8a386d1608006f727a68c1af73e737ebe5ad533a746240f3a37fd4e4fddd7b"
+  },
+  {
+   "file": "charts/trup2.pdf",
+   "set": "chart",
+   "dropbox_source": "/simchos/TRUP/trup2.pdf",
+   "recorded": "2014-11-30",
+   "size": 359516,
+   "sha256": "4ed97ba950baf3a3a8bdca3d8d8e6c781e5523b0a82c58906f00aef566d082f6"
+  }
+ ]
+}
