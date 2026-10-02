@@ -2,10 +2,8 @@
  "canonical_master": "Dropbox /simchos/TRUP (TRUP REG + HAFTORAH are shared folders) — never edit there",
  "this_folder": "curly-barnacle dev/trup/own-voice — verified working copy (renamed: lowercase, underscores)",
  "verified": "2026-10-02, every file byte-matched to Dropbox content_hash",
- "voice_attribution": "UNCONFIRMED — ask Mordy (own voice vs. teacher recording)",
- "not_copied": [
-  "/simchos/TRUP/pashta katon (11 KB, no extension, unidentified)"
- ],
+ "voice_attribution": "Boruch Green — used with permission (confirmed by Mordy, 2026-10-02)",
+ "not_copied": [],
  "files": [
   {
    "file": "kadma_v_azlah.mp3",
@@ -414,6 +412,15 @@
    "recorded": "2014-11-30",
    "size": 359516,
    "sha256": "4ed97ba950baf3a3a8bdca3d8d8e6c781e5523b0a82c58906f00aef566d082f6"
+  },
+  {
+   "file": "pashta_katon.opus",
+   "set": "voice-note",
+   "dropbox_source": "/simchos/TRUP/pashta katon",
+   "recorded": "2017-02-14",
+   "size": 11831,
+   "sha256": "7b00cfdc836d20064c6af34ac0a818f430f62657c613bbaeee78e1682d173bf9",
+   "note": "WhatsApp voice note (Ogg/Opus, mono 16 kHz, 5.2 s) saved without extension; pashta into zakef katon"
   }
  ]
 }

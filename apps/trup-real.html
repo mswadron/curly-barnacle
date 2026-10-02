@@ -105,7 +105,7 @@ input[type=range]{width:100%;accent-color:var(--maroon);}
       </div>
     </div>
     <div class="seg" id="sysSeg" style="margin-bottom:12px">
-      <button data-sys="voice">Your Voice · 10</button>
+      <button data-sys="voice">Boruch Green · 10</button>
       <button data-sys="torah" class="on">Torah · 22</button>
       <button data-sys="haftarah">Haftarah · 23</button>
     </div>
@@ -206,7 +206,7 @@ let audioCtx = null, activeOriginal = null, activeNodes = [];
 let currentMode = 'step', smoothing = true, currentMotif = null, sequence = [];
 let currentSystem = 'torah';
 const SYS = {
-  voice:{t:'Your ten recordings',w:'Your own voice — the ten trope names you recorded, embedded. Each card has its <b>Original</b> mp3 to A/B against the clarinet.'},
+  voice:{t:'Boruch Green — ten recordings',w:'Ten trope-name recordings by Boruch Green, used with permission, embedded. Each card has its <b>Original</b> mp3 to A/B against the clarinet.'},
   torah:{t:'Torah trope — 22 signs, measured',w:'Every Torah ta\'am, pitch-measured from <b>PocketTorah</b> (R. Neiss, GPL-3) — a cantor singing each trope name solo. Clarinet plays the measured notes as distinct pitches (no slide); Glide is the secondary curve mode. <b>Source ↗</b> opens the recording. Pitches shifted to your register.'},
   haftarah:{t:'Haftarah trope — 23 signs, measured',w:'The <b>Haftarah</b> melody-set — same signs, a different tune — measured the same way from PocketTorah. Includes mercha-kefula.'}
 };
@@ -423,7 +423,7 @@ function render(){
       <div class="title">${m.title}</div>
       <div class="se">${m.se}</div>
       <div class="role">${m.role}</div>
-      <div class="meta">${m.events.length} events · ${(+m.duration).toFixed(2)}s · <b>${m.sourceTag||'your voice'}</b> · grade A</div>
+      <div class="meta">${m.events.length} events · ${(+m.duration).toFixed(2)}s · <b>${m.sourceTag||'Boruch Green'}</b> · grade A</div>
       <div class="actions">
         <button class="btn" data-a="synth">▶ Play</button>
         <button class="btn sec" data-a="orig">${m.audio?'Original':'Source ↗'}</button>

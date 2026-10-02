@@ -12,7 +12,7 @@ Continuation doc for the Ta'amei HaMikra ("trup") interactive. Owner: **Mordy** 
 
 > You're continuing the **Ta'amei HaMikra ("trup") interactive** for Mordy (mswadron@gmail.com), an Ashkenazi/Litvish ground-truth listener. **The real goal is a complete, comparative atlas of cantillation — EVERY community's mesorah (Ashkenazi: Litvish/Polish/Yekkish/Western; Sephardic: S&P/Moroccan/Jerusalem; Mizrahi: Iraqi/Syrian/Egyptian/Persian; Yemenite; Italian) across EVERY reading-type (Torah, Haftarah, Esther, Eicha, Shir/Rus/Koheles, Yamim Noraim, Tehillim/Emes, and learning-nusach) — each melody _measured_ from a real recording of that community, evidence-graded.** It is deliberately narrowed right now to the yeshivish/Litvish cell to perfect the method first; do not treat that narrowness as the scope. This lives inside his **"Torah Interactive · לימוד"** study site at **github.com/mswadron/curly-barnacle** (GitHub Pages, **main** branch → https://mswadron.github.io/curly-barnacle/), alongside his other apps (nisyonos, negaim, tumah, mumim, Counts, chagavim, talmudflora, yom_kippur_avodah, the Jewish-ornithology guide, haftarah, zmanim). He separately runs **bloomline** (github.com/mswadron/bloomline → bloomline.app, a wildflower-route finder; sources in C:\Users\mswad\Dropbox\BLOOMLINE) — unrelated. **Do NOT push anything to his "limud labs" repo.**
 >
-> The active piece is `apps/`**`trup-real.html`** — a sound lab that plays *measured* pitch contours back through a browser clarinet. It currently carries **55 measured motifs**: **Your Voice** (Mordy's 10 own-voice recordings = ground truth for the yeshivish cell, embedded mp3 for A/B) and a proof-of-scale **Torah** (22) + **Haftarah** (23) set pitch-measured from **PocketTorah** (`rneiss/PocketTorahTrope`, GPL-3), shifted −12 st into his register. These are the **first cells of the atlas**, not the whole thing. Default playback is **CLARINET** (discrete, articulated notes) — he dislikes pitch **"slope"/glide**, which is only a secondary toggle. Own-voice recordings keep embedded audio; measured-from-source tropes are **link-only** (*Source ↗*). Also present: legacy `Trup.html` + `trup.js` + `trup-data.js`, `trup-calibrate.html`, and GPT's `taamim_clarinet_synth.html` (origin file: his 10 own-voice mp3s + librosa contours).
+> The active piece is `apps/`**`trup-real.html`** — a sound lab that plays *measured* pitch contours back through a browser clarinet. It currently carries **55 measured motifs**: **Boruch Green** (10 trope-name recordings by Boruch Green, used with permission, = ground truth for the yeshivish cell, embedded mp3 for A/B) and a proof-of-scale **Torah** (22) + **Haftarah** (23) set pitch-measured from **PocketTorah** (`rneiss/PocketTorahTrope`, GPL-3), shifted −12 st into his register. These are the **first cells of the atlas**, not the whole thing. Default playback is **CLARINET** (discrete, articulated notes) — he dislikes pitch **"slope"/glide**, which is only a secondary toggle. Boruch Green's recordings (used with permission) keep embedded audio; measured-from-source tropes are **link-only** (*Source ↗*). Also present: legacy `Trup.html` + `trup.js` + `trup-data.js`, `trup-calibrate.html`, and GPT's `taamim_clarinet_synth.html` (origin file: Boruch Green's 10 trope-name mp3s + librosa contours).
 >
 > **To scale:** the same extraction pipeline (below) fills any **community × reading-type** cell from that community's recordings. Grow the UI from today's single toggle into a **two-axis selector (community × reading-type)**.
 >
@@ -38,7 +38,7 @@ The end state is a matrix. Each **cell = one community × one reading-type**, po
 
 - Torah (weekly kriah) · Haftarah · Megillas Esther · Eicha · Shir HaShirim / Rus / Koheles (often distinct tunes) · Yamim Noraim (High-Holy-Day Torah) · Tehillim / Ta'amei Emes (Iyov · Mishlei · Tehillim) · learning-nusach (Mishnah / Gemara) where it exists.
 
-**Where we are in the matrix:** one community (Ashkenazi, via Mordy's own voice as ground truth + a full PocketTorah proof-set) across two reading-types (Torah, Haftarah). Everything else is open — and reachable with the pipeline below.
+**Where we are in the matrix:** one community (Ashkenazi, via Boruch Green's recordings as ground truth + a full PocketTorah proof-set) across two reading-types (Torah, Haftarah). Everything else is open — and reachable with the pipeline below.
 
 ## Current state — `apps/trup-real.html` (the proving ground)
 
@@ -46,7 +46,7 @@ A single self-contained HTML sound lab, in Mordy's design system (maroon, sharp 
 
 | Toggle | Count | Source | Audio |
 |---|---|---|---|
-| Your Voice | 10 | Mordy's own recordings — ground truth for the yeshivish cell | embedded mp3 (`Original`) |
+| Boruch Green | 10 | Boruch Green's recordings (used with permission) — ground truth for the yeshivish cell | embedded mp3 (`Original`) |
 | Torah | 22 | PocketTorah, measured (pipeline proof-of-scale) | link-only (`Source ↗`) |
 | Haftarah | 23 | PocketTorah, measured (incl. mercha-kefula) | link-only (`Source ↗`) |
 
@@ -64,7 +64,7 @@ Controls: transpose (default +12), tempo, brightness, breath, vibrato. Phrase bu
 | File | Role |
 |---|---|
 | `trup-real.html` | **THE ACTIVE ITEM.** 55-motif measured sound lab. Self-contained; data + engine inlined. |
-| `taamim_clarinet_synth.html` | GPT's origin file — embeds Mordy's 10 own-voice mp3s + librosa contours. Archive/reference. |
+| `taamim_clarinet_synth.html` | GPT's origin file — embeds Boruch Green's 10 trope-name mp3s + librosa contours. Archive/reference. |
 | `Trup.html` + `trup.js` + `trup-data.js` | Legacy design-system app: Map / Pesukim / Kriyos / Tehillim / Timeline / Mesoros / Kolos; live Unicode ta'am parser; JE-1905 & measured banks; abcjs staff + MIDI export. It already models **multiple traditions × systems** — the natural home for the full matrix. |
 | `trup-calibrate.html` | Standalone listening / calibration panel. |
 | `TRUP-HANDOFF.md` / `../TRUP-HANDOFF.md` | This document. |
@@ -85,7 +85,7 @@ Measuring any community's recording into motifs — proven, browser-based (the s
 ## Locked rules (consensus PRD — do not relitigate)
 
 - Evidence grades A–E; **No Fake Mesorah**: nothing sounds "official" below grade B; every motif needs a named source + grade. Measured-from-recording = grade A-derived.
-- **Recordings layer is link-only** — rights stay with the source (own-voice is the embedded exception). Applies to every community's audio.
+- **Recordings layer is link-only** — rights stay with the source (Boruch Green's recordings, used with permission, are the embedded exception). Applies to every community's audio.
 - Each community keeps its own transliteration where the term is inherently that community's; yeshivish/Ashkenazi is the default voice.
 - Maqam map locked (pizmonim.org) for the Sephardic/Mizrahi cells: Torah Sigah · Mishlei Sigah-variant · Tehillim Nahwand(Syr)/Rast(Eg) · Iyov "undeveloped Rast" · Shir Bayat · Rus Hoseni · Eicha Ajam · Esther Saba-Mouhayar · Mishnah Nawah.
 - Emes = separate system (dechi, oleh v'yored, revia katan/gadol/mugrash, tzinnor); never mixed with liturgical psalm nusach.
@@ -97,7 +97,7 @@ Measuring any community's recording into motifs — proven, browser-based (the s
 1. **Method is proven on the Ashkenazi cell.** Confirm the sound with Mordy (his ear), lock the clarinet engine and UI.
 2. **Split the toggle into two axes** — **community** × **reading-type** — so cells can be added without reshuffling.
 3. **Add reading-types for the community in hand:** 3-Megillos / Esther / Eicha / Yamim Noraim / Tehillim-Emes (PocketTorah already has esther / eicha / 3megillot / hhd tracks — same pipeline).
-4. **Add communities, each measured from real recordings:** Litvish (Mordy's own voice or Virtual Cantor, Eastern-Ashkenazi), then Sephardic (S&P, Moroccan), Yemenite, Mizrahi (Syrian/Iraqi via pizmonim.org / Sephardic Pizmonim Project), Italian. Sources must be CORS-reachable or uploaded.
+4. **Add communities, each measured from real recordings:** Litvish (Boruch Green's full set — 23 Torah + 21 haftorah tropes, already in dev/trup/own-voice — or Virtual Cantor, Eastern-Ashkenazi), then Sephardic (S&P, Moroccan), Yemenite, Mizrahi (Syrian/Iraqi via pizmonim.org / Sephardic Pizmonim Project), Italian. Sources must be CORS-reachable or uploaded.
 5. **Fold the measured engine into the legacy `Trup.html`** map/pesukim views (it already has the tradition × system scaffolding).
 
 ## Environment gotchas (Cowork-specific)

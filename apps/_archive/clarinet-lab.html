@@ -54,12 +54,12 @@ input[type=range]{width:100%;accent-color:var(--maroon);}
 </style></head>
 <body>
 <header><div class="top">
-  <div class="brand">Clarinet Lab <small>Original voice · GPT method · improved — your ear decides</small></div>
+  <div class="brand">Clarinet Lab <small>Boruch Green's recording · GPT method · improved — your ear decides</small></div>
   <div class="now"><b>Now</b> <span id="now">—</span></div>
 </div></header>
 <div class="wrap">
   <main>
-    <p class="lede"><b>Same method GPT used, done faithfully, then pushed further.</b> Every ta'am plays your measured contour through a Web-Audio clarinet — no notes reassigned. <b>Original</b> = your actual voice. <b>GPT</b> = its exact synth. <b>Mine</b> adds a woodier clarinet (measured chalumeau spectrum + body-resonance formant), amplitude that follows the voicing so it phrases in syllables instead of droning, and a delayed vibrato — all riding your raw contour, nothing over-cleaned.</p>
+    <p class="lede"><b>Same method GPT used, done faithfully, then pushed further.</b> Every ta'am plays your measured contour through a Web-Audio clarinet — no notes reassigned. <b>Original</b> = Boruch Green's actual recording (used with permission). <b>GPT</b> = its exact synth. <b>Mine</b> adds a woodier clarinet (measured chalumeau spectrum + body-resonance formant), amplitude that follows the voicing so it phrases in syllables instead of droning, and a delayed vibrato — all riding your raw contour, nothing over-cleaned.</p>
     <div id="cards" class="grid"></div>
   </main>
   <aside class="rail">
@@ -70,7 +70,7 @@ input[type=range]{width:100%;accent-color:var(--maroon);}
     </div>
     <div class="rail-sec">
       <div class="eyebrow" style="margin-bottom:10px">Controls</div>
-      <div class="ctl"><label>Transpose <span class="v" id="trV">+12 st</span></label><input id="tr" type="range" min="-12" max="24" value="12" step="1"><div class="hint">Your voice sits low; +12 lifts it into clarinet register.</div></div>
+      <div class="ctl"><label>Transpose <span class="v" id="trV">+12 st</span></label><input id="tr" type="range" min="-12" max="24" value="12" step="1"><div class="hint">The recordings sit low (male voice); +12 lifts it into clarinet register.</div></div>
       <div class="ctl"><label>Tempo <span class="v" id="spV">1.00×</span></label><input id="sp" type="range" min="0.55" max="1.6" value="1" step="0.01"></div>
       <div class="ctl"><label>Brightness <span class="v" id="brV">0.55</span></label><input id="br" type="range" min="0" max="1" value="0.55" step="0.01"></div>
       <div class="ctl"><label>Vibrato <span class="v" id="viV">0.10</span></label><input id="vi" type="range" min="0" max="0.5" value="0.10" step="0.01"></div>
@@ -147,7 +147,7 @@ function playGPT(motif){const c=AC();stopAll();const o=opts();const st=c.current
   osc.start(st);osc.stop(st+total+0.05);vib.start(st);vib.stop(st+total+0.05);nodes.push(osc,lp,g,mas,vib,vg);
   mark(motif,'clarinet · GPT method');}
 
-function playOrig(motif){stopAll();orig=new Audio(motif.audio);orig.play();mark(motif,'your voice · original');}
+function playOrig(motif){stopAll();orig=new Audio(motif.audio);orig.play();mark(motif,'Boruch Green · original');}
 function mark(motif,label){current=motif;$('now').textContent=motif.title+' — '+label;draw(motif);
   document.querySelectorAll('.card').forEach(c=>c.classList.toggle('active',c.dataset.id===motif.id));}
 
