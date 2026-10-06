@@ -3,7 +3,7 @@
    Notes and "wrong card" flags: saved to the reader's account when the page runs as a Claude artifact,
    otherwise to this browser's storage. */
 (function(){
-  const D = window.RASHI_BERESHIT, L = window.RASHI_LAAZ || {}, MT = window.RASHI_METHOD || [], GR = window.RASHI_GRAMMAR || [], TGM = window.RASHI_TARGUM || [];
+  const D = window.RASHI_SECTIONS, L = window.RASHI_LAAZ || {}, MT = window.RASHI_METHOD || [], GR = window.RASHI_GRAMMAR || [], TGM = window.RASHI_TARGUM || [];
   const BOOKS = [["Genesis","בראשית","Bereshit"],["Exodus","שמות","Shemot"],["Leviticus","ויקרא","Vayikra"],["Numbers","במדבר","Bamidbar"],["Deuteronomy","דברים","Devarim"]];
   const SEC = Object.fromEntries(D.sections.map(s => [s.id, s]));
   const state = { view:"all", book:"Genesis", par:null, kind:"all", q:"", showEn:true, showEs:false, openId:null };

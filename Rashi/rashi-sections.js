@@ -3,7 +3,7 @@
    (Rosenbaum and Silbermann, 1929-1934). No Hebrew here was written by AI.
    src tiers: "verbatim" = fetched Hebrew, "silbermann" = fetched English translation,
    "ai" = Claude's own note, unverified. */
-window.RASHI_BERESHIT = {
+window.RASHI_SECTIONS = {
   parasha: { he: `בראשית`, se: `Bereshit`, en: `Bereshit`, ref: `Genesis 1:1-6:8` },
   edition: `Pentateuch with Rashi's commentary, M. Rosenbaum and A.M. Silbermann, 1929-1934`,
   sections: [

@@ -2,12 +2,12 @@
 
 **Purpose:** A per-parasha study guide to Rashi on Chumash, built in sections. Each section collects one kind of thing Rashi does. Sample parasha: Bereshit (Genesis 1:1-6:8).
 
-**Folder:** C:\Users\mswad\Claude\Projects\Torah JSX (1)\Rashi-Bereshit
+**Folder:** C:\Users\mswad\Claude\Projects\Torah JSX (1)\Rashi
 
 **Key files**
-- C:\Users\mswad\Claude\Projects\Torah JSX (1)\Rashi-Bereshit\Rashi-Bereshit.html (page; open this one)
-- C:\Users\mswad\Claude\Projects\Torah JSX (1)\Rashi-Bereshit\rashi-bereshit-data.js (all content; review this first)
-- C:\Users\mswad\Claude\Projects\Torah JSX (1)\Rashi-Bereshit\rashi-bereshit.js (render logic)
+- C:\Users\mswad\Claude\Projects\Torah JSX (1)\Rashi\Rashi.html (page; open this one)
+- C:\Users\mswad\Claude\Projects\Torah JSX (1)\Rashi\rashi-sections.js (section titles only; the content is in the laaz-*.js, rashi-method.js, rashi-grammar.js, rashi-targum.js files)
+- C:\Users\mswad\Claude\Projects\Torah JSX (1)\Rashi\rashi.js (render logic)
 
 **Decisions**
 - Section 3 is named יישובו של מקרא (Rashi's phrase at Genesis 4:8), not פשוטו של מקרא: Mordy says that title has a negative sound in his community. Rashi's own words inside the entries are left verbatim.
@@ -97,3 +97,8 @@
 - The manuscript changed the guide's own readings (build/own.py): Bereshit 4:23 confirmed for Catane (navredure); Bereshit 38:16, Shemot 21:25 and Bemidbar 24:17 withdrawn, the guide now follows Catane and says why. Only Bereshit 1:2 (acoveter as brooding) still differs from Catane; the manuscript lacks that verse.
 - Site: the live site is limudlab.com (Cloudflare Pages from main of github.com/mswadron/curly-barnacle; this folder C:\Users\mswad\Claude\Projects\Torah JSX (1) is the clone). Git must be run through Desktop Commander on Windows, never in the sandbox mount (see C:\Users\mswad\Claude\Projects\Torah JSX (1)\dev\FIX-PROMPTS.md).
 - Not reached: HebrewBooks (Greenberg, Targum HaLaaz, Marpe Lashon), Darmesteter and Blondheim.
+
+## Renamed (2026-10-06)
+- Folder and files renamed so the name no longer says Bereshit: C:\Users\mswad\Claude\Projects\Torah JSX (1)\Rashi\Rashi.html, rashi.js, rashi-sections.js (window.RASHI_SECTIONS). Live at https://limudlab.com/Rashi/Rashi.html.
+- C:\Users\mswad\Claude\Projects\Torah JSX (1)\Rashi-Bereshit\Rashi-Bereshit.html is kept as a redirect to the new page so old links work. Nothing else is in that folder.
+- The page has always held all five books; it opens on Bereshit because that is the current parsha (week of 2026-10-06).
