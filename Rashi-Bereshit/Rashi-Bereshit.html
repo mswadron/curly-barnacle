@@ -1,0 +1,165 @@
+<title>Rashi Guide</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Frank+Ruhl+Libre:wght@400;500&display=swap">
+<style>
+/* Same type and color as apps/maharils_moon.html: cool grey ground, Newsreader + IBM Plex, indigo accent. One reading column, cards open in place. */
+:root{
+  --bg:#eef0f4; --panel:#fbfbfd; --ink:#11151f; --ink-2:#4a5163; --ink-3:#7a8194; --rule:#d9dde6; --grid:#e6e9ef;
+  --accent:#3b4fa8; --chip:#e3e7f0; --sun:#eb6834; --aqua:#1baf7a; --on-accent:#fbfbfd; --home:#5a1421;
+  --display:"Newsreader", Georgia, "Times New Roman", serif;
+  --body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --heb:"Frank Ruhl Libre", "David", "Times New Roman", serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0b0e17; --panel:#121726; --ink:#eef1f8; --ink-2:#b4bbcc; --ink-3:#8189a0; --rule:#262d42; --grid:#1d2335;
+  --accent:#9fb0ff; --chip:#1c2236; --sun:#d95926; --aqua:#199e70; --on-accent:#121726; --home:#5a1421; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0b0e17; --panel:#121726; --ink:#eef1f8; --ink-2:#b4bbcc; --ink-3:#8189a0; --rule:#262d42; --grid:#1d2335;
+  --accent:#9fb0ff; --chip:#1c2236; --sun:#d95926; --aqua:#199e70; --on-accent:#121726; --home:#5a1421; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--body);margin:0}
+.heb{font-family:var(--heb);unicode-bidi:isolate}
+.wrap{max-width:980px;margin:0 auto;padding-inline:16px;padding-block:28px 64px}
+button{font-family:var(--body)}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+header.top{padding-bottom:6px}
+.eyebrow{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+h1.title{font:600 clamp(30px,5vw,46px)/1.05 var(--display);margin:8px 0 0;letter-spacing:-.01em;text-wrap:balance}
+h1.title .heb{font-weight:500;margin-right:12px}
+.subtitle{margin:10px 0 0;color:var(--ink-2);max-width:66ch}
+
+.provbox{margin:16px 0 0;background:var(--chip);border-radius:8px;padding:12px 14px;font-size:13.5px;color:var(--ink-2)}
+.provbox b{color:var(--ink);font-weight:600}
+
+#controls{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);padding-block:10px;margin-top:14px;border-bottom:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center}
+.catrow,.langrow{display:inline-flex;flex-wrap:wrap;border:1px solid var(--rule);border-radius:7px;overflow:hidden;align-items:stretch}
+.pill,.langpill{font:500 14px var(--body);border:0;background:var(--panel);color:var(--ink-2);padding:7px 11px;cursor:pointer}
+.pill.on,.langpill.on{background:var(--accent);color:var(--on-accent)}
+.pill .heb{font-size:15px;margin-left:7px}
+.langlbl{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);padding:0 10px;align-self:center}
+
+.sec-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:22px 0 2px}
+.sec-he{font-size:24px;font-weight:500}
+.sec-en{font:600 22px/1.2 var(--display)}
+.sec-lead{color:var(--ink-2);margin:2px 0 14px;max-width:70ch}
+
+.card{background:var(--panel);border:1px solid var(--rule);border-radius:10px;margin-bottom:12px;overflow:hidden}
+.card.open{border-color:var(--accent)}
+.card-head{display:block;width:100%;text-align:left;border:0;background:transparent;color:inherit;font:inherit;padding:16px 18px;cursor:pointer}
+.row1{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.nm{font:600 22px/1.2 var(--display)}
+.nm .mean{font:400 14px var(--body);color:var(--ink-2);margin-left:10px}
+.nm-he{font-size:24px;font-weight:500}
+.org{font-size:13px;color:var(--ink-3);margin-top:3px}
+.org .heb{font-size:17px;color:var(--ink)}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.badge{font:500 11px var(--mono);letter-spacing:.04em;padding:3px 8px;border-radius:6px;white-space:nowrap;background:var(--chip);color:var(--ink-2)}
+.b-verify{background:color-mix(in srgb,var(--sun) 16%,var(--panel));color:var(--ink);box-shadow:inset 0 0 0 1px var(--sun)}
+.b-tag{background:color-mix(in srgb,var(--accent) 10%,var(--panel));color:var(--accent)}
+.today{margin-top:12px;font-size:15px;line-height:1.6}
+.today b{font-weight:600}
+.today .lang{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0 12px 0 5px}
+.today.es{margin-top:4px}
+.today .mean2{color:var(--ink-2);font-size:14px;margin:0 14px 0 6px}
+.travel{margin-top:6px;font-size:14px;color:var(--ink-2);max-width:75ch}
+.headline{margin-top:10px;font-size:15px;max-width:75ch}
+.toggle{margin-top:10px;font:500 12px var(--mono);color:var(--accent)}
+
+.detail{border-top:1px solid var(--rule);padding:14px 18px 6px}
+.blk{font-size:14px;color:var(--ink-2);margin-bottom:12px;max-width:75ch}
+.box-label{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+.box-label.mt{margin-top:8px}
+.srcbox{margin-bottom:10px;padding:12px 14px;border-inline-start:3px solid var(--accent);background:var(--bg)}
+.src-he{font-family:var(--heb);direction:rtl;text-align:right;font-size:19px;line-height:1.75}
+.src-en{font-size:14px;color:var(--ink-2);margin-top:6px}
+.src-ref{display:inline-block;margin-top:6px;font:12px var(--mono);color:var(--ink-3);text-decoration:none}
+.src-ref:hover{color:var(--accent)}
+.qbox{border:1px dashed var(--sun);border-radius:8px;background:color-mix(in srgb,var(--sun) 6%,var(--panel));padding:10px 14px;margin-bottom:12px}
+.qbox .blk{margin-bottom:0;color:var(--ink)}
+
+.books{margin:6px 0 4px}
+.pill:disabled{opacity:.55;cursor:default}
+.pill .cnt{font:500 11px var(--mono);margin-left:8px;opacity:.8}
+.par-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:22px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--rule);font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.par-head .heb{font-size:19px;letter-spacing:0;color:var(--ink);font-weight:500}
+.kindrow{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 2px}
+.kind{font:500 12px var(--body);border:1px solid var(--rule);border-radius:6px;background:var(--panel);color:var(--ink-2);padding:5px 9px;cursor:pointer}
+.kind.on{background:var(--ink);color:var(--panel);border-color:var(--ink)}
+.kind .cnt{font:500 11px var(--mono);margin-left:6px;opacity:.75}
+.exline{font-size:19px;line-height:1.75;text-align:right;margin-top:10px}
+.badges.nomt{margin-top:0}
+.printline{font-size:13px;color:var(--ink-3);margin-top:3px}
+.printline .heb{font-size:16px;color:var(--ink-2)}
+.searchrow{display:flex;align-items:center;gap:8px;margin-top:10px}
+.searchrow input{flex:1 1 auto;min-width:0;font:400 15px var(--body);color:var(--ink);background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:8px 10px}
+.searchrow input:focus-visible,.note:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.notebox{margin:14px 0 12px;padding-top:12px;border-top:1px dashed var(--rule)}
+.note{display:block;width:100%;font:400 15px/1.5 var(--body);color:var(--ink);background:var(--bg);border:1px solid var(--rule);border-radius:6px;padding:8px 10px;resize:vertical}
+.noterow{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin-top:8px}
+.btn{font:500 13px var(--body);background:var(--accent);color:var(--on-accent);border:1px solid var(--accent);border-radius:6px;padding:6px 11px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink-2);border-color:var(--rule)}
+.btn.ghost[aria-pressed="true"]{border-color:var(--sun);color:var(--ink)}
+.notestatus{font:12px var(--mono);color:var(--ink-3)}
+.b-mine{background:var(--accent);color:var(--on-accent)}
+.mynote{margin-top:10px;font-size:15px;white-space:pre-wrap;max-width:75ch}
+.card-head.asdiv{cursor:default}
+.linkbtn{background:none;border:0;padding:0;cursor:pointer;display:block}
+.cat{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;margin:0;align-items:baseline}
+.cat dt{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.cat dd{margin:0;font-size:17px;line-height:1.6}
+.cat dd.heb{text-align:right}
+.card-head.ch{display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;align-items:start}
+.chbody{display:block;min-width:0}
+.refcol{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding-top:2px;border-right:1px solid var(--rule);height:100%}
+.refcol b{font:600 20px/1.1 var(--mono);color:var(--accent);font-variant-numeric:tabular-nums}
+.refcol .heb{font-size:15px;color:var(--ink-2)}
+.parrow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0 2px}
+.parrow .kind .heb{font-size:15px;margin-right:6px}
+.kind:disabled{opacity:.45;cursor:default}
+.kindrow{align-items:center}
+.b-sec{background:var(--ink);color:var(--panel)}
+@media (max-width:640px){.card-head.ch{grid-template-columns:50px minmax(0,1fr);gap:10px;padding:14px 12px}.refcol b{font-size:17px}}
+.ownbox{margin-top:10px;padding:10px 12px;border:1px dashed var(--accent);border-radius:8px;background:color-mix(in srgb,var(--accent) 6%,var(--panel));font-size:14px;line-height:1.6;max-width:80ch}
+.ownbox .lbl2{display:block;font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+.b-own{background:color-mix(in srgb,var(--accent) 12%,var(--panel));color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+#lib-home{position:fixed;bottom:calc(14px + env(safe-area-inset-bottom,0px));left:14px;z-index:9000;width:44px;height:44px;border-radius:50%;background:var(--home);display:flex;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(0,0,0,.3)}
+footer{max-width:980px;margin:0 auto;padding-inline:16px;padding-block:0 40px;font-size:12px;color:var(--ink-3)}
+@media (max-width:640px){.nm{font-size:19px}.nm-he{font-size:21px}.pill,.langpill{padding:7px 9px;font-size:13px}}
+</style>
+
+<a id="lib-home" href="../index.html" aria-label="All apps" title="All apps"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg></a>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">Chumash · book by book</div>
+    <h1 class="title"><span class="heb" dir="rtl">רש"י</span>A Study Guide to Rashi</h1>
+    <p class="subtitle">Every French word Rashi uses on the Chumash, with what it means, what it became in modern French, and its English or Yiddish relatives. Then, across the whole Chumash and in his own words: his grammar, how he settles the verse, and his use of the Targum.</p>
+  </header>
+
+  <div class="provbox">
+    Every word of <b>Rashi</b> and every <b>verse</b> is quoted as printed. The readings of the French words, their Latin-letter spellings and their Hebrew meanings are quoted from <b>Moshe Catane, Otzar La'azei Rashi</b> (Jerusalem 1988), who corrects the printed spellings from manuscripts. Where the printed Rashi spells a word differently, both are shown. Where the word could be found in <b>manuscript Leipzig 1</b> (13th century, as transcribed by AlHaTorah), that spelling is shown as a third witness; it was picked out of the transcription by Claude and should be checked against the manuscript before it is relied on. English meanings, modern forms, similar words and word histories are study notes written for this guide. Where this guide argues a reading of its own, against Catane or between him and the printed text, the card says so in a marked box and gives its grounds.
+  </div>
+
+  <div id="controls"></div>
+  <div id="searchrow" class="searchrow"><label class="langlbl" for="q">Search</label><input id="q" type="search" placeholder="A word, in Hebrew, French or English, or a verse like 4:23" autocomplete="off"></div>
+  <div id="list"></div>
+</div>
+
+<footer>
+  Hebrew text of Rashi: Pentateuch with Rashi's commentary, M. Rosenbaum and A.M. Silbermann, 1929-1934. Verses: Miqra according to the Masorah. French readings: Moshe Catane, Otzar La'azei Rashi, Jerusalem 1988. Manuscript readings: Leipzig, Universit&auml;tsbibliothek, B.H.1, transcription at alhatorah.org.
+</footer>
+
+<script src="laaz-Genesis.js"></script>
+<script src="laaz-Exodus.js"></script>
+<script src="laaz-Leviticus.js"></script>
+<script src="laaz-Numbers.js"></script>
+<script src="laaz-Deuteronomy.js"></script>
+<script src="rashi-method.js"></script>
+<script src="rashi-grammar.js"></script>
+<script src="rashi-targum.js"></script>
+<script src="rashi-bereshit-data.js"></script>
+<script src="rashi-bereshit.js"></script>
+<script defer src="../site-chrome.js"></script>

@@ -1,0 +1,19 @@
+- 2026-10-05: Sample built for Bereshit. Section 1 (foreign words) complete, 9 words in 8 comments; sections 2 to 4 seeded with samples. Two Old French spellings flagged to verify. Registry row not yet written.
+- 2026-10-05: Foreign-word cards now show a Today row on the card itself: modern French form plus similar English words (AI notes). No Yiddish matches found in Bereshit.
+- 2026-10-05: Each foreign-word card now has a How it traveled paragraph (Old French to modern French and to English). 4:23 route marked not traced.
+- 2026-10-05: Section 3 renamed from פשוטו של מקרא to יישובו של מקרא (Settling the verse) at Mordy's request. Catane's Otzar La'azei Rashi identified as the la'az reference; cards not yet rebuilt on it.
+- 2026-10-06: Page reskinned to match apps/arba_minim.html at Mordy's request (first look rejected). Section 3 rename now included in the computer copy.
+- 2026-10-06: Second reskin. Cream and Georgia rejected as pure Claude; page now uses the type and color of apps/maharils_moon.html.
+- 2026-10-06: Whole-Chumash la'az build started on Catane's Otzar La'azei Rashi. Genesis done (65 entries), published.
+- 2026-10-06: Exodus done (87 entries), published. Three Exodus entries have no matching comment in the printed Rashi.
+- 2026-10-06: Leviticus (51) and Numbers (29) done together, published. Matching widened so every entry in four books shows its Rashi comment.
+- 2026-10-06: Deuteronomy done (34). All 266 Chumash la'azim from Catane are on the page and published.
+- 2026-10-06: Added tewel (pipe sense only, at Mordy's direction) and 22 more English and Yiddish relatives across the five books.
+- 2026-10-06: Settling the verse section extended to the whole Chumash (rashi-method.js), published.
+- 2026-10-06: Settling the verse second pass: 298 comments in eight kinds with filter buttons (was 71).
+- 2026-10-06: Grammar (351) and Targum (415) sections extended to the whole Chumash and published. Not yet reviewed for false hits.
+- 2026-10-06: Added per-card notes, a mark for cards that do not belong, a My notes tab and search. Published with account storage for notes.
+- 2026-10-06: Spanish toggle added to the foreign-word cards (211 of 266 words have a current Spanish relative).
+- 2026-10-06: Navigation rebuilt around book, parasha, perek and pasuk; new Everything tab merges all sections verse by verse.
+- 2026-10-06: Guide now argues its own grounded readings on seven foreign-word cards (build/own.py); Leviticus entry 3192 moved to 19:16.
+- 2026-10-06: Manuscript Leipzig 1 readings added to 178 foreign-word cards (build/leipzig.py); three of the guide's own readings withdrawn on its evidence. Page added to the limudlab.com index and pushed.
