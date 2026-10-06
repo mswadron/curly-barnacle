@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>Page not found · Torah Interactive</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&family=Crimson+Pro:wght@400;600&display=swap">
+<style>
+:root{--paper:#f7f2e9;--paper-deep:#f1eadd;--ink:#241d15;--ink-soft:#5c5344;--maroon:#5a1421;--maroon-deep:#3d0d18;--rule:#c9bfae;
+  --hebrew:'Frank Ruhl Libre',serif;--body:'Crimson Pro',Georgia,serif}
+html{background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.55}
+main{max-width:620px;margin:0 auto;padding:12vh 20px 60px;text-align:center}
+.he{font-family:var(--hebrew);font-weight:900;font-size:44px;color:var(--maroon-deep);margin:0;direction:rtl}
+h1{font-weight:600;font-size:26px;margin:6px 0 18px}
+hr{border:0;border-top:1px solid var(--rule);width:120px;margin:0 auto 22px}
+p{color:var(--ink-soft);margin:0 0 14px}
+code{font-size:15px;background:var(--paper-deep);padding:2px 6px;border-radius:4px;word-break:break-all}
+a.btn{display:inline-block;margin-top:14px;padding:10px 22px;border-radius:999px;background:var(--maroon);color:#fff;text-decoration:none;font-weight:600}
+a.btn:hover,a.btn:focus-visible{background:var(--maroon-deep)}
+</style>
+</head>
+<body>
+<main>
+  <p class="he">לֹא נִמְצָא</p>
+  <h1>Page not found</h1>
+  <hr>
+  <p>There is no page at <code id="path"></code>.</p>
+  <p>It may have moved, or the address may have a typo. If you followed a link from the library and landed here, refresh once; your browser may be holding an older copy.</p>
+  <a class="btn" id="home" href="/">Back to the library</a>
+</main>
+<script>
+(function(){
+  var p = location.pathname; document.getElementById('path').textContent = p;
+  // GitHub Pages mirror lives under /curly-barnacle/; limudlab.com lives at the root.
+  var root = /\.github\.io$/.test(location.hostname) ? '/' + (p.split('/')[1] || '') + '/' : '/';
+  document.getElementById('home').href = root;
+})();
+</script>
+</body>
+</html>
