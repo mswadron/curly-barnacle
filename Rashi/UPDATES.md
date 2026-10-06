@@ -18,3 +18,4 @@
 - 2026-10-06: Guide now argues its own grounded readings on seven foreign-word cards (build/own.py); Leviticus entry 3192 moved to 19:16.
 - 2026-10-06: Manuscript Leipzig 1 readings added to 178 foreign-word cards (build/leipzig.py); three of the guide's own readings withdrawn on its evidence. Page added to the limudlab.com index and pushed.
 - 2026-10-06: Folder and page renamed from Rashi-Bereshit to Rashi (Rashi\Rashi.html); old address redirects.
+- 2026-10-06: Hebrew on the cards enlarged to at least the size of the French headword (meaning, printed and manuscript spellings, verse and Rashi text).
