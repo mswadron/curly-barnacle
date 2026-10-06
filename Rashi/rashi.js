@@ -102,9 +102,9 @@
       <button type="button" class="card-head ch" data-open="${i.id}" aria-expanded="${open}">${refCol(i)}<span class="chbody">
         <div class="row1">
           <span class="nm">${esc(i.gloss)}${state.showEn ? `<span class="mean">${esc(i.en)}</span>` : ""}</span>
-          <span class="nm-he heb" dir="rtl">${esc(i.laaz)}</span>
+          <span class="nm-he hw heb" dir="rtl" title="The word in the verse">${esc(i.hw)}</span>
         </div>
-        <div class="org"><span class="heb" dir="rtl">${esc(i.hw)}</span> · <span class="heb" dir="rtl">${esc(i.he)}</span></div>
+        <div class="org"><span class="heb lz-he" dir="rtl" title="Rashi's French word in Hebrew letters">${esc(i.laaz)}</span> · <span class="heb" dir="rtl">${esc(i.he)}</span></div>
         ${i.pw ? `<div class="printline">In the printed Rashi: <span class="heb" dir="rtl">${esc(i.pw)}</span></div>` : ""}
         ${i.lz ? `<div class="printline">In manuscript Leipzig 1: <span class="heb" dir="rtl">${esc(i.lz)}</span></div>` : ""}
         <div class="badges">${state.view==="all" ? `<span class="badge b-sec">Foreign word</span>` : ""}${i.own ? `<span class="badge b-own">${OWNLBL[i.ownKind]}</span>` : ""}${state.showEn && (today || i.travel) ? `<span class="badge b-note">Today and word history: study notes</span>` : ""}${mine(i.id)}</div>
