@@ -9,3 +9,4 @@
 2026-10-06 · Added 404.html: limudlab.com (Cloudflare Pages) was serving the home page for any missing address, so a failed load of an app looked like the link went home. Now a missing page says so, with a link back to the library.
 2026-10-07 · Added Piyut in the Rishonim (apps/piyut-rishonim.html) + new Tefilah & Liturgy section and tile on the index + docs/piyut-rishonim.md + changelog.
 2026-10-07 · Piyut in the Rishonim: restyled to the Rashi Guide / Maharil's Moon skin (cool grey ground, white cards, indigo accent, Frank Ruhl Libre + IBM Plex, dark mode).
+2026-10-07 · Piyut in the Rishonim: light theme only (dark mode removed).
