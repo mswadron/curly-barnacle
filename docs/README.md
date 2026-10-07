@@ -46,6 +46,12 @@ Grouped by seder, in the order they appear on the index page.
 | Talmud Flora — Plants of Kilayim | [talmudflora.html](../apps/talmudflora.html) | [talmudflora.md](talmudflora.md) |
 | The Four Species as Plants | [arba_minim.html](../apps/arba_minim.html) | [arba-minim.md](arba-minim.md) |
 
+### תפילה · Tefilah & Liturgy
+
+| Tile | App | Sub-doc |
+|------|-----|---------|
+| Piyut in the Rishonim | [piyut-rishonim.html](../apps/piyut-rishonim.html) | [piyut-rishonim.md](piyut-rishonim.md) |
+
 ### לוח · Luach & Reference
 
 | Tile | App | Sub-doc |

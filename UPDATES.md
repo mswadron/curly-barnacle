@@ -7,3 +7,4 @@
 2026-10-01 · Arba Minim: psul-origin correction (Padua + Tzfas), Chasam Sofer 207 thick-rind sign, strain drift + Sukkah 36a / OC 648:17, polyembryony. Pushed.
 2026-10-01 · Maharil's Moon: educator's guide embedded (overview panel with lesson plan under the header, plus a For educators panel in every section; Open all / Close all).
 2026-10-06 · Added 404.html: limudlab.com (Cloudflare Pages) was serving the home page for any missing address, so a failed load of an app looked like the link went home. Now a missing page says so, with a link back to the library.
+2026-10-07 · Added Piyut in the Rishonim (apps/piyut-rishonim.html) + new Tefilah & Liturgy section and tile on the index + docs/piyut-rishonim.md + changelog.
