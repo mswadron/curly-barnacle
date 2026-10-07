@@ -383,7 +383,7 @@
   "esNote": "",
   "lz": "נַברְדוּרָא",
   "ownKind": "sides",
-  "own": "The printed letters can be read as they stand: machedure, a bruise. An earlier draft of this guide defended that. Two things decide against it. First, Rashi himself: at Shemot 21:25 he separates a petza, a blow that draws blood, from a chaburah, where the blood gathers and does not come out, and gives each its own French word; here too he defines petza as the stroke of a sword or an arrow. Second, the manuscript: Leipzig 1 reads נַברְדוּרָא here, vocalized, and calls it our language (בלשוננו). Catane's navredure is right."
+  "own": "The printed letters can be read as they stand: machedure, a bruise. An earlier draft of this guide defended that. Two things decide against it. First, Rashi himself: at Shemos 21:25 he separates a petza, a blow that draws blood, from a chaburah, where the blood gathers and does not come out, and gives each its own French word; here too he defines petza as the stroke of a sword or an arrow. Second, the manuscript: Leipzig 1 reads נַברְדוּרָא here, vocalized, and calls it our language (בלשוננו). Catane's navredure is right."
  },
  {
   "id": "Gen3010",

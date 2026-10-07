@@ -20,3 +20,4 @@
 - 2026-10-06: Folder and page renamed from Rashi-Bereshit to Rashi (Rashi\Rashi.html); old address redirects.
 - 2026-10-06: Hebrew on the cards enlarged to at least the size of the French headword (meaning, printed and manuscript spellings, verse and Rashi text).
 - 2026-10-06: Foreign-word cards now lead with the word in the verse (large, top right); Rashi's French word in Hebrew letters and its Hebrew meaning sit on the line below.
+- 2026-10-07: Once-over. Book and parasha names now in Ashkenazi spelling on the page and in the study notes (Bereishis, Shemos, Vayeira, Toldos...); links to Sefaria keep its spellings. Seven cards that had no heading now show the opening words of the comment. Checked: all 1,330 cards render, no script errors, search, dark theme, phone width, notes view.

@@ -102,3 +102,8 @@
 - Folder and files renamed so the name no longer says Bereshit: C:\Users\mswad\Claude\Projects\Torah JSX (1)\Rashi\Rashi.html, rashi.js, rashi-sections.js (window.RASHI_SECTIONS). Live at https://limudlab.com/Rashi/Rashi.html.
 - C:\Users\mswad\Claude\Projects\Torah JSX (1)\Rashi-Bereshit\Rashi-Bereshit.html is kept as a redirect to the new page so old links work. Nothing else is in that folder.
 - The page has always held all five books; it opens on Bereshit because that is the current parsha (week of 2026-10-06).
+
+## Once-over (2026-10-07)
+- Display names switched to Ashkenazi spelling (site house rule in C:\Users\mswad\Claude\Projects\Torah JSX (1)\dev\FIX-PROMPTS.md): map PN and BN in rashi.js; data files keep Sefaria spellings (Genesis, Bereshit) because the Sefaria links and the build keys use them.
+- Data audit: 266 foreign-word cards all have a Rashi comment, translation, verse, meaning and English; no duplicate card ids; 7 of the 1,064 comment cards have no dibbur hamaschil in the printed text (parenthetical comments) and show their first three words instead.
+- Still open: Grammar and Targum false-hit review; Leipzig 1 readings unchecked against the page; 259 la'az entries not weighed independently; registry row in C:\Users\mswad\Dropbox\_CLAUDE INDEX\PROJECT REGISTRY.md.

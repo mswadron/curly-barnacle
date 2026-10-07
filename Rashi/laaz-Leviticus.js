@@ -156,7 +156,7 @@
   "en": "the diaphragm",
   "modern": "",
   "sim": [],
-  "travel": "Not traced. At Exodus 29:13 Catane reads the same word as ebdes.",
+  "travel": "Not traced. At Shemos 29:13 Catane reads the same word as ebdes.",
   "es": [],
   "esNote": "",
   "lz": "",
@@ -272,7 +272,7 @@
     "lang": "English"
    }
   ],
-  "travel": "The same word as at Exodus 10:26.",
+  "travel": "The same word as at Shemos 10:26.",
   "es": [
    {
     "w": "planta",
@@ -925,7 +925,7 @@
   "en": "a spot, a mark",
   "modern": "tache",
   "sim": [],
-  "travel": "The same word as at Exodus 21:25.",
+  "travel": "The same word as at Shemos 21:25.",
   "es": [
    {
     "w": "tacha",
@@ -1169,7 +1169,7 @@
     "lang": "English"
    }
   ],
-  "travel": "The same word as at Genesis 30:32.",
+  "travel": "The same word as at Bereishis 30:32.",
   "es": [
    {
     "w": "rojo",
@@ -1281,7 +1281,7 @@
     "lang": "English"
    }
   ],
-  "travel": "The same word as at Exodus 29:20.",
+  "travel": "The same word as at Shemos 29:20.",
   "es": [
    {
     "w": "ternilla",
@@ -1530,7 +1530,7 @@
   "en": "to wither",
   "modern": "flétrir",
   "sim": [],
-  "travel": "The same word as at Exodus 18:18. This entry is numbered 3194א in the digital text of Catane.",
+  "travel": "The same word as at Shemos 18:18. This entry is numbered 3194א in the digital text of Catane.",
   "es": [
    {
     "w": "flácido",
@@ -1647,7 +1647,7 @@
     "lang": "English"
    }
   ],
-  "travel": "The same word as at Exodus 29:13.",
+  "travel": "The same word as at Shemos 29:13.",
   "es": [
    {
     "w": "tela",
@@ -1730,7 +1730,7 @@
     "lang": "English"
    }
   ],
-  "travel": "The same word as at Genesis 33:10.",
+  "travel": "The same word as at Bereishis 33:10.",
   "es": [
    {
     "w": "apaciguar",
@@ -1805,7 +1805,7 @@
   "en": "a set of seven",
   "modern": "semaine (week)",
   "sim": [],
-  "travel": "The same word as at Exodus 10:22.",
+  "travel": "The same word as at Shemos 10:22.",
   "es": [
    {
     "w": "siete",

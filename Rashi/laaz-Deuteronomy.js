@@ -72,7 +72,7 @@
   "en": "to flare up, to grow angry",
   "modern": "s'éprendre (now: to fall in love)",
   "sim": [],
-  "travel": "To catch fire. The noun of this verb is the word Rashi gives at Exodus 20:5.",
+  "travel": "To catch fire. The noun of this verb is the word Rashi gives at Shemos 20:5.",
   "es": [
    {
     "w": "prender",
@@ -155,7 +155,7 @@
   "en": "turned aside, twisted",
   "modern": "",
   "sim": [],
-  "travel": "From the verb destolir, to turn aside, that Catane reads at Genesis 38:16. Not kept in modern French.",
+  "travel": "From the verb destolir, to turn aside, that Catane reads at Bereishis 38:16. Not kept in modern French.",
   "es": [],
   "esNote": "",
   "lz": "דישטוליר",
@@ -309,7 +309,7 @@
     "lang": "English, medical"
    }
   ],
-  "travel": "The same word as at Exodus 10:26.",
+  "travel": "The same word as at Shemos 10:26.",
   "es": [
    {
     "w": "planta",
@@ -342,7 +342,7 @@
   "en": "bat",
   "modern": "chauve-souris",
   "sim": [],
-  "travel": "Word for word, bald mouse. The same word as at Leviticus 11:18.",
+  "travel": "Word for word, bald mouse. The same word as at Vayikra 11:18.",
   "es": [
    {
     "w": "calvo",
@@ -380,7 +380,7 @@
     "lang": "English"
    }
   ],
-  "travel": "The same word as at Leviticus 11:19.",
+  "travel": "The same word as at Vayikra 11:19.",
   "es": [
    {
     "w": "abubilla",
@@ -593,7 +593,7 @@
   "en": "scorching heat",
   "modern": "hâle (sunburn, tan)",
   "sim": [],
-  "travel": "The noun of the verb Rashi gives at Genesis 41:6. The s dropped and left a circumflex.",
+  "travel": "The noun of the verb Rashi gives at Bereishis 41:6. The s dropped and left a circumflex.",
   "es": [],
   "esNote": "",
   "lz": "",
@@ -659,7 +659,7 @@
     "lang": "English"
    }
   ],
-  "travel": "The same word as at Genesis 1:2.",
+  "travel": "The same word as at Bereishis 1:2.",
   "es": [
    {
     "w": "aturdir",
@@ -852,7 +852,7 @@
   "en": "burning anger",
   "modern": "",
   "sim": [],
-  "travel": "The same word as at Exodus 20:5.",
+  "travel": "The same word as at Shemos 20:5.",
   "es": [
    {
     "w": "prender",
@@ -894,7 +894,7 @@
     "lang": "English"
    }
   ],
-  "travel": "The same word as at Genesis 1:11.",
+  "travel": "The same word as at Bereishis 1:11.",
   "es": [
    {
     "w": "hierba",

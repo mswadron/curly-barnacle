@@ -64,7 +64,7 @@
     "lang": "English, same root"
    }
   ],
-  "travel": "The same word as at Exodus 30:7.",
+  "travel": "The same word as at Shemos 30:7.",
   "es": [
    {
     "w": "luz",
@@ -97,7 +97,7 @@
   "en": "a shovel, a rake",
   "modern": "",
   "sim": [],
-  "travel": "The same word as at Exodus 27:3. Not traced.",
+  "travel": "The same word as at Shemos 27:3. Not traced.",
   "es": [],
   "esNote": "",
   "lz": "װַדִיל",
@@ -176,7 +176,7 @@
     "lang": "English"
    }
   ],
-  "travel": "The same word as at Exodus 25:18.",
+  "travel": "The same word as at Shemos 25:18.",
   "es": [
    {
     "w": "batir",
@@ -313,7 +313,7 @@
     "lang": "English"
    }
   ],
-  "travel": "The same word as at Exodus 16:31.",
+  "travel": "The same word as at Shemos 16:31.",
   "es": [
    {
     "w": "cilantro",
@@ -416,7 +416,7 @@
   "en": "burning anger",
   "modern": "",
   "sim": [],
-  "travel": "From emprendre, to kindle. The same word as at Exodus 20:5. The digital text of Catane numbers this entry 3127, which belongs to an Exodus entry; by its place in the list it should be 3217.",
+  "travel": "From emprendre, to kindle. The same word as at Shemos 20:5. The digital text of Catane numbers this entry 3127, which belongs to an Exodus entry; by its place in the list it should be 3217.",
   "es": [
    {
     "w": "prender",
@@ -458,7 +458,7 @@
     "lang": "English"
    }
   ],
-  "travel": "The same word as at Genesis 37:2.",
+  "travel": "The same word as at Bereishis 37:2.",
   "es": [
    {
     "w": "parlar",
@@ -666,7 +666,7 @@
     "lang": "English"
    }
   ],
-  "travel": "The same word as at Genesis 41:3.",
+  "travel": "The same word as at Bereishis 41:3.",
   "es": [
    {
     "w": "tenue",
@@ -779,7 +779,7 @@
   "en": "they were sick of it",
   "modern": "",
   "sim": [],
-  "travel": "The verb encreistre in its sense of wearying, the sense Catane points to at Genesis 25:21. Lor is modern leur, to them.",
+  "travel": "The verb encreistre in its sense of wearying, the sense Catane points to at Bereishis 25:21. Lor is modern leur, to them.",
   "es": [],
   "esNote": "",
   "lz": "אֶנְקְרוּטלור",
@@ -991,7 +991,7 @@
   "en": "burning anger",
   "modern": "",
   "sim": [],
-  "travel": "The same word as at Exodus 20:5.",
+  "travel": "The same word as at Shemos 20:5.",
   "es": [
    {
     "w": "prender",

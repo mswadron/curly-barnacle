@@ -181,7 +181,7 @@
     "lang": "English"
    }
   ],
-  "travel": "The same word as at Genesis 11:3. Old French tiule later swapped its vowels to tuile.",
+  "travel": "The same word as at Bereishis 11:3. Old French tiule later swapped its vowels to tuile.",
   "es": [
    {
     "w": "teja",
@@ -1019,7 +1019,7 @@
     "lang": "English"
    }
   ],
-  "travel": "The same word as at Genesis 1:2.",
+  "travel": "The same word as at Bereishis 1:2.",
   "es": [
    {
     "w": "aturdir",
@@ -1227,7 +1227,7 @@
     "lang": "English"
    }
   ],
-  "travel": "The same word as at Genesis 41:3.",
+  "travel": "The same word as at Bereishis 41:3.",
   "es": [
    {
     "w": "tenue",
@@ -1461,12 +1461,12 @@
   "en": "a wound",
   "modern": "navrer (now: to distress)",
   "sim": [],
-  "travel": "Here the printed text and Catane agree on navredure, the word Catane also reads at Genesis 4:23. Modern French kept navrer only for feelings: je suis navré, I am very sorry.",
+  "travel": "Here the printed text and Catane agree on navredure, the word Catane also reads at Bereishis 4:23. Modern French kept navrer only for feelings: je suis navré, I am very sorry.",
   "es": [],
   "esNote": "",
   "lz": "נברדורא",
   "ownKind": "sides",
-  "own": "Rashi's definition here, a blow that draws blood, is the key to the disputed word at Bereshit 4:23. See that card."
+  "own": "Rashi's definition here, a blow that draws blood, is the key to the disputed word at Bereishis 4:23. See that card."
  },
  {
   "id": "Exo3104",
@@ -1888,7 +1888,7 @@
     "lang": "English"
    }
   ],
-  "travel": "Cups of madre, veined wood. The same word as at Genesis 44:2; English mazer is its relative.",
+  "travel": "Cups of madre, veined wood. The same word as at Bereishis 44:2; English mazer is its relative.",
   "es": [],
   "esNote": "Spanish madera, wood, looks close but is a different word, from Latin materia.",
   "lz": "מַדֵירְונש",
@@ -2836,7 +2836,7 @@
     "lang": "English"
    }
   ],
-  "travel": "The same word as at Genesis 49:26. Catane: from Latin summa and found only in Jewish sources.",
+  "travel": "The same word as at Bereishis 49:26. Catane: from Latin summa and found only in Jewish sources.",
   "es": [
    {
     "w": "asomar",

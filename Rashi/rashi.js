@@ -4,7 +4,11 @@
    otherwise to this browser's storage. */
 (function(){
   const D = window.RASHI_SECTIONS, L = window.RASHI_LAAZ || {}, MT = window.RASHI_METHOD || [], GR = window.RASHI_GRAMMAR || [], TGM = window.RASHI_TARGUM || [];
-  const BOOKS = [["Genesis","בראשית","Bereshit"],["Exodus","שמות","Shemot"],["Leviticus","ויקרא","Vayikra"],["Numbers","במדבר","Bamidbar"],["Deuteronomy","דברים","Devarim"]];
+  const BOOKS = [["Genesis","בראשית","Bereishis"],["Exodus","שמות","Shemos"],["Leviticus","ויקרא","Vayikra"],["Numbers","במדבר","Bamidbar"],["Deuteronomy","דברים","Devarim"]];
+  const BN = Object.fromEntries(BOOKS.map(b => [b[0], b[2]]));
+  // Ashkenazi spellings for display; the data keeps the Sefaria spellings for links and search.
+  const PN = {"Bereshit":"Bereishis","Vayera":"Vayeira","Toldot":"Toldos","Vayetze":"Vayeitzei","Vayeshev":"Vayeishev","Miketz":"Mikeitz","Shemot":"Shemos","Vaera":"Va'eira","Yitro":"Yisro","Ki Tisa":"Ki Sisa","Acharei Mot":"Acharei Mos","Bechukotai":"Bechukosai","Behaalotcha":"Beha'aloscha","Chukat":"Chukas","Matot":"Matos","Vaetchanan":"Va'eschanan","Ekev":"Eikev","Ki Tetze":"Ki Seitzei","Ki Tavo":"Ki Savo","Vayelech":"Vayeilech","Vezot Haberachah":"Vezos Haberachah"};
+  const pn = p => PN[p] || p;
   const SEC = Object.fromEntries(D.sections.map(s => [s.id, s]));
   const state = { view:"all", book:"Genesis", par:null, kind:"all", q:"", showEn:true, showEs:false, openId:null };
   const $ = s => document.querySelector(s);
@@ -97,7 +101,7 @@
     const es = state.showEs && i.es && i.es.length ? `<div class="today es">Spanish today: ${i.es.map(s => `<b>${esc(s.w)}</b><span class="mean2">${esc(s.g)}</span>`).join("")}</div>` : "";
     const esNote = state.showEs && i.esNote ? `<div class="travel">${esc(i.esNote)}</div>` : "";
     const today = (i.modern ? `<b>${esc(i.modern)}</b><span class="lang">French</span>` : "") + sim;
-    const rref = `Rashi on ${i.book} ${i.ref}` + (i.seg ? `:${i.seg}` : "");
+    const rref = `Rashi on ${i.book} ${i.ref}` + (i.seg ? `:${i.seg}` : ""), rshow = `Rashi on ${BN[i.book]} ${i.ref}` + (i.seg ? `:${i.seg}` : "");
     return `<div class="card ${open?"open":""}" id="card-${i.id}">
       <button type="button" class="card-head ch" data-open="${i.id}" aria-expanded="${open}">${refCol(i)}<span class="chbody">
         <div class="row1">
@@ -116,9 +120,9 @@
       </span></button>
       ${open ? `<div class="detail">
         <div class="box-label">The verse</div>
-        ${srcBox(i.pasuk, "", `${i.book} ${i.ref}`, `${i.book} ${i.ref}`)}
+        ${srcBox(i.pasuk, "", `${BN[i.book]} ${i.ref}`, `${i.book} ${i.ref}`)}
         <div class="box-label mt">Rashi, as printed${i.dh ? ` · <span class="heb" dir="rtl">${esc(i.dh)}</span>` : ""}</div>
-        ${i.rashi ? srcBox(i.rashi, i.tr, rref, rref) : `<div class="blk">The printed text has no comment at this verse that could be matched to this entry.</div>`}
+        ${i.rashi ? srcBox(i.rashi, i.tr, rshow, rref) : `<div class="blk">The printed text has no comment at this verse that could be matched to this entry.</div>`}
         <div class="box-label mt">Catane, Otzar La'azei Rashi, no. ${esc(i.no)}</div>
         <div class="srcbox"><dl class="cat">
           <dt>Word in the verse</dt><dd class="heb" dir="rtl">${esc(i.hw)}</dd>
@@ -132,15 +136,15 @@
   }
   function methodCard(i){
     const open = state.openId === i.id;
-    const rref = `Rashi on ${i.book} ${i.ref}:${i.seg}`;
+    const rref = `Rashi on ${i.book} ${i.ref}:${i.seg}`, rshow = `Rashi on ${BN[i.book]} ${i.ref}:${i.seg}`;
     return `<div class="card ${open?"open":""}" id="card-${i.id}">
       <button type="button" class="card-head ch" data-open="${i.id}" aria-expanded="${open}">${refCol(i)}<span class="chbody">
         <div class="row1"><span class="badges nomt">${state.view==="all" ? `<span class="badge b-sec">${esc(SECNAME[i._view])}</span>` : ""}${i.tags.map(t => `<span class="badge b-tag">${esc(t)}</span>`).join("")}${mine(i.id)}</span>
-          <span class="nm-he heb" dir="rtl">${esc(i.dh)}</span></div>
+          <span class="nm-he heb" dir="rtl">${esc(i.dh || i.ex.split(" ").slice(0,3).join(" "))}</span></div>
         <div class="exline heb" dir="rtl">${esc(i.ex)}</div>
         <div class="toggle">${open ? "▾ close" : "▸ Rashi in full · translation · my note"}</div>
       </span></button>
-      ${open ? `<div class="detail"><div class="box-label">Rashi, as printed</div>${srcBox(i.rashi, i.tr, rref, rref)}${noteBox(i.id)}</div>` : ""}
+      ${open ? `<div class="detail"><div class="box-label">Rashi, as printed</div>${srcBox(i.rashi, i.tr, rshow, rref)}${noteBox(i.id)}</div>` : ""}
     </div>`;
   }
   const OWNLBL = {differs:"This guide reads it differently from Catane", sides:"This guide weighs the dispute", moved:"This guide moved this entry"};
@@ -149,19 +153,19 @@
     const ps = PARS[state.book] || [];
     return `<div class="parrow"><span class="langlbl">Parasha</span><button type="button" class="kind ${state.par===null?"on":""}" data-par="">Whole book<span class="cnt">${pool.length}</span></button>${ps.map(p => {
       const n = pool.filter(x => x.par===p.en).length;
-      return `<button type="button" class="kind ${state.par===p.en?"on":""}" data-par="${esc(p.en)}" ${n?"":"disabled"}><span class="heb" dir="rtl">${esc(p.he)}</span>${esc(p.en)}<span class="cnt">${n}</span></button>`; }).join("")}</div>`;
+      return `<button type="button" class="kind ${state.par===p.en?"on":""}" data-par="${esc(p.en)}" ${n?"":"disabled"}><span class="heb" dir="rtl">${esc(p.he)}</span>${esc(pn(p.en))}<span class="cnt">${n}</span></button>`; }).join("")}</div>`;
   }
   function bookPills(count){
     return `<div class="catrow books">${BOOKS.map(b => { const n = count(b[0]);
       return `<button type="button" class="pill ${b[0]===state.book?"on":""}" data-book="${b[0]}" ${n?"":"disabled"}>${esc(b[2])}<span class="heb" dir="rtl">${esc(b[1])}</span><span class="cnt">${n}</span></button>`; }).join("")}</div>`;
   }
-  const hit = (i, q) => !q || bare([i.ref, i.dh, i.hw, i.laaz, i.gloss, i.he, i.en, i.modern, i.ex, i.rashi, i.par, (i.tags||[]).join(" "), (i.sim||[]).map(s => s.w).join(" "), (i.es||[]).map(s => s.w + " " + s.g).join(" "), i.travel, i.esNote, i.cn, i.tr, i.own].join(" ")).includes(q);
+  const hit = (i, q) => !q || bare([i.ref, i.dh, i.hw, i.laaz, i.gloss, i.he, i.en, i.modern, i.ex, i.rashi, i.par, pn(i.par), BN[i.book], (i.tags||[]).join(" "), (i.sim||[]).map(s => s.w).join(" "), (i.es||[]).map(s => s.w + " " + s.g).join(" "), i.travel, i.esNote, i.cn, i.tr, i.own].join(" ")).includes(q);
   const cardOf = i => i._view === "laaz" ? laazCard(i) : methodCard(i);
   function cards(items, showBook){
     let h = "", key = null;
     items.forEach(i => {
       const k = i.book + "|" + i.par + "|" + i._c;
-      if(k !== key){ key = k; h += `<div class="par-head"><span class="heb" dir="rtl">${showBook ? esc(BOOKS[i._b][1]) + " · " : ""}${esc(i.parHe)} · פרק ${heNum(i._c)}</span><span>${showBook ? esc(BOOKS[i._b][2]) + " · " : ""}${esc(i.par)} · Perek ${i._c}</span></div>`; }
+      if(k !== key){ key = k; h += `<div class="par-head"><span class="heb" dir="rtl">${showBook ? esc(BOOKS[i._b][1]) + " · " : ""}${esc(i.parHe)} · פרק ${heNum(i._c)}</span><span>${showBook ? esc(BOOKS[i._b][2]) + " · " : ""}${esc(pn(i.par))} · Perek ${i._c}</span></div>`; }
       h += cardOf(i);
     });
     return h || `<p class="sec-lead">Nothing here matches.</p>`;
@@ -196,7 +200,7 @@
       <p class="sec-lead">Open any card in the other sections and write under it. Your notes and the cards you marked are gathered here in the order of the Chumash. ${esc(where())}</p>` +
       (ids.length ? ids.map(id => { const {i, view} = BYID[id];
         return `<div class="card"><div class="card-head asdiv">
-          <div class="row1"><span class="badges nomt"><span class="badge b-verse">${esc(i.book)} ${esc(i.ref)}</span><span class="badge b-tag">${esc(names[view])}</span>${store.flags[id] ? `<span class="badge b-verify">Marked wrong</span>` : ""}</span>
+          <div class="row1"><span class="badges nomt"><span class="badge b-verse">${esc(BN[i.book])} ${esc(i.ref)}</span><span class="badge b-tag">${esc(names[view])}</span>${store.flags[id] ? `<span class="badge b-verify">Marked wrong</span>` : ""}</span>
             <span class="nm-he heb" dir="rtl">${esc(i.dh || i.hw || "")}</span></div>
           ${store.notes[id] ? `<div class="mynote">${esc(store.notes[id])}</div>` : ""}
           <button type="button" class="toggle linkbtn" data-goto="${id}">▸ go to this card</button></div></div>`; }).join("")
