@@ -18,7 +18,14 @@
   window.__torahChromeLoaded = true;
 
   var onApp = location.pathname.indexOf("/apps/") !== -1;
+  // Site root = the folder this script lives in, so pages in any subfolder
+  // (apps/, Rashi/, Rashi-Bereshit/ ...) link home correctly, on limudlab.com
+  // and on the github.io mirror alike.
   var ROOT = onApp ? "../" : "";
+  try {
+    var me = document.currentScript && document.currentScript.src;
+    if (me) ROOT = me.replace(/[^\/]*(\?.*)?$/, "");
+  } catch (e) {}
   var _p = location.pathname;
   // Home button is hidden only on the library index itself; every other page
   // (apps, support, etc.) gets a button back to the library.
