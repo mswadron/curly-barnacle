@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Torah Interactive · לימוד</title>
 <meta name="color-scheme" content="light">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Secular+One&family=IBM+Plex+Sans+Hebrew:wght@400;600&display=swap" rel="stylesheet">
@@ -61,14 +65,26 @@ footer p{font-size:15.5px;font-style:italic;color:var(--ink-soft);margin:0;}
 .shaar .lede,.entry .src,.entry .parts a{font-style:normal}
 .shaar h1,.seder-head .he,.entry-line .he-title{font-weight:400}
 .entry-line .he-title{margin-left:auto;text-align:right}
+
+/* logo: teal tile with L and lamed, beside the name */
+.brand{display:inline-flex;align-items:center;gap:16px;text-align:left}
+.brand-tile{width:84px;height:84px;border-radius:20px;background:var(--maroon);color:#fff;display:flex;align-items:center;justify-content:center;gap:1px;font-size:54px;line-height:1}
+.bt-l{font-family:'Fredoka',sans-serif;font-weight:600}
+.bt-he{font-family:'Secular One',sans-serif}
+.brand-txt{display:flex;flex-direction:column;line-height:1.05}
+.bt1{font:600 42px 'Fredoka',sans-serif;color:var(--ink)}
+.bt2{font:32px 'Secular One',sans-serif;color:var(--maroon)}
+@media(max-width:560px){.brand-tile{width:66px;height:66px;border-radius:16px;font-size:42px}.bt1{font-size:34px}.bt2{font-size:26px}}
 </style>
 </head>
 <body>
 
 <header class="shaar">
   <div class="rule-top"></div>
-  <h1>לימוד</h1>
-  <div class="en-name">Torah Interactive</div>
+  <div class="brand" aria-label="limudlab · לימוד">
+    <div class="brand-tile" aria-hidden="true"><span class="bt-l">L</span><span class="bt-he">ל</span></div>
+    <div class="brand-txt"><span class="bt1">limudlab</span><span class="bt2">לימוד</span></div>
+  </div>
   <p class="lede">Tools for learning the inyanim that are easier to see than to read — every source quoted verbatim and linked to where it lives.</p>
   <div class="rule-bottom"></div>
 </header>

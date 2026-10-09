@@ -26,6 +26,14 @@
     var me = document.currentScript && document.currentScript.src;
     if (me) ROOT = me.replace(/[^\/]*(\?.*)?$/, "");
   } catch (e) {}
+  // Site icon (teal L / lamed tile) on every page that does not set its own
+  try {
+    if (!document.querySelector('link[rel~="icon"]')) {
+      [["icon","favicon-32.png","32x32"],["icon","icon-192.png","192x192"],["apple-touch-icon","apple-touch-icon.png",""]].forEach(function (d) {
+        var k = document.createElement("link"); k.rel = d[0]; k.href = ROOT + d[1]; if (d[2]) k.sizes = d[2]; document.head.appendChild(k);
+      });
+    }
+  } catch (e) {}
   var _p = location.pathname;
   // Home button is hidden only on the library index itself; every other page
   // (apps, support, etc.) gets a button back to the library.
