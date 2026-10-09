@@ -1,23 +1,20 @@
 <title>Rashi Guide</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Frank+Ruhl+Libre:wght@400;500&display=swap">
+<meta name="color-scheme" content="light">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&display=swap">
 <style>
-/* Same type and color as apps/maharils_moon.html: cool grey ground, Newsreader + IBM Plex, indigo accent. One reading column, cards open in place. */
+/* One reading column, cards open in place. */
 :root{
-  --bg:#eef0f4; --panel:#fbfbfd; --ink:#11151f; --ink-2:#4a5163; --ink-3:#7a8194; --rule:#d9dde6; --grid:#e6e9ef;
-  --accent:#3b4fa8; --chip:#e3e7f0; --sun:#eb6834; --aqua:#1baf7a; --on-accent:#fbfbfd; --home:#5a1421;
-  --display:"Newsreader", Georgia, "Times New Roman", serif;
-  --body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  /* House style (Haftarah / Tolaim): cream paper, Georgia + Frank Ruhl, tekhelet accent. Light only. */
+  color-scheme:light;
+  --bg:#F5F1E8; --panel:#FBF8F1; --ink:#1B2230; --ink-2:#4A5163; --ink-3:#7A7F8C; --rule:#D9D2C2; --grid:#E8E1D1;
+  --accent:#1F4E79; --chip:#EFE8DA; --sun:#946321; --aqua:#3C6336; --on-accent:#FBF8F1; --home:#1F4E79;
+  --display:Georgia, "Times New Roman", serif;
+  --body:Georgia, "Times New Roman", serif;
+  --mono:Georgia, "Times New Roman", serif;
   --heb:"Frank Ruhl Libre", "David", "Times New Roman", serif;
 }
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --bg:#0b0e17; --panel:#121726; --ink:#eef1f8; --ink-2:#b4bbcc; --ink-3:#8189a0; --rule:#262d42; --grid:#1d2335;
-  --accent:#9fb0ff; --chip:#1c2236; --sun:#d95926; --aqua:#199e70; --on-accent:#121726; --home:#5a1421; color-scheme:dark }}
-:root[data-theme="dark"]{
-  --bg:#0b0e17; --panel:#121726; --ink:#eef1f8; --ink-2:#b4bbcc; --ink-3:#8189a0; --rule:#262d42; --grid:#1d2335;
-  --accent:#9fb0ff; --chip:#1c2236; --sun:#d95926; --aqua:#199e70; --on-accent:#121726; --home:#5a1421; color-scheme:dark }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--body);margin:0}
 .heb{font-family:var(--heb);unicode-bidi:isolate}
@@ -35,8 +32,9 @@ h1.title .heb{font-weight:500;margin-right:12px}
 .provbox b{color:var(--ink);font-weight:600}
 
 #controls{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);padding-block:10px;margin-top:14px;border-bottom:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center}
-.catrow,.langrow{display:inline-flex;flex-wrap:wrap;border:1px solid var(--rule);border-radius:7px;overflow:hidden;align-items:stretch}
-.pill,.langpill{font:500 14px var(--body);border:0;background:var(--panel);color:var(--ink-2);padding:7px 11px;cursor:pointer}
+.catrow,.langrow{display:inline-flex;flex-wrap:wrap;gap:6px;align-items:center}
+.pill,.langpill{font:500 14px var(--body);border:1px solid var(--rule);border-radius:999px;background:var(--panel);color:var(--ink-2);padding:6px 12px;cursor:pointer}
+.pill.on,.langpill.on{border-color:var(--accent)}
 .pill.on,.langpill.on{background:var(--accent);color:var(--on-accent)}
 .pill .heb{font-size:15px;margin-left:7px}
 .langlbl{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);padding:0 10px;align-self:center}
