@@ -65,7 +65,7 @@ WHEN = {
     "Rashi on Bava Metzia 69b:8:2": [("pesach", "text", "יוצר אפיק רנן ושירים, יום ב' (במגנצא יום א')")],
     # Tosafos
     "Tosafot on Berakhot 6a:20:1": [("pesach", "text", "יוצר אור ישע מאושרים, יום א'")],
-    "Tosafot on Berakhot 11a:24:1": [("pesach", "other", "מעריב ליל ב', לפי תשובה מאהבה")],
+    "Tosafot on Berakhot 11a:24:1": [("pesach", "text", "ביכור אור יום הנף, מעריב ליל ב'")],
     "Tosafot on Berakhot 17b": [("rh", "text", "זכרונות אפחד במעשי, מוסף יום ב'")],
     "Tosafot on Shabbat 114b:5:1": [("unknown", None, None)],
     "Tosafot on Eruvin 19a:19:1": [("chanukah", "text", "זולת אין צור חלף, שבת א' של חנוכה")],

@@ -29,6 +29,6 @@
 - Done 2026-09-30: apps/maharils_moon (Maharil's Moon, Hoshana Rabbah sky over Mainz 1387 to 1426) + index tile in Luach & Reference.
 
 ## Open questions
-- piyut-rishonim: 6 entries without piyut text (Beitzah 33a Lombardy yotzer, Zechariah 5:11, Shabbos 114b, Arachin 2b, Berachos 11a title only, RH 27a Geshem/Tal); line "השר המשרת נער נקרא" not found; azharos day rests on Teshuva MeAhava, not a machzor rubric.
+- piyut-rishonim: 4 entries without piyut text (Beitzah 33a Lombardy yotzer, Zechariah 5:11, Shabbos 114b, Arachin 2b); RH 27a line in Geshem/Tal not identified; line "השר המשרת נער נקרא" not found; azharos day rests on Teshuva MeAhava, not a machzor rubric.
 - maharils_moon: Sefer Maharil's own wording of the incident not yet checked (not on Sefaria); year of the incident not in the sources.
 - arba_minim: rov meshulash line; kaneri (Canary palm) sources; HebrewBooks search on own-rooted cutting from a grafted esrog scion; read Yeshurun 33 on Chazon Ish lineage directly.
