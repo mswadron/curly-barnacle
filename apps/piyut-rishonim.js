@@ -113,7 +113,8 @@
       const lo = full ? Math.max(0, a - 20) : a, hi = full ? Math.min(S.segs.length - 1, b + 20) : b;
       const body = S.segs.slice(lo, hi + 1).map((sg, j) => para(sg, lo + j));
       const headHtml = !full && head !== undefined ? `<p class="head">${S.segs[head]}</p>` : '';
-      return `<div class="rule-top"></div><h3>${esc(S.he)}</h3><div class="sub">${esc(S.nusach)} · <a href="${esc(S.url)}" target="_blank" rel="noopener">בספריא</a></div>
+      const where = /wikisource/.test(S.url) ? 'בויקיטקסט' : 'בספריא';
+      return `<div class="rule-top"></div><h3>${esc(S.he)}</h3><div class="sub">${esc(S.nusach)} · ${esc(S.version)} · <a href="${esc(S.url)}" target="_blank" rel="noopener">${where}</a></div>
         ${notes}<div class="piyut">${headHtml}${body.join('')}</div>
         <button type="button" class="toggle" data-full="${k}">${full ? 'הפיוט בלבד' : 'עוד מן הסביבה במחזור'}</button>`;
     }).join('');
@@ -124,8 +125,8 @@
 
   function renderFoot() {
     $('#foot').innerHTML = `<hr class="rule">
-      <p>לשון הראשונים והפיוטים מועתקת מספריא: הש״ס בדפוס וילנא, רש״י על התורה במהדורת רוזנבוים וזילברמן, והמחזורים כמצוין ליד כל פיוט.</p>
-      <p>היכן נאמר כל פיוט: לפי המחזור שבו נמצא, לפי דברי הראשון עצמו, או לפי הערות המהדיר בספריא, כמצוין ליד כל מובאה. וראה המפתח לערך ״פייט״ בספר סדר הדורות. הרשימה עדיין אינה שלמה.</p>`;
+      <p>לשון הראשונים מועתקת מספריא: הש״ס בדפוס וילנא, רש״י על התורה במהדורת רוזנבוים וזילברמן. הפיוטים מועתקים מספריא או מויקיטקסט, כמצוין ליד כל פיוט עם מספר הגרסה, ולא הוקלדו כאן. הבדלי נוסח בין הראשון לבין המחזור שלפנינו מצוינים ליד הפיוט.</p>
+      <p>היכן נאמר כל פיוט: לפי המחזור שבו נמצא, לפי דברי הראשון עצמו, או לפי הערות המהדיר בספריא, כמצוין ליד כל מובאה. רשימות קודמות: המפתח לערך ״פייט״ בספר סדר הדורות, ותשובה מאהבה חלק א סימן א (ר׳ אלעזר פלעקלס, פראג תקנ״ג), שמונה פיוטים המובאים ברש״י ובתוספות ומקומם במחזור. הרשימה עדיין אינה שלמה.</p>`;
   }
 
   document.addEventListener('click', (ev) => {

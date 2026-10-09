@@ -10,3 +10,4 @@
 2026-10-07 · Added Piyut in the Rishonim (apps/piyut-rishonim.html) + new Tefilah & Liturgy section and tile on the index + docs/piyut-rishonim.md + changelog.
 2026-10-07 · Piyut in the Rishonim: restyled to the Rashi Guide / Maharil's Moon skin (cool grey ground, white cards, indigo accent, Frank Ruhl Libre + IBM Plex, dark mode).
 2026-10-07 · Piyut in the Rishonim: light theme only (dark mode removed).
+2026-10-09 · Piyut in the Rishonim: 32 more piyut texts located (Wikisource + Sefaria Kinnos/Selichos), 4 new entries from Teshuva MeAhava I:1, three new calendar slots, Bava Basra 14a corrected to Pesach; build tools added to dev/piyut-tools.

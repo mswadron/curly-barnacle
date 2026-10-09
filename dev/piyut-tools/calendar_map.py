@@ -1,0 +1,107 @@
+# Calendar placement for each citation, ordered from Rosh Hashana.
+# Every placement carries its basis. Basis kinds:
+#   text     the piyut was found in a siddur/machzor for that day
+#   rishon   the Rishon himself names the day
+#   editor   the Sefaria edition's bracketed note names the day
+#   context  the Rishon's own surrounding words tie it to the day
+#   other    another source names it (named in the note)
+#   user     from Mordy, not yet verified in a text
+
+SLOTS = [
+    ("rh", "ראש השנה"),
+    ("teshuva", "עשרת ימי תשובה"),
+    ("selichot", "סליחות (יום לא צוין)"),
+    ("yk", "יום הכפורים"),
+    ("sukkos", "סוכות"),
+    ("shmini", "שמיני עצרת"),
+    ("simchastorah", "שמחת תורה"),
+    ("bereishis", "שבת בראשית"),
+    ("chanukah", "חנוכה"),
+    ("esther", "תענית אסתר"),
+    ("shekalim", "פרשת שקלים"),
+    ("zachor", "פרשת זכור"),
+    ("parah", "פרשת פרה"),
+    ("hachodesh", "פרשת החודש"),
+    ("hagadol", "שבת הגדול"),
+    ("pesach", "פסח"),
+    ("azharos", "שבועות: אזהרות"),
+    ("shelach", "שבת פרשת שלח"),
+    ("tishabav", "תשעה באב"),
+    ("everyday", "כל השנה"),
+    ("unknown", "מקום אמירתו לא צוין"),
+]
+
+AZ = ("azharos", "other", "אזהרות \"אמת יהגה חכי\" של רבינו אליהו הזקן; אזהרות נאמרות בשבועות (תשובה מאהבה ח\"א סי' א אות מז)")
+
+WHEN = {
+    # Rashi on Torah
+    "Rashi on Genesis 30:22:1": [("rh", "text", "חזרת הש\"ץ לשחרית, יום א'")],
+    "Rashi on Exodus 26:15:1": [("pesach", "text", "יוצר אור ישע מאושרים, יום א'")],
+    # Rashi on Nach
+    "Rashi on II Kings 11:2:1": [("rh", "text", "זכרונות, מוסף יום א'")],
+    "Rashi on Isaiah 6:3:1": [("everyday", "rishon", "ביוצר אור")],
+    "Rashi on Isaiah 24:22:3": [("zachor", "text", "סלוק היוצר")],
+    "Rashi on Ezekiel 21:18:3": [("chanukah", "text", "יוצר אודך כי אנפת, שבת א' של חנוכה")],
+    "Rashi on Ezekiel 42:20:1": [("sukkos", "text", "קדושתא ארחץ בנקיון כפות, יום ב'")],
+    "Rashi on Ezekiel 43:3:1": [("sukkos", "text", "סלוק כי אקח מועד, יום ב'")],
+    "Rashi on Ezekiel 48:1:3": [("sukkos", "text", "סלוק כי אקח מועד, יום ב'")],
+    "Rashi on Psalms 42:5:4": [("shekalim", "text", "יוצר")],
+    "Rashi on Psalms 121:1:2": [("sukkos", "text", "סלוק כי אקח מועד, יום ב'")],
+    "Rashi on Song of Songs 4:10:1": [("pesach", "text", "יוצר אור ישע מאושרים, יום א'")],
+    "Rashi on Zechariah 5:11": [("unknown", None, None)],
+    "Rashi on Lamentations 1:6:2": [("teshuva", "text", "סליחות יום ב'")],
+    "Rashi on Lamentations 3:20:1": [("zachor", "text", "יוצר")],
+    "Rashi on Daniel 8:14:2": [("hachodesh", "text", "סלוק היוצר")],
+    "Rashi on Daniel 12:12:1": [("hachodesh", "text", "סלוק היוצר")],
+    "Rashi on I Chronicles 25:3:1": [("shekalim", "text", "קדושתא של היוצר")],
+    "Rashi on I Chronicles 28:9:1": [("rh", "text", "קדושתא דמוסף יום א'")],
+    "Rashi on II Chronicles 20:1:1": [("zachor", "text", "זכור איש")],
+    "Rashi on II Chronicles 22:11:1": [("rh", "text", "זכרונות, מוסף יום א'")],
+    "Rashi on II Chronicles 35:22:1": [("tishabav", "text", "קינה איכה אלי קוננו מאליו")],
+    # Rashi on Shas
+    "Rashi on Yoma 67a:1:2": [("shekalim", "text", "סלוק אז ראית וספרת"),
+                               ("sukkos", "text", "סלוק כי אקח מועד, יום ב'")],
+    "Rashi on Beitzah 33a:9:2": [("unknown", None, None)],
+    "Rashi on Bava Metzia 69b:8:2": [("pesach", "text", "יוצר אפיק רנן ושירים, יום ב' (במגנצא יום א')")],
+    # Tosafos
+    "Tosafot on Berakhot 6a:20:1": [("pesach", "text", "יוצר אור ישע מאושרים, יום א'")],
+    "Tosafot on Berakhot 11a:24:1": [("pesach", "other", "מעריב ליל ב', לפי תשובה מאהבה")],
+    "Tosafot on Berakhot 17b": [("rh", "text", "זכרונות אפחד במעשי, מוסף יום ב'")],
+    "Tosafot on Shabbat 114b:5:1": [("unknown", None, None)],
+    "Tosafot on Eruvin 19a:19:1": [("chanukah", "text", "זולת אין צור חלף, שבת א' של חנוכה")],
+    "Tosafot on Eruvin 21a:18:1": [("shekalim", "text", "סלוק אז ראית וספרת")],
+    "Tosafot on Pesachim 109a:7:1": [("shekalim", "text", "סלוק אז ראית וספרת")],
+    "Tosafot on Pesachim 115a:1:2": [("hagadol", "text", "יוצר, סדר ההגדה")],
+    "Tosafot on Pesachim 115b:9:1": [("hagadol", "text", "יוצר, סדר ההגדה")],
+    "Tosafot on Pesachim 116b:4:2": [("pesach", "text", "זולת אי פתרוס בעברך, שביעי ואחרון של פסח")],
+    "Tosafot on Pesachim 117b:19:1": [("hagadol", "text", "יוצר, סדר ההגדה")],
+    "Tosafot on Yoma 8a:11:1": [AZ],
+    "Tosafot on Yoma 20b:3:1": [("yk", "text", "סדר העבודה אשוחח נפלאותיך, מוסף")],
+    "Tosafot on Sukkah 36b:6:1": [("bereishis", "text", "פתיחה אשישת שלוחתו, מנהג וורמייזא")],
+    "Tosafot on Sukkah 49a:1:1": [AZ],
+    "Tosafot on Rosh Hashanah 3a:1:1": [("zachor", "text", "פזמון של פרשת זכור")],
+    "Tosafot on Rosh Hashanah 8b": [("rh", "text", "קדושה וחיות אשר הנה, מוסף")],
+    "Tosafot on Rosh Hashanah 11a": [("pesach", "text", "מעריב ליל שמורים, ליל א' (צרפת: ליל ב')")],
+    "Tosafot on Rosh Hashanah 27a:15:1": [("shmini", "rishon", "גשם"), ("pesach", "rishon", "\"ובשל פסח\"")],
+    "Tosafot on Megillah 25a:4:1": [("pesach", "text", "קדושתא אסירים אשר בכושר, יום ב'")],
+    "Tosafot on Moed Katan 27b:1:1": [("tishabav", "text", "קינה תסתר לאלם תרשישים")],
+    "Tosafot on Chagigah 11a:12:4": [("esther", "text", "סליחה אדם בקום עלינו")],
+    "Tosafot on Chagigah 12a:3:1": [("shekalim", "text", "סלוק אז ראית וספרת (תוס' מייחסים לה\"ר בנימין)")],
+    "Tosafot on Chagigah 13a:4:1": [("rh", "text", "קדושה וחיות אשר הנה, מוסף")],
+    "Tosafot on Yevamot 16b:6:1": [("simchastorah", "text", "אופן אשנבי שחקים, שחרית (אשכנז המזרחי)")],
+    "Tosafot on Bava Batra 14a:13:1": [("pesach", "text", "יוצר אור ישע מאושרים, יום א'")],
+    "Tosafot on Bava Batra 145b:2:1": [AZ],
+    "Tosafot on Avodah Zarah 17a:7:1": [("chanukah", "text", "זולת אין צור חלף, שבת א' של חנוכה")],
+    "Tosafot on Avodah Zarah 35a:7:1": [("parah", "text", "יוצר")],
+    "Tosafot on Avodah Zarah 74b:8:1": [("hagadol", "rishon", "קרובץ שבת הגדול")],
+    "Tosafot on Makkot 3b:4:1": [AZ],
+    "Tosafot on Zevachim 86b:6:1": [("yk", "text", "סדר העבודה אשוחח נפלאותיך, מוסף")],
+    "Tosafot on Menachot 35b:5:1": [("shekalim", "text", "סילוק")],
+    "Tosafot on Menachot 41b:13:1": [("shelach", "text", "אהבה שש מאות נקראות (אשכנז המזרחי)")],
+    "Tosafot on Chullin 42a:5:2": [("teshuva", "text", "סליחות יום ה' של עשי\"ת (פולין)")],
+    "Tosafot on Chullin 60a:10:1": [("simchastorah", "text", "אופן אשנבי שחקים, שחרית (אשכנז המזרחי)")],
+    "Tosafot on Chullin 109b:12:1": [("parah", "text", "סלוק")],
+    "Tosafot on Bekhorot 55b:3:1": [("shekalim", "text", "סילוק")],
+    "Tosafot on Arakhin 2b:6:2": [("unknown", None, None)],
+    "Tosafot on Niddah 30a:17:1": [AZ],
+}

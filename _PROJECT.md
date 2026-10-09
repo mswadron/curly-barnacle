@@ -24,10 +24,11 @@
 - In work: none.
 - Planned: Chibuk verbatim fetches; Tumah Tree B (awaiting five decisions); Ornithology Part D render approval; Sugya Scout / Source Dock.
 
+- Done 2026-10-09: piyut-rishonim texts from Wikisource (59/65), Teshuva MeAhava entries, new slots.
 - Done 2026-10-07: apps/piyut-rishonim (Piyut in the Rishonim, Rashi and Tosafos quoting piyut) + new Tefilah & Liturgy index section.
 - Done 2026-09-30: apps/maharils_moon (Maharil's Moon, Hoshana Rabbah sky over Mainz 1387 to 1426) + index tile in Luach & Reference.
 
 ## Open questions
-- piyut-rishonim: Bava Basra 14a Rosh Hashanah placement unverified; Azharos day unverified; 10 entries unplaced; 34 entries without the piyut text on Sefaria.
+- piyut-rishonim: 6 entries without piyut text (Beitzah 33a Lombardy yotzer, Zechariah 5:11, Shabbos 114b, Arachin 2b, Berachos 11a title only, RH 27a Geshem/Tal); line "השר המשרת נער נקרא" not found; azharos day rests on Teshuva MeAhava, not a machzor rubric.
 - maharils_moon: Sefer Maharil's own wording of the incident not yet checked (not on Sefaria); year of the incident not in the sources.
 - arba_minim: rov meshulash line; kaneri (Canary palm) sources; HebrewBooks search on own-rooted cutting from a grafted esrog scion; read Yeshurun 33 on Chazon Ish lineage directly.
