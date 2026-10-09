@@ -48,6 +48,9 @@ h1.title .heb{font-weight:500;margin-right:12px}
 .card.open{border-color:var(--accent)}
 .card-head{display:block;width:100%;text-align:left;border:0;background:transparent;color:inherit;font:inherit;padding:16px 18px;cursor:pointer}
 .row1{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+/* the Hebrew headword always hugs the right edge, also when it wraps below the badges */
+.row1 > .nm-he{margin-left:auto;text-align:right;max-width:100%}
+.exline,.org{text-align:right}
 .nm{font:600 22px/1.2 var(--display)}
 .nm .mean{font:400 14px var(--body);color:var(--ink-2);margin-left:10px}
 .nm-he{font-size:28px;font-weight:500}.nm-he.hw{font-size:32px;font-weight:700;color:var(--ink)}.org .lz-he{font-weight:500}

@@ -140,7 +140,7 @@
     return `<div class="card ${open?"open":""}" id="card-${i.id}">
       <button type="button" class="card-head ch" data-open="${i.id}" aria-expanded="${open}">${refCol(i)}<span class="chbody">
         <div class="row1"><span class="badges nomt">${state.view==="all" ? `<span class="badge b-sec">${esc(SECNAME[i._view])}</span>` : ""}${i.tags.map(t => `<span class="badge b-tag">${esc(t)}</span>`).join("")}${mine(i.id)}</span>
-          <span class="nm-he heb" dir="rtl">${esc(i.dh || i.ex.split(" ").slice(0,3).join(" "))}</span></div>
+          <span class="nm-he heb" dir="rtl">${esc(i.dh || i.ex.replace(/^[\s(\[]+/,"").split(" ").slice(0,3).join(" "))}</span></div>
         <div class="exline heb" dir="rtl">${esc(i.ex)}</div>
         <div class="toggle">${open ? "▾ close" : "▸ Rashi in full · translation · my note"}</div>
       </span></button>
