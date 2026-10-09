@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=1240">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Counts of Israel — From Seventy to the Plains of Moav</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -834,6 +834,37 @@ a.sef-link:hover{
 
 /* RTL handling for the visible Hebrew letter ordinals */
 .he-ord{font-family:var(--hebrew);font-weight:700;direction:rtl;display:inline-block}
+
+/* ============================================================
+   PHONE / NARROW (was a fixed 1240px desktop page)
+   ============================================================ */
+@media(max-width:860px){
+  .hdr{grid-template-columns:1fr auto;height:auto;padding:8px 14px;row-gap:8px}
+  .viewnav{grid-column:1 / -1;grid-row:2;flex-wrap:wrap;justify-self:start}
+  .viewnav button{border-bottom:1px solid var(--maroon);margin-bottom:-1px}
+  .crumb{display:none}
+  .body{grid-template-columns:1fr}
+  .main{padding:18px 14px 70px;overflow-x:clip}
+  .rail{position:static;height:auto;overflow:visible;border-left:0;border-top:1px solid var(--maroon);padding:18px 14px 80px}
+  .section-hdr{flex-wrap:wrap;gap:10px;align-items:flex-start}
+  .section-meta{flex-wrap:wrap;gap:10px}
+  .timeline,.tl-row{grid-template-columns:62px 1fr}
+  .tl-time{padding:14px 8px 14px 2px}
+  .tl-meta{grid-template-columns:1fr 1fr;row-gap:10px}
+  .tl-meta-cell:nth-child(2n){border-right:0}
+  .tl-meta-cell:nth-child(2n+1){padding-left:0}
+  .tg{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tg-bar-wrap{width:80px}
+  .lv{grid-template-columns:1fr}
+  .pm{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .gr-line{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:40px 20px 56px}
+  .gr-axis{min-width:680px;margin:0 40px}
+  .gr-context,.gr-mult{grid-template-columns:1fr}
+  .gr-mult{row-gap:16px}
+  .gr-mult-cell{border-right:0;padding:0}
+  .mth-pos{grid-template-columns:1fr;gap:6px}
+  .mth{grid-template-columns:1fr !important}
+}
 </style>
 </head>
 <body>

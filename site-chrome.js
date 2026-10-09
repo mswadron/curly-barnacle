@@ -87,7 +87,10 @@
       ".tc-who{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;font-family:'Crimson Pro',Georgia,serif;font-size:13px;color:" + INK + "}",
       ".tc-who a{color:" + M + ";font-family:" + DISP + ";font-size:11px;cursor:pointer;text-decoration:underline}",
       ".tc-ok{font-family:'Crimson Pro',Georgia,serif;font-size:14px;color:" + INK + ";text-align:center;padding:6px 0}",
-      "@media(max-width:560px){.tc-label{display:none}}"
+      "@media(max-width:560px){.tc-label{display:none}}",
+      /* phones and narrow tablets: the chip moves out of the page header (where it covered tabs,
+         toggles and titles) down to the bottom bar beside the home button */
+      "@media(max-width:760px){.tc-chip{top:auto;right:auto;bottom:22px;left:70px;font-size:12px;padding:4px 9px;background:#fff}.tc-note{top:auto;right:auto;bottom:64px;left:12px;max-width:calc(100vw - 24px)}}"
     ].join("");
     var s = document.createElement("style");
     s.id = "tc-styles";
