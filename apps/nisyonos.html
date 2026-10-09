@@ -8,16 +8,18 @@
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --maroon:#5a1421; --maroon-deep:#3d0d18; --maroon-ink:#2a0810;
-  --ink:#16110f; --paper:#ffffff; --paper-soft:#fafaf9; --paper-tint:#fbf7f6;
-  --bg:#f7ecec; --rule:#e6e6e6; --dotted:#d8d2cf; --mute:#6e6663; --mute-soft:#9a9290;
-  --gold:#a8792a; --beyond:#3d6b6b; --death:#8a1c1c;
-  --display:'Bricolage Grotesque',system-ui,sans-serif;
-  --body:'Crimson Pro',Georgia,serif;
-  --hebrew:'Frank Ruhl Libre',serif;
+  /* Haftarah / Tolaim house style: cream paper, Georgia + Frank Ruhl, tekhelet accent.
+     Old maroon token names kept so the rest of the sheet maps across unchanged. */
+  --maroon:#1F4E79; --maroon-deep:#173C5E; --maroon-ink:#1B2230;
+  --ink:#1B2230; --paper:#FBF8F1; --paper-soft:#F8F4EA; --paper-tint:#E5ECF4;
+  --bg:#F5F1E8; --rule:#D9D2C2; --dotted:#D9CFBB; --mute:#586074; --mute-soft:#8A8F9C;
+  --gold:#946321; --beyond:#3C6336; --death:#8A3A2E;
+  --display:Georgia,'Times New Roman',serif;
+  --body:Georgia,'Times New Roman',serif;
+  --hebrew:'Frank Ruhl Libre','Times New Roman',serif;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html,body{margin:0;padding:0;}
@@ -29,11 +31,8 @@ body{background:var(--bg);color:var(--ink);font-family:var(--hebrew);line-height
 .hd-eyebrow{font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:0.18em;color:var(--maroon);direction:ltr;}
 .hd-title{font-family:var(--hebrew);font-weight:900;font-size:clamp(30px,7vw,46px);margin:6px 0 8px;color:var(--maroon-ink);letter-spacing:0.5px;}
 .hd-sub{font-size:clamp(15px,3.4vw,18px);color:var(--ink);max-width:64ch;margin:0 auto 18px;opacity:.86;}
-.tabs{display:flex;justify-content:center;gap:0;flex-wrap:wrap;}
-.tab{font-family:var(--hebrew);font-weight:700;font-size:16px;background:transparent;color:var(--maroon-ink);border:1.5px solid var(--maroon);padding:9px 20px;cursor:pointer;transition:all .15s;}
-.tab:first-child{border-radius:0 999px 999px 0;}
-.tab:last-child{border-radius:999px 0 0 999px;}
-.tab:not(:last-child){border-left:none;}
+.tabs{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;}
+.tab{font-family:var(--hebrew);font-weight:700;font-size:16px;background:transparent;color:var(--maroon-ink);border:1px solid var(--maroon);border-radius:999px;padding:8px 18px;cursor:pointer;transition:all .15s;}
 .tab.active{background:var(--maroon);color:#fff;}
 .tab:hover:not(.active){background:var(--paper-tint);}
 
@@ -46,7 +45,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--hebrew);line-height
 
 /* ---- cards ---- */
 .cards{display:flex;flex-direction:column;gap:10px;}
-.card{background:var(--paper);border:1px solid var(--rule);border-right:3px solid var(--maroon);}
+.card{background:var(--paper);border:1px solid var(--rule);border-right:3px solid var(--maroon);border-radius:10px;overflow:hidden;}
 .card.beyond{border-right-color:var(--beyond);}
 .card-head{width:100%;display:flex;align-items:center;gap:12px;background:none;border:none;cursor:pointer;padding:13px 15px;text-align:right;font-family:var(--hebrew);}
 .card-num{font-family:var(--display);font-weight:800;font-size:13px;color:#fff;background:var(--maroon);width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;}
@@ -61,7 +60,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--hebrew);line-height
 .card-note{font-size:14px;color:var(--maroon-deep);background:var(--paper-tint);border-right:2px solid var(--gold);padding:7px 11px;margin:11px 0;border-radius:0 4px 4px 0;}
 .facet{margin:12px 0;}
 .facet-label{font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--mute);border-bottom:1px solid var(--rule);padding-bottom:3px;margin-bottom:5px;direction:rtl;}
-.facet.deaths .facet-label{color:var(--death);border-color:#e8d2d2;}
+.facet.deaths .facet-label{color:var(--death);border-color:#F7E7E2;}
 .facet.deaths.none .facet-label{color:var(--mute-soft);}
 .facet.deaths .qtext{font-weight:500;}
 
@@ -74,7 +73,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--hebrew);line-height
 .tl-marker{flex:none;width:28px;display:flex;justify-content:center;z-index:1;}
 .tl-marker span{font-family:var(--display);font-weight:800;font-size:12px;color:#fff;background:var(--maroon);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:3px solid var(--bg);}
 .tl-row.beyond .tl-marker span{background:var(--beyond);}
-.tl-row.decree .tl-marker span{background:var(--gold);box-shadow:0 0 0 3px rgba(168,121,42,.25);}
+.tl-row.decree .tl-marker span{background:var(--gold);box-shadow:0 0 0 3px rgba(148,99,33,.25);}
 .tl-content{flex:1;background:var(--paper);border:1px solid var(--rule);padding:10px 14px;margin-bottom:8px;}
 .tl-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:5px;}
 .tl-he{font-weight:700;font-size:19px;color:var(--maroon-ink);}
@@ -94,14 +93,14 @@ body{background:var(--bg);color:var(--ink);font-family:var(--hebrew);line-height
 .bigtable th:first-child,.bigtable td:first-child{position:sticky;right:0;z-index:2;border-left:2px solid var(--maroon);}
 .bigtable thead th:first-child{z-index:5;}
 .bigtable td:first-child{background:var(--paper);}
-.bigtable tbody tr:nth-child(even) td:first-child{background:#f4ecec;}
-.bigtable tr.row-beyond td:first-child{background:#e6f0f0;}
-.bigtable tr.row-beyond:nth-child(even) td:first-child{background:#dcebeb;}
+.bigtable tbody tr:nth-child(even) td:first-child{background:#F1ECE0;}
+.bigtable tr.row-beyond td:first-child{background:#E8F0E6;}
+.bigtable tr.row-beyond:nth-child(even) td:first-child{background:#DDE9DA;}
 .tc-rownum{display:inline-block;font-family:var(--display);font-weight:800;font-size:11px;color:#fff;background:var(--maroon);border-radius:50%;width:20px;height:20px;line-height:20px;text-align:center;margin-bottom:4px;}
 .bigtable tr.row-beyond .tc-rownum{background:var(--beyond);}
-.bigtable tbody tr:nth-child(even) td{background:#fbfafa;}
-.bigtable tr.row-beyond td{background:#eff5f5;}
-.bigtable tr.row-beyond:nth-child(even) td{background:#e8f1f1;}
+.bigtable tbody tr:nth-child(even) td{background:#F8F4EA;}
+.bigtable tr.row-beyond td{background:#EEF4EC;}
+.bigtable tr.row-beyond:nth-child(even) td{background:#E8F0E6;}
 .bigtable td.qcol{min-width:215px;}
 .tc-num{font-family:var(--display);font-weight:800;color:var(--maroon);text-align:center;width:30px;}
 .tc-name{min-width:148px;}
@@ -131,10 +130,10 @@ body{background:var(--bg);color:var(--ink);font-family:var(--hebrew);line-height
 .matrix td.ep-col{min-width:190px;}
 .ep-he{display:block;font-weight:700;font-size:14.5px;color:var(--maroon-ink);line-height:1.4;}
 .ep-ref{display:block;font-family:var(--display);font-weight:600;font-size:10px;color:var(--mute);margin-top:1px;direction:rtl;}
-.matrix tbody tr:nth-child(even) td{background:#fbfafa;}
+.matrix tbody tr:nth-child(even) td{background:#F8F4EA;}
 .matrix tbody tr:nth-child(even) td.ep-col{background:var(--paper-tint);}
 td.clickable{cursor:pointer;}
-td.clickable:hover{background:#f3e3e3 !important;}
+td.clickable:hover{background:#E5ECF4 !important;}
 .cell{font-weight:800;font-size:16px;}
 .cell.yes{color:#1c7a3d;}
 .cell.no{color:var(--mute-soft);}
@@ -142,7 +141,7 @@ td.clickable:hover{background:#f3e3e3 !important;}
 .cell.dis sup{font-size:9px;font-weight:700;}
 .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--mute);margin:10px 2px 0;}
 .legend .cell{font-size:14px;margin-left:3px;}
-.fn-box{background:#fff8ef;border:1px solid var(--gold);border-radius:5px;padding:10px 13px;margin:12px 0;font-size:15px;line-height:1.65;cursor:pointer;}
+.fn-box{background:#FBF1DD;border:1px solid var(--gold);border-radius:5px;padding:10px 13px;margin:12px 0;font-size:15px;line-height:1.65;cursor:pointer;}
 .fn-x{font-family:var(--display);font-weight:700;font-size:10px;color:var(--maroon);float:left;}
 .disputes-h{font-family:var(--hebrew);font-weight:900;font-size:22px;color:var(--maroon-ink);margin:26px 0 10px;border-bottom:1px solid var(--maroon);padding-bottom:4px;}
 .disputes{display:flex;flex-direction:column;gap:9px;}
@@ -173,7 +172,7 @@ td.clickable:hover{background:#f3e3e3 !important;}
 </style>
 </head>
 <body>
-<a id="lib-home" href="../index.html" aria-label="All apps" title="כל האפליקציות · All apps" style="position:fixed;bottom:14px;left:14px;z-index:9000;width:44px;height:44px;border-radius:50%;background:#5a1421;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(0,0,0,.3);text-decoration:none" onmouseover="this.style.background='#7a1c2d'" onmouseout="this.style.background='#5a1421'"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg></a>
+<a id="lib-home" href="../index.html" aria-label="All apps" title="כל האפליקציות · All apps" style="position:fixed;bottom:14px;left:14px;z-index:9000;width:44px;height:44px;border-radius:50%;background:#1F4E79;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(0,0,0,.3);text-decoration:none" onmouseover="this.style.background='#173C5E'" onmouseout="this.style.background='#1F4E79'"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg></a>
 <div id="root"></div>
 <script src="nisyonos.app.compiled.js"></script>
 <script defer src="../site-chrome.js"></script>
