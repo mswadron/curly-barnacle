@@ -40,6 +40,30 @@
       var sk = document.createElement("link"); sk.rel = "stylesheet"; sk.href = ROOT + "skin.css"; document.head.appendChild(sk);
     }
   } catch (e) {}
+  // Minimum readable text size: the old all-caps labels were 8 to 11px, too
+  // small once shown in normal case. Lift any text under 12.5px to 12.5px.
+  try {
+    var MIN = 12.5, seen = new WeakSet(), queued = false;
+    var lift = function () {
+      queued = false;
+      var all = document.body ? document.body.getElementsByTagName("*") : [];
+      for (var i = 0; i < all.length; i++) {
+        var el = all[i];
+        if (seen.has(el)) continue;
+        seen.add(el);
+        var t = el.tagName;
+        if (t === "SCRIPT" || t === "STYLE" || t === "svg" || t === "SVG" || el.closest && el.closest("svg")) continue;
+        var hasText = false;
+        for (var n = el.firstChild; n; n = n.nextSibling) { if (n.nodeType === 3 && n.nodeValue.trim()) { hasText = true; break; } }
+        if (!hasText) continue;
+        if (parseFloat(getComputedStyle(el).fontSize) < MIN) el.style.fontSize = MIN + "px";
+      }
+    };
+    var queue = function () { if (!queued) { queued = true; requestAnimationFrame(lift); } };
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", queue); else queue();
+    window.addEventListener("load", queue);
+    new MutationObserver(queue).observe(document.documentElement, { childList: true, subtree: true });
+  } catch (e) {}
   var _p = location.pathname;
   // Home button is hidden only on the library index itself; every other page
   // (apps, support, etc.) gets a button back to the library.

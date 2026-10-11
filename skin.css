@@ -19,3 +19,11 @@
   --ll-hetitle:'Secular One','IBM Plex Sans Hebrew',sans-serif;
   --ll-he:'Frank Ruhl Libre','Times New Roman',serif;
 }
+
+/* ---- Type, matched to the landing page ----
+   Headings: Fredoka for English, Secular One for Hebrew.
+   No all-caps, no letterspacing, no slanted English (Fredoka has no italic). */
+:root{--ll-head:'LL Sans','Secular One','IBM Plex Sans Hebrew',sans-serif}
+h1,h2,h3,h4,h1 *,h2 *,h3 *,h4 *{font-family:var(--ll-head)!important;font-synthesis-weight:none}
+body *{text-transform:none!important;letter-spacing:normal!important;font-variant:normal!important}
+body *:not(em):not(i){font-style:normal!important}
