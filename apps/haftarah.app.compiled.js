@@ -7,16 +7,16 @@ const { useState, useMemo } = React;
 */
 
 const C = {
-  bg: "#F5F1E8",
-  panel: "#FBF8F1",
-  ink: "#1B2230",
-  sub: "#586074",
-  line: "#D9D2C2",
-  tekhelet: "#1F4E79",
-  tekheletSoft: "#E5ECF4",
+  bg: "#EEF2F6",
+  panel: "#FFFFFF",
+  ink: "#14202E",
+  sub: "#4E5D6E",
+  line: "#D6DEE6",
+  tekhelet: "#0F6E6E",
+  tekheletSoft: "#E3F0EF",
   gold: "#946321",
   goldSoft: "#FBF1DD",
-  rule: "#C9B79A",
+  rule: "#C3CDD8",
   flag: "#8A3A2E",
   flagSoft: "#F7E7E2",
   reason: "#3C6336",
@@ -2656,7 +2656,7 @@ function HaftarahReference() {
     border: `1px solid ${active ? C.tekhelet : C.line}`,
     background: active ? C.tekhelet : "transparent",
     color: active ? "#fff" : C.sub,
-    fontFamily: "Georgia, serif"
+    fontFamily: "'LL Sans','IBM Plex Sans Hebrew',system-ui,sans-serif"
   });
   return /*#__PURE__*/React.createElement("div", {
     dir: he ? "rtl" : "ltr",
@@ -2665,7 +2665,7 @@ function HaftarahReference() {
       minHeight: "100vh",
       padding: "28px 18px",
       color: C.ink,
-      fontFamily: he ? "'Frank Ruhl Libre', Georgia, serif" : "Georgia, 'Times New Roman', serif"
+      fontFamily: he ? "'Frank Ruhl Libre', 'LL Sans','IBM Plex Sans Hebrew',system-ui,sans-serif" : "'LL Sans','IBM Plex Sans Hebrew',system-ui,sans-serif"
     }
   }, /*#__PURE__*/React.createElement("style", null, `
         @import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&display=swap');
@@ -2723,7 +2723,7 @@ function HaftarahReference() {
       border: "none",
       background: !he ? C.tekhelet : "transparent",
       color: !he ? "#fff" : C.tekhelet,
-      fontFamily: "Georgia, serif"
+      fontFamily: "'LL Sans','IBM Plex Sans Hebrew',system-ui,sans-serif"
     }
   }, "EN"), /*#__PURE__*/React.createElement("button", {
     onClick: () => setLang("he"),
@@ -2748,7 +2748,7 @@ function HaftarahReference() {
       borderRadius: 999,
       padding: "6px 14px",
       cursor: "pointer",
-      fontFamily: he ? "'Frank Ruhl Libre', serif" : "Georgia, serif"
+      fontFamily: he ? "'Frank Ruhl Libre', serif" : "'LL Sans','IBM Plex Sans Hebrew',system-ui,sans-serif"
     }
   }, tr(lang, T.print)))), /*#__PURE__*/React.createElement("h1", {
     style: {
@@ -2929,7 +2929,7 @@ function HaftarahReference() {
       background: C.panel,
       color: C.ink,
       marginBottom: 16,
-      fontFamily: he ? "'Frank Ruhl Libre', serif" : "Georgia, serif",
+      fontFamily: he ? "'Frank Ruhl Libre', serif" : "'LL Sans','IBM Plex Sans Hebrew',system-ui,sans-serif",
       outline: "none",
       textAlign: he ? "right" : "left"
     }

@@ -9,23 +9,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=David+Libre:wght@400;500;700&family=Heebo:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg-deep: #0a0e1f;
-    --bg-mid: #131a36;
-    --bg-card: #1a2247;
-    --bg-card-hover: #232c5a;
-    --gold: #d4a647;
-    --gold-bright: #f5cb6e;
-    --gold-deep: #8b6a1f;
-    --crimson: #c1303a;
+    --bg-deep: #EEF2F6;
+    --bg-mid: #E2E8EF;
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #F6F8FA;
+    --gold: #0F6E6E;
+    --gold-bright: #0F6E6E;
+    --gold-deep: #0B4F4F;
+    --crimson: #A3303A;
     --crimson-deep: #7d1f26;
-    --white-soft: #f4ede0;
-    --white-bone: #ebe2cd;
-    --parchment: #f5ecd6;
-    --parchment-dark: #e8dcb9;
-    --ink: #1d1408;
-    --ink-soft: #4a3a1f;
-    --grid: rgba(212, 166, 71, 0.12);
-    --divider: rgba(212, 166, 71, 0.22);
+    --white-soft: #14202E;
+    --white-bone: #2A3A4C;
+    --parchment: #F6F8FA;
+    --parchment-dark: #E2E8EF;
+    --ink: #14202E;
+    --ink-soft: #4E5D6E;
+    --grid: rgba(15, 110, 110, 0.08);
+    --divider: rgba(20, 32, 46, 0.15);
   }
 
   *{ box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,7 +33,7 @@
   html, body{
     background: var(--bg-deep);
     color: var(--white-soft);
-    font-family: 'Heebo', 'David Libre', sans-serif;
+    font-family: 'LL Sans','Heebo','David Libre',sans-serif;
     min-height: 100vh;
     overflow-x: hidden;
   }
@@ -42,9 +42,7 @@
     content: '';
     position: fixed; inset: 0;
     background:
-      radial-gradient(ellipse at 20% 10%, rgba(212, 166, 71, 0.08) 0%, transparent 40%),
-      radial-gradient(ellipse at 80% 90%, rgba(193, 48, 58, 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.3) 100%);
+      none;
     pointer-events: none;
     z-index: 0;
   }
@@ -74,7 +72,7 @@
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(10, 14, 31, 0.92);
+    background: rgba(226,232,239, 0.92);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--divider);
@@ -92,7 +90,7 @@
     padding: 8px 14px;
     border-radius: 3px;
     cursor: pointer;
-    font-family: 'Heebo', sans-serif;
+    font-family: 'LL Sans','Heebo',sans-serif;
     font-size: 13px;
     font-weight: 500;
     display: inline-flex;
@@ -125,7 +123,7 @@
     padding: 6px 11px;
     border-radius: 14px;
     cursor: pointer;
-    font-family: 'Frank Ruhl Libre', serif;
+    font-family: 'LL Sans','Frank Ruhl Libre',serif;
     font-size: 13px;
     font-weight: 500;
     transition: all 0.2s ease;
@@ -137,15 +135,14 @@
 
   /* ===== MARQUEE HEADER ===== */
   .marquee{
-    background: linear-gradient(180deg, #0d1226 0%, #181f44 100%);
+    background: linear-gradient(180deg, #EEF2F6 0%, #E2E8EF 100%);
     border: 2px solid var(--gold);
     border-radius: 4px;
     padding: 28px 36px;
     margin-bottom: 8px;
     position: relative;
     box-shadow:
-      0 0 40px rgba(212, 166, 71, 0.15),
-      inset 0 0 60px rgba(0,0,0,0.4);
+      0 1px 3px rgba(20,32,46,0.08);
   }
 
   .marquee::before, .marquee::after{
@@ -171,7 +168,7 @@
   .marquee-corners span:nth-child(2){ bottom: 12px; left: 12px; }
 
   .marquee-tag{
-    font-family: 'Frank Ruhl Libre', serif;
+    font-family: 'LL Sans','Frank Ruhl Libre',serif;
     font-size: 13px;
     letter-spacing: 0.1em;
     color: var(--gold);
@@ -181,20 +178,20 @@
   }
 
   .marquee h1{
-    font-family: 'Frank Ruhl Libre', serif;
+    font-family: 'LL Sans','Frank Ruhl Libre',serif;
     font-weight: 900;
     font-size: clamp(36px, 6vw, 64px);
     color: var(--gold-bright);
     text-align: center;
     letter-spacing: -0.01em;
     line-height: 1.1;
-    text-shadow: 0 0 30px rgba(245, 203, 110, 0.3);
+    text-shadow: 0 0 30px rgba(15,110,110, 0.3);
   }
 
   .marquee .subtitle{
     text-align: center;
     color: var(--white-bone);
-    font-family: 'Frank Ruhl Libre', serif;
+    font-family: 'LL Sans','Frank Ruhl Libre',serif;
     font-size: clamp(16px, 2vw, 22px);
     font-weight: 500;
     margin-top: 8px;
@@ -211,7 +208,7 @@
     margin-top: 18px;
   }
   .seder-title{
-    font-family: 'Frank Ruhl Libre', serif;
+    font-family: 'LL Sans','Frank Ruhl Libre',serif;
     font-size: 14px;
     font-weight: 700;
     color: var(--gold);
@@ -224,7 +221,7 @@
     padding: 8px 18px;
     border-radius: 3px;
     cursor: pointer;
-    font-family: 'Frank Ruhl Libre', serif;
+    font-family: 'LL Sans','Frank Ruhl Libre',serif;
     font-size: 15px;
     font-weight: 700;
     letter-spacing: 0.03em;
@@ -234,7 +231,7 @@
   .seder-btn.active{
     background: var(--gold);
     color: var(--bg-deep);
-    box-shadow: 0 0 14px rgba(212, 166, 71, 0.35);
+    box-shadow: 0 0 14px rgba(15,110,110, 0.35);
   }
   .seder-note{
     text-align: center;
@@ -251,13 +248,13 @@
     border: 1px dashed var(--divider);
     border-radius: 3px;
     padding: 0 16px;
-    background: rgba(0, 0, 0, 0.25);
+    background: var(--ll-teal-tint, #E3F0EF);
     text-align: right;
   }
   .seder-sources summary{
     cursor: pointer;
     padding: 10px 0;
-    font-family: 'Frank Ruhl Libre', serif;
+    font-family: 'LL Sans','Frank Ruhl Libre',serif;
     font-size: 14px;
     font-weight: 700;
     color: var(--gold);
@@ -274,7 +271,7 @@
   .seder-src + .seder-src{ border-top: 1px dashed var(--divider); }
   .seder-src .src-ref{
     display: block;
-    font-family: 'Frank Ruhl Libre', serif;
+    font-family: 'LL Sans','Frank Ruhl Libre',serif;
     font-size: 13px;
     font-weight: 700;
     color: var(--gold-bright);
@@ -299,7 +296,7 @@
   }
 
   .meta-item{
-    font-family: 'Heebo', sans-serif;
+    font-family: 'LL Sans','Heebo',sans-serif;
     font-size: 13px;
     color: var(--white-bone);
     letter-spacing: 0.02em;
@@ -340,7 +337,7 @@
   .context{
     margin: 20px 0 0;
     padding: 24px 28px;
-    background: linear-gradient(180deg, rgba(26, 34, 71, 0.6) 0%, rgba(19, 26, 54, 0.6) 100%);
+    background: linear-gradient(180deg, rgba(226,232,239, 0.6) 0%, rgba(226,232,239, 0.6) 100%);
     border: 1px solid var(--divider);
     border-radius: 4px;
     position: relative;
@@ -351,11 +348,11 @@
     position: absolute;
     top: 0; right: 0;
     width: 180px; height: 180px;
-    background: radial-gradient(circle at top right, rgba(212, 166, 71, 0.12) 0%, transparent 70%);
+    background: radial-gradient(circle at top right, rgba(15,110,110, 0.12) 0%, transparent 70%);
     pointer-events: none;
   }
   .context-title{
-    font-family: 'Frank Ruhl Libre', serif;
+    font-family: 'LL Sans','Frank Ruhl Libre',serif;
     font-weight: 900;
     font-size: 26px;
     color: var(--gold-bright);
@@ -377,7 +374,7 @@
     margin-bottom: 18px;
   }
   .context-card{
-    background: rgba(10, 14, 31, 0.55);
+    background: rgba(226,232,239, 0.55);
     border: 1px solid var(--divider);
     border-radius: 4px;
     padding: 18px 20px;
@@ -399,7 +396,7 @@
     flex-shrink: 0;
   }
   .context-card-title{
-    font-family: 'Frank Ruhl Libre', serif;
+    font-family: 'LL Sans','Frank Ruhl Libre',serif;
     font-weight: 700;
     font-size: 22px;
     color: var(--white-soft);
@@ -409,13 +406,13 @@
     font-family: 'David Libre', serif;
     font-size: 12px;
     color: var(--gold);
-    background: rgba(212, 166, 71, 0.12);
+    background: rgba(15,110,110, 0.12);
     padding: 3px 9px;
     border-radius: 10px;
-    border: 1px solid rgba(212, 166, 71, 0.3);
+    border: 1px solid rgba(15,110,110, 0.3);
   }
   .context-card-body p{
-    font-family: 'Heebo', sans-serif;
+    font-family: 'LL Sans','Heebo',sans-serif;
     font-size: 14px;
     line-height: 1.65;
     color: var(--white-bone);
@@ -428,7 +425,7 @@
     margin-left: 4px;
   }
   .context-rule{
-    background: rgba(0, 0, 0, 0.3);
+    background: var(--ll-teal-tint, #E3F0EF);
     border-right: 3px solid var(--gold);
     padding: 14px 18px;
     font-family: 'David Libre', serif;
@@ -445,14 +442,14 @@
     color: var(--gold-bright);
     font-weight: 700;
     padding: 1px 6px;
-    background: rgba(212, 166, 71, 0.15);
+    background: rgba(15,110,110, 0.15);
     border-radius: 2px;
   }
   .hl-white{
     color: var(--white-soft);
     font-weight: 700;
     padding: 1px 6px;
-    background: rgba(244, 237, 224, 0.12);
+    background: rgba(20,32,46, 0.12);
     border-radius: 2px;
   }
 
@@ -477,7 +474,7 @@
     background: rgba(255,255,255,0.02);
     border: 1px solid var(--divider);
     border-radius: 4px;
-    font-family: 'Heebo', sans-serif;
+    font-family: 'LL Sans','Heebo',sans-serif;
     font-size: 12px;
     letter-spacing: 0.05em;
   }
@@ -508,9 +505,9 @@
     table-layout: fixed;
     width: 100%;
     padding: 12px 16px;
-    background: #0a0e1f;
+    background: #EEF2F6;
     border-bottom: 2px solid var(--gold);
-    font-family: 'Frank Ruhl Libre', serif;
+    font-family: 'LL Sans','Frank Ruhl Libre',serif;
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.05em;
@@ -532,7 +529,7 @@
     table-layout: fixed;
     width: 100%;
     padding: 14px 16px;
-    border-bottom: 1px solid rgba(212, 166, 71, 0.08);
+    border-bottom: 1px solid rgba(15,110,110, 0.08);
     cursor: pointer;
     transition: background 0.25s ease;
     position: relative;
@@ -564,7 +561,7 @@
     overflow-wrap: normal;
   }
   .col-station .station-name{
-    font-family: 'Frank Ruhl Libre', serif;
+    font-family: 'LL Sans','Frank Ruhl Libre',serif;
     font-size: 17px;
     font-weight: 700;
     color: var(--white-soft);
@@ -574,7 +571,7 @@
     display: block;
   }
   .col-station .station-loc{
-    font-family: 'Heebo', sans-serif;
+    font-family: 'LL Sans','Heebo',sans-serif;
     font-size: 11px;
     color: var(--gold);
     margin-top: 4px;
@@ -599,7 +596,7 @@
     display: table-cell;
     vertical-align: middle;
     width: 44px;
-    font-family: 'Frank Ruhl Libre', serif;
+    font-family: 'LL Sans','Frank Ruhl Libre',serif;
     font-size: 16px;
     font-weight: 700;
     color: var(--gold-bright);
@@ -653,7 +650,7 @@
   }
 
   .track-num{
-    font-family: 'Frank Ruhl Libre', serif;
+    font-family: 'LL Sans','Frank Ruhl Libre',serif;
     font-size: 17px;
     font-weight: 700;
     color: var(--white-soft);
@@ -670,7 +667,7 @@
     gap: 6px;
     padding: 6px 12px;
     border-radius: 2px;
-    font-family: 'Heebo', sans-serif;
+    font-family: 'LL Sans','Heebo',sans-serif;
     font-size: 13px;
     font-weight: 500;
     border: 1px solid;
@@ -680,9 +677,9 @@
     width: 8px; height: 8px;
     border-radius: 50%;
   }
-  .badge.gold{ color: var(--gold-bright); border-color: var(--gold); background: rgba(212,166,71,0.08); }
+  .badge.gold{ color: var(--gold-bright); border-color: var(--gold); background: rgba(15,110,110,0.08); }
   .badge.gold::before{ background: var(--gold); }
-  .badge.white{ color: var(--white-soft); border-color: var(--white-bone); background: rgba(244,237,224,0.08); }
+  .badge.white{ color: var(--white-soft); border-color: var(--white-bone); background: rgba(20,32,46,0.08); }
   .badge.white::before{ background: var(--white-soft); }
   .badge.immerse{ color: #8ab9e0; border-color: #5b9bd5; background: rgba(91,155,213,0.08); }
   .badge.immerse::before{ background: #5b9bd5; }
@@ -697,10 +694,10 @@
   .phase-row{
     grid-column: 1 / -1;
     padding: 18px 20px 10px;
-    background: linear-gradient(90deg, rgba(212,166,71,0.15) 0%, transparent 100%);
+    background: linear-gradient(90deg, rgba(15,110,110,0.15) 0%, transparent 100%);
     border-top: 1px solid var(--gold);
     border-bottom: 1px dashed var(--divider);
-    font-family: 'Frank Ruhl Libre', serif;
+    font-family: 'LL Sans','Frank Ruhl Libre',serif;
     font-weight: 700;
     color: var(--gold-bright);
     font-size: 16px;
@@ -708,14 +705,14 @@
     cursor: default;
   }
   .phase-row:hover{
-    background: linear-gradient(90deg, rgba(212,166,71,0.15) 0%, transparent 100%);
+    background: linear-gradient(90deg, rgba(15,110,110,0.15) 0%, transparent 100%);
     transform: none;
   }
   .phase-row::before{ display: none; }
   .phase-row .phase-num{
     display: inline-block;
     color: var(--gold);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'LL Sans',system-ui,sans-serif;
     font-size: 12px;
     margin-left: 10px;
     letter-spacing: 0.2em;
@@ -751,7 +748,7 @@
   /* ===== MODAL ===== */
   .modal-overlay{
     position: fixed; inset: 0;
-    background: rgba(5,8,20,0.85);
+    background: rgba(20,32,46,0.45);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     z-index: 100;
@@ -777,7 +774,7 @@
     border: 2px solid var(--gold-deep);
     box-shadow:
       0 30px 80px rgba(0,0,0,0.6),
-      0 0 0 8px rgba(212, 166, 71, 0.2);
+      0 0 0 8px rgba(15,110,110, 0.2);
     position: relative;
     transform: scale(0.95) translateY(10px);
     transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -789,8 +786,8 @@
     content: '';
     position: absolute; inset: 0;
     background-image:
-      radial-gradient(circle at 30% 20%, rgba(180, 140, 70, 0.08) 0%, transparent 60%),
-      radial-gradient(circle at 70% 80%, rgba(160, 120, 60, 0.06) 0%, transparent 50%);
+      radial-gradient(circle at 30% 20%, rgba(15,110,110, 0.08) 0%, transparent 60%),
+      radial-gradient(circle at 70% 80%, rgba(15,110,110, 0.06) 0%, transparent 50%);
     pointer-events: none;
   }
 
@@ -813,7 +810,7 @@
     cursor: pointer;
     font-size: 14px;
     font-weight: 700;
-    font-family: 'Heebo', sans-serif;
+    font-family: 'LL Sans','Heebo',sans-serif;
     display: flex; align-items: center; justify-content: center;
     gap: 6px;
     transition: all 0.2s ease;
@@ -830,7 +827,7 @@
     display: flex;
     gap: 14px;
     align-items: center;
-    font-family: 'Heebo', sans-serif;
+    font-family: 'LL Sans','Heebo',sans-serif;
     font-size: 13px;
     font-weight: 500;
     color: var(--ink-soft);
@@ -845,7 +842,7 @@
   }
 
   .modal-title{
-    font-family: 'Frank Ruhl Libre', serif;
+    font-family: 'LL Sans','Frank Ruhl Libre',serif;
     font-size: 34px;
     font-weight: 900;
     color: var(--ink);
@@ -869,7 +866,7 @@
 
   .section-label{
     display: inline-block;
-    font-family: 'Frank Ruhl Libre', serif;
+    font-family: 'LL Sans','Frank Ruhl Libre',serif;
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.2em;
@@ -892,7 +889,7 @@
   .section-content.tanach{
     background: #faf3df;
     border-right-color: var(--ink);
-    font-family: 'Frank Ruhl Libre', serif;
+    font-family: 'LL Sans','Frank Ruhl Libre',serif;
     font-size: 19px;
     line-height: 1.8;
     color: var(--ink);
@@ -919,13 +916,13 @@
   }
   .yk-badge{ font-size: 9px; letter-spacing: .06em; padding: 1px 6px; border-radius: 3px; vertical-align: middle; margin-inline-end: 5px; font-weight: 700; }
   .yk-badge.direct{ background: var(--crimson-deep); color: #fff; }
-  .yk-badge.adapt{ background: #7a5f16; color: #fff; }
+  .yk-badge.adapt{ background: #0B4F4F; color: #fff; }
   .yk-sef{ color: inherit; text-decoration: none; border-bottom: 1px dotted currentColor; }
   .yk-sef:hover{ opacity: .8; }
   .yk-adapt-note{ font-size: 11px; opacity: .68; font-style: italic; margin-top: 7px; }
   .section-content.rambam .ref{
     display: block;
-    font-family: 'Frank Ruhl Libre', serif;
+    font-family: 'LL Sans','Frank Ruhl Libre',serif;
     font-size: 13px;
     color: var(--gold-deep);
     font-weight: 700;
@@ -934,7 +931,7 @@
   }
 
   .section-content.desc{
-    font-family: 'Heebo', sans-serif;
+    font-family: 'LL Sans','Heebo',sans-serif;
     font-size: 15px;
     line-height: 1.75;
     color: var(--ink-soft);
@@ -967,7 +964,7 @@
     padding: 9px 16px;
     border-radius: 3px;
     cursor: pointer;
-    font-family: 'Heebo', sans-serif;
+    font-family: 'LL Sans','Heebo',sans-serif;
     font-size: 13px;
     font-weight: 500;
     display: inline-flex;
@@ -994,7 +991,7 @@
   }
   .mnav-btn.home:hover{ background: var(--crimson); }
   .mnav-counter{
-    font-family: 'Frank Ruhl Libre', serif;
+    font-family: 'LL Sans','Frank Ruhl Libre',serif;
     font-size: 14px;
     font-weight: 700;
     color: var(--ink-soft);
@@ -1049,7 +1046,7 @@
   .footer span{
     display: block;
     margin-top: 6px;
-    color: rgba(212, 166, 71, 0.5);
+    color: rgba(15,110,110, 0.5);
     font-family: 'David Libre', serif;
     font-size: 12px;
     letter-spacing: 0.05em;
@@ -1061,9 +1058,10 @@
   }
   .row.station{ animation: slideIn 0.4s ease-out backwards; }
 </style>
+<link rel="stylesheet" href="../skin.css">
 </head>
 <body>
-<a id="lib-home" href="../index.html" aria-label="All apps" title="כל האפליקציות · All apps" style="position:fixed;bottom:14px;left:14px;z-index:9000;width:44px;height:44px;border-radius:50%;background:#5a1421;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(0,0,0,.3);text-decoration:none;-webkit-tap-highlight-color:transparent;transition:transform .15s ease,background .15s ease" onmouseover="this.style.transform='scale(1.08)';this.style.background='#7a1c2d'" onmouseout="this.style.transform='none';this.style.background='#5a1421'"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg></a>
+<a id="lib-home" href="../index.html" aria-label="All apps" title="כל האפליקציות · All apps" style="position:fixed;bottom:14px;left:14px;z-index:9000;width:44px;height:44px;border-radius:50%;background:#0F6E6E;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(0,0,0,.3);text-decoration:none;-webkit-tap-highlight-color:transparent;transition:transform .15s ease,background .15s ease" onmouseover="this.style.transform='scale(1.08)';this.style.background='#0B4F4F'" onmouseout="this.style.transform='none';this.style.background='#0F6E6E'"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg></a>
 
 <div class="wrap">
 

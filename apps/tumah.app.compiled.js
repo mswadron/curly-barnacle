@@ -3227,7 +3227,7 @@ function NodeCard({
   }, node.he), lang === 'en' && /*#__PURE__*/React.createElement("span", {
     className: "text-sm text-stone-600 italic",
     style: {
-      fontFamily: "'Fraunces', serif"
+      fontFamily: "'LL Sans','IBM Plex Sans Hebrew',system-ui,sans-serif"
     }
   }, node.en)), /*#__PURE__*/React.createElement("p", {
     className: "text-[14px] text-stone-700 mt-1.5 leading-relaxed",
@@ -3384,7 +3384,7 @@ function TumahTreeInner() {
   }, "מְקוֹרוֹת הַטֻּמְאָה"), lang === 'en' && /*#__PURE__*/React.createElement("h2", {
     className: "text-xl text-stone-600 italic font-light",
     style: {
-      fontFamily: "'Fraunces', serif",
+      fontFamily: "'LL Sans','IBM Plex Sans Hebrew',system-ui,sans-serif",
       direction: 'ltr'
     }
   }, "Mekoros HaTumah · Sources of Tumah")), /*#__PURE__*/React.createElement("div", {
@@ -3429,7 +3429,7 @@ function TumahTreeInner() {
     }, c.he), lang === 'en' && c.id !== 'all' && /*#__PURE__*/React.createElement("span", {
       className: "text-[11px] tracking-wider opacity-75",
       style: {
-        fontFamily: "'Fraunces', serif"
+        fontFamily: "'LL Sans','IBM Plex Sans Hebrew',system-ui,sans-serif"
       }
     }, c.en), /*#__PURE__*/React.createElement("span", {
       className: `text-[10px] font-mono px-1.5 py-0.5 rounded ${active ? 'bg-stone-700' : 'bg-stone-200'}`
@@ -3511,7 +3511,7 @@ function TumahTreeA() {
     }
   }, /*#__PURE__*/React.createElement("style", null, `
         @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Frank+Ruhl+Libre:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap');
-        body { background: #f5efe3; }
+        body { background: #EEF2F6; }
       `), /*#__PURE__*/React.createElement(TumahTreeInner, null));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(TumahTreeA));
