@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>מילים נדירות בתנ"ך</title>
+<style>
+/* Layout: sticky search bar, then a two-column workbench (list right, word card left in RTL); stacks to one column on phones. */
+:root{
+  --bg:var(--ll-paper,#EEF2F6); --panel:var(--ll-card,#fff); --ink:var(--ll-ink,#14202E); --mute:var(--ll-soft,#4E5D6E); --line:var(--ll-rule,#D6DEE6);
+  --accent:var(--ll-teal,#0F6E6E); --accent-soft:var(--ll-teal-tint,#E3F0EF); --hit:#FFE9A8; --hit-ink:#3D2E00;
+  --rare:#8A3B12; --rare-soft:#F7E6DC; --warn:#8A6A00; --warn-soft:#FBF1CF;
+  --font-ui:var(--ll-sans,'IBM Plex Sans Hebrew',sans-serif);
+  --font-text:var(--ll-he,'Frank Ruhl Libre','Times New Roman',serif);
+  --font-head:var(--ll-hetitle,'Secular One',sans-serif);
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-ui);font-size:15px;line-height:1.5;direction:rtl;margin:0}
+.wrap{padding-inline:16px;padding-block:0 32px;max-width:1280px;margin:0 auto}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:2px solid var(--accent);padding-block:10px}
+.hrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+h1{font-family:var(--font-head);font-size:22px;margin:0;color:var(--accent);text-wrap:balance}
+.search{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;flex:1;min-width:0}
+.search input[type=text]{flex:1;min-width:160px;max-width:360px;font:inherit;font-size:17px;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink)}
+.search label{font-size:13px;color:var(--mute);display:inline-flex;gap:4px;align-items:center}
+button{font:inherit;cursor:pointer}
+.btn{border:1px solid var(--accent);background:var(--accent);color:var(--panel);border-radius:6px;padding:6px 12px}
+.bar{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:12px}
+select{font:inherit;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink)}
+.seg{display:inline-flex;border:1px solid var(--accent);border-radius:6px;overflow:hidden}
+.seg button{border:0;background:var(--panel);color:var(--accent);padding:5px 12px;font-size:14px}
+.seg button[aria-pressed=true]{background:var(--accent);color:var(--panel)}
+.note{font-size:13px;color:var(--mute)}
+.grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:16px;margin-top:14px;align-items:start}
+@media (max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;min-width:0}
+.panel h2{font-family:var(--font-head);font-size:15px;margin:0;padding:10px 14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.list{max-height:72vh;overflow:auto}
+@media (max-width:860px){.list{max-height:none}}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;padding:8px 14px;border-bottom:1px solid var(--line);cursor:pointer}
+.row:hover,.row:focus-visible{background:var(--accent-soft);outline:none}
+.row[aria-current=true]{background:var(--accent-soft);box-shadow:inset -3px 0 0 var(--accent)}
+.row .w{font-family:var(--font-text);font-size:19px}
+.row .meta{font-size:12px;color:var(--mute);grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.nums{font-variant-numeric:tabular-nums;font-size:12px;color:var(--mute);text-align:left;white-space:nowrap}
+.tag{display:inline-block;font-size:11px;padding:1px 6px;border-radius:10px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.tag.rare{background:var(--rare-soft);color:var(--rare)}
+.tag.warn{background:var(--warn-soft);color:var(--warn)}
+.sect{padding:6px 14px;font-size:12px;color:var(--mute);background:var(--bg);border-bottom:1px solid var(--line)}
+.card{padding:14px;display:grid;gap:14px}
+.big{font-family:var(--font-text);font-size:34px;line-height:1.2}
+.pasuk{font-family:var(--font-text);font-size:21px;line-height:1.9;padding:10px 12px;border-right:3px solid var(--accent);background:var(--bg);border-radius:4px}
+.pasuk span{cursor:pointer;border-radius:3px}
+.pasuk span:hover{background:var(--accent-soft)}
+.pasuk .hl{background:var(--hit);color:var(--hit-ink)}
+.pasuk .sel{outline:2px solid var(--accent)}
+.kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;font-size:14px}
+.kv dt{color:var(--mute)}
+.kv dd{margin:0}
+.h3{font-family:var(--font-head);font-size:14px;color:var(--accent);margin:0 0 6px}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;font-size:14px;width:100%}
+th,td{border:1px solid var(--line);padding:4px 6px;text-align:right;vertical-align:top}
+th{background:var(--bg);font-weight:600;font-size:13px}
+th.click{cursor:pointer;color:var(--accent);text-decoration:underline dotted}
+td .f{font-family:var(--font-text);font-size:18px;cursor:pointer;display:inline-block;padding:0 3px;border-radius:3px}
+td .f:hover{background:var(--accent-soft)}
+td .f.cur{background:var(--hit);color:var(--hit-ink)}
+td .c{font-size:11px;color:var(--mute);font-variant-numeric:tabular-nums}
+td.empty{color:var(--line)}
+.explain{background:var(--accent-soft);border-radius:6px;padding:10px 12px;font-size:14px}
+.explain b{color:var(--accent)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.tabs button{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:14px;padding:2px 10px;font-size:13px}
+.tabs button[aria-pressed=true]{border-color:var(--accent);background:var(--accent);color:var(--panel)}
+.refs{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:13px}
+.refs a{color:var(--accent);cursor:pointer;text-decoration:underline}
+.f-he{font-family:var(--font-text);font-size:18px}
+.builder{border:1px solid var(--accent);border-radius:8px;padding:10px 12px;margin-bottom:10px;display:grid;gap:8px}
+.builder .sels{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.builder input{font:inherit;font-size:16px;width:7em;padding:4px 8px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink)}
+.builder .out{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
+.builder .form{font-family:var(--font-text);font-size:32px;line-height:1.3}
+.builder .form.g{border:1px dashed var(--mute);color:var(--mute);border-radius:4px;padding:0 8px}
+.builder .why{font-size:14px}
+td .f[data-vt]{cursor:pointer}
+.vsum{font-size:14px;margin-bottom:8px;line-height:1.9}
+.vsum a{color:var(--ink);cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+.vsum a:hover{color:var(--accent)}
+.f.g{border:1px dashed var(--mute);color:var(--mute);border-radius:3px;padding:0 4px;font-family:var(--font-text)}
+td .f.g{cursor:default}
+.tabs button.g{border-style:dashed;color:var(--mute)}
+.tabs button.g[aria-pressed=true]{background:var(--mute);border-color:var(--mute);color:var(--panel)}
+td.na{color:var(--line);text-align:center}
+#ftable{max-height:none}
+.formsbox{max-height:340px;overflow:auto}
+footer{margin-top:20px;font-size:12px;color:var(--mute)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.top{background:var(--bg);border-bottom:1px solid var(--line)}
+.top-in{max-width:1280px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px;direction:rtl}
+.brand{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink)}
+.logo{width:30px;height:30px;border-radius:7px;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--font-head);font-size:15px;line-height:1}
+.brand-name{font-weight:600;font-size:17px}
+h1{font-weight:400}
+</style>
+<link rel="stylesheet" href="../skin.css">
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <a class="brand" href="../index.html"><span class="logo">Lל</span><span class="brand-name">limudlab</span></a>
+</div></header>
+<header><div class="wrap" style="padding-block:0">
+  <div class="hrow">
+    <form class="search" id="sform">
+      <input type="text" id="q" placeholder="חפש מילה, בכתיב מלא או חסר" aria-label="חיפוש מילה" autocomplete="off">
+      <label><input type="radio" name="mode" id="m-whole" value="whole" checked>מילה שלמה</label>
+      <label><input type="radio" name="mode" id="m-part" value="part">בתוך מילה</label>
+      <button class="btn" type="submit">חפש</button>
+    </form>
+  </div>
+  <h1 style="margin-top:8px">מילים נדירות בתנ"ך</h1>
+</div></header>
+
+<div class="wrap">
+  <div class="bar">
+    <label class="note" for="sefer">ספר</label>
+    <select id="sefer"></select>
+    <label class="note" for="parsha">פרשה</label>
+    <select id="parsha"></select>
+    <div class="seg" role="group" aria-label="רמה">
+      <button type="button" id="lv0" data-lv="0">בסיסי</button>
+      <button type="button" id="lv1" data-lv="1">הרשימה שלך</button>
+      <button type="button" id="lv2" data-lv="2">מורחב</button>
+    </div>
+    <span class="note" id="lvnote"></span>
+  </div>
+
+  <div class="grid">
+    <section class="panel" aria-label="רשימת המילים">
+      <h2><span id="ltitle"></span><span class="note" id="lcount"></span></h2>
+      <div class="list" id="list"></div>
+    </section>
+    <section class="panel" aria-label="כרטיס מילה">
+      <h2><span>כרטיס מילה</span><span class="note" id="cref"></span></h2>
+      <div class="card" id="card"></div>
+    </section>
+  </div>
+
+  <footer>
+    הנתונים: ETCBC BHSA 2021 (רישיון CC BY-NC 4.0, שימוש לא מסחרי). גבולות הפרשיות: ספריא. הרשימות: נבחרו ביד לכל פרשה.
+    המונים בתורה ובתנ"ך נספרים לפי ערך מילוני (לקסמה) של ETCBC. כל הנתונים בתוך הדף, בלי טעינה מבחוץ.
+  </footer>
+</div>
+<script src="milim-data.js"></script>
+<script src="milim.js"></script>
+<script defer src="../site-chrome.js"></script>
+</body>
+</html>
