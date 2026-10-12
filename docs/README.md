@@ -46,11 +46,11 @@ Grouped by seder, in the order they appear on the index page.
 | Talmud Flora — Plants of Kilayim | [talmudflora.html](../apps/talmudflora.html) | [talmudflora.md](talmudflora.md) |
 | The Four Species as Plants | [arba_minim.html](../apps/arba_minim.html) | [arba-minim.md](arba-minim.md) |
 
-### משנה וגמרא · Mishnah & Gemara
+### משנה · Mishnah
 
 | Tile | App | Sub-doc |
 |------|-----|---------|
-| Beitzah as Torah She-Ba'al Peh | [beitza.html](../apps/beitza.html) | [beitza.md](beitza.md) |
+| The Mishnah as Torah She-Ba'al Peh · Beitzah | [beitza.html](../apps/beitza.html) | [beitza.md](beitza.md) |
 
 ### תפילה · Tefilah & Liturgy
 

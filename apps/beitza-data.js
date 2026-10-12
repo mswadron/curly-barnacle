@@ -3,8 +3,10 @@
    Every quote checked mechanically against the downloaded Sefaria text, 2026-10-11. */
 window.BEITZA_DATA = {
  "title": {
-  "he": "מסכת ביצה · כתורה שבעל פה",
-  "en": "Masechet Beitzah as Torah She-Ba'al Peh"
+  "he": "משנה כתורה שבעל פה",
+  "sub": "מסכת ביצה",
+  "en": "The Mishnah as Torah She-Ba'al Peh",
+  "suben": "Maseches Beitzah"
  },
  "intro": {
   "he": "המשנה נמסרה עם תורה שבעל פה. הגמרא מלמדת שכמעט בכל משנה יש בדברים יותר ממה שכתוב בלשונה. כל כרטיס מציג את לשון המשנה, ואחריה את דברי הגמרא, כל אחד מסווג לפי סוג הלימוד.",

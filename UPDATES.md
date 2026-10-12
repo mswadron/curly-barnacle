@@ -13,3 +13,4 @@
 2026-10-09 · Piyut in the Rishonim: 32 more piyut texts located (Wikisource + Sefaria Kinnos/Selichos), 4 new entries from Teshuva MeAhava I:1, three new calendar slots, Bava Basra 14a corrected to Pesach; build tools added to dev/piyut-tools.
 2026-10-09 · Piyut in the Rishonim: last web pass found אור יום הנף (ליל שמורים אור ישראל) and the Kalir Geshem/Tal; 61 of 65 with text. Remaining 4 not found online.
 2026-10-11 · Added Beitzah as Torah She-Ba'al Peh (apps/beitza.html) + new Mishnah & Gemara section and tile on the index + docs/beitza.md + changelog.
+2026-10-12 · Beitzah page: header is now משנה כתורה שבעל פה with מסכת ביצה under it; index section renamed Mishnah.

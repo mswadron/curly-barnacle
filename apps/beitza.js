@@ -83,6 +83,7 @@
   function render() {
     document.documentElement.lang = lang;
     $('#title').textContent = D.title.he;
+    $('#masechta').textContent = D.title.sub + (lang === 'en' ? ' · ' + D.title.suben : '');
     $('#subtitle').textContent = lang === 'en' ? D.title.en : '';
     $('#intro').innerHTML = `<p class="${lang}">${esc(D.intro[lang])}</p>`;
     $('#intro').dir = lang === 'he' ? 'rtl' : 'ltr';

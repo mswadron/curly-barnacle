@@ -1,6 +1,6 @@
-# Beitzah as Torah She-Ba'al Peh · מסכת ביצה כתורה שבעל פה
+# The Mishnah as Torah She-Ba'al Peh · משנה כתורה שבעל פה (Maseches Beitzah)
 
-**Seder:** Mishnah & Gemara
+**Seder:** Mishnah
 **Tile:** [apps/beitza.html](../apps/beitza.html)
 **Status:** Live (linked from index.html), added 2026-10-11
 
