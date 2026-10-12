@@ -1,7 +1,12 @@
 (function(){
-const D = window.TW;
+const D = window.TW, TX = window.TX || null;
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+// ---------- language ----------
+let LANG = 'he';
+try { const l = localStorage.getItem('tw-lang'); if (l === 'he' || l === 'en') LANG = l; } catch(e){}
+const L = (he, en) => LANG === 'en' ? en : he;
 
 // ---------- helpers ----------
 const NW = D.W.length;
@@ -17,9 +22,14 @@ function gem(n){
   if(n===15) return s+'טו'; if(n===16) return s+'טז';
   return s+t[Math.floor(n/10)]+o[n%10];
 }
-const refOfVerse = v => { const x=D.V[v]; return D.B[x[0]]+' '+gem(x[1])+':'+gem(x[2]); };
+const BOOK_EN = ['Genesis','Exodus','Leviticus','Numbers','Deuteronomy'];
+const refOfVerse = v => { const x = D.V[v]; return LANG === 'en' ? `${BOOK_EN[x[0]]} ${x[1]}:${x[2]}` : `${D.B[x[0]]} ${gem(x[1])}:${gem(x[2])}`; };
 const refOfWord = wi => refOfVerse(wordVerse[wi]);
 const parshaOfVerse = v => D.P.findIndex(p => v >= p[2] && v <= p[3]);
+const parshaName = pi => LANG === 'en' ? D.P[pi][0] : D.P[pi][1];
+const bookName = b => LANG === 'en' ? BOOK_EN[b] : D.B[b];
+const nachRef = (b, ch, vs) => LANG === 'en' ? `${ch}:${vs}` : `${gem(ch)}:${gem(vs)}`;
+const nachBook = b => LANG === 'en' ? D.NE[b] : D.NB[b];
 const NIQ = /[\u0591-\u05C7\u05BE]/g;
 const FIN = {'ך':'כ','ם':'מ','ן':'נ','ף':'פ','ץ':'צ'};
 const cons = s => s.replace(NIQ,'').replace(/[ךםןףץ]/g, c => FIN[c]).replace(/[^\u05D0-\u05EA]/g,'');
@@ -36,16 +46,28 @@ function mainPart(wi){
   }
   return best || parts[parts.length-1];
 }
+const PFX = /^[והבכלמש]{1,3}$/;
+const preOk = (full, t) => full.endsWith(t) && full.length > t.length && PFX.test(full.slice(0, full.length - t.length));
 
-// ---------- labels ----------
-const SP = {subs:'שם עצם',verb:'פועל',adjv:'שם תואר',advb:'תואר הפועל',nmpr:'שם פרטי',prps:'כינוי גוף',prde:'כינוי רומז',prin:'כינוי שאלה',intj:'מילת קריאה',nega:'מילת שלילה',inrg:'מילת שאלה',conj:'מילת חיבור',art:'ה"א הידיעה',prep:'מילת יחס'};
-const VS = {qal:'קל',nif:'נפעל',piel:'פיעל',pual:'פֻּעַל',hif:'הפעיל',hof:'הֻפְעַל',hit:'התפעל',hsht:'השתפעל',hotp:'הותפעל',nit:'נתפעל',pasq:'קל סביל',peal:'פעל (ארמית)',peil:'פעיל (ארמית)',pael:'פעל דגוש (ארמית)',haf:'הפעל (ארמית)',afel:'אפעל (ארמית)',htpe:'התפעל (ארמית)',htpa:'התפעל דגוש (ארמית)'};
-const VT = {perf:'עבר',wqtl:'ו + עבר',impf:'עתיד',wayq:'ו"ההיפוך',impv:'ציווי',infc:'מקור נטוי',infa:'מקור מוחלט',ptca:'בינוני פועל',ptcp:'בינוני פעול'};
-const PGN = {p3msg:'הוא',p3fsg:'היא',p2msg:'אתה',p2fsg:'את',p1sg:'אני',p3mpl:'הם',p3fpl:'הן',p3pl:'הם / הן',p2mpl:'אתם',p2fpl:'אתן',p2pl:'אתם / אתן',p1pl:'אנחנו'};
-const SFX = {p1sg:'אותי / שלי',p2msg:'אותך / שלך (ז)',p2fsg:'אותך / שלך (נ)',p3msg:'אותו / שלו',p3fsg:'אותה / שלה',p1pl:'אותנו / שלנו',p2mpl:'אתכם / שלכם',p2fpl:'אתכן / שלכן',p3mpl:'אותם / שלהם',p3fpl:'אותן / שלהן',p2sg:'אותך / שלך',p3sg:'שלו / שלה',p3pl:'אותם / שלהם',p2pl:'אתכם / שלכם'};
-const GN = {m:'זכר',f:'נקבה'}, NU = {sg:'יחיד',pl:'רבים',du:'זוגי'}, ST = {a:'נפרד',c:'נסמך',e:'מיודע (ארמית)'};
+// ---------- labels (Hebrew / English) ----------
+const DICT = {
+  SP: {he:{subs:'שם עצם',verb:'פועל',adjv:'שם תואר',advb:'תואר הפועל',nmpr:'שם פרטי',prps:'כינוי גוף',prde:'כינוי רומז',prin:'כינוי שאלה',intj:'מילת קריאה',nega:'מילת שלילה',inrg:'מילת שאלה',conj:'מילת חיבור',art:'ה"א הידיעה',prep:'מילת יחס'},
+       en:{subs:'noun',verb:'verb',adjv:'adjective',advb:'adverb',nmpr:'proper name',prps:'personal pronoun',prde:'demonstrative',prin:'interrogative pronoun',intj:'interjection',nega:'negative',inrg:'interrogative',conj:'conjunction',art:'definite article',prep:'preposition'}},
+  VS: {he:{qal:'קל',nif:'נפעל',piel:'פיעל',pual:'פֻּעַל',hif:'הפעיל',hof:'הֻפְעַל',hit:'התפעל',hsht:'השתפעל',hotp:'הותפעל',nit:'נתפעל',pasq:'קל סביל',peal:'פעל (ארמית)',peil:'פעיל (ארמית)',pael:'פעל דגוש (ארמית)',haf:'הפעל (ארמית)',afel:'אפעל (ארמית)',htpe:'התפעל (ארמית)',htpa:'התפעל דגוש (ארמית)'},
+       en:{qal:'Kal',nif:'Nifal',piel:'Piel',pual:'Pual',hif:'Hifil',hof:'Hofal',hit:'Hispael',hsht:'Hishtafel',hotp:'Hotpaal',nit:'Nispael',pasq:'passive Kal',peal:'Peal (Aramaic)',peil:'Peil (Aramaic)',pael:'Pael (Aramaic)',haf:'Hafel (Aramaic)',afel:'Afel (Aramaic)',htpe:'Hispeel (Aramaic)',htpa:'Hispaal (Aramaic)'}},
+  VT: {he:{perf:'עבר',wqtl:'ו + עבר',impf:'עתיד',wayq:'ו"ההיפוך',impv:'ציווי',infc:'מקור נטוי',infa:'מקור מוחלט',ptca:'בינוני פועל',ptcp:'בינוני פעול'},
+       en:{perf:'past',wqtl:'vav + past',impf:'future',wayq:'vav hahipuch',impv:'command',infc:'infinitive (construct)',infa:'infinitive (absolute)',ptca:'active participle',ptcp:'passive participle'}},
+  PGN:{he:{p3msg:'הוא',p3fsg:'היא',p2msg:'אתה',p2fsg:'את',p1sg:'אני',p3mpl:'הם',p3fpl:'הן',p3pl:'הם / הן',p2mpl:'אתם',p2fpl:'אתן',p2pl:'אתם / אתן',p1pl:'אנחנו'},
+       en:{p3msg:'he',p3fsg:'she',p2msg:'you (m.)',p2fsg:'you (f.)',p1sg:'I',p3mpl:'they (m.)',p3fpl:'they (f.)',p3pl:'they',p2mpl:'you (m. pl.)',p2fpl:'you (f. pl.)',p2pl:'you (pl.)',p1pl:'we'}},
+  SFX:{he:{p1sg:'אותי / שלי',p2msg:'אותך / שלך (ז)',p2fsg:'אותך / שלך (נ)',p3msg:'אותו / שלו',p3fsg:'אותה / שלה',p1pl:'אותנו / שלנו',p2mpl:'אתכם / שלכם',p2fpl:'אתכן / שלכן',p3mpl:'אותם / שלהם',p3fpl:'אותן / שלהן',p2sg:'אותך / שלך',p3sg:'שלו / שלה',p3pl:'אותם / שלהם',p2pl:'אתכם / שלכם'},
+       en:{p1sg:'me / my',p2msg:'you / your (m.)',p2fsg:'you / your (f.)',p3msg:'him / his',p3fsg:'her',p1pl:'us / our',p2mpl:'you / your (m. pl.)',p2fpl:'you / your (f. pl.)',p3mpl:'them / their (m.)',p3fpl:'them / their (f.)',p2sg:'you / your',p3sg:'his / her',p3pl:'them / their',p2pl:'you / your (pl.)'}},
+  GN: {he:{m:'זכר',f:'נקבה'}, en:{m:'masculine',f:'feminine'}},
+  NU: {he:{sg:'יחיד',pl:'רבים',du:'זוגי'}, en:{sg:'singular',pl:'plural',du:'dual'}},
+  ST: {he:{a:'נפרד',c:'נסמך',e:'מיודע (ארמית)'}, en:{a:'absolute',c:'construct',e:'emphatic (Aramaic)'}}
+};
+const lab = (d, k) => (DICT[d][LANG] && DICT[d][LANG][k]) || k;
 
-const TENSE_EXPLAIN = {
+const TENSE_EXPLAIN = {he:{
   perf:'<b>עבר</b> מתאר פעולה שהושלמה. הגוף מסומן בסוף המילה: שָׁמַר (הוא), שָׁמַרְתָּ (אתה), שָׁמַרְתִּי (אני), שָׁמְרוּ (הם).',
   wqtl:'<b>ו + עבר</b> (וְקָטַל). בסיפור ובציווי בתורה ו׳ לפני פועל בעבר בדרך כלל הופכת אותו לעתיד או להמשך ציווי: וְשָׁמַרְתָּ = ותשמור. לא כל ו׳ לפני עבר היא ו׳ ההיפוך. הכלי מסמן כאן כל פועל בעבר שיש לפניו ו׳, ועל הלומד להכריע לפי ההקשר.',
   impf:'<b>עתיד</b> מתאר פעולה שתבוא, או פעולה חוזרת. הגוף מסומן בתחילת המילה באותיות אית"ן: אֶשְׁמֹר, תִּשְׁמֹר, יִשְׁמֹר, נִשְׁמֹר.',
@@ -55,8 +77,18 @@ const TENSE_EXPLAIN = {
   infa:'<b>מקור מוחלט</b> בא לרוב לפני פועל מאותו שורש כדי לחזק אותו: שָׁמוֹר תִּשְׁמְרוּן. לפעמים הוא בא במקום ציווי: זָכוֹר, שָׁמוֹר.',
   ptca:'<b>בינוני פועל</b> הוא מי שעושה את הפעולה, ומשמש גם כהווה: שֹׁמֵר, שֹׁמֶרֶת, שֹׁמְרִים. מתאים במין ובמספר.',
   ptcp:'<b>בינוני פעול</b> מתאר מה שהפעולה נעשתה בו, ובא בעיקר בבניין קל: שָׁמוּר, בָּרוּךְ, כָּתוּב.'
-};
-const BINYAN_EXPLAIN = {
+}, en:{
+  perf:'<b>Past</b> describes a finished action. The person is marked at the end of the word: שָׁמַר (he guarded), שָׁמַרְתָּ (you guarded), שָׁמַרְתִּי (I guarded), שָׁמְרוּ (they guarded).',
+  wqtl:'<b>Vav + past</b> (וְקָטַל). In Torah narrative and commands, a vav before a past-tense verb usually turns it into future or a continued command: וְשָׁמַרְתָּ = and you shall guard. Not every vav before a past form is the converting vav; the tool marks every past form with a vav, and the reader decides from context.',
+  impf:'<b>Future</b> describes an action still to come, or a repeated action. The person is marked at the start of the word by א, ת, י or נ: אֶשְׁמֹר, תִּשְׁמֹר, יִשְׁמֹר, נִשְׁמֹר.',
+  wayq:'<b>Vav hahipuch</b> (וַיִּקְטֹל) is the normal storytelling form in the Torah. A vav with patach and a dagesh in the next letter (before א, a kamatz and no dagesh) turns a future form into past: וַיֹּאמֶר = and he said, וַיָּרָץ = and he ran.',
+  impv:'<b>Command</b>, only in the second person: שְׁמֹר, שִׁמְרִי, שִׁמְרוּ. Sometimes a ה is added at the end (שָׁמְרָה) or נא follows.',
+  infc:'<b>Infinitive construct</b> is the name of the action, usually with a prefix (לִשְׁמֹר to guard, בִּשְׁמֹר when guarding) or a suffix (שָׁמְרוֹ = his guarding).',
+  infa:'<b>Infinitive absolute</b> usually stands before a verb of the same root to strengthen it: שָׁמוֹר תִּשְׁמְרוּן, you shall surely guard. Sometimes it serves as a command: זָכוֹר, שָׁמוֹר.',
+  ptca:'<b>Active participle</b>: the one doing the action, also used as present tense: שֹׁמֵר, שֹׁמֶרֶת, שֹׁמְרִים. It agrees in gender and number.',
+  ptcp:'<b>Passive participle</b>: what the action was done to, mostly in Kal: שָׁמוּר guarded, בָּרוּךְ blessed, כָּתוּב written.'
+}};
+const BINYAN_EXPLAIN = {he:{
   qal:'<b>קל</b>: הבניין הפשוט, פעולה רגילה. שָׁמַר.',
   nif:'<b>נפעל</b>: בדרך כלל סביל או חוזר של קל. נ׳ בעבר (נִשְׁמַר), ודגש באות הראשונה של השורש בעתיד (יִשָּׁמֵר).',
   piel:'<b>פיעל</b>: דגש באות השנייה של השורש. לפעמים מחזק את הפעולה או גורם לה. דִּבֵּר, שִׁלַּח.',
@@ -68,52 +100,94 @@ const BINYAN_EXPLAIN = {
   hotp:'<b>הותפעל</b>: צורה נדירה של התפעל עם תנועת u: הֻתְפָּקְדוּ.',
   nit:'<b>נתפעל</b>: צורה נדירה שמשלבת נ׳ ו-ת׳.',
   pasq:'<b>קל סביל</b>: צורה סבילה עתיקה של קל, לפי ניתוח ETCBC.'
-};
+}, en:{
+  qal:'<b>Kal</b>: the simple binyan, the plain action. שָׁמַר he guarded.',
+  nif:'<b>Nifal</b>: usually the passive or reflexive of Kal. A נ in the past (נִשְׁמַר), and a dagesh in the first root letter in the future (יִשָּׁמֵר).',
+  piel:'<b>Piel</b>: a dagesh in the second root letter. Sometimes it intensifies the action or makes it happen. דִּבֵּר, שִׁלַּח.',
+  pual:'<b>Pual</b>: the passive of Piel, with a dagesh in the second letter and a u vowel. דֻּבַּר, מְשֻׁלָּח.',
+  hif:'<b>Hifil</b>: usually causing someone else to act. A ה in the past (הִקְרִיב), and usually a י before the last letter.',
+  hof:'<b>Hofal</b>: the passive of Hifil. הָקְרַב, הֻשְׁלַךְ.',
+  hit:'<b>Hispael</b>: an action done to oneself, or with each other. הִתְהַלֵּךְ. Before ס, ש or צ the ת switches places: הִשְׁתַּמֵּר.',
+  hsht:'<b>Hishtafel</b>: a special form, mainly in the verb הִשְׁתַּחֲוָה, bowed down.',
+  hotp:'<b>Hotpaal</b>: a rare Hispael form with a u vowel: הֻתְפָּקְדוּ.',
+  nit:'<b>Nispael</b>: a rare form combining נ and ת.',
+  pasq:'<b>Passive Kal</b>: an old passive of Kal, by ETCBC\'s analysis.'
+}};
 
 // ---------- state ----------
-let state = {p: -1, level: 1, sel: null};
-try { const s = JSON.parse(localStorage.getItem('tw-state')||'null'); if (s && typeof s.p === 'number') state.level = s.level ?? 1; } catch(e){}
+let state = {p: -1, level: 1, sel: null, entry: null};
+try { const s = JSON.parse(localStorage.getItem('tw-state')||'null'); if (s) state.level = s.level ?? 1; } catch(e){}
 const save = () => { try { localStorage.setItem('tw-state', JSON.stringify({p:state.p, level:state.level})); } catch(e){} };
+
+// ---------- static text ----------
+function applyLang(){
+  document.documentElement.lang = LANG;
+  document.documentElement.dir = LANG === 'en' ? 'ltr' : 'rtl';
+  document.title = L('מילים נדירות בתנ"ך', 'Rare Words in Tanach');
+  $('t-title').textContent = L('מילים נדירות בתנ"ך', 'Rare Words in Tanach');
+  $('q').placeholder = L('חפש מילה, בכתיב מלא או חסר', 'Search a Hebrew word, full or short spelling');
+  $('q').setAttribute('aria-label', L('חיפוש מילה', 'Search'));
+  $('t-whole').textContent = L('מילה שלמה', 'Whole word');
+  $('t-part').textContent = L('בתוך מילה', 'Inside a word');
+  $('t-go').textContent = L('חפש', 'Search');
+  $('t-sefer').textContent = L('ספר', 'Sefer');
+  $('t-parsha').textContent = L('פרשה', 'Parsha');
+  $('lv0').textContent = L('בסיסי', 'Basic');
+  $('lv1').textContent = L('הרשימה שלך', 'Your list');
+  $('lv2').textContent = L('מורחב', 'Extended');
+  $('levelseg').setAttribute('aria-label', L('רמה', 'Level'));
+  $('t-card').textContent = L('כרטיס מילה', 'Word card');
+  $('listpanel').setAttribute('aria-label', L('רשימת המילים', 'Word list'));
+  $('cardpanel').setAttribute('aria-label', L('כרטיס מילה', 'Word card'));
+  $('footer').innerHTML = L(
+    'הנתונים: ETCBC BHSA 2021 (רישיון CC BY-NC 4.0, שימוש לא מסחרי). רש"י (מהדורת רוזנבאום וזילברמן 1929 עד 1934), תרגום אונקלוס ותרגום JPS 1917: נחלת הכלל, מתוך הארכיון של ספריא. גבולות הפרשיות: ספריא. הרשימות: נבחרו ביד לכל פרשה. המונים בתורה ובתנ"ך נספרים לפי ערך מילוני (לקסמה) של ETCBC. כל הנתונים בתוך הדף, בלי טעינה מבחוץ.',
+    'Data: ETCBC BHSA 2021 (CC BY-NC 4.0, non-commercial). Rashi (Rosenbaum and Silbermann edition, 1929 to 1934, Hebrew and English), Targum Onkelos and the JPS 1917 translation: public domain, from the Sefaria archive. Parsha boundaries: Sefaria. Word lists: chosen by hand for each parsha. Torah and Tanach counts are by ETCBC dictionary entry (lexeme). All data is inside the page; nothing loads from outside.');
+  document.querySelectorAll('#langseg button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === LANG)));
+}
+document.querySelectorAll('#langseg button').forEach(b => b.addEventListener('click', () => {
+  if (LANG === b.dataset.lang) return;
+  LANG = b.dataset.lang; try { localStorage.setItem('tw-lang', LANG); } catch(e){}
+  applyLang();
+  const sel = state.sel, entry = state.entry, sv = $('sefer').value;
+  fillSefer(); $('sefer').value = sv; fillParsha(+sv); $('parsha').value = state.p;
+  if (lastSearch) runSearch(lastSearch, false); else renderList();
+  if (sel !== null) { openWord(sel, entry, true); markRowFor(sel); }
+}));
 
 // ---------- sefer / parsha pickers ----------
 const SEFER_OF_P = D.P.map(p => D.V[p[2]][0]);
-function fillSefer(){
-  $('sefer').innerHTML = D.B.map((b,i) => `<option value="${i}">${b}</option>`).join('');
-}
+function fillSefer(){ $('sefer').innerHTML = D.B.map((b,i) => `<option value="${i}">${bookName(i)}</option>`).join(''); }
 function fillParsha(si){
-  $('parsha').innerHTML = D.P.map((p,i) => SEFER_OF_P[i]===si ? `<option value="${i}">${p[1]}${D.E[i] ? '' : ' (אין רשימה)'}</option>` : '').join('');
+  $('parsha').innerHTML = D.P.map((p,i) => SEFER_OF_P[i]===si ? `<option value="${i}">${parshaName(i)}${D.E[i] ? '' : L(' (אין רשימה)', ' (no list)')}</option>` : '').join('');
 }
 $('sefer').addEventListener('change', e => { fillParsha(+e.target.value); selectParsha(+$('parsha').value); });
 $('parsha').addEventListener('change', e => selectParsha(+e.target.value));
-document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => { state.level = +b.dataset.lv; save(); renderList(); }));
+document.querySelectorAll('#levelseg button').forEach(b => b.addEventListener('click', () => { state.level = +b.dataset.lv; save(); lastSearch = null; renderList(); }));
 
 // ---------- tags ----------
 function tags(li){
   const x = X(li), out = [];
-  if (x.n === 1) out.push('<span class="tag rare">יחידאי בתנ"ך</span>');
-  else if (x.tn === 1) out.push('<span class="tag rare">פעם אחת בתורה</span>');
-  else if (x.tn <= 5) out.push('<span class="tag rare">נדיר בתורה</span>');
-  if (x.lang === 'A') out.push('<span class="tag">ארמית</span>');
+  if (x.n === 1) out.push(`<span class="tag rare">${L('יחידאי בתנ"ך', 'only once in Tanach')}</span>`);
+  else if (x.tn === 1) out.push(`<span class="tag rare">${L('פעם אחת בתורה', 'once in the Torah')}</span>`);
+  else if (x.tn <= 5) out.push(`<span class="tag rare">${L('נדיר בתורה', 'rare in the Torah')}</span>`);
+  if (x.lang === 'A') out.push(`<span class="tag">${L('ארמית', 'Aramaic')}</span>`);
   return out.join(' ');
 }
 
 // ---------- list ----------
 const BASIC_MIN = 3;   // basic level: words whose root appears at least 3 times in the Torah
-function entryRows(pi){
-  const E = D.E[pi] || [];
-  return E.map((e, i) => ({kind:'entry', e, i}));
-}
+let lastSearch = null;
 function renderList(){
   const pi = state.p;
-  document.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.lv === state.level)));
+  document.querySelectorAll('#levelseg button').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.lv === state.level)));
   const P = D.P[pi];
-  $('ltitle').textContent = 'פרשת ' + P[1];
+  $('ltitle').textContent = L('פרשת ', 'Parshas ') + parshaName(pi);
   const E = D.E[pi];
   const list = $('list');
   if (!E) {
     $('lcount').textContent = '';
     const cand = D.C[pi] || [];
-    list.innerHTML = `<div class="sect">אין רשימה שלך לפרשה הזאת${P[0]==='Shemot' ? ' (הקובץ שמות.docx מכיל שאלות, לא מילים)' : ''}. למטה: מילים נדירות שהכלי מצא בפרשה (שורש שמופיע עד פעמיים בתורה).</div>` + cand.map(wi => candRow(wi)).join('');
+    list.innerHTML = `<div class="sect">${L('אין רשימה שלך לפרשה הזאת', 'You have no list for this parsha')}${P[0]==='Shemot' ? L(' (הקובץ שמות.docx מכיל שאלות, לא מילים)', ' (the file שמות.docx holds questions, not words)') : ''}. ${L('למטה: מילים נדירות שהכלי מצא בפרשה (שורש שמופיע עד פעמיים בתורה).', 'Below: rare words the tool found in the parsha (roots that appear at most twice in the Torah).')}</div>` + cand.map(candRow).join('');
     $('lvnote').textContent = '';
     bindRows(); return;
   }
@@ -125,36 +199,39 @@ function renderList(){
   rows.push(shown.map(o => entryRow(o.e, o.i)).join(''));
   if (state.level === 2) {
     const cand = D.C[pi] || [];
-    rows.push(`<div class="sect">מועמדים להוספה: מילים בפרשה ששורשן מופיע עד פעמיים בתורה ואינן ברשימה שלך (${cand.length})</div>` + cand.map(candRow).join(''));
+    rows.push(`<div class="sect">${L('מועמדים להוספה: מילים בפרשה ששורשן מופיע עד פעמיים בתורה ואינן ברשימה שלך', 'Candidates to add: words in the parsha whose root appears at most twice in the Torah and are not on your list')} (${cand.length})</div>` + cand.map(candRow).join(''));
   }
   if (missing.length && state.level >= 1) {
-    rows.push(`<div class="sect">לבדיקה: לא נמצאו בתורה כפי שנכתבו (${missing.length})</div>` + missing.map(o => `<div class="row" tabindex="-1"><div class="w">${esc(o.e.r)}</div><div class="meta"><span class="tag warn">לא נמצא</span>אולי שגיאת הקלדה, או מילה מרש"י</div></div>`).join(''));
+    rows.push(`<div class="sect">${L('לבדיקה: לא נמצאו בתורה כפי שנכתבו', 'To check: not found in the Torah as written')} (${missing.length})</div>` + missing.map(o => `<div class="row" tabindex="-1"><div class="w">${esc(o.e.r)}</div><div class="meta"><span class="tag warn">${L('לא נמצא', 'not found')}</span>${L('אולי שגיאת הקלדה, או מילה מרש"י', 'maybe a typo, or a word from Rashi')}</div></div>`).join(''));
   }
   list.innerHTML = rows.join('');
   const nOwn = matched.length, nBasic = matched.filter(o => D.X[o.e.x][5] >= BASIC_MIN).length;
-  $('lcount').textContent = state.level === 0 ? `${nBasic} מתוך ${nOwn}` : state.level === 2 ? `${nOwn} + ${(D.C[pi]||[]).length} מועמדים` : `${nOwn} מילים`;
-  $('lvnote').textContent = state.level === 0 ? `בסיסי: רק מילים ששורשן מופיע ${BASIC_MIN} פעמים או יותר בתורה, כלומר שווה ללמוד אותן` : state.level === 2 ? 'מורחב: הרשימה שלך ועוד מילים נדירות מהפרשה' : (P[0]==='Lech Lecha' ? 'שתי הרשימות של לך לך מאוחדות כאן' : '');
+  $('lcount').textContent = state.level === 0 ? L(`${nBasic} מתוך ${nOwn}`, `${nBasic} of ${nOwn}`) : state.level === 2 ? L(`${nOwn} + ${(D.C[pi]||[]).length} מועמדים`, `${nOwn} + ${(D.C[pi]||[]).length} candidates`) : L(`${nOwn} מילים`, `${nOwn} words`);
+  $('lvnote').textContent = state.level === 0 ? L(`בסיסי: רק מילים ששורשן מופיע ${BASIC_MIN} פעמים או יותר בתורה, כלומר שווה ללמוד אותן`, `Basic: only words whose root appears ${BASIC_MIN} or more times in the Torah, so they are worth learning`)
+    : state.level === 2 ? L('מורחב: הרשימה שלך ועוד מילים נדירות מהפרשה', 'Extended: your list plus more rare words from the parsha')
+    : (P[0]==='Lech Lecha' ? L('שתי הרשימות של לך לך מאוחדות כאן', 'Both Lech Lecha lists are merged here') : '');
   bindRows();
 }
+const counts = x => L(`תורה ${x.tn} · תנ"ך ${x.n}`, `Torah ${x.tn} · Tanach ${x.n}`);
 function entryRow(e, i){
   const li = e.x, x = X(li);
-  const where = e.w === 'elsewhere' ? `<span class="tag warn">נמצא ב${refOfVerse(e.v)}</span>` : '';
+  const where = e.w === 'elsewhere' ? `<span class="tag warn">${L('נמצא ב', 'found in ')}${refOfVerse(e.v)}</span>` : '';
   const partial = e.t.filter(t => !t[1].length).map(t => t[0]);
   return `<div class="row" tabindex="0" data-w="${e.h}" data-e="${i}" role="button">
     <div class="w">${esc(e.r)}</div>
-    <div class="nums">תורה ${x.tn} · תנ"ך ${x.n}</div>
-    <div class="meta">${refOfVerse(e.v)} · ${esc(x.v)} ${tags(li)} ${where} ${partial.length ? `<span class="tag warn">לא זוהה: ${esc(partial.join(' '))}</span>` : ''}</div></div>`;
+    <div class="nums">${counts(x)}</div>
+    <div class="meta">${refOfVerse(e.v)} · <span class="f-he" style="font-size:inherit">${esc(x.v)}</span>${LANG === 'en' ? ' · ' + esc(x.g) : ''} ${tags(li)} ${where} ${partial.length ? `<span class="tag warn">${L('לא זוהה: ', 'not matched: ')}${esc(partial.join(' '))}</span>` : ''}</div></div>`;
 }
 function candRow(wi){
   const [li] = mainPart(wi), x = X(li);
   return `<div class="row" tabindex="0" data-w="${wi}" role="button">
     <div class="w">${esc(D.W[wi].replace('־',''))}</div>
-    <div class="nums">תורה ${x.tn} · תנ"ך ${x.n}</div>
-    <div class="meta">${refOfWord(wi)} · ${esc(x.v)} <span class="tag">מועמד</span> ${tags(li)}</div></div>`;
+    <div class="nums">${counts(x)}</div>
+    <div class="meta">${refOfWord(wi)} · <span class="f-he" style="font-size:inherit">${esc(x.v)}</span>${LANG === 'en' ? ' · ' + esc(x.g) : ''} <span class="tag">${L('מועמד', 'candidate')}</span> ${tags(li)}</div></div>`;
 }
 function bindRows(){
   $('list').querySelectorAll('.row[data-w]').forEach(r => {
-    const go = () => { openWord(+r.dataset.w, r.dataset.e !== undefined ? D.E[state.p][+r.dataset.e] : null); markCurrent(r); };
+    const go = () => { openWord(+r.dataset.w, (r.dataset.e !== undefined && !lastSearch) ? D.E[state.p][+r.dataset.e] : null); markCurrent(r); };
     r.addEventListener('click', go);
     r.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); go(); } });
   });
@@ -163,8 +240,9 @@ function markCurrent(r){
   $('list').querySelectorAll('.row').forEach(x => x.removeAttribute('aria-current'));
   if (r) r.setAttribute('aria-current','true');
 }
+function markRowFor(wi){ markCurrent($('list').querySelector(`.row[data-w="${wi}"]`)); }
 function selectParsha(pi){
-  state.p = pi; save();
+  state.p = pi; save(); lastSearch = null;
   $('sefer').value = SEFER_OF_P[pi]; fillParsha(SEFER_OF_P[pi]); $('parsha').value = pi;
   renderList();
   const first = $('list').querySelector('.row[data-w]');
@@ -175,25 +253,25 @@ function selectParsha(pi){
 function describePart(li, mi){
   const x = X(li), m = M(mi), bits = [];
   if (m.sp === 'verb') {
-    bits.push('פועל', VS[m.vs] || m.vs, VT[m.vt] || m.vt);
+    bits.push(lab('SP','verb'), lab('VS', m.vs), lab('VT', m.vt));
     const pg = m.ps + m.gn + m.nu;
-    if (PGN[pg]) bits.push(PGN[pg]);
-    else if (m.gn || m.nu) bits.push([GN[m.gn], NU[m.nu]].filter(Boolean).join(' '));
+    if (DICT.PGN.he[pg]) bits.push(lab('PGN', pg));
+    else if (m.gn || m.nu) bits.push([m.gn && lab('GN', m.gn), m.nu && lab('NU', m.nu)].filter(Boolean).join(' '));
   } else {
-    bits.push(SP[m.sp] || m.sp);
-    if (m.gn || m.nu) bits.push([GN[m.gn], NU[m.nu]].filter(Boolean).join(' '));
-    if (m.st && m.sp !== 'verb') bits.push(ST[m.st] || m.st);
+    bits.push(lab('SP', m.sp));
+    if (m.gn || m.nu) bits.push([m.gn && lab('GN', m.gn), m.nu && lab('NU', m.nu)].filter(Boolean).join(' '));
+    if (m.st) bits.push(lab('ST', m.st));
   }
-  if (m.sfx) bits.push('כינוי: ' + (SFX[m.sfx] || m.sfx));
+  if (m.sfx) bits.push(L('כינוי: ', 'suffix: ') + lab('SFX', m.sfx));
   return {lex: x.v, gloss: x.g, desc: bits.filter(Boolean).join(', ')};
 }
-function openWord(wi, entry){
-  state.sel = wi;
+function openWord(wi, entry, keepScroll){
+  state.sel = wi; state.entry = entry;
   const v = wordVerse[wi];
   const hits = new Set(entry ? entry.t.flatMap(t => t[1]) : [wi]);
   hits.add(wi);
   const [li, mi] = mainPart(wi);
-  const x = X(li), m = M(mi);
+  const x = X(li);
   $('cref').textContent = refOfVerse(v);
   let pasuk = '';
   for (let i = D.V[v][3]; i < verseEnd(v); i++) {
@@ -204,44 +282,90 @@ function openWord(wi, entry){
   const parts = D.WP[wi].map(([l, mm]) => { const d = describePart(l, mm); return `<li><span class="f-he">${esc(d.lex)}</span>: ${esc(d.desc)} <span class="note">(${esc(d.gloss)})</span></li>`; }).join('');
   const fam = family(li);
   const pi = parshaOfVerse(v);
+  const jps = TX && TX.j[v] ? `<div><p class="h3">${L('הפסוק באנגלית', 'The pasuk in English')}</p><div class="en-text">${esc(TX.j[v])}</div><div class="src">JPS 1917</div></div>` : '';
   $('card').innerHTML = `
     <div><div class="big">${esc(D.W[wi].replace('־',''))}</div>
-      <div class="note">${refOfVerse(v)} · פרשת ${D.P[pi][1]}${entry ? ' · מהרשימה שלך: ' + esc(entry.r) : ''}</div></div>
+      <div class="note">${refOfVerse(v)} · ${L('פרשת ', 'Parshas ')}${parshaName(pi)}${entry ? L(' · מהרשימה שלך: ', ' · from your list: ') + `<span class="f-he" style="font-size:inherit">${esc(entry.r)}</span>` : ''}</div></div>
     <div class="pasuk" id="pasuk">${pasuk.trim()}׃</div>
-    <div><p class="h3">פירוק המילה</p><ul style="margin:0;padding-inline-start:18px">${parts}</ul></div>
+    ${LANG === 'en' ? jps : ''}
+    ${LANG === 'en' ? `<div><p class="h3">Meaning</p><div><span class="f-he">${esc(x.v)}</span>: <b>${esc(x.g)}</b> <span class="src">(ETCBC gloss)</span></div></div>` : ''}
+    ${rashiBlock(v, wi)}
+    ${onkelosBlock(v)}
+    ${thesaurusBlock(li)}
+    <div><p class="h3">${L('פירוק המילה', 'Parts of the word')}</p><ul style="margin:0;padding-inline-start:18px">${parts}</ul></div>
     <dl class="kv">
-      <dt>ערך מילוני</dt><dd><span class="f-he">${esc(x.v)}</span> · ${SP[x.sp] || x.sp} · באנגלית (ETCBC): ${esc(x.g)}</dd>
-      <dt>בתורה</dt><dd>${x.tn} פעמים ${tags(li)}</dd>
-      <dt>בכל התנ"ך</dt><dd>${x.n} פעמים</dd>
-      ${fam ? `<dt>אותן אותיות</dt><dd>${fam}</dd>` : ''}
+      <dt>${L('ערך מילוני', 'Dictionary form')}</dt><dd><span class="f-he">${esc(x.v)}</span> · ${lab('SP', x.sp)} · ${L('באנגלית (ETCBC)', 'English (ETCBC)')}: ${esc(x.g)}</dd>
+      <dt>${L('בתורה', 'In the Torah')}</dt><dd>${x.tn} ${L('פעמים', 'times')} ${tags(li)}</dd>
+      <dt>${L('בכל התנ"ך', 'In all of Tanach')}</dt><dd>${x.n} ${L('פעמים', 'times')}</dd>
+      ${fam ? `<dt>${L('אותן אותיות', 'Same letters')}</dt><dd>${fam}</dd>` : ''}
     </dl>
-    <div><p class="h3">כל הצורות של ${esc(x.v)} שכתובות בתנ"ך</p>${formsTable(li, D.W[wi], mi)}</div>
+    <div><p class="h3">${L('כל הצורות של ', 'Every form of ')}<span class="f-he" style="font-size:inherit">${esc(x.v)}</span>${L(' שכתובות בתנ"ך', ' written in Tanach')}</p>${formsTable(li, D.W[wi], mi)}</div>
     <div id="refbox"></div>
-    ${x.sp === 'verb' ? conjugation(li, mi, D.W[wi]) : ''}`;
+    <div id="conjwrap">${x.sp === 'verb' ? conjugation(li, mi, D.W[wi]) : noConj(li, wi)}</div>`;
   $('pasuk').querySelectorAll('span[data-w]').forEach(s => s.addEventListener('click', () => openWord(+s.dataset.w, null)));
   bindCard(li);
-  if (window.innerWidth <= 860) $('card').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
+  if (!keepScroll && window.innerWidth <= 860) $('card').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
 }
 function family(li){
   const base = D.X[li][0].replace(/[\[\/=]+$/,'');
   const out = [];
-  D.X.forEach((r, i) => { if (i !== li && r[0].replace(/[\[\/=]+$/,'') === base) out.push(`<a class="fam" data-l="${i}" style="cursor:pointer;color:var(--accent);text-decoration:underline"><span class="f-he">${esc(r[1])}</span></a> (${SP[r[3]]||r[3]}, ${esc(r[2])}, ×${r[5]} בתורה)`); });
+  D.X.forEach((r, i) => { if (i !== li && r[0].replace(/[\[\/=]+$/,'') === base) out.push(`<a class="fam" data-l="${i}" style="cursor:pointer;color:var(--accent);text-decoration:underline"><span class="f-he">${esc(r[1])}</span></a> (${lab('SP', r[3])}, ${esc(r[2])}, ×${r[5]} ${L('בתורה', 'in the Torah')})`); });
   return out.join(' · ');
 }
 
+// ---------- Rashi on the pasuk: the comment on this word first ----------
+function rashiBlock(v, wi){
+  if (!TX) return '';
+  const he = TX.rh[v] || [], en = TX.re[v] || [];
+  if (!he.length) return `<div><p class="h3">${L('רש"י', 'Rashi')}</p><p class="note">${L('אין רש"י על הפסוק הזה.', 'Rashi has no comment on this pasuk.')}</p></div>`;
+  const wc = cons(D.W[wi]), wr = relaxed(D.W[wi]);
+  const matches = he.map(([dh]) => cons(dh) ? dh.split(/\s+/).some(tok => { const c = cons(tok), r = relaxed(tok); return c && (c === wc || (r.length > 2 && r === wr) || preOk(wc, c) || preOk(c, wc)); }) : false);
+  const item = (i, isMatch) => {
+    const [dh, body] = he[i];
+    const heHtml = `<div class="rashi-he"><span class="dh">${esc(dh)}</span> ${esc(body)}</div>`;
+    const enHtml = en[i] ? `<div class="en-text">${esc(en[i][0] ? en[i][0] + ' ' + en[i][1] : en[i][1])}</div>` : '';
+    return `<div class="item ${isMatch ? 'match' : ''}">${LANG === 'en' ? enHtml + heHtml : heHtml}</div>`;
+  };
+  const mIdx = matches.map((m, i) => m ? i : -1).filter(i => i >= 0);
+  const others = he.map((_, i) => i).filter(i => !matches[i]);
+  let h = `<div><p class="h3">${L('רש"י', 'Rashi')}</p><div class="rashi">`;
+  if (mIdx.length) h += `<div class="note">${L('רש"י על המילה הזאת:', 'Rashi on this word:')}</div>` + mIdx.map(i => item(i, true)).join('');
+  else h += `<div class="note">${L('רש"י אינו מפרש את המילה הזאת בפסוק הזה.', 'Rashi does not comment on this word in this pasuk.')}</div>`;
+  if (others.length) h += `<details><summary>${L(`עוד רש"י על הפסוק (${others.length})`, `More Rashi on this pasuk (${others.length})`)}</summary><div class="rashi">${others.map(i => item(i, false)).join('')}</div></details>`;
+  return h + `</div><div class="src">${L('רש"י, מהדורת רוזנבאום וזילברמן', 'Rashi, Rosenbaum and Silbermann edition')}${LANG === 'en' ? ', English translation by the same editors' : ''}</div></div>`;
+}
+// ---------- Targum Onkelos on the whole pasuk ----------
+function onkelosBlock(v){
+  if (!TX) return '';
+  const o = TX.o[v];
+  return `<div><p class="h3">${L('תרגום אונקלוס', 'Targum Onkelos')}</p>${o ? `<div class="onk">${esc(o)}</div><div class="src">${L('אונקלוס מתרגם את כל הפסוק, והמילה שבחרת מתורגמת בתוכו.', 'Onkelos translates the whole pasuk; the word you chose is translated inside it.')}</div>` : `<p class="note">${L('אין תרגום לפסוק הזה בנתונים (חלוקת הפסוקים שונה).', 'No Onkelos for this pasuk in the data (the verse numbering differs).')}</p>`}</div>`;
+}
+// ---------- thesaurus: other words ETCBC translates the same way ----------
+const GLOSS_INDEX = new Map();
+D.X.forEach((r, i) => { if (r[3] === 'nmpr' || !r[2]) return; const g = r[2].toLowerCase().trim(); if (!GLOSS_INDEX.has(g)) GLOSS_INDEX.set(g, []); GLOSS_INDEX.get(g).push(i); });
+function thesaurusBlock(li){
+  const g = (D.X[li][2] || '').toLowerCase().trim();
+  const same = (GLOSS_INDEX.get(g) || []).filter(i => i !== li && D.X[i][1] !== D.X[li][1]);
+  const head = `<p class="h3">${L('מילים באותה משמעות', 'Words with the same meaning')}</p>`;
+  if (!same.length) return `<div>${head}<p class="note">${L(`אין בתורה מילה אחרת שמתורגמת "${esc(g)}" לפי ETCBC.`, `No other word in the Torah has the ETCBC gloss "${esc(g)}".`)}</p></div>`;
+  return `<div>${head}<div class="thes">${same.sort((a,b) => D.X[b][5] - D.X[a][5]).slice(0, 20).map(i => `<span><a class="thes-l" data-l="${i}"><span class="f-he">${esc(D.X[i][1])}</span></a> <span class="note">(${lab('SP', D.X[i][3])}, ×${D.X[i][5]} ${L('בתורה', 'in the Torah')})</span></span>`).join(' · ')}</div>
+    <div class="src">${L(`מילים שהתרגום של ETCBC שלהן הוא "${esc(g)}", כמו המילה הזאת. התאמה לפי התרגום, לא קביעה שהמשמעות זהה בכל מקום.`, `Words whose ETCBC gloss is "${esc(g)}", like this word. A match by translation, not a claim that the meaning is identical everywhere.`)}</div></div>`;
+}
+
 // all forms of a lexeme, Torah + Nach
-function formsOf(li){ return (D.FO[li] || []).map(f => ({mi:f[0], m:M(f[0]), t:f[1], tn:f[2], nn:f[3], ref:f[4]})); }
+function formsOf(li){ return (D.FO[li] || []).map(f => ({mi:f[0], m:M(f[0]), t:f[1], tn:f[2], nn:f[3], refs:f[4] || []})); }
 function formsTable(li, curText, curMi){
   const fs = formsOf(li).sort((a,b) => (b.tn - a.tn) || (b.nn - a.nn));
   const cur = cons(curText);
   const rows = fs.slice(0, 200).map((f, i) => {
     const d = describePart(li, f.mi);
-    const nachRef = f.ref ? `${D.NB[f.ref[0]]} ${gem(f.ref[1])}:${gem(f.ref[2])}` : '';
     return `<tr><td><span class="f ${(cons(f.t)===cur && f.mi===curMi) ? 'cur':''}" data-fi="${i}">${esc(f.t.replace('־',''))}</span></td><td>${esc(d.desc)}</td>
-      <td class="nums">${f.tn || ''}</td><td class="nums">${f.nn || ''}${nachRef && !f.tn ? ` <span class="c">(${nachRef})</span>` : ''}</td></tr>`;
+      <td class="nums">${f.tn ? `<button type="button" class="cnt" data-fi="${i}" data-where="torah" title="${L('הצג את המקומות בתורה', 'Show the places in the Torah')}">${f.tn}</button>` : ''}</td>
+      <td class="nums">${f.nn ? `<button type="button" class="cnt" data-fi="${i}" data-where="nach" title="${L('הצג את המקומות בנביאים וכתובים', 'Show the places in Nevi\'im and Kesuvim')}">${f.nn}</button>` : ''}</td></tr>`;
   }).join('');
-  return `<div class="scroll formsbox"><table id="ftable"><thead><tr><th>צורה</th><th>ניתוח</th><th>בתורה</th><th>בנביאים וכתובים</th></tr></thead><tbody>${rows}</tbody></table></div>
-    ${fs.length > 200 ? `<p class="note">מוצגות 200 הצורות הנפוצות מתוך ${fs.length}.</p>` : ''}`;
+  return `<div class="scroll formsbox"><table id="ftable"><thead><tr><th>${L('צורה', 'Form')}</th><th>${L('ניתוח', 'Parsing')}</th><th>${L('בתורה', 'Torah')}</th><th>${L('בנביאים וכתובים', 'Nevi\'im and Kesuvim')}</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <p class="note">${L('לחיצה על מספר מציגה את כל המקומות. לחיצה על הצורה מציגה את כל המקומות שלה בתורה ובנביאים וכתובים.', 'Click a number to list every place. Click a form to list all its places in the Torah and in Nevi\'im and Kesuvim.')}</p>
+    ${fs.length > 200 ? `<p class="note">${L(`מוצגות 200 הצורות הנפוצות מתוך ${fs.length}.`, `Showing the 200 most common forms of ${fs.length}.`)}</p>` : ''}`;
 }
 
 // ---------- conjugation grid: real forms first, constructed forms clearly marked ----------
@@ -265,18 +389,6 @@ function rootOf(li){
   }
   return out;
 }
-function weakReason(R){
-  if (R.length !== 3) return 'השורש אינו בן שלוש אותיות';
-  const b = R.map(r => r[0]);
-  if (b.some(c => 'אהחע'.includes(c))) return 'יש בשורש אות גרונית (א׳ ה׳ ח׳ ע׳)';
-  if (b[0] === 'ר' || b[1] === 'ר') return 'ר׳ בתחילת השורש או באמצעו';
-  if ('יונ'.includes(b[0])) return 'האות הראשונה של השורש היא י׳, ו׳ או נ׳';
-  if ('וי'.includes(b[1])) return 'האות האמצעית של השורש היא ו׳ או י׳';
-  if ('יונת'.includes(b[2])) return 'האות האחרונה של השורש היא י׳, ו׳, נ׳ או ת׳';
-  if (b[1] === b[2]) return 'שורש כפול (שתי האותיות האחרונות שוות)';
-  return '';
-}
-// template: 1/2/3 = root letter; * = dagesh chazak; ~ = dagesh kal (only on בגדכפת); H = the התפעל prefix chunk
 function hitChunk(R){
   const b = R[0][0];
   if ('דטת'.includes(b)) return null;
@@ -295,10 +407,10 @@ function fill(tpl, R){
       let mark = '';
       if (tpl[i+1] === '*' || tpl[i+1] === '~') { mark = tpl[i+1]; i++; }
       const rest = tpl.slice(i + 1);
-      let L = R[idx];
-      if (idx === 2 && !/[א-ת123]/.test(rest) && TOFIN[L[0]]) L = TOFIN[L[0]] + L.slice(1);
+      let Lt = R[idx];
+      if (idx === 2 && !/[א-ת123]/.test(rest) && TOFIN[L[0]]) Lt = TOFIN[Lt[0]] + Lt.slice(1);
       const dg = mark === '*' || (mark === '~' && 'בגדכפת'.includes(R[idx][0]));
-      out += L + (dg ? 'ּ' : '');
+      out += Lt + (dg ? 'ּ' : '');
     } else out += c;
   }
   return out;
@@ -365,17 +477,30 @@ function genForm(vs, vt, key, R, aClass){
   return null;
 }
 
+
+function weakReason(R){
+  if (R.length !== 3) return L('השורש אינו בן שלוש אותיות', 'the root does not have three letters');
+  const b = R.map(r => r[0]);
+  if (b.some(c => 'אהחע'.includes(c))) return L('יש בשורש אות גרונית (א׳ ה׳ ח׳ ע׳)', 'the root has a guttural letter (א ה ח ע)');
+  if (b[0] === 'ר' || b[1] === 'ר') return L('ר׳ בתחילת השורש או באמצעו', 'the root has ר as its first or second letter');
+  if ('יונ'.includes(b[0])) return L('האות הראשונה של השורש היא י׳, ו׳ או נ׳', 'the first root letter is י, ו or נ');
+  if ('וי'.includes(b[1])) return L('האות האמצעית של השורש היא ו׳ או י׳', 'the middle root letter is ו or י');
+  if ('יונת'.includes(b[2])) return L('האות האחרונה של השורש היא י׳, ו׳, נ׳ או ת׳', 'the last root letter is י, ו, נ or ת');
+  if (b[1] === b[2]) return L('שורש כפול (שתי האותיות האחרונות שוות)', 'a doubled root (the last two letters are the same)');
+  return '';
+}
+
 function conjugation(li, mi, curText){
   const m = M(mi), fs = formsOf(li).filter(f => f.m.sp === 'verb');
-  const order = s => { const i = Object.keys(VS).indexOf(s); return i < 0 ? 99 : i; };
+  const order = s => { const i = Object.keys(DICT.VS.he).indexOf(s); return i < 0 ? 99 : i; };
   const attested = [...new Set(fs.map(f => f.m.vs))].sort((a,b) => order(a) - order(b));
   const R = rootOf(li), weak = weakReason(R);
   conjState = {vs: m.vs, tense: m.vt, li, curText, curMi: mi, attested, R, weak, aClass: qalAClass(li, R)};
-  return `<div><p class="h3">טבלת נטייה של ${esc(X(li).v)}</p>
+  return `<div><p class="h3">${L('טבלת נטייה של ', 'Conjugation table of ')}<span class="f-he" style="font-size:inherit">${esc(X(li).v)}</span></p>
     <div class="bar" style="margin:0 0 8px">
-      <div class="seg" role="group" aria-label="מה להציג בטבלה">
-        <button type="button" id="cm-real" data-cm="real">רק מה שבמקרא</button>
-        <button type="button" id="cm-full" data-cm="full">טבלה מלאה</button>
+      <div class="seg" role="group" aria-label="${L('מה להציג בטבלה', 'What the table shows')}">
+        <button type="button" id="cm-real" data-cm="real">${L('רק מה שבמקרא', 'Only what is in Tanach')}</button>
+        <button type="button" id="cm-full" data-cm="full">${L('טבלה מלאה', 'Full table')}</button>
       </div>
       <span class="note" id="cmnote"></span>
     </div>
@@ -385,7 +510,7 @@ function conjugation(li, mi, curText){
     <div class="explain" id="binyanx"></div>
     <div id="conjgrid" style="margin-top:10px"></div>
     <div class="explain" id="tensex" style="margin-top:10px"></div>
-    <p class="note">צורה מודגשת = הצורה שבחרת. מספר = כמה פעמים בתורה, ובסוגריים כמה בנביאים וכתובים. <span class="f g" style="font-size:14px">צורה במסגרת מקווקוות</span> = נבנתה לפי דגם השלמים ואינה כתובה בתנ"ך (בלי טעמים ובלי צורות הפסק). לחיצה על כותרת עמודה מסבירה את הזמן.</p></div>`;
+    <p class="note">${L('צורה מודגשת = הצורה שבחרת. מספר = כמה פעמים בתורה, ובסוגריים כמה בנביאים וכתובים.', 'Highlighted form = the form you chose. Number = times in the Torah; in brackets, times in Nevi\'im and Kesuvim.')} <span class="f g" style="font-size:14px">${L('צורה במסגרת מקווקוות', 'A form in a dashed box')}</span> ${L('= נבנתה לפי דגם השלמים ואינה כתובה בתנ"ך (בלי טעמים ובלי צורות הפסק). לחיצה על כותרת עמודה מסבירה את הזמן.', '= built from the regular pattern and not written in Tanach (no cantillation, no pausal forms). Click a column heading to explain the tense.')}</p></div>`;
 }
 function renderTabs(){
   const {li, attested} = conjState;
@@ -394,35 +519,35 @@ function renderTabs(){
   if (!stems.includes(conjState.vs)) conjState.vs = stems[0];
   $('vstabs').innerHTML = stems.map(s => {
     const n = fs.filter(f => f.m.vs === s).reduce((a,f) => a + f.tn + f.nn, 0);
-    return `<button type="button" data-vs="${s}" aria-pressed="${s===conjState.vs}" ${n ? '' : 'class="g"'}>${VS[s]||s} ${n ? `(${n})` : '(לא במקרא)'}</button>`;
+    return `<button type="button" data-vs="${s}" aria-pressed="${s===conjState.vs}" ${n ? '' : 'class="g"'}>${lab('VS', s)} ${n ? `(${n})` : L('(לא במקרא)', '(not in Tanach)')}</button>`;
   }).join('');
   $('vstabs').querySelectorAll('button').forEach(b => b.addEventListener('click', () => { conjState.vs = b.dataset.vs; if (conjState.b) conjState.b.vs = b.dataset.vs; renderTabs(); renderConj(); renderBuilder(); }));
   // one line with every real form, grouped by binyan, so nothing hides behind a tab
-  $('vsum').innerHTML = '<span class="note">בתנ"ך לפי בניין: </span>' + attested.map(s => {
+  $('vsum').innerHTML = `<span class="note">${L('בתנ"ך לפי בניין: ', 'In Tanach by binyan: ')}</span>` + attested.map(s => {
     const list = fs.filter(f => f.m.vs === s).sort((a,b) => (b.tn+b.nn) - (a.tn+a.nn));
     const n = list.reduce((a,f) => a + f.tn + f.nn, 0);
     const shown = list.slice(0, 3).map(f => `<span class="f-he">${esc(f.t.replace('־',''))}</span>`).join(', ');
-    return `<a data-vs="${s}" class="vlink"><b>${VS[s]||s}</b> ×${n}: ${shown}${list.length > 3 ? ' ...' : ''}</a>`;
+    return `<a data-vs="${s}" class="vlink"><b>${lab('VS', s)}</b> ×${n}: ${shown}${list.length > 3 ? ' ...' : ''}</a>`;
   }).join(' · ');
-  $('vsum').querySelectorAll('a').forEach(a => a.addEventListener('click', () => { conjState.vs = a.dataset.vs; renderTabs(); renderConj(); }));
+  $('vsum').querySelectorAll('a').forEach(a => a.addEventListener('click', () => { conjState.vs = a.dataset.vs; if (conjState.b) conjState.b.vs = a.dataset.vs; renderTabs(); renderConj(); renderBuilder(); }));
   document.querySelectorAll('[data-cm]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.cm === conjMode)));
   const canGen = !conjState.weak;
-  $('cmnote').textContent = conjMode === 'real' ? 'מוצגות רק שורות ועמודות שיש בהן צורה מהמקרא'
-    : canGen ? 'משבצות ריקות מולאו בצורות בנויות, מסומנות בקו מקווקו'
-    : `השורש ${R2s(conjState.R)} אינו שלם: ${conjState.weak}. הכלי עדיין לא בונה צורות לשורש כזה, כדי לא להציג צורה שגויה. מוצגות רק צורות מהמקרא.`;
+  $('cmnote').textContent = conjMode === 'real' ? L('מוצגות רק שורות ועמודות שיש בהן צורה מהמקרא', 'Showing only rows and columns that have a form from Tanach')
+    : canGen ? L('משבצות ריקות מולאו בצורות בנויות, מסומנות בקו מקווקו', 'Empty cells are filled with constructed forms, marked with a dashed box')
+    : L(`השורש ${conjState.R.join('')} אינו שלם: ${conjState.weak}. הכלי עדיין לא בונה צורות לשורש כזה, כדי לא להציג צורה שגויה. מוצגות רק צורות מהמקרא.`,
+        `The root ${conjState.R.join('')} is not a regular root: ${conjState.weak}. The tool does not build forms for such a root yet, so as not to show a wrong form. Only forms from Tanach are shown.`);
 }
-const R2s = R => R.join('');
 function renderConj(){
   const {li, vs, curText, R, weak, aClass} = conjState;
   const g = $('conjgrid'); if (!g) return;
   const cur = cons(curText);
   const fs = formsOf(li).filter(f => f.m.sp === 'verb' && f.m.vs === vs);
   const full = conjMode === 'full', canGen = full && !weak;
-  const attestedCell = (list, vt, key) => '<td>' + list.slice(0,6).map(f => `<span class="f ${(cons(f.t)===cur && f.mi===conjState.curMi)?'cur':''}" data-vt="${vt}" data-key="${key}" title="${esc(describePart(li,f.mi).desc)}">${esc(f.t.replace('־',''))}</span><span class="c">${f.tn||''}${f.nn?` (${f.nn})`:''}</span>`).join('<br>') + (list.length>6?`<br><span class="c">ועוד ${list.length-6}</span>`:'') + '</td>';
+  const attestedCell = (list, vt, key) => '<td>' + list.slice(0,6).map(f => `<span class="f ${(cons(f.t)===cur && f.mi===conjState.curMi)?'cur':''}" data-vt="${vt}" data-key="${key}" title="${esc(describePart(li,f.mi).desc)}">${esc(f.t.replace('־',''))}</span><span class="c">${f.tn||''}${f.nn?` (${f.nn})`:''}</span>`).join('<br>') + (list.length>6?`<br><span class="c">${L('ועוד ', 'and ')}${list.length-6}${L('', ' more')}</span>`:'') + '</td>';
   const cell = (pred, vt, key) => {
     const list = fs.filter(pred).sort((a,b) => (b.tn+b.nn) - (a.tn+a.nn));
     if (list.length) return attestedCell(list, vt, key);
-    if (canGen) { const gform = genForm(vs, vt, key, R, aClass); if (gform) return `<td><span class="f g" data-vt="${vt}" data-key="${key}" title="נבנה לפי הדגם. לא כתוב בתנ״ך">${esc(gform)}</span></td>`; }
+    if (canGen) { const gform = genForm(vs, vt, key, R, aClass); if (gform) return `<td><span class="f g" data-vt="${vt}" data-key="${key}" title="${L('נבנה לפי הדגם. לא כתוב בתנ״ך', 'Built from the pattern. Not written in Tanach')}">${esc(gform)}</span></td>`; }
     return '<td class="empty">·</td>';
   };
   const pgn = f => f.m.ps + f.m.gn + f.m.nu;
@@ -432,31 +557,31 @@ function renderConj(){
                     : ROWS.filter(r => cols.some(t => has(t, r)));
   let h = '';
   if (cols.length && rows.length) {
-    h += `<div class="scroll"><table><thead><tr><th></th>${cols.map(t => `<th class="click" data-t="${t}">${VT[t]}</th>`).join('')}</tr></thead><tbody>`;
-    for (const r of rows) h += `<tr><th>${PGN[r]}</th>${cols.map(t => {
+    h += `<div class="scroll"><table><thead><tr><th></th>${cols.map(t => `<th class="click" data-t="${t}">${lab('VT', t)}</th>`).join('')}</tr></thead><tbody>`;
+    for (const r of rows) h += `<tr><th>${lab('PGN', r)}</th>${cols.map(t => {
       const perfLike = t === 'perf' || t === 'wqtl';
       if ((t === 'impv' && !r.startsWith('p2')) || (perfLike && IMPF_ONLY.has(r) && !has(t, r)) || (!perfLike && PERF_ONLY.has(r) && !has(t, r))) return '<td class="na">-</td>';
       return cell(f => f.m.vt === t && pgn(f) === r, t, r);
     }).join('')}</tr>`;
     h += '</tbody></table></div>';
   }
-  const PT = [['msg','יחיד'],['fsg','יחידה'],['mpl','רבים'],['fpl','רבות']];
-  const nfCols = [['infc','מקור נטוי'],['infa','מקור מוחלט'],['ptca','בינוני פועל'],['ptcp','בינוני פעול']]
-    .filter(([t]) => full ? (has(t) || (canGen && (t==='infc'?INFC:t==='infa'?INFA:t==='ptca'?PTCA:PTCP)[vs])) : has(t));
+  const PT = [['msg', L('יחיד', 'm. sg.')],['fsg', L('יחידה', 'f. sg.')],['mpl', L('רבים', 'm. pl.')],['fpl', L('רבות', 'f. pl.')]];
+  const nfCols = ['infc','infa','ptca','ptcp']
+    .filter(t => full ? (has(t) || (canGen && (t==='infc'?INFC:t==='infa'?INFA:t==='ptca'?PTCA:PTCP)[vs])) : has(t));
   if (nfCols.length) {
-    h += `<div class="scroll" style="margin-top:8px"><table><thead><tr>${nfCols.map(([t,l]) => `<th class="click" data-t="${t}">${l}</th>`).join('')}</tr></thead><tbody><tr>`;
-    for (const [t] of nfCols) {
+    h += `<div class="scroll" style="margin-top:8px"><table><thead><tr>${nfCols.map(t => `<th class="click" data-t="${t}">${lab('VT', t)}</th>`).join('')}</tr></thead><tbody><tr>`;
+    for (const t of nfCols) {
       if (t === 'infc' || t === 'infa') { h += cell(f => f.m.vt === t, t, ''); continue; }
       const parts = PT.map(([k,l]) => { const c = cell(f => f.m.vt === t && (f.m.gn + f.m.nu) === k, t, k); return c.includes('class="empty"') ? '' : `<div class="c">${l}</div>${c.replace(/^<td>|<\/td>$/g,'')}`; }).join('');
       h += `<td>${parts || '·'}</td>`;
     }
     h += '</tr></tbody></table></div>';
   }
-  g.innerHTML = h || '<p class="note">אין בבניין הזה צורות להציג.</p>';
+  g.innerHTML = h || `<p class="note">${L('אין בבניין הזה צורות להציג.', 'No forms to show in this binyan.')}</p>`;
   g.querySelectorAll('.f[data-vt]').forEach(s => s.addEventListener('click', () => { setBuilder(vs, s.dataset.vt, s.dataset.key); $('builder').scrollIntoView({block:'nearest'}); }));
-  $('binyanx').innerHTML = BINYAN_EXPLAIN[vs] || `<b>${VS[vs]||vs}</b>`;
-  $('tensex').innerHTML = TENSE_EXPLAIN[conjState.tense] || TENSE_EXPLAIN.perf;
-  g.querySelectorAll('th.click').forEach(th => th.addEventListener('click', () => { conjState.tense = th.dataset.t; $('tensex').innerHTML = TENSE_EXPLAIN[th.dataset.t]; }));
+  $('binyanx').innerHTML = BINYAN_EXPLAIN[LANG][vs] || `<b>${lab('VS', vs)}</b>`;
+  $('tensex').innerHTML = TENSE_EXPLAIN[LANG][conjState.tense] || TENSE_EXPLAIN[LANG].perf;
+  g.querySelectorAll('th.click').forEach(th => th.addEventListener('click', () => { conjState.tense = th.dataset.t; $('tensex').innerHTML = TENSE_EXPLAIN[LANG][th.dataset.t]; }));
 }
 
 // ---------- conjugation builder: pick binyan, tense, person; see the form and why ----------
@@ -464,20 +589,28 @@ const ALL_T = ['perf','wqtl','impf','wayq','impv','infc','infa','ptca','ptcp'];
 const KEYS_FOR = t => (t === 'perf' || t === 'wqtl') ? ['p3msg','p3fsg','p2msg','p2fsg','p1sg','p3pl','p2mpl','p2fpl','p1pl']
   : (t === 'impf' || t === 'wayq') ? ['p3msg','p3fsg','p2msg','p2fsg','p1sg','p3mpl','p3fpl','p2mpl','p2fpl','p1pl']
   : t === 'impv' ? ['p2msg','p2fsg','p2mpl','p2fpl'] : (t === 'ptca' || t === 'ptcp') ? ['msg','fsg','mpl','fpl'] : [''];
-const KEY_LABEL = k => PGN[k] || ({msg:'יחיד', fsg:'יחידה', mpl:'רבים', fpl:'רבות', '':'(אין גוף)'}[k]);
-const MARK = {
+const KEY_LABEL = k => DICT.PGN.he[k] ? lab('PGN', k) : ({msg:L('יחיד', 'masculine singular'), fsg:L('יחידה', 'feminine singular'), mpl:L('רבים', 'masculine plural'), fpl:L('רבות', 'feminine plural'), '':L('(אין גוף)', '(no person)')}[k]);
+const MARK = {he:{
   perf:{p3msg:'בלי סיומת', p3fsg:'סיומת ־ָה', p2msg:'סיומת ־תָּ', p2fsg:'סיומת ־תְּ', p1sg:'סיומת ־תִּי', p3pl:'סיומת ־וּ', p2mpl:'סיומת ־תֶּם', p2fpl:'סיומת ־תֶּן', p1pl:'סיומת ־נוּ'},
   impf:{p3msg:'תחילית י׳', p3fsg:'תחילית ת׳', p2msg:'תחילית ת׳', p2fsg:'תחילית ת׳ וסיומת ־ִי', p1sg:'תחילית א׳', p3mpl:'תחילית י׳ וסיומת ־וּ', p3fpl:'תחילית ת׳ וסיומת ־נָה', p2mpl:'תחילית ת׳ וסיומת ־וּ', p2fpl:'תחילית ת׳ וסיומת ־נָה', p1pl:'תחילית נ׳'},
   impv:{p2msg:'בלי סיומת', p2fsg:'סיומת ־ִי', p2mpl:'סיומת ־וּ', p2fpl:'סיומת ־נָה'},
-  ptc:{msg:'בלי סיומת', fsg:'סיומת ־ֶת (או ־ָה)', mpl:'סיומת ־ִים', fpl:'סיומת ־וֹת'}
-};
+  ptc:{msg:'בלי סיומת', fsg:'סיומת ־ֶת (או ־ָה)', mpl:'סיומת ־ִים', fpl:'סיומת ־וֹת'},
+  wqtl:'ו׳ בתחילה, ו', wayq:'וַ בתחילה ודגש באות שאחריה, ו'
+}, en:{
+  perf:{p3msg:'no ending', p3fsg:'ending ־ָה', p2msg:'ending ־תָּ', p2fsg:'ending ־תְּ', p1sg:'ending ־תִּי', p3pl:'ending ־וּ', p2mpl:'ending ־תֶּם', p2fpl:'ending ־תֶּן', p1pl:'ending ־נוּ'},
+  impf:{p3msg:'prefix י', p3fsg:'prefix ת', p2msg:'prefix ת', p2fsg:'prefix ת and ending ־ִי', p1sg:'prefix א', p3mpl:'prefix י and ending ־וּ', p3fpl:'prefix ת and ending ־נָה', p2mpl:'prefix ת and ending ־וּ', p2fpl:'prefix ת and ending ־נָה', p1pl:'prefix נ'},
+  impv:{p2msg:'no ending', p2fsg:'ending ־ִי', p2mpl:'ending ־וּ', p2fpl:'ending ־נָה'},
+  ptc:{msg:'no ending', fsg:'ending ־ֶת (or ־ָה)', mpl:'ending ־ִים', fpl:'ending ־וֹת'},
+  wqtl:'a vav at the start, and ', wayq:'וַ at the start with a dagesh in the next letter, and '
+}};
 function markFor(vt, key){
-  if (vt === 'perf') return MARK.perf[key];
-  if (vt === 'wqtl') return 'ו׳ בתחילה, ו' + MARK.perf[key];
-  if (vt === 'impf') return MARK.impf[key];
-  if (vt === 'wayq') return 'וַ בתחילה ודגש באות שאחריה, ו' + MARK.impf[key];
-  if (vt === 'impv') return MARK.impv[key];
-  if (vt === 'ptca' || vt === 'ptcp') return MARK.ptc[key];
+  const mk = MARK[LANG];
+  if (vt === 'perf') return mk.perf[key];
+  if (vt === 'wqtl') return mk.wqtl + mk.perf[key];
+  if (vt === 'impf') return mk.impf[key];
+  if (vt === 'wayq') return mk.wayq + mk.impf[key];
+  if (vt === 'impv') return mk.impv[key];
+  if (vt === 'ptca' || vt === 'ptcp') return mk.ptc[key];
   return '';
 }
 function setBuilder(vs, vt, key){ conjState.b = {vs, vt, key}; renderBuilder(); }
@@ -498,25 +631,25 @@ function renderBuilder(){
   const gen = (!weak && !real.length) ? genForm(vs, vt, key, R, aClass) : null;
   let out;
   if (real.length) {
-    out = real.slice(0, 4).map((f, i) => `<span class="form">${esc(f.t.replace('־',''))}</span><span class="tag">כתוב בתנ"ך: ${f.tn ? `${f.tn} בתורה` : ''}${f.tn && f.nn ? ', ' : ''}${f.nn ? `${f.nn} בנ"ך` : ''}</span> <a class="vlink" data-ri="${i}" style="cursor:pointer;color:var(--accent);text-decoration:underline">איפה?</a>`).join('<br>');
+    out = real.slice(0, 4).map((f, i) => `<span class="form">${esc(f.t.replace('־',''))}</span><span class="tag">${L('כתוב בתנ"ך: ', 'in Tanach: ')}${f.tn ? L(`${f.tn} בתורה`, `${f.tn} in the Torah`) : ''}${f.tn && f.nn ? ', ' : ''}${f.nn ? L(`${f.nn} בנ"ך`, `${f.nn} in Nevi'im and Kesuvim`) : ''}</span> <a class="vlink" data-ri="${i}" style="cursor:pointer;color:var(--accent);text-decoration:underline">${L('איפה?', 'Where?')}</a>`).join('<br>');
   } else if (gen) {
-    out = `<span class="form g">${esc(gen)}</span><span class="tag warn">לא במקרא. נבנה לפי דגם השלמים</span>`;
+    out = `<span class="form g">${esc(gen)}</span><span class="tag warn">${L('לא במקרא. נבנה לפי דגם השלמים', 'Not in Tanach. Built from the regular pattern')}</span>`;
   } else if (weak) {
-    out = `<span class="note">הצורה הזאת לא כתובה בתנ"ך, והשורש ${R.join('')} אינו שלם (${weak}), לכן הכלי לא בונה אותה.</span>`;
+    out = `<span class="note">${L(`הצורה הזאת לא כתובה בתנ"ך, והשורש ${R.join('')} אינו שלם (${weak}), לכן הכלי לא בונה אותה.`, `This form is not written in Tanach, and the root ${R.join('')} is not regular (${weak}), so the tool does not build it.`)}</span>`;
   } else {
-    out = `<span class="note">אין צורה כזאת בבניין ${VS[vs]||vs}.</span>`;
+    out = `<span class="note">${L(`אין צורה כזאת בבניין ${lab('VS', vs)}.`, `There is no such form in ${lab('VS', vs)}.`)}</span>`;
   }
   const mk = markFor(vt, key);
-  box.innerHTML = `<div class="h3" style="margin:0">בונה צורות: בחר בניין, זמן וגוף</div>
+  box.innerHTML = `<div class="h3" style="margin:0">${L('בונה צורות: בחר בניין, זמן וגוף', 'Form builder: pick a binyan, tense and person')}</div>
     <div class="sels">
-      <label class="note" for="b-vs">בניין</label><select id="b-vs">${stems.map(s => `<option value="${s}" ${s===vs?'selected':''}>${VS[s]||s}${attested.includes(s) ? '' : ' (לא במקרא)'}</option>`).join('')}</select>
-      <label class="note" for="b-vt">זמן</label><select id="b-vt">${ALL_T.map(t => `<option value="${t}" ${t===vt?'selected':''}>${VT[t]}</option>`).join('')}</select>
-      <label class="note" for="b-key">גוף</label><select id="b-key">${keys.map(k => `<option value="${k}" ${k===key?'selected':''}>${KEY_LABEL(k)}</option>`).join('')}</select>
-      <label class="note" for="b-root">שורש אחר</label><input id="b-root" placeholder="למשל שמר" value="">
+      <label class="note" for="b-vs">${L('בניין', 'Binyan')}</label><select id="b-vs">${stems.map(s => `<option value="${s}" ${s===vs?'selected':''}>${lab('VS', s)}${attested.includes(s) ? '' : L(' (לא במקרא)', ' (not in Tanach)')}</option>`).join('')}</select>
+      <label class="note" for="b-vt">${L('זמן', 'Tense')}</label><select id="b-vt">${ALL_T.map(t => `<option value="${t}" ${t===vt?'selected':''}>${lab('VT', t)}</option>`).join('')}</select>
+      <label class="note" for="b-key">${L('גוף', 'Person')}</label><select id="b-key">${keys.map(k => `<option value="${k}" ${k===key?'selected':''}>${KEY_LABEL(k)}</option>`).join('')}</select>
+      <label class="note" for="b-root">${L('שורש אחר', 'Another root')}</label><input id="b-root" placeholder="${L('למשל שמר', 'e.g. שמר')}" value="">
     </div>
     <div class="out">${out}</div>
-    <div class="why"><b>${VS[vs]||vs}</b>, <b>${VT[vt]}</b>${key ? `, <b>${KEY_LABEL(key)}</b>` : ''}${mk ? `: ${mk}.` : '.'} <span class="note">${(BINYAN_EXPLAIN[vs]||'').replace(/<[^>]+>/g,'')}</span></div>
-    <div class="why note">${(TENSE_EXPLAIN[vt]||'').replace(/<[^>]+>/g,'')}</div>`;
+    <div class="why"><b>${lab('VS', vs)}</b>, <b>${lab('VT', vt)}</b>${key ? `, <b>${KEY_LABEL(key)}</b>` : ''}${mk ? `: ${mk}.` : '.'} <span class="note">${(BINYAN_EXPLAIN[LANG][vs]||'').replace(/<[^>]+>/g,'')}</span></div>
+    <div class="why note">${(TENSE_EXPLAIN[LANG][vt]||'').replace(/<[^>]+>/g,'')}</div>`;
   $('b-vs').addEventListener('change', e => { conjState.b.vs = e.target.value; conjState.vs = e.target.value; renderTabs(); renderConj(); renderBuilder(); });
   $('b-vt').addEventListener('change', e => { conjState.b.vt = e.target.value; renderBuilder(); });
   $('b-key').addEventListener('change', e => { conjState.b.key = e.target.value; renderBuilder(); });
@@ -529,65 +662,114 @@ function openRoot(txt){
   let found = -1;
   D.X.forEach((r, i) => { if (found < 0 && r[3] === 'verb' && cons(r[1]) === c) found = i; });
   if (found >= 0) { const wi = firstWordOfLex(found); if (wi >= 0) { openWord(wi, null); return; } }
-  const box = $('builder');
-  box.querySelector('.out').innerHTML = `<span class="note">השורש ${esc(c)} לא נמצא כפועל בתורה. נסה בחיפוש למעלה.</span>`;
+  $('builder').querySelector('.out').innerHTML = `<span class="note">${L(`השורש ${esc(c)} לא נמצא כפועל בתורה. נסה בחיפוש למעלה.`, `The root ${esc(c)} was not found as a verb in the Torah. Try the search at the top.`)}</span>`;
+}
+// no table for a word that is not a verb in this pasuk: say why, and offer a related verb
+const baseKey = k => k.replace(/[\[\/=]+$/, '');
+// verbs that may share this word's root: ETCBC's root when it gives one, otherwise the same letters,
+// also trying the word without a final ה or ת (feminine endings), which is a guess and is labeled as one
+function relatedVerbs(li){
+  const r = D.X[li][7], stem = baseKey(D.X[li][0]);
+  const sure = r ? [r] : [stem];
+  const guess = r ? [] : [stem.replace(/[HT]$/, ''), stem.replace(/WT$/, '')].filter(s => s && s !== stem);
+  const out = [];
+  D.X.forEach((x, i) => {
+    if (i === li || x[3] !== 'verb') return;
+    const vb = baseKey(x[0]);
+    if (sure.includes(vb)) out.push({i, how: r ? 'root' : 'same'});
+    else if (guess.includes(vb)) out.push({i, how: 'guess'});
+  });
+  return out;
+}
+function noConj(li, wi){
+  const x = X(li), rel = relatedVerbs(li);
+  const what = lab('SP', x.sp);
+  let h = `<div class="explain">${L(`<b>אין כאן טבלת נטייה.</b> בפסוק הזה המילה <span class="f-he">${esc(D.W[wi].replace('־',''))}</span> היא ${what}, לא פועל (לפי הניתוח של ETCBC לפסוק הזה), וטבלת נטייה בנויה רק לפועל.`,
+    `<b>No conjugation table here.</b> In this pasuk the word <span class="f-he">${esc(D.W[wi].replace('־',''))}</span> is a ${what}, not a verb (by ETCBC's reading of this pasuk), and the table is built only for verbs.`)}`;
+  if (x.sp === 'subs' || x.sp === 'adjv') h += L(' כל הצורות של המילה כשם (יחיד, רבים, נסמך, עם כינוי) נמצאות ברשימת הצורות למעלה.', ' All its forms as a noun (singular, plural, construct, with suffixes) are in the list of forms above.');
+  if (rel.length) {
+    const HOW = {root:L('לפי ETCBC זה אותו שורש', 'ETCBC gives the same root'), same:L('אותן אותיות. לפעמים אותו שורש ולפעמים לא (למשל גֹּמֶא, צמח, לעומת גמא, שתה)', 'the same letters; sometimes the same root and sometimes not (for example גֹּמֶא papyrus versus גמא drink)'), guess:L('אותיות דומות בלי הסיומת ה׳ או ת׳. ניחוש, לא קביעה', 'similar letters without a final ה or ת; a guess, not a ruling')};
+    h += `<br>${L('יש פועל בתורה שאולי קשור. הוא מוצג בנפרד, לא במקום המילה שבפסוק:', 'There is a verb in the Torah that may be related. It is shown separately, not in place of the word in the pasuk:')}`;
+    h += '<div class="tabs" style="margin-top:6px;flex-direction:column;align-items:flex-start">' + rel.map(o => `<button type="button" class="relv" data-l="${o.i}">${L('טבלת נטייה של הפועל ', 'Conjugation table of the verb ')}<span class="f-he">${esc(D.X[o.i][1])}</span> (${esc(D.X[o.i][2])}, ×${D.X[o.i][4]} ${L('בתנ"ך', 'in Tanach')}): ${HOW[o.how]}</button>`).join('') + '</div>';
+  } else {
+    h += '<br>' + L('לא נמצא בתורה פועל מאותו שורש. אם השם נגזר מפועל באופן אחר, חפשו את הפועל בחיפוש למעלה.', 'No verb from the same root was found in the Torah. If the noun comes from a verb some other way, look the verb up with the search at the top.');
+  }
+  return h + '</div>';
+}
+function showRelatedConj(l2){
+  const vf = formsOf(l2).filter(f => f.m.sp === 'verb').sort((a,b) => (b.tn+b.nn) - (a.tn+a.nn));
+  if (!vf.length) return;
+  const note = `<div class="explain">${L('טבלת הנטייה של הפועל ', 'Conjugation table of the verb ')}<span class="f-he">${esc(D.X[l2][1])}</span>${L(', שאולי קשור למילה. המילה שבחרת בפסוק עצמה אינה פועל.', ', which may be related to the word. The word you chose in the pasuk is itself not a verb.')}</div>`;
+  $('conjwrap').innerHTML = note + conjugation(l2, vf[0].mi, '');
+  bindConj();
+}
+function bindConj(){
+  if (!$('vstabs')) return;
+  document.querySelectorAll('[data-cm]').forEach(b => b.addEventListener('click', () => {
+    conjMode = b.dataset.cm; try { localStorage.setItem('tw-conj', conjMode); } catch(e){}
+    renderTabs(); renderConj();
+  }));
+  renderTabs(); renderConj(); renderBuilder();
 }
 function bindCard(li){
-  if ($('vstabs')) {
-    document.querySelectorAll('[data-cm]').forEach(b => b.addEventListener('click', () => {
-      conjMode = b.dataset.cm; try { localStorage.setItem('tw-conj', conjMode); } catch(e){}
-      renderTabs(); renderConj();
-    }));
-    renderTabs(); renderConj(); renderBuilder();
-  }
+  bindConj();
+  document.querySelectorAll('.relv').forEach(b => b.addEventListener('click', () => showRelatedConj(+b.dataset.l)));
   const fs = formsOf(li).sort((a,b) => (b.tn - a.tn) || (b.nn - a.nn));
   document.querySelectorAll('#ftable .f').forEach(s => s.addEventListener('click', () => showRefs(li, fs[+s.dataset.fi])));
-  document.querySelectorAll('.fam').forEach(a => a.addEventListener('click', () => {
+  document.querySelectorAll('#ftable .cnt').forEach(s => s.addEventListener('click', () => showRefs(li, fs[+s.dataset.fi], s.dataset.where)));
+  document.querySelectorAll('.fam, .thes-l').forEach(a => a.addEventListener('click', () => {
     const l = +a.dataset.l; const wi = firstWordOfLex(l); if (wi >= 0) openWord(wi, null);
   }));
 }
 function firstWordOfLex(l){ for (let i = 0; i < NW; i++) if (D.WP[i].some(p => p[0]===l)) return i; return -1; }
-function showRefs(li, f){
+const sefariaUrl = (en, ch, vs) => `https://www.sefaria.org/${encodeURIComponent(en.replace(/ /g,'_'))}.${ch}.${vs}?lang=${LANG === 'en' ? 'bi' : 'he'}`;
+function showRefs(li, f, where){
   const target = cons(f.t), out = [];
   for (let i = 0; i < NW; i++) if (D.WP[i].some(p => p[0]===li && p[1]===f.mi) && cons(D.W[i])===target) out.push(i);
-  const nach = f.nn ? `<p class="note">בנביאים וכתובים: ${f.nn} פעמים${f.ref ? `, הראשונה ב${D.NB[f.ref[0]]} ${gem(f.ref[1])}:${gem(f.ref[2])}` : ''}.</p>` : '';
-  $('refbox').innerHTML = `<p class="h3">איפה מופיעה הצורה <span class="f-he">${esc(f.t.replace('־',''))}</span></p>
-    <div class="refs">${out.map(i => `<a data-w="${i}">${refOfWord(i)}</a>`).join('') || '<span class="note">לא בתורה</span>'}</div>${nach}`;
-  $('refbox').querySelectorAll('a').forEach(a => a.addEventListener('click', () => openWord(+a.dataset.w, null)));
+  const torah = `<div><p class="h3" style="margin:6px 0 4px">${L(`בתורה: ${f.tn} פעמים`, `In the Torah: ${f.tn} ${f.tn===1?'time':'times'}`)}</p>
+    <div class="refs">${out.map(i => `<a data-w="${i}">${refOfWord(i)}</a>`).join('') || `<span class="note">${L('לא בתורה', 'Not in the Torah')}</span>`}</div>
+    ${out.length ? `<p class="note">${L('לחיצה פותחת את הפסוק כאן.', 'Click to open the pasuk here.')}</p>` : ''}</div>`;
+  // Nevi'im and Kesuvim: grouped by sefer, each place links to the pasuk on Sefaria (opens in a new tab)
+  const byBook = new Map();
+  for (const nv of f.refs) { const [b, ch, vs] = D.NV[nv]; if (!byBook.has(b)) byBook.set(b, []); byBook.get(b).push([ch, vs]); }
+  const nach = `<div><p class="h3" style="margin:10px 0 4px">${L(`בנביאים וכתובים: ${f.nn} פעמים`, `In Nevi'im and Kesuvim: ${f.nn} ${f.nn===1?'time':'times'}`)}</p>
+    ${f.nn ? [...byBook.entries()].map(([b, list]) => `<div class="refs"><b>${nachBook(b)}:</b> ${list.map(([ch, vs]) => `<a href="${sefariaUrl(D.NE[b], ch, vs)}" target="_blank" rel="noopener">${nachRef(b, ch, vs)}</a>`).join('')}</div>`).join('')
+      + `<p class="note">${L('הפסוקים מנביאים וכתובים נפתחים בספריא, בלשונית חדשה.', 'Pesukim from Nevi\'im and Kesuvim open on Sefaria, in a new tab.')}</p>` : `<span class="note">${L('לא בנביאים וכתובים', 'Not in Nevi\'im and Kesuvim')}</span>`}</div>`;
+  $('refbox').innerHTML = `<p class="h3">${L('איפה מופיעה הצורה ', 'Where the form appears: ')}<span class="f-he">${esc(f.t.replace('־',''))}</span></p>` + (where === 'nach' ? nach + torah : torah + nach);
+  $('refbox').querySelectorAll('a[data-w]').forEach(a => a.addEventListener('click', () => openWord(+a.dataset.w, null)));
   $('refbox').scrollIntoView({block:'nearest'});
 }
 
 // ---------- search ----------
 let consIdx = null, relIdx = null;
-$('sform').addEventListener('submit', ev => {
-  ev.preventDefault();
-  const q = $('q').value.trim(); if (!q) return;
+function runSearch(q, openFirst){
   if (!consIdx) { consIdx = D.W.map(cons); relIdx = D.W.map(relaxed); }
+  lastSearch = q;
   const mode = $('m-part').checked ? 'part' : 'whole';
   const c = cons(q), r = relaxed(q);
-  const PFX = /^[והבכלמש]{1,3}$/;
-  const pre = (full, t) => full.endsWith(t) && full.length > t.length && PFX.test(full.slice(0, full.length - t.length));
   let hits = [];
   for (let i = 0; i < NW; i++) {
     const a = consIdx[i], b = relIdx[i];
-    if (mode === 'part' ? (a.includes(c) || (r.length > 2 && b.includes(r))) : (a===c || b===r || pre(a,c) || (r.length>1 && pre(b,r)))) hits.push(i);
+    if (mode === 'part' ? (a.includes(c) || (r.length > 2 && b.includes(r))) : (a===c || b===r || preOk(a,c) || (r.length>1 && preOk(b,r)))) hits.push(i);
   }
   const groups = new Map();
   for (const i of hits) { const [li] = mainPart(i); if (!groups.has(li)) groups.set(li, []); groups.get(li).push(i); }
   const list = $('list');
-  $('ltitle').textContent = `חיפוש: ${q}`;
-  $('lcount').textContent = `${hits.length} מופעים, ${groups.size} ערכים`;
-  $('lvnote').textContent = mode === 'whole' ? 'מילה שלמה: כולל אותיות שימוש בתחילת המילה, ובלי הבדל בין כתיב מלא לחסר' : 'בתוך מילה';
+  $('ltitle').textContent = L('חיפוש: ', 'Search: ') + q;
+  $('lcount').textContent = L(`${hits.length} מופעים, ${groups.size} ערכים`, `${hits.length} hits, ${groups.size} entries`);
+  $('lvnote').textContent = mode === 'whole' ? L('מילה שלמה: כולל אותיות שימוש בתחילת המילה, ובלי הבדל בין כתיב מלא לחסר', 'Whole word: includes prefix letters, and ignores full versus short spelling') : L('בתוך מילה', 'Inside a word');
   list.innerHTML = [...groups.entries()].sort((a,b) => b[1].length - a[1].length).slice(0, 300).map(([li, ws]) => {
     const x = X(li);
-    return `<div class="row" tabindex="0" data-w="${ws[0]}" role="button"><div class="w">${esc(x.v)}</div><div class="nums">כאן ${ws.length} · תורה ${x.tn} · תנ"ך ${x.n}</div>
-      <div class="meta">${esc(x.g)} · ראשון: ${refOfWord(ws[0])} ${tags(li)}</div></div>`;
-  }).join('') || '<div class="sect">לא נמצא בתורה. נסה בתוך מילה, או פחות אותיות.</div>';
+    return `<div class="row" tabindex="0" data-w="${ws[0]}" role="button"><div class="w">${esc(x.v)}</div><div class="nums">${L(`כאן ${ws.length}`, `here ${ws.length}`)} · ${counts(x)}</div>
+      <div class="meta">${esc(x.g)} · ${L('ראשון: ', 'first: ')}${refOfWord(ws[0])} ${tags(li)}</div></div>`;
+  }).join('') || `<div class="sect">${L('לא נמצא בתורה. נסה בתוך מילה, או פחות אותיות.', 'Not found in the Torah. Try "inside a word", or fewer letters.')}</div>`;
   bindRows();
-  const first = list.querySelector('.row[data-w]'); if (first) first.click();
-});
+  if (openFirst) { const first = list.querySelector('.row[data-w]'); if (first) first.click(); }
+}
+$('sform').addEventListener('submit', ev => { ev.preventDefault(); const q = $('q').value.trim(); if (q) runSearch(q, true); });
 
 // ---------- start ----------
+applyLang();
 fillSefer();
 const startP = D.P.findIndex(p => p[0] === 'Chayei Sara');
 selectParsha(startP);
