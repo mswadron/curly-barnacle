@@ -35,9 +35,14 @@
 
   function machlokesHTML(mv, dim) {
     const topic = mv.topic ? `<span class="mk-topic">${lang === 'he' ? 'מחלוקת' : 'Machlokes'}: ${esc(lang === 'he' ? mv.topic.he : mv.topic.en)}</span>` : '';
-    const side = (s, k) => `<div class="mk-side"><div class="mk-who"><span>${esc(s.who)}</span>${k ? '' : ''}
+    const chip = (st) => {
+      if (!st) return '';
+      const links = st.links.map((l) => `<a href="${l.url}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join('<span class="sep">·</span>');
+      return `<span class="st st-${st.kind}" title="${esc(st.hover)}">${esc(st.label)}<span class="sep">·</span>${links}</span>`;
+    };
+    const side = (s) => `<div class="mk-side"><div class="mk-who"><span>${esc(s.who)}</span>${chip(s.status)}
         <a class="daf" href="${s.link}" target="_blank" rel="noopener">${esc(s.daf)}</a></div>
-        <p class="quote he">${esc(s.q)}</p></div>`;
+        <p class="quote he">${esc(s.q)}</p>${s.status ? `<p class="st-hover he"><b>${esc(s.status.hover_src || s.status.links[0].label)}:</b> ${esc(s.status.hover)}</p>` : ''}</div>`;
     return `<div class="move mk${dim ? ' dim' : ''}">
       <div class="move-head">${mv.tags.map((n) => tagChip(n, true)).join('')}${topic}</div>
       ${mv.intro ? `<p class="quote he mk-frame">${esc(mv.intro)}</p>` : ''}

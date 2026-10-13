@@ -21,3 +21,9 @@ Mishnah: Sefaria, Torat Emet 357. Gemara: Sefaria, William Davidson Edition, Voc
 
 ## Machlokes
 Where amoraim or tannaim dispute the same point, the sides are shown in one box: the point in dispute, then each speaker on his own line with his words and daf (19 such boxes). Each side's words are an exact piece of an already-checked quote; a shared opening or closing line of the Gemara is shown above or below the sides in grey. (2026-10-12)
+
+## Status chips on machlokes sides (2026-10-12)
+A side of a machlokes may carry a chip, always in the source's own words, never the editor's:
+- grey "נדחה" chip: the Gemara's word that sets the side aside (כי קושיין, אלא, תיובתא), linked to the daf, with the verbatim sentence under the quote.
+- teal "וכן הלכה" / "הלכה" chip: a posek (Rambam, Shulchan Aruch) or the Gemara rules like that side; links to each source, with one verbatim sentence from the first.
+Where neither applies there is no chip. 14 chips on 20 boxes: 2 נדחה (1:1 Rav Nachman, 2:6 Rava), 12 הלכה. Every chip sentence was checked by script against the Sefaria text (src/check_refs.py).
