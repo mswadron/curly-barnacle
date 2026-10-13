@@ -81,8 +81,8 @@ window.BEITZA_DATA = {
    "he": "דיוק בלשון",
    "en": "Precise wording",
    "desc": {
-    "he": "מילה אחת במשנה נושאת את הפירוש",
-    "en": "One word in the Mishnah carries the reading"
+    "he": "דיוק מלשון המשנה כמות שהיא: מי קתני, דיקא נמי",
+    "en": "An inference from the Mishnah's words as they stand: mi katani, dayka nami"
    }
   },
   "10": {
@@ -91,6 +91,14 @@ window.BEITZA_DATA = {
    "desc": {
     "he": "עובדה במציאות קובעת את הפירוש",
     "en": "A fact about the world decides the reading"
+   }
+  },
+  "11": {
+   "he": "הכי קתני",
+   "en": "This is what it teaches",
+   "desc": {
+    "he": "הגמרא קוראת או משלימה את לשון המשנה: הכי קאמר, חסורי מחסרא, אלא אימא",
+    "en": "The Gemara re-reads or completes the Mishnah's words: hachi ka'amar, chasurei mechasra, ela eima"
    }
   }
  },
@@ -230,7 +238,7 @@ window.BEITZA_DATA = {
     {
      "machlokes": true,
      "tags": [
-      9
+      11
      ],
      "topic": {
       "he": "מהו 'השוחט' שבמשנה: הבא לימלך, ומה בית שמאי אומרים לו",
@@ -253,7 +261,7 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      9
+      11
      ],
      "who": "רבה",
      "daf": "ביצה ח.",
@@ -762,7 +770,7 @@ window.BEITZA_DATA = {
     {
      "tags": [
       2,
-      9
+      11
      ],
      "who": "אביי / הגמרא",
      "daf": "ביצה טו.",
@@ -1461,7 +1469,8 @@ window.BEITZA_DATA = {
    "moves": [
     {
      "tags": [
-      4
+      4,
+      11
      ],
      "who": "הגמרא",
      "daf": "ביצה כד.",
@@ -2057,7 +2066,8 @@ window.BEITZA_DATA = {
    "moves": [
     {
      "tags": [
-      1
+      1,
+      11
      ],
      "who": "רב יהודה אמר שמואל",
      "daf": "ביצה לא:",
@@ -2184,7 +2194,7 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      9
+      11
      ],
      "who": "הגמרא",
      "daf": "ביצה לג.",

@@ -106,7 +106,7 @@
     $('#subtitle').textContent = lang === 'en' ? D.title.en : '';
     $('#intro').innerHTML = `<p class="${lang}">${esc(D.intro[lang])}</p>`;
     $('#intro').dir = lang === 'he' ? 'rtl' : 'ltr';
-    $('#legend-title').textContent = lang === 'he' ? 'דרכי הלימוד: עשרה סוגים' + (perek ? ' · פרק ' + HL[perek] : '') : 'Ten kinds of teaching' + (perek ? ' · Perek ' + perek : '');
+    $('#legend-title').textContent = lang === 'he' ? 'דרכי הלימוד: אחד עשר סוגים' + (perek ? ' · פרק ' + HL[perek] : '') : 'Eleven kinds of teaching' + (perek ? ' · Perek ' + perek : '');
     $('#legend-hint').textContent = lang === 'he' ? 'לחץ על סוג כדי להדגיש אותו בכל המשניות' : 'Tap a type to highlight it across every Mishnah';
     $('#clear').textContent = lang === 'he' ? 'הצג הכל' : 'Show all';
     renderLegend();
