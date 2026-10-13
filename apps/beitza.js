@@ -33,8 +33,22 @@
     $('#clear').hidden = filter === null;
   }
 
+  function machlokesHTML(mv, dim) {
+    const topic = mv.topic ? `<span class="mk-topic">${lang === 'he' ? 'מחלוקת' : 'Machlokes'}: ${esc(lang === 'he' ? mv.topic.he : mv.topic.en)}</span>` : '';
+    const side = (s, k) => `<div class="mk-side"><div class="mk-who"><span>${esc(s.who)}</span>${k ? '' : ''}
+        <a class="daf" href="${s.link}" target="_blank" rel="noopener">${esc(s.daf)}</a></div>
+        <p class="quote he">${esc(s.q)}</p></div>`;
+    return `<div class="move mk${dim ? ' dim' : ''}">
+      <div class="move-head">${mv.tags.map((n) => tagChip(n, true)).join('')}${topic}</div>
+      ${mv.intro ? `<p class="quote he mk-frame">${esc(mv.intro)}</p>` : ''}
+      ${mv.sides.map(side).join('')}
+      ${mv.outro ? `<p class="quote he mk-frame">${esc(mv.outro)}</p>` : ''}
+    </div>`;
+  }
+
   function moveHTML(mv) {
     const dim = filter !== null && !mv.tags.includes(filter);
+    if (mv.machlokes) return machlokesHTML(mv, dim);
     return `<div class="move${dim ? ' dim' : ''}">
       <div class="move-head">${mv.tags.map((n) => tagChip(n, true)).join('')}
         <span class="who">${esc(mv.who)}</span>
