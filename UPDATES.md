@@ -24,3 +24,4 @@
 2026-10-12 · Beitzah page: all 42 editor lines rewritten to the 1:7 pattern; פירוש button on every box loads the Steinsaltz commentary for that exact segment inline (Sefaria API, CORS open).
 2026-10-12 · Added Shabbos (apps/shabbos.html): all 139 mishnayos, 476 boxes, quotes verified 697/697; tile under Mishnah; docs/shabbos.md.
 2026-10-12 · Shabbos page: independent review of all 24 perakim. 16 boxes removed, 4 duplicate machlokes sides removed, 14 retagged, 3 speakers fixed, 16 editor lines rewritten. 460 boxes.
+2026-10-12 · Shabbos page: 38 status chips on machlokes sides (12 נדחה, 26 הלכה), all source-worded and linked, verified.
