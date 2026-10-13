@@ -16,3 +16,4 @@
 2026-10-12 · Beitzah page: header is now משנה כתורה שבעל פה with מסכת ביצה under it; index section renamed Mishnah.
 2026-10-12 · Rare Words in Tanach (apps/milim.html): Rashi on the word (match first), Targum Onkelos, same-meaning words, clickable counts listing every place, related-verb tables for nouns, Hebrew/English switch with JPS 1917 and Rashi English; new apps/milim-text.js.
 2026-10-12 · Beitzah page: each machlokes merged into one box (19), sides listed by speaker; tag 1 renamed במאי עסקינן, מוקמינן לה.
+2026-10-12 · Beitzah page: removed the R' Chiya's sons box from 1:3 (it reads the baraisa, not the Mishnah); 2:2 machlokes no longer tagged 9.
