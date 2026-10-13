@@ -113,7 +113,7 @@
       <div class="mishnah"><span class="eyebrow">${lang === 'he' ? 'משנה' : 'Mishnah'} · <a href="${m.link}" target="_blank" rel="noopener">${esc(m.ref)}</a></span>
         <p class="he mtext">${esc(m.text)}</p></div>
       ${gap}
-      <div class="moves"><span class="eyebrow">${lang === 'he' ? 'הגמרא' : 'The Gemara'}</span>${moves}</div>
+      ${m.moves.length || m.pending ? `<div class="moves"><span class="eyebrow">${lang === 'he' ? 'הגמרא' : 'The Gemara'}</span>${moves}</div>` : ''}
       ${hal}
       <div class="simen"><span class="eyebrow">${lang === 'he' ? 'סימן' : 'Mnemonic'}</span><span class="blank">${lang === 'he' ? 'יתווסף' : 'to come'}</span></div>
     </article>`;

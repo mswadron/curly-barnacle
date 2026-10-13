@@ -242,8 +242,8 @@ window.SHABBOS_DATA = {
    "moves": [
     {
      "tags": [
-      4,
-      11
+      2,
+      4
      ],
      "who": "רב פפא",
      "daf": "שבת ב:",
@@ -683,8 +683,8 @@ window.SHABBOS_DATA = {
    },
    "text": "בֵּית שַׁמַּאי אוֹמְרִים, אֵין מוֹכְרִין לַנָּכְרִי וְאֵין טוֹעֲנִין עִמּוֹ וְאֵין מַגְבִּיהִין עָלָיו, אֶלָּא כְּדֵי שֶׁיַּגִּיעַ לְמָקוֹם קָרוֹב. וּבֵית הִלֵּל מַתִּירִין:",
    "gap": {
-    "he": "לפי לשון המשנה, בית שמאי אוסרים למכור לנכרי אלא כדי שיגיע למקום קרוב, ובית הלל מתירים בלי הגבלה. הברייתא מציגה אחרת: גם לבית הלל יש שיעור, כדי שיגיע לבית הסמוך לחומה, ובית שמאי אומרים כדי שיגיע לביתו, ורבי עקיבא אומר כדי שיצא מפתח ביתו. ורבי יוסי ברבי יהודה אומר שרבי עקיבא בא רק לפרש את דברי בית הלל.",
-    "en": "As written, Beis Shammai forbid selling to a non-Jew unless he can reach a nearby place, and Beis Hillel permit with no limit. The baraisa frames it differently: Beis Hillel also have a measure, enough time to reach the house next to the wall, Beis Shammai say enough to reach his own house, and Rabbi Akiva says enough to leave the doorway of his house. And Rabbi Yosi son of Rabbi Yehudah says Rabbi Akiva came only to explain Beis Hillel's words."
+    "he": "לפי לשון המשנה, בית שמאי אוסרים למכור לנכרי אלא כדי שיגיע למקום קרוב, ובית הלל מתירים בלי הגבלה. הברייתא מציגה את המחלוקת אחרת: גם לבית הלל יש שיעור, כדי שיגיע לבית הסמוך לחומה, לבית שמאי כדי שיגיע לביתו, ולרבי עקיבא כדי שיצא מפתח ביתו.",
+    "en": "As written, Beis Shammai forbid selling to a non-Jew unless he can reach a nearby place, and Beis Hillel permit with no limit. The baraisa frames the dispute differently: Beis Hillel also have a measure, enough time to reach the house next to the wall; for Beis Shammai, enough to reach his own house; and for Rabbi Akiva, enough to leave the doorway of his house."
    },
    "moves": [
     {
@@ -695,16 +695,6 @@ window.SHABBOS_DATA = {
      "daf": "שבת יח:",
      "link": "https://www.sefaria.org/Shabbat.18b",
      "q": "בֵּית שַׁמַּאי אוֹמְרִים: לֹא יִמְכּוֹר אָדָם חֶפְצוֹ לְגוֹי ... אֶלָּא כְּדֵי שֶׁיַּגִּיעַ לְבֵיתוֹ. וּבֵית הִלֵּל אוֹמְרִים: כְּדֵי שֶׁיַּגִּיעַ לַבַּיִת הַסָּמוּךְ לַחוֹמָה. רַבִּי עֲקִיבָא אוֹמֵר: כְּדֵי שֶׁיֵּצֵא מִפֶּתַח בֵּיתוֹ.",
-     "ref": "18b.7"
-    },
-    {
-     "tags": [
-      7
-     ],
-     "who": "רבי יוסי ברבי יהודה (ברייתא)",
-     "daf": "שבת יח:",
-     "link": "https://www.sefaria.org/Shabbat.18b",
-     "q": "הֵן הֵן דִּבְרֵי רַבִּי עֲקִיבָא, הֵן הֵן דִּבְרֵי בֵּית הִלֵּל — לֹא בָּא רַבִּי עֲקִיבָא אֶלָּא לְפָרֵשׁ דִּבְרֵי בֵּית הִלֵּל.",
      "ref": "18b.7"
     }
    ],
@@ -721,39 +711,10 @@ window.SHABBOS_DATA = {
    },
    "text": "בֵּית שַׁמַּאי אוֹמְרִים, אֵין נוֹתְנִין עוֹרוֹת לְעַבְּדָן וְלֹא כֵלִים לְכוֹבֵס נָכְרִי, אֶלָּא כְּדֵי שֶׁיֵּעָשׂוּ מִבְּעוֹד יוֹם. וּבְכֻלָּן בֵּית הִלֵּל מַתִּירִין עִם הַשָּׁמֶשׁ:",
    "gap": {
-    "he": "לפי לשון המשנה, בית שמאי אוסרים לתת עורות לעבדן וכלים לכובס נכרי סמוך לשבת, ובכולן בית הלל מתירים עם השמש. הגמרא שואלת מי התנא שכל דבר הבא מאליו מותר: לרבי יוסי ברבי חנינא זה רבי ישמעאל, ולרבי אלעזר זה רבי אלעזר המתיר חלות דבש שיצאו מעצמן.",
-    "en": "As written, Beis Shammai forbid giving hides to a tanner or clothes to a non-Jewish launderer close to Shabbos, and in all these Beis Hillel permit until sunset. The Gemara asks which Tanna holds that whatever happens by itself is permitted: for Rabbi Yosi son of Rabbi Chanina it is Rabbi Yishmael, and for Rabbi Elazar it is Rabbi Elazar, who permits honeycombs whose honey flowed out by itself."
+    "he": "לפי לשון המשנה, בית שמאי אוסרים לתת עורות לעבדן וכלים לכובס נכרי אלא כדי שייעשו מבעוד יום, ובכולן בית הלל מתירים עם השמש. הגמרא אינה מוסיפה דבר על קריאת משנה זו.",
+    "en": "As written, Beis Shammai forbid giving hides to a tanner or clothes to a non-Jewish launderer unless the work can be done before Shabbos, and in all these Beis Hillel permit until sunset. The Gemara adds nothing to the reading of this Mishnah."
    },
-   "moves": [
-    {
-     "machlokes": true,
-     "tags": [
-      4
-     ],
-     "topic": {
-      "he": "מי התנא שכל דבר הבא מאליו מותר",
-      "en": "Which Tanna holds that whatever happens by itself is permitted"
-     },
-     "intro": "מַאן תַּנָּא דְּכֹל מִידֵּי דְּאָתֵי מִמֵּילָא, שַׁפִּיר דָּמֵי?",
-     "outro": null,
-     "sides": [
-      {
-       "who": "רבי יוסי ברבי חנינא",
-       "daf": "שבת יט.",
-       "link": "https://www.sefaria.org/Shabbat.19a",
-       "q": "רַבִּי יִשְׁמָעֵאל הִיא, דִּתְנַן: הַשּׁוּם וְהַבּוֹסֶר וְהַמְּלִילוֹת שֶׁרִסְּקָן מִבְּעוֹד יוֹם, רַבִּי יִשְׁמָעֵאל אוֹמֵר: יִגְמוֹר מִשֶּׁתֶּחְשַׁךְ",
-       "ref": "19a.13"
-      },
-      {
-       "who": "רבי אלעזר",
-       "daf": "שבת יט:",
-       "link": "https://www.sefaria.org/Shabbat.19b",
-       "q": "רַבִּי אֶלְעָזָר הִיא. דִּתְנַן: חַלּוֹת דְּבַשׁ שֶׁרִיסְּקָן בְּעֶרֶב שַׁבָּת וְיָצְאוּ מֵעַצְמָן — אָסוּר, וְרַבִּי אֶלְעָזָר מַתִּיר.",
-       "ref": "19b.1"
-      }
-     ]
-    }
-   ],
+   "moves": [],
    "halacha": null
   },
   {
@@ -812,8 +773,7 @@ window.SHABBOS_DATA = {
    "moves": [
     {
      "tags": [
-      2,
-      11
+      2
      ],
      "who": "רבי אלעזר אמר רב",
      "daf": "שבת כ.",
@@ -1027,6 +987,7 @@ window.SHABBOS_DATA = {
     {
      "machlokes": true,
      "tags": [
+      2,
       4,
       1
      ],
@@ -1077,8 +1038,8 @@ window.SHABBOS_DATA = {
    },
    "text": "אֵין מַדְלִיקִין בְּשֶׁמֶן שְׂרֵפָה בְּיוֹם טוֹב. רַבִּי יִשְׁמָעֵאל אוֹמֵר, אֵין מַדְלִיקִין בְּעִטְרָן, מִפְּנֵי כְבוֹד הַשַּׁבָּת. וַחֲכָמִים מַתִּירִין בְּכָל הַשְּׁמָנִים, בְּשֶׁמֶן שֻׁמְשְׁמִין, בְּשֶׁמֶן אֱגוֹזִים, בְּשֶׁמֶן צְנוֹנוֹת, בְּשֶׁמֶן דָּגִים, בְּשֶׁמֶן פַּקּוּעוֹת, בְּעִטְרָן וּבְנֵפְט. רַבִּי טַרְפוֹן אוֹמֵר, אֵין מַדְלִיקִין אֶלָּא בְשֶׁמֶן זַיִת בִּלְבָד:",
    "gap": {
-    "he": "לפי לשון המשנה, איסור שמן שריפה ביום טוב הוא דין לעצמו, ורבי ישמעאל אוסר עטרן מפני כבוד השבת בלי לפרש. בטעם האיסור ביום טוב נחלקו: לרבה זו גזירה יום טוב אטו שבת, ולרב חנינא מסורא בשיטת רב חסדא המשנה אומרת מה טעם, כלומר מסבירה את הרישא: לפי שאין שורפין קדשים ביום טוב. ברייתא כרב חסדא מוסיפה שכל שאר הפסולים מותרים ביום טוב, חוץ משמן שריפה. מכך שנאמר ביום טוב עולה שבחול מותר, ורב מסביר שהתורה התירה ליהנות מתרומה טמאה בשעת ביעורה. ורבא מסביר את רבי ישמעאל: מתוך שריחו רע גזירה שמא יניח את הנר ויצא, והדלקת נר בשבת חובה.",
-    "en": "As written, the ban on shemen sereifah on Yom Tov is a din of its own, and Rabbi Yishmael forbids itran out of respect for Shabbos without explaining. On the reason for the Yom Tov ban they disagree: for Rabbah it is a decree on Yom Tov because of Shabbos, while for Rav Chanina of Sura, following Rav Chisda, the Mishnah is saying \"what is the reason,\" explaining the earlier clause: because kodashim are not burned on Yom Tov. A baraisa supporting Rav Chisda adds that all the other invalid materials are permitted on Yom Tov, except shemen sereifah. Since it says \"on Yom Tov,\" on a weekday it is allowed, and Rav explains that the Torah permitted benefit from tamei terumah while it is being burned. And Rava explains Rabbi Yishmael: because of its bad smell, the concern is that one will leave the lamp and walk out, and lighting a lamp on Shabbos is an obligation."
+    "he": "לפי לשון המשנה, איסור שמן שריפה ביום טוב הוא דין לעצמו, ורבי ישמעאל אוסר עטרן מפני כבוד השבת בלי לפרש. בטעם האיסור ביום טוב נחלקו: לרבה זו גזירה יום טוב אטו שבת, ולרב חנינא מסורא בשיטת רב חסדא המשנה אומרת מה טעם, כלומר מסבירה את הרישא: לפי שאין שורפין קדשים ביום טוב. מכך שנאמר ביום טוב עולה שבחול מותר, ורב מסביר שהתורה התירה ליהנות מתרומה טמאה בשעת ביעורה. ורבא מסביר את רבי ישמעאל: מתוך שריחו רע גזירה שמא יניח את הנר ויצא, והדלקת נר בשבת חובה.",
+    "en": "As written, the ban on shemen sereifah on Yom Tov is a din of its own, and Rabbi Yishmael forbids itran out of respect for Shabbos without explaining. On the reason for the Yom Tov ban they disagree: for Rabbah it is a decree on Yom Tov because of Shabbos, while for Rav Chanina of Sura, following Rav Chisda, the Mishnah is saying \"what is the reason,\" explaining the earlier clause: because kodashim are not burned on Yom Tov. Since it says \"on Yom Tov,\" on a weekday it is allowed, and Rav explains that the Torah permitted benefit from tamei terumah while it is being burned. And Rava explains Rabbi Yishmael: because of its bad smell, the concern is that one will leave the lamp and walk out, and lighting a lamp on Shabbos is an obligation."
    },
    "moves": [
     {
@@ -1109,16 +1070,6 @@ window.SHABBOS_DATA = {
        "ref": "23b.8"
       }
      ]
-    },
-    {
-     "tags": [
-      1
-     ],
-     "who": "ברייתא (תניא כוותיה דרב חסדא)",
-     "daf": "שבת כד.",
-     "link": "https://www.sefaria.org/Shabbat.24a",
-     "q": "תַּנְיָא כְּווֹתֵיהּ דְּרַב חִסְדָּא. כׇּל אֵלּוּ שֶׁאָמְרוּ אֵין מַדְלִיקִין בָּהֶן בְּשַׁבָּת, מַדְלִיקִין בָּהֶן בְּיוֹם טוֹב, חוּץ מִשֶּׁמֶן שְׂרֵיפָה — לְפִי שֶׁאֵין שׂוֹרְפִין קׇדָשִׁים בְּיוֹם טוֹב.",
-     "ref": "24a.1"
     },
     {
      "tags": [
@@ -1357,8 +1308,8 @@ window.SHABBOS_DATA = {
    },
    "text": "עַל שָׁלשׁ עֲבֵרוֹת נָשִׁים מֵתוֹת בִּשְׁעַת לֵדָתָן, עַל שֶׁאֵינָן זְהִירוֹת בַּנִּדָּה וּבַחַלָּה וּבְהַדְלָקַת הַנֵּר:",
    "gap": {
-    "he": "לפי לשון המשנה, נשים מתות בשעת לידתן על שלש עבירות, בלי טעם לבחירת השלש ולזמן. רבי יצחק מסביר את נדה: היא קלקלה בחדרי בטנה, לפיכך תלקה בחדרי בטנה. ובכולן מדה כנגד מדה: רביעית דם נתתי בכם, ראשית קראתי אתכם, ונשמה הקרויה נר. על בשעת לידתן אומר רבא: נפל תורא חדד לסכינא. ובברייתא רבי אלעזר אומר ילדות במקום יולדות.",
-    "en": "As written, women die in childbirth for three transgressions, with no reason for these three or for the timing. Rabbi Yitzchak explains niddah: she sinned in the chambers of her womb, so she is struck in the chambers of her womb. And all three are measure for measure: the blood placed in you, the \"first\" you are called, and the soul that is called a lamp. On \"at the time of childbirth\" Rava says: when the ox has fallen, sharpen the knife. And in a baraisa Rabbi Elazar says \"young\" in place of \"in childbirth.\""
+    "he": "לפי לשון המשנה, נשים מתות בשעת לידתן על שלש עבירות, בלי טעם לבחירת השלש ולזמן. רבי יצחק מסביר את נדה: היא קלקלה בחדרי בטנה, לפיכך תלקה בחדרי בטנה. ובכולן מדה כנגד מדה: רביעית דם נתתי בכם, ראשית קראתי אתכם, ונשמה הקרויה נר. ועל בשעת לידתן אומר רבא: נפל תורא חדד לסכינא.",
+    "en": "As written, women die in childbirth for three transgressions, with no reason for these three or for the timing. Rabbi Yitzchak explains niddah: she sinned in the chambers of her womb, so she is struck in the chambers of her womb. And all three are measure for measure: the blood placed in you, the \"first\" you are called, and the soul that is called a lamp. And on \"at the time of childbirth\" Rava says: when the ox has fallen, sharpen the knife."
    },
    "moves": [
     {
@@ -1390,16 +1341,6 @@ window.SHABBOS_DATA = {
      "link": "https://www.sefaria.org/Shabbat.32a",
      "q": "וּמַאי שְׁנָא בִּשְׁעַת לֵידָתָן? אָמַר רָבָא: נְפַל תּוֹרָא — חַדֵּד לְסַכִּינָא.",
      "ref": "32a.2"
-    },
-    {
-     "tags": [
-      8
-     ],
-     "who": "רבי אלעזר (ברייתא)",
-     "daf": "שבת לב.",
-     "link": "https://www.sefaria.org/Shabbat.32a",
-     "q": "תָּנוּ רַבָּנַן: עַל שָׁלֹשׁ עֲבֵירוֹת נָשִׁים מֵתוֹת יוֹלְדוֹת. רַבִּי אֶלְעָזָר אוֹמֵר נָשִׁים מֵתוֹת יְלָדוֹת.",
-     "ref": "32a.8"
     }
    ],
    "halacha": null
@@ -1909,7 +1850,7 @@ window.SHABBOS_DATA = {
     },
     {
      "tags": [
-      11
+      3
      ],
      "who": "הגמרא ורבי יהודה (ברייתא)",
      "daf": "שבת מב:",
@@ -2080,7 +2021,7 @@ window.SHABBOS_DATA = {
     },
     {
      "tags": [
-      11
+      3
      ],
      "who": "הגמרא ורבי יהודה (ברייתא)",
      "daf": "שבת מט.",
@@ -2860,7 +2801,7 @@ window.SHABBOS_DATA = {
    "moves": [
     {
      "tags": [
-      11
+      4
      ],
      "who": "עולא",
      "daf": "שבת סב.",
@@ -3721,8 +3662,7 @@ window.SHABBOS_DATA = {
     },
     {
      "tags": [
-      1,
-      11
+      1
      ],
      "who": "רבי יוסי בר חנינא",
      "daf": "שבת עו.",
@@ -3755,8 +3695,8 @@ window.SHABBOS_DATA = {
    },
    "text": "הַמּוֹצִיא יַיִן, כְּדֵי מְזִיגַת הַכּוֹס. חָלָב, כְּדֵי גְמִיעָה. דְּבַשׁ, כְּדֵי לִתֵּן עַל הַכָּתִית. שֶׁמֶן, כְּדֵי לָסוּךְ אֵבֶר קָטָן. מַיִם, כְּדֵי לָשׁוּף בָּהֶם אֶת הַקִּילוֹר. וּשְׁאָר כָּל הַמַּשְׁקִין, בִּרְבִיעִית. וְכָל הַשּׁוֹפָכִין, בִּרְבִיעִית. רַבִּי שִׁמְעוֹן אוֹמֵר, כֻּלָּן בִּרְבִיעִית, וְלֹא אָמְרוּ כָל הַשִּׁעוּרִין הַלָּלוּ אֶלָּא לְמַצְנִיעֵיהֶן:",
    "gap": {
-    "he": "לפי לשון המשנה, יין שיעורו כדי מזיגת הכוס, ושמן כדי לסוך אבר קטן, בלי פירוש. הברייתא מפרשת כוס יפה, כוס של ברכה, ורב נחמן אומר שצריך בו רובע רביעית כדי שימזגנו ויעמוד על רביעית. רבא מדייק מן הסיפא, ושאר כל המשקין ברביעית, שגם היין נמדד ברביעית לאחר מזיגה. ולסיכת שמן, רבי שמעון בן אלעזר אומר אבר קטן של קטן בן יומו. אביי מסביר את כל השיעורים: מה שמצוי בשימוש אחד ולא בשני הולכים אחר המצוי לקולא, ומה שמצוי בשניהם הולכים לחומרא. ובמים, שבהם הולכים אחר רפואתם, אביי אומר בגליל שנו, ורבא אומר שבכל מקום, כי מים אינם משביעים. ושופכין שיעורם ברביעית משום שראויים לגבל בהם את הטיט.",
-    "en": "As written, wine's measure is enough to mix a cup, and oil enough to anoint a small limb, without explanation. The baraisa explains a fine cup, a cup of blessing, and Rav Nachman says it needs a quarter of a revi'is so that once mixed it comes to a revi'is. Rava infers from the next clause, 'all other liquids a revi'is', that wine too is measured as a revi'is after mixing. For anointing oil, Rabbi Shimon ben Elazar says a small limb of a day-old baby. Abaye explains all the measures: where one use is common and the other not, the Rabbis follow the common one leniently, and where both are common they follow the stricter. For water, where the Rabbis follow its medical use, Abaye says this was taught in the Galil, and Rava says everywhere, since water does not satisfy. And waste water's measure is a revi'is because it is fit for kneading clay."
+    "he": "לפי לשון המשנה, יין שיעורו כדי מזיגת הכוס, ושמן כדי לסוך אבר קטן, בלי פירוש. הברייתא מפרשת כוס יפה, כוס של ברכה, ורב נחמן אומר שצריך בו רובע רביעית כדי שימזגנו ויעמוד על רביעית. ולסיכת שמן, רבי שמעון בן אלעזר אומר אבר קטן של קטן בן יומו. אביי מסביר את כל השיעורים: מה שמצוי בשימוש אחד ולא בשני הולכים אחר המצוי לקולא, ומה שמצוי בשניהם הולכים לחומרא. ובמים, שבהם הולכים אחר רפואתם, אביי אומר בגליל שנו, ורבא אומר שבכל מקום, כי מים אינם משביעים. ושופכין שיעורם ברביעית משום שראויים לגבל בהם את הטיט.",
+    "en": "As written, wine's measure is enough to mix a cup, and oil enough to anoint a small limb, without explanation. The baraisa explains a fine cup, a cup of blessing, and Rav Nachman says it needs a quarter of a revi'is so that once mixed it comes to a revi'is. For anointing oil, Rabbi Shimon ben Elazar says a small limb of a day-old baby. Abaye explains all the measures: where one use is common and the other not, the Rabbis follow the common one leniently, and where both are common they follow the stricter. For water, where the Rabbis follow its medical use, Abaye says this was taught in the Galil, and Rava says everywhere, since water does not satisfy. And waste water's measure is a revi'is because it is fit for kneading clay."
    },
    "moves": [
     {
@@ -3769,16 +3709,6 @@ window.SHABBOS_DATA = {
      "link": "https://www.sefaria.org/Shabbat.76b",
      "q": "תָּנָא: כְּדֵי מְזִיגַת כּוֹס יָפֶה. וּמַאי כּוֹס יָפֶה — כּוֹס שֶׁל בְּרָכָה. אָמַר רַב נַחְמָן אָמַר רַבָּה בַּר אֲבוּהּ: כּוֹס שֶׁל בְּרָכָה צָרִיךְ שֶׁיְּהֵא בּוֹ רוֹבַע רְבִיעִית, כְּדֵי שֶׁיִּמְזְגֶנּוּ וְיַעֲמוֹד עַל רְבִיעִית.",
      "ref": "76b.7"
-    },
-    {
-     "tags": [
-      9
-     ],
-     "who": "רבא",
-     "daf": "שבת עז.",
-     "link": "https://www.sefaria.org/Shabbat.77a",
-     "q": "תְּנֵינָא: הַמּוֹצִיא יַיִן — כְּדֵי מְזִיגַת כּוֹס, וְתָנֵי עֲלַהּ: כְּדֵי מְזִיגַת כּוֹס יָפֶה. וְקָתָנֵי סֵיפָא: ״וּשְׁאָר כׇּל הַמַּשְׁקִין בִּרְבִיעִית״.",
-     "ref": "77a.1"
     },
     {
      "tags": [
@@ -3854,8 +3784,8 @@ window.SHABBOS_DATA = {
    },
    "text": "הַמּוֹצִיא חֶבֶל, כְּדֵי לַעֲשׂוֹת אֹזֶן לְקֻפָּה. גֶּמִי, כְּדֵי לַעֲשׂוֹת תְּלַאי לְנָפָה וְלִכְבָרָה. רַבִּי יְהוּדָה אוֹמֵר, כְּדֵי לִטֹּל מִמֶּנּוּ מִדַּת מִנְעָל לְקָטָן. נְיָר, כְּדֵי לִכְתֹּב עָלָיו קֶשֶׁר מוֹכְסִין. וְהַמּוֹצִיא קֶשֶׁר מוֹכְסִין, חַיָּב. נְיָר מָחוּק, כְּדֵי לִכְרֹךְ עַל פִּי צְלוֹחִית קְטַנָּה שֶׁל פַּלְיָטוֹן:",
    "gap": {
-    "he": "לפי לשון המשנה, לחבל שיעור אחד ולגמי שיעור אחר, ולנייר כדי לכתוב קשר מוכסין, והמוציא קשר מוכסין חייב סתם. הגמרא מסבירה שחבל אינו נמדד כתלאי לנפה ולכברה משום שהוא מחריק את הכלי, ואין אנשים עושים כן. הברייתא מגדירה את שיעור קשר מוכסין: שתי אותיות של קשר מוכסין. וברייתא אחרת מצמצמת את חיוב המוציא קשר מוכסין: עד שלא הראהו למוכס חייב, ומשהראהו פטור.",
-    "en": "As written, rope has one measure and reeds another, paper is enough to write a customs receipt, and one who carries out a customs receipt is liable, without qualification. The Gemara explains that rope is not measured as a hanger for a sieve because it scratches the utensil and people do not do that. The baraisa defines the measure of a customs receipt: two letters of a customs receipt. And another baraisa narrows the liability for carrying a customs receipt: before he showed it to the customs collector he is liable, once he showed it he is exempt."
+    "he": "לפי לשון המשנה, לחבל שיעור אחד ולגמי שיעור אחר, ונייר כדי לכתוב עליו קשר מוכסין, בלי פירוש. הגמרא מסבירה שחבל אינו נמדד כתלאי לנפה ולכברה משום שהוא מחריק את הכלי, ואין אנשים עושים כן. והברייתא מגדירה את שיעור קשר מוכסין: שתי אותיות של קשר מוכסין.",
+    "en": "As written, rope has one measure and reeds another, and paper is enough to write a customs receipt, without explanation. The Gemara explains that rope is not measured as a hanger for a sieve because it scratches the utensil and people do not do that. And the baraisa defines the measure of a customs receipt: two letters of a customs receipt."
    },
    "moves": [
     {
@@ -3878,16 +3808,6 @@ window.SHABBOS_DATA = {
      "link": "https://www.sefaria.org/Shabbat.78b",
      "q": "תָּנָא: כַּמָּה קֶשֶׁר מוֹכְסִין? שְׁתֵּי אוֹתִיּוֹת שֶׁל קֶשֶׁר מוֹכְסִין.",
      "ref": "78b.4"
-    },
-    {
-     "tags": [
-      1
-     ],
-     "who": "ברייתא",
-     "daf": "שבת עח:",
-     "link": "https://www.sefaria.org/Shabbat.78b",
-     "q": "תָּנוּ רַבָּנַן: הַמּוֹצִיא קֶשֶׁר מוֹכְסִין, עַד שֶׁלֹּא הֶרְאָהוּ לַמּוֹכֵס — חַיָּיב. מִשֶּׁהֶרְאָהוּ לַמּוֹכֵס — פָּטוּר.",
-     "ref": "78b.6"
     }
    ],
    "halacha": null
@@ -4225,8 +4145,7 @@ window.SHABBOS_DATA = {
     {
      "machlokes": true,
      "tags": [
-      4,
-      5
+      4
      ],
      "topic": {
       "he": "מאין שספינה טהורה",
@@ -4314,8 +4233,8 @@ window.SHABBOS_DATA = {
    },
    "text": "מִנַּיִן לְפוֹלֶטֶת שִׁכְבַת זֶרַע בַּיּוֹם הַשְּׁלִישִׁי שֶׁהִיא טְמֵאָה, שֶׁנֶּאֱמַר (שמות יט) הֱיוּ נְכוֹנִים לִשְׁלשֶׁת יָמִים. מִנַּיִן שֶׁמַּרְחִיצִין אֶת הַמִּילָה בַיּוֹם הַשְּׁלִישִׁי שֶׁחָל לִהְיוֹת בְּשַׁבָּת, שֶׁנֶּאֱמַר (בראשית לד) וַיְהִי בַיּוֹם הַשְּׁלִישִׁי בִּהְיוֹתָם כֹּאֲבִים. מִנַּיִן שֶׁקּוֹשְׁרִין לָשׁוֹן שֶׁל זְהוֹרִית בְּרֹאשׁ שָׂעִיר הַמִּשְׁתַּלֵּחַ, שֶׁנֶּאֱמַר (ישעיה א) אִם יִהְיוּ חֲטָאֵיכֶם כַּשָּׁנִים כַּשֶּׁלֶג יַלְבִּינוּ:",
    "gap": {
-    "he": "לפי לשון המשנה, הפולטת שכבת זרע ביום השלישי טמאה, ומרחיצים את המילה ביום השלישי שחל בשבת. הגמרא מקשה שהרישא אינה כרבי אלעזר בן עזריה והסיפא כמותו: מי שאינו מעמיד כתנאים גורס ברישא 'טהורה' והכל כרבי אלעזר בן עזריה, ומי שמעמיד כתנאים אומר שהרישא כרבנן והסיפא כרבי אלעזר בן עזריה. ורב חסדא מצמצם: המחלוקת בזמן הטומאה היא רק בזרע שפירש מן האשה, אבל שפירש מן האיש טמא כל זמן שהוא לח.",
-    "en": "As written, a woman who emits semen on the third day is tamei, and milah is washed on the third day when it falls on Shabbos. The Gemara asks that the first clause is not like Rabbi Elazar ben Azaryah while the last clause is: one who does not split the Mishnah between Tannaim reads 'tahor' in the first clause and sets it all like Rabbi Elazar ben Azaryah, and one who does split it says the first clause is the Rabbanan and the last is Rabbi Elazar ben Azaryah. And Rav Chisda narrows it: the dispute over the timing applies only to semen emitted from a woman, but semen from a man is tamei as long as it is moist."
+    "he": "לפי לשון המשנה, הפולטת שכבת זרע ביום השלישי טמאה, ומרחיצים את המילה ביום השלישי שחל בשבת. הגמרא מקשה שהרישא אינה כרבי אלעזר בן עזריה והסיפא כמותו: מי שאינו מעמיד כתנאים גורס ברישא 'טהורה' והכל כרבי אלעזר בן עזריה, ומי שמעמיד כתנאים אומר שהרישא כרבנן והסיפא כרבי אלעזר בן עזריה.",
+    "en": "As written, a woman who emits semen on the third day is tamei, and milah is washed on the third day when it falls on Shabbos. The Gemara asks that the first clause is not like Rabbi Elazar ben Azaryah while the last clause is: one who does not split the Mishnah between Tannaim reads 'tahor' in the first clause and sets it all like Rabbi Elazar ben Azaryah, and one who does split it says the first clause is the Rabbanan and the last is Rabbi Elazar ben Azaryah."
    },
    "moves": [
     {
@@ -4346,16 +4265,6 @@ window.SHABBOS_DATA = {
        "ref": "86a.3"
       }
      ]
-    },
-    {
-     "tags": [
-      1
-     ],
-     "who": "רב חסדא",
-     "daf": "שבת פו:",
-     "link": "https://www.sefaria.org/Shabbat.86b",
-     "q": "מַחֲלוֹקֶת שֶׁפֵּירְשָׁה מִן הָאִשָּׁה, אֲבָל פֵּירְשָׁה מִן הָאִישׁ — טְמֵאָה כׇּל זְמַן שֶׁהִיא לַחָה.",
-     "ref": "86b.3"
     }
    ],
    "halacha": null
@@ -4659,20 +4568,6 @@ window.SHABBOS_DATA = {
        "link": "https://www.sefaria.org/Shabbat.91b",
        "q": "אֲפִילּוּ מְלֵיאָה חַרְדָּל — פָּטוּר. אַלְמָא קָסָבַר אֶגֶד כְּלִי — שְׁמֵיהּ אֶגֶד.",
        "ref": "91b.6"
-      },
-      {
-       "who": "רבא",
-       "daf": "שבת צב.",
-       "link": "https://www.sefaria.org/Shabbat.92a",
-       "q": "לֹא שָׁנוּ אֶלָּא בְּקוּפָּה מְלֵאָה קִישּׁוּאִין וְדִלּוּעִין, אֲבָל מְלֵאָה חַרְדָּל — חַיָּיב.",
-       "ref": "92a.2"
-      },
-      {
-       "who": "אביי",
-       "daf": "שבת צב.",
-       "link": "https://www.sefaria.org/Shabbat.92a",
-       "q": "אֲפִילּוּ מְלֵאָה חַרְדָּל — פָּטוּר, אַלְמָא קָסָבַר אֶגֶד כְּלִי שְׁמֵיהּ אֶגֶד.",
-       "ref": "92a.2"
       }
      ]
     },
@@ -4746,7 +4641,7 @@ window.SHABBOS_DATA = {
     {
      "tags": [
       8,
-      5
+      4
      ],
      "who": "הגמרא",
      "daf": "שבת צב:",
@@ -5171,7 +5066,7 @@ window.SHABBOS_DATA = {
        "ref": "99b.3-4"
       },
       {
-       "who": "רב מרדכי",
+       "who": "רב מרדכי והגמרא",
        "daf": "שבת צט:",
        "link": "https://www.sefaria.org/Shabbat.99b",
        "q": "דִילְמָא מַתְנִיתִין בְּמַחַט... דְּאִית לֵיהּ מוּרְשָׁא. אִי נָמֵי, דְּרַמְיָא בַּחֲרִיצָה.",
@@ -5363,8 +5258,8 @@ window.SHABBOS_DATA = {
    },
    "text": "הַזּוֹרֵק וְנִזְכַּר לְאַחַר שֶׁיָּצְתָה מִיָּדוֹ, קְלָטָהּ אַחֵר, קְלָטָהּ כֶּלֶב, אוֹ שֶׁנִּשְׂרְפָה, פָּטוּר. זָרַק לַעֲשׂוֹת חַבּוּרָה, בֵּין בְּאָדָם בֵּין בִּבְהֵמָה, וְנִזְכַּר עַד שֶׁלֹּא נַעֲשָׂה חַבּוּרָה, פָּטוּר. זֶה הַכְּלָל, כָּל חַיָּבֵי חַטָּאוֹת אֵינָן חַיָּבִין עַד שֶׁתְּהֵא תְחִלָּתָן וְסוֹפָן שְׁגָגָה. תְּחִלָּתָן שְׁגָגָה וְסוֹפָן זָדוֹן, תְּחִלָּתָן זָדוֹן וְסוֹפָן שְׁגָגָה, פְּטוּרִין, עַד שֶׁתְּהֵא תְחִלָּתָן וְסוֹפָן שְׁגָגָה:",
    "gap": {
-    "he": "לפי לשון המשנה, הזורק ונזכר אחרי שיצא החפץ מידו, או שקלטו אחר או כלב או שנשרף, פטור, ומשמע שאם נח חייב, אף שנזכר. הגמרא קוראת אחרת: רבא אומר שיש כאן שני מקרים, נזכר, או לא נזכר וקלטו אחר; ורב אשי אומר שחסר במשנה, ואם נח חייב רק כשחזר ושכח. על הכלל תחילתן וסופן שגגה, רבה ורבא חולקים בשתי אמות בשוגג, שתים במזיד ושתים בשוגג: רבה פוטר במעביר, ורבא מחייב בזורק. ורבה מגביל את 'קלטו כלב': אם כיוון שינוח בפי הכלב או בפי הכבשן, חייב.",
-    "en": "As written, one who throws and remembers after it left his hand, or another person or a dog caught it, or it burned, is patur, which implies that if it landed he is chayav even though he remembered. The Gemara reads it differently: Rava says two cases are taught, he remembered, or he did not remember and someone caught it; and Rav Ashi says words are missing, and if it landed he is chayav only when he forgot again. On the rule that both start and end must be unwitting, Rabbah and Rava disagree about two amos unwitting, two deliberate and two unwitting: Rabbah holds patur in carrying, and Rava holds chayav in throwing. And Rabbah limits the case of the dog catching it: if he intended it to land in a dog's mouth or a furnace, he is chayav."
+    "he": "לפי לשון המשנה, הזורק ונזכר אחרי שיצא החפץ מידו, או שקלטו אחר או כלב או שנשרף, פטור, ומשמע שאם נח חייב, אף שנזכר. הגמרא קוראת אחרת: רבא אומר שיש כאן שני מקרים, נזכר, או לא נזכר וקלטו אחר; ורב אשי אומר שחסר במשנה, ואם נח חייב רק כשחזר ושכח. ורבה מגביל את 'קלטו כלב': אם כיוון שינוח בפי הכלב או בפי הכבשן, חייב.",
+    "en": "As written, one who throws and remembers after it left his hand, or another person or a dog caught it, or it burned, is patur, which implies that if it landed he is chayav even though he remembered. The Gemara reads it differently: Rava says two cases are taught, he remembered, or he did not remember and someone caught it; and Rav Ashi says words are missing, and if it landed he is chayav only when he forgot again. And Rabbah limits the case of the dog catching it: if he intended it to land in a dog's mouth or a furnace, he is chayav."
    },
    "moves": [
     {
@@ -5392,34 +5287,6 @@ window.SHABBOS_DATA = {
        "link": "https://www.sefaria.org/Shabbat.102a",
        "q": "חַסּוֹרֵי מְחַסְּרָא, וְהָכִי קָתָנֵי... הָא נָחָה — חַיָּיב. בַּמֶּה דְּבָרִים אֲמוּרִים — שֶׁחָזַר וְשָׁכַח, אֲבָל לֹא חָזַר וְשָׁכַח — פָּטוּר",
        "ref": "102a.5"
-      }
-     ]
-    },
-    {
-     "machlokes": true,
-     "tags": [
-      1
-     ],
-     "topic": {
-      "he": "זדון באמצע בין שתי שגגות",
-      "en": "A deliberate stretch between two unwitting ones"
-     },
-     "intro": "שְׁתֵּי אַמּוֹת בְּשׁוֹגֵג, שְׁתֵּי אַמּוֹת בְּמֵזִיד, שְׁתֵּי אַמּוֹת בְּשׁוֹגֵג",
-     "outro": null,
-     "sides": [
-      {
-       "who": "רבה",
-       "daf": "שבת קב.",
-       "link": "https://www.sefaria.org/Shabbat.102a",
-       "q": "פָּטוּר, אֲפִילּוּ לְרַבָּן גַּמְלִיאֵל דְּאָמַר אֵין יְדִיעָה לַחֲצִי שִׁיעוּר, הָתָם הוּא דְּכִי קָא גָמַר שִׁיעוּרָא — בְּשׁוֹגֵג קָא גָמַר, אֲבָל הָכָא דִּבְמֵזִיד — לָא... אֶלָּא בְּמַעֲבִיר.",
-       "ref": "102a.7-8"
-      },
-      {
-       "who": "רבא",
-       "daf": "שבת קב.",
-       "link": "https://www.sefaria.org/Shabbat.102a",
-       "q": "חַיָּיב, וַאֲפִילּוּ לְרַבָּנַן דְאָמְרִי יֵשׁ יְדִיעָה לַחֲצִי שִׁיעוּר, הָתָם הוּא דִּבְיָדוֹ, אֲבָל הָכָא דְּאֵין בְּיָדוֹ — לָא... וְאֶלָּא בְּזוֹרֵק.",
-       "ref": "102a.9"
       }
      ]
     },
@@ -6381,7 +6248,7 @@ window.SHABBOS_DATA = {
     },
     {
      "tags": [
-      5,
+      1,
       10
      ],
      "who": "הגמרא",
@@ -6681,8 +6548,7 @@ window.SHABBOS_DATA = {
     {
      "machlokes": true,
      "tags": [
-      2,
-      1
+      2
      ],
      "topic": {
       "he": "מהו מבוי מפולש ומהו שאינו מפולש",
@@ -6917,30 +6783,20 @@ window.SHABBOS_DATA = {
    },
    "text": "רַבִּי שִׁמְעוֹן בֶּן נַנָּס אוֹמֵר, פּוֹרְסִין עוֹר שֶׁל גְּדִי עַל גַּבֵּי שִׁדָּה תֵּבָה וּמִגְדָּל שֶׁאָחַז בָּהֶן אֶת הָאוּר, מִפְּנֵי שֶׁהוּא מְחָרֵךְ. וְעוֹשִׂין מְחִצָּה בְּכָל הַכֵּלִים, בֵּין מְלֵאִים בֵּין רֵיקָנִים, בִּשְׁבִיל שֶׁלֹּא תַעֲבֹר הַדְּלֵקָה. רַבִּי יוֹסֵי אוֹסֵר בִּכְלֵי חֶרֶס חֲדָשִׁים מְלֵאִין מַיִם, לְפִי שֶׁאֵין יְכוֹלִין לְקַבֵּל אֶת הָאוּר וְהֵן מִתְבַּקְּעִין וּמְכַבִּין אֶת הַדְּלֵקָה:",
    "gap": {
-    "he": "לפי לשון המשנה, רבי שמעון בן ננס מתיר לפרוס עור גדי משום שהוא מחרך, ועושים מחיצה בכל הכלים, ורבי יוסי אוסר בכלי חרס חדשים מלאים מים. הגמרא מדייקת מן הסיפא שתנא קמא מתיר גרם כיבוי. ורבה בר תחליפא בשם רב קובע שרבי יוסי הוא התנא שגרם כיבוי אסור.",
-    "en": "As written, Rabbi Shimon ben Nanas permits spreading a goatskin because it only singes, a barrier may be made of any vessels, and Rabbi Yosi forbids new earthenware vessels full of water. The Gemara infers from the end that the Tanna Kamma permits indirectly causing extinguishing. And Rabbah bar Tachlifa in the name of Rav establishes that Rabbi Yosi is the tanna who forbids indirectly causing extinguishing."
+    "he": "לפי לשון המשנה, רבי שמעון בן ננס מתיר לפרוס עור גדי משום שהוא מחרך, ועושים מחיצה בכל הכלים, ורבי יוסי אוסר בכלי חרס חדשים מלאים מים משום שמתבקעים ומכבים. הגמרא מדייקת מן הסיפא שתנא קמא מתיר גרם כיבוי, ובזה נחלקו: לתנא קמא גרם כיבוי מותר, ולרבי יוסי אסור.",
+    "en": "As written, Rabbi Shimon ben Nanas permits spreading a goatskin because it only singes, a barrier may be made of any vessels, and Rabbi Yosi forbids new earthenware vessels full of water because they burst and extinguish. The Gemara infers from the end that the Tanna Kamma permits indirectly causing extinguishing, and that is the dispute: for the Tanna Kamma indirectly causing extinguishing is permitted, and for Rabbi Yosi it is forbidden."
    },
    "moves": [
     {
      "tags": [
       9,
-      4
+      5
      ],
      "who": "הגמרא",
      "daf": "שבת קכ:",
      "link": "https://www.sefaria.org/Shabbat.120b",
      "q": "אֵימַר דְּאָמַר רַבִּי שִׁמְעוֹן בֶּן נַנָּס ״מִפְּנֵי שֶׁהוּא מְחָרֵךְ״, גְּרַם כִּיבּוּי מִי אָמַר? אִין, מִדְּקָתָנֵי סֵיפָא רַבִּי יוֹסֵי אוֹסֵר בִּכְלֵי חֶרֶס חֲדָשִׁים מְלֵאִים מַיִם, שֶׁאֵינָן יְכוֹלִים לְקַבֵּל אֶת הָאוּר וְהֵן מִתְבַּקְּעִין וּמְכַבִּין אֶת הַדְּלֵיקָה — מִכְּלָל דְּתַנָּא קַמָּא שָׁרֵי.",
      "ref": "120b.2"
-    },
-    {
-     "tags": [
-      5
-     ],
-     "who": "רבה בר תחליפא משמיה דרב",
-     "daf": "שבת קכ:",
-     "link": "https://www.sefaria.org/Shabbat.120b",
-     "q": "מַאן תָּנָא גְּרַם כִּבּוּי אָסוּר — רַבִּי יוֹסֵי!",
-     "ref": "120b.7"
     }
    ],
    "halacha": null
@@ -7127,8 +6983,8 @@ window.SHABBOS_DATA = {
    },
    "text": "נוֹטֵל אָדָם קֻרְנָס לְפַצֵּעַ בּוֹ אֶת הָאֱגוֹזִים, וְקֻרְדֹּם לַחְתֹּךְ אֶת הַדְּבֵלָה. מְגֵרָה, לִגְרֹר בָּהּ אֶת הַגְּבִינָה. מַגְרֵפָה, לִגְרֹף בָּהּ אֶת הַגְּרוֹגָרוֹת. אֶת הָרַחַת וְאֶת הַמַּזְלֵג, לָתֵת עָלָיו לְקָטָן. אֶת הַכּוּשׁ וְאֶת הַכַּרְכָּר, לִתְחֹב בּוֹ. מַחַט שֶׁל יָד, לִטֹּל בּוֹ אֶת הַקּוֹץ, וְשֶׁל סַקָּאִים, לִפְתֹּחַ בּוֹ אֶת הַדָּלֶת:",
    "gap": {
-    "he": "לפי לשון המשנה, נוטלים קורנס לפצע אגוזים ומחט של יד ליטול קוץ, בלי לפרט איזה קורנס ואיזו מחט. רב יהודה מעמיד בקורנס של אגוזים, כי לדעתו כלי שמלאכתו לאיסור אסור אף לצורך גופו; רבה מוכיח מרחת ומלגז שהמשנה מדברת בכלי שמלאכתו לאיסור, ומעמיד בקורנס של נפחים, שמותר לצורך גופו. רבי יוחנן אומר שהמשנה שנתה קורנס של זהבים, ורב שמן בר אבא אומר קורנס של בשמים. במחט שניטל חררה או עוקצה, רב יוסף מדייק מהמשנה שמותרת, שהרי לקוץ אין נפקא מינה, וכך אביי; ורבא אומר שכיון שלענין טומאה אינה כלי, גם לענין שבת אינה כלי.",
-    "en": "As written, one may take a hammer to crack nuts and a hand needle to remove a splinter, without saying which hammer or which needle. Rav Yehudah sets it in a nut hammer, since in his view an implement whose function is prohibited is forbidden even for its own use; Rabbah proves from the shovel and pitchfork that the Mishnah speaks of implements with a prohibited function, and sets it in a blacksmith's hammer, which may be used for its own sake. Rabbi Yochanan says the Mishnah taught a goldsmith's hammer, and Rav Shemen bar Abba says a spice hammer. On a needle whose eye or point broke off, Rav Yosef infers from the Mishnah that it is permitted, since the splinter does not care, and Abaye agrees; Rava says that since it is not a vessel regarding tumah, it is not a vessel regarding Shabbos either."
+    "he": "לפי לשון המשנה, נוטלים קורנס לפצע אגוזים ומחט של יד ליטול קוץ, בלי לפרט איזה קורנס ואיזו מחט. רב יהודה מעמיד בקורנס של אגוזים, כי לדעתו כלי שמלאכתו לאיסור אסור אף לצורך גופו; רבה מוכיח מרחת ומלגז שהמשנה מדברת בכלי שמלאכתו לאיסור, ומעמיד בקורנס של נפחים, שמותר לצורך גופו. רבי יוחנן אומר שהמשנה שנתה קורנס של זהבים, ורב שמן בר אבא אומר קורנס של בשמים. במחט שניטל חררה או עוקצה, רב יוסף מדייק מהמשנה שמותרת, שהרי לקוץ אין נפקא מינה; ורבא אומר שכיון שלענין טומאה אינה כלי, גם לענין שבת אינה כלי.",
+    "en": "As written, one may take a hammer to crack nuts and a hand needle to remove a splinter, without saying which hammer or which needle. Rav Yehudah sets it in a nut hammer, since in his view an implement whose function is prohibited is forbidden even for its own use; Rabbah proves from the shovel and pitchfork that the Mishnah speaks of implements with a prohibited function, and sets it in a blacksmith's hammer, which may be used for its own sake. Rabbi Yochanan says the Mishnah taught a goldsmith's hammer, and Rav Shemen bar Abba says a spice hammer. On a needle whose eye or point broke off, Rav Yosef infers from the Mishnah that it is permitted, since the splinter does not care; Rava says that since it is not a vessel regarding tumah, it is not a vessel regarding Shabbos either."
    },
    "moves": [
     {
@@ -7210,13 +7066,6 @@ window.SHABBOS_DATA = {
        "ref": "123a.12"
       },
       {
-       "who": "אביי",
-       "daf": "שבת קכג.",
-       "link": "https://www.sefaria.org/Shabbat.123a",
-       "q": "טוּמְאָה כְּלִי מַעֲשֶׂה בָּעֵינַן, לְעִנְיַן שַׁבָּת מִידֵּי דַּחֲזֵי בָּעֵינַן — וְהָא נָמֵי חַזְיָא לְמִשְׁקַל בַּהּ קוֹץ.",
-       "ref": "123a.14"
-      },
-      {
        "who": "רבא",
        "daf": "שבת קכג.",
        "link": "https://www.sefaria.org/Shabbat.123a",
@@ -7267,20 +7116,10 @@ window.SHABBOS_DATA = {
    },
    "text": "רַבִּי יוֹסֵי אוֹמֵר, כָּל הַכֵּלִים נִטָּלִין, חוּץ מִן הַמַּסָּר הַגָּדוֹל וְיָתֵד שֶׁל מַחֲרֵשָׁה. כָּל הַכֵּלִים נִטָּלִין לְצֹרֶךְ וְשֶׁלֹּא לְצֹרֶךְ. רַבִּי נְחֶמְיָה אוֹמֵר, אֵין נִטָּלִין אֶלָּא לְצֹרֶךְ:",
    "gap": {
-    "he": "לפי לשון המשנה, רבי יוסי אוסר רק מסר גדול ויתד של מחרישה, וכל הכלים נטלים לצורך ושלא לצורך, ורבי נחמיה מתיר רק לצורך. רב נחמן מוסיף שאוכלא דקצרי דומה ליתד של מחרישה. במה לצורך ושלא לצורך נחלקו רבה ורבא: לרבה, לצורך הוא כלי היתר לצורך גופו, ושלא לצורך הוא כלי היתר לצורך מקומו, ורבי נחמיה אוסר כלי היתר לצורך מקומו; לרבא, לצורך הוא כלי היתר בין לצורך גופו בין לצורך מקומו, ושלא לצורך הוא אפילו מחמה לצל, ורבי נחמיה אוסר רק מחמה לצל.",
-    "en": "As written, Rabbi Yosi forbids only the great saw and the plowshare, all vessels may be carried for a need and not for a need, and Rabbi Nechemyah permits only for a need. Rav Nachman adds that a launderer's press is like the plowshare. What \"for a need\" and \"not for a need\" mean is disputed by Rabbah and Rava: for Rabbah, \"for a need\" is a permitted-use vessel used for its own sake, and \"not for a need\" is a permitted-use vessel moved for its place, which Rabbi Nechemyah forbids; for Rava, \"for a need\" is a permitted-use vessel whether for its own sake or for its place, \"not for a need\" is even from sun to shade, and Rabbi Nechemyah forbids only from sun to shade."
+    "he": "לפי לשון המשנה, רבי יוסי אוסר רק מסר גדול ויתד של מחרישה, וכל הכלים נטלים לצורך ושלא לצורך, ורבי נחמיה מתיר רק לצורך. במה לצורך ושלא לצורך נחלקו רבה ורבא: לרבה, לצורך הוא כלי היתר לצורך גופו, ושלא לצורך הוא כלי היתר לצורך מקומו, ורבי נחמיה אוסר כלי היתר לצורך מקומו; לרבא, לצורך הוא כלי היתר בין לצורך גופו בין לצורך מקומו, ושלא לצורך הוא אפילו מחמה לצל, ורבי נחמיה אוסר רק מחמה לצל.",
+    "en": "As written, Rabbi Yosi forbids only the great saw and the plowshare, all vessels may be carried for a need and not for a need, and Rabbi Nechemyah permits only for a need. What \"for a need\" and \"not for a need\" mean is disputed by Rabbah and Rava: for Rabbah, \"for a need\" is a permitted-use vessel used for its own sake, and \"not for a need\" is a permitted-use vessel moved for its place, which Rabbi Nechemyah forbids; for Rava, \"for a need\" is a permitted-use vessel whether for its own sake or for its place, \"not for a need\" is even from sun to shade, and Rabbi Nechemyah forbids only from sun to shade."
    },
    "moves": [
-    {
-     "tags": [
-      2
-     ],
-     "who": "רב נחמן",
-     "daf": "שבת קכג:",
-     "link": "https://www.sefaria.org/Shabbat.123b",
-     "q": "הַאי אוּכְלָא דְקַצָּרֵי — כְּיָתֵד שֶׁל מַחֲרֵישָׁה דָּמְיָא.",
-     "ref": "123b.6"
-    },
     {
      "machlokes": true,
      "tags": [
@@ -7657,22 +7496,13 @@ window.SHABBOS_DATA = {
    },
    "text": "חֲבִילֵי קַשׁ וַחֲבִילֵי עֵצִים וַחֲבִילֵי זְרָדִים, אִם הִתְקִינָן לְמַאֲכַל בְּהֵמָה, מְטַלְטְלִין אוֹתָן. וְאִם לָאו, אֵין מְטַלְטְלִין אוֹתָן. כּוֹפִין אֶת הַסַּל לִפְנֵי הָאֶפְרוֹחִים, כְּדֵי שֶׁיַּעֲלוּ וְיֵרְדוּ. תַּרְנְגֹלֶת שֶׁבָּרְחָה, דּוֹחִין אוֹתָהּ עַד שֶׁתִּכָּנֵס. מְדַדִּין עֲגָלִין וּסְיָחִין בִּרְשׁוּת הָרַבִּים. אִשָּׁה מְדַדָּה אֶת בְּנָהּ. אָמַר רַבִּי יְהוּדָה, אֵימָתַי, בִּזְמַן שֶׁהוּא נוֹטֵל אַחַת וּמֵנִיחַ אַחַת, אֲבָל אִם הָיָה גוֹרֵר, אָסוּר:",
    "gap": {
-    "he": "לפי לשון המשנה, תרנגולת שברחה דוחים אותה עד שתיכנס, ומדדים עגלים וסייחים. הגמרא מדייקת: דוחים כן, מדדים לא. אביי מסביר שתרנגולת שונה כי היא מגביהה את עצמה, וממילא הדידוי נעשה טלטול.",
-    "en": "As written, a hen that ran away may be pushed until it goes in, and calves and foals may be led along. The Gemara infers: pushing yes, leading no. Abaye explains that a hen differs because it lifts itself up, so leading it becomes carrying it."
+    "he": "לפי לשון המשנה, תרנגולת שברחה דוחים אותה עד שתיכנס, ומדדים עגלים וסייחים. אביי מסביר למה תרנגולת דוחים ולא מדדים: היא מגביהה את עצמה, וממילא הדידוי נעשה טלטול.",
+    "en": "As written, a hen that ran away may be pushed until it goes in, and calves and foals may be led along. Abaye explains why a hen is pushed and not led: it lifts itself up, so leading it becomes carrying it."
    },
    "moves": [
     {
      "tags": [
-      9
-     ],
-     "who": "הגמרא",
-     "daf": "שבת קכח:",
-     "link": "https://www.sefaria.org/Shabbat.128b",
-     "q": "דּוֹחִין — אִין, מְדַדִּין — לָא.",
-     "ref": "128b.8"
-    },
-    {
-     "tags": [
+      9,
       4,
       10
      ],
@@ -7797,8 +7627,8 @@ window.SHABBOS_DATA = {
    },
    "text": "רַבִּי אֱלִיעֶזֶר אוֹמֵר, אִם לֹא הֵבִיא כְלִי מֵעֶרֶב שַׁבָּת, מְבִיאוֹ בְשַׁבָּת מְגֻלֶּה. וּבַסַּכָּנָה, מְכַסֵּהוּ עַל פִּי עֵדִים. וְעוֹד אָמַר רַבִּי אֱלִיעֶזֶר, כּוֹרְתִין עֵצִים לַעֲשׂוֹת פֶּחָמִין וְלַעֲשׂוֹת כְּלִי בַרְזֶל. כְּלָל אָמַר רַבִּי עֲקִיבָא, כָּל מְלָאכָה שֶׁאֶפְשָׁר לַעֲשׂוֹתָהּ מֵעֶרֶב שַׁבָּת אֵינָהּ דּוֹחָה אֶת הַשַּׁבָּת, וְשֶׁאִי אֶפְשָׁר לַעֲשׂוֹתָהּ מֵעֶרֶב שַׁבָּת דּוֹחָה אֶת הַשַּׁבָּת:",
    "gap": {
-    "he": "לפי לשון המשנה, רבי אליעזר מתיר להביא את האיזמל בשבת מגולה, ובסכנה מכוסה על פי עדים, ורבי עקיבא קובע שמלאכה שאפשר לעשותה מערב שבת אינה דוחה שבת. רבי לוי מבאר שמביאו מגולה משום חיבוב מצוה, ורב אשי מדייק זאת מן המשנה: רק בסכנה מכסהו. הגמרא מציעה ש'עדים' יכולים להיות המוהל ועוד אחד, שראויים להעיד במקום אחר. רבי יוחנן מצמצם את שיטת רבי אליעזר: לא כל מכשירי מצוה דוחים שבת, ורב אדא בר אהבה מוציא ציצית ומזוזה. הגמרא קובעת שחכמים חולקים רק במכשירי מילה, אבל המילה עצמה דוחה שבת לדברי הכל. ורב פוסק הלכה כרבי עקיבא.",
-    "en": "As written, Rabbi Eliezer allows bringing the knife on Shabbos uncovered, and in time of danger covered before witnesses, while Rabbi Akiva rules that a melachah that could be done before Shabbos does not override Shabbos. Rabbi Levi explains that it is carried uncovered to show love of the mitzvah, and Rav Ashi infers this from the Mishnah itself: only in danger is it covered. The Gemara suggests that \"witnesses\" can mean the mohel and one more, since they are fit to testify elsewhere. Rabbi Yochanan narrows Rabbi Eliezer: not every preparation for a mitzvah overrides Shabbos, and Rav Ada bar Ahavah excludes tzitzis and mezuzah. The Gemara establishes that the Chachamim dispute only the preparations for milah, while milah itself overrides Shabbos according to all. And Rav rules like Rabbi Akiva."
+    "he": "לפי לשון המשנה, רבי אליעזר מתיר להביא את כלי המילה בשבת מגולה, ובסכנה מכוסה על פי עדים, ורבי עקיבא קובע שמלאכה שאפשר לעשותה מערב שבת אינה דוחה שבת. רבי לוי מבאר שמביאו מגולה משום חיבוב מצוה, ולא משום חשד, ורב אשי מדייק זאת מן המשנה: רק בסכנה מכסהו. ורב יהודה אמר רב: הלכה כרבי עקיבא.",
+    "en": "As written, Rabbi Eliezer allows bringing the milah knife on Shabbos uncovered, and in time of danger covered before witnesses, while Rabbi Akiva rules that a melachah that could be done before Shabbos does not override Shabbos. Rabbi Levi explains that it is carried uncovered to show love of the mitzvah, not because of suspicion, and Rav Ashi infers this from the Mishnah itself: only in danger is it covered. Rav Yehudah said in the name of Rav: the halacha follows Rabbi Akiva."
    },
    "moves": [
     {
@@ -7820,36 +7650,6 @@ window.SHABBOS_DATA = {
      "link": "https://www.sefaria.org/Shabbat.130a",
      "q": "מַתְנִיתִין נָמֵי דַּיְקָא, דְּקָתָנֵי: וּבִשְׁעַת הַסַּכָּנָה מְכַסֵּהוּ עַל פִּי עֵדִים, בְּסַכָּנָה — אִין, שֶׁלֹּא בְּסַכָּנָה — לָא, שְׁמַע מִינַּהּ מִשּׁוּם חַבּוֹבֵי מִצְוָה.",
      "ref": "130a.5"
-    },
-    {
-     "tags": [
-      2
-     ],
-     "who": "הגמרא",
-     "daf": "שבת קל.",
-     "link": "https://www.sefaria.org/Shabbat.130a",
-     "q": "אִי אָמְרַתְּ בִּשְׁלָמָא הוּא וּתְרֵי — שַׁפִּיר, אֶלָּא אִי אָמְרַתְּ הוּא וְחַד, מַאי ״עֵדִים״? שֶׁרְאוּיִם לְהָעִיד בִּמְקוֹם אַחֵר.",
-     "ref": "130a.8"
-    },
-    {
-     "tags": [
-      1
-     ],
-     "who": "רבי יוחנן / רב אדא בר אהבה",
-     "daf": "שבת קלא.",
-     "link": "https://www.sefaria.org/Shabbat.131a",
-     "q": "לֹא לַכֹּל אָמַר רַבִּי אֱלִיעֶזֶר מַכְשִׁירֵי מִצְוָה דּוֹחִין אֶת הַשַּׁבָּת... לְמַעוֹטֵי צִיצִית לְטַלִּיתוֹ וּמְזוּזָה לְפִתְחוֹ.",
-     "ref": "131a.4-8"
-    },
-    {
-     "tags": [
-      3
-     ],
-     "who": "הגמרא",
-     "daf": "שבת קלב.",
-     "link": "https://www.sefaria.org/Shabbat.132a",
-     "q": "עַד כָּאן לָא פְּלִיגִי רַבָּנַן עֲלֵיהּ אֶלָּא בְּמַכְשִׁירֵי מִילָה, אֲבָל מִילָה גּוּפַהּ דִּבְרֵי הַכֹּל דּוֹחָה שַׁבָּת",
-     "ref": "132a.3"
     }
    ],
    "halacha": {
@@ -8400,7 +8200,7 @@ window.SHABBOS_DATA = {
    "moves": [
     {
      "tags": [
-      11
+      7
      ],
      "who": "ברייתא",
      "daf": "שבת קמ:",
@@ -8669,8 +8469,8 @@ window.SHABBOS_DATA = {
    },
    "text": "חָבִית שֶׁנִּשְׁבְּרָה, מַצִּילִין הֵימֶנָּה מְזוֹן שָׁלֹשׁ סְעֻדּוֹת, וְאוֹמֵר לַאֲחֵרִים, בֹּאוּ וְהַצִּילוּ לָכֶם, וּבִלְבַד שֶׁלֹּא יִסְפֹּג. אֵין סוֹחֲטִין אֶת הַפֵּרוֹת לְהוֹצִיא מֵהֶן מַשְׁקִין, וְאִם יָצְאוּ מֵעַצְמָן, אֲסוּרִין. רַבִּי יְהוּדָה אוֹמֵר, אִם לְאֳכָלִין, הַיּוֹצֵא מֵהֶן מֻתָּר, וְאִם לְמַשְׁקִין, הַיּוֹצֵא מֵהֶן אָסוּר. חַלּוֹת דְּבַשׁ שֶׁרִסְּקָן מֵעֶרֶב שַׁבָּת וְיָצְאוּ מֵעַצְמָן, אֲסוּרִין. וְרַבִּי אֱלִיעֶזֶר מַתִּיר:",
    "gap": {
-    "he": "לפי לשון המשנה, מצילים מחבית שנשברה ובלבד שלא יספוג, אין סוחטים פירות, ורבי יהודה מתיר את היוצא מפירות שלאוכלין, ורבי אליעזר מתיר חלות דבש שריסקן. הברייתא מפרשת 'שלא יספוג' שלא יספוג ביין ולא יטפח בשמן כדרך החול. נחלקו בגבול המחלוקת: לשמואל רבי יהודה מודה בזיתים וענבים כיון שעומדים לסחיטה, ולרב חלוק אף בהם. רבה בשם שמואל מוסיף שחכמים מודים בשאר פירות, ורב נחמן בר יצחק מעמיד את המחלוקת בתותים ורמונים. ואביי מסביר שבחלות דבש הוא אוכל מתחילה ועד סוף. ורבי יוחנן פוסק כרבי יהודה בשאר פירות ולא בזיתים וענבים.",
-    "en": "As written, one may salvage from a broken barrel provided he does not soak it up, fruit may not be squeezed, Rabbi Yehuda permits what oozes from fruit meant for eating, and Rabbi Eliezer permits crushed honeycombs. A baraisa explains \"not soak up\": not soaking up wine or patting oil as on a weekday. They disagree on the scope of the dispute: for Shmuel, Rabbi Yehuda agrees on olives and grapes since they stand to be squeezed, and for Rav he disagrees even there. Rabbah in Shmuel's name adds that the Chachamim agree on other fruit, and Rav Nachman bar Yitzchak sets the dispute in mulberries and pomegranates. Abaye explains that honeycombs are food from start to finish. And Rabbi Yochanan rules like Rabbi Yehuda for other fruit but not for olives and grapes."
+    "he": "לפי לשון המשנה, מצילים מחבית שנשברה ובלבד שלא יספוג, אין סוחטים פירות, ורבי יהודה מתיר את היוצא מפירות שלאוכלין, ורבי אליעזר מתיר חלות דבש שריסקן. הברייתא מפרשת 'שלא יספוג' שלא יספוג ביין ולא יטפח בשמן כדרך החול. נחלקו בגבול המחלוקת: לשמואל רבי יהודה מודה בזיתים וענבים כיון שעומדים לסחיטה, ולרב חלוק אף בהם. רבה בשם שמואל מוסיף שחכמים מודים בשאר פירות, ורב נחמן בר יצחק מעמיד את המחלוקת בתותים ורמונים. ורבי יוחנן פוסק כרבי יהודה בשאר פירות ולא בזיתים וענבים.",
+    "en": "As written, one may salvage from a broken barrel provided he does not soak it up, fruit may not be squeezed, Rabbi Yehuda permits what oozes from fruit meant for eating, and Rabbi Eliezer permits crushed honeycombs. A baraisa explains \"not soak up\": not soaking up wine or patting oil as on a weekday. They disagree on the scope of the dispute: for Shmuel, Rabbi Yehuda agrees on olives and grapes since they stand to be squeezed, and for Rav he disagrees even there. Rabbah in Shmuel's name adds that the Chachamim agree on other fruit, and Rav Nachman bar Yitzchak sets the dispute in mulberries and pomegranates. And Rabbi Yochanan rules like Rabbi Yehuda for other fruit but not for olives and grapes."
    },
    "moves": [
     {
@@ -8732,16 +8532,6 @@ window.SHABBOS_DATA = {
      "link": "https://www.sefaria.org/Shabbat.143b",
      "q": "מִסְתַּבְּרָא בְּתוּתִים וְרִמּוֹנִים פְּלִיגִי.",
      "ref": "143b.5"
-    },
-    {
-     "tags": [
-      4
-     ],
-     "who": "אביי",
-     "daf": "שבת קמה:",
-     "link": "https://www.sefaria.org/Shabbat.145b",
-     "q": "דְּאִי מִמַּתְנִיתִין הֲוָה אָמֵינָא: הָתָם הוּא — דְּמֵעִיקָּרָא אוּכְלָא וּלְבַסּוֹף אוּכְלָא, אֲבָל הָכָא דְּמֵעִיקָּרָא אוּכְלָא וּלְבַסּוֹף מַשְׁקֶה — אֵימָא לָא, קָא מַשְׁמַע לַן.",
-     "ref": "145b.5"
     }
    ],
    "halacha": {
@@ -8811,7 +8601,7 @@ window.SHABBOS_DATA = {
       1,
       8
      ],
-     "who": "רבי אושעיא",
+     "who": "רבי אושעיא והגמרא",
      "daf": "שבת קמו.",
      "link": "https://www.sefaria.org/Shabbat.146a",
      "q": "לֹא שָׁנוּ אֶלָּא דְּרוּסוֹת, אֲבָל מְפוֹרָדוֹת — לֹא. ... הַהִיא רַבָּנַן, מַתְנִיתִין רַבִּי נְחֶמְיָה הִיא.",
@@ -8966,7 +8756,7 @@ window.SHABBOS_DATA = {
      "tags": [
       8
      ],
-     "who": "הגמרא",
+     "who": "רבי יוחנן והגמרא",
      "daf": "שבת קמז:",
      "link": "https://www.sefaria.org/Shabbat.147b",
      "q": "רַבִּי יוֹחָנָן: הֲלָכָה מִסְתַּפֵּג אָדָם בַּאֲלוּנְטִית וּמְבִיאָהּ בְּיָדוֹ לְתוֹךְ בֵּיתוֹ. ... הָהוּא — כְּבֶן חֲכִינַאי מַתְנֵי לַהּ.",
@@ -9452,8 +9242,8 @@ window.SHABBOS_DATA = {
    },
    "text": "מִי שֶׁהֶחְשִׁיךְ בַּדֶּרֶךְ, נוֹתֵן כִּיסוֹ לְנָכְרִי, וְאִם אֵין עִמּוֹ נָכְרִי, מְנִיחוֹ עַל הַחֲמוֹר. הִגִּיעַ לֶחָצֵר הַחִיצוֹנָה, נוֹטֵל אֶת הַכֵּלִים הַנִּטָּלִין בְּשַׁבָּת, וְשֶׁאֵינָן נִטָּלִין בְּשַׁבָּת, מַתִּיר אֶת הַחֲבָלִים, וְהַשַּׂקִּין נוֹפְלִין מֵאֲלֵיהֶם:",
    "gap": {
-    "he": "לפי לשון המשנה, מי שהחשיך בדרך נותן כיסו לגוי, ואם אין עמו גוי מניחו על החמור. ההיתר הוא משום שאין אדם מעמיד עצמו על ממונו, ואם לא נתיר יבוא לשאת ארבע אמות. רבא מדייק 'כיסו' ולא מציאה. מלשון 'אין עמו גוי' משמע שגוי קודם לחמור, שעל שביתת החמור אתה מצווה. רב אדא בר אהבה מעמיד שמניחו על החמור כשהוא מהלך ונוטלו כשעומד, ורב פפא מסביר שמה שבחבירו פטור אבל אסור, בחמורו מותר לכתחילה. ורב הונא מעמיד את הכלים שאינם ניטלים בכרים מתחתיהם, בקרני אומנא ובשליפי זוטרי.",
-    "en": "As written, one overtaken by nightfall on the road gives his purse to a gentile, and if none is with him he places it on his donkey. The leniency is because no one will hold back over his money, and if it were not permitted he would carry four amos. Rava infers \"his purse\" and not a found object. From \"no gentile is with him\" it follows that the gentile comes before the donkey, since you are commanded about the donkey's rest. Rav Adda bar Ahavah sets it where he places it on the donkey while it walks and takes it off when it stops, and Rav Pappa explains that what is exempt but forbidden through another person is permitted outright through one's donkey. And Rav Huna adds that for vessels that may not be moved he brings cushions beneath, in the case of bloodletter's horns and small sacks."
+    "he": "לפי לשון המשנה, מי שהחשיך בדרך נותן כיסו לגוי, ואם אין עמו גוי מניחו על החמור. ההיתר הוא משום שאין אדם מעמיד עצמו על ממונו, ואם לא נתיר יבוא לשאת ארבע אמות. רבא מדייק 'כיסו' ולא מציאה. מלשון 'אין עמו גוי' משמע שגוי קודם לחמור, שעל שביתת החמור אתה מצווה. רב אדא בר אהבה מעמיד שמניחו על החמור כשהוא מהלך ונוטלו כשעומד, ורב פפא מסביר שמה שבחבירו פטור אבל אסור, בחמורו מותר לכתחילה.",
+    "en": "As written, one overtaken by nightfall on the road gives his purse to a gentile, and if none is with him he places it on his donkey. The leniency is because no one will hold back over his money, and if it were not permitted he would carry four amos. Rava infers \"his purse\" and not a found object. From \"no gentile is with him\" it follows that the gentile comes before the donkey, since you are commanded about the donkey's rest. Rav Adda bar Ahavah sets it where he places it on the donkey while it walks and takes it off when it stops, and Rav Pappa explains that what is exempt but forbidden through another person is permitted outright through one's donkey."
    },
    "moves": [
     {
@@ -9507,16 +9297,6 @@ window.SHABBOS_DATA = {
      "link": "https://www.sefaria.org/Shabbat.153b",
      "q": "כׇּל שֶׁבְּגוּפוֹ חַיָּיב חַטָּאת — בַּחֲבֵרוֹ פָּטוּר אֲבָל אָסוּר, כׇּל שֶׁחֲבֵרוֹ פָּטוּר אֲבָל אָסוּר — בַּחֲמוֹרוֹ מוּתָּר לְכַתְּחִלָּה.",
      "ref": "153b.9"
-    },
-    {
-     "tags": [
-      1
-     ],
-     "who": "רב הונא",
-     "daf": "שבת קנד:",
-     "link": "https://www.sefaria.org/Shabbat.154b",
-     "q": "הָיְתָה בְּהֶמְתּוֹ טְעוּנָה כְּלֵי זְכוּכִית, מֵבִיא כָּרִים וּכְסָתוֹת וּמַנִּיחַ תַּחְתֶּיהָ, וּמַתִּיר הַחֲבָלִים וְהַשַּׂקִּין נוֹפְלִים. ... כִּי קָאָמַר רַב הוּנָא, בְּקַרְנֵי דְאוּמָּנָא, דְּלָא חַזְיָא לֵיהּ. וְהָא קָא מְבַטֵּל כְּלִי מֵהֵיכֵנוֹ! בִּשְׁלִיפֵי זוּטְרֵי.",
-     "ref": "154b.2-4"
     }
    ],
    "halacha": null
@@ -9667,8 +9447,8 @@ window.SHABBOS_DATA = {
    },
    "text": "מְחַתְּכִין אֶת הַדְּלוּעִין לִפְנֵי הַבְּהֵמָה, וְאֶת הַנְּבֵלָה לִפְנֵי הַכְּלָבִים. רַבִּי יְהוּדָה אוֹמֵר, אִם לֹא הָיְתָה נְבֵלָה מֵעֶרֶב שַׁבָּת, אֲסוּרָה, לְפִי שֶׁאֵינָהּ מִן הַמּוּכָן:",
    "gap": {
-    "he": "לפי לשון המשנה, מחתכים דלועים לפני הבהמה ונבלה לפני הכלבים, ורבי יהודה אוסר נבלה שלא היתה מערב שבת משום שאינה מן המוכן. האמוראים חולקים כמי ההלכה, ומכך עולה שתנא קמא הוא רבי שמעון: לעולא הלכה כרבי יהודה, ולשמואל ולרבי יוחנן הלכה כרבי שמעון.",
-    "en": "As written, gourds may be cut before an animal and a carcass before dogs, and Rabbi Yehuda forbids a carcass that was not one before Shabbos, since it was not prepared. The Amoraim disagree whose view is the halacha, which shows the first opinion is Rabbi Shimon: for Ulla the halacha follows Rabbi Yehuda, and for Shmuel and Rabbi Yochanan it follows Rabbi Shimon."
+    "he": "לפי לשון המשנה, מחתכים דלועים לפני הבהמה ונבלה לפני הכלבים, ורבי יהודה אוסר נבלה שלא היתה מערב שבת משום שאינה מן המוכן. האמוראים חולקים כמי ההלכה: לעולא הלכה כרבי יהודה, ולשמואל הלכה כרבי שמעון, שהוא תנא קמא המתיר.",
+    "en": "As written, gourds may be cut before an animal and a carcass before dogs, and Rabbi Yehuda forbids a carcass that was not one before Shabbos, since it was not prepared. The Amoraim disagree whose view is the halacha: for Ulla it follows Rabbi Yehuda, and for Shmuel it follows Rabbi Shimon, the first opinion who permits."
    },
    "moves": [
     {
@@ -9695,13 +9475,6 @@ window.SHABBOS_DATA = {
        "daf": "שבת קנו:",
        "link": "https://www.sefaria.org/Shabbat.156b",
        "q": "הֲלָכָה כְּרַבִּי שִׁמְעוֹן, וְאַף זְעֵירִי סָבַר הֲלָכָה כְּרַבִּי שִׁמְעוֹן.",
-       "ref": "156b.10"
-      },
-      {
-       "who": "רבי יוחנן",
-       "daf": "שבת קנו:",
-       "link": "https://www.sefaria.org/Shabbat.156b",
-       "q": "וְאַף רַבִּי יוֹחָנָן אָמַר הֲלָכָה כְּרַבִּי שִׁמְעוֹן.",
        "ref": "156b.10"
       }
      ]

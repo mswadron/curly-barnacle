@@ -23,3 +23,4 @@
 2026-10-12 · Beitzah page: new tag 11 הכי קתני for the Gemara re-reading or completing the Mishnah's words, split off from 9 דיוק בלשון (6 boxes: 1:2 x2, 1:10, 3:2, 4:3, 4:5).
 2026-10-12 · Beitzah page: all 42 editor lines rewritten to the 1:7 pattern; פירוש button on every box loads the Steinsaltz commentary for that exact segment inline (Sefaria API, CORS open).
 2026-10-12 · Added Shabbos (apps/shabbos.html): all 139 mishnayos, 476 boxes, quotes verified 697/697; tile under Mishnah; docs/shabbos.md.
+2026-10-12 · Shabbos page: independent review of all 24 perakim. 16 boxes removed, 4 duplicate machlokes sides removed, 14 retagged, 3 speakers fixed, 16 editor lines rewritten. 460 boxes.
