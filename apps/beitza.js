@@ -8,6 +8,35 @@
   const $ = (s) => document.querySelector(s);
   const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
 
+
+  const PCACHE = {};
+  const perushBtn = (ref) => ref ? `<button class="prs" data-ref="${esc(ref)}" type="button">${lang === 'he' ? 'פירוש' : 'Explanation'}</button>` : '';
+  const perushPanel = (ref) => ref ? `<div class="prs-panel he" data-for="${esc(ref)}" hidden></div>` : '';
+  const cleanHtml = (s) => String(s).replace(/<(?!\/?(b|i|small|br)\b)[^>]*>/gi, '');
+  async function openPerush(btn) {
+    const ref = btn.dataset.ref;
+    const panel = btn.closest('.move, .mk-side, .halacha').querySelector(`.prs-panel[data-for="${CSS.escape(ref)}"]`);
+    if (!panel) return;
+    if (!panel.hidden) { panel.hidden = true; btn.classList.remove('on'); return; }
+    panel.hidden = false; btn.classList.add('on');
+    if (PCACHE[ref]) { panel.innerHTML = PCACHE[ref]; return; }
+    panel.innerHTML = `<span class="prs-wait">${lang === 'he' ? 'טוען...' : 'Loading...'}</span>`;
+    const url = 'https://www.sefaria.org/api/v3/texts/Steinsaltz_on_Beitzah.' + encodeURIComponent(ref) + '?version=hebrew';
+    try {
+      const r = await fetch(url); if (!r.ok) throw new Error(r.status);
+      const j = await r.json();
+      const v = (j.versions || [])[0]; let t = v ? v.text : null;
+      const segs = Array.isArray(t) ? t.flat(Infinity) : [t];
+      const body = segs.filter(Boolean).map((s) => `<p>${cleanHtml(s)}</p>`).join('');
+      if (!body) throw new Error('empty');
+      PCACHE[ref] = `<div class="prs-src">${lang === 'he' ? 'ביאור שטיינזלץ' : 'Steinsaltz commentary'} · <a href="https://www.sefaria.org/Steinsaltz_on_Beitzah.${esc(ref)}" target="_blank" rel="noopener">${esc(ref.replace('.', ' ').replace('-', '–'))}</a></div>${body}`;
+      panel.innerHTML = PCACHE[ref];
+    } catch (e) {
+      panel.innerHTML = `<a href="https://www.sefaria.org/Steinsaltz_on_Beitzah.${esc(ref)}" target="_blank" rel="noopener">${lang === 'he' ? 'פתח את הביאור' : 'Open the commentary'}</a>`;
+    }
+  }
+  document.addEventListener('click', (e) => { const b = e.target.closest('.prs'); if (b) openPerush(b); });
+
   function tagChip(n, small) {
     const t = D.tags[n];
     const label = lang === 'he' ? t.he : t.en;
@@ -41,8 +70,8 @@
       return `<span class="st st-${st.kind}" title="${esc(st.hover)}">${esc(st.label)}<span class="sep">·</span>${links}</span>`;
     };
     const side = (s) => `<div class="mk-side"><div class="mk-who"><span>${esc(s.who)}</span>${chip(s.status)}
-        <a class="daf" href="${s.link}" target="_blank" rel="noopener">${esc(s.daf)}</a></div>
-        <p class="quote he">${esc(s.q)}</p>${s.status ? `<p class="st-hover he"><b>${esc(s.status.hover_src || s.status.links[0].label)}:</b> ${esc(s.status.hover)}</p>` : ''}</div>`;
+        <a class="daf" href="${s.link}" target="_blank" rel="noopener">${esc(s.daf)}</a>${perushBtn(s.ref)}</div>
+        <p class="quote he">${esc(s.q)}</p>${perushPanel(s.ref)}${s.status ? `<p class="st-hover he"><b>${esc(s.status.hover_src || s.status.links[0].label)}:</b> ${esc(s.status.hover)}</p>` : ''}</div>`;
     return `<div class="move mk${dim ? ' dim' : ''}">
       <div class="move-head">${mv.tags.map((n) => tagChip(n, true)).join('')}${topic}</div>
       ${mv.intro ? `<p class="quote he mk-frame">${esc(mv.intro)}</p>` : ''}
@@ -57,8 +86,8 @@
     return `<div class="move${dim ? ' dim' : ''}">
       <div class="move-head">${mv.tags.map((n) => tagChip(n, true)).join('')}
         <span class="who">${esc(mv.who)}</span>
-        <a class="daf" href="${mv.link}" target="_blank" rel="noopener">${esc(mv.daf)}</a></div>
-      <p class="quote he">${esc(mv.q)}</p>
+        <a class="daf" href="${mv.link}" target="_blank" rel="noopener">${esc(mv.daf)}</a>${perushBtn(mv.ref)}</div>
+      <p class="quote he">${esc(mv.q)}</p>${perushPanel(mv.ref)}
     </div>`;
   }
 
@@ -73,8 +102,8 @@
       ? `<div class="pending">${lang === 'he' ? 'הגמרא על משנה זו טרם נשלפה ונבדקה. לא נכתב כאן דבר שאינו מן המקור.' : 'The Gemara on this Mishnah has not been pulled and checked yet. Nothing is written here that is not from the source.'}</div>`
       : m.moves.map(moveHTML).join('');
     const hal = m.halacha ? `<div class="halacha"><span class="eyebrow">${lang === 'he' ? 'הלכה' : 'Halacha'}</span>
-        <span class="who">${esc(m.halacha.who)}</span> <a class="daf" href="${m.halacha.link}" target="_blank" rel="noopener">${esc(m.halacha.daf)}</a>
-        <p class="quote he">${esc(m.halacha.q)}</p></div>` : '';
+        <span class="who">${esc(m.halacha.who)}</span> <a class="daf" href="${m.halacha.link}" target="_blank" rel="noopener">${esc(m.halacha.daf)}</a>${perushBtn(m.halacha.ref)}
+        <p class="quote he">${esc(m.halacha.q)}</p>${perushPanel(m.halacha.ref)}</div>` : '';
     return `<article class="card${m.pending ? ' is-pending' : ''}" id="m${m.id}">
       <header class="card-head">
         <div class="num">${numLabel(m.id)}</div>

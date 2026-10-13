@@ -21,3 +21,4 @@
 2026-10-12 · Beitzah page: second independent review pass. 2 more boxes removed (3:4, 3:8 unanswered objections), 8 retagged, 6 editor lines and 2 machlokes topics corrected, 3 speaker labels fixed, halacha lines: 3:4 and 3:6 removed (unresolved in the Gemara), 5:3 extended with the Gemara's reconciliation. 151 moves.
 2026-10-12 · Beitzah page: status chips on machlokes sides (2 נדחה, 12 הלכה, all verbatim and linked); 1:2 gains two wording moves (השוחט שבא לימלך as Rabbah/Rav Yosef machlokes; שאפר read as ואפר, 8a); script tags version-stamped so phones stop serving the old data file.
 2026-10-12 · Beitzah page: new tag 11 הכי קתני for the Gemara re-reading or completing the Mishnah's words, split off from 9 דיוק בלשון (6 boxes: 1:2 x2, 1:10, 3:2, 4:3, 4:5).
+2026-10-12 · Beitzah page: all 42 editor lines rewritten to the 1:7 pattern; פירוש button on every box loads the Steinsaltz commentary for that exact segment inline (Sefaria API, CORS open).

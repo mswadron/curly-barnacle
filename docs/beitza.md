@@ -27,3 +27,9 @@ A side of a machlokes may carry a chip, always in the source's own words, never 
 - grey "נדחה" chip: the Gemara's word that sets the side aside (כי קושיין, אלא, תיובתא), linked to the daf, with the verbatim sentence under the quote.
 - teal "וכן הלכה" / "הלכה" chip: a posek (Rambam, Shulchan Aruch) or the Gemara rules like that side; links to each source, with one verbatim sentence from the first.
 Where neither applies there is no chip. 14 chips on 20 boxes: 2 נדחה (1:1 Rav Nachman, 2:6 Rava), 12 הלכה. Every chip sentence was checked by script against the Sefaria text (src/check_refs.py).
+
+## פירוש expander (2026-10-12)
+Every Gemara box, machlokes side and halacha line has a פירוש button. It fetches the Steinsaltz Hebrew commentary for exactly that Gemara segment from the Sefaria API (ref stored per quote as `ref`, e.g. "2a.7-8", computed by src/segmap.py against the downloaded text; 4 quotes that run into the next amud fall back to the whole amud) and shows it inline under the quote, with a link to the source page. If the fetch fails the button shows a plain link. Nothing is stored on the site; the commentary is Steinsaltz's own text, loaded on demand.
+
+## Editor lines, rewritten (2026-10-12)
+All 42 "מה שהגמרא מוסיפה" lines rewritten to one pattern: what the words say on their face, then one clause per box in card order, concrete (which reason, which case, which meaning), both sides of a machlokes named, the halacha line last. Nothing beyond what is on the card.
