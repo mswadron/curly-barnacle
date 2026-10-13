@@ -168,7 +168,7 @@ window.BEITZA_DATA = {
      "tags": [
       4
      ],
-     "who": "אביי לרבה",
+     "who": "רבה (בתשובה לאביי)",
      "daf": "ביצה ב:",
      "link": "https://www.sefaria.org/Beitzah.2b",
      "q": "אֶלָּא מֵעַתָּה, יוֹם טוֹב בְּעָלְמָא תִּשְׁתְּרֵי! גְּזֵרָה מִשּׁוּם יוֹם טוֹב אַחַר הַשַּׁבָּת."
@@ -187,8 +187,8 @@ window.BEITZA_DATA = {
    },
    "text": "הַשּׁוֹחֵט חַיָּה וָעוֹף בְּיוֹם טוֹב, בֵּית שַׁמַּאי אוֹמְרִים, יַחְפֹּר בְּדֶקֶר וִיכַסֶּה, וּבֵית הִלֵּל אוֹמְרִים, לֹא יִשְׁחֹט, אֶלָּא אִם כֵּן הָיָה לוֹ עָפָר מוּכָן מִבְּעוֹד יוֹם. וּמוֹדִים, שֶׁאִם שָׁחַט, שֶׁיַּחְפֹּר בְּדֶקֶר וִיכַסֶּה, שֶׁאֵפֶר כִּירָה מוּכָן הוּא:",
    "gap": {
-    "he": "לפי הלשון בית שמאי מקילים ובית הלל מחמירים. בשאר הפרק זה הפוך, ולכן רבי יוחנן אומר שהשיטה מוחלפת. והדקר צריך להיות נעוץ.",
-    "en": "As written, Beis Shammai is lenient and Beis Hillel strict. Everywhere else in the perek it is the reverse, so Rabbi Yochanan says the positions are swapped. And the spike must already be stuck in the ground."
+    "he": "לפי הלשון בית שמאי מקילים ובית הלל מחמירים, ובשאר הפרק זה הפוך. רבי יוחנן אומר שהשיטה מוחלפת, והגמרא מציעה גם שאין להחליף אלא שבית שמאי התירו רק כשיש דקר נעוץ.",
+    "en": "As written, Beis Shammai is lenient and Beis Hillel strict, the reverse of the rest of the perek. Rabbi Yochanan says the positions are swapped, and the Gemara also offers that nothing is swapped and Beis Shammai permit only where a spike is already stuck in the ground."
    },
    "moves": [
     {
@@ -305,8 +305,8 @@ window.BEITZA_DATA = {
       1
      ],
      "topic": {
-      "he": "היכן הקן שבו זימן ומצא",
-      "en": "Where the nest in the Mishnah's case is"
+      "he": "באיזה מקרה 'בתוך הקן ומצא לפני הקן' אסור",
+      "en": "What case 'prepared in the nest and found in front of it' describes"
      },
      "intro": null,
      "outro": null,
@@ -366,7 +366,7 @@ window.BEITZA_DATA = {
      "tags": [
       4
      ],
-     "who": "עולא",
+     "who": "הגמרא (על דברי עולא)",
      "daf": "ביצה יא:",
      "link": "https://www.sefaria.org/Beitzah.11b",
      "q": "קָא מַשְׁמַע לַן הִתִּירוּ סוֹפָן מִשּׁוּם תְּחִלָּתָן: דַּחֲנוּיוֹת — אִין, דְּבָתִּים — לָא."
@@ -402,7 +402,7 @@ window.BEITZA_DATA = {
      "tags": [
       4
      ],
-     "who": "עולא",
+     "who": "הגמרא (על דברי עולא)",
      "daf": "ביצה יא:",
      "link": "https://www.sefaria.org/Beitzah.11b",
      "q": "קָא מַשְׁמַע לַן הִתִּירוּ סוֹפָן מִשּׁוּם תְּחִלָּתָן: דְּיוֹם טוֹב — אִין, דְּעֶרֶב יוֹם טוֹב — לָא."
@@ -569,7 +569,6 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      1,
       3
      ],
      "who": "הגמרא",
@@ -616,8 +615,7 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      1,
-      3
+      1
      ],
      "who": "רבי שמעון (ברייתא)",
      "daf": "ביצה יד:",
@@ -713,8 +711,8 @@ window.BEITZA_DATA = {
    },
    "text": "יוֹם טוֹב שֶׁחָל לִהְיוֹת עֶרֶב שַׁבָּת, לֹא יְבַשֵּׁל אָדָם בַּתְּחִלָּה מִיּוֹם טוֹב לַשַּׁבָּת, אֲבָל מְבַשֵּׁל הוּא לְיוֹם טוֹב, וְאִם הוֹתִיר, הוֹתִיר לַשַּׁבָּת, וְעוֹשֶׂה תַבְשִׁיל מֵעֶרֶב יוֹם טוֹב וְסוֹמֵךְ עָלָיו לַשַּׁבָּת. בֵּית שַׁמַּאי אוֹמְרִים, שְׁנֵי תַבְשִׁילִין. וּבֵית הִלֵּל אוֹמְרִים, תַּבְשִׁיל אֶחָד. וְשָׁוִין בְּדָג וּבֵיצָה שֶׁעָלָיו שֶׁהֵן שְׁנֵי תַבְשִׁילִין. אֲכָלוֹ אוֹ שֶׁאָבַד, לֹא יְבַשֵּׁל עָלָיו בַּתְּחִלָּה. וְאִם שִׁיֵּר מִמֶּנּוּ כָל שֶׁהוּא, סוֹמֵךְ עָלָיו לַשַּׁבָּת:",
    "gap": {
-    "he": "המשנה לא נותנת טעם לאיסור, ואומרת \"תבשיל\" ו\"כל שהוא\" בלי גבול. הגמרא מוסיפה טעם, מוציאה פת, מעמידה כל שהוא בכזית, ומביאה ברייתא שבה המחלוקת היא דווקא בדג וביצה.",
-    "en": "The Mishnah gives no reason for the ban and says \"a cooked dish\" and \"any amount\" without limits. The Gemara supplies a reason, excludes bread, reads \"any amount\" as an olive's bulk, and cites a baraisa where the dispute is only over fish with egg."
+    "he": "המשנה לא נותנת טעם לעירוב תבשילין, ואומרת \"תבשיל\" ו\"כל שהוא\" בלי גבול. הגמרא מוסיפה טעם לתקנה, מוציאה פת, מעמידה כל שהוא בכזית, ומביאה ברייתא שבה המחלוקת היא דווקא בדג וביצה.",
+    "en": "The Mishnah gives no reason for the eruv tavshilin and says \"a cooked dish\" and \"any amount\" without limits. The Gemara supplies the reason for the enactment, excludes bread, reads \"any amount\" as an olive's bulk, and cites a baraisa where the dispute is only over fish with egg."
    },
    "moves": [
     {
@@ -723,8 +721,8 @@ window.BEITZA_DATA = {
       4
      ],
      "topic": {
-      "he": "טעם האיסור לבשל מיום טוב לשבת",
-      "en": "Why one may not cook on Yom Tov for Shabbat"
+      "he": "טעם תקנת עירוב תבשילין",
+      "en": "Why the Sages instituted eruv tavshilin"
      },
      "intro": null,
      "outro": null,
@@ -1394,14 +1392,13 @@ window.BEITZA_DATA = {
    },
    "text": "בְּהֵמָה מְסֻכֶּנֶת לֹא יִשְׁחֹט, אֶלָּא אִם כֵּן יֵשׁ שָׁהוּת בַּיּוֹם לֶאֱכֹל מִמֶּנָּה כַּזַּיִת צָלִי. רַבִּי עֲקִיבָא אוֹמֵר, אֲפִלּוּ כַזַּיִת חַי מִבֵּית טְבִיחָתָהּ. שְׁחָטָהּ בַּשָּׂדֶה, לֹא יְבִיאֶנָּה בְמוֹט וּבְמוֹטָה. אֲבָל מֵבִיא בְיָדוֹ אֵבָרִים אֵבָרִים:",
    "gap": {
-    "he": "המשנה אומרת כזית חי מבית טביחתה ואינה מסבירה. הגמרא מציעה שהכוונה למקום שטובחת אכילתה, אבל רבי חייא שונה מקום טביחתה ממש.",
-    "en": "The Mishnah says 'raw from its place of slaughter' without explaining. The Gemara suggests it means the choice cut, but Rabbi Chiya teaches it is the literal place of slaughter."
+    "he": "המשנה אומרת כזית חי מבית טביחתה ואינה מסבירה. הגמרא רוצה לפרש ממקום שטובחת אכילתה, אבל רבי חייא שונה מקום טביחתה ממש, ונמצא שרבי עקיבא מתיר לאכול מיד משחיטה, כדברי רב הונא שנשחטה בחזקת היתר עומדת.",
+    "en": "The Mishnah says 'raw from its place of slaughter' without explaining. The Gemara tries to read it as the choice cut, but Rabbi Chiya teaches it is the literal place of slaughter, so Rabbi Akiva permits eating right after slaughter, in line with Rav Huna's rule that a slaughtered animal is presumed permitted."
    },
    "moves": [
     {
      "tags": [
-      2,
-      7
+      2
      ],
      "who": "הגמרא",
      "daf": "ביצה כה.",
@@ -1422,19 +1419,10 @@ window.BEITZA_DATA = {
    },
    "text": "בְּכוֹר שֶׁנָּפַל לְבוֹר, רַבִּי יְהוּדָה אוֹמֵר, יֵרֵד מֻמְחֶה וְיִרְאֶה, אִם יֶשׁ בּוֹ מוּם, יַעֲלֶה וְיִשְׁחֹט. וְאִם לָאו, לֹא יִשְׁחֹט. רַבִּי שִׁמְעוֹן אוֹמֵר, כֹּל שֶׁאֵין מוּמוֹ נִכָּר מִבְּעוֹד יוֹם, אֵין זֶה מִן הַמּוּכָן:",
    "gap": {
-    "he": "נראה שהמחלוקת היא אם רואין מומין ביום טוב. הגמרא מעמידה בבכור שהיה בו מום עובר מערב יום טוב ונעשה קבוע, ומדייקת שאין מומו ניכר פירושו שלא הוצג לחכם. ואם נולד ומומו עמו, שוין שמוכן.",
-    "en": "The dispute looks like it is about inspecting blemishes on Yom Tov. The Gemara sets it in a firstborn whose temporary blemish from before Yom Tov became permanent, reads 'not evident' as not shown to a sage, and notes all agree when it was born with its blemish."
+    "he": "המחלוקת היא אם רואין מומין ביום טוב, והגמרא שואלת למה נשנתה דווקא בבכור שנפל לבור. היא מעמידה בבכור שעבר והעלהו, שנפל בו מום עובר מערב יום טוב ונעשה קבוע, מדייקת שאין מומו ניכר פירושו שלא הוצג לחכם, ומביאה שהכל שוין בנולד ומומו עמו.",
+    "en": "The dispute is about inspecting blemishes on Yom Tov, and the Gemara asks why it is taught for a firstborn in a pit. It sets the case in one already lifted out whose temporary blemish from before Yom Tov became permanent, reads 'not evident' as not shown to a sage, and notes all agree when it was born with its blemish."
    },
    "moves": [
-    {
-     "tags": [
-      5
-     ],
-     "who": "הגמרא",
-     "daf": "ביצה כו.",
-     "link": "https://www.sefaria.org/Beitzah.26a",
-     "q": "בְּמַאי קָא מִפַּלְגִי? אִי נֵימָא בְּרוֹאִין מוּמִין קָמִפַּלְגִי... וְלִפַּלְגוּ בְּרוֹאִין מוּמִין דְּעָלְמָא!"
-    },
     {
      "tags": [
       9
@@ -1474,6 +1462,7 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
+      7,
       8
      ],
      "who": "רבי זירא",
@@ -1482,12 +1471,7 @@ window.BEITZA_DATA = {
      "q": "מִדְּקָתָנֵי בְּמַתְנִיתִין: רַבִּי שִׁמְעוֹן אוֹמֵר כֹּל שֶׁאֵין מוּמוֹ נִיכָּר מִבְּעוֹד יוֹם — אֵין זֶה מִן הַמּוּכָן, וְקָתָנֵי לַהּ בְּבָרַיְיתָא בִּלְשׁוֹן חֲכָמִים — שְׁמַע מִינַּהּ מִסְתַּבְּרָא כְּווֹתֵיהּ."
     }
    ],
-   "halacha": {
-    "who": "רבי זריקא ואיתימא רבי ירמיה",
-    "daf": "ביצה כז.",
-    "link": "https://www.sefaria.org/Beitzah.27a",
-    "q": "רַבִּי יְהוּדָה וְרַבִּי שִׁמְעוֹן — הֲלָכָה כְּרַבִּי יְהוּדָה."
-   }
+   "halacha": null
   },
   {
    "id": "3-5",
@@ -1500,8 +1484,8 @@ window.BEITZA_DATA = {
    },
    "text": "בְּהֵמָה שֶׁמֵּתָה, לֹא יְזִיזֶנָּה מִמְּקוֹמָהּ. וּמַעֲשֶׂה וְשָׁאֲלוּ אֶת רַבִּי טַרְפוֹן עָלֶיהָ וְעַל הַחַלָּה שֶׁנִּטְמְאָה, וְנִכְנַס לְבֵית הַמִּדְרָשׁ וְשָׁאַל, וְאָמְרוּ לוֹ, לֹא יְזִיזֵם מִמְּקוֹמָם:",
    "gap": {
-    "he": "המשנה אוסרת להזיז בהמה שמתה סתם, ונראה שהיא דלא כרבי שמעון. הגמרא מתרצת שאף רבי שמעון מודה בבעלי חיים שמתו, או מעמידה בבהמת קדשים מדיוק החלה, או בבהמה מסוכנת ודברי הכל.",
-    "en": "The Mishnah forbids moving a dead animal without qualification, apparently against Rabbi Shimon. The Gemara answers that Rabbi Shimon agrees for an animal that was alive when Yom Tov began, or sets it in a sacrificial animal inferred from the mention of challah, or in an endangered animal where all agree."
+    "he": "המשנה אוסרת להזיז בהמה שמתה סתם, ונראה שהיא דלא כרבי שמעון. הגמרא מתרצת שאף רבי שמעון מודה בבעלי חיים שמתו, או מעמידה בבהמת קדשים מדיוק החלה, ומה שמשמע שחולין מותרת היינו במסוכנת, שמותרת לדברי הכל.",
+    "en": "The Mishnah forbids moving a dead animal without qualification, apparently against Rabbi Shimon. The Gemara answers that Rabbi Shimon agrees for animals that died on Yom Tov, or sets the Mishnah in a sacrificial animal inferred from the mention of challah, and the implied permitted case of an ordinary animal is one that was already dying, which all permit."
    },
    "moves": [
     {
@@ -1598,12 +1582,7 @@ window.BEITZA_DATA = {
      "q": "כְּמַאן? לָא כְּרַבִּי יְהוּדָה וְלֹא כְּרַבָּנַן!... אִינְהוּ דַּעֲבוּד כְּרַבִּי יְהוֹשֻׁעַ. דְּתַנְיָא, רַבִּי יְהוֹשֻׁעַ אוֹמֵר: שׁוֹקְלִין מָנָה כְּנֶגֶד מָנָה בְּיוֹם טוֹב."
     }
    ],
-   "halacha": {
-    "who": "רב יוסף",
-    "daf": "ביצה כח.",
-    "link": "https://www.sefaria.org/Beitzah.28a",
-    "q": "אֲמַר רַב יוֹסֵף: הֲלָכָה כְּרַבִּי יְהוֹשֻׁעַ, הוֹאִיל וּתְנַן בִּבְכוֹרוֹת כְּוָתֵיהּ."
-   }
+   "halacha": null
   },
   {
    "id": "3-7",
@@ -1717,15 +1696,6 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      6
-     ],
-     "who": "הגמרא",
-     "daf": "ביצה כט.",
-     "link": "https://www.sefaria.org/Beitzah.29a",
-     "q": "אַלְמָא גַּבֵּי שִׂמְחַת יוֹם טוֹב רַבִּי יְהוּדָה לְחוּמְרָא וְרַבָּנַן לְקוּלָּא? וְהָא אִפְּכָא שָׁמְעִינַן לְהוּ!"
-    },
-    {
-     "tags": [
       4,
       10
      ],
@@ -1783,8 +1753,8 @@ window.BEITZA_DATA = {
    },
    "text": "הַמֵּבִיא כַדֵּי יַיִן מִמָּקוֹם לְמָקוֹם, לֹא יְבִיאֵם בְּסַל וּבְקֻפָּה, אֲבָל מֵבִיא הוּא עַל כְּתֵפוֹ אוֹ לְפָנָיו. וְכֵן הַמּוֹלִיךְ אֶת הַתֶּבֶן, לֹא יַפְשִׁיל אֶת הַקֻּפָּה לַאֲחוֹרָיו, אֲבָל מְבִיאָהּ הוּא בְיָדוֹ. וּמַתְחִילִין בַּעֲרֵמַת הַתֶּבֶן, אֲבָל לֹא בָעֵצִים שֶׁבַּמֻּקְצֶה:",
    "gap": {
-    "he": "המשנה מחייבת לשנות בדרך ההובלה בלי יוצא מן הכלל, ומתירה להתחיל בערמת התבן בלי טעם. הגמרא מוסיפה שאם אי אפשר לשנות מותר, ותולה את הרישא והסיפא במחלוקת רבי שמעון ורבי יהודה במוקצה, או מעמידה כל אחת במקרה מיוחד (ארזים ואשוחים, תבן סרוח עם קוצים).",
-    "en": "The Mishnah requires carrying differently with no exception and allows starting the straw pile without a reason. The Gemara adds that if changing is impossible it is permitted, and ties the first and last clauses to the dispute of R' Shimon and R' Yehuda on muktzeh, or sets each clause in a narrow case (cedar and pine, rotten straw with thorns)."
+    "he": "המשנה מחייבת לשנות בדרך ההובלה בלי יוצא מן הכלל, ומתירה להתחיל בערמת התבן בלי טעם. הגמרא מוסיפה שאם אי אפשר לשנות מותר, ותולה את הדין במחלוקת רבי שמעון ורבי יהודה במוקצה: בכל לשון היא מעמידה חלק אחד של המשנה כדעת תנא אחד ומסבירה את החלק השני במקרה מיוחד (ארזים ואשוחים לרבי שמעון, תבן סרוח עם קוצים לרבי יהודה).",
+    "en": "The Mishnah requires carrying differently with no exception and allows starting the straw pile without a reason. The Gemara adds that if changing is impossible it is permitted, and ties the ruling to the dispute of R' Shimon and R' Yehuda on muktzeh: in each version it assigns one clause to one tanna and explains the other clause by a narrow case (cedar and pine for R' Shimon, rotten straw with thorns for R' Yehuda)."
    },
    "moves": [
     {
@@ -2303,7 +2273,6 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      2,
       9
      ],
      "who": "עולא",
@@ -2432,7 +2401,7 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      1
+      4
      ],
      "who": "שמואל",
      "daf": "ביצה לח.",
@@ -2444,7 +2413,7 @@ window.BEITZA_DATA = {
     "who": "רבי יוחנן",
     "daf": "ביצה לז:",
     "link": "https://www.sefaria.org/Beitzah.37b",
-    "q": "אָמַר רַבָּה בַּר בַּר חָנָה אָמַר רַבִּי יוֹחָנָן: הֲלָכָה כְּרַבִּי דּוֹסָא."
+    "q": "אָמַר רַבָּה בַּר בַּר חָנָה אָמַר רַבִּי יוֹחָנָן: הֲלָכָה כְּרַבִּי דּוֹסָא... וְלָאו אוֹקֵימְנָא — כָּאן בְּרוֹעֶה אֶחָד, כָּאן בִּשְׁנֵי רוֹעִים!"
    }
   },
   {
@@ -2561,8 +2530,7 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      1,
-      10
+      1
      ],
      "who": "שמואל",
      "daf": "ביצה לט.",
@@ -2669,7 +2637,6 @@ window.BEITZA_DATA = {
    "moves": [
     {
      "tags": [
-      1,
       4
      ],
      "who": "הגמרא",

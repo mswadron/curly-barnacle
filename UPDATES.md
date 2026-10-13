@@ -18,3 +18,4 @@
 2026-10-12 · Beitzah page: each machlokes merged into one box (19), sides listed by speaker; tag 1 renamed במאי עסקינן, מוקמינן לה.
 2026-10-12 · Beitzah page: removed the R' Chiya's sons box from 1:3 (it reads the baraisa, not the Mishnah); 2:2 machlokes no longer tagged 9.
 2026-10-12 · Beitzah page: full review for stragglers. 17 boxes removed (stories, side sugyos, baraisa readings, unanswered questions), 34 retagged, 13 editor lines corrected; 4:5 machlokes topic fixed to propping a pot with a log or door.
+2026-10-12 · Beitzah page: second independent review pass. 2 more boxes removed (3:4, 3:8 unanswered objections), 8 retagged, 6 editor lines and 2 machlokes topics corrected, 3 speaker labels fixed, halacha lines: 3:4 and 3:6 removed (unresolved in the Gemara), 5:3 extended with the Gemara's reconciliation. 151 moves.
