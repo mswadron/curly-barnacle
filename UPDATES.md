@@ -25,3 +25,4 @@
 2026-10-12 · Added Shabbos (apps/shabbos.html): all 139 mishnayos, 476 boxes, quotes verified 697/697; tile under Mishnah; docs/shabbos.md.
 2026-10-12 · Shabbos page: independent review of all 24 perakim. 16 boxes removed, 4 duplicate machlokes sides removed, 14 retagged, 3 speakers fixed, 16 editor lines rewritten. 460 boxes.
 2026-10-12 · Shabbos page: 38 status chips on machlokes sides (12 נדחה, 26 הלכה), all source-worded and linked, verified.
+2026-10-12 · Shabbos page: second independent review. 4 boxes and 2 duplicate sides removed, 10 retagged, 3 speakers, 13 editor lines; daf labels confirmed. 456 boxes.

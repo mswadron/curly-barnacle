@@ -471,7 +471,7 @@ window.SHABBOS_DATA = {
     },
     {
      "tags": [
-      11
+      1
      ],
      "who": "הגמרא",
      "daf": "שבת יא.",
@@ -540,8 +540,7 @@ window.SHABBOS_DATA = {
     },
     {
      "tags": [
-      2,
-      9
+      2
      ],
      "who": "הגמרא",
      "daf": "שבת יב:",
@@ -579,7 +578,6 @@ window.SHABBOS_DATA = {
    "moves": [
     {
      "tags": [
-      9,
       11
      ],
      "who": "אביי ורב יוסף",
@@ -803,8 +801,8 @@ window.SHABBOS_DATA = {
    },
    "text": "אֵין צוֹלִין בָּשָׂר, בָּצָל, וּבֵיצָה, אֶלָּא כְּדֵי שֶׁיִּצּוֹלוּ מִבְּעוֹד יוֹם. אֵין נוֹתְנִין פַּת לַתַּנּוּר עִם חֲשֵׁכָה, וְלֹא חֲרָרָה עַל גַּבֵּי גֶחָלִים, אֶלָּא כְּדֵי שֶׁיִּקְרְמוּ פָנֶיהָ מִבְּעוֹד יוֹם. רַבִּי אֱלִיעֶזֶר אוֹמֵר, כְּדֵי שֶׁיִּקְרֹם הַתַּחְתּוֹן שֶׁלָּהּ:",
    "gap": {
-    "he": "לפי לשון המשנה, אין צולין בשר, בצל וביצה אלא כדי שיצולו מבעוד יום, ואת הפת עד שיקרמו פניה, ולרבי אליעזר עד שיקרום התחתון. רבי אלעזר אמר רב מגדיר כמה: כמאכל בן דרוסאי. לרב אשי בשר גדי מותר, ובמשנה מדובר, לפי לשון אחת, בבשר תיש שלא נחתך, ולפי לשון אחרת בבשר על גבי גחלים. והתחתון של רבי אליעזר הוא הצד המדובק בתנור.",
-    "en": "As written, one may not roast meat, onion or egg unless they can be roasted before Shabbos, nor bake bread unless its face forms a crust, and for Rabbi Eliezer its bottom. Rabbi Elazar in the name of Rav defines how much: like the food of Ben Drosai. For Rav Ashi young goat meat is permitted, and the Mishnah speaks, in one version, of ram meat that was not cut open, and in the other version, of meat directly on coals. And Rabbi Eliezer's \"bottom\" is the side stuck to the oven wall."
+    "he": "לפי לשון המשנה, אין צולין בשר, בצל וביצה אלא כדי שיצולו מבעוד יום, ואת הפת עד שיקרמו פניה, ולרבי אליעזר עד שיקרום התחתון. רבי אלעזר אמר רב מגדיר כמה: כמאכל בן דרוסאי. לרב אשי, שמתיר להניח בשר בתנור עם חשכה, המשנה מדברת לפי לשון אחת בבשר תיש שלא נחתך, ולפי לשון אחרת בבשר על גבי גחלים. והתחתון של רבי אליעזר הוא הצד המדובק בתנור.",
+    "en": "As written, one may not roast meat, onion or egg unless they can be roasted before Shabbos, nor bake bread unless its face forms a crust, and for Rabbi Eliezer its bottom. Rabbi Elazar in the name of Rav defines how much: like the food of Ben Drosai. For Rav Ashi, who permits putting meat in the oven at dusk, the Mishnah speaks, in one version, of ram meat that was not cut open, and in the other version, of meat directly on coals. And Rabbi Eliezer's \"bottom\" is the side stuck to the oven wall."
    },
    "moves": [
     {
@@ -1554,7 +1552,7 @@ window.SHABBOS_DATA = {
     },
     {
      "tags": [
-      1
+      2
      ],
      "who": "רב ששת",
      "daf": "שבת לח:",
@@ -2229,7 +2227,7 @@ window.SHABBOS_DATA = {
     },
     {
      "tags": [
-      1
+      4
      ],
      "who": "רב יהודה אמר שמואל, ואביי",
      "daf": "שבת נא.",
@@ -2456,20 +2454,6 @@ window.SHABBOS_DATA = {
        "link": "https://www.sefaria.org/Shabbat.54a",
        "q": "הֲלָכָה כְּרַבִּי יוֹסֵי.",
        "ref": "54a.6"
-      },
-      {
-       "who": "רב (איכא דמתני)",
-       "daf": "שבת נד.",
-       "link": "https://www.sefaria.org/Shabbat.54a",
-       "q": "לְיַבֵּשׁ מוּתָּר וְלֹא לֵחָלֵב",
-       "ref": "54a.7"
-      },
-      {
-       "who": "שמואל (איכא דמתני)",
-       "daf": "שבת נד.",
-       "link": "https://www.sefaria.org/Shabbat.54a",
-       "q": "אֶחָד זֶה וְאֶחָד זֶה אָסוּר.",
-       "ref": "54a.7-8"
       }
      ]
     }
@@ -3156,8 +3140,8 @@ window.SHABBOS_DATA = {
    },
    "text": "יוֹצְאָה אִשָּׁה בְחוּטֵי שֵׂעָר, בֵּין מִשֶּׁלָּהּ בֵּין מִשֶּׁל חֲבֶרְתָּהּ בֵּין מִשֶּׁל בְּהֵמָה, וּבְטֹטֶפֶת וּבְסַנְבּוּטִין בִּזְמַן שֶׁהֵן תְּפוּרִין. בְּכָבוּל וּבְפֵאָה נָכְרִית לֶחָצֵר. בְּמוֹךְ שֶׁבְּאָזְנָהּ וּבְמוֹךְ שֶׁבְּסַנְדָּלָהּ וּבְמוֹךְ שֶׁהִתְקִינָה לְנִדָּתָהּ. בְּפִלְפֵּל וּבְגַרְגִּיר מֶלַח וּבְכָל דָּבָר שֶׁתִּתֵּן לְתוֹךְ פִּיהָ, וּבִלְבַד שֶׁלֹּא תִתֵּן לְכַתְּחִלָּה בְשַׁבָּת. וְאִם נָפַל, לֹא תַחֲזִיר. שֵׁן תּוֹתֶבֶת וְשֵׁן שֶׁל זָהָב, רַבִּי מַתִּיר, וַחֲכָמִים אוֹסְרִים:",
    "gap": {
-    "he": "לפי לשון המשנה, אשה יוצאת בחוטי שער, בטוטפת ובסרביטין תפורים, בכבול ובפאה נכרית לחצר, במוך ובפלפל, ובשן של זהב נחלקו רבי וחכמים. רב נחמן בר יצחק מדייק שהמשנה כחכמים, ומכאן שבחוטי שער אין מחלוקת. בכבול ופאה נכרית נחלקו: לרב רק הם מותרים בחצר ושאר האסורים ברשות הרבים אסורים אף בחצר, ולרבי ענני בר ששון הכל ככבול, ותנא הוא שחולק על המשנה. עולא מבאר שהותרו אלו כדי שלא תתגנה על בעלה. מוך שבאזנה ושבסנדלה מותר רק כשהוא קשור, ומוך לנדתה מותר אף שאינו קשור, כיון שהוא מאוס ולא תבוא לשאתו. רבי זירא מצמצם את המחלוקת לשן של זהב, אבל בשל כסף הכל מתירים. ואביי מבאר שרבי סובר שכל דבר שהאשה מתגנה בו לא תבוא להראותו.",
-    "en": "As written, a woman may go out in hair threads, a sewn totefes and sarbitin, a kavul and a wig into the courtyard, wads of wool and pepper, and on a gold tooth Rebbi and the Chachamim disagree. Rav Nachman bar Yitzchak infers that the Mishnah follows the Chachamim, so on hair threads there is no dispute. On kavul and wig they disagree: Rav says only these two are allowed in the courtyard and everything else banned in the public domain is banned there too, while Rabbi Anani bar Sason says all are like kavul, a tanna who disagrees with the Mishnah. Ulla explains these two were allowed so she will not become unattractive to her husband. Wool in her ear or sandal is permitted only when tied on, and wool for her niddah is permitted even untied, since it is repulsive and she will not carry it. Rabbi Zeira limits the dispute to a gold tooth; a silver one all permit. And Abaye explains that Rebbi holds that anything a woman is embarrassed by she will not come to show."
+    "he": "לפי לשון המשנה, אשה יוצאת בחוטי שער, בטוטפת ובסרביטין תפורים, בכבול ובפאה נכרית לחצר, במוך ובפלפל, ובשן של זהב נחלקו רבי וחכמים. רב נחמן בר יצחק מדייק שהמשנה כחכמים, ומכאן שבחוטי שער אין מחלוקת. בכבול ופאה נכרית נחלקו: לרב רק הם מותרים בחצר ושאר האסורים ברשות הרבים אסורים אף בחצר, ולרבי ענני בר ששון בשם רבי ישמעאל בר יוסי הכל ככבול, ורבי ישמעאל בר יוסי תנא הוא וחולק על המשנה. עולא מבאר שהותרו אלו כדי שלא תתגנה על בעלה. מוך שבאזנה ושבסנדלה מותר רק כשהוא קשור, ומוך לנדתה מותר אף שאינו קשור, כיון שהוא מאוס ולא תבוא לשאתו. רבי זירא מצמצם את המחלוקת לשן של זהב, אבל בשל כסף הכל מתירים. ואביי מבאר שרבי סובר שכל דבר שהאשה מתגנה בו לא תבוא להראותו.",
+    "en": "As written, a woman may go out in hair threads, a sewn totefes and sarbitin, a kavul and a wig into the courtyard, wads of wool and pepper, and on a gold tooth Rebbi and the Chachamim disagree. Rav Nachman bar Yitzchak infers that the Mishnah follows the Chachamim, so on hair threads there is no dispute. On kavul and wig they disagree: Rav says only these two are allowed in the courtyard and everything else banned in the public domain is banned there too, while Rabbi Anani bar Sason, in the name of Rabbi Yishmael bar Yosei, says all are like kavul, and Rabbi Yishmael bar Yosei is a tanna who disagrees with the Mishnah. Ulla explains these two were allowed so she will not become unattractive to her husband. Wool in her ear or sandal is permitted only when tied on, and wool for her niddah is permitted even untied, since it is repulsive and she will not carry it. Rabbi Zeira limits the dispute to a gold tooth; a silver one all permit. And Abaye explains that Rebbi holds that anything a woman is embarrassed by she will not come to show."
    },
    "moves": [
     {
@@ -3203,7 +3187,7 @@ window.SHABBOS_DATA = {
        }
       },
       {
-       "who": "רבי ענני בר ששון משמיה דרבי ישמעאל",
+       "who": "רבי ענני בר ששון משמיה דרבי ישמעאל בר יוסי",
        "daf": "שבת סד:",
        "link": "https://www.sefaria.org/Shabbat.64b",
        "q": "הַכֹּל כְּכָבוּל.",
@@ -3658,14 +3642,13 @@ window.SHABBOS_DATA = {
    },
    "text": "אֲבוֹת מְלָאכוֹת אַרְבָּעִים חָסֵר אֶחָת. הַזּוֹרֵעַ. וְהַחוֹרֵשׁ. וְהַקּוֹצֵר. וְהַמְעַמֵּר. הַדָּשׁ. וְהַזּוֹרֶה. הַבּוֹרֵר. הַטּוֹחֵן. וְהַמְרַקֵּד. וְהַלָּשׁ. וְהָאוֹפֶה. הַגּוֹזֵז אֶת הַצֶּמֶר. הַמְלַבְּנוֹ. וְהַמְנַפְּצוֹ. וְהַצּוֹבְעוֹ. וְהַטּוֹוֶה. וְהַמֵּסֵךְ. וְהָעוֹשֶׂה שְׁנֵי בָתֵּי נִירִין. וְהָאוֹרֵג שְׁנֵי חוּטִין. וְהַפּוֹצֵעַ שְׁנֵי חוּטִין. הַקּוֹשֵׁר. וְהַמַּתִּיר. וְהַתּוֹפֵר שְׁתֵּי תְפִירוֹת. הַקּוֹרֵעַ עַל מְנָת לִתְפֹּר שְׁתֵּי תְפִירוֹת. הַצָּד צְבִי. הַשּׁוֹחֲטוֹ. וְהַמַּפְשִׁיטוֹ. הַמּוֹלְחוֹ, וְהַמְעַבֵּד אֶת עוֹרוֹ. וְהַמּוֹחֲקוֹ. וְהַמְחַתְּכוֹ. הַכּוֹתֵב שְׁתֵּי אוֹתִיּוֹת. וְהַמּוֹחֵק עַל מְנָת לִכְתֹּב שְׁתֵּי אוֹתִיּוֹת. הַבּוֹנֶה. וְהַסּוֹתֵר. הַמְכַבֶּה. וְהַמַּבְעִיר. הַמַּכֶּה בַפַּטִּישׁ. הַמּוֹצִיא מֵרְשׁוּת לִרְשׁוּת. הֲרֵי אֵלּוּ אֲבוֹת מְלָאכוֹת אַרְבָּעִים חָסֵר אֶחָת:",
    "gap": {
-    "he": "לפי לשון המשנה, זו רשימה של ארבעים חסר אחת מלאכות ותו לא. רבי יוחנן לומד מן המניין שהעושה את כולן בהעלם אחד חייב על כל אחת ואחת. זורה, בורר ומרקד דומים זה לזה ונמנו בנפרד משום שכל מה שהיה במשכן נחשב, ואופה עומד במקום בישול סממנים משום שהתנא נקט את סדר הפת. התופר שתי תפירות חייב רק כשקשרן, ובשוחט נחלקו רב ושמואל: רב אומר משום צובע, ושמואל אומר משום נטילת נשמה. מולח ומעבד הם מלאכה אחת, ולכן מוציאים אחד מהם ומכניסים שרטוט. ו'אלו' ו'חסר אחת' שבסוף המשנה באים לשלול את רבי אליעזר, המחייב על תולדה במקום אב, ואת רבי יהודה, המוסיף שובט ומדקדק.",
-    "en": "As written, this is simply a list of thirty-nine melachos. Rabbi Yochanan learns from the number that one who did all of them in one lapse of awareness is liable for each one. Winnowing, selecting and sifting resemble each other and are counted separately because whatever was done in the Mishkan is counted, and baking stands in for cooking dyes because the Tanna followed the order of making bread. One who sews two stitches is liable only if he tied them, and on slaughtering Rav and Shmuel disagree: Rav says it is because of dyeing, Shmuel because of taking a life. Salting and tanning are one melachah, so one of them is taken out and ruling lines is put in. And 'these' and 'less one' at the end of the Mishnah exclude Rabbi Eliezer, who holds one liable for a toladah together with its av, and Rabbi Yehudah, who adds beating the weft and tightening the threads."
+    "he": "לפי לשון המשנה, זו רשימה של ארבעים חסר אחת מלאכות ותו לא. רבי יוחנן לומד מן המניין שהעושה את כולן בהעלם אחד חייב על כל אחת ואחת. זורה, בורר ומרקד דומים זה לזה ונמנו בנפרד משום שכל מה שהיה במשכן נחשב, ואופה עומד במקום בישול סממנים משום שהתנא נקט את סדר הפת. התופר שתי תפירות חייב רק כשקשרן. מולח ומעבד הם מלאכה אחת, ולכן מוציאים אחד מהם ומכניסים שרטוט. ו'אלו' ו'חסר אחת' שבסוף המשנה באים לשלול את רבי אליעזר, המחייב על תולדה במקום אב, ואת רבי יהודה, המוסיף שובט ומדקדק.",
+    "en": "As written, this is simply a list of thirty-nine melachos. Rabbi Yochanan learns from the number that one who did all of them in one lapse of awareness is liable for each one. Winnowing, selecting and sifting resemble each other and are counted separately because whatever was done in the Mishkan is counted, and baking stands in for cooking dyes because the Tanna followed the order of making bread. One who sews two stitches is liable only if he tied them. Salting and tanning are one melachah, so one of them is taken out and ruling lines is put in. And 'these' and 'less one' at the end of the Mishnah exclude Rabbi Eliezer, who holds one liable for a toladah together with its av, and Rabbi Yehudah, who adds beating the weft and tightening the threads."
    },
    "moves": [
     {
      "tags": [
-      9,
-      4
+      9
      ],
      "who": "רבי יוחנן",
      "daf": "שבת עג:",
@@ -3702,34 +3685,6 @@ window.SHABBOS_DATA = {
      "link": "https://www.sefaria.org/Shabbat.74b",
      "q": "וְהַתּוֹפֵר שְׁתֵּי תְּפִירוֹת. וְהָא לָא קָיְימָא! אָמַר רַבָּה בַּר בַּר חָנָה אָמַר רַבִּי יוֹחָנָן: וְהוּא שֶׁקְּשָׁרָן.",
      "ref": "74b.9"
-    },
-    {
-     "machlokes": true,
-     "tags": [
-      4
-     ],
-     "topic": {
-      "he": "משום איזו מלאכה חייב השוחט",
-      "en": "Which melachah makes the slaughterer liable"
-     },
-     "intro": "שׁוֹחֵט מִשּׁוּם מַאי חַיָּיב?",
-     "outro": "מִשּׁוּם צוֹבֵעַ אִין, מִשּׁוּם נְטִילַת נְשָׁמָה לָא? אֵימָא: אַף מִשּׁוּם צוֹבֵעַ.",
-     "sides": [
-      {
-       "who": "רב",
-       "daf": "שבת עה.",
-       "link": "https://www.sefaria.org/Shabbat.75a",
-       "q": "מִשּׁוּם צוֹבֵעַ.",
-       "ref": "75a.7"
-      },
-      {
-       "who": "שמואל",
-       "daf": "שבת עה.",
-       "link": "https://www.sefaria.org/Shabbat.75a",
-       "q": "מִשּׁוּם נְטִילַת נְשָׁמָה.",
-       "ref": "75a.7"
-      }
-     ]
     },
     {
      "tags": [
@@ -4330,8 +4285,8 @@ window.SHABBOS_DATA = {
    },
    "text": "אָמַר רַבִּי עֲקִיבָא, מִנַּיִן לַעֲבוֹדָה זָרָה שֶׁהִיא מְּטַמְּאָה בְמַשָּׂא כַּנִּדָּה, שֶׁנֶּאֱמַר (ישעיה ל) תִּזְרֵם כְּמוֹ דָוָה, צֵא תֹּאמַר לוֹ, מַה נִּדָּה מְטַמְּאָה בְמַשָּׂא, אַף עֲבוֹדָה זָרָה מְטַמְּאָה בְמַשָּׂא:",
    "gap": {
-    "he": "לפי לשון המשנה, רבי עקיבא לומד מן הפסוק שעבודה זרה מטמאה במשא כנדה. רבה ורבי אלעזר חלוקים במה נחלק רבי עקיבא על חכמים: לרבה במשא הכל מודים שמטמאה, והמחלוקת היא רק באבן מסמא; לרבי אלעזר באבן מסמא הכל מודים שאינה מטמאה, והמחלוקת היא במשא. והגמרא מוסיפה שטומאת עבודה זרה היא מדרבנן, ולכן מן ההיקש לומדים רק לקולא ולא לחומרא.",
-    "en": "As written, Rabbi Akiva learns from the pasuk that avodah zarah conveys tumah by carrying, like a niddah. Rabbah and Rabbi Elazar disagree about what Rabbi Akiva and the Chachamim actually dispute: for Rabbah all agree it conveys tumah by carrying, and the dispute is only about even mesama; for Rabbi Elazar all agree it does not convey tumah through even mesama, and the dispute is about carrying. And the Gemara adds that the tumah of avodah zarah is only rabbinic, so the comparison is applied only to be lenient, not to be strict."
+    "he": "לפי לשון המשנה, רבי עקיבא לומד מן הפסוק שעבודה זרה מטמאה במשא כנדה. רבה ורבי אלעזר חלוקים במה נחלקו רבי עקיבא וחכמים: לרבה במשא הכל מודים שמטמאה, והמחלוקת היא רק באבן מסמא; לרבי אלעזר באבן מסמא הכל מודים שאינה מטמאה, והמחלוקת היא במשא.",
+    "en": "As written, Rabbi Akiva learns from the pasuk that avodah zarah conveys tumah by carrying, like a niddah. Rabbah and Rabbi Elazar disagree about what Rabbi Akiva and the Chachamim actually dispute: for Rabbah all agree it conveys tumah by carrying, and the dispute is only about even mesama; for Rabbi Elazar all agree it does not convey tumah through even mesama, and the dispute is about carrying."
    },
    "moves": [
     {
@@ -4373,16 +4328,6 @@ window.SHABBOS_DATA = {
        }
       }
      ]
-    },
-    {
-     "tags": [
-      4
-     ],
-     "who": "הגמרא",
-     "daf": "שבת פג:",
-     "link": "https://www.sefaria.org/Shabbat.83b",
-     "q": "טוּמְאַת עֲבוֹדָה זָרָה דְּרַבָּנַן הִיא, וְקוּלָּא וְחוּמְרָא — לְקוּלָּא מַקְּשִׁינַן, לְחוּמְרָא לָא מַקְּשִׁינַן.",
-     "ref": "83b.5"
     }
    ],
    "halacha": null
@@ -4693,7 +4638,6 @@ window.SHABBOS_DATA = {
     },
     {
      "tags": [
-      5,
       4
      ],
      "who": "הגמרא",
@@ -4786,8 +4730,8 @@ window.SHABBOS_DATA = {
    },
    "text": "הַמּוֹצִיא אֳכָלִין וּנְתָנָן עַל הָאַסְקֻפָּה, בֵּין שֶׁחָזַר וְהוֹצִיאָן בֵּין שֶׁהוֹצִיאָן אַחֵר, פָּטוּר, מִפְּנֵי שֶׁלֹּא עָשָׂה מְלַאכְתּוֹ בְּבַת אֶחָת. קֻפָּה שֶׁהִיא מְלֵאָה פֵרוֹת וּנְתָנָהּ עַל הָאַסְקֻפָּה הַחִיצוֹנָה, אַף עַל פִּי שֶׁרֹב הַפֵּרוֹת מִבַּחוּץ, פָּטוּר, עַד שֶׁיּוֹצִיא אֶת כָּל הַקֻּפָּה:",
    "gap": {
-    "he": "לפי לשון המשנה, המניח אוכלין על האסקופה פטור, וקופה שרוב פירותיה בחוץ פטור עד שיוציא את כל הקופה. הגמרא מבררת שהאסקופה היא כרמלית, ומדייקת שאם לא נח בה חייב, ודלא כבן עזאי. חזקיה ורבא אומרים שבקופה מלאה חרדל חייב, משום שאגד כלי לא שמיה אגד, ורבי יוחנן ואביי אומרים שאפילו בחרדל פטור, משום שאגד כלי שמיה אגד. רבי זירא מראה שהמשנה אינה מדויקת לאף אחד מהם, וכל אחד מהם מתרץ את לשונה לשיטתו.",
-    "en": "As written, one who sets food on the threshold is exempt, and a basket with most of its produce outside is exempt until he takes out the whole basket. The Gemara establishes that the threshold is a karmelis, and infers that if it did not rest there he is liable, not like Ben Azzai. Chizkiyah and Rava say a basket full of mustard seed makes him liable, since the container does not bind its contents, and Rabbi Yochanan and Abaye say even with mustard he is exempt, since the container does bind them. Rabbi Zeira shows the wording fits neither precisely, and each one reads the words according to his view."
+    "he": "לפי לשון המשנה, המניח אוכלין על האסקופה פטור, וקופה שרוב פירותיה בחוץ פטור עד שיוציא את כל הקופה. הגמרא מבררת שהאסקופה היא כרמלית, ומדייקת שאם לא נח בה חייב, ודלא כבן עזאי. חזקיה אומר שבקופה מלאה חרדל חייב, משום שאגד כלי לא שמיה אגד, ורבי יוחנן אומר שאפילו בחרדל פטור, משום שאגד כלי שמיה אגד. המשנה אינה מדויקת לאף אחד מהם, וכל אחד מתרץ את לשונה לשיטתו: לחזקיה 'עד שיוציא את כל הקופה' נאמר בקישואין ודלועין, ולרבי יוחנן 'אף על פי שרוב פירות בחוץ' פירושו אפילו כל הפירות.",
+    "en": "As written, one who sets food on the threshold is exempt, and a basket with most of its fruit outside is exempt until he takes out the whole basket. The Gemara establishes that the threshold is a karmelis, and infers that if the food did not rest there he is liable, not like Ben Azzai. Chizkiyah says a basket full of mustard seed makes him liable, since the container does not count as binding its contents, and Rabbi Yochanan says even with mustard he is exempt, since the container does count as binding them. The Mishnah's wording fits neither exactly, and each reads it his own way: for Chizkiyah 'until he takes out the whole basket' speaks of cucumbers and gourds, and for Rabbi Yochanan 'even though most of the fruit is outside' means even all of the fruit."
    },
    "moves": [
     {
@@ -5216,7 +5160,7 @@ window.SHABBOS_DATA = {
      "tags": [
       4
      ],
-     "who": "רבי יוחנן והגמרא",
+     "who": "הגמרא",
      "daf": "שבת צו:",
      "link": "https://www.sefaria.org/Shabbat.96b",
      "q": "מִכְּדֵי זְרִיקָה תּוֹלָדָה דְהוֹצָאָה הִיא... מִכְּדֵי מֵרְשׁוּת לִרְשׁוּת הוּא, מָה לִי אַפּוֹקֵי וּמָה לִי עַיּוֹלֵי! מִיהוּ, הוֹצָאָה — אָב, הַכְנָסָה — תּוֹלָדָה.",
@@ -5854,8 +5798,8 @@ window.SHABBOS_DATA = {
    },
    "text": "כָּתַב בְּמַשְׁקִין, בְּמֵי פֵרוֹת, בַּאֲבַק דְּרָכִים, בַּאֲבַק הַסּוֹפְרִים, וּבְכָל דָּבָר שֶׁאֵינוֹ מִתְקַיֵּם, פָּטוּר. לְאַחַר יָדוֹ, בְּרַגְלוֹ, בְּפִיו וּבְמַרְפְּקוֹ, כָּתַב אוֹת אַחַת סָמוּךְ לִכְתָב, וּכְתָב עַל גַּבֵּי כְתָב, נִתְכַּוֵּן לִכְתֹּב חֵי\"ת וְכָתַב שְׁנֵי זַיְ\"נִין, אֶחָד בָּאָרֶץ וְאֶחָד בַּקּוֹרָה, כָּתַב עַל שְׁנֵי כָתְלֵי הַבַּיִת, עַל שְׁנֵי דַפֵּי פִנְקָס וְאֵין נֶהְגִּין זֶה עִם זֶה, פָּטוּר. כָּתַב אוֹת אַחַת נוֹטָרִיקוֹן, רַבִּי יְהוֹשֻׁעַ בֶּן בְּתֵירָא מְחַיֵּב, וַחֲכָמִים פּוֹטְרִין:",
    "gap": {
-    "he": "לפי לשון המשנה, הכותב אות אחת סמוך לכתב, כתב על גבי כתב, נתכוון לחי״ת וכתב שני זיינין, או כתב על שני כותלי הבית שאינם נהגים זה עם זה, פטור. רבא בר רב הונא אומר שאות סמוך לכתב פטור שלא כרבי אליעזר, שמחייב באחת על האריג. רב חסדא אומר שכתב על גבי כתב פטור שלא כרבי יהודה. בשני זיינין הגמרא מבחינה בין זיינין שצריכים תגים לזיינין שאינם צריכים. ורבי אמי מסביר ששני כותלי הבית פטור משום שחסר מעשה של קריבה, ולכן הכותב אות בטבריה ואות בציפורי חייב.",
-    "en": "As written, writing one letter next to existing writing, writing over writing, intending a ches and writing two zayins, or writing on two walls of a house that cannot be read together, is patur. Rava bar Rav Huna says the letter next to writing is patur not like Rabbi Eliezer, who holds one thread on a woven cloth chayav. Rav Chisda says writing over writing is patur not like Rabbi Yehudah. On the two zayins the Gemara distinguishes zayins that need crowns from zayins that do not. And Rabbi Ami explains that the two walls are patur because an act of bringing them together is missing, so writing one letter in Teverya and one in Tzippori is chayav."
+    "he": "לפי לשון המשנה, הכותב אות אחת סמוך לכתב, כתב על גבי כתב, נתכוון לחי״ת וכתב שני זיינין, או כתב על שני כותלי הבית שאינם נהגים זה עם זה, פטור. רבא בר רב הונא אומר שאות סמוך לכתב פטור שלא כרבי אליעזר, שמחייב באחת על האריג. רב חסדא אומר שכתב על גבי כתב פטור שלא כרבי יהודה. בשני זיינין, הגמרא מעמידה את הפטור כשהזיינין עדיין צריכים תגים, ואם אינם צריכים חייב. ורבי אמי מסביר ששני כותלי הבית פטור משום שחסר מעשה של קריבה, ולכן הכותב אות בטבריה ואות בציפורי חייב.",
+    "en": "As written, writing one letter next to existing writing, writing over writing, intending a ches and writing two zayins, or writing on two walls of a house that cannot be read together, is patur. Rava bar Rav Huna says the letter next to writing is patur not like Rabbi Eliezer, who holds one thread on a woven cloth chayav. Rav Chisda says writing over writing is patur not like Rabbi Yehudah. On the two zayins, the Gemara sets the exemption where the zayins still need their crowns, and where they do not he is chayav. And Rabbi Ami explains that the two walls are patur because an act of bringing them together is missing, so writing one letter in Teverya and one in Tzippori is chayav."
    },
    "moves": [
     {
@@ -5940,8 +5884,8 @@ window.SHABBOS_DATA = {
    },
    "text": "רַבִּי אֱלִיעֶזֶר אוֹמֵר, הָאוֹרֵג שְׁלשָׁה חוּטִין בַּתְּחִלָּה וְאַחַת עַל הָאָרִיג, חַיָּב. וַחֲכָמִים אוֹמְרִים, בֵּין בַּתְּחִלָּה בֵּין בַּסּוֹף, שִׁעוּרוֹ שְׁנֵי חוּטִין:",
    "gap": {
-    "he": "לפי לשון המשנה, רבי אליעזר מחייב באורג שלשה חוטין בתחילה, וחכמים אומרים ששיעורו שני חוטין. רבי יצחק שנה בשם רבי אליעזר שנים, והגמרא מיישבת שזה בחוטין עבים וזה בדקים. בלשון אחת: עבים, שלשה אינם נסתרים ושנים נסתרים, ודקים אפילו שנים אינם נסתרים. בלשון אחרת: דקים, שלשה ניכרים ושנים אינם ניכרים, ועבים אפילו שנים ניכרים. ברייתא מוסיפה לדברי חכמים שבשפה צריך שני חוטין ברוחב שלשה בתי נירין.",
-    "en": "As written, Rabbi Eliezer holds weaving three threads at the start chayav, and the Chachamim say the measure is two threads. Rabbi Yitzchak taught two in Rabbi Eliezer's name, and the Gemara answers that one speaks of thick threads and the other of thin. In one version: with thick threads three do not unravel and two do, and with thin even two do not unravel. In the other version: with thin threads three are noticeable and two are not, and with thick even two are noticeable. A baraisa adds to the Chachamim's words that at the border one needs two threads across the width of three heddle loops."
+    "he": "לפי לשון המשנה, רבי אליעזר מחייב באורג שלשה חוטין בתחילה, וחכמים אומרים ששיעורו שני חוטין. רבי יצחק שנה בשם רבי אליעזר שנים, והגמרא מיישבת שזה בחוטין עבים וזה בדקים. בלשון אחת: עבים, שלשה אינם נסתרים ושנים נסתרים, ודקים אפילו שנים אינם נסתרים. בלשון אחרת: דקים, שלשה ניכרים ושנים אינם ניכרים, ועבים אפילו שנים ניכרים.",
+    "en": "As written, Rabbi Eliezer holds weaving three threads at the start chayav, and the Chachamim say the measure is two threads. Rabbi Yitzchak taught two in Rabbi Eliezer's name, and the Gemara answers that one speaks of thick threads and the other of thin. In one version: with thick threads three do not unravel and two do, and with thin even two do not unravel. In the other version: with thin threads three are noticeable and two are not, and with thick even two are noticeable."
    },
    "moves": [
     {
@@ -5972,16 +5916,6 @@ window.SHABBOS_DATA = {
        "ref": "105a.10"
       }
      ]
-    },
-    {
-     "tags": [
-      1
-     ],
-     "who": "ברייתא (תניא)",
-     "daf": "שבת קה.",
-     "link": "https://www.sefaria.org/Shabbat.105a",
-     "q": "וַחֲכָמִים אוֹמְרִים: בֵּין בַּתְּחִילָּה בֵּין בַּסּוֹף — שִׁיעוּרָן שְׁנֵי חוּטִין. וּבַשָּׂפָה — שְׁנֵי חוּטִין בְּרוֹחַב שְׁלֹשָׁה בָּתֵּי נִירִין.",
-     "ref": "105a.11"
     }
    ],
    "halacha": null
@@ -6141,8 +6075,8 @@ window.SHABBOS_DATA = {
    },
    "text": "רַבִּי יְהוּדָה אוֹמֵר, הַצָּד צִפּוֹר לַמִּגְדָּל וּצְבִי לַבַּיִת, חַיָּב. וַחֲכָמִים אוֹמְרִים, צִפּוֹר לַמִּגְדָּל, וּצְבִי לַבַּיִת וְלֶחָצֵר וְלַבֵּיבָרִין. רַבָּן שִׁמְעוֹן בֶּן גַּמְלִיאֵל אוֹמֵר, לֹא כָל הַבֵּיבָרִין שָׁוִין. זֶה הַכְּלָל, מְחֻסַּר צִידָה, פָּטוּר, וְשֶׁאֵינוֹ מְחֻסַּר צִידָה, חַיָּב:",
    "gap": {
-    "he": "לפי לשון המשנה, רבי יהודה מחייב בצד צפור למגדל וצבי לבית, חכמים מחייבים גם בצבי לגינה, לחצר ולביברין, ורבן שמעון בן גמליאל אומר שלא כל הביברין שוין. הגמרא מדייקת שלכולם צפור לבית אינה צידה, ורבה בר רב הונא מעמיד את המשנה בצפור דרור שאינה מקבלת מרות. רב אשי מגדיר ביבר קטן: מקום שרץ אחריו ומשיגו בריצה אחת, או שצל הכתלים נופל זה על זה. ושמואל פוסק כרבן שמעון בן גמליאל.",
-    "en": "As written, Rabbi Yehudah holds trapping a bird into a tower or a deer into a house chayav, the Chachamim also hold a deer into a garden, courtyard or enclosure chayav, and Rabban Shimon ben Gamliel says not all enclosures are equal. The Gemara infers that for everyone a bird into a house is not trapping, and Rabbah bar Rav Huna sets the Mishnah in a dror bird, which does not accept a master. Rav Ashi defines a small enclosure: where one can run after it and catch it in one dash, or where the shadows of the walls fall on each other. And Shmuel rules like Rabban Shimon ben Gamliel."
+    "he": "לפי לשון המשנה, רבי יהודה מחייב בצד צפור למגדל וצבי לבית, חכמים מחייבים גם בצבי לחצר ולביברין, ורבן שמעון בן גמליאל אומר שלא כל הביברין שוין. הגמרא מדייקת שלכולם צפור לבית אינה צידה, ורבה בר רב הונא מעמיד את המשנה בצפור דרור שאינה מקבלת מרות. רב אשי מגדיר ביבר קטן: מקום שרץ אחריו ומשיגו בריצה אחת, או שצל הכתלים נופל זה על זה. ושמואל פוסק כרבן שמעון בן גמליאל.",
+    "en": "As written, Rabbi Yehudah holds trapping a bird into a tower or a deer into a house chayav, the Chachamim also hold a deer into a courtyard or enclosure chayav, and Rabban Shimon ben Gamliel says not all enclosures are equal. The Gemara infers that for everyone a bird into a house is not trapping, and Rabbah bar Rav Huna sets the Mishnah in a dror bird, which does not accept a master. Rav Ashi defines a small enclosure: where one can run after it and catch it in one dash, or where the shadows of the walls fall on each other. And Shmuel rules like Rabban Shimon ben Gamliel."
    },
    "moves": [
     {
@@ -6500,8 +6434,8 @@ window.SHABBOS_DATA = {
    },
    "text": "הַחוֹשֵׁשׁ בְּשִׁנָּיו, לֹא יִגְמַע בָּהֶן אֶת הַחֹמֶץ, אֲבָל מְטַבֵּל הוּא כְדַרְכּוֹ, וְאִם נִתְרַפֵּא נִתְרַפֵּא. הַחוֹשֵׁשׁ בְּמָתְנָיו, לֹא יָסוּךְ יַיִן וְחֹמֶץ, אֲבָל סָךְ הוּא אֶת הַשֶּׁמֶן, וְלֹא שֶׁמֶן וֶרֶד. בְּנֵי מְלָכִים סָכִין שֶׁמֶן וֶרֶד עַל מַכּוֹתֵיהֶן, שֶׁכֵּן דַּרְכָּם לָסוּךְ בַּחֹל. רַבִּי שִׁמְעוֹן אוֹמֵר, כָּל יִשְׂרָאֵל בְּנֵי מְלָכִים הֵם:",
    "gap": {
-    "he": "לפי לשון המשנה, החושש בשיניו לא יגמע בהן חומץ אבל מטבל כדרכו, ושמן ורד מותר רק לבני מלכים, ורבי שמעון אומר שכל ישראל בני מלכים. הגמרא מיישבת עם הפסוק 'כחומץ לשיניים': החומץ מזיק לשיניים במיץ פירות בוסר, או כשאין מכה, ומרפא כשיש מכה. ונחלקו מול הברייתא שמתירה לגמע ולבלוע: לאביי המשנה אוסרת רק לגמע ולפלוט, ולרבא האיסור הוא לפני הטיבול, ואחר הטיבול מותר. מ'בני מלכים סכין על מכותיהן' מדייקת הגמרא ששמן ורד מרפא. רב מתיר כרבי שמעון אבל לא מטעמו: רבי שמעון מתיר אף כשאינו מצוי, ורב מתיר רק במקום ששמן ורד מצוי. וההלכה כרבי שמעון ולא מטעמו.",
-    "en": "As written, one with a toothache may not sip vinegar through his teeth but may dip food in it normally, and rose oil is permitted only to princes, while Rabbi Shimon says all Yisrael are princes. The Gemara reconciles it with the pasuk \"like vinegar to the teeth\": vinegar harms teeth when it is juice of unripe fruit, or when there is no wound, and heals when there is a wound. Against a baraisa that permits sipping and swallowing they disagree: Abaye says the Mishnah forbids only sipping and spitting out, and Rava says the prohibition is before dipping, while after dipping it is permitted. From \"princes rub it on their wounds\" the Gemara infers that rose oil heals. Rav permits like Rabbi Shimon but not for his reason: Rabbi Shimon permits even where it is uncommon, while Rav permits only where rose oil is common. And the halachah is like Rabbi Shimon, not for his reason."
+    "he": "לפי לשון המשנה, החושש בשיניו לא יגמע בהן חומץ אבל מטבל כדרכו, ושמן ורד מותר רק לבני מלכים, ורבי שמעון אומר שכל ישראל בני מלכים. הגמרא מיישבת עם הפסוק 'כחומץ לשיניים': החומץ מזיק לשיניים במיץ פירות בוסר, או כשאין מכה, ומרפא כשיש מכה. ונחלקו מול הברייתא שמתירה לגמע ולבלוע: לאביי המשנה אוסרת רק לגמע ולפלוט, ולרבא האיסור הוא לפני הטיבול, ואחר הטיבול מותר. רב מתיר כרבי שמעון אבל לא מטעמו: רבי שמעון מתיר אף כשאינו מצוי, ורב מתיר רק במקום ששמן ורד מצוי. וההלכה כרבי שמעון ולא מטעמו.",
+    "en": "As written, one with a toothache may not sip vinegar through his teeth but may dip food in it normally, and rose oil is permitted only to princes, while Rabbi Shimon says all Yisrael are princes. The Gemara reconciles it with the pasuk \"like vinegar to the teeth\": vinegar harms teeth when it is juice of unripe fruit, or when there is no wound, and heals when there is a wound. Against a baraisa that permits sipping and swallowing they disagree: Abaye says the Mishnah forbids only sipping and spitting out, and Rava says the prohibition is before dipping, while after dipping it is permitted. Rav permits like Rabbi Shimon but not for his reason: Rabbi Shimon permits even where it is uncommon, while Rav permits only where rose oil is common. And the halachah is like Rabbi Shimon, not for his reason."
    },
    "moves": [
     {
@@ -6543,16 +6477,6 @@ window.SHABBOS_DATA = {
        "ref": "111a.5"
       }
      ]
-    },
-    {
-     "tags": [
-      9
-     ],
-     "who": "הגמרא",
-     "daf": "שבת קיא:",
-     "link": "https://www.sefaria.org/Shabbat.111b",
-     "q": "וְהָא מִדְּקָתָנֵי ״בְּנֵי מְלָכִים סָכִין עַל גַּבֵּי מַכּוֹתֵיהֶן שֶׁמֶן וֶורֶד״, מִכְּלָל דְּמַסֵּי.",
-     "ref": "111b.3"
     },
     {
      "tags": [
@@ -7547,8 +7471,8 @@ window.SHABBOS_DATA = {
    },
    "text": "כָּל הַכֵּלִים הַנִּטָּלִין בְּשַׁבָּת, שִׁבְרֵיהֶן נִטָּלִין עִמָּהֶן, וּבִלְבַד שֶׁיִּהְיוּ עוֹשִׂין מֵעֵין מְלָאכָה. שִׁבְרֵי עֲרֵבָה, לְכַסּוֹת בָּהֶן אֶת פִּי הֶחָבִית. שִׁבְרֵי זְכוּכִית, לְכַסּוֹת בָּהֶן אֶת פִּי הַפָּךְ. רַבִּי יְהוּדָה אוֹמֵר, וּבִלְבַד שֶׁיִּהְיוּ עוֹשִׂין מֵעֵין מְלַאכְתָּן. שִׁבְרֵי עֲרֵבָה, לִצּוֹק לְתוֹכָן מִקְפָּה. וְשֶׁל זְכוּכִית לִצּוֹק לְתוֹכָן שָׁמֶן:",
    "gap": {
-    "he": "לפי לשון המשנה, תנא קמא ורבי יהודה חולקים בשברי כלים סתם, אם די שעושים מעין מלאכה או צריך מעין מלאכתן. שמואל, בלשון שנשארה, מגביל את המחלוקת לשברים שנשברו בשבת, ושורשה הוא אם הם מוכן או נולד; אבל בנשברו מערב שבת הכל מתירים, כיון שהוכנו למלאכה מבעוד יום.",
-    "en": "As written, the Tanna Kamma and Rabbi Yehudah disagree about broken pieces in general, whether it is enough that they do some kind of work or they must do work like their original use. Shmuel, in the version that stands, limits the dispute to pieces that broke on Shabbos, and its root is whether they count as prepared or as newly come into being; pieces that broke before Shabbos all permit, since they were made ready for use while it was still day."
+    "he": "לפי לשון המשנה, תנא קמא ורבי יהודה חולקים בשברי כלים סתם, אם די שעושים מעין מלאכה או צריך מעין מלאכתן. שמואל מגביל את המחלוקת לשברים שנשברו בשבת, ושורשה הוא אם הם מוכן או נולד; אבל בנשברו מערב שבת הכל מתירים, כיון שהוכנו למלאכה מבעוד יום.",
+    "en": "As written, the Tanna Kamma and Rabbi Yehudah disagree about broken pieces in general, whether it is enough that they do some kind of work or they must do work like their original use. Shmuel limits the dispute to pieces that broke on Shabbos, and its root is whether they count as prepared or as newly come into being; pieces that broke before Shabbos all permit, since they were made ready for use while it was still day."
    },
    "moves": [
     {
@@ -8121,8 +8045,7 @@ window.SHABBOS_DATA = {
     },
     {
      "tags": [
-      4,
-      11
+      4
      ],
      "who": "הגמרא",
      "daf": "שבת קלד.",
@@ -8596,7 +8519,7 @@ window.SHABBOS_DATA = {
    "moves": [
     {
      "tags": [
-      7
+      3
      ],
      "who": "ברייתא",
      "daf": "שבת קמ:",
@@ -8666,8 +8589,8 @@ window.SHABBOS_DATA = {
    },
    "text": "נוֹטֵל אָדָם אֶת בְּנוֹ וְהָאֶבֶן בְּיָדוֹ, וְכַלְכַּלָּה וְהָאֶבֶן בְּתוֹכָהּ. וּמְטַלְטְלִין תְּרוּמָה טְמֵאָה עִם הַטְּהוֹרָה וְעִם הַחֻלִּין. רַבִּי יְהוּדָה אוֹמֵר, אַף מַעֲלִין אֶת הַמְדֻמָּע בְּאֶחָד וּמֵאָה:",
    "gap": {
-    "he": "לפי לשון המשנה, מותר לטלטל את בנו אף שאבן בידו, כלכלה שאבן בתוכה, ותרומה טמאה עם הטהורה, ורבי יהודה מתיר אף להעלות את המדומע. דבי רבי ינאי מעמידים בתינוק שיש לו געגועים על אביו, ורבא מוסיף שדווקא אבן ולא דינר, שאם ייפול הדינר יבוא האב להרימו. הכלכלה היא לרבי יוחנן כלכלה מלאה פירות המיטנפים, ולרבא כלכלה פחותה שהאבן עצמה נעשית לה דופן. רב חסדא מעמיד את התרומה רק כשהטהורה למטה, שאם היא למעלה נוטל אותה ומשאיר את הטמאה, ורבא מדייק מן הסיפא שהמשנה עוסקת לצורך גופו. ורבי יהודה סובר כרבי שמעון בן אלעזר, שנותן עיניו בצד זה ואוכל מצד אחר, ולכן אין כאן תיקון.",
-    "en": "As written, one may lift his son even with a stone in his hand, a basket with a stone in it, and tamei terumah together with tahor, and Rabbi Yehuda even allows raising a mixture of terumah with one in a hundred. The school of Rabbi Yannai sets it in a child who longs for his father, and Rava adds that this is only a stone and not a coin, since if a coin falls the father will come to pick it up. The basket is, for Rabbi Yochanan, one full of fruit that would get soiled, and for Rava a broken basket where the stone itself serves as its wall. Rav Chisda limits the terumah case to where the tahor is underneath, since if it is on top he takes it and leaves the tamei, and Rava infers from the next clause that the Mishnah speaks of moving it for its own sake. And Rabbi Yehuda follows Rabbi Shimon ben Elazar, who lets one designate one side and eat from the other, so this is no act of fixing."
+    "he": "לפי לשון המשנה, מותר לטלטל את בנו אף שאבן בידו, כלכלה שאבן בתוכה, ותרומה טמאה עם הטהורה, ורבי יהודה מתיר אף להעלות את המדומע. דבי רבי ינאי מעמידים בתינוק שיש לו געגועים על אביו, ורבא מוסיף שדווקא אבן ולא דינר, שאם ייפול הדינר יבוא האב להרימו. רבי יוחנן מעמיד את הכלכלה במלאה פירות המיטנפים, ורבא מוסיף שהיא כלכלה פחותה שהאבן עצמה נעשית לה דופן, ולכן אינו יכול לנער אותה. רב חסדא מעמיד את התרומה רק כשהטהורה למטה, שאם היא למעלה נוטל אותה ומשאיר את הטמאה, ורבא מדייק מן הסיפא שהמשנה עוסקת לצורך גופו. ורבי יהודה סובר כרבי שמעון בן אלעזר, שנותן עיניו בצד זה ואוכל מצד אחר, ולכן אין כאן תיקון.",
+    "en": "As written, one may lift his son even with a stone in his hand, a basket with a stone in it, and tamei terumah together with tahor, and Rabbi Yehuda even allows raising a mixture of terumah with one in a hundred. The school of Rabbi Yannai sets it in a child who longs for his father, and Rava adds that this is only a stone and not a coin, since if a coin falls the father will come to pick it up. Rabbi Yochanan sets the basket as one full of fruit that would get soiled, and Rava adds that it is a broken basket where the stone itself serves as its wall, so he cannot shake it out. Rav Chisda limits the terumah case to where the tahor is underneath, since if it is on top he takes it and leaves the tamei, and Rava infers from the next clause that the Mishnah speaks of moving it for its own sake. And Rabbi Yehuda follows Rabbi Shimon ben Elazar, who lets one designate one side and eat from the other, so this is no act of fixing."
    },
    "moves": [
     {
@@ -9293,8 +9216,8 @@ window.SHABBOS_DATA = {
    },
    "text": "שׁוֹאֵל אָדָם מֵחֲבֵרוֹ כַּדֵּי יַיִן וְכַדֵּי שֶׁמֶן, וּבִלְבַד שֶׁלֹּא יֹאמַר לוֹ הַלְוֵנִי, וְכֵן הָאִשָּׁה מֵחֲבֶרְתָּהּ כִּכָּרוֹת. וְאִם אֵינוֹ מַאֲמִינוֹ, מַנִּיחַ טַלִּיתוֹ אֶצְלוֹ וְעוֹשֶׂה עִמּוֹ חֶשְׁבּוֹן לְאַחַר שַׁבָּת. וְכֵן עֶרֶב פֶּסַח בִּירוּשָׁלַיִם שֶׁחָל לִהְיוֹת בְּשַׁבָּת, מַנִּיחַ טַלִּיתוֹ אֶצְלוֹ וְנוֹטֵל אֶת פִּסְחוֹ, וְעוֹשֶׂה עִמּוֹ חֶשְׁבּוֹן לְאַחַר יוֹם טוֹב:",
    "gap": {
-    "he": "לפי לשון המשנה, שואל אדם מחבירו כדי יין ובלבד שלא יאמר לו הלויני, ואם אינו מאמינו מניח טליתו אצלו, וכן בערב פסח שחל בשבת. אביי מסביר שבלשון הלואה בא לכתוב, ובשבת ההבדל ניכר ולא יבוא לכתוב. מן המשנה משמע שבחול מותר להלוות ככרות, והגמרא מעמידה כהלל במקום שקצוב מחירן. רב יוסף ורבה חולקים אם הלואת יום טוב ניתנה ליתבע: לרב יוסף אינה נתבעת ולכן נותן משכון, ולרבה נתבעת והמשכון הוא כדי שלא יצטרך לדין. ופסחו של המשנה הוא במי שממנה אחרים עמו, שכבר הוקדש מעיקרא, או ברועה הרגיל אצלו.",
-    "en": "As written, one may borrow jugs of wine from a friend provided he does not say \"lend me,\" and if the friend does not trust him he leaves his cloak, and likewise on Erev Pesach that falls on Shabbos. Abaye explains that the language of a loan leads to writing it down, while on Shabbos the difference is noticeable and he will not come to write. The Mishnah implies that on a weekday one may lend loaves, and the Gemara reconciles it even with Hillel where their price is fixed. Rav Yosef and Rabbah disagree whether a Yom Tov loan may be claimed: for Rav Yosef it may not, so he leaves a pledge, and for Rabbah it may, and the pledge is so he need not go to court. And the Pesach of the Mishnah is where he registers others onto his animal, which was consecrated from before, or where the shepherd is a regular of his."
+    "he": "לפי לשון המשנה, שואל אדם מחבירו כדי יין ובלבד שלא יאמר לו הלויני, ואם אינו מאמינו מניח טליתו אצלו, וכן בערב פסח שחל בשבת. אביי מסביר שבלשון הלואה בא לכתוב, ובשבת ההבדל ניכר ולא יבוא לכתוב. מן המשנה משמע שבחול מותר להלוות ככרות, והגמרא מעמידה כהלל במקום שקצוב מחירן. רב יוסף ורבה חולקים אם הלואת יום טוב ניתנה ליתבע: לרב יוסף אינה נתבעת ולכן נותן משכון, ולרבה נתבעת והמשכון הוא כדי שלא יצטרך לדין. ופסחו של המשנה הוא במי שממנה אחרים עמו על פסחו, שכבר הוקדש מעיקרא, וכיון שרגיל אצלו כמי שנמנה בו מעיקרא דמי.",
+    "en": "As written, one may borrow jugs of wine from his fellow as long as he does not say 'lend me', and if the lender does not trust him he leaves his cloak with him, and so too on Erev Pesach that falls on Shabbat. Abaye explains that the language of a loan leads to writing, and on Shabbat the difference is noticeable so he will not come to write. The Mishnah implies that on a weekday one may lend loaves, and the Gemara reconciles it with Hillel in a place where their price is fixed. Rav Yosef and Rabbah disagree whether a Yom Tov loan may be claimed: for Rav Yosef it may not, so he gives a pledge, and for Rabbah it may, and the pledge is so he need not go to court. And the Mishnah's Pesach offering is where he counts others with him on his offering, so it was consecrated from the start, and since he is a regular customer it is as if he were counted on it from the start."
    },
    "moves": [
     {
@@ -9814,8 +9737,8 @@ window.SHABBOS_DATA = {
    },
    "text": "אֵין אוֹבְסִין אֶת הַגָּמָל, וְלֹא דוֹרְסִין, אֲבָל מַלְעִיטִין. וְאֵין מַמְרִים אֶת הָעֲגָלִים, אֲבָל מַלְעִיטִין. וּמְהַלְקְטִין לַתַּרְנְגוֹלִין. וְנוֹתְנִין מַיִם לַמֻּרְסָן, אֲבָל לֹא גוֹבְלִים. וְאֵין נוֹתְנִין מַיִם לִפְנֵי דְבוֹרִים וְלִפְנֵי יוֹנִים שֶׁבַּשֹּׁבָךְ, אֲבָל נוֹתְנִין לִפְנֵי אֲוָזִים וְתַרְנְגוֹלִים וְלִפְנֵי יוֹנֵי הָרְדְּסִיּוֹת:",
    "gap": {
-    "he": "לפי לשון המשנה, אין אובסים ואין מאמירים אבל מלעיטים, ואין נותנים מים לפני דבורים ויוני שובך אבל נותנים לאווזים ותרנגולים. 'אובסין' הוא לעשות לה אבוס בתוך מעיה. נחלקו בהמראה והלעטה: לרב יהודה הדבר תלוי במקום שאינה יכולה להחזיר, ולרב חסדא בשניהם הוא מקום שאינה יכולה להחזיר, והמראה בכלי והלעטה ביד. רב אשי מדייק שהחילוק בין הבעלי חיים הוא אם מזונותיהם עליך, והגמרא מוסיפה שמים שאני שמצויים באגם. ונותנים מים למורסן כרבי יוסי בר יהודה.",
-    "en": "As written, one may not force-feed or stuff, but may feed by placing, and may not put water before bees and dovecote pigeons, but may for geese and chickens. \"Force-feed\" means making a feeding trough inside its stomach. They disagree on stuffing and placing: for Rav Yehuda it depends on whether the animal can bring the food back up, and for Rav Chisda both are where it cannot, but stuffing is with a vessel and placing by hand. Rav Ashi infers that the distinction among the creatures is whether their food is your responsibility, and the Gemara adds that water differs since it is found in ponds. And putting water into bran follows Rabbi Yosi bar Yehuda."
+    "he": "לפי לשון המשנה, אין אובסים ואין מאמירים אבל מלעיטים, ואין נותנים מים לפני דבורים ויוני שובך אבל נותנים לאווזים ותרנגולים. 'אובסין' הוא לעשות לה אבוס בתוך מעיה. נחלקו בהמראה והלעטה: לרב יהודה המראה היא למקום שאינה יכולה להחזיר והלעטה למקום שיכולה להחזיר, ולרב חסדא שתיהן למקום שאינה יכולה להחזיר, והמראה בכלי והלעטה ביד. רב אשי רצה לדייק שהחילוק בין בעלי החיים הוא אם מזונותיהם עליך, והגמרא דוחה ומסיקה שמים שאני, שמצויים באגם. ונותנים מים למורסן כרבי יוסי בר יהודה.",
+    "en": "As written, one may not cram or stuff but may place food in the mouth, and one may not give water to bees or dovecote pigeons but may give to geese and chickens. 'Cramming' means making a trough inside its belly. They disagree about stuffing and placing: for Rav Yehuda stuffing is to where it cannot bring the food back up and placing is to where it can, and for Rav Chisda both are to where it cannot, and stuffing is with a utensil and placing is by hand. Rav Ashi wanted to infer that the distinction between the animals is whether their food is your responsibility, and the Gemara rejects this and concludes that water is different, since it is found in ponds. And one may put water on bran per Rabbi Yossi bar Yehuda."
    },
    "moves": [
     {
@@ -9870,8 +9793,8 @@ window.SHABBOS_DATA = {
     },
     {
      "tags": [
-      9,
-      4
+      4,
+      10
      ],
      "who": "רב אשי והגמרא",
      "daf": "שבת קנה:",
@@ -9970,7 +9893,7 @@ window.SHABBOS_DATA = {
       1,
       4
      ],
-     "who": "הגמרא",
+     "who": "הגמרא ורב זוטי דבי רב פפי",
      "daf": "שבת קנז.",
      "link": "https://www.sefaria.org/Shabbat.157a",
      "q": "אוֹ דִילְמָא: הֲפָרָה נָמֵי לְצוֹרֶךְ — אִין, שֶׁלֹּא לְצוֹרֶךְ — לָא, וְהָא דְּקָא פָּלֵיג לְהוּ מֵהֲדָדֵי מִשּׁוּם דַּהֲפָרָה אֵין צָרִיךְ בֵּית דִּין, וּשְׁאֵלָה צְרִיכָה בֵּית דִּין? ... מְפִירִין נְדָרִים בְּשַׁבָּת לְצוֹרֶךְ הַשַּׁבָּת. לְצוֹרֶךְ הַשַּׁבָּת אִין, שֶׁלֹּא לְצוֹרֶךְ הַשַּׁבָּת — לָא.",

@@ -17,6 +17,7 @@ Mishnah: Sefaria, Torat Emet 357. Gemara: Sefaria, William Davidson Edition, Voc
 - Independent review of all 24 perakim: 16 boxes and 4 duplicate machlokes sides removed, 14 retagged, 3 speakers fixed, 16 editor lines rewritten. 460 boxes. Cards 1:8 and 9:4 have no boxes (the Gemara adds nothing to their wording; the editor line says so).
 - Status chips on machlokes sides, same rules as Beitzah: 12 נדחה (the Gemara's own אלא / קשיא, linked), 26 הלכה / וכן הלכה (Gemara's own ruling, or Rambam / Shulchan Aruch quoted and linked). Gemara chip lines checked by script against the source dump; posek lines re-fetched and checked independently.
 
+- Second independent review (2026-10-12): 4 boxes and 2 duplicate sides removed, 10 retagged, 3 speakers fixed, 13 editor lines corrected. 456 boxes. Every quote confirmed to sit on the amud its daf label names (or to run into the next amud).
+
 ## Open
-- Second review pass (Beitzah had two).
 - Mnemonics.
