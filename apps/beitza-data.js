@@ -548,8 +548,8 @@ window.BEITZA_DATA = {
    },
    "text": "בֵּית שַׁמַּאי אוֹמְרִים, תְּבָלִין נִדּוֹכִין בְּמָדוֹךְ שֶׁל עֵץ, וְהַמֶּלַח בְּפַךְ, וּבְעֵץ הַפָּרוּר. וּבֵית הִלֵּל אוֹמְרִים, תְּבָלִין נִדּוֹכִין כְּדַרְכָּן בְּמָדוֹךְ שֶׁל אֶבֶן, וְהַמֶּלַח בְּמָדוֹךְ שֶׁל עֵץ:",
    "gap": {
-    "he": "המשנה מציגה מחלוקת על כל דיכת המלח, והגמרא אומרת שלכולי עלמא מלח צריכה שינוי ונותנת טעם שלא נאמר. לפי רבי מאיר בברייתא אין מחלוקת כשהמלח נדוך עם התבלין, והמחלוקת רק בדיכתה לבדה.",
-    "en": "The Mishnah reads as a dispute over pounding salt at all; the Gemara says everyone requires a change for salt and supplies an unstated reason. Per Rabbi Meir's baraita there is no dispute when salt is pounded with the spices, only when pounded alone."
+    "he": "לפי לשון המשנה, בית שמאי ובית הלל חולקים גם בתבלין וגם במלח. הגמרא קוראת אחרת: במלח הכל מודים שצריך שינוי, והמחלוקת היא רק בתבלין. למה דווקא מלח? משום שכל הקדרות צריכות מלח, או משום שמלח אינו מפיג טעמו, ואפשר לדוכו מערב יום טוב. רבי מאיר בברייתא מצמצם עוד: אין מחלוקת כשהמלח נדוך יחד עם התבלין, אלא רק כשדכים אותו לבדו. ושמואל פוסק שהכל נדוך כדרכו, ואפילו מלח.",
+    "en": "As written, Beis Shammai and Beis Hillel disagree about both spices and salt. The Gemara reads it differently: on salt all agree a change is needed, and the dispute is only about spices. Why salt in particular? Either because every pot needs salt, or because salt does not lose its flavor, so it could have been pounded before Yom Tov. Rabbi Meir in a baraisa narrows it further: no dispute when salt is pounded together with the spices, only when pounded on its own. And Shmuel rules that everything is pounded the normal way, even salt."
    },
    "moves": [
     {
