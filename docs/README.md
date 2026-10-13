@@ -51,6 +51,7 @@ Grouped by seder, in the order they appear on the index page.
 | Tile | App | Sub-doc |
 |------|-----|---------|
 | The Mishnah as Torah She-Ba'al Peh · Beitzah | [beitza.html](../apps/beitza.html) | [beitza.md](beitza.md) |
+| The Mishnah as Torah She-Ba'al Peh · Shabbos | [shabbos.html](../apps/shabbos.html) | [shabbos.md](shabbos.md) |
 
 ### תפילה · Tefilah & Liturgy
 
