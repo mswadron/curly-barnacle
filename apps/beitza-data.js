@@ -223,8 +223,8 @@ window.BEITZA_DATA = {
    },
    "text": "בֵּית שַׁמַּאי אוֹמְרִים, אֵין מוֹלִיכִין אֶת הַסֻּלָּם מִשּׁוֹבָךְ לְשׁוֹבָךְ, אֲבָל מַטֵּהוּ מֵחַלּוֹן לְחַלּוֹן. וּבֵית הִלֵּל מַתִּירִין. בֵּית שַׁמַּאי אוֹמְרִים, לֹא יִטֹּל, אֶלָּא אִם כֵּן נִעֲנֵעַ מִבְּעוֹד יוֹם. וּבֵית הִלֵּל אוֹמְרִים, עוֹמֵד וְאוֹמֵר זֶה וָזֶה אֲנִי נוֹטֵל:",
    "gap": {
-    "he": "הלשון נראית כמחלוקת על הולכת הסולם. ברייתא אומרת שעל זה הכל מודים. בני רבי חייא טעו בדיוק הלשון. ומחלוקת הנענוע רק בבריכה ראשונה, והאמירה רק מערב יום טוב.",
-    "en": "It reads as a dispute about carrying the ladder. A baraisa says all agree on that. Rabbi Chiya's sons misread the wording. And the shaking dispute covers only the first brood, with the statement made only before Yom Tov."
+    "he": "הלשון נראית כמחלוקת על הולכת הסולם, וברייתא אומרת שעל זה הכל מודים. רבי יהודה מגביל את ההיתר לסולם של שובך, מחלוקת הנענוע רק בבריכה ראשונה, והאמירה מועילה רק מערב יום טוב.",
+    "en": "It reads as a dispute about carrying the ladder, but a baraisa says all agree on that. Rabbi Yehuda limits the permit to a dovecote ladder, the shaking dispute covers only the first brood, and the statement works only before Yom Tov."
    },
    "moves": [
     {
@@ -238,7 +238,6 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      2,
       3
      ],
      "who": "רבי יהודה (ברייתא)",
@@ -257,7 +256,7 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      3
+      1
      ],
      "who": "הגמרא",
      "daf": "ביצה י.–י:",
@@ -401,15 +400,6 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      3
-     ],
-     "who": "ברייתא; אביי",
-     "daf": "ביצה יא.",
-     "link": "https://www.sefaria.org/Beitzah.11a",
-     "q": "תָּנָא: וְשָׁוִין שֶׁמּוֹלְחִין עָלָיו בָּשָׂר לְצָלִי. אָמַר אַבָּיֵי: לֹא שָׁנוּ אֶלָּא לְצָלִי, אֲבָל לִקְדֵרָה — לֹא."
-    },
-    {
-     "tags": [
       4
      ],
      "who": "עולא",
@@ -523,7 +513,7 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      7
+      8
      ],
      "who": "שמואל",
      "daf": "ביצה יד.",
@@ -542,8 +532,7 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      7,
-      1
+      7
      ],
      "who": "רבי מאיר (ברייתא)",
      "daf": "ביצה יד.",
@@ -580,8 +569,8 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      2,
-      1
+      1,
+      3
      ],
      "who": "הגמרא",
      "daf": "ביצה יד:",
@@ -596,15 +585,6 @@ window.BEITZA_DATA = {
      "daf": "ביצה יד:",
      "link": "https://www.sefaria.org/Beitzah.14b",
      "q": "כָּךְ הָיָה מִנְהָגָן שֶׁל בֵּית רַבָּן גַּמְלִיאֵל, שֶׁהָיוּ מְבִיאִין דְּלִי מָלֵא עֲדָשִׁים וּמְצִיפִין עָלָיו מַיִם, וְנִמְצָא אוֹכֶל לְמַטָּה וּפְסוֹלֶת לְמַעְלָה."
-    },
-    {
-     "tags": [
-      10
-     ],
-     "who": "הגמרא",
-     "daf": "ביצה יד:",
-     "link": "https://www.sefaria.org/Beitzah.14b",
-     "q": "וְהָתַנְיָא אִיפְּכָא? לָא קַשְׁיָא: הָא בְּעַפְרָא, הָא בְּגִילֵי."
     }
    ],
    "halacha": null
@@ -827,8 +807,7 @@ window.BEITZA_DATA = {
     {
      "machlokes": true,
      "tags": [
-      4,
-      10
+      4
      ],
      "topic": {
       "he": "מדוע אין מטבילין כלי בשבת",
@@ -862,15 +841,6 @@ window.BEITZA_DATA = {
        "q": "מִפְּנֵי שֶׁנִּרְאֶה כִּמְתַקֵּן כְּלִי. אִי הָכִי, אָדָם נָמֵי! אָדָם נִרְאֶה כְּמֵיקֵר."
       }
      ]
-    },
-    {
-     "tags": [
-      4
-     ],
-     "who": "הגמרא",
-     "daf": "ביצה יח.",
-     "link": "https://www.sefaria.org/Beitzah.18a",
-     "q": "הָתִינַח שַׁבָּת, בְּיוֹם טוֹב מַאי אִיכָּא לְמֵימַר? גָּזְרוּ יוֹם טוֹב אַטּוּ שַׁבָּת."
     }
    ],
    "halacha": null
@@ -1018,17 +988,8 @@ window.BEITZA_DATA = {
    "moves": [
     {
      "tags": [
-      3
-     ],
-     "who": "הגמרא",
-     "daf": "ביצה כא:",
-     "link": "https://www.sefaria.org/Beitzah.21b",
-     "q": "הַאי מְדוּרָה מַאן קָתָנֵי לַהּ? דִּבְרֵי הַכֹּל הִיא, וְשָׁנֵי לְהוּ לְבֵית שַׁמַּאי בֵּין הֲנָאַת כׇּל גּוּפוֹ לַהֲנָאַת אֵבֶר אֶחָד, אוֹ דִלְמָא בֵּית הִלֵּל קָתָנֵי לַהּ, אֲבָל בֵּית שַׁמַּאי לָא שָׁנֵי לְהוּ?"
-    },
-    {
-     "tags": [
-      7,
-      3
+      8,
+      7
      ],
      "who": "ברייתא",
      "daf": "ביצה כא:",
@@ -1057,8 +1018,7 @@ window.BEITZA_DATA = {
      "machlokes": true,
      "tags": [
       1,
-      4,
-      8
+      4
      ],
      "topic": {
       "he": "האם הניח עירובי תבשילין במחלוקת על הטמנת חמין",
@@ -1120,20 +1080,10 @@ window.BEITZA_DATA = {
    },
    "text": "אַף הוּא אָמַר שְׁלֹשָׁה דְבָרִים לְהָקֵל, מְכַבְּדִין בֵּין הַמִּטּוֹת, וּמַנִּיחִין אֶת הַמֻּגְמָר בְּיוֹם טוֹב, וְעוֹשִׂין גְּדִי מְקֻלָּס בְּלֵילֵי פְסָחִים. וַחֲכָמִים אוֹסְרִין:",
    "gap": {
-    "he": "המשנה אומרת שרבן גמליאל התיר להניח מוגמר. הגמרא מביאה עדות שבבית רבן גמליאל לא עשו זאת ביום טוב, ולכן רב אסי מעמיד את המחלוקת רק בלהריח, אבל לגמר אסור. גדי מקולס נאסר משום שנראה כעין קדשים.",
-    "en": "The Mishnah says Rabban Gamliel permitted placing incense. The Gemara cites testimony that his household did not do so on Yom Tov, so Rav Assi limits the dispute to scenting, while perfuming garments is forbidden. The roasted kid is objectionable because it resembles sacrificial meat."
+    "he": "המשנה אומרת שרבן גמליאל התיר להניח מוגמר ביום טוב, ולא אומרת לאיזה צורך. רב אסי מעמיד את המחלוקת בלהריח, אבל לגמר בגדים אסור לדברי הכל, וגדי מקולס נאסר משום שנראה כעין קדשים.",
+    "en": "The Mishnah says Rabban Gamliel permitted placing incense on Yom Tov without saying for what purpose. Rav Assi limits the dispute to scenting the room, while perfuming garments is forbidden by all, and the roasted kid is objectionable because it looks like sacrificial meat."
    },
    "moves": [
-    {
-     "tags": [
-      7,
-      10
-     ],
-     "who": "רבי אליעזר בר צדוק (ברייתא)",
-     "daf": "ביצה כב:",
-     "link": "https://www.sefaria.org/Beitzah.22b",
-     "q": "פְּעָמִים הַרְבֵּה נִכְנַסְתִּי אַחַר אַבָּא, לְבֵית רַבָּן גַּמְלִיאֵל וְלֹא הָיוּ מְכַבְּדִין בֵּית הַמִּטּוֹת בְּיוֹם טוֹב, אֶלָּא מְכַבְּדִין אוֹתָן מֵעֶרֶב יוֹם טוֹב, וּפוֹרְסִין עֲלֵיהֶם סְדִינִין."
-    },
     {
      "tags": [
       3
@@ -1172,8 +1122,8 @@ window.BEITZA_DATA = {
    "moves": [
     {
      "tags": [
-      10,
-      1
+      9,
+      10
      ],
      "who": "הגמרא (תנא)",
      "daf": "ביצה כג.",
@@ -1274,7 +1224,8 @@ window.BEITZA_DATA = {
    "moves": [
     {
      "tags": [
-      4
+      4,
+      8
      ],
      "who": "הגמרא",
      "daf": "ביצה כג:",
@@ -1339,15 +1290,6 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      3
-     ],
-     "who": "אביי",
-     "daf": "ביצה כד.",
-     "link": "https://www.sefaria.org/Beitzah.24a",
-     "q": "אֲמַר לֵיהּ אַבָּיֵי: הֲלָכָה — מִכְּלָל דִּפְלִיגִי!"
-    },
-    {
-     "tags": [
       2
      ],
      "who": "שמואל",
@@ -1384,14 +1326,13 @@ window.BEITZA_DATA = {
    },
    "text": "מְצוּדוֹת חַיָּה וָעוֹף וְדָגִים שֶׁעֲשָׂאָן מֵעֶרֶב יוֹם טוֹב, לֹא יִטֹּל מֵהֶן בְּיוֹם טוֹב, אֶלָּא אִם כֵּן יוֹדֵעַ שֶׁנִּצּוֹדוּ מֵעֶרֶב יוֹם טוֹב. וּמַעֲשֶׂה בְנָכְרִי אֶחָד, שֶׁהֵבִיא דָגִים לְרַבָּן גַּמְלִיאֵל, וְאָמַר, מֻתָּרִין הֵן, אֶלָּא שֶׁאֵין רְצוֹנִי לְקַבֵּל הֵימֶנּוּ:",
    "gap": {
-    "he": "המשנה מביאה מעשה ברבן גמליאל כאילו הוא סיוע. הגמרא מוסיפה מחלוקת שאינה כתובה, ספק מוכן, ומפרשת מותרין הן כמותרין לקבל בלבד לדעת רב.",
-    "en": "The Mishnah's story about Rabban Gamliel seems to contradict its own rule. The Gemara inserts an unwritten dispute over doubtful preparation and, per Rav, reads 'permitted' as only permitted to accept."
+    "he": "המעשה ברבן גמליאל נראה כסותר את הדין שבמשנה. הגמרא מוסיפה מחלוקת שאינה כתובה, ספק מוכן, ונחלקו רב ולוי אם מותרין הן לקבל בלבד או אף באכילה.",
+    "en": "The Mishnah's story about Rabban Gamliel seems to contradict its own rule. The Gemara inserts an unwritten dispute over doubtful preparation, and Rav and Levi argue whether 'permitted' means permitted to accept or to eat."
    },
    "moves": [
     {
      "tags": [
-      4,
-      9
+      4
      ],
      "who": "הגמרא",
      "daf": "ביצה כד.",
@@ -1400,7 +1341,7 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      7,
+      2,
       10
      ],
      "who": "רבי שמעון בן אלעזר (ברייתא)",
@@ -1433,25 +1374,6 @@ window.BEITZA_DATA = {
        "q": "מוּתָּרִין בַּאֲכִילָה."
       }
      ]
-    },
-    {
-     "tags": [
-      2
-     ],
-     "who": "רב",
-     "daf": "ביצה כד:",
-     "link": "https://www.sefaria.org/Beitzah.24b",
-     "q": "בְּאוּרְתָּא אָמַר: מוּתָּרִין בַּאֲכִילָה, בְּצַפְרָא אָמַר: מוּתָּרִין לְקַבֵּל."
-    },
-    {
-     "tags": [
-      4,
-      10
-     ],
-     "who": "רב פפא",
-     "daf": "ביצה כד:",
-     "link": "https://www.sefaria.org/Beitzah.24b",
-     "q": "גּוֹי שֶׁהֵבִיא דּוֹרוֹן לְיִשְׂרָאֵל בְּיוֹם טוֹב, אִם יֵשׁ מֵאוֹתוֹ הַמִּין בִּמְחוּבָּר — אָסוּר."
     }
    ],
    "halacha": {
@@ -1472,19 +1394,10 @@ window.BEITZA_DATA = {
    },
    "text": "בְּהֵמָה מְסֻכֶּנֶת לֹא יִשְׁחֹט, אֶלָּא אִם כֵּן יֵשׁ שָׁהוּת בַּיּוֹם לֶאֱכֹל מִמֶּנָּה כַּזַּיִת צָלִי. רַבִּי עֲקִיבָא אוֹמֵר, אֲפִלּוּ כַזַּיִת חַי מִבֵּית טְבִיחָתָהּ. שְׁחָטָהּ בַּשָּׂדֶה, לֹא יְבִיאֶנָּה בְמוֹט וּבְמוֹטָה. אֲבָל מֵבִיא בְיָדוֹ אֵבָרִים אֵבָרִים:",
    "gap": {
-    "he": "המשנה אומרת כזית חי מבית טביחתה ואינה מסבירה. הגמרא דנה אם מבית טביחתה הוא מקום השחיטה ממש או מקום שטובחת אכילתה, ומלמדת דרך ארץ של הפשט וניתוח. איסור מוט מורחב לסומא, רועה וכסא.",
-    "en": "The Mishnah says 'raw from its place of slaughter' without explaining. The Gemara debates whether that is the literal slaughter site or the choice cut, and draws a lesson of derech eretz from skinning and cutting. The pole rule is extended to the blind man's cane, the shepherd's pouch and the sedan chair."
+    "he": "המשנה אומרת כזית חי מבית טביחתה ואינה מסבירה. הגמרא מציעה שהכוונה למקום שטובחת אכילתה, אבל רבי חייא שונה מקום טביחתה ממש.",
+    "en": "The Mishnah says 'raw from its place of slaughter' without explaining. The Gemara suggests it means the choice cut, but Rabbi Chiya teaches it is the literal place of slaughter."
    },
    "moves": [
-    {
-     "tags": [
-      4
-     ],
-     "who": "רמי בר אבא",
-     "daf": "ביצה כה.",
-     "link": "https://www.sefaria.org/Beitzah.25a",
-     "q": "הֶפְשֵׁט וְנִתּוּחַ בְּעוֹלָה, וְהוּא הַדִּין לְקַצָּבִים. מִכָּאן לִמְּדָה תּוֹרָה דֶּרֶךְ אֶרֶץ: שֶׁלֹּא יֹאכַל אָדָם בָּשָׂר קוֹדֶם הֶפְשֵׁט וְנִתּוּחַ."
-    },
     {
      "tags": [
       2,
@@ -1494,33 +1407,6 @@ window.BEITZA_DATA = {
      "daf": "ביצה כה.",
      "link": "https://www.sefaria.org/Beitzah.25a",
      "q": "מַאי לָאו, מִבֵּית טְבִיחָתָהּ מַמָּשׁ?... לָא: מִמָּקוֹם שֶׁטּוֹבַחַת אֲכִילָתָהּ... וְהָא תָּנֵי רַבִּי חִיָּיא: מְקוֹם טְבִיחָתָהּ מַמָּשׁ."
-    },
-    {
-     "tags": [
-      4
-     ],
-     "who": "הגמרא",
-     "daf": "ביצה כה:",
-     "link": "https://www.sefaria.org/Beitzah.25b",
-     "q": "אוֹרַח אַרְעָא קָא מַשְׁמַע לַן."
-    },
-    {
-     "tags": [
-      4
-     ],
-     "who": "ברייתא",
-     "daf": "ביצה כה:",
-     "link": "https://www.sefaria.org/Beitzah.25b",
-     "q": "אֵין הַסּוֹמֵא יוֹצֵא בְּמַקְלוֹ, וְלֹא הָרוֹעֶה בְּתַרְמִילוֹ. וְאֵין יוֹצְאִין בְּכִסֵּא — אֶחָד הָאִישׁ וְאֶחָד הָאִשָּׁה."
-    },
-    {
-     "tags": [
-      1
-     ],
-     "who": "רבי יהושע בן לוי",
-     "daf": "ביצה כה:",
-     "link": "https://www.sefaria.org/Beitzah.25b",
-     "q": "אִם רַבִּים צְרִיכִין לוֹ — מוּתָּר."
     }
    ],
    "halacha": null
@@ -1588,7 +1474,7 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      9
+      8
      ],
      "who": "רבי זירא",
      "daf": "ביצה כז.",
@@ -1614,8 +1500,8 @@ window.BEITZA_DATA = {
    },
    "text": "בְּהֵמָה שֶׁמֵּתָה, לֹא יְזִיזֶנָּה מִמְּקוֹמָהּ. וּמַעֲשֶׂה וְשָׁאֲלוּ אֶת רַבִּי טַרְפוֹן עָלֶיהָ וְעַל הַחַלָּה שֶׁנִּטְמְאָה, וְנִכְנַס לְבֵית הַמִּדְרָשׁ וְשָׁאַל, וְאָמְרוּ לוֹ, לֹא יְזִיזֵם מִמְּקוֹמָם:",
    "gap": {
-    "he": "המשנה אוסרת להזיז בהמה שמתה סתם, ונראה שהיא דלא כרבי שמעון. הגמרא מעמידה בבהמת קדשים, מדיוק החלה, או בבהמה מסוכנת ודברי הכל.",
-    "en": "The Mishnah forbids moving a dead animal without qualification, apparently against Rabbi Shimon. The Gemara sets it in a sacrificial animal, inferred from the mention of challah, or in an endangered animal where all agree."
+    "he": "המשנה אוסרת להזיז בהמה שמתה סתם, ונראה שהיא דלא כרבי שמעון. הגמרא מתרצת שאף רבי שמעון מודה בבעלי חיים שמתו, או מעמידה בבהמת קדשים מדיוק החלה, או בבהמה מסוכנת ודברי הכל.",
+    "en": "The Mishnah forbids moving a dead animal without qualification, apparently against Rabbi Shimon. The Gemara answers that Rabbi Shimon agrees for an animal that was alive when Yom Tov began, or sets it in a sacrificial animal inferred from the mention of challah, or in an endangered animal where all agree."
    },
    "moves": [
     {
@@ -1675,8 +1561,7 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      2,
-      7
+      2
      ],
      "who": "ברייתא",
      "daf": "ביצה כז:",
@@ -1704,7 +1589,8 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      7
+      7,
+      8
      ],
      "who": "הגמרא",
      "daf": "ביצה כח.",
@@ -1764,16 +1650,7 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      4
-     ],
-     "who": "הגמרא",
-     "daf": "ביצה כח:",
-     "link": "https://www.sefaria.org/Beitzah.28b",
-     "q": "כָּאן בְּמַכְשִׁירִין שֶׁאֶפְשָׁר לַעֲשׂוֹתָן מֵעֶרֶב יוֹם טוֹב, כָּאן בְּמַכְשִׁירִין שֶׁאִי אֶפְשָׁר לַעֲשׂוֹתָן מֵעֶרֶב יוֹם טוֹב."
-    },
-    {
-     "tags": [
-      4
+      8
      ],
      "who": "רב נחמיה בריה דרב יוסף ואביי",
      "daf": "ביצה כח:",
@@ -1782,7 +1659,6 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      4,
       10
      ],
      "who": "הגמרא",
@@ -1809,8 +1685,8 @@ window.BEITZA_DATA = {
    },
    "text": "אוֹמֵר אָדָם לַחֲבֵרוֹ, מַלֵּא לִי כְלִי זֶה, אֲבָל לֹא בַמִּדָּה. רַבִּי יְהוּדָה אוֹמֵר, אִם הָיָה כְלִי שֶׁל מִדָּה, לֹא יְמַלְאֶנּוּ. מַעֲשֶׂה בְאַבָּא שָׁאוּל בֶּן בָּטְנִית, שֶׁהָיָה מְמַלֵּא מִדּוֹתָיו מֵעֶרֶב יוֹם טוֹב וְנוֹתְנָן לַלָּקוֹחוֹת בְּיוֹם טוֹב. אַבָּא שָׁאוּל אוֹמֵר, אַף בַּמּוֹעֵד עוֹשֶׂה כֵן, מִפְּנֵי בֵרוּרֵי הַמִּדּוֹת. וַחֲכָמִים אוֹמְרִים, אַף בְּחֹל עוֹשֶׂה כֵן, מִפְּנֵי מִצּוּי הַמִּדּוֹת. הוֹלֵךְ אָדָם אֵצֶל חֶנְוָנִי הָרָגִיל אֶצְלוֹ, וְאוֹמֵר לוֹ, תֵּן לִי בֵּיצִים וֶאֱגוֹזִים בְּמִנְיָן, שֶׁכֵּן דֶּרֶךְ בַּעַל הַבַּיִת לִהְיוֹת מוֹנֶה בְּתוֹךְ בֵּיתוֹ:",
    "gap": {
-    "he": "אבל לא במדה אינו מפורש. שמואל מפרש כלי המיוחד למדה, ורבא מפרש שלא יזכיר שם מדה. השיטות נראות הפוכות ממשנת שוקל אדם בשר, והגמרא מיישבת. ולאבא שאול הטעם במועד הוא ביטול בית המדרש.",
-    "en": "'But not by measure' is undefined. Shmuel reads it as a vessel designated for measuring, Rava as not naming a measure. The positions look reversed from the meat-weighing Mishnah and the Gemara reconciles them. A baraisa gives Abba Shaul's reason on Chol HaMoed as not losing Torah study time."
+    "he": "אבל לא במדה אינו מפורש. שמואל מפרש כלי המיוחד למדה, ורבא מפרש שלא יזכיר שם מדה, והגמרא מיישבת את השיטות שנראות הפוכות ממשנת שוקל אדם בשר. ברייתא נותנת טעם לאבא שאול במועד, ומתנה שבחנווני לא יזכיר סכום מדה או מקח.",
+    "en": "'But not by measure' is undefined. Shmuel reads it as a vessel designated for measuring, Rava as not naming a measure, and the Gemara reconciles the positions that look reversed from the meat-weighing Mishnah. A baraisa gives Abba Shaul's reason on Chol HaMoed, and limits the storekeeper clause to not naming the measure or the price."
    },
    "moves": [
     {
@@ -1860,7 +1736,7 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      7
+      4
      ],
      "who": "ברייתא",
      "daf": "ביצה כט.",
@@ -1870,8 +1746,7 @@ window.BEITZA_DATA = {
     {
      "machlokes": true,
      "tags": [
-      3,
-      7
+      1
      ],
      "topic": {
       "he": "מה אסור להזכיר: סכום מדה או סכום מקח",
@@ -1914,7 +1789,7 @@ window.BEITZA_DATA = {
    "moves": [
     {
      "tags": [
-      4
+      1
      ],
      "who": "תנא (ברייתא)",
      "daf": "ביצה ל.",
@@ -1998,7 +1873,7 @@ window.BEITZA_DATA = {
     {
      "tags": [
       7,
-      3
+      8
      ],
      "who": "רבי שמעון בן אלעזר (ברייתא)",
      "daf": "ביצה לא.",
@@ -2017,8 +1892,7 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      9,
-      5
+      9
      ],
      "who": "הגמרא",
      "daf": "ביצה לא.",
@@ -2044,13 +1918,12 @@ window.BEITZA_DATA = {
    },
    "text": "אֵין מְבַקְּעִין עֵצִים, לֹא מִן הַקּוֹרוֹת, וְלֹא מִן הַקּוֹרָה שֶׁנִּשְׁבְּרָה בְיוֹם טוֹב. וְאֵין מְבַקְּעִין לֹא בְקַרְדֹּם וְלֹא בִמְגֵרָה וְלֹא בְמַגָּל, אֶלָּא בְקוֹפִיץ. בַּיִת שֶׁהוּא מָלֵא פֵרוֹת, סָתוּם וְנִפְחַת, נוֹטֵל מִמְּקוֹם הַפְּחָת. רַבִּי מֵאִיר אוֹמֵר, אַף פּוֹחֵת לְכַתְּחִלָּה וְנוֹטֵל:",
    "gap": {
-    "he": "לפי פשט המשנה אין מבקעין כלל, ואחר כך היא מתירה בקופיץ. הגמרא אומרת חסורי מחסרא: קורה שנשברה מערב יום טוב מותרת, והאיסור מטעם מוכן. בבית שנפחת הגמרא מעמידה בלבנים מונחות, ומגבילה את היתר רבי מאיר ליום טוב בלבד.",
-    "en": "Read plainly, the Mishnah forbids splitting entirely and then permits it with a cleaver. The Gemara says words are missing: a beam broken before Yom Tov may be split, and the ban is because the wood is not prepared. For the breached house it sets the case in loosely stacked bricks, and limits R' Meir's leniency to Yom Tov only."
+    "he": "לפי פשט המשנה אין מבקעין כלל, ואחר כך היא מתירה בקופיץ. הגמרא אומרת חסורי מחסרא: קורה שנשברה מערב יום טוב מותרת, והאיסור מטעם מוכן, ואיסור הקרדום הוא רק בצד אחד שלו. בבית שנפחת הגמרא מעמידה בלבנים מונחות, ומגבילה את היתר רבי מאיר ליום טוב בלבד.",
+    "en": "Read plainly, the Mishnah forbids splitting entirely and then permits it with a cleaver. The Gemara says words are missing: a beam broken before Yom Tov may be split, the ban is because the wood is not prepared, and the axe is forbidden only on one of its sides. For the breached house it sets the case in loosely stacked bricks, and limits R' Meir's leniency to Yom Tov only."
    },
    "moves": [
     {
      "tags": [
-      9,
       1
      ],
      "who": "רב יהודה אמר שמואל",
@@ -2109,20 +1982,10 @@ window.BEITZA_DATA = {
    },
    "text": "אֵין פּוֹתְחִין אֶת הַנֵּר, מִפְּנֵי שֶׁהוּא עוֹשֶׂה כְלִי. וְאֵין עוֹשִׂין פֶּחָמִין בְּיוֹם טוֹב, וְאֵין חוֹתְכִין אֶת הַפְּתִילָה לִשְׁנַיִם. רַבִּי יְהוּדָה אוֹמֵר, חוֹתְכָהּ בָּאוּר לִשְׁתֵּי נֵרוֹת:",
    "gap": {
-    "he": "המשנה אוסרת מפני שעושה כלי ואוסרת פחמין בלי טעם. הגמרא מחפשת איזה תנא סובר שנר כזה הוא כלי ואביי דוחה, מעמידה את איסור הפחמין במוסרן לאולייארין, ומגבילה את היתר רבי יהודה לחיתוך בפי שתי נרות.",
-    "en": "The Mishnah forbids because one makes a vessel and bans charcoal without a reason. The Gemara looks for the tanna who holds such a lamp is a vessel and Abaye rejects the proofs, sets the charcoal ban in giving them to bathhouse keepers, and limits R' Yehuda's leniency to cutting between two lamps."
+    "he": "המשנה אוסרת מפני שעושה כלי ואוסרת פחמין בלי טעם. הגמרא מעמידה את איסור הפחמין במוסרן לאולייארין, ומגבילה את היתר רבי יהודה לחיתוך באור בפי שתי נרות.",
+    "en": "The Mishnah forbids because one makes a vessel and bans charcoal without a reason. The Gemara sets the charcoal ban in giving them to bathhouse keepers, and limits R' Yehuda's leniency to cutting with fire between two lamps."
    },
    "moves": [
-    {
-     "tags": [
-      4,
-      10
-     ],
-     "who": "אביי",
-     "daf": "ביצה לב.",
-     "link": "https://www.sefaria.org/Beitzah.32a",
-     "q": "דִּלְמָא עַד כָּאן לָא קָאָמַר רַבִּי מֵאִיר הָתָם אֶלָּא דַּחֲזֵי לְקַבּוֹלֵי בֵּיהּ מִידֵּי, אֲבָל הָכָא לְמַאי חֲזִי? לְקַבּוֹלֵי בֵּיהּ פְּשִׁיטֵי."
-    },
     {
      "tags": [
       1
@@ -2199,11 +2062,11 @@ window.BEITZA_DATA = {
      "machlokes": true,
      "tags": [
       4,
-      7
+      8
      ],
      "topic": {
-      "he": "להסיק בשברי כלים",
-      "en": "Burning broken utensils as fuel"
+      "he": "לסמוך קדרה בבקעת או בדלת",
+      "en": "Propping a pot with a log or a door"
      },
      "intro": null,
      "outro": null,
@@ -2224,8 +2087,7 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      4,
-      5
+      4
      ],
      "who": "הגמרא",
      "daf": "ביצה לג.",
@@ -2246,8 +2108,8 @@ window.BEITZA_DATA = {
    },
    "text": "רַבִּי אֱלִיעֶזֶר אוֹמֵר, נוֹטֵל אָדָם קֵיסָם מִשֶּׁלְּפָנָיו לַחֲצֹץ בּוֹ שִׁנָּיו. וּמְגַבֵּב מִן הֶחָצֵר וּמַדְלִיק, שֶׁכָּל מַה שֶּׁבֶּחָצֵר מוּכָן הוּא. וַחֲכָמִים אוֹמְרִים, מְגַבֵּב מִשֶּׁלְּפָנָיו וּמַדְלִיק:",
    "gap": {
-    "he": "המשנה מציגה מחלוקת על מקום הנטילה בלבד. הגמרא מוסיפה שמאכל בהמה אינו בכלל תיקון כלי, מביאה ברייתא שבה חכמים מתירים רק מאבוס בהמה, ומחלוקת נוספת על קטימה. בגיבוב מן החצר הברייתא מוסיפה תנאי שלא יעשה צבורין, ומבארת במה נחלקו.",
-    "en": "The Mishnah presents a dispute only about where one may take from. The Gemara adds that animal fodder carries no concern of fixing a vessel, cites a baraisa where the Sages allow only from an animal's trough, and a further dispute about snapping off. On gathering in the courtyard a baraisa adds a condition not to make piles and explains what the dispute is about."
+    "he": "המשנה מציגה מחלוקת על מקום הנטילה בלבד. הגמרא מוסיפה שמאכל בהמה אינו בכלל תיקון כלי, ומביאה ברייתא שבה חכמים מתירים רק מאבוס בהמה. בגיבוב מן החצר הברייתא מוסיפה תנאי שלא יעשה צבורין, כי נראה כאוסף למחר.",
+    "en": "The Mishnah presents a dispute only about where one may take from. The Gemara adds that animal fodder carries no concern of fixing a vessel, and cites a baraisa where the Sages allow only from an animal's trough. On gathering in the courtyard a baraisa adds a condition not to make piles, since it looks like storing for tomorrow."
    },
    "moves": [
     {
@@ -2286,16 +2148,6 @@ window.BEITZA_DATA = {
      ]
     },
     {
-     "tags": [
-      4,
-      5
-     ],
-     "who": "הגמרא",
-     "daf": "ביצה לג:",
-     "link": "https://www.sefaria.org/Beitzah.33b",
-     "q": "רַבִּי אֱלִיעֶזֶר דְּקָאָמַר הָתָם חַיָּיב חַטָּאת — הָכָא פָּטוּר אֲבָל אָסוּר. רַבָּנַן דְּקָא אָמְרִי הָתָם פָּטוּר אֲבָל אָסוּר — הָכָא מוּתָּר לְכַתְּחִלָּה."
-    },
-    {
      "machlokes": true,
      "tags": [
       1,
@@ -2324,7 +2176,7 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      5
+      4
      ],
      "who": "הגמרא",
      "daf": "ביצה לג:",
@@ -2406,7 +2258,7 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      5
+      4
      ],
      "who": "רב שימי בר אשי",
      "daf": "ביצה לה.",
@@ -2427,8 +2279,8 @@ window.BEITZA_DATA = {
    },
    "text": "מַשִּׁילִין פֵּרוֹת דֶּרֶךְ אֲרֻבָּה בְּיוֹם טוֹב, אֲבָל לֹא בְשַׁבָּת, וּמְכַסִּים פֵּרוֹת בְּכֵלִים מִפְּנֵי הַדֶּלֶף, וְכֵן כַּדֵּי יַיִן וְכַדֵּי שֶׁמֶן. וְנוֹתְנִין כְּלִי תַּחַת הַדֶּלֶף בְּשַׁבָּת:",
    "gap": {
-    "he": "המשנה מתירה להשיל פירות ולכסות פירות וכדים בלי גבול. הגמרא מגבילה לאותו הגג, מעמידה כדי יין בטבל, מרחיבה את הכיסוי גם לדבר שאינו פירות (לעולא) ומעמידה את הכלי תחת הדלף בדלף הראוי.",
-    "en": "The Mishnah permits lowering and covering produce and jugs with no limits. The Gemara restricts lowering to the same roof, sets the wine and oil jugs as untithed, extends covering to non-food items (per Ulla), and limits the vessel under the leak to usable drip water."
+    "he": "המשנה מתירה להשיל פירות ולכסות פירות וכדים בלי גבול. הגמרא מגבילה את ההשלה לאותו הגג ולכמות של ארבע וחמש קופות (לרבי אסי), מעמידה כדי יין ושמן בטבל, מרחיבה את הכיסוי גם לדבר שאינו פירות (לעולא), ומעמידה את הכלי תחת הדלף בדלף הראוי.",
+    "en": "The Mishnah permits lowering and covering produce and jugs with no limits. The Gemara restricts lowering to the same roof and to about four or five baskets (per Rabbi Assi), sets the wine and oil jugs as untithed, extends covering to non-food items (per Ulla), and limits the vessel under the leak to usable drip water."
    },
    "moves": [
     {
@@ -2491,8 +2343,8 @@ window.BEITZA_DATA = {
    },
    "text": "כֹּל שֶׁחַיָּבִין עָלָיו מִשּׁוּם שְׁבוּת, מִשּׁוּם רְשׁוּת, מִשּׁוּם מִצְוָה, בְּשַׁבָּת, חַיָּבִין עָלָיו בְּיוֹם טוֹב. וְאֵלּוּ הֵן מִשּׁוּם שְׁבוּת, לֹא עוֹלִין בָּאִילָן, וְלֹא רוֹכְבִין עַל גַּבֵּי בְהֵמָה, וְלֹא שָׁטִין עַל פְּנֵי הַמַּיִם, וְלֹא מְטַפְּחִין, וְלֹא מְסַפְּקִין, וְלֹא מְרַקְּדִין. וְאֵלּוּ הֵן מִשּׁוּם רְשׁוּת, לֹא דָנִין, וְלֹא מְקַדְּשִׁין, וְלֹא חוֹלְצִין, וְלֹא מְיַבְּמִין. וְאֵלּוּ הֵן מִשּׁוּם מִצְוָה, לֹא מַקְדִּישִׁין, וְלֹא מַעֲרִיכִין, וְלֹא מַחֲרִימִין, וְלֹא מַגְבִּיהִין תְּרוּמָה וּמַעֲשֵׂר. כָּל אֵלּוּ בְּיוֹם טוֹב אָמְרוּ, קַל וָחֹמֶר בְּשַׁבָּת. אֵין בֵּין יוֹם טוֹב לְשַׁבָּת אֶלָּא אֹכֶל נֶפֶשׁ בִּלְבָד:",
    "gap": {
-    "he": "המשנה מונה איסורים בלי טעם, וקוראת לחלקם רשות או מצוה. הגמרא נותנת לכל אחד גזרה נסתרת, מעמידה את הרשות במקום שיש מצוה עדיפה, מפרשת שהכל שבות בדרך לא מיבעיא, ומיישבת את הסתירה למשילין בבית שמאי ובית הלל.",
-    "en": "The Mishnah lists prohibitions with no reasons and labels some optional or mitzvah. The Gemara supplies a hidden decree for each, sets the optional cases where someone better can do the mitzvah, reads the list as escalating shevut, and resolves the clash with the skylight Mishnah as Beit Shammai vs. Beit Hillel."
+    "he": "המשנה מונה איסורים בלי טעם, וקוראת לחלקם רשות או מצוה. הגמרא נותנת לכל אחד גזרה נסתרת, מעמידה את הרשות במקום שיש מצוה עדיפה, מגבילה את איסור הפרשת תרומה לנתינה לכהן בו ביום, ומפרשת שהכל שבות בדרך לא מיבעיא.",
+    "en": "The Mishnah lists prohibitions with no reasons and labels some optional or mitzvah. The Gemara supplies a hidden decree for each, sets the optional cases where someone better can do the mitzvah, limits the terumah ban to giving it to a kohen that day, and reads the list as escalating shevut."
    },
    "moves": [
     {
@@ -2525,8 +2377,7 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      1,
-      3
+      1
      ],
      "who": "רב יוסף",
      "daf": "ביצה לז.",
@@ -2535,8 +2386,7 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      9,
-      2
+      9
      ],
      "who": "רבי יצחק",
      "daf": "ביצה לז.",
@@ -2557,14 +2407,13 @@ window.BEITZA_DATA = {
    },
    "text": "הַבְּהֵמָה וְהַכֵּלִים כְּרַגְלֵי הַבְּעָלִים. הַמּוֹסֵר בְּהֶמְתּוֹ לִבְנוֹ אוֹ לְרוֹעֶה, הֲרֵי אֵלּוּ כְרַגְלֵי הַבְּעָלִים. כֵּלִים הַמְיֻחָדִין לְאַחַד מִן הָאַחִין שֶׁבַּבַּיִת, הֲרֵי אֵלּוּ כְרַגְלָיו. וְשֶׁאֵין מְיֻחָדִין, הֲרֵי אֵלּוּ כִמְקוֹם שֶׁהוֹלְכִין:",
    "gap": {
-    "he": "המשנה קובעת סתם שהבהמה כרגלי הבעלים גם כשנמסרה לרועה. הגמרא מביאה את רבי דוסא החולק, ומעמידה את המשנה ברועה אחד בלבד, והלכה כרבי דוסא. שמואל מוציא שור של פטם ושל רועה מן הכלל.",
-    "en": "The Mishnah states flatly that an animal follows its owner even when handed to a shepherd. The Gemara cites Rabbi Dosa who disagrees, limits the Mishnah to a single shepherd, and rules like Rabbi Dosa. Shmuel removes a fattener's ox and a shepherd's ox from the rule."
+    "he": "המשנה קובעת סתם שהבהמה כרגלי הבעלים גם כשנמסרה לרועה. הגמרא מביאה את רבי דוסא האומר כרגלי הרועה, ומיישבת שהמשנה בשני רועים ורבי דוסא ברועה אחד, ולכן ההלכה כרבי דוסא אינה סותרת את המשנה. שמואל מוציא שור של פטם ושל רועה מן הכלל.",
+    "en": "The Mishnah states flatly that an animal follows its owner even when handed to a shepherd. The Gemara cites Rabbi Dosa, who says it follows the shepherd, and reconciles them: the Mishnah speaks of two shepherds and Rabbi Dosa of one, so ruling like Rabbi Dosa does not contradict the Mishnah. Shmuel removes a fattener's ox and a shepherd's ox from the rule."
    },
    "moves": [
     {
      "tags": [
-      7,
-      8
+      7
      ],
      "who": "הגמרא",
      "daf": "ביצה לז:",
@@ -2583,7 +2432,6 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
-      3,
       1
      ],
      "who": "שמואל",
@@ -2635,8 +2483,7 @@ window.BEITZA_DATA = {
     {
      "machlokes": true,
      "tags": [
-      4,
-      5
+      4
      ],
      "topic": {
       "he": "מדוע מים ומלח אינם בטלים לגבי עיסה",
@@ -2690,8 +2537,8 @@ window.BEITZA_DATA = {
    },
    "text": "הַגַּחֶלֶת כְּרַגְלֵי הַבְּעָלִים, וְשַׁלְהֶבֶת בְּכָל מָקוֹם. גַּחֶלֶת שֶׁל הֶקְדֵּשׁ מוֹעֲלִין בָּהּ, וְשַׁלְהֶבֶת לֹא נֶהֱנִין וְלֹא מוֹעֲלִין. הַמּוֹצִיא גַחֶלֶת לִרְשׁוּת הָרַבִּים, חַיָּב. וְשַׁלְהֶבֶת, פָּטוּר. בּוֹר שֶׁל יָחִיד, כְּרַגְלֵי הַיָּחִיד. וְשֶׁל אַנְשֵׁי אוֹתָהּ הָעִיר, כְּרַגְלֵי אַנְשֵׁי אוֹתָהּ הָעִיר. וְשֶׁל עוֹלֵי בָבֶל, כְּרַגְלֵי הַמְמַלֵּא:",
    "gap": {
-    "he": "המשנה פוטרת המוציא שלהבת ומשווה בור של יחיד לרגליו. הגמרא מגלה שאיסור הנאה בשלהבת הקדש הוא גזרה, מעמידה את הפטור בזורק שלהבת בלבד, מעמידה בור של יחיד במים מכונסים, ומסבירה את בור עולי בבל כמחלוקת במגביה מציאה לחבירו.",
-    "en": "The Mishnah exempts carrying out a flame and ties a private well to its owner. The Gemara reveals the ban on benefiting from a consecrated flame is a rabbinic decree, limits the exemption to throwing a flame, sets the private well as collected water, and explains the public well as a dispute over picking up a found object for another."
+    "he": "המשנה פוטרת המוציא שלהבת ומשווה בור של יחיד לרגליו. הגמרא מגלה שאיסור הנאה בשלהבת הקדש הוא גזרה, מעמידה את הפטור בזורק שלהבת בלבד, מעמידה בור של יחיד במים מכונסים, ובבור עולי בבל מביאה מחלוקת במילא ונתן לחבירו שתלויה במגביה מציאה לחבירו.",
+    "en": "The Mishnah exempts carrying out a flame and ties a private well to its owner. The Gemara reveals the ban on benefiting from a consecrated flame is a rabbinic decree, limits the exemption to throwing a flame, sets the private well as collected water, and for the public well brings a dispute over one who draws for another that turns on picking up a found object for another."
    },
    "moves": [
     {
@@ -2702,16 +2549,6 @@ window.BEITZA_DATA = {
      "daf": "ביצה לט.",
      "link": "https://www.sefaria.org/Beitzah.39a",
      "q": "מַאי שְׁנָא שַׁלְהֶבֶת עֲבוֹדָה זָרָה דְּשַׁרְיָא, וּמַאי שְׁנָא דְּהֶקְדֵּשׁ דַּאֲסִירָא?... הֶקְדֵּשׁ, דְּלָא מְאִיס וְלָא בְּדִילִי אִינָשֵׁי מִינֵּיהּ — גְּזַרוּ בֵּיהּ רַבָּנַן."
-    },
-    {
-     "tags": [
-      7,
-      1
-     ],
-     "who": "רב ששת",
-     "daf": "ביצה לט.",
-     "link": "https://www.sefaria.org/Beitzah.39a",
-     "q": "וְהָא תַּנְיָא: הַמּוֹצִיא שַׁלְהֶבֶת כׇּל שֶׁהוּא — חַיָּיב! אָמַר רַב שֵׁשֶׁת: כְּגוֹן שֶׁהוֹצִיאוֹ בְּקֵיסָם."
     },
     {
      "tags": [
@@ -2735,7 +2572,7 @@ window.BEITZA_DATA = {
     {
      "machlokes": true,
      "tags": [
-      3,
+      1,
       5
      ],
      "topic": {
@@ -2780,7 +2617,7 @@ window.BEITZA_DATA = {
     {
      "machlokes": true,
      "tags": [
-      5
+      4
      ],
      "topic": {
       "he": "המפקיד פירות אצל חבירו: כרגלי מי",
@@ -2876,15 +2713,6 @@ window.BEITZA_DATA = {
        "q": "אֵלּוּ וְאֵלּוּ בַּיָּיתוֹת הֵן... כֹּל שֶׁיּוֹצְאוֹת וְרוֹעוֹת בָּאֲפָר, וְאֵין נִכְנָסוֹת לַיִּשּׁוּב, לֹא בִּימוֹת הַחַמָּה וְלֹא בִּימוֹת הַגְּשָׁמִים."
       }
      ]
-    },
-    {
-     "tags": [
-      5
-     ],
-     "who": "רבי",
-     "daf": "ביצה מ:",
-     "link": "https://www.sefaria.org/Beitzah.40b",
-     "q": "לְדִידִי אֵין מוּקְצֶה, אֶלָּא לְדִידְכוּ: אוֹדוֹ לִי מִיהַת הֵיכָא דְּיוֹצְאוֹת וְרוֹעוֹת בַּפֶּסַח וְנִכְנָסוֹת בִּרְבִיעָה רִאשׁוֹנָה דְּבַיָּיתוֹת הֵן."
     }
    ],
    "halacha": null
