@@ -1,7 +1,7 @@
 # Ta'amei HaMikra · טַעֲמֵי הַמִּקְרָא
 
 **Seder:** Luach & Reference
-**Tile:** [apps/trup-real.html](../apps/trup-real.html) (+ clarinet synth view)
+**Status:** taken off the site 2026-10-14 until it is more ready. No index tile. Page parked at `dev/trup/trup-real.html`; to restore, move it back to `apps/` and re-add the tile in `index.html`.
 **Status:** Live (linked from index.html) — two views under one tile
 
 ## What it covers
@@ -11,7 +11,7 @@ The niggun of the ta'amim, measured from real leining and sounded back — each 
 Ta'amei HaMikra · Torah · Haftarah · measured recordings
 
 ## Files (live)
-- `apps/trup-real.html` — the measured sound lab (primary view)
+- `dev/trup/trup-real.html` — the measured sound lab (primary view; parked, not linked)
 - `apps/taamim_clarinet_synth.html` — clarinet synth · GPT (alternate view)
 
 ## Related reference (in `dev/trup/`, not served)

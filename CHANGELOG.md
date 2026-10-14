@@ -5,6 +5,9 @@ All notable changes to **Torah Interactive**. Format loosely follows
 
 ## [Unreleased]
 
+### Removed
+- Ta'amei HaMikra (trup sound lab) taken off the site until it is more ready: index tile removed, `apps/trup-real.html` moved to `dev/trup/trup-real.html`, trup line dropped from `mekoros.html`. Restore by moving the file back and re-adding the tile. (2026-10-14)
+
 ### Added
 - `apps/shabbos.html` (+ `.js`, `-data.js`) and tile under Mishnah: The Mishnah as Torah She-Ba'al Peh, Maseches Shabbos. 139 mishnayos, 476 boxes, 697 verbatim quote pieces checked against Sefaria. Doc: `docs/shabbos.md`. (2026-10-12)
 - `apps/beitza.html` (+ `.js`, `-data.js`), new index section Mishnah & Gemara and its first tile: Beitzah as Torah She-Ba'al Peh. All 42 mishnayos of Beitzah with the Gemara's teachings on each, 182 verbatim quotes tagged by ten kinds, perek tabs and a filter by kind. Doc: `docs/beitza.md`. (2026-10-11)

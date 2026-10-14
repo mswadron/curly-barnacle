@@ -66,7 +66,7 @@ Grouped by seder, in the order they appear on the index page.
 | Zmanim — One Zman, Every Method | [zmanim.html](../apps/zmanim.html) | [zmanim.md](zmanim.md) |
 | Maharil's Moon | [maharils_moon.html](../apps/maharils_moon.html) | [maharils-moon.md](maharils-moon.md) |
 | Haftarah Reference | [haftarah.html](../apps/haftarah.html) | [haftarah.md](haftarah.md) |
-| Ta'amei HaMikra | [trup-real.html](../apps/trup-real.html) | [trup.md](trup.md) |
+| Ta'amei HaMikra (off the site, parked in dev/trup) | dev/trup/trup-real.html | [trup.md](trup.md) |
 
 ## Repository layout
 

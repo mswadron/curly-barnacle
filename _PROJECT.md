@@ -18,6 +18,7 @@
 - Push pipeline that works (2026-09-27): grant C:\Users\mswad\Dropbox\curly-barnacle to the session, drop a zip in via the device file bridge, Desktop Commander Expand-Archive + git add/commit/push. One approval click.
 
 ## Done / in work / planned
+- Done 2026-10-14: Ta'amei HaMikra (trup sound lab) taken off the site until more ready; page parked at dev/trup/trup-real.html, tile removed from index.html. Restore: move back to apps/ and re-add the tile.
 - Done 2026-09-27: apps/arba_minim (Four Species as Plants) pushed as b0cc726.
 - Done 2026-09-28: Esrog lineages section added to apps/arba_minim (arba_minim-lineage.js).
 - Done 2026-10-01: Arba Minim content corrections (psul origin, Chasam Sofer thick-rind sign, strain drift, polyembryony).
