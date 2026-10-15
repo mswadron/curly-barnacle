@@ -141,8 +141,8 @@ window.BEITZA_DATA = {
    },
    "text": "בֵּיצָה שֶׁנּוֹלְדָה בְיוֹם טוֹב, בֵּית שַׁמַּאי אוֹמְרִים, תֵּאָכֵל. וּבֵית הִלֵּל אוֹמְרִים, לֹא תֵאָכֵל. בֵּית שַׁמַּאי אוֹמְרִים, שְׂאֹר בְּכַזַּיִת וְחָמֵץ בְּכַכּוֹתֶבֶת. וּבֵית הִלֵּל אוֹמְרִים, זֶה וָזֶה בְּכַזָּיִת:",
    "gap": {
-    "he": "לפי לשון המשנה, ביצה שנולדה ביום טוב, בית שמאי מתירים ובית הלל אוסרים, ואין נאמר באיזו תרנגולת ובאיזה יום טוב. הגמרא מעמידה בשני אופנים. רב נחמן: בתרנגולת העומדת לגדל ביצים, והמחלוקת היא במוקצה ונולד, בית שמאי כרבי שמעון ובית הלל כרבי יהודה; הגמרא מניחה העמדה זו בצד. רבה: בתרנגולת העומדת לאכילה, וביום טוב שחל אחר השבת, והאיסור משום הכנה, וכן הלכה. אביי שואל, אם כן ביום טוב סתם תהא הביצה מותרת, ורבה משיב: גזרה משום יום טוב שאחר השבת.",
-    "en": "As written, an egg laid on Yom Tov is permitted by Beis Shammai and forbidden by Beis Hillel, with no word on which hen or which Yom Tov. The Gemara sets it two ways. Rav Nachman: a hen kept for laying eggs, and the dispute is about muktzeh and nolad, Beis Shammai like Rabbi Shimon and Beis Hillel like Rabbi Yehuda; the Gemara sets this reading aside. Rabbah: a hen kept for eating, on a Yom Tov that falls after Shabbos, and the prohibition is hachanah, and so is the halacha. Abaye asks, if so, on an ordinary Yom Tov the egg should be permitted, and Rabbah answers: a decree because of a Yom Tov after Shabbos."
+    "he": "לפי לשון המשנה, בית שמאי ובית הלל חולקים בביצה שנולדה ביום טוב, והמשנה אינה אומרת באיזו תרנגולת, באיזה יום טוב ומה האיסור. רב נחמן מעמיד בתרנגולת העומדת לגדל ביצים, והמחלוקת היא במוקצה ונולד: בית שמאי כרבי שמעון ובית הלל כרבי יהודה; הגמרא דוחה אותו מחמת קושיא. רבה מעמיד בתרנגולת העומדת לאכילה, ביום טוב שחל אחר השבת, והאיסור משום הכנה, וכן הלכה. אביי שואל אם כן ביום טוב סתם תהא הביצה מותרת, ורבה משיב: גזרה משום יום טוב שאחר השבת. ובסיפא, לפי לשון המשנה בית שמאי ובית הלל חולקים בשיעור שאור וחמץ סתם; הגמרא אומרת שלענין אכילה הכל מודים שהשיעור כזית, והמחלוקת היא רק לענין ביעור (בל יראה): בית שמאי אין לומדים ביעור מאכילה, ובית הלל לומדים.",
+    "en": "As written, Beis Shammai and Beis Hillel disagree about an egg laid on Yom Tov, and the Mishnah does not say which hen, which Yom Tov, or what the prohibition is. Rav Nachman sets it in a hen kept for laying, with the dispute about muktzeh and nolad: Beis Shammai like Rabbi Shimon, Beis Hillel like Rabbi Yehuda; the Gemara sets him aside on a kushya. Rabbah sets it in a hen kept for eating, on a Yom Tov after Shabbos, with the prohibition from hachanah, and the halacha follows him. Abaye asks why then an egg laid on an ordinary Yom Tov is forbidden, and Rabbah answers: a decree because of Yom Tov after Shabbos. In the second half, as written Beis Shammai and Beis Hillel disagree about the measure of se'or and chametz in general; the Gemara says that for eating all agree the measure is a kezayis, and the dispute is only about removal (bal yera'eh): Beis Shammai do not derive removal from eating, Beis Hillel do."
    },
    "moves": [
     {
@@ -210,6 +210,17 @@ window.BEITZA_DATA = {
      "link": "https://www.sefaria.org/Beitzah.2b",
      "q": "אֶלָּא מֵעַתָּה, יוֹם טוֹב בְּעָלְמָא תִּשְׁתְּרֵי! גְּזֵרָה מִשּׁוּם יוֹם טוֹב אַחַר הַשַּׁבָּת.",
      "ref": "2b.11"
+    },
+    {
+     "tags": [
+      3,
+      5
+     ],
+     "who": "הגמרא; רבי יוסי בר חנינא",
+     "daf": "ביצה ז:",
+     "link": "https://www.sefaria.org/Beitzah.7b",
+     "q": "לְעִנְיַן אֲכִילָה כּוּלֵּי עָלְמָא לָא פְלִיגִי. כִּי פְּלִיגִי לְעִנְיַן בִּיעוּר. בֵּית שַׁמַּאי סָבְרִי: לָא יָלְפִינַן בִּיעוּר מֵאֲכִילָה, וּבֵית הִלֵּל סָבְרִי: יָלְפִינַן בִּיעוּר מֵאֲכִילָה. אִתְּמַר נָמֵי, אָמַר רַבִּי יוֹסֵי בַּר חֲנִינָא: מַחְלוֹקֶת לְעִנְיַן בִּיעוּר, אֲבָל לְעִנְיַן אֲכִילָה — דִּבְרֵי הַכֹּל זֶה וְזֶה בִּכְזַיִת.",
+     "ref": "7b.12-13"
     }
    ],
    "halacha": null
