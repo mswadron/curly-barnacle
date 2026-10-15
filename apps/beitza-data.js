@@ -236,8 +236,8 @@ window.BEITZA_DATA = {
    },
    "text": "הַשּׁוֹחֵט חַיָּה וָעוֹף בְּיוֹם טוֹב, בֵּית שַׁמַּאי אוֹמְרִים, יַחְפֹּר בְּדֶקֶר וִיכַסֶּה, וּבֵית הִלֵּל אוֹמְרִים, לֹא יִשְׁחֹט, אֶלָּא אִם כֵּן הָיָה לוֹ עָפָר מוּכָן מִבְּעוֹד יוֹם. וּמוֹדִים, שֶׁאִם שָׁחַט, שֶׁיַּחְפֹּר בְּדֶקֶר וִיכַסֶּה, שֶׁאֵפֶר כִּירָה מוּכָן הוּא:",
    "gap": {
-    "he": "לפי לשון המשנה, בית שמאי מקילים לשחוט ולחפור בדקר ולכסות, ובית הלל מחמירים. רבי יוחנן מקשה שבשמחת יום טוב בית שמאי מחמירים ובית הלל מקילים, ומשיב: מוחלפת השיטה. רבה ורב יוסף מפרשים 'השוחט' כמי שבא לימלך, ומה בית שמאי אומרים לו: רבה: שחוט, חפור וכסה; רב יוסף: לך חפור, שחוט וכסה. 'שאפר כירה מוכן הוא' מי הזכירו? רבה קורא: 'ואפר כירה מוכן הוא', דין בפני עצמו. ובית שמאי כאן על בית שמאי שם אינו קשה: שם יש דקר נעוץ, כאן אין דקר נעוץ.",
-    "en": "As written, Beis Shammai are lenient, one may slaughter, dig with a spike and cover, and Beis Hillel are strict. Rabbi Yochanan objects that on simchas Yom Tov Beis Shammai are strict and Beis Hillel lenient, and answers: the positions are reversed. Rabbah and Rav Yosef read 'one who slaughters' as someone who comes to ask, and what Beis Shammai tell him: Rabbah: slaughter, dig and cover; Rav Yosef: go dig, slaughter and cover. 'For stove ash is prepared', who mentioned stove ash? Rabbah reads: 'and stove ash is prepared', a ruling of its own. And Beis Shammai here against Beis Shammai there is no problem: there a spike is already stuck in the ground, here it is not."
+    "he": "לפי לשון המשנה, בית שמאי מקילים לשחוט ולחפור בדקר ולכסות, ובית הלל מחמירים, ומודים שאם שחט יחפור בדקר ויכסה. רבי יוחנן מקשה שבשמחת יום טוב בית שמאי מחמירים ובית הלל מקילים, ומשיב: מוחלפת השיטה. רבה ורב יוסף מפרשים 'השוחט' כמי שבא לימלך, ומה בית שמאי אומרים לו: רבה: שחוט, חפור וכסה; רב יוסף: לך חפור, שחוט וכסה. 'ומודים שאם שחט יחפור בדקר ויכסה': רבי זריקא אמר רב יהודה, דווקא כשיש לו דקר נעוץ מבעוד יום; ורב חייא בר אשי אמר רב, ובעפר תיחוח. 'שאפר כירה מוכן הוא' מי הזכירו? רבה קורא: 'ואפר כירה מוכן הוא', דין בפני עצמו. ורב יהודה אמר רב: דווקא אפר שהוסק מערב יום טוב, אבל הוסק ביום טוב אסור, ואם ראוי לצלות בו ביצה מותר. ובית שמאי כאן על בית שמאי שם אינו קשה: שם יש דקר נעוץ, כאן אין דקר נעוץ.",
+    "en": "As written, Beis Shammai are lenient, one may slaughter, dig with a spike and cover, and Beis Hillel are strict, and they agree that if he slaughtered he digs with a spike and covers. Rabbi Yochanan objects that on simchas Yom Tov Beis Shammai are strict and Beis Hillel lenient, and answers: the positions are reversed. Rabbah and Rav Yosef read 'one who slaughters' as someone who comes to ask, and what Beis Shammai tell him: Rabbah: slaughter, dig and cover; Rav Yosef: go dig, slaughter and cover. 'They agree that if he slaughtered he digs with a spike and covers': Rabbi Zerika in the name of Rav Yehuda, only when he has a spike stuck in the ground from before Yom Tov; and Rav Chiya bar Ashi in the name of Rav, and in loose earth. 'For stove ash is prepared', who mentioned stove ash? Rabbah reads: 'and stove ash is prepared', a ruling of its own. And Rav Yehuda in the name of Rav: only ash from a fire lit before Yom Tov; ash from a fire lit on Yom Tov is forbidden, and if it is still hot enough to roast an egg it is permitted. And Beis Shammai here against Beis Shammai there is no problem: there a spike is already stuck in the ground, here it is not."
    },
    "moves": [
     {
@@ -278,6 +278,16 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
+      1
+     ],
+     "who": "רבי זריקא אמר רב יהודה; רב חייא בר אשי אמר רב",
+     "daf": "ביצה ז:",
+     "link": "https://www.sefaria.org/Beitzah.7b",
+     "q": "וְהוּא שֶׁיֵּשׁ לוֹ דָּקָר נָעוּץ מִבְּעוֹד יוֹם. וְהָא קָא עָבֵיד כְּתִישָׁה!... בְּעָפָר תִּיחוּחַ.",
+     "ref": "7b.24"
+    },
+    {
+     "tags": [
       11
      ],
      "who": "רבה",
@@ -285,6 +295,16 @@ window.BEITZA_DATA = {
      "link": "https://www.sefaria.org/Beitzah.8a",
      "q": "שֶׁאֵפֶר כִּירָה מוּכָן הוּא. אֵפֶר כִּירָה מַאן דְּכַר שְׁמֵיהּ? אָמַר רַבָּה, הָכִי קָאָמַר: וְאֵפֶר כִּירָה מוּכָן הוּא.",
      "ref": "8a.3"
+    },
+    {
+     "tags": [
+      1
+     ],
+     "who": "רב יהודה אמר רב",
+     "daf": "ביצה ח.",
+     "link": "https://www.sefaria.org/Beitzah.8a",
+     "q": "לֹא שָׁנוּ אֶלָּא שֶׁהוּסַּק מֵעֶרֶב יוֹם טוֹב, אֲבָל הוּסַּק בְּיוֹם טוֹב — אָסוּר. וְאִם רָאוּי לִצְלוֹת בּוֹ בֵּיצָה — מוּתָּר.",
+     "ref": "8a.4"
     },
     {
      "tags": [
@@ -1095,8 +1115,8 @@ window.BEITZA_DATA = {
    },
    "text": "בֵּית שַׁמַּאי אוֹמְרִים, מְבִיאִין שְׁלָמִים וְאֵין סוֹמְכִין עֲלֵיהֶן, אֲבָל לֹא עוֹלוֹת. וּבֵית הִלֵּל אוֹמְרִים, מְבִיאִין שְׁלָמִים וְעוֹלוֹת וְסוֹמְכִין עֲלֵיהֶם:",
    "gap": {
-    "he": "לפי לשון המשנה, בית שמאי מביאין שלמים ואין סומכין עליהן ואין מביאין עולות, ובית הלל מביאין שלמים ועולות וסומכין, כמחלוקת כללית בכל שלמים ועולות. עולא מצמצם: המחלוקת בשלמי חגיגה לסמוך ובעולת ראייה ליקרב. ועולא מוסיף: נדרים ונדבות לדברי הכל אין קרבין ביום טוב. רבי שמעון בן אלעזר בברייתא מעמיד אחרת: לא נחלקו על עולה שאינה של יום טוב שאינה קרבה ועל שלמים של יום טוב שקרבין, ונחלקו על עולה של יום טוב ושלמים שאינן של יום טוב. רב יוסף אומר תנאי היא, ומביא ברייתא: שלמים הבאים מחמת יום טוב, בית שמאי אומרים סומך עליהן מערב יום טוב ושוחטן ביום טוב. רבי יוסי בברייתא מעמיד אחרת: לא נחלקו על הסמיכה עצמה שצריך, ונחלקו על תכף לסמיכה שחיטה. ובמעשה בבבא בן בוטא, אותו היום גברה ידן של בית הלל וקבעו הלכה כמותן.",
-    "en": "As written, Beis Shammai bring shelamim without leaning on them and bring no olos, and Beis Hillel bring shelamim and olos and lean, as a general dispute over all shelamim and olos. Ulla narrows it: the dispute is about leaning on the shalmei chagigah and offering the olas re'iyah. And Ulla adds: vowed and freewill offerings, all agree, are not offered on Yom Tov. Rabbi Shimon ben Elazar in a baraisa frames it differently: they did not disagree about an olah not of Yom Tov, which is not offered, or shelamim of Yom Tov, which are offered; they disagreed about an olah of Yom Tov and shelamim not of Yom Tov. Rav Yosef says it is a dispute among tannaim, and cites a baraisa: shelamim brought because of Yom Tov, Beis Shammai say one leans on them before Yom Tov and slaughters them on Yom Tov. Rabbi Yosi in a baraisa frames it differently again: they did not disagree that leaning itself is required; they disagreed about slaughtering immediately after leaning. And in the episode of Bava ben Buta, that day Beis Hillel prevailed and the halacha was fixed like them."
+    "he": "לפי לשון המשנה, בית שמאי מביאין שלמים ואין סומכין עליהן ואין מביאין עולות, ובית הלל מביאין שלמים ועולות וסומכין, כמחלוקת כללית בכל שלמים ועולות. עולא מצמצם: המחלוקת בשלמי חגיגה לסמוך ובעולת ראייה ליקרב. בית שמאי דורשים \"וחגותם אותו חג לה'\", חגיגה אין ועולת ראייה לא, ובית הלל דורשים \"לה'\", כל דלה'. ועולא מוסיף: נדרים ונדבות לדברי הכל אין קרבין ביום טוב. רבי שמעון בן אלעזר בברייתא מעמיד אחרת: לא נחלקו על עולה שאינה של יום טוב שאינה קרבה ועל שלמים של יום טוב שקרבין, ונחלקו על עולה של יום טוב ושלמים שאינן של יום טוב. רב יוסף אומר תנאי היא, ומביא ברייתא: שלמים הבאים מחמת יום טוב, בית שמאי אומרים סומך עליהן מערב יום טוב ושוחטן ביום טוב. רבי יוסי בברייתא מעמיד אחרת: לא נחלקו על הסמיכה עצמה שצריך, ונחלקו על תכף לסמיכה שחיטה. ובמעשה בבבא בן בוטא, אותו היום גברה ידן של בית הלל וקבעו הלכה כמותן.",
+    "en": "As written, Beis Shammai bring shelamim without leaning on them and bring no olos, and Beis Hillel bring shelamim and olos and lean, as a general dispute over all shelamim and olos. Ulla narrows it: the dispute is about leaning on the shalmei chagigah and offering the olas re'iyah. Beis Shammai expound \"you shall celebrate it as a festival to Hashem\": the chagigah yes, the olas re'iyah no; Beis Hillel expound \"to Hashem\": all that is for Hashem. And Ulla adds: vowed and freewill offerings, all agree, are not offered on Yom Tov. Rabbi Shimon ben Elazar in a baraisa frames it differently: they did not disagree about an olah not of Yom Tov, which is not offered, or shelamim of Yom Tov, which are offered; they disagreed about an olah of Yom Tov and shelamim not of Yom Tov. Rav Yosef says it is a dispute among tannaim, and cites a baraisa: shelamim brought because of Yom Tov, Beis Shammai say one leans on them before Yom Tov and slaughters them on Yom Tov. Rabbi Yosi in a baraisa frames it differently again: they did not disagree that leaning itself is required; they disagreed about slaughtering immediately after leaning. And in the episode of Bava ben Buta, that day Beis Hillel prevailed and the halacha was fixed like them."
    },
    "moves": [
     {
@@ -1109,6 +1129,34 @@ window.BEITZA_DATA = {
      "link": "https://www.sefaria.org/Beitzah.19a",
      "q": "אָמַר עוּלָּא: מַחְלוֹקֶת בְּשַׁלְמֵי חֲגִיגָה לִסְמוֹךְ, וְעוֹלַת רְאִיָּיה לִיקְרַב.",
      "ref": "19a.12"
+    },
+    {
+     "machlokes": true,
+     "tags": [
+      4
+     ],
+     "topic": {
+      "he": "מקור המחלוקת בעולת ראייה (לעולא)",
+      "en": "The source of the dispute over the olas re'iyah (per Ulla)"
+     },
+     "intro": null,
+     "outro": null,
+     "sides": [
+      {
+       "who": "בית שמאי (לעולא)",
+       "daf": "ביצה יט.",
+       "link": "https://www.sefaria.org/Beitzah.19a",
+       "q": "דְּבֵית שַׁמַּאי סָבְרִי: ״וְחַגֹּתֶם אוֹתוֹ חַג לַה׳״, חֲגִיגָה — אִין, עוֹלַת רְאִיָּיה — לָא.",
+       "ref": "19a.12"
+      },
+      {
+       "who": "בית הלל (לעולא)",
+       "daf": "ביצה יט.",
+       "link": "https://www.sefaria.org/Beitzah.19a",
+       "q": "וּבֵית הִלֵּל סָבְרִי: ״לַה׳״, כֹּל דְּלַה׳.",
+       "ref": "19a.12"
+      }
+     ]
     },
     {
      "tags": [
@@ -1201,8 +1249,8 @@ window.BEITZA_DATA = {
    },
    "text": "שְׁלשָׁה דְבָרִים רַבָּן גַּמְלִיאֵל מַחֲמִיר כְּדִבְרֵי בֵית שַׁמַּאי, אֵין טוֹמְנִין אֶת הַחַמִּין מִיּוֹם טוֹב לַשַּׁבָּת, וְאֵין זוֹקְפִין אֶת הַמְּנוֹרָה בְיוֹם טוֹב, וְאֵין אוֹפִין פִּתִּין גְּרִיצִין אֶלָּא רְקִיקִין. אָמַר רַבָּן גַּמְלִיאֵל, מִימֵיהֶן שֶׁל בֵּית אַבָּא לֹא הָיוּ אוֹפִין פִּתִּין גְּרִיצִין, אֶלָּא רְקִיקִין. אָמְרוּ לוֹ, מַה נַּעֲשֶׂה לְבֵית אָבִיךָ, שֶׁהָיוּ מַחֲמִירִין עַל עַצְמָן וּמְקִלִּין לְכָל יִשְׂרָאֵל, לִהְיוֹת אוֹפִין פִּתִּין גְּרִיצִין וְחֹרִי:",
    "gap": {
-    "he": "לפי לשון המשנה, רבן גמליאל מחמיר כבית שמאי בשלשה דברים: אין טומנין חמין מיום טוב לשבת, אין זוקפין את המנורה, ואין אופין פיתין גריצין, בלי לומר באיזה מצב, איזו מנורה, ומה הן גריצין. על הטמנה הגמרא מביאה מחלוקת אם הניח עירובי תבשילין: רב הונא: לא הניח, וכדי חייו התירו לו רבנן; רבא, בלשון אלא: הניח, ושאני הטמנה שמוכח שעושה על דעת שבת; אבי: עירב לזה ולא עירב לזה, והמשנה היא חנניה אליבא דבית שמאי. רב חיננא בר ביסנא מעמיד במנורה של חוליות שנראה כבונה: בית שמאי סוברים יש בנין בכלים, ובית הלל סוברים אין בנין ואין סתירה בכלים. וברייתא אומרת שבית שמאי אוסרים לאפות פת עבה בפסח ובית הלל מתירין, ורב מפרש: פת עבה היא פת מרובה.",
-    "en": "As written, Rabban Gamliel is strict like Beis Shammai in three things: no insulating hot food from Yom Tov for Shabbos, no setting up the lamp, and no baking thick loaves, without saying in which situation, which lamp, or what thick loaves are. On insulating, the Gemara brings a dispute over whether he made an eruv tavshilin: Rav Huna: he did not, and for his bare needs the Sages permitted him; Rava, introduced with \"rather\": he did, but insulating is different because it is evident he is doing it for Shabbos; Abaye: he made an eruv for one and not for the other, and the Mishnah is Chananya according to Beis Shammai. Rav Chinena bar Bisna sets the lamp as one made of segments, which looks like building: Beis Shammai hold there is building in vessels, Beis Hillel hold there is neither building nor demolishing in vessels. And a baraisa says Beis Shammai forbid baking thick bread on Pesach and Beis Hillel permit, and Rav explains: thick bread means a large quantity of bread."
+    "he": "לפי לשון המשנה, רבן גמליאל מחמיר כבית שמאי בשלשה דברים: אין טומנין חמין מיום טוב לשבת, אין זוקפין את המנורה, ואין אופין פיתין גריצין, בלי לומר באיזה מצב, איזו מנורה, ומה הן גריצין. על הטמנה הגמרא מביאה מחלוקת אם הניח עירובי תבשילין: רב הונא: לא הניח, וכדי חייו התירו לו רבנן; רבא, בלשון אלא: הניח, ושאני הטמנה שמוכח שעושה על דעת שבת; אבי: עירב לזה ולא עירב לזה, והמשנה היא חנניה אליבא דבית שמאי. רב חיננא בר ביסנא מעמיד במנורה של חוליות שנראה כבונה: בית שמאי סוברים יש בנין בכלים, ובית הלל סוברים אין בנין ואין סתירה בכלים. וברייתא אומרת שבית שמאי אוסרים לאפות פת עבה בפסח ובית הלל מתירין, ורב מפרש: פת עבה היא פת מרובה. והגמרא מבארת שהטעם משום שטורח טרחה שאינה צריכה, ולכן הדין בכל יום טוב ולא בפסח בלבד.",
+    "en": "As written, Rabban Gamliel is strict like Beis Shammai in three things: no insulating hot food from Yom Tov for Shabbos, no setting up the lamp, and no baking thick loaves, without saying in which situation, which lamp, or what thick loaves are. On insulating, the Gemara brings a dispute over whether he made an eruv tavshilin: Rav Huna: he did not, and for his bare needs the Sages permitted him; Rava, introduced with \"rather\": he did, but insulating is different because it is evident he is doing it for Shabbos; Abaye: he made an eruv for one and not for the other, and the Mishnah is Chananya according to Beis Shammai. Rav Chinena bar Bisna sets the lamp as one made of segments, which looks like building: Beis Shammai hold there is building in vessels, Beis Hillel hold there is neither building nor demolishing in vessels. And a baraisa says Beis Shammai forbid baking thick bread on Pesach and Beis Hillel permit, and Rav explains: thick bread means a large quantity of bread. And the Gemara explains that the reason is needless exertion, so the rule applies on every Yom Tov, not only Pesach."
    },
    "moves": [
     {
@@ -1272,6 +1320,16 @@ window.BEITZA_DATA = {
      "link": "https://www.sefaria.org/Beitzah.22b",
      "q": "תָּנוּ רַבָּנַן, בֵּית שַׁמַּאי אוֹמְרִים: אֵין אוֹפִין פַּת עָבָה בְּפֶסַח, וּבֵית הִלֵּל מַתִּירִין... מַאי פַּת עָבָה? פַּת מְרוּבָּה.",
      "ref": "22b.3-7"
+    },
+    {
+     "tags": [
+      4
+     ],
+     "who": "הגמרא",
+     "daf": "ביצה כב:",
+     "link": "https://www.sefaria.org/Beitzah.22b",
+     "q": "מִכְּדִי מִשּׁוּם דְּקָטָרַח טִרְחָא דְּלָא צְרִיךְ הוּא, מַאי אִרְיָא פֶּסַח? אֲפִילּוּ בִּשְׁאָר יָמִים טוֹבִים נָמֵי! אִין הָכִי נָמֵי.",
+     "ref": "22b.8"
     }
    ],
    "halacha": null
@@ -1446,10 +1504,20 @@ window.BEITZA_DATA = {
    },
    "text": "עֲגָלָה שֶׁל קָטָן טְמֵאָה מִדְרָס וְנִטֶּלֶת בְּשַׁבָּת, וְאֵינָהּ נִגְרֶרֶת אֶלָּא עַל גַּבֵּי כֵלִים. רַבִּי יְהוּדָה אוֹמֵר, כָּל הַכֵּלִים אֵין נִגְרָרִין חוּץ מִן הָעֲגָלָה, מִפְּנֵי שֶׁהִיא כוֹבֶשֶׁת:",
    "gap": {
-    "he": "לפי לשון המשנה, עגלה של קטן ניטלת בשבת ואינה נגררת אלא על גבי כלים, ורבי יהודה אומר שכל הכלים אין נגררין חוץ מן העגלה מפני שהיא כובשת, בלי טעם ברישא למה לא על גבי קרקע. הגמרא מדייקת: על גבי כלים כן, על גבי קרקע לא, והטעם שעושה חריץ, ולכן הרישא היא רבי יהודה שאומר דבר שאינו מתכוין אסור. ועל הסיפא הגמרא שואלת: מפני שכובשת כן, אבל חריץ אינה עושה? ומשיבה: תרי תנאי אליבא דרבי יהודה.",
-    "en": "As written, a child's cart may be moved on Shabbos and is dragged only over vessels, and Rabbi Yehuda says no vessels are dragged except the cart because it presses the ground, with no reason in the first clause for not dragging it over the ground. The Gemara infers: over vessels yes, over the ground no, and the reason is that it makes a furrow, so the first clause is Rabbi Yehuda, who says an unintended act is forbidden. And on the closing clause the Gemara asks: because it presses, yes, but does it not make a furrow? And answers: two tannaim, both according to Rabbi Yehuda."
+    "he": "לפי לשון המשנה, עגלה של קטן ניטלת בשבת ואינה נגררת אלא על גבי כלים, ורבי יהודה אומר שכל הכלים אין נגררין חוץ מן העגלה מפני שהיא כובשת, בלי טעם לטומאת מדרס ולהיתר הטלטול, ובלי טעם ברישא למה לא על גבי קרקע. הגמרא מבארת: טמאה מדרס שהרי הקטן סומך עליה, וניטלת בשבת משום שיש עליה תורת כלי. הגמרא מדייקת: על גבי כלים כן, על גבי קרקע לא, והטעם שעושה חריץ, ולכן הרישא היא רבי יהודה שאומר דבר שאינו מתכוין אסור. ועל הסיפא הגמרא שואלת: מפני שכובשת כן, אבל חריץ אינה עושה? ומשיבה: תרי תנאי אליבא דרבי יהודה.",
+    "en": "As written, a child's cart may be moved on Shabbos and is dragged only over vessels, and Rabbi Yehuda says no vessels are dragged except the cart because it presses the ground, with no reason for the midras impurity or for permitting it to be moved, and no reason in the first clause for not dragging it over the ground. The Gemara explains: it is impure as midras since the child leans on it, and it may be moved on Shabbos because it has the status of a vessel. The Gemara infers: over vessels yes, over the ground no, and the reason is that it makes a furrow, so the first clause is Rabbi Yehuda, who says an unintended act is forbidden. And on the closing clause the Gemara asks: because it presses, yes, but does it not make a furrow? And answers: two tannaim, both according to Rabbi Yehuda."
    },
    "moves": [
+    {
+     "tags": [
+      4
+     ],
+     "who": "הגמרא",
+     "daf": "ביצה כג:",
+     "link": "https://www.sefaria.org/Beitzah.23b",
+     "q": "עֲגָלָה שֶׁל קָטָן — טְמֵאָה מִדְרָס, דְּהָא סָמֵיךְ עִלָּוַיהּ. וְנִטֶּלֶת בְּשַׁבָּת, מִשּׁוּם דְּאִיכָּא תּוֹרַת כְּלִי עֲלַהּ.",
+     "ref": "23b.5"
+    },
     {
      "tags": [
       4,
@@ -1636,8 +1704,8 @@ window.BEITZA_DATA = {
    },
    "text": "בְּהֵמָה מְסֻכֶּנֶת לֹא יִשְׁחֹט, אֶלָּא אִם כֵּן יֵשׁ שָׁהוּת בַּיּוֹם לֶאֱכֹל מִמֶּנָּה כַּזַּיִת צָלִי. רַבִּי עֲקִיבָא אוֹמֵר, אֲפִלּוּ כַזַּיִת חַי מִבֵּית טְבִיחָתָהּ. שְׁחָטָהּ בַּשָּׂדֶה, לֹא יְבִיאֶנָּה בְמוֹט וּבְמוֹטָה. אֲבָל מֵבִיא בְיָדוֹ אֵבָרִים אֵבָרִים:",
    "gap": {
-    "he": "לפי לשון המשנה, רבי עקיבא מתיר לשחוט אם יש שהות לאכול כזית חי מבית טביחתה, ואינה מפרשת מה זה. הגמרא שואלת: האם לא מבית טביחתה ממש, כלומר מקום השחיטה? ומנסה לפרש אחרת: ממקום שטובחת אכילתה, כלומר בית הבליעה. אבל רבי חייא שונה בפירוש: מקום טביחתה ממש.",
-    "en": "As written, Rabbi Akiva permits slaughtering if there is time to eat an olive's worth raw from its place of slaughter, and the Mishnah does not explain what that is. The Gemara asks: does it not mean the actual place of slaughter, the throat? And it tries another reading: the place where its eating is slaughtered, the gullet. But Rabbi Chiya teaches explicitly: the actual place of slaughter."
+    "he": "לפי לשון המשנה, רבי עקיבא מתיר לשחוט אם יש שהות לאכול כזית חי מבית טביחתה, ואינה מפרשת מה זה. הגמרא שואלת: האם לא מבית טביחתה ממש, כלומר מקום השחיטה? ומנסה לפרש אחרת: ממקום שטובחת אכילתה, כלומר בית הבליעה. אבל רבי חייא שונה בפירוש: מקום טביחתה ממש. ומכאן שהמשנה כרב הונא: נשחטה, בחזקת היתר עומדת עד שיודע לך במה נטרפה, ולכן אוכל ממנה במקום השחיטה בלי לבדוק.",
+    "en": "As written, Rabbi Akiva permits slaughtering if there is time to eat an olive's bulk raw from the place of its slaughter, and it does not explain what that is. The Gemara asks: is it not literally the place of slaughter, the cut? And it tries another reading: from the place that slaughters its food, the gullet. But Rabbi Chiya teaches explicitly: literally the place of its slaughter. So the Mishnah follows Rav Huna: once slaughtered, it stands presumed permitted until you know how it became treifah, and so he eats from the place of slaughter without checking."
    },
    "moves": [
     {
@@ -1649,6 +1717,16 @@ window.BEITZA_DATA = {
      "link": "https://www.sefaria.org/Beitzah.25a",
      "q": "מַאי לָאו, מִבֵּית טְבִיחָתָהּ מַמָּשׁ?... לָא: מִמָּקוֹם שֶׁטּוֹבַחַת אֲכִילָתָהּ... וְהָא תָּנֵי רַבִּי חִיָּיא: מְקוֹם טְבִיחָתָהּ מַמָּשׁ.",
      "ref": "25a.15-17"
+    },
+    {
+     "tags": [
+      4
+     ],
+     "who": "רב הונא",
+     "daf": "ביצה כה.",
+     "link": "https://www.sefaria.org/Beitzah.25a",
+     "q": "נִשְׁחֲטָה — בְּחֶזְקַת הֶיתֵּר עוֹמֶדֶת, עַד שֶׁיִּוָּדַע לָךְ בַּמֶּה נִטְרְפָה... וְהָאֲנַן תְּנַן מַתְנִיתִין כִּדְרַב הוּנָא!",
+     "ref": "25a.14-15"
     }
    ],
    "halacha": null
@@ -1664,10 +1742,21 @@ window.BEITZA_DATA = {
    },
    "text": "בְּכוֹר שֶׁנָּפַל לְבוֹר, רַבִּי יְהוּדָה אוֹמֵר, יֵרֵד מֻמְחֶה וְיִרְאֶה, אִם יֶשׁ בּוֹ מוּם, יַעֲלֶה וְיִשְׁחֹט. וְאִם לָאו, לֹא יִשְׁחֹט. רַבִּי שִׁמְעוֹן אוֹמֵר, כֹּל שֶׁאֵין מוּמוֹ נִכָּר מִבְּעוֹד יוֹם, אֵין זֶה מִן הַמּוּכָן:",
    "gap": {
-    "he": "לפי לשון המשנה, רבי יהודה אומר שהמומחה יורד לבור ורואה, ואם יש מום יעלה וישחוט, ואם לאו לא ישחוט. הגמרא מדייקת מן הלשון: אם כן היה לה לומר לא יעלה וישחוט, ולא רק לא ישחוט. ולכן מעמידה: נפל בו מום עובר מערב יום טוב ועכשיו נעשה מום קבוע. ברייתא: הכל שוין שאם נולד הוא ומומו עמו, הרי זה מן המוכן. רב נחמן בר יצחק מפרש אין מומו ניכר של רבי שמעון: לא שאין בו מום כלל, שזה פשוט, אלא שלא הראהו לחכם מערב יום טוב אם מום קבוע הוא או עובר. ורבי זירא: מתוך שהמשנה שונה את הדין בשם רבי שמעון והברייתא שונה אותו בלשון חכמים, מסתבר כמותו.",
-    "en": "As written, Rabbi Yehuda says the expert goes down into the pit and looks, and if there is a blemish he lifts it out and slaughters, and if not he does not slaughter. The Gemara presses the wording: if so it should have said he does not lift it out and slaughter, not just he does not slaughter. So it sets the case: a temporary blemish appeared before Yom Tov and now it has become permanent. A baraisa: all agree that if it was born with its blemish, it counts as prepared. Rav Nachman bar Yitzchak explains Rabbi Shimon's not evident: not that it has no blemish at all, which is obvious, but that it was not shown to a sage before Yom Tov to decide whether the blemish is permanent or temporary. And Rabbi Zeira: since the Mishnah teaches this rule in Rabbi Shimon's name and the baraisa teaches it as the words of the Chachamim, it stands to reason the view is his."
+    "he": "לפי לשון המשנה, רבי יהודה אומר שהמומחה יורד לבור ורואה, ואם יש מום יעלה וישחוט, ואם לאו לא ישחוט. הגמרא אומרת שבזה נחלקו: רבי יהודה סובר רואין מומין ביום טוב, ורבי שמעון סובר אין רואין מומין ביום טוב, ונקטו בכור שנפל לבור ללמד שאף משום צער בעלי חיים אין מערימין להעלותו כרבי יהושע. הגמרא מדייקת מן הלשון: אם כן היה לה לומר לא יעלה וישחוט, ולא רק לא ישחוט. ולכן מעמידה: נפל בו מום עובר מערב יום טוב ועכשיו נעשה מום קבוע. ברייתא: הכל שוין שאם נולד הוא ומומו עמו, הרי זה מן המוכן. רב נחמן בר יצחק מפרש אין מומו ניכר של רבי שמעון: לא שאין בו מום כלל, שזה פשוט, אלא שלא הראהו לחכם מערב יום טוב אם מום קבוע הוא או עובר. ורבי זירא: מתוך שהמשנה שונה את הדין בשם רבי שמעון והברייתא שונה אותו בלשון חכמים, מסתבר כמותו.",
+    "en": "As written, Rabbi Yehuda says the expert goes down into the pit and looks, and if there is a blemish he brings it up and slaughters, and if not he does not slaughter. The Gemara says this is their dispute: Rabbi Yehuda holds blemishes may be examined on Yom Tov, and Rabbi Shimon holds they may not, and they chose a firstborn that fell into a pit to teach that even for the animal's suffering one may not use a ruse to bring it up, as Rabbi Yehoshua does. The Gemara infers from the wording: if so it should have said he does not bring it up and slaughter, not only he does not slaughter. So it sets the case: a temporary blemish arose before Yom Tov and has now become permanent. A baraisa: all agree that if it was born with its blemish, it is prepared. Rav Nachman bar Yitzchak explains Rabbi Shimon's its blemish was not recognized: not that it had no blemish at all, which is obvious, but that it was not shown to a sage before Yom Tov to tell whether the blemish is permanent or temporary. And Rabbi Zeira: since the Mishnah teaches the ruling in Rabbi Shimon's name and the baraisa teaches it as the Sages' wording, his view is the more reasonable."
    },
    "moves": [
+    {
+     "tags": [
+      5,
+      4
+     ],
+     "who": "הגמרא",
+     "daf": "ביצה כו.",
+     "link": "https://www.sefaria.org/Beitzah.26a",
+     "q": "דְּרַבִּי יְהוּדָה סָבַר: רוֹאִין מוּמִין בְּיוֹם טוֹב, וְרַבִּי שִׁמְעוֹן סָבַר: אֵין רוֹאִין מוּמִין בְּיוֹם טוֹב... בְּכוֹר שֶׁנָּפַל לַבּוֹר אִצְטְרִיכָא לֵיהּ, סָלְקָא דַּעְתָּךְ אָמֵינָא: מִשּׁוּם צַעַר בַּעֲלֵי חַיִּים לַעֲרֵים וְלַסְּקֵיהּ כְּרַבִּי יְהוֹשֻׁעַ — קָא מַשְׁמַע לַן.",
+     "ref": "26a.2-3"
+    },
     {
      "tags": [
       9
@@ -1928,8 +2017,8 @@ window.BEITZA_DATA = {
    },
    "text": "אוֹמֵר אָדָם לַחֲבֵרוֹ, מַלֵּא לִי כְלִי זֶה, אֲבָל לֹא בַמִּדָּה. רַבִּי יְהוּדָה אוֹמֵר, אִם הָיָה כְלִי שֶׁל מִדָּה, לֹא יְמַלְאֶנּוּ. מַעֲשֶׂה בְאַבָּא שָׁאוּל בֶּן בָּטְנִית, שֶׁהָיָה מְמַלֵּא מִדּוֹתָיו מֵעֶרֶב יוֹם טוֹב וְנוֹתְנָן לַלָּקוֹחוֹת בְּיוֹם טוֹב. אַבָּא שָׁאוּל אוֹמֵר, אַף בַּמּוֹעֵד עוֹשֶׂה כֵן, מִפְּנֵי בֵרוּרֵי הַמִּדּוֹת. וַחֲכָמִים אוֹמְרִים, אַף בְּחֹל עוֹשֶׂה כֵן, מִפְּנֵי מִצּוּי הַמִּדּוֹת. הוֹלֵךְ אָדָם אֵצֶל חֶנְוָנִי הָרָגִיל אֶצְלוֹ, וְאוֹמֵר לוֹ, תֵּן לִי בֵּיצִים וֶאֱגוֹזִים בְּמִנְיָן, שֶׁכֵּן דֶּרֶךְ בַּעַל הַבַּיִת לִהְיוֹת מוֹנֶה בְּתוֹךְ בֵּיתוֹ:",
    "gap": {
-    "he": "לפי לשון המשנה, אומר אדם מלא לי כלי זה, אבל לא במדה, ואינה מפרשת מהו במדה. נחלקו: רב יהודה בשם שמואל: לא ימלא בכלי המיוחד למדה, אבל כלי העומד למדה ועדיין לא קבעוהו ימלאנו; רבא: שלא יזכיר לו שם מדה, אבל אפילו כלי המיוחד למדה ימלאנו, וכן הלכה. הגמרא מיישבת את חכמים כאן עם חכמים במשנת שקילת בשר: שם עושה כדרך שעושין בחול, וכאן אינו עושה כדרך חול, שרגילים בני אדם לקרב יין בכלי מדה ולשתות. ברייתא נותנת טעם אחר לאבא שאול במועד: מפני ביטול בית המדרש. ובחנווני נחלקו בברייתא מה לא יזכיר: תנא קמא: סכום מדה; רבי שמעון בן אלעזר: סכום מקח.",
-    "en": "As written, a man says fill this vessel for me, but not by measure, and the Mishnah does not explain what by measure means. They dispute it: Rav Yehuda in Shmuel's name: he may not fill a vessel designated for measuring, but a vessel meant to serve as a measure and not yet fixed as one he may fill; Rava: he may not name a measure to him, but even a vessel designated for measuring he may fill, and so is the halacha. The Gemara reconciles the Chachamim here with the Chachamim in the meat-weighing Mishnah: there he acts as people act on a weekday, here he does not, since people commonly bring wine in a measuring vessel and drink. A baraisa gives another reason for Abba Shaul on Chol HaMoed: to avoid loss of time from the beis midrash. And on the storekeeper a baraisa disputes what he may not mention: the first Tanna: the total of the measure; Rabbi Shimon ben Elazar: the total of the price."
+    "he": "לפי לשון המשנה, אומר אדם מלא לי כלי זה, אבל לא במדה, ואינה מפרשת מהו במדה. נחלקו: רב יהודה בשם שמואל: לא ימלא בכלי המיוחד למדה, אבל כלי העומד למדה ועדיין לא קבעוהו ימלאנו; רבא: שלא יזכיר לו שם מדה, אבל אפילו כלי המיוחד למדה ימלאנו, וכן הלכה. ולפי זה נחלקו מה רבי יהודה בא להוסיף: לשמואל: אפילו כלי העומד למדה לא ימלאנו; לרבא: כלי המיוחד למדה לא ימלאנו. הגמרא מיישבת את חכמים כאן עם חכמים במשנת שקילת בשר: שם עושה כדרך שעושין בחול, וכאן אינו עושה כדרך חול, שרגילים בני אדם לקרב יין בכלי מדה ולשתות. ברייתא נותנת טעם אחר לאבא שאול במועד: מפני ביטול בית המדרש. ובחנווני נחלקו בברייתא מה לא יזכיר: תנא קמא: סכום מדה; רבי שמעון בן אלעזר: סכום מקח.",
+    "en": "As written, a person may say fill this vessel for me, but not by measure, and it does not explain what by measure means. They dispute: Rav Yehuda in Shmuel's name: he may not fill a vessel designated for measuring, but a vessel meant for measuring that has not yet been fixed he may fill; Rava: he may not mention a measure's name, but even a vessel designated for measuring he may fill, and so is the halacha. Accordingly they dispute what Rabbi Yehuda comes to add: for Shmuel, even a vessel meant for measuring he may not fill; for Rava, a vessel designated for measuring he may not fill. The Gemara reconciles the Sages here with the Sages in the Mishnah on weighing meat: there he acts as one does on a weekday, and here he does not act as on a weekday, since people commonly serve wine in a measuring vessel and drink. A baraisa gives another reason for Abba Shaul on Chol HaMoed: because of neglect of the study hall. And at the shopkeeper a baraisa disputes what he may not mention: the first tanna: a sum of measure; Rabbi Shimon ben Elazar: a sum of price."
    },
    "moves": [
     {
@@ -1972,6 +2061,34 @@ window.BEITZA_DATA = {
         "hover": "וַאֲפִלּוּ הָיָה כְּלִי הַמְיֻחָד לְמִדָּה יְמַלְּאֶנּוּ וְהוּא שֶׁלֹּא יַזְכִּיר לוֹ שֵׁם מִדָּה",
         "hover_src": "רמב\"ם הל' יום טוב ד:כא"
        },
+       "ref": "29a.8"
+      }
+     ]
+    },
+    {
+     "machlokes": true,
+     "tags": [
+      3
+     ],
+     "topic": {
+      "he": "מה רבי יהודה בא להוסיף",
+      "en": "What Rabbi Yehuda comes to add"
+     },
+     "intro": null,
+     "outro": null,
+     "sides": [
+      {
+       "who": "רב יהודה אמר שמואל",
+       "daf": "ביצה כט.",
+       "link": "https://www.sefaria.org/Beitzah.29a",
+       "q": "וַאֲתָא רַבִּי יְהוּדָה לְמֵימַר אֲפִילּוּ כְּלִי הָעוֹמֵד לְמִדָּה לֹא יְמַלְּאֶנּוּ.",
+       "ref": "29a.4"
+      },
+      {
+       "who": "רבא",
+       "daf": "ביצה כט.",
+       "link": "https://www.sefaria.org/Beitzah.29a",
+       "q": "וַאֲתָא רַבִּי יְהוּדָה לְמֵימַר: כְּלִי הַמְיוּחָד לְמִדָּה — לֹא יְמַלְּאֶנּוּ.",
        "ref": "29a.8"
       }
      ]
@@ -2089,10 +2206,20 @@ window.BEITZA_DATA = {
    },
    "text": "אֵין נוֹטְלִין עֵצִים מִן הַסֻּכָּה, אֶלָּא מִן הַסָּמוּךְ לָהּ. מְבִיאִין עֵצִים מִן הַשָּׂדֶה מִן הַמְכֻנָּס, וּמִן הַקַּרְפֵּף אֲפִלּוּ מִן הַמְפֻזָּר. אֵיזֶהוּ קַרְפֵּף, כֹּל שֶׁסָּמוּךְ לָעִיר, דִּבְרֵי רַבִּי יְהוּדָה. רַבִּי יוֹסֵי אוֹמֵר, כֹּל שֶׁנִּכְנָסִין לוֹ בְפוֹתַחַת, וַאֲפִלּוּ בְתוֹךְ תְּחוּם שַׁבָּת:",
    "gap": {
-    "he": "לפי לשון המשנה, נוטלים עצים מן הסמוך לסוכה, מן השדה רק מן המכונס, ומן הקרפף אפילו מן המפוזר, ורבי יהודה ורבי יוסי חולקים מהו קרפף. מהו סמוך? רב יהודה אמר שמואל: סמוך לדפנות, וכן הלכה; רב מנשיא: אפילו אינו סמוך לדפנות, והברייתא מדברת בחבילות קשורות. רב יהודה אמר שמואל אומר שאין מביאין עצים אלא מן המכונסין שבקרפף, ועל הקושיה מהמשנה שמתירה אפילו מפוזרים הוא עונה שהמשנה דעת יחיד. רבי שמעון בן אלעזר בברייתא: בית שמאי ובית הלל מודים שמפוזרים שבשדות אין מביאין ומכונסים שבקרפף מביאין, ונחלקו במפוזרים שבקרפף ובמכונסים שבשדות. רבא: עלי קנים ועלי גפנים, אף שכינסם והניחם, כיון שהרוח מפזרת אותם הם כמפוזרים ואסורים. הגמרא מדייקת מלשון רבי יוסי, בפותחת ואפילו בתוך תחום שבת, ששתי קולות אמר. ורב סלא אמר רבי ירמיה פוסק שהלכה כרבי יוסי להקל.",
-    "en": "As written, one takes wood from what is next to the sukkah, from the field only what is gathered, and from a karpef even what is scattered, and Rabbi Yehuda and Rabbi Yosei disagree about what a karpef is. What is next to? Rav Yehuda in the name of Shmuel: next to the walls, and so is the halacha; Rav Menashya: even not next to the walls, and the baraisa speaks of tied bundles. Rav Yehuda in the name of Shmuel says wood is brought only from the gathered wood in a karpef, and to the challenge from the Mishnah, which permits even scattered wood, he answers that the Mishnah is a lone opinion. Rabbi Shimon ben Elazar in a baraisa: Beis Shammai and Beis Hillel agree that scattered wood in the fields is not brought and gathered wood in a karpef is brought, and they disagree about scattered wood in a karpef and gathered wood in the fields. Rava: reed leaves and vine leaves, even if gathered and set down, count as scattered and are forbidden, since the wind scatters them. The Gemara infers from Rabbi Yosei's wording, entered with a key and even within the Shabbos boundary, that he is lenient on two counts. And Rav Sala in the name of Rabbi Yirmiya rules that the halacha follows Rabbi Yosei, leniently."
+    "he": "לפי לשון המשנה, נוטלים עצים מן הסמוך לסוכה, מן השדה רק מן המכונס, ומן הקרפף אפילו מן המפוזר, ורבי יהודה ורבי יוסי חולקים מהו קרפף. הגמרא נותנת טעם לאיסור ליטול מן הסוכה: משום שסותר אוהל, ומקשה שגם הסמוך לה סותר אוהל. מהו סמוך? רב יהודה אמר שמואל: סמוך לדפנות, וכן הלכה; רב מנשיא: אפילו אינו סמוך לדפנות, והברייתא מדברת בחבילות קשורות. רב יהודה אמר שמואל אומר שאין מביאין עצים אלא מן המכונסין שבקרפף, ועל הקושיה מהמשנה שמתירה אפילו מפוזרים הוא עונה שהמשנה דעת יחיד. רבי שמעון בן אלעזר בברייתא: בית שמאי ובית הלל מודים שמפוזרים שבשדות אין מביאין ומכונסים שבקרפף מביאין, ונחלקו במפוזרים שבקרפף ובמכונסים שבשדות. רבא: עלי קנים ועלי גפנים, אף שכינסם והניחם, כיון שהרוח מפזרת אותם הם כמפוזרים ואסורים. הגמרא מדייקת מלשון רבי יוסי, בפותחת ואפילו בתוך תחום שבת, ששתי קולות אמר. ורב סלא אמר רבי ירמיה פוסק שהלכה כרבי יוסי להקל.",
+    "en": "As written, one takes wood from what is next to the sukkah, from the field only what is gathered, and from a karpef even what is scattered, and Rabbi Yehuda and Rabbi Yosei disagree about what a karpef is. The Gemara gives the reason one may not take from the sukkah: it demolishes a tent, and asks that taking from what is next to it also demolishes a tent. What is next to? Rav Yehuda in the name of Shmuel: next to the walls, and so is the halacha; Rav Menashya: even not next to the walls, and the baraisa speaks of tied bundles. Rav Yehuda in the name of Shmuel says wood is brought only from the gathered wood in a karpef, and to the challenge from the Mishnah, which permits even scattered wood, he answers that the Mishnah is a lone opinion. Rabbi Shimon ben Elazar in a baraisa: Beis Shammai and Beis Hillel agree that scattered wood in the fields is not brought and gathered wood in a karpef is brought, and they disagree about scattered wood in a karpef and gathered wood in the fields. Rava: reed leaves and vine leaves, even if gathered and set down, count as scattered and are forbidden, since the wind scatters them. The Gemara infers from Rabbi Yosei's wording, entered with a key and even within the Shabbos boundary, that he is lenient on two counts. And Rav Sala in the name of Rabbi Yirmiya rules that the halacha follows Rabbi Yosei, leniently."
    },
    "moves": [
+    {
+     "tags": [
+      4
+     ],
+     "who": "הגמרא",
+     "daf": "ביצה ל:",
+     "link": "https://www.sefaria.org/Beitzah.30b",
+     "q": "מַאי שְׁנָא מִן הַסּוּכָּה דְּלָא — דְּקָא סָתַר אֻהְלָא",
+     "ref": "30b.2"
+    },
     {
      "machlokes": true,
      "tags": [
@@ -2270,8 +2397,8 @@ window.BEITZA_DATA = {
    },
    "text": "אֵין פּוֹתְחִין אֶת הַנֵּר, מִפְּנֵי שֶׁהוּא עוֹשֶׂה כְלִי. וְאֵין עוֹשִׂין פֶּחָמִין בְּיוֹם טוֹב, וְאֵין חוֹתְכִין אֶת הַפְּתִילָה לִשְׁנַיִם. רַבִּי יְהוּדָה אוֹמֵר, חוֹתְכָהּ בָּאוּר לִשְׁתֵּי נֵרוֹת:",
    "gap": {
-    "he": "לפי לשון המשנה, אין פותחין את הנר מפני שעושה כלי, אין עושין פחמין, ואין חותכין פתילה לשניים, ורבי יהודה מתיר לחותכה באור לשתי נרות. על הפחמין הגמרא שואלת פשיטא, למה הם ראויים ביום טוב, ורבי חייא עונה: לא נצרכה אלא למוסרם לאולייארין, הבלנים, לבו ביום. על רבי יהודה שואלים הרי גם באור מתקן כלי, ורבי חייא עונה: חותכה באור כשהיא מונחת בפי שתי נרות.",
-    "en": "As written, one may not open a lamp because he makes a vessel, one may not make charcoal, and one may not cut a wick in two, and Rabbi Yehuda permits cutting it with fire for two lamps. On charcoal the Gemara asks that this is obvious, what use is it on Yom Tov, and Rabbi Chiyya answers: it is needed only for handing it to the bathhouse attendants that same day. On Rabbi Yehuda the Gemara asks that with fire too he fixes a vessel, and Rabbi Chiyya answers: he cuts it with fire while it lies in the mouths of two lamps."
+    "he": "לפי לשון המשנה, אין פותחין את הנר מפני שעושה כלי, אין עושין פחמין, ואין חותכין פתילה לשניים, ורבי יהודה מתיר לחותכה באור לשתי נרות. על הפחמין הגמרא שואלת פשיטא, למה הם ראויים ביום טוב, ורבי חייא עונה: לא נצרכה אלא למוסרם לאולייארין, הבלנים, לבו ביום. ועל השאלה אם מותר לבו ביום הגמרא עונה כדברי רבא: להזיע, וקודם הגזירה. על רבי יהודה שואלים הרי גם באור מתקן כלי, ורבי חייא עונה: חותכה באור כשהיא מונחת בפי שתי נרות.",
+    "en": "As written, one may not open a lamp because he makes a vessel, one may not make charcoal, and one may not cut a wick in two, and Rabbi Yehuda permits cutting it with fire for two lamps. On charcoal the Gemara asks that this is obvious, what use is it on Yom Tov, and Rabbi Chiyya answers: it is needed only for handing it to the bathhouse attendants that same day. To the question whether that is allowed that same day, the Gemara answers as Rava said: for sweating, and before the decree. On Rabbi Yehuda the Gemara asks that with fire too he fixes a vessel, and Rabbi Chiyya answers: he cuts it with fire while it lies in the mouths of two lamps."
    },
    "moves": [
     {
@@ -2283,6 +2410,17 @@ window.BEITZA_DATA = {
      "link": "https://www.sefaria.org/Beitzah.32a",
      "q": "וְאֵין עוֹשִׂין פֶּחָמִין. פְּשִׁיטָא, לְמַאי חָזֵי? תָּנֵי רַבִּי חִיָּיא: לֹא נִצְרְכָה אֶלָּא לְמוֹסְרָן לְאוֹלְיָירִין לְבוֹ בַּיּוֹם.",
      "ref": "32a.15"
+    },
+    {
+     "tags": [
+      1,
+      10
+     ],
+     "who": "הגמרא (כדאמר רבא)",
+     "daf": "ביצה לב.",
+     "link": "https://www.sefaria.org/Beitzah.32a",
+     "q": "וּבוֹ בַּיּוֹם מִי שְׁרֵי? כִּדְאָמַר רָבָא: לְהַזִּיעַ, וְקוֹדֶם גְּזֵרָה.",
+     "ref": "32a.16"
     },
     {
      "tags": [
@@ -2421,8 +2559,8 @@ window.BEITZA_DATA = {
    },
    "text": "רַבִּי אֱלִיעֶזֶר אוֹמֵר, נוֹטֵל אָדָם קֵיסָם מִשֶּׁלְּפָנָיו לַחֲצֹץ בּוֹ שִׁנָּיו. וּמְגַבֵּב מִן הֶחָצֵר וּמַדְלִיק, שֶׁכָּל מַה שֶּׁבֶּחָצֵר מוּכָן הוּא. וַחֲכָמִים אוֹמְרִים, מְגַבֵּב מִשֶּׁלְּפָנָיו וּמַדְלִיק:",
    "gap": {
-    "he": "לפי לשון המשנה, רבי אליעזר וחכמים חולקים רק מהיכן נוטל: רבי אליעזר מתיר ליטול קיסם משלפניו לחצוץ שיניו ולגבב מן החצר, שכל מה שבחצר מוכן, וחכמים אומרים מגבב משלפניו. רב יהודה: באוכלי בהמה אין משום תיקון כלי, ולכן מותר ליטול קיסם לחצוץ שיניו. בברייתא, רבי אליעזר: נוטל קיסם משלפניו; חכמים: לא יטול אלא מאבוס של בהמה, וכן הלכה. בברייתא על הגיבוב, תנא קמא: מגבב מן החצר ומדליק, ובלבד שלא יעשה צבורין צבורין; רבי שמעון מתיר גם צבורין. במה נחלקו? זה סובר שנראה כמי שמכנס למחר וליום אחר, וזה סובר שקדרתו מוכיחה עליו שהוא לצורך היום.",
-    "en": "As written, Rabbi Eliezer and the Sages disagree only about where one takes from: Rabbi Eliezer allows taking a splinter from what is in front of him to pick his teeth and gathering from the courtyard, since everything in the courtyard is prepared, and the Sages say he gathers from what is in front of him. Rav Yehuda: animal fodder carries no concern of fixing a vessel, so a splinter may be taken to pick one's teeth. In a baraisa, Rabbi Eliezer: he takes a splinter from what is in front of him; the Sages: he takes only from an animal's trough, and so is the halacha. In a baraisa on gathering, the first tanna: he gathers from the courtyard and lights, provided he does not make piles; Rabbi Shimon permits even piles. What is the dispute? One holds he looks like someone collecting for tomorrow and another day, and the other holds his pot proves that it is for today."
+    "he": "לפי לשון המשנה, רבי אליעזר וחכמים חולקים רק מהיכן נוטל: רבי אליעזר מתיר ליטול קיסם משלפניו לחצוץ שיניו ולגבב מן החצר, שכל מה שבחצר מוכן, וחכמים אומרים מגבב משלפניו. רב יהודה: באוכלי בהמה אין משום תיקון כלי, ולכן מותר ליטול קיסם לחצוץ שיניו. בברייתא, רבי אליעזר: נוטל קיסם משלפניו; חכמים: לא יטול אלא מאבוס של בהמה, וכן הלכה. ושניהם מודים שלא יקטמנו. בברייתא על הגיבוב, תנא קמא: מגבב מן החצר ומדליק, ובלבד שלא יעשה צבורין צבורין; רבי שמעון מתיר גם צבורין. במה נחלקו? זה סובר שנראה כמי שמכנס למחר וליום אחר, וזה סובר שקדרתו מוכיחה עליו שהוא לצורך היום.",
+    "en": "As written, Rabbi Eliezer and the Sages disagree only about where one takes from: Rabbi Eliezer allows taking a splinter from what is in front of him to pick his teeth and gathering from the courtyard, since everything in the courtyard is prepared, and the Sages say he gathers from what is in front of him. Rav Yehuda: animal fodder carries no concern of fixing a vessel, so a splinter may be taken to pick one's teeth. In a baraisa, Rabbi Eliezer: he takes a splinter from what is in front of him; the Sages: he takes only from an animal's trough, and so is the halacha. Both agree he may not snap it off. In a baraisa on gathering, the first tanna: he gathers from the courtyard and lights, provided he does not make piles; Rabbi Shimon permits even piles. What is the dispute? One holds he looks like someone collecting for tomorrow and another day, and the other holds his pot proves that it is for today."
    },
    "moves": [
     {
@@ -2474,6 +2612,16 @@ window.BEITZA_DATA = {
        "ref": "33b.7"
       }
      ]
+    },
+    {
+     "tags": [
+      3
+     ],
+     "who": "ברייתא",
+     "daf": "ביצה לג:",
+     "link": "https://www.sefaria.org/Beitzah.33b",
+     "q": "וְשָׁוִין שֶׁלֹּא יִקְטְמֶנּוּ",
+     "ref": "33b.7"
     },
     {
      "machlokes": true,
@@ -2696,8 +2844,8 @@ window.BEITZA_DATA = {
    },
    "text": "כֹּל שֶׁחַיָּבִין עָלָיו מִשּׁוּם שְׁבוּת, מִשּׁוּם רְשׁוּת, מִשּׁוּם מִצְוָה, בְּשַׁבָּת, חַיָּבִין עָלָיו בְּיוֹם טוֹב. וְאֵלּוּ הֵן מִשּׁוּם שְׁבוּת, לֹא עוֹלִין בָּאִילָן, וְלֹא רוֹכְבִין עַל גַּבֵּי בְהֵמָה, וְלֹא שָׁטִין עַל פְּנֵי הַמַּיִם, וְלֹא מְטַפְּחִין, וְלֹא מְסַפְּקִין, וְלֹא מְרַקְּדִין. וְאֵלּוּ הֵן מִשּׁוּם רְשׁוּת, לֹא דָנִין, וְלֹא מְקַדְּשִׁין, וְלֹא חוֹלְצִין, וְלֹא מְיַבְּמִין. וְאֵלּוּ הֵן מִשּׁוּם מִצְוָה, לֹא מַקְדִּישִׁין, וְלֹא מַעֲרִיכִין, וְלֹא מַחֲרִימִין, וְלֹא מַגְבִּיהִין תְּרוּמָה וּמַעֲשֵׂר. כָּל אֵלּוּ בְּיוֹם טוֹב אָמְרוּ, קַל וָחֹמֶר בְּשַׁבָּת. אֵין בֵּין יוֹם טוֹב לְשַׁבָּת אֶלָּא אֹכֶל נֶפֶשׁ בִּלְבָד:",
    "gap": {
-    "he": "לפי לשון המשנה, שלוש רשימות של איסורים, שבות, רשות ומצוה, בלי טעם לאף אחד מהם. הגמרא נותנת את הטעמים: לא עולים באילן גזרה שמא יתלוש, ולא רוכבים על בהמה, לא משום תחומין, אלא גזרה שמא יחתוך זמורה. על לא דנים ולא חולצים ולא מיבמים היא שואלת: הרי מצוה הוא עושה? ומשיבה: מדובר כשיש אחר שעדיף ממנו, וביבום כשיש אח גדול, שמצוה בגדול ליבם. על כולם הטעם הוא גזרה שמא יכתוב, ולא מקדישים ולא מעריכים ולא מחרימים גזרה משום מקח וממכר. רב יוסף תני: איסור הגבהת תרומה לא נצרך אלא ליתנה לכהן בו ביום, אבל פירות שנטבלו היום, כגון עיסה להפריש ממנה חלה, מפרישים ונותנים לכהן. ורבי יצחק מפרש את סדר המשנה בלשון לא מיבעיא: לא מיבעיא שבות גרידתא שאסור, אלא אפילו שבות של רשות אסור.",
-    "en": "As written, three lists of prohibitions, shevus, reshus and mitzvah, with no reason given for any of them. The Gemara supplies the reasons: no climbing a tree, a decree lest one tear off a branch; no riding an animal, not because of techumin, but a decree lest one cut a switch. On not judging, not performing chalitzah and not performing yibum it asks: is he not doing a mitzvah? And answers: the case is where someone better suited is available, and for yibum where there is an older brother, since the mitzvah of yibum falls on the oldest. For all of these the reason is a decree lest one write, and not consecrating, not pledging valuations and not declaring cherem is a decree because of buying and selling. Rav Yosef teaches: the ban on separating terumah is needed only for giving it to a kohen that same day, but produce that became tevel today, such as dough from which challah is taken, one separates and gives to a kohen. And Rabbi Yitzchak reads the Mishnah's order as a lo miba'ya: not only is a plain shevus forbidden, but even a shevus that is a reshus is forbidden."
+    "he": "לפי לשון המשנה, שלוש רשימות של איסורים, שבות, רשות ומצוה, בלי טעם לאף אחד מהם. הגמרא נותנת את הטעמים: לא עולים באילן גזרה שמא יתלוש, ולא רוכבים על בהמה, לא משום תחומין, אלא גזרה שמא יחתוך זמורה. לא שטים על פני המים גזרה שמא יעשה חבית של שייטין, ולא מטפחים ולא מספקים ולא מרקדים גזרה שמא יתקן כלי שיר. על לא דנים ולא חולצים ולא מיבמים היא שואלת: הרי מצוה הוא עושה? ומשיבה: מדובר כשיש אחר שעדיף ממנו, וביבום כשיש אח גדול, שמצוה בגדול ליבם. על כולם הטעם הוא גזרה שמא יכתוב, ולא מקדישים ולא מעריכים ולא מחרימים גזרה משום מקח וממכר. רב יוסף תני: איסור הגבהת תרומה לא נצרך אלא ליתנה לכהן בו ביום, אבל פירות שנטבלו היום, כגון עיסה להפריש ממנה חלה, מפרישים ונותנים לכהן. ורבי יצחק מפרש את סדר המשנה בלשון לא מיבעיא: לא מיבעיא שבות גרידתא שאסור, אלא אפילו שבות של רשות אסור.",
+    "en": "As written, three lists of prohibitions, shevus, reshus and mitzvah, with no reason given for any of them. The Gemara supplies the reasons: no climbing a tree, a decree lest one tear off a branch; no riding an animal, not because of techumin, but a decree lest one cut a switch. No swimming, a decree lest one make a swimmer's float; no clapping, slapping or dancing, a decree lest one repair a musical instrument. On not judging, not performing chalitzah and not performing yibum it asks: is he not doing a mitzvah? And answers: the case is where someone better suited is available, and for yibum where there is an older brother, since the mitzvah of yibum falls on the oldest. For all of these the reason is a decree lest one write, and not consecrating, not pledging valuations and not declaring cherem is a decree because of buying and selling. Rav Yosef teaches: the ban on separating terumah is needed only for giving it to a kohen that same day, but produce that became tevel today, such as dough from which challah is taken, one separates and gives to a kohen. And Rabbi Yitzchak reads the Mishnah's order as a lo miba'ya: not only is a plain shevus forbidden, but even a shevus that is a reshus is forbidden."
    },
    "moves": [
     {
@@ -2709,6 +2857,16 @@ window.BEITZA_DATA = {
      "link": "https://www.sefaria.org/Beitzah.36b",
      "q": "לֹא עוֹלִין בָּאִילָן — גְּזֵרָה שֶׁמָּא יִתְלוֹשׁ... וְלֹא רוֹכְבִין עַל גַּבֵּי בְּהֵמָה — גְּזֵרָה שֶׁמָּא יֵצֵא חוּץ לַתְּחוּם. שְׁמַע מִינַּהּ תְּחוּמִין דְּאוֹרָיְיתָא! אֶלָּא: גְּזֵרָה שֶׁמָּא יַחְתּוֹךְ זְמוֹרָה.",
      "ref": "36b.13-14"
+    },
+    {
+     "tags": [
+      4
+     ],
+     "who": "הגמרא",
+     "daf": "ביצה לו:",
+     "link": "https://www.sefaria.org/Beitzah.36b",
+     "q": "וְלֹא שָׁטִין עַל פְּנֵי הַמַּיִם — גְּזֵרָה שֶׁמָּא יַעֲשֶׂה חָבִית שֶׁל שַׁיָּיטִין. וְלֹא מְטַפְּחִין וְלֹא מְסַפְּקִין וְלֹא מְרַקְּדִין — גְּזֵרָה שֶׁמָּא יְתַקֵּן כְּלֵי שִׁיר.",
+     "ref": "36b"
     },
     {
      "tags": [
@@ -2858,17 +3016,17 @@ window.BEITZA_DATA = {
      "sides": [
       {
        "who": "אביי",
-       "daf": "ביצה לח.",
-       "link": "https://www.sefaria.org/Beitzah.38a",
+       "daf": "ביצה לח:",
+       "link": "https://www.sefaria.org/Beitzah.38b",
        "q": "גְּזֵרָה שֶׁמָּא תַּעֲשֶׂה עִיסָּה בְּשׁוּתָּפוּת",
-       "ref": "38a"
+       "ref": "38b.11"
       },
       {
        "who": "רבא",
-       "daf": "ביצה לח.",
-       "link": "https://www.sefaria.org/Beitzah.38a",
+       "daf": "ביצה לח:",
+       "link": "https://www.sefaria.org/Beitzah.38b",
        "q": "תַּבְלִין לְטַעְמָא עֲבִידִי, וְטַעְמָא לָא בָּטֵיל.",
-       "ref": "38a"
+       "ref": "38b.12"
       },
       {
        "who": "רב אשי",
