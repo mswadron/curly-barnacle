@@ -8,6 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Secular+One&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=Fredoka:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.min.css">
 <style>
 :root{
   --page:#fbefe6; --card:#ffffff; --card-soft:#fdf6f1; --rule:#ecd7c9; --rule-2:#e0c3b1;
@@ -127,6 +130,15 @@ textarea{width:100%;min-height:130px;font-size:15px}
 .listpick .lpc:has(input:checked){border-color:var(--food);background:var(--food-tint);color:var(--food-deep)}
 .listpick input{accent-color:var(--food);width:16px;height:16px;margin:0}
 .listpick .n{font-size:12.5px;color:var(--mute)}
+#map{height:420px;border-radius:12px;border:1px solid var(--rule);background:#f3e6dc;z-index:0}
+@media (max-width:700px){#map{height:320px}}
+.mapwrap{margin-bottom:12px}
+.mapbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.kk-pin span{display:block;width:18px;height:18px;margin:2px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--food);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.35)}
+.marker-cluster-small,.marker-cluster-medium,.marker-cluster-large{background:rgba(181,83,42,.25)!important}
+.marker-cluster-small div,.marker-cluster-medium div,.marker-cluster-large div{background:var(--food)!important;color:#fff!important;font:600 13px var(--en)}
+.listpick .lp-note{flex-basis:100%;font-size:13px;color:var(--mute);margin-top:2px}
+.leaflet-container a{color:var(--food-deep)}
 /* verdict */
 .verdict{display:flex;gap:12px;align-items:flex-start}
 .verdict .lg{width:80px;height:80px;flex:none;background:#fff;border:1px solid var(--rule);border-radius:8px;display:flex;align-items:center;justify-content:center}
@@ -275,7 +287,7 @@ table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-ali
 
   <section id="view-eat" hidden>
     <h1>Places to eat</h1>
-    <p class="lede">Restaurants, bakeries, caterers and stores, collected from each agency's own list of the places it certifies. Tick the lists whose hechsherim you rely on. <span class="count" id="eatcount"></span></p>
+    <p class="lede">Restaurants, bakeries, caterers and stores, collected from each agency's own list of the places it certifies. Tick the lists whose approval you rely on. <span class="count" id="eatcount"></span></p>
     <div class="listpick" role="group" aria-label="Show places whose hechsher is on these lists"></div>
     <div class="filters">
       <div class="fl"><label for="q">Search</label><input id="q" type="search" placeholder="Name, city, zip, cuisine" autocomplete="off"></div>
@@ -283,6 +295,10 @@ table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-ali
       <div class="fl"><label for="fagency">Hechsher</label><select id="fagency"><option value="">All</option></select></div>
       <div class="fl"><label for="fcat">Meat or dairy</label><select id="fcat"><option value="">All</option><option value="meat">Meat</option><option value="dairy">Dairy</option><option value="pareve">Pareve</option><option value="fish">Fish</option></select></div>
       <div class="fl"><label for="ftype">Kind of place</label><select id="ftype"><option value="">All</option></select></div>
+    </div>
+    <div class="mapwrap">
+      <div id="map" role="region" aria-label="Map of places to eat"></div>
+      <div class="mapbar"><button class="btn food" type="button" id="nearme">Near me</button><span class="small muted" id="mapnote"></span></div>
     </div>
     <div class="rows" id="rows"></div>
     <div style="margin-top:12px"><button class="btn ghost" id="more" hidden>Show more</button></div>
@@ -309,6 +325,8 @@ table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-ali
   <aside class="rail" id="rail" aria-live="polite"></aside>
 </main>
 <div class="toast" id="toast" hidden></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
 <script src="kosher-agencies.js"></script>
 <script src="kosher.js"></script>
 <script>document.getElementById("hero-eat").onclick=function(){document.getElementById("nav-eat").click();window.scrollTo(0,0)};</script>

@@ -25,7 +25,7 @@
         ${a.aliases?.length ? `<dt>Also called</dt><dd>${esc(a.aliases.join(", "))}</dd>` : ""}
       </dl>
       ${a.note ? `<p class="cnote">cRc note: ${esc(a.note)}</p>` : ""}
-      <div class="sym-foot"><span class="pl">${n ? `${n.toLocaleString()} places to eat listed` : "No places to eat listed yet"}</span><a class="btn ghost" href="${esc(CHECK)}#${a.id}">Check this symbol</a></div>
+      <div class="sym-foot">${n ? `<a class="btn ghost" href="${esc(CHECK)}#eat-${a.id}">See its ${n.toLocaleString()} places to eat</a>` : `<span class="pl">No places to eat listed yet</span>`}</div>
     </article>`;
   }
   function render() {

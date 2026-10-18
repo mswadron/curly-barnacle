@@ -21,6 +21,7 @@
   const svg = (id, cls) => `<svg class="${cls || "ico"}" aria-hidden="true"><use href="#${id}"/></svg>`;
   function toast(msg) { const t = $("toast"); t.textContent = msg; t.hidden = false; clearTimeout(toast._t); toast._t = setTimeout(() => t.hidden = true, 2200); }
   // Lists a hechsher can be checked against. The cRc list is built in; others come from kosher-lists.json or are pasted on this device.
+  const DISCLAIMER = "This is for assistance only. Statuses change, so please double-check the lists and the supervision.";
   const CRC_LIST = { id: "crc", name: "cRc recommended agencies", crc: true, entries: AG };
   const allLists = () => [CRC_LIST, ...builtinLists.map((l, i) => ({ ...l, id: l.id || "site" + i })), ...myLists];
   const CK_KEY = "kf-checked-v1";
@@ -71,7 +72,7 @@
   /* ---------- result panel ---------- */
   function statusRows(agency, freeText) {
     const lists = checkedLists();
-    if (!lists.length) return `<div class="status"><div class="st no"><b>No list chosen</b>Tick at least one list under "Check against".</div></div>`;
+    if (!lists.length) return `<div class="status"><div class="st no"><b>No list chosen</b>Tick at least one list under "Approved by".</div></div>`;
     let h = "";
     for (const L of lists) {
       if (L.crc) {
@@ -252,9 +253,45 @@
   });
 
   /* ---------- places to eat ---------- */
-  let PLACES = [], META = null, shown = 0, filtered = [], placesByAgency = {};
+  let PLACES = [], META = null, shown = 0, filtered = [], placesByAgency = {}, pendingAgency = null;
   const PAGE = 150;
   function catChip(k) { if (!k) return ""; const key = k.split(/[ &]/)[0]; return `<span class="chip ${esc(key)}">${ICON[key] ? svg(ICON[key]) : ""}${esc(k)}</span>`; }
+  let map = null, cluster = null, here = null;
+  function initMap() {
+    if (map || !window.L || !$("map")) return;
+    map = L.map("map", { scrollWheelZoom: false }).setView([39.5, -98.35], 4);
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+      maxZoom: 19, subdomains: "abcd",
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+    }).addTo(map);
+    cluster = L.markerClusterGroup ? L.markerClusterGroup({ showCoverageOnHover: false, maxClusterRadius: 45 }) : L.layerGroup();
+    map.addLayer(cluster);
+  }
+  const pinIcon = () => L.divIcon({ className: "kk-pin", html: '<span></span>', iconSize: [22, 22], iconAnchor: [11, 21] });
+  function drawMap(fit) {
+    initMap(); if (!map) return;
+    cluster.clearLayers();
+    const pts = filtered.filter(p => p.lat != null);
+    pts.forEach(p => {
+      const m = L.marker([p.lat, p.lng], { icon: pinIcon(), title: p.n });
+      m.bindTooltip(esc(p.n), { direction: "top", offset: [0, -18] });
+      m.on("click", () => { showPlace(p); setTimeout(reveal, 0); });
+      cluster.addLayer(m);
+    });
+    $("mapnote").textContent = `${pts.length.toLocaleString()} of ${filtered.length.toLocaleString()} on the map. The rest have no street address on the agency's list.`;
+    if (fit && pts.length && !here) map.fitBounds(L.latLngBounds(pts.map(p => [p.lat, p.lng])), { padding: [24, 24], maxZoom: 14 });
+  }
+  const miles = (a, b) => { const R = 3958.8, t = x => x * Math.PI / 180, dLa = t(b[0] - a[0]), dLo = t(b[1] - a[1]); const h = Math.sin(dLa / 2) ** 2 + Math.cos(t(a[0])) * Math.cos(t(b[0])) * Math.sin(dLo / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); };
+  if ($("nearme")) $("nearme").onclick = () => {
+    if (!navigator.geolocation) { toast("This browser does not share location"); return; }
+    $("nearme").disabled = true; $("nearme").textContent = "Finding you...";
+    navigator.geolocation.getCurrentPosition(pos => {
+      here = [pos.coords.latitude, pos.coords.longitude];
+      $("nearme").disabled = false; $("nearme").textContent = "Near me (on)";
+      initMap(); if (map) { map.setView(here, 13); L.circleMarker(here, { radius: 7, color: "#fff", weight: 2, fillColor: "#2f5d8a", fillOpacity: 1 }).addTo(map); }
+      renderRows(true);
+    }, () => { $("nearme").disabled = false; $("nearme").textContent = "Near me"; toast("Location was not shared"); }, { enableHighAccuracy: false, timeout: 15000 });
+  };
   function renderRows(reset) {
     if (reset) {
       shown = 0;
@@ -263,11 +300,13 @@
       filtered = PLACES.filter(p => (!useLists || agencyOnChecked(byId[p.a])) && (!st || p.st === st) && (!ag || p.a === ag) && (!cat || (p.k || "").includes(cat)) && (!ty || p.t === ty) &&
         (!q || norm([p.n, p.ci, p.st, p.z, p.ad, p.kw, (p.c || []).join(" ")].join(" ")).includes(q)));
     }
+    if (reset && here) { filtered.forEach(p => p._d = p.lat != null ? miles(here, [p.lat, p.lng]) : 1e9); filtered.sort((x, y) => x._d - y._d); }
+    if (reset) drawMap(true);
     const slice = filtered.slice(0, shown + PAGE); shown = slice.length;
     $("eatcount").textContent = `${filtered.length.toLocaleString()} of ${PLACES.length.toLocaleString()} places shown.`;
     $("rows").innerHTML = slice.map((p, i) => {
       const a = byId[p.a];
-      return `<button class="row" data-i="${i}"><div><div class="nm"><span class="ic">${svg(TYPE_ICON[p.t] || "i-plate")}</span> ${esc(p.n)}</div><div class="ad">${esc([p.ad, p.ci, p.st].filter(Boolean).join(", "))}</div></div>
+      return `<button class="row" data-i="${i}"><div><div class="nm"><span class="ic">${svg(TYPE_ICON[p.t] || "i-plate")}</span> ${esc(p.n)}</div><div class="ad">${esc([p.ad, p.ci, p.st].filter(Boolean).join(", "))}${here && p._d < 1e9 ? ` · ${p._d < 10 ? p._d.toFixed(1) : Math.round(p._d)} mi` : ""}</div></div>
         <div class="ag">${esc(a ? (a.short || a.name) : p.an || "")}</div>
         <div class="tags">${catChip(p.k)}${p.cy ? `<span class="chip cy">Cholov Yisroel</span>` : ""}${p.t ? `<span class="chip">${esc(p.t)}</span>` : ""}${(p.c || []).slice(0, 3).map(c => `<span class="chip">${esc(c)}</span>`).join("")}</div></button>`;
     }).join("") || `<div class="panel small">No places match these choices.</div>`;
@@ -275,12 +314,10 @@
   }
   $("more").onclick = () => renderRows(false);
   ["q", "fstate", "fagency", "fcat", "ftype"].forEach(id => $(id).addEventListener(id === "q" ? "input" : "change", () => renderRows(true)));
-  $("rows").addEventListener("click", e => {
-    const b = e.target.closest(".row"); if (!b) return;
-    document.querySelectorAll(".row").forEach(r => r.setAttribute("aria-current", r === b ? "true" : "false"));
-    const p = filtered[+b.dataset.i], a = byId[p.a];
-    setTimeout(reveal, 0);
-    current = { kind: "agency", id: p.a };
+  let currentPlace = null;
+  function showPlace(p) {
+    currentPlace = p;
+    const a = byId[p.a];
     const addr = [p.ad, p.ci, p.st, p.z].filter(Boolean).join(", ");
     rail.innerHTML = `<div class="rail-sec"><div class="label">${svg(TYPE_ICON[p.t] || "i-plate")} ${esc(p.t || "Place")}</div>
         <h3 style="font-weight:600;font-size:20px;margin:2px 0 6px">${esc(p.n)}</h3>
@@ -294,7 +331,14 @@
       <div class="rail-sec"><div class="label">Hechsher</div>
         <div class="verdict" style="margin-top:4px"><div class="lg">${logoImg(a)}</div><div><h3 style="font-size:16px">${esc(a ? a.name : p.an)}</h3><div class="small">${p.src ? `<a href="${esc(p.src)}" target="_blank" rel="noopener">The agency's listing</a> · ` : ""}copied ${esc(META?.fetched || "")}</div></div></div>
         ${statusRows(a)}
-        <p class="small muted" style="margin-top:8px">Places change hands and hechsherim often. Check the certificate in the window.</p></div>`;
+        <p class="small muted" style="margin-top:8px">${DISCLAIMER} Check the certificate on site.</p></div>`;
+  }
+  $("rows").addEventListener("click", e => {
+    const b = e.target.closest(".row"); if (!b) return;
+    document.querySelectorAll(".row").forEach(r => r.setAttribute("aria-current", r === b ? "true" : "false"));
+    const p = filtered[+b.dataset.i];
+    showPlace(p); if (p.lat != null && map) { map.setView([p.lat, p.lng], Math.max(map.getZoom(), 15)); }
+    setTimeout(reveal, 0);
   });
   async function loadPlaces() {
     try {
@@ -308,15 +352,16 @@
       $("fagency").innerHTML = opts(Object.keys(placesByAgency).filter(id => byId[id]).sort((x, y) => (byId[x].short || byId[x].name).localeCompare(byId[y].short || byId[y].name)).map(id => [id, `${byId[id].short || byId[id].name} (${placesByAgency[id]})`]));
       $("ftype").innerHTML = opts([...new Set(PLACES.map(p => p.t).filter(Boolean))].sort().map(s => [s, s]));
       $("eatnote").innerHTML = `Copied from each agency's own list of the places it certifies, ${esc(META.fetched)}: ${META.sources.map(s => /^https?:/.test(s.url || "") ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.short)}</a> (${s.count})` : `${esc(s.short)} (${s.count}, from ${esc(s.url || "its printed list")})`).join(", ")}.`;
-      renderRows(true); refreshRail();
+      if (pendingAgency) { $("fagency").value = pendingAgency; pendingAgency = null; }
+      renderRows(true); if (curView === "check") refreshRail(); else placeRail();
       if (curView === "eat") setCrumb();
     } catch { $("rows").innerHTML = `<div class="panel small">The list of places did not load. Reload the page to try again.</div>`; }
   }
 
   /* ---------- list picker (tick one or more lists) ---------- */
   function renderPicks() {
-    const html = `<span class="lp-label">Check against</span>` + allLists().map(L => `<label class="lpc"><input type="checkbox" data-l="${esc(L.id)}" ${checked.has(L.id) ? "checked" : ""}> ${esc(L.name)} <span class="n">${L.entries.length}</span></label>`).join("");
-    document.querySelectorAll(".listpick").forEach(el => el.innerHTML = html);
+    const html = `<span class="lp-label">Approved by</span>` + allLists().map(L => `<label class="lpc"><input type="checkbox" data-l="${esc(L.id)}" ${checked.has(L.id) ? "checked" : ""}> ${esc(L.name)} <span class="n">${L.entries.length}</span></label>`).join("");
+    document.querySelectorAll(".listpick").forEach(el => el.innerHTML = html + `<span class="lp-note">${DISCLAIMER}</span>`);
   }
   document.addEventListener("change", e => {
     const cb = e.target.closest(".listpick input[type=checkbox]"); if (!cb) return;
@@ -356,8 +401,13 @@
   /* ---------- views ---------- */
   let curView = "check";
   function setCrumb() {}
+  function placeRail() {
+    if (currentPlace) return showPlace(currentPlace);
+    rail.innerHTML = `<div class="rail-sec"><div class="label">Place</div><p class="small" style="margin:4px 0 0">Choose a place on the map or in the list to see its address, its hechsher, and whether that hechsher is approved by the lists you ticked.</p></div><div class="rail-sec"><p class="small muted" style="margin:0">${DISCLAIMER}</p></div>`;
+  }
   function go(v) {
     curView = v;
+    if (v === "eat") { placeRail(); setTimeout(() => { if (map) { map.invalidateSize(); drawMap(true); } }, 60); } else if (v === "check") refreshRail();
     ["check", "eat", "lists"].forEach(x => { $("view-" + x).hidden = x !== v; $("nav-" + x).setAttribute("aria-pressed", x === v); });
     try { localStorage.setItem("kf-view", v); } catch {}
   }
@@ -368,5 +418,7 @@
   if (["#check", "#eat", "#lists"].includes(location.hash)) start = location.hash.slice(1);
   const deep = location.hash.slice(1);
   if (byId[deep]) { start = "check"; box.value = byId[deep].short || byId[deep].name; showAgency(deep); }
+  if (deep.startsWith("eat-") && byId[deep.slice(4)]) { start = "eat"; pendingAgency = deep.slice(4); }
+  if (deep && history.replaceState) history.replaceState(null, "", location.pathname);
   go(start);
 })();
