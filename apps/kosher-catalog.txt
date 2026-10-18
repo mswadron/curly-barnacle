@@ -1,0 +1,132 @@
+a0808 | Central California Kosher |  |  | California, USA
+a0011 | Kosher Supervision of America | KSA | KSA | California, USA
+a1249 | Kehilla Kosher Heart K Igud Hakashrus of Los Angeles | Heart K | Heart K, Kehilla Kosher, Kehilla | California, USA
+a0015 | Rabbinical Council of California | RCC | RCC, RCC Vaad | California, USA
+a0994 | Truly Kosher Certification - TK Kosher | TK | TK, Truly Kosher | California, USA
+a0016 | Vaad of Northern California/Sunrise Kosher | Sunrise Kosher | Sunrise Kosher, Vaad of Northern California | California, USA
+a0384 | Earth Kosher Certification Agency | Earth Kosher | Earth Kosher | Colorado, USA
+a0019 | Vaad Hakashrus of Denver | Scroll K | Scroll K, Scroll-K, Denver Vaad | Colorado, USA
+a0618 | Vaad Hakashrus of Greater Waterbury |  |  | Connecticut, USA
+a1255 | Diamond-K Non Cholov Yisroel Division ORB | Diamond K (non-CY) | Diamond K | Florida, USA
+a0029 | Diamond-K Industrial Division of the ORB | Diamond K | Diamond K, Diamond-K | Florida, USA
+a0036 | Orthodox Rabbinical Board (ORB) | ORB | ORB, Orthodox Rabbinical Board | Florida, USA
+a0988 | Sunshine State Kosher | Sunshine Kosher | Sunshine State Kosher, SSK | Florida, USA
+a0987 | Gesher K | Gesher K | Gesher K | Florida, USA
+a0030 | Florida-K Kashrus Service | Florida K | Florida K, Florida-K | Florida, USA
+a0629 | RCF - Rabbinate of Central & North Florida |  |  | Florida, USA
+a0405 | Kosher Miami Dade Vaad | Kosher Miami | Kosher Miami, Miami Vaad, Vaad HaKashrus of Miami-Dade | Florida, USA
+a0625 | Miami Kosher (non-cholov Yisroel division) |  |  | Florida, USA
+a0882 | Orthodox Vaad of Orlando | Orlando Vaad | OVO, Orlando Vaad | Florida, USA
+a0037 | Vaad Hakashrus of Atlanta | Atlanta Vaad | Atlanta Kashruth Commission, AKC, Kosher Atlanta | Georgia, USA
+a0809 | Kosher Savannah |  |  | Georgia, USA
+a0222 | Texas K | Texas K | Texas K | Illinois, USA
+a0063 | Blue Ribbon Kosher | Blue Ribbon | BRK, Blue Ribbon | Illinois, USA
+a0684 | Midwest Kosher |  |  | Illinois, USA
+a0827 | cRc Chicago Rabbinical Council | cRc | cRc, CRC Chicago, Chicago Rabbinical Council | Illinois, USA
+a0041 | Indianapolis Beth Din, Lubavitch of Indiana | Indianapolis Beth Din | Indianapolis | Indiana, USA
+a0044 | Vaad Hakashrus of Kansas City |  |  | Kansas, USA
+a0423 | Louisiana Kashrut Committee - Chabad | Louisiana Kosher | Louisiana Kosher | Louisiana, USA
+a0736 | Vaad HaKashrus of Eastern Canada and Maine |  |  | Maine, USA
+a0150 | Star D Kosher Supervision | Star-D | Star-D, Star D | Maryland, USA
+a0050 | Star-K Kosher Certification | Star-K | Star-K, Star K, K in a star | Maryland, USA
+a0833 | Star-S | Star-S | Star-S, Star S | Maryland, USA
+a0027 | Rabbinical Council of Greater Washington | Capitol K | Capitol K, Capital K, Vaad of Greater Washington, RCGW | Maryland, USA
+a0058 | Vaad Harabonim of New England | KVH | KVH, Vaad Harabonim of Massachusetts | Massachusetts, USA
+a0057 | Massachusetts Kosher Commission |  |  | Massachusetts, USA
+a0060 | Council of Orthodox Rabbis of Greater Detroit | Merkaz Detroit | Merkaz, Detroit Merkaz, COR Detroit | Michigan, USA
+a0703 | Minnesota Kosher (MNK) | MNK | MNK, Minnesota Kosher | Minnesota, USA
+a0068 | United Mehadrin Kosher |  |  | Minnesota, USA
+a0069 | Vaad Hoeir of St. Louis | OV | OV, OV Kosher, Vaad Hoeir | Missouri, USA
+a0867 | Vaad HaKashrus of Montana |  |  | Montana, USA
+a0072 | Jersey Shore Orthodox Rabbinate (JSOR) | JSOR | JSOR | New Jersey, USA
+a0085 | Vaad Hakashruth of Raritan Valley | Raritan Valley Vaad | Raritan Valley | New Jersey, USA
+a0073 | Kashrus Council of Lakewood,NJ | KCL | KCL, Kashrus Council of Lakewood | New Jersey, USA
+a0753 | Rabbi Aaron Mendelson |  |  | New Jersey, USA
+a0088 | Chelkas Hakashrus of Zichron Yaakov |  |  | New Jersey, USA
+a0083 | Vaad Harabonim of Metro West | MetroWest Vaad | MetroWest, Vaad of MetroWest | New Jersey, USA
+a0816 | Passaic-Clifton Kashrus Inc | Passaic-Clifton | Passaic Clifton Kashrus, PCK | New Jersey, USA
+a0076 | KOF-K Kosher Supervision | Kof-K | Kof-K, KofK, Kof K | New Jersey, USA
+a0081 | Vaad Harabanim - Rab Council of Bergen Cnty - RCBC | RCBC | RCBC, Bergen County Vaad | New Jersey, USA
+a0195 | Vaad Hakashrus of the Capital District |  |  | New York, USA
+a0102 | OK Kosher Certification | OK | OK, OK-D, OK Kosher, K in a circle (OK) | New York, USA
+a0104 | Rabbi Yechiel Babad (Tartikover Rav) | Tartikov (R' Babad) | Tartikov, Rabbi Babad | New York, USA
+a0116 | Rabbi Shlomo Zvi Stern (Debrecener Rav) |  |  | New York, USA
+a0118 | Nirbater Rav - Rabbi Aaron Teitelbaum |  |  | New York, USA
+a0119 | Rabbi Nuchem Efraim Teitelbaum Volover Rav |  |  | New York, USA
+a0126 | Vaad Hakashrus Belz USA | Belz | Belz | New York, USA
+a0128 | Vaad Harabanim of Flatbush | Vaad of Flatbush | Flatbush Vaad | New York, USA
+a0129 | Vaad Hakashrus Mishmeres L'Mishmeres |  |  | New York, USA
+a0133 | Rabbi Nussen Naftali Horowitz |  |  | New York, USA
+a0443 | Rabbi Avrohom Y.H. Friedlander, Rav Kahal D'Hivnov |  |  | New York, USA
+a0749 | Kehilah Kashrus- Flatbush Community Kashrus | Kehilah Kashrus | Kehilah, Flatbush Kehilah | New York, USA
+a0841 | Tarnopol Kashrus | Tarnopol | Tarnopol | New York, USA
+a0848 | Beth Din Minchas Chinuch |  |  | New York, USA
+a0096 | Vaad Hakashrus Crown Heights Inc | Crown Heights Vaad | Crown Heights, CHK | New York, USA
+a0097 | Beth Din Hameyuchud L'inyonei Kashrus | Hisachdus | Hisachdus, Hisachdus Harabonim, Central Rabbinical Congress | New York, USA
+a0168 | Vaad Hakashrus of Five Towns and Far Rockaway | Five Towns Vaad | Vaad of Five Towns, 5 Towns, Far Rockaway | New York, USA
+a0160 | Vaad Harabonim of Queens | Queens Vaad | Queens Vaad, VHQ, Vaad Harabonim of Queens | New York, USA
+a0194 | Vaad Hakashrus of Buffalo |  |  | New York, USA
+a0176 | Vaad Hakashrus of Mechon L'Hoyroa |  |  | New York, USA
+a0493 | Rabbi Menachem Meir Weissmandel |  |  | New York, USA
+a0847 | Rabbi Chaim Meir Wagshal |  |  | New York, USA
+a0178 | New Square Beth Din of Kashrus |  |  | New York, USA
+a0141 | Khal Adath Jeshurun (Breuer's) | KAJ | KAJ, Breuer's | New York, USA
+a0151 | Orthodox Union | OU | OU, OU-D, OU-P, OU Kosher, U in a circle | New York, USA
+a1120 | Rochester Kehillah Kosher RKK | RKK | RKK | New York, USA
+a0499 | Rabbi Yitzchok Lebovitz, K'hal Yeriem |  |  | New York, USA
+a0821 | Cincinnati Vaad Hoier, Cincinnati & Central Kosher | Cincinnati Kosher | Cincinnati Kosher, Vaad Hoier Cincinnati | Ohio, USA
+a0199 | Cleveland Kosher | Cleveland Kosher | Cleveland Kosher | Ohio, USA
+a0796 | Vaad Harabbonim Hachareidis Kashrus Cleveland, OH |  |  | Ohio, USA
+a0089 | Ches Kosher | Ches K | Ches K, Chet K | Ohio, USA
+a0505 | Oregon Kosher |  |  | Oregon, USA
+a0920 | Lancaster County Kosher |  |  | Pennsylvania, USA
+a0210 | Keystone-K Philadelphia | Keystone K | Keystone K, Keystone-K, Philadelphia Vaad | Pennsylvania, USA
+a0217 | Rhode Island Kosher |  |  | Rhode Island, USA
+a0870 | Vaad Hakashrus of Charleston |  |  | South Carolina, USA
+a0223 | Dallas Kosher (Vaad Hakashrus of Dallas) | Dallas Kosher | DK, Dallas Kosher | Texas, USA
+a0220 | Houston Kashruth Association | HKA | HKA, Houston Kashruth | Texas, USA
+a0803 | Mehadrin Kashrus of Texas (MKT) | MKT | MKT, Texas Kosher | Texas, USA
+a0226 | Vaad Hakashrus of Tidewater | Tidewater Vaad | Tidewater | Virginia, USA
+a0227 | Vaad HaRabanim of Greater Seattle | Seattle Vaad | Seattle Vaad, Va'ad HaRabanim of Seattle | Washington, USA
+a0229 | Kosher Supervisors of Wisconsin | Wisconsin K | Kosher Wisconsin, KSW | Wisconsin, USA
+a0273 | Orthodox Rabbinical Council of British Columbia | BCK | BCK, BC Kosher | British Columbia, Canada
+a0274 | Ottawa Vaad Hakashrut |  |  | Ontario, Canada
+a0267 | Kashruth Council of Canada COR | COR | COR | Ontario, Canada
+a0271 | Vaad Hair of Montreal | MK | MK, Montreal Vaad | Quebec, Canada
+a1233 | Yeshiva and Kolel Jafetz Jaim |  |  | Buenos Aires, Argentina
+a0230 | Ajdut Israel Kosher Asociacion Religiosa Educative |  |  | Buenos Aires, Argentina
+a0232 | Rabbi Yosef Feigelstock |  |  | Buenos Aires, Argentina
+a1244 | Chabad of Aruba |  |  | Noord, Aruba
+a0239 | Kosher Authority of Australia and NZ | KA | Kashrut Authority, KA | NSW, Australia
+a0238 | Kosher Australia Pty Inc - Melbourne Kosher |  |  | Victoria, Australia
+a1136 | Chabad of the Bahamas Kosher Bahamas |  |  | Nassau, Bahamas
+a0250 | Israelitische Orthodoxe Gemeente Machzikei Hadass |  |  | Antwerp, Belgium
+a0282 | Gateshead Kashrus Authority |  |  | Gateshead, England
+a0281 | KF Kosher & Kehillas Mehadrin; Beis Din of Kehillas Federation |  |  | London, England
+a0283 | KLBD - London Beis Din | KLBD | KLBD, London Beth Din | London, England
+a0284 | Kedassia, Union of Orthodox Hebrew Congs. UOHC | Kedassia | Kedassia | London, England
+a0287 | Machzichei Hadass Communities (Manchester) |  |  | Manchester, England
+a0288 | Manchester Beis Din | MBD | MBD, Manchester Beth Din | Manchester, England
+a0536 | BIR Badatz Iggud Rabbonim |  |  | Manchester, England
+a0297 | Kosher Supervision (C.I.O.P.) |  |  | Paris, France
+a0545 | Office Du Kosher Adath Yereim-Igoud H'aredi |  |  | Paris, France
+a0664 | Rabbinate Kehal Yereim Paris |  |  | Paris, France
+a0327 | Rabbi Chaim Yitzchok Eizik Landau | Rav Landau | Landau, Bnei Brak Landau | Bnei Brak, Israel
+a0331 | Badatz She`eris Yisroel | She'eris Yisroel | She'eris Yisroel, Sheris Yisroel | Bnei Brak, Israel
+a0313 | Beth Din Zedek of Eda HaCharedith of Jerusalem | Badatz Eida Chareidis | Eida Chareidis, Badatz Eida Hachareidis, Badatz Yerushalayim | Jerusalem, Israel
+a0699 | Beit Midrash Gavoha Halacha Agricultural Sett. |  |  | Jerusalem, Israel
+a0299 | Rabbi Moshe Seckbach |  |  | Modiin Illit (Kiryat Sefer), Israel
+a0311 | Badatz Mehadrin | Badatz Rubin | Badatz Rubin, Rav Rubin | Rechovot, Israel
+a1145 | Badatz Agudas Ashkenazim; IKC Italy Kosher Cert |  |  | RM, Italy
+a0562 | Jay Kosher - Chabad of Guadalajara |  |  | Jalisco, Mexico
+a0676 | Hashgacha Charedis of Mexico "Koshermex" |  |  | Mexico City, Mexico
+a0567 | Shevet Ahim Comunidad Hebrea de Panama |  |  | Panama City, Panama
+a0992 | Kosher East |  |  | Manila, Philippines
+a0996 | Chabad Lubavitch of Puerto Rico |  |  | Carolina, Puerto Rico
+a0999 | Caribbean Kosher |  |  | Carolina, Puerto Rico
+a0364 | Singapore Kashruth Services-Asia Kosher |  |  | Singapore, Singapore
+a0346 | Johannesburg Beis Din Union of Orthodox Syn SA | Beth Din SA | Beth Din Johannesburg, Beth Din South Africa | Johannesburg, South Africa
+a0350 | Israelit. Religiongesellschaft IRGZ Adas Jeshurun |  |  | Zurich, Switzerland
+a0829 | Vaad Hakashrus of Ukraine - UK |  |  | Kiev, Ukraine
+a1037 | Emirates Agency for Kosher Certificate (EAKC) |  |  | Abu Dhabi, United Arab Emirates
+a1027 | Kosher Vietnam |  |  | Dakao Ward, District1, HCMC, Vietnam
