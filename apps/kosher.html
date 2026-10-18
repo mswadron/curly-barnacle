@@ -144,6 +144,14 @@ textarea{width:100%;min-height:130px;font-size:15px}
 @media (max-width:700px){#cmap{height:320px}}
 .kk-pin.cb span{background:#5b3a8a}
 .chip.hl{background:var(--food-tint);border-color:var(--food);color:var(--food-deep)}
+.kk-you{position:relative}
+.kk-you .dot{position:absolute;left:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#2b1d16;border:3px solid #fff;box-shadow:0 0 0 2px #b5532a,0 1px 4px rgba(0,0,0,.4);box-sizing:border-box}
+.kk-you .pulse{position:absolute;left:-9px;top:-9px;width:40px;height:40px;border-radius:50%;background:rgba(181,83,42,.35);animation:kkpulse 1.8s ease-out infinite}
+.kk-you .lbl{position:absolute;left:50%;top:24px;transform:translateX(-50%);white-space:nowrap;background:#2b1d16;color:#fff;font:600 11px/1 system-ui,sans-serif;padding:4px 7px;border-radius:6px}
+@keyframes kkpulse{0%{transform:scale(.4);opacity:1}100%{transform:scale(1.4);opacity:0}}
+@media (prefers-reduced-motion:reduce){.kk-you .pulse{animation:none;opacity:.5}}
+.kk-you-btn{width:34px;height:34px;display:grid;place-items:center;background:#fff;color:#b5532a;border:2px solid rgba(0,0,0,.2);border-radius:4px;cursor:pointer;padding:0}
+.kk-you-btn:hover{background:#fbefe6}
 /* verdict */
 .verdict{display:flex;gap:12px;align-items:flex-start}
 .verdict .lg{width:80px;height:80px;flex:none;background:#fff;border:1px solid var(--rule);border-radius:8px;display:flex;align-items:center;justify-content:center}
@@ -357,9 +365,9 @@ table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-ali
 <div class="toast" id="toast" hidden></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
-<script src="kosher-agencies.js?v=202610180014"></script>
-<script src="kosher-chabad.js?v=202610180014"></script>
-<script src="kosher.js?v=202610180014"></script>
+<script src="kosher-agencies.js?v=202610181515"></script>
+<script src="kosher-chabad.js?v=202610181515"></script>
+<script src="kosher.js?v=202610181515"></script>
 <script>document.getElementById("hero-eat").onclick=function(){document.getElementById("nav-eat").click();window.scrollTo(0,0)};</script>
 </body>
 </html>

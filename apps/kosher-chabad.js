@@ -1,6 +1,23 @@
 /* Kosher Kretchma: Chabad centers (from the Chabad.org center directory), with a map and the services a traveler needs. */
 (function () {
   "use strict";
+  /* "You are here": own pane above the pins, pulsing dot, accuracy ring, recenter button. Shared by both maps. */
+  window.KK_YOU = window.KK_YOU || function (map, ll, acc) {
+    if (!map.getPane("you")) { map.createPane("you").style.zIndex = 650; }
+    const st = map._kkYou || (map._kkYou = {});
+    if (st.ring) { st.ring.remove(); st.dot.remove(); }
+    st.ll = ll;
+    st.ring = L.circle(ll, { radius: Math.min(Math.max(acc || 0, 60), 3000), pane: "you", color: "#b5532a", weight: 1, fillColor: "#b5532a", fillOpacity: .12, interactive: false }).addTo(map);
+    st.dot = L.marker(ll, { pane: "you", interactive: false, keyboard: false,
+      icon: L.divIcon({ className: "kk-you", html: '<span class="pulse"></span><span class="dot"></span><span class="lbl">You are here</span>', iconSize: [22, 22], iconAnchor: [11, 11] }) }).addTo(map);
+    if (!st.btn) {
+      const C = L.Control.extend({ options: { position: "topleft" }, onAdd() {
+        const b = L.DomUtil.create("button", "kk-you-btn"); b.type = "button"; b.title = "Back to my location"; b.setAttribute("aria-label", "Back to my location");
+        b.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="currentColor"/><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 1v4M12 19v4M1 12h4M19 12h4" stroke="currentColor" stroke-width="2"/></svg>';
+        L.DomEvent.disableClickPropagation(b); b.onclick = () => map.setView(st.ll, Math.max(map.getZoom(), 14)); return b; } });
+      st.btn = new C().addTo(map);
+    }
+  };
   const $ = id => document.getElementById(id);
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const norm = s => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
@@ -92,8 +109,8 @@
     if (!navigator.geolocation) return;
     $("cnear").textContent = "Finding you...";
     navigator.geolocation.getCurrentPosition(p => {
-      here = [p.coords.latitude, p.coords.longitude]; $("cnear").textContent = "Near me (on)";
-      initMap(); if (map) { map.setView(here, 11); L.circleMarker(here, { radius: 7, color: "#fff", weight: 2, fillColor: "#2f5d8a", fillOpacity: 1 }).addTo(map); }
+      here = [p.coords.latitude, p.coords.longitude]; const acc = p.coords.accuracy; $("cnear").textContent = "Near me (on)";
+      initMap(); if (map) { map.setView(here, 12); window.KK_YOU(map, here, acc); }
       render(true);
     }, () => { $("cnear").textContent = "Near me"; }, { timeout: 15000 });
   };
