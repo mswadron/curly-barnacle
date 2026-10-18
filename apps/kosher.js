@@ -261,7 +261,7 @@
       const q = norm($("q").value), st = $("fstate").value, ag = $("fagency").value, cat = $("fcat").value, ty = $("ftype").value;
       const useLists = checkedLists().length > 0;
       filtered = PLACES.filter(p => (!useLists || agencyOnChecked(byId[p.a])) && (!st || p.st === st) && (!ag || p.a === ag) && (!cat || (p.k || "").includes(cat)) && (!ty || p.t === ty) &&
-        (!q || norm([p.n, p.ci, p.z, p.ad, (p.c || []).join(" ")].join(" ")).includes(q)));
+        (!q || norm([p.n, p.ci, p.st, p.z, p.ad, p.kw, (p.c || []).join(" ")].join(" ")).includes(q)));
     }
     const slice = filtered.slice(0, shown + PAGE); shown = slice.length;
     $("eatcount").textContent = `${filtered.length.toLocaleString()} of ${PLACES.length.toLocaleString()} places shown.`;

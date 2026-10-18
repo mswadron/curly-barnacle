@@ -8,11 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Secular+One&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=Fredoka:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../skin.css">
 <style>
 :root{
-  --page:#e6ecf0; --card:#ffffff; --card-soft:#f4f7f9; --rule:#d5dde3; --rule-2:#c3cdd8;
-  --ink:#1c2a35; --mute:#5d6d79; --teal:#b5532a; --teal-deep:#8a3c1c; --teal-tint:#f7e9e1;
+  --page:#fbefe6; --card:#ffffff; --card-soft:#fdf6f1; --rule:#ecd7c9; --rule-2:#e0c3b1;
+  --ink:#2b1d16; --mute:#7a6255; --teal:#b5532a; --teal-deep:#8a3c1c; --teal-tint:#f7e9e1;
   --ok:#8a3c1c; --ok-tint:#f7e9e1; --no:#9a3a22; --no-tint:#f8e9e4; --warn:#9a5b12; --warn-tint:#fbf1e3;
   --meat:#a2394f; --dairy:#2f5d8a; --pareve:#8a6d1f; --fish:#1f6f8b; --cy:#7a4e9a;
   --food:#b5532a; --food-deep:#8a3c1c; --food-tint:#f7e9e1;
@@ -137,7 +136,9 @@ table.lists th{font-weight:600;font-size:13px;color:var(--mute);text-align:left;
 table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
 .tablewrap{overflow-x:auto}
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--teal-deep);color:#fff;padding:8px 14px;border-radius:8px;z-index:20}
-.top .logo{background:#0e6e6a}
+.top .logo.kk{background:var(--food)}
+.ll{display:grid;place-items:center;width:22px;height:22px;border-radius:5px;background:#0e6e6a;color:#fff;text-decoration:none;font-family:var(--he-title);font-size:12px;line-height:1;opacity:.75}
+.ll:hover{opacity:1}
 </style>
 <style>
 .symwrap{max-width:1200px;margin:0 auto;padding:18px 16px 70px}
@@ -192,9 +193,10 @@ table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-ali
   </defs>
 </svg>
 <header class="top"><div class="top-in">
-  <a class="brand" href="../index.html"><span class="logo">ל</span><span class="brand-name">limudlab</span></a>
+  <a class="brand" href="kosher.html"><span class="logo kk"><svg viewBox="0 0 48 48" width="22" height="22"><use href="#i-plate"/></svg></span><span class="brand-name">Kosher Kretchma</span></a>
   <div class="spacer"></div>
   <div class="tabs" role="group" aria-label="View"><a class="tablink" href="kosher.html#check">Check a hechsher</a><a class="tablink" href="kosher.html#eat">Places to eat</a><a class="tablink on" href="kosher-symbols.html">Symbols</a></div>
+  <a class="ll" href="../index.html" title="limudlab" aria-label="limudlab home"><span>ל</span></a>
 </div></header>
 
 <div class="symwrap">
@@ -213,6 +215,5 @@ table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-ali
 </div>
 <script src="kosher-agencies.js"></script>
 <script src="kosher-symbols.js"></script>
-<script defer src="../site-chrome.js"></script>
 </body>
 </html>
