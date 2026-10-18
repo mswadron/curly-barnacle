@@ -37,7 +37,7 @@
   $("symq").addEventListener("input", render);
   $("symcountry").addEventListener("change", render);
   render();
-  fetch("kosher-places.json?v=202610172328").then(r => r.json()).then(d => {
+  fetch("kosher-places.json?v=202610172355").then(r => r.json()).then(d => {
     counts = d.places.reduce((m, p) => (m[p.a] = (m[p.a] || 0) + 1, m), {});
     render();
     if (location.hash) { const el = document.getElementById(location.hash.slice(1)); if (el) el.scrollIntoView(); }
