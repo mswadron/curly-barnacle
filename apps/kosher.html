@@ -98,6 +98,18 @@ textarea{width:100%;min-height:130px;font-size:15px}
 .count{font-size:14px;color:var(--mute);font-variant-numeric:tabular-nums}
 .note{font-size:14px;color:var(--mute);border-top:1px solid var(--rule);padding-top:10px;margin-top:16px}
 
+.combo{position:relative}
+.combo input{width:100%}
+#aglist{position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:30;max-height:min(60vh,440px);overflow:auto;margin:0;padding:4px;list-style:none;background:var(--card);border:1px solid var(--rule-2);border-radius:8px;box-shadow:0 8px 24px rgba(20,32,46,.14)}
+#aglist li[role=option]{display:flex;gap:10px;align-items:center;padding:6px 8px;border-radius:6px;cursor:pointer}
+#aglist li[aria-selected="true"],#aglist li[role=option]:hover{background:var(--teal-tint)}
+#aglist .lg{width:44px;height:44px;flex:none;background:#fff;display:grid;place-items:center;border:1px solid var(--rule);border-radius:6px}
+#aglist .lg img{max-width:40px;max-height:40px;object-fit:contain}
+#aglist .tx{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+#aglist .tx span{font-size:13px;color:var(--mute)}
+#aglist li.none{padding:10px;color:var(--mute);font-size:14px}
+.combo-foot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:8px;font-size:14px}
+.tabs a.tablink{color:var(--teal);font:500 14px var(--en);padding:7px 14px;text-decoration:none;display:inline-block;border-left:1px solid var(--teal)}
 /* verdict */
 .verdict{display:flex;gap:12px;align-items:flex-start}
 .verdict .lg{width:80px;height:80px;flex:none;background:#fff;border:1px solid var(--rule);border-radius:8px;display:flex;align-items:center;justify-content:center}
@@ -168,7 +180,7 @@ table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-ali
   <div class="tabs" role="group" aria-label="View">
     <button id="nav-check" data-view="check" aria-pressed="true">Check a hechsher</button>
     <button id="nav-eat" data-view="eat" aria-pressed="false">Places to eat</button>
-    <button id="nav-lists" data-view="lists" aria-pressed="false">Lists</button>
+    <button id="nav-lists" data-view="lists" aria-pressed="false">Lists</button><a class="tablink" href="kosher-symbols.html">Symbols</a>
   </div>
 </div></header>
 
@@ -191,12 +203,14 @@ table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-ali
         <div class="cands" id="cands"></div>
       </div>
     </div>
-    <div class="filters" style="margin-top:16px">
-      <div class="fl"><label for="agq">Or type what the symbol says</label><input id="agq" type="search" placeholder="OU, Star-K, Kof-K, Scroll K" autocomplete="off"></div>
-      <div class="fl"><label for="agcountry">Country</label><select id="agcountry"><option value="">All</option></select></div>
-      <div class="count" id="agcount" style="padding-bottom:9px"></div>
+    <div class="panel" style="margin-top:16px">
+      <label class="label" for="agq">Or choose the symbol from the list</label>
+      <div class="combo">
+        <input id="agq" type="search" role="combobox" aria-expanded="false" aria-controls="aglist" aria-autocomplete="list" placeholder="Type OU, Star-K, Kof-K, or tap to see them all" autocomplete="off">
+        <ul id="aglist" role="listbox" aria-label="Agencies on the cRc list" hidden></ul>
+      </div>
+      <div class="combo-foot"><span class="count" id="agcount"></span><a href="kosher-symbols.html">See every symbol, with a snapshot of each agency</a></div>
     </div>
-    <div class="logos" id="logos"></div>
     <p class="note">From the cRc's notes on its list: an agency that is not listed is not necessarily substandard, and five areas need care even under a recommended symbol: bagged vegetables (checking for insects), shechita, hotels, cruises, and wine. Source: <a href="https://consumer.crckosher.org/acceptable-kashrus-agencies/" target="_blank" rel="noopener">cRc Acceptable Kashrus Agencies</a>, copied <span id="crcdate"></span>.</p>
   </section>
 

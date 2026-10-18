@@ -26,7 +26,7 @@
   const keysFor = a => [a.name, a.short, ...(a.aliases || [])].filter(Boolean).map(norm);
   function searchAgencies(q) {
     const n = norm(q);
-    if (!n) return AG;
+    if (!n) return [...AG].sort((x, y) => (x.short || x.name).localeCompare(y.short || y.name));
     const scored = [];
     for (const a of AG) {
       const ks = keysFor(a);
@@ -62,7 +62,6 @@
   function showAgency(id) {
     const a = byId[id]; if (!a) return;
     current = { kind: "agency", id };
-    document.querySelectorAll(".tile").forEach(t => t.setAttribute("aria-current", t.dataset.id === id ? "true" : "false"));
     const n = placesByAgency[id] || 0;
     rail.innerHTML = `
       <div class="rail-sec"><div class="label">Hechsher</div>
@@ -83,11 +82,11 @@
     rail.innerHTML = `<div class="rail-sec"><div class="label">Hechsher</div>
       <div class="verdict"><div><h3>${esc(text || "Symbol not recognized")}</h3>${desc ? `<div class="small muted">${esc(desc)}</div>` : ""}</div></div>
       ${statusRows(null, text)}
-      <p class="small muted" style="margin-top:10px">If the symbol is one of the logos on the page, tap it to check that agency directly.</p></div>`;
+      <p class="small muted" style="margin-top:10px">If the symbol is in the list on this page, choose it there to check that agency directly.</p></div>`;
   }
   function railEmpty() {
     current = { kind: null };
-    rail.innerHTML = `<div class="rail-sec"><div class="label">Result</div><p class="small" style="margin:4px 0 0">Scan a symbol, type its letters, or tap a logo. The answer shows here: whether the agency is on the cRc list, and on each list you add.</p></div>
+    rail.innerHTML = `<div class="rail-sec"><div class="label">Result</div><p class="small" style="margin:4px 0 0">Scan a symbol, or choose it from the list. The answer shows here: whether the agency is on the cRc list, and on each list you add.</p></div>
       <div class="rail-sec"><div class="label">Lists checked</div><p class="small" style="margin:4px 0 0">cRc recommended agencies (${AG.length})${allLists().map(l => "<br>" + esc(l.name) + " (" + l.entries.length + ")").join("")}</p></div>`;
   }
   const reveal = () => { if (window.matchMedia("(max-width: 900px)").matches) rail.scrollIntoView({ behavior: "smooth", block: "start" }); };
@@ -98,20 +97,39 @@
   }
 
   /* ---------- check view ---------- */
-  $("agcountry").innerHTML += [...new Set(AG.map(a => a.country))].map(c => `<option>${esc(c)}</option>`).join("");
   $("crcdate").textContent = CRC.fetched;
+  // Dropdown of the cRc agencies, each with its logo; typing filters it.
+  const box = $("agq"), listEl = $("aglist");
+  let opts = [], active = -1;
+  function openList(show) { listEl.hidden = !show; box.setAttribute("aria-expanded", show ? "true" : "false"); }
   function renderLogos() {
-    const q = $("agq").value.trim(), c = $("agcountry").value;
-    const list = searchAgencies(q).filter(a => !c || a.country === c);
-    $("agcount").textContent = `${list.length} of ${AG.length} agencies on the cRc list`;
-    $("logos").innerHTML = list.map(a => `<button class="tile" data-id="${a.id}" aria-current="${current.id === a.id}"><div class="lg">${logoImg(a)}</div><span>${esc(a.short || a.name)}</span></button>`).join("")
-      || `<div class="panel small">No agency on the cRc list matches “${esc(q)}”.<div style="margin-top:8px"><button class="btn ghost" id="checkfree">Check “${esc(q)}” against my lists</button></div></div>`;
-    const cf = $("checkfree"); if (cf) cf.onclick = () => showUnmatched(q);
-    if (q && list.length && keysFor(list[0]).includes(norm(q))) showAgency(list[0].id);
+    const q = box.value.trim();
+    opts = searchAgencies(q);
+    active = opts.length ? 0 : -1;
+    listEl.innerHTML = opts.map((a, i) => `<li role="option" id="opt-${a.id}" data-id="${a.id}" aria-selected="${i === active}"><span class="lg">${logoImg(a)}</span><span class="tx"><b>${esc(a.short || a.name)}</b>${a.short ? `<span>${esc(a.name)}</span>` : ""}<span class="loc">${esc([a.region, a.country].filter(Boolean).join(", "))}</span></span></li>`).join("")
+      || `<li class="none">No agency on the cRc list matches “${esc(q)}”. <button class="btn ghost" id="checkfree" type="button">Check “${esc(q)}” against my lists</button></li>`;
+    const cf = $("checkfree"); if (cf) cf.onclick = e => { e.stopPropagation(); openList(false); showUnmatched(q); reveal(); };
+    $("agcount").textContent = q ? `${opts.length} of ${AG.length}` : `${AG.length} agencies on the cRc list`;
   }
-  $("logos").addEventListener("click", e => { const t = e.target.closest(".tile"); if (t) { showAgency(t.dataset.id); reveal(); } });
-  $("agq").addEventListener("input", renderLogos);
-  $("agcountry").addEventListener("change", renderLogos);
+  function pick(id) { const a = byId[id]; if (!a) return; box.value = a.short || a.name; openList(false); showAgency(id); reveal(); }
+  function setActive(i) {
+    if (!opts.length) return;
+    active = (i + opts.length) % opts.length;
+    listEl.querySelectorAll("li[role=option]").forEach((li, k) => li.setAttribute("aria-selected", k === active));
+    const li = listEl.children[active]; if (li) { li.scrollIntoView({ block: "nearest" }); box.setAttribute("aria-activedescendant", li.id); }
+  }
+  box.addEventListener("focus", () => { renderLogos(); openList(true); });
+  box.addEventListener("click", () => { if (listEl.hidden) { renderLogos(); openList(true); } });
+  box.addEventListener("input", () => { renderLogos(); openList(true); });
+  box.addEventListener("keydown", e => {
+    if (e.key === "ArrowDown") { e.preventDefault(); if (listEl.hidden) { renderLogos(); openList(true); } else setActive(active + 1); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); setActive(active - 1); }
+    else if (e.key === "Enter") { e.preventDefault(); if (opts[active]) pick(opts[active].id); }
+    else if (e.key === "Escape") openList(false);
+  });
+  listEl.addEventListener("mousedown", e => e.preventDefault());
+  listEl.addEventListener("click", e => { const li = e.target.closest("li[data-id]"); if (li) pick(li.dataset.id); });
+  document.addEventListener("click", e => { if (!e.target.closest(".combo")) openList(false); });
 
   /* ---------- scan ---------- */
   function loadImage(src) { return new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = src; }); }
@@ -255,7 +273,7 @@
       $("fstate").innerHTML = opts([...new Set(PLACES.map(p => p.st).filter(Boolean))].sort().map(s => [s, s]));
       $("fagency").innerHTML = opts(Object.keys(placesByAgency).filter(id => byId[id]).sort((x, y) => (byId[x].short || byId[x].name).localeCompare(byId[y].short || byId[y].name)).map(id => [id, `${byId[id].short || byId[id].name} (${placesByAgency[id]})`]));
       $("ftype").innerHTML = opts([...new Set(PLACES.map(p => p.t).filter(Boolean))].sort().map(s => [s, s]));
-      $("eatnote").innerHTML = `Copied from each agency's own list of the places it certifies, ${esc(META.fetched)}: ${META.sources.map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.short)}</a> (${s.count})`).join(", ")}.`;
+      $("eatnote").innerHTML = `Copied from each agency's own list of the places it certifies, ${esc(META.fetched)}: ${META.sources.map(s => /^https?:/.test(s.url || "") ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.short)}</a> (${s.count})` : `${esc(s.short)} (${s.count}, from ${esc(s.url || "its printed list")})`).join(", ")}.`;
       renderRows(true); refreshRail();
       if (curView === "eat") setCrumb();
     } catch { $("rows").innerHTML = `<div class="panel small">The list of places did not load. Reload the page to try again.</div>`; }
@@ -300,5 +318,7 @@
   renderLogos(); renderLists(); railEmpty(); loadPlaces();
   let start = "check"; try { start = localStorage.getItem("kf-view") || "check"; } catch {}
   if (["#check", "#eat", "#lists"].includes(location.hash)) start = location.hash.slice(1);
+  const deep = location.hash.slice(1);
+  if (byId[deep]) { start = "check"; box.value = byId[deep].short || byId[deep].name; showAgency(deep); }
   go(start);
 })();
