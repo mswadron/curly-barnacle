@@ -345,7 +345,7 @@
   });
   async function loadPlaces() {
     try {
-      const d = await (await fetch("kosher-places.json?v=202610172327")).json();
+      const d = await (await fetch("kosher-places.json?v=202610172328")).json();
       PLACES = d.places; META = d.meta;
       const np = $("n-pl"); if (np) np.textContent = PLACES.length.toLocaleString();
       const na = $("n-ag"); if (na) na.textContent = AG.length;
@@ -356,7 +356,7 @@
       $("ftype").innerHTML = opts([...new Set(PLACES.map(p => p.t).filter(Boolean))].sort().map(s => [s, s]));
       $("eatnote").innerHTML = `Copied from each agency's own list of the places it certifies, ${esc(META.fetched)}: ${META.sources.map(s => /^https?:/.test(s.url || "") ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.short)}</a> (${s.count})` : `${esc(s.short)} (${s.count}, from ${esc(s.url || "its printed list")})`).join(", ")}.`;
       if (pendingAgency) { $("fagency").value = pendingAgency; pendingAgency = null; }
-      renderRows(true); if (curView === "check") refreshRail(); else placeRail();
+      renderRows(true); if (curView === "check") refreshRail(); else if (curView === "eat") placeRail();
       if (curView === "eat") setCrumb();
     } catch { $("rows").innerHTML = `<div class="panel small">The list of places did not load. Reload the page to try again.</div>`; }
   }
@@ -399,7 +399,7 @@
   };
   try { myLists = JSON.parse(localStorage.getItem(LS_KEY) || "[]"); } catch { myLists = []; }
   myLists.forEach((l, i) => { if (!l.id) l.id = "my" + i; });
-  fetch("kosher-lists.json?v=202610172327").then(r => r.ok ? r.json() : { lists: [] }).then(d => { builtinLists = d.lists || []; renderLists(); renderPicks(); refreshRail(); }).catch(() => {});
+  fetch("kosher-lists.json?v=202610172328").then(r => r.ok ? r.json() : { lists: [] }).then(d => { builtinLists = d.lists || []; renderLists(); renderPicks(); refreshRail(); }).catch(() => {});
 
   /* ---------- views ---------- */
   let curView = "check";
