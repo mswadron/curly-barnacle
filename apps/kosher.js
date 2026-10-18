@@ -378,7 +378,7 @@
   });
   async function loadPlaces() {
     try {
-      const d = await (await fetch("kosher-places.json?v=202610181517")).json();
+      const d = await (await fetch("kosher-places.json?v=202610181612")).json();
       PLACES = d.places; META = d.meta;
       const np = $("n-pl"); if (np) np.textContent = PLACES.length.toLocaleString();
       const na = $("n-ag"); if (na) na.textContent = AG.length;
@@ -387,7 +387,17 @@
       $("fstate").innerHTML = opts([...new Set(PLACES.map(p => p.st).filter(Boolean))].sort().map(s => [s, s]));
       $("fagency").innerHTML = opts(Object.keys(placesByAgency).filter(id => byId[id]).sort((x, y) => (byId[x].short || byId[x].name).localeCompare(byId[y].short || byId[y].name)).map(id => [id, `${byId[id].short || byId[id].name} (${placesByAgency[id]})`]));
       $("ftype").innerHTML = opts([...new Set(PLACES.map(p => p.t).filter(Boolean))].sort().map(s => [s, s]));
-      $("eatnote").innerHTML = `Copied from each agency's own list of the places it certifies, ${esc(META.fetched)}: ${META.sources.map(s => /^https?:/.test(s.url || "") ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.short)}</a> (${s.count})` : `${esc(s.short)} (${s.count}, from ${esc(s.url || "its printed list")})`).join(", ")}.`;
+      {
+        const by = new Map();
+        META.sources.forEach(x => { const k = x.short; const o = by.get(k) || { short: x.short, count: 0, url: x.url }; o.count += x.count; if (/^https?:/.test(x.url || "")) o.url = x.url; by.set(k, o); });
+        const all = [...by.values()].sort((a, b) => b.count - a.count);
+        const web = all.filter(x => /^https?:/.test(x.url || "")), paper = all.filter(x => !/^https?:/.test(x.url || ""));
+        const li = x => `<li><span>${/^https?:/.test(x.url || "") ? `<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.short)}</a>` : esc(x.short)}</span><b>${x.count}</b></li>`;
+        $("eatnote").innerHTML = `Copied from each agency's own list on ${esc(META.fetched)}. Each place links to the list it came from.
+          <details class="srcs"><summary>Where these come from (${all.length} lists)</summary>
+          <h4>Agency websites</h4><ul>${web.map(li).join("")}</ul>
+          ${paper.length ? `<h4>Printed lists and the NY State kosher registry</h4><ul>${paper.map(li).join("")}</ul>` : ""}</details>`;
+      }
       if (pendingAgency) { $("fagency").value = pendingAgency; pendingAgency = null; }
       renderRows(true); if (curView === "check") refreshRail(); else if (curView === "eat") placeRail();
       if (curView === "eat") setCrumb();
@@ -432,7 +442,7 @@
   };
   try { myLists = JSON.parse(localStorage.getItem(LS_KEY) || "[]"); } catch { myLists = []; }
   myLists.forEach((l, i) => { if (!l.id) l.id = "my" + i; });
-  fetch("kosher-lists.json?v=202610181517").then(r => r.ok ? r.json() : { lists: [] }).then(d => { builtinLists = d.lists || []; renderLists(); renderPicks(); refreshRail(); }).catch(() => {});
+  fetch("kosher-lists.json?v=202610181612").then(r => r.ok ? r.json() : { lists: [] }).then(d => { builtinLists = d.lists || []; renderLists(); renderPicks(); refreshRail(); }).catch(() => {});
 
   /* ---------- views ---------- */
   let curView = "check";
