@@ -268,6 +268,8 @@
     try {
       const d = await (await fetch("kosher-places.json")).json();
       PLACES = d.places; META = d.meta;
+      const np = $("n-pl"); if (np) np.textContent = PLACES.length.toLocaleString();
+      const na = $("n-ag"); if (na) na.textContent = AG.length;
       placesByAgency = PLACES.reduce((m, p) => (m[p.a] = (m[p.a] || 0) + 1, m), {});
       const opts = (arr, lab) => `<option value="">All</option>` + arr.map(([v, t]) => `<option value="${esc(v)}">${esc(t)}</option>`).join("");
       $("fstate").innerHTML = opts([...new Set(PLACES.map(p => p.st).filter(Boolean))].sort().map(s => [s, s]));
