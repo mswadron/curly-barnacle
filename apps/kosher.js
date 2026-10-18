@@ -4,22 +4,42 @@
    logo images on the device and offers the closest-looking logos to confirm. */
 (function () {
   "use strict";
-  /* "You are here": own pane above the pins, pulsing dot, accuracy ring, recenter button. Shared by both maps. */
+  /* "You are here": one dot that moves in place as the device moves; the map follows until the user drags it. */
   window.KK_YOU = window.KK_YOU || function (map, ll, acc) {
     if (!map.getPane("you")) { map.createPane("you").style.zIndex = 650; }
-    const st = map._kkYou || (map._kkYou = {});
-    if (st.ring) { st.ring.remove(); st.dot.remove(); }
+    const st = map._kkYou || (map._kkYou = { follow: true });
+    const r = Math.min(Math.max(acc || 0, 30), 3000);
     st.ll = ll;
-    st.ring = L.circle(ll, { radius: Math.min(Math.max(acc || 0, 60), 3000), pane: "you", color: "#b5532a", weight: 1, fillColor: "#b5532a", fillOpacity: .12, interactive: false }).addTo(map);
-    st.dot = L.marker(ll, { pane: "you", interactive: false, keyboard: false,
-      icon: L.divIcon({ className: "kk-you", html: '<span class="pulse"></span><span class="dot"></span><span class="lbl">You are here</span>', iconSize: [22, 22], iconAnchor: [11, 11] }) }).addTo(map);
-    if (!st.btn) {
+    if (st.dot) { st.dot.setLatLng(ll); st.ring.setLatLng(ll).setRadius(r); }
+    else {
+      st.ring = L.circle(ll, { radius: r, pane: "you", color: "#b5532a", weight: 1, fillColor: "#b5532a", fillOpacity: .12, interactive: false }).addTo(map);
+      st.dot = L.marker(ll, { pane: "you", interactive: false, keyboard: false,
+        icon: L.divIcon({ className: "kk-you", html: '<span class="pulse"></span><span class="dot"></span><span class="lbl">You are here</span>', iconSize: [22, 22], iconAnchor: [11, 11] }) }).addTo(map);
+      map.on("dragstart", () => { st.follow = false; });
       const C = L.Control.extend({ options: { position: "topleft" }, onAdd() {
         const b = L.DomUtil.create("button", "kk-you-btn"); b.type = "button"; b.title = "Back to my location"; b.setAttribute("aria-label", "Back to my location");
         b.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="currentColor"/><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 1v4M12 19v4M1 12h4M19 12h4" stroke="currentColor" stroke-width="2"/></svg>';
-        L.DomEvent.disableClickPropagation(b); b.onclick = () => map.setView(st.ll, Math.max(map.getZoom(), 14)); return b; } });
-      st.btn = new C().addTo(map);
+        L.DomEvent.disableClickPropagation(b); b.onclick = () => { st.follow = true; map.setView(st.ll, Math.max(map.getZoom(), 14)); }; return b; } });
+      new C().addTo(map);
+      return;
     }
+    if (st.follow) map.panTo(ll, { animate: true });
+  };
+  /* Watch the device position. onFirst runs once; onMove runs when it has moved more than about a quarter mile since the list was last sorted. */
+  window.KK_WATCH = window.KK_WATCH || function (btn, getMap, onFirst, onMove) {
+    if (!navigator.geolocation) return false;
+    if (btn._watch != null) { const m = getMap(); if (m && m._kkYou) { m._kkYou.follow = true; m.setView(m._kkYou.ll, Math.max(m.getZoom(), 14)); } return true; }
+    btn.textContent = "Finding you...";
+    let first = true, sorted = null;
+    const far = (a, b) => Math.abs(a[0] - b[0]) > 0.004 || Math.abs(a[1] - b[1]) > 0.005;
+    btn._watch = navigator.geolocation.watchPosition(p => {
+      const ll = [p.coords.latitude, p.coords.longitude];
+      if (first) { first = false; sorted = ll; btn.textContent = "Near me (on)"; onFirst(ll, p.coords.accuracy); return; }
+      const m = getMap(); if (m) window.KK_YOU(m, ll, p.coords.accuracy);
+      if (far(ll, sorted)) { sorted = ll; onMove(ll); }
+    }, () => { if (first) { navigator.geolocation.clearWatch(btn._watch); btn._watch = null; btn.textContent = "Near me"; } },
+      { enableHighAccuracy: true, maximumAge: 5000, timeout: 20000 });
+    return true;
   };
   const CRC = window.KF_CRC;
   const AG = CRC.agencies;
@@ -301,14 +321,10 @@
   }
   const miles = (a, b) => { const R = 3958.8, t = x => x * Math.PI / 180, dLa = t(b[0] - a[0]), dLo = t(b[1] - a[1]); const h = Math.sin(dLa / 2) ** 2 + Math.cos(t(a[0])) * Math.cos(t(b[0])) * Math.sin(dLo / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); };
   if ($("nearme")) $("nearme").onclick = () => {
-    if (!navigator.geolocation) { toast("This browser does not share location"); return; }
-    $("nearme").disabled = true; $("nearme").textContent = "Finding you...";
-    navigator.geolocation.getCurrentPosition(pos => {
-      here = [pos.coords.latitude, pos.coords.longitude]; const acc = pos.coords.accuracy;
-      $("nearme").disabled = false; $("nearme").textContent = "Near me (on)";
-      initMap(); if (map) { map.setView(here, 13); window.KK_YOU(map, here, acc); }
-      renderRows(true);
-    }, () => { $("nearme").disabled = false; $("nearme").textContent = "Near me"; toast("Location was not shared"); }, { enableHighAccuracy: false, timeout: 15000 });
+    const ok = window.KK_WATCH($("nearme"), () => map,
+      (ll, acc) => { here = ll; initMap(); if (map) { map.setView(here, 14); window.KK_YOU(map, here, acc); } renderRows(true); },
+      ll => { here = ll; renderRows(true); });
+    if (!ok) toast("This browser does not share location");
   };
   function renderRows(reset) {
     if (reset) {
@@ -362,7 +378,7 @@
   });
   async function loadPlaces() {
     try {
-      const d = await (await fetch("kosher-places.json?v=202610181515")).json();
+      const d = await (await fetch("kosher-places.json?v=202610181517")).json();
       PLACES = d.places; META = d.meta;
       const np = $("n-pl"); if (np) np.textContent = PLACES.length.toLocaleString();
       const na = $("n-ag"); if (na) na.textContent = AG.length;
@@ -416,7 +432,7 @@
   };
   try { myLists = JSON.parse(localStorage.getItem(LS_KEY) || "[]"); } catch { myLists = []; }
   myLists.forEach((l, i) => { if (!l.id) l.id = "my" + i; });
-  fetch("kosher-lists.json?v=202610181515").then(r => r.ok ? r.json() : { lists: [] }).then(d => { builtinLists = d.lists || []; renderLists(); renderPicks(); refreshRail(); }).catch(() => {});
+  fetch("kosher-lists.json?v=202610181517").then(r => r.ok ? r.json() : { lists: [] }).then(d => { builtinLists = d.lists || []; renderLists(); renderPicks(); refreshRail(); }).catch(() => {});
 
   /* ---------- views ---------- */
   let curView = "check";
