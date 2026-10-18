@@ -139,6 +139,11 @@ textarea{width:100%;min-height:130px;font-size:15px}
 .marker-cluster-small div,.marker-cluster-medium div,.marker-cluster-large div{background:var(--food)!important;color:#fff!important;font:600 13px var(--en)}
 .listpick .lp-note{flex-basis:100%;font-size:13px;color:var(--mute);margin-top:2px}
 .leaflet-container a{color:var(--food-deep)}
+.linkbtn{border:0;background:none;padding:0;color:var(--food-deep);text-decoration:underline;font:inherit;cursor:pointer}
+#cmap{height:420px;border-radius:12px;border:1px solid var(--rule);background:#f3e6dc;z-index:0}
+@media (max-width:700px){#cmap{height:320px}}
+.kk-pin.cb span{background:#5b3a8a}
+.chip.hl{background:var(--food-tint);border-color:var(--food);color:var(--food-deep)}
 /* verdict */
 .verdict{display:flex;gap:12px;align-items:flex-start}
 .verdict .lg{width:80px;height:80px;flex:none;background:#fff;border:1px solid var(--rule);border-radius:8px;display:flex;align-items:center;justify-content:center}
@@ -235,7 +240,7 @@ table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-ali
   <div class="spacer"></div>
   <div class="tabs" role="group" aria-label="View">
     <button id="nav-check" data-view="check" aria-pressed="true">Check a hechsher</button>
-    <button id="nav-eat" data-view="eat" aria-pressed="false">Places to eat</button>
+    <button id="nav-eat" data-view="eat" aria-pressed="false">Places to eat</button><button id="nav-chabad" data-view="chabad" aria-pressed="false" hidden>Chabad</button>
     <button id="nav-lists" data-view="lists" aria-pressed="false">Lists</button><a class="tablink" href="kosher-symbols.html">Symbols</a>
   </div>
   <a class="ll" href="../index.html" title="limudlab" aria-label="limudlab home"><span>ל</span></a>
@@ -305,6 +310,30 @@ table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-ali
     <p class="note" id="eatnote"></p>
   </section>
 
+  <section id="view-chabad" hidden>
+    <h1>Chabad centers</h1>
+    <p class="lede">Chabad Houses, campus Chabad Houses and synagogues across the US and Canada. Many offer Shabbos and holiday meals for visitors; tick what you need.</p>
+    <div class="filters">
+      <div class="fl"><label for="cq">Search</label><input id="cq" type="search" placeholder="City, zip or name" autocomplete="off"></div>
+      <div class="fl"><label for="cstate">State or province</label><select id="cstate"><option value="">All</option></select></div>
+      <div class="fl"><label for="ctype">Kind of center</label><select id="ctype"><option value="">All</option></select></div>
+    </div>
+    <div class="listpick" role="group" aria-label="Services">
+      <span class="lp-label">Offers</span>
+      <label class="lpc"><input type="checkbox" class="cfeat" value="hosp"> Shabbos and holiday meals</label>
+      <label class="lpc"><input type="checkbox" class="cfeat" value="store"> Kosher store</label>
+      <label class="lpc"><input type="checkbox" class="cfeat" value="meals"> Kosher meal plan</label>
+      <label class="lpc"><input type="checkbox" class="cfeat" value="guest"> Guest rooms</label>
+    </div>
+    <div class="mapwrap">
+      <div id="cmap" role="region" aria-label="Map of Chabad centers"></div>
+      <div class="mapbar"><button class="btn food" type="button" id="cnear">Near me</button><span class="small muted" id="ccount"></span></div>
+    </div>
+    <div class="rows" id="crows"></div>
+    <div style="margin-top:12px"><button class="btn ghost" id="cmore" hidden>Show more</button></div>
+    <p class="note" id="cnote"></p>
+  </section>
+
   <section id="view-lists" hidden>
     <h1>Lists</h1>
     <p class="lede">Every scan and search is checked against each of these lists.</p>
@@ -327,8 +356,9 @@ table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-ali
 <div class="toast" id="toast" hidden></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
-<script src="kosher-agencies.js?v=202610172147"></script>
-<script src="kosher.js?v=202610172147"></script>
+<script src="kosher-agencies.js?v=202610172245"></script>
+<script src="kosher-chabad.js?v=202610172245"></script>
+<script src="kosher.js?v=202610172245"></script>
 <script>document.getElementById("hero-eat").onclick=function(){document.getElementById("nav-eat").click();window.scrollTo(0,0)};</script>
 </body>
 </html>

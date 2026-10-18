@@ -6,7 +6,8 @@
   "use strict";
   const CRC = window.KF_CRC;
   const AG = CRC.agencies;
-  const byId = Object.fromEntries(AG.map(a => [a.id, a]));
+  const OTH = (CRC.others || []).map(a => ({ ...a, other: true }));
+  const byId = Object.fromEntries([...AG, ...OTH].map(a => [a.id, a]));
   const norm = s => String(s || "").toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9֐-׿]+/g, "");
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const $ = id => document.getElementById(id);
@@ -28,7 +29,7 @@
   let checked = new Set(["crc"]);
   try { const v = JSON.parse(localStorage.getItem(CK_KEY) || "null"); if (Array.isArray(v)) checked = new Set(v); } catch {}
   const checkedLists = () => allLists().filter(L => checked.has(L.id));
-  const agencyOnList = (L, a) => L.crc ? !!(a && byId[a.id]) : !!(a && inList(L, a));
+  const agencyOnList = (L, a) => L.crc ? !!(a && byId[a.id] && !a.other) : !!(a && inList(L, a));
   const agencyOnChecked = a => checkedLists().some(L => agencyOnList(L, a));
 
   /* ---------- matching ---------- */
@@ -76,7 +77,7 @@
     let h = "";
     for (const L of lists) {
       if (L.crc) {
-        h += agency
+        h += agency && !agency.other
           ? `<div class="st yes"><b>On the cRc recommended list</b>${agency.note ? esc(agency.note) : "Recommended by the cRc."}</div>`
           : `<div class="st no"><b>Not on the cRc recommended list</b>The cRc notes that an agency not on its list is not necessarily substandard; ask your rav.</div>`;
         continue;
@@ -303,7 +304,9 @@
     if (reset && here) { filtered.forEach(p => p._d = p.lat != null ? miles(here, [p.lat, p.lng]) : 1e9); filtered.sort((x, y) => x._d - y._d); }
     if (reset) drawMap(true);
     const slice = filtered.slice(0, shown + PAGE); shown = slice.length;
-    $("eatcount").textContent = `${filtered.length.toLocaleString()} of ${PLACES.length.toLocaleString()} places shown.`;
+    const hidden = checkedLists().length ? PLACES.filter(p => !agencyOnChecked(byId[p.a])).length : 0;
+    $("eatcount").innerHTML = `${filtered.length.toLocaleString()} of ${PLACES.length.toLocaleString()} places shown.` + (hidden ? ` ${hidden.toLocaleString()} more are under agencies not on the lists you ticked. <button class="linkbtn" type="button" id="showall">Show them too</button>` : "");
+    const sa = $("showall"); if (sa) sa.onclick = () => { checked.clear(); try { localStorage.setItem(CK_KEY, "[]"); } catch {} renderPicks(); renderRows(true); };
     $("rows").innerHTML = slice.map((p, i) => {
       const a = byId[p.a];
       return `<button class="row" data-i="${i}"><div><div class="nm"><span class="ic">${svg(TYPE_ICON[p.t] || "i-plate")}</span> ${esc(p.n)}</div><div class="ad">${esc([p.ad, p.ci, p.st].filter(Boolean).join(", "))}${here && p._d < 1e9 ? ` · ${p._d < 10 ? p._d.toFixed(1) : Math.round(p._d)} mi` : ""}</div></div>
@@ -342,7 +345,7 @@
   });
   async function loadPlaces() {
     try {
-      const d = await (await fetch("kosher-places.json?v=202610172147")).json();
+      const d = await (await fetch("kosher-places.json?v=202610172245")).json();
       PLACES = d.places; META = d.meta;
       const np = $("n-pl"); if (np) np.textContent = PLACES.length.toLocaleString();
       const na = $("n-ag"); if (na) na.textContent = AG.length;
@@ -396,7 +399,7 @@
   };
   try { myLists = JSON.parse(localStorage.getItem(LS_KEY) || "[]"); } catch { myLists = []; }
   myLists.forEach((l, i) => { if (!l.id) l.id = "my" + i; });
-  fetch("kosher-lists.json?v=202610172147").then(r => r.ok ? r.json() : { lists: [] }).then(d => { builtinLists = d.lists || []; renderLists(); renderPicks(); refreshRail(); }).catch(() => {});
+  fetch("kosher-lists.json?v=202610172245").then(r => r.ok ? r.json() : { lists: [] }).then(d => { builtinLists = d.lists || []; renderLists(); renderPicks(); refreshRail(); }).catch(() => {});
 
   /* ---------- views ---------- */
   let curView = "check";
@@ -408,14 +411,15 @@
   function go(v) {
     curView = v;
     if (v === "eat") { placeRail(); setTimeout(() => { if (map) { map.invalidateSize(); drawMap(true); } }, 60); } else if (v === "check") refreshRail();
-    ["check", "eat", "lists"].forEach(x => { $("view-" + x).hidden = x !== v; $("nav-" + x).setAttribute("aria-pressed", x === v); });
+    ["check", "eat", "chabad", "lists"].forEach(x => { if ($("view-" + x)) { $("view-" + x).hidden = x !== v; $("nav-" + x).setAttribute("aria-pressed", x === v); } });
+    if (v === "chabad" && window.KK_CHABAD) window.KK_CHABAD.show();
     try { localStorage.setItem("kf-view", v); } catch {}
   }
   document.querySelector(".tabs").addEventListener("click", e => { const b = e.target.closest("button"); if (b) go(b.dataset.view); });
 
   renderPicks(); renderLogos(); renderLists(); railEmpty(); loadPlaces();
   let start = "check"; try { start = localStorage.getItem("kf-view") || "check"; } catch {}
-  if (["#check", "#eat", "#lists"].includes(location.hash)) start = location.hash.slice(1);
+  if (["#check", "#eat", "#chabad", "#lists"].includes(location.hash)) start = location.hash.slice(1);
   const deep = location.hash.slice(1);
   if (byId[deep]) { start = "check"; box.value = byId[deep].short || byId[deep].name; showAgency(deep); }
   if (deep.startsWith("eat-") && byId[deep.slice(4)]) { start = "eat"; pendingAgency = deep.slice(4); }
