@@ -12,9 +12,9 @@
 <style>
 :root{
   --page:#e6ecf0; --card:#ffffff; --card-soft:#f4f7f9; --rule:#d5dde3; --rule-2:#c3cdd8;
-  --ink:#1c2a35; --mute:#5d6d79; --teal:#0e6e6a; --teal-deep:#0a4f4c; --teal-tint:#e3f1f0;
-  --ok:#2e6b3a; --ok-tint:#e5f2e8; --no:#9a3a22; --no-tint:#f8e9e4; --warn:#9a5b12; --warn-tint:#fbf1e3;
-  --meat:#a2394f; --dairy:#2f5d8a; --pareve:#3d7a32; --fish:#1f6f8b; --cy:#7a4e9a;
+  --ink:#1c2a35; --mute:#5d6d79; --teal:#b5532a; --teal-deep:#8a3c1c; --teal-tint:#f7e9e1;
+  --ok:#8a3c1c; --ok-tint:#f7e9e1; --no:#9a3a22; --no-tint:#f8e9e4; --warn:#9a5b12; --warn-tint:#fbf1e3;
+  --meat:#a2394f; --dairy:#2f5d8a; --pareve:#8a6d1f; --fish:#1f6f8b; --cy:#7a4e9a;
   --food:#b5532a; --food-deep:#8a3c1c; --food-tint:#f7e9e1;
   --he-title:'Secular One',sans-serif; --he:'IBM Plex Sans Hebrew',sans-serif; --en:'Fredoka','IBM Plex Sans Hebrew',sans-serif;
 }
@@ -122,6 +122,12 @@ textarea{width:100%;min-height:130px;font-size:15px}
 .hero .counts b{font-size:20px;font-weight:600;display:block;color:var(--ink)}
 @media (max-width:700px){.feast .far{display:none}.hero{padding:18px 16px}}
 @media (max-width:700px){.feast svg{opacity:.22}.tabs button,.tabs a.tablink{padding:7px 9px;font-size:13px;white-space:nowrap}.scan .shot{max-width:200px;aspect-ratio:1/1}}
+.listpick{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 12px}
+.listpick .lp-label{font-size:13px;font-weight:600;color:var(--food-deep);margin-right:4px}
+.listpick .lpc{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--rule-2);background:var(--card);border-radius:999px;padding:4px 12px 4px 8px;font-size:14px;cursor:pointer}
+.listpick .lpc:has(input:checked){border-color:var(--food);background:var(--food-tint);color:var(--food-deep)}
+.listpick input{accent-color:var(--food);width:16px;height:16px;margin:0}
+.listpick .n{font-size:12.5px;color:var(--mute)}
 /* verdict */
 .verdict{display:flex;gap:12px;align-items:flex-start}
 .verdict .lg{width:80px;height:80px;flex:none;background:#fff;border:1px solid var(--rule);border-radius:8px;display:flex;align-items:center;justify-content:center}
@@ -150,6 +156,7 @@ table.lists th{font-weight:600;font-size:13px;color:var(--mute);text-align:left;
 table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
 .tablewrap{overflow-x:auto}
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--teal-deep);color:#fff;padding:8px 14px;border-radius:8px;z-index:20}
+.top .logo{background:#0e6e6a}
 </style>
 </head>
 <body>
@@ -238,9 +245,9 @@ table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-ali
         <div class="app-tile" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#i-plate"/></svg></div>
         <div class="app-txt"><h1 class="t1" id="hero-title">Kosher Kretchma</h1><span class="t2" lang="yi" dir="rtl">קרעטשמע</span></div>
       </div>
-      <p class="lede">Is this hechsher on the cRc list? Where can I eat kosher near here? Scan the symbol on a package or a restaurant certificate, or look up kosher restaurants, bakeries, caterers and stores.</p>
+      <p class="lede">Is this hechsher reliable? Where can I eat kosher near here? Scan the symbol on a package or a restaurant certificate and check it against the lists you trust: the cRc recommended agencies come built in, and you can add your own. Then find kosher restaurants, bakeries, caterers and stores.</p>
       <div class="cta"><label class="btn food" for="cam">Scan a hechsher</label><button class="btn ghost" type="button" id="hero-eat">Find a place to eat</button></div>
-      <div class="counts"><span><b id="n-ag">132</b>agencies on the cRc list</span><span><b id="n-pl">2,112</b>places to eat</span></div>
+      <div class="counts"><span><b id="n-ag">132</b>kosher agencies</span><span><b id="n-pl">2,112</b>places to eat</span></div>
     </section>
     <div class="panel scan">
       <div class="shot" id="shot"><div class="ph">Your photo of the symbol shows here</div></div>
@@ -253,6 +260,7 @@ table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-ali
       </div>
     </div>
     <div class="panel" style="margin-top:16px">
+      <div class="listpick" role="group" aria-label="Lists to check against"></div>
       <label class="label" for="agq">Or choose the symbol from the list</label>
       <div class="combo">
         <input id="agq" type="search" role="combobox" aria-expanded="false" aria-controls="aglist" aria-autocomplete="list" placeholder="Type OU, Star-K, Kof-K, or tap to see them all" autocomplete="off">
@@ -265,7 +273,8 @@ table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-ali
 
   <section id="view-eat" hidden>
     <h1>Places to eat</h1>
-    <p class="lede">Restaurants, bakeries, caterers and stores, collected from each agency's own list of the places it certifies. <span class="count" id="eatcount"></span></p>
+    <p class="lede">Restaurants, bakeries, caterers and stores, collected from each agency's own list of the places it certifies. Tick the lists whose hechsherim you rely on. <span class="count" id="eatcount"></span></p>
+    <div class="listpick" role="group" aria-label="Show places whose hechsher is on these lists"></div>
     <div class="filters">
       <div class="fl"><label for="q">Search</label><input id="q" type="search" placeholder="Name, city, zip, cuisine" autocomplete="off"></div>
       <div class="fl"><label for="fstate">State</label><select id="fstate"><option value="">All</option></select></div>

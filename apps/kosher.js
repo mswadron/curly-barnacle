@@ -20,20 +20,43 @@
   const TYPE_ICON = { bakery: "i-bread", cafe: "i-cup", grocery: "i-store", butcher: "i-store", caterer: "i-cake", pizza: "i-plate", restaurant: "i-plate", takeout: "i-plate" };
   const svg = (id, cls) => `<svg class="${cls || "ico"}" aria-hidden="true"><use href="#${id}"/></svg>`;
   function toast(msg) { const t = $("toast"); t.textContent = msg; t.hidden = false; clearTimeout(toast._t); toast._t = setTimeout(() => t.hidden = true, 2200); }
-  const allLists = () => [...builtinLists, ...myLists];
+  // Lists a hechsher can be checked against. The cRc list is built in; others come from kosher-lists.json or are pasted on this device.
+  const CRC_LIST = { id: "crc", name: "cRc recommended agencies", crc: true, entries: AG };
+  const allLists = () => [CRC_LIST, ...builtinLists.map((l, i) => ({ ...l, id: l.id || "site" + i })), ...myLists];
+  const CK_KEY = "kf-checked-v1";
+  let checked = new Set(["crc"]);
+  try { const v = JSON.parse(localStorage.getItem(CK_KEY) || "null"); if (Array.isArray(v)) checked = new Set(v); } catch {}
+  const checkedLists = () => allLists().filter(L => checked.has(L.id));
+  const agencyOnList = (L, a) => L.crc ? !!(a && byId[a.id]) : !!(a && inList(L, a));
+  const agencyOnChecked = a => checkedLists().some(L => agencyOnList(L, a));
 
   /* ---------- matching ---------- */
   const keysFor = a => [a.name, a.short, ...(a.aliases || [])].filter(Boolean).map(norm);
+  let extrasById = {};
+  function universe() {
+    extrasById = {};
+    const out = AG.filter(agencyOnChecked);
+    for (const L of checkedLists()) {
+      if (L.crc) continue;
+      L.entries.forEach((e, i) => {
+        if (AG.some(a => inList({ entries: [e] }, a))) return;
+        const id = "x-" + L.id + "-" + i;
+        const x = { id, name: e.name, short: null, aliases: e.aliases || [], region: "", country: "", extra: true, listName: L.name };
+        extrasById[id] = x; out.push(x);
+      });
+    }
+    return out;
+  }
   function searchAgencies(q) {
-    const n = norm(q);
-    if (!n) return [...AG].sort((x, y) => (x.short || x.name).localeCompare(y.short || y.name));
+    const n = norm(q), U = universe();
+    if (!n) return [...U].sort((x, y) => (x.short || x.name).localeCompare(y.short || y.name));
     const scored = [];
-    for (const a of AG) {
+    for (const a of U) {
       const ks = keysFor(a);
       let s = 0;
       if (ks.some(k => k === n)) s = 3;
       else if (ks.some(k => k.startsWith(n))) s = 2;
-      else if (n.length >= 4 && (ks.some(k => k.includes(n)) || norm(a.region + " " + a.country).includes(n))) s = 1;
+      else if (n.length >= 4 && (ks.some(k => k.includes(n)) || norm((a.region || "") + " " + (a.country || "")).includes(n))) s = 1;
       else if (n.length < 4 && String(a.name).toLowerCase().split(/[^a-z0-9]+/).some(w => w.startsWith(n))) s = 1;
       if (s) scored.push([s, a]);
     }
@@ -47,10 +70,16 @@
 
   /* ---------- result panel ---------- */
   function statusRows(agency, freeText) {
-    let h = agency
-      ? `<div class="st yes"><b>On the cRc list</b>Recommended by the cRc${agency.note ? ". " + esc(agency.note) : "."}</div>`
-      : `<div class="st no"><b>Not on the cRc list</b>No agency on the cRc recommended list matches. The cRc notes that an agency not on its list is not necessarily substandard; ask your rav.</div>`;
-    for (const L of allLists()) {
+    const lists = checkedLists();
+    if (!lists.length) return `<div class="status"><div class="st no"><b>No list chosen</b>Tick at least one list under "Check against".</div></div>`;
+    let h = "";
+    for (const L of lists) {
+      if (L.crc) {
+        h += agency
+          ? `<div class="st yes"><b>On the cRc recommended list</b>${agency.note ? esc(agency.note) : "Recommended by the cRc."}</div>`
+          : `<div class="st no"><b>Not on the cRc recommended list</b>The cRc notes that an agency not on its list is not necessarily substandard; ask your rav.</div>`;
+        continue;
+      }
       const hit = inList(L, agency, freeText);
       h += hit ? `<div class="st yes"><b>On ${esc(L.name)}</b>Listed as ${esc(hit.name)}</div>`
                : `<div class="st no"><b>Not on ${esc(L.name)}</b>No entry on this list matches.</div>`;
@@ -86,8 +115,8 @@
   }
   function railEmpty() {
     current = { kind: null };
-    rail.innerHTML = `<div class="rail-sec"><div class="label">Result</div><p class="small" style="margin:4px 0 0">Scan a symbol, or choose it from the list. The answer shows here: whether the agency is on the cRc list, and on each list you add.</p></div>
-      <div class="rail-sec"><div class="label">Lists checked</div><p class="small" style="margin:4px 0 0">cRc recommended agencies (${AG.length})${allLists().map(l => "<br>" + esc(l.name) + " (" + l.entries.length + ")").join("")}</p></div>`;
+    rail.innerHTML = `<div class="rail-sec"><div class="label">Result</div><p class="small" style="margin:4px 0 0">Scan a symbol, or choose it from the list. The answer shows here: whether the agency is on each list you tick.</p></div>
+      <div class="rail-sec"><div class="label">Checking against</div><p class="small" style="margin:4px 0 0">${checkedLists().map(l => esc(l.name) + " (" + l.entries.length + ")").join("<br>") || "No list chosen"}</p></div>`;
   }
   const reveal = () => { if (window.matchMedia("(max-width: 900px)").matches) rail.scrollIntoView({ behavior: "smooth", block: "start" }); };
   function refreshRail() {
@@ -106,12 +135,14 @@
     const q = box.value.trim();
     opts = searchAgencies(q);
     active = opts.length ? 0 : -1;
-    listEl.innerHTML = opts.map((a, i) => `<li role="option" id="opt-${a.id}" data-id="${a.id}" aria-selected="${i === active}"><span class="lg">${logoImg(a)}</span><span class="tx"><b>${esc(a.short || a.name)}</b>${a.short ? `<span>${esc(a.name)}</span>` : ""}<span class="loc">${esc([a.region, a.country].filter(Boolean).join(", "))}</span></span></li>`).join("")
-      || `<li class="none">No agency on the cRc list matches “${esc(q)}”. <button class="btn ghost" id="checkfree" type="button">Check “${esc(q)}” against my lists</button></li>`;
+    listEl.innerHTML = opts.map((a, i) => `<li role="option" id="opt-${a.id}" data-id="${a.id}" aria-selected="${i === active}"><span class="lg">${logoImg(a)}</span><span class="tx"><b>${esc(a.short || a.name)}</b>${a.short ? `<span>${esc(a.name)}</span>` : ""}<span class="loc">${esc(a.extra ? "On " + a.listName : [a.region, a.country].filter(Boolean).join(", "))}</span></span></li>`).join("")
+      || `<li class="none">No agency on the lists you ticked matches “${esc(q)}”. <button class="btn ghost" id="checkfree" type="button">Check “${esc(q)}” against my lists</button></li>`;
     const cf = $("checkfree"); if (cf) cf.onclick = e => { e.stopPropagation(); openList(false); showUnmatched(q); reveal(); };
-    $("agcount").textContent = q ? `${opts.length} of ${AG.length}` : `${AG.length} agencies on the cRc list`;
+    $("agcount").textContent = `${opts.length} ${opts.length === 1 ? "agency" : "agencies"} on the lists you ticked`;
   }
-  function pick(id) { const a = byId[id]; if (!a) return; box.value = a.short || a.name; openList(false); showAgency(id); reveal(); }
+  function pick(id) {
+    const x = extrasById[id]; if (x) { box.value = x.name; openList(false); showUnmatched(x.name, "On " + x.listName); reveal(); return; }
+    const a = byId[id]; if (!a) return; box.value = a.short || a.name; openList(false); showAgency(id); reveal(); }
   function setActive(i) {
     if (!opts.length) return;
     active = (i + opts.length) % opts.length;
@@ -228,7 +259,8 @@
     if (reset) {
       shown = 0;
       const q = norm($("q").value), st = $("fstate").value, ag = $("fagency").value, cat = $("fcat").value, ty = $("ftype").value;
-      filtered = PLACES.filter(p => (!st || p.st === st) && (!ag || p.a === ag) && (!cat || (p.k || "").includes(cat)) && (!ty || p.t === ty) &&
+      const useLists = checkedLists().length > 0;
+      filtered = PLACES.filter(p => (!useLists || agencyOnChecked(byId[p.a])) && (!st || p.st === st) && (!ag || p.a === ag) && (!cat || (p.k || "").includes(cat)) && (!ty || p.t === ty) &&
         (!q || norm([p.n, p.ci, p.z, p.ad, (p.c || []).join(" ")].join(" ")).includes(q)));
     }
     const slice = filtered.slice(0, shown + PAGE); shown = slice.length;
@@ -281,6 +313,18 @@
     } catch { $("rows").innerHTML = `<div class="panel small">The list of places did not load. Reload the page to try again.</div>`; }
   }
 
+  /* ---------- list picker (tick one or more lists) ---------- */
+  function renderPicks() {
+    const html = `<span class="lp-label">Check against</span>` + allLists().map(L => `<label class="lpc"><input type="checkbox" data-l="${esc(L.id)}" ${checked.has(L.id) ? "checked" : ""}> ${esc(L.name)} <span class="n">${L.entries.length}</span></label>`).join("");
+    document.querySelectorAll(".listpick").forEach(el => el.innerHTML = html);
+  }
+  document.addEventListener("change", e => {
+    const cb = e.target.closest(".listpick input[type=checkbox]"); if (!cb) return;
+    cb.checked ? checked.add(cb.dataset.l) : checked.delete(cb.dataset.l);
+    try { localStorage.setItem(CK_KEY, JSON.stringify([...checked])); } catch {}
+    renderPicks(); renderLogos(); refreshRail(); if (PLACES.length) renderRows(true);
+  });
+
   /* ---------- lists ---------- */
   function renderLists() {
     $("listrows").innerHTML = `<tr><td><b>cRc recommended agencies</b><div class="small muted">Built in</div></td><td>${AG.length}</td><td><a href="${esc(CRC.source)}" target="_blank" rel="noopener">crckosher.org</a>, ${esc(CRC.fetched)}</td><td></td></tr>` +
@@ -291,21 +335,23 @@
   $("listrows").addEventListener("click", e => {
     const b = e.target.closest("[data-del]"); if (!b) return;
     if (b.dataset.confirm !== "1") { b.dataset.confirm = "1"; b.textContent = "Tap again to remove"; return; }
-    myLists.splice(+b.dataset.del, 1); saveMine(); renderLists(); refreshRail(); toast("List removed");
+    myLists.splice(+b.dataset.del, 1); saveMine(); renderLists(); renderPicks(); refreshRail(); toast("List removed");
   });
   const parseList = text => text.split(/\r?\n/).map(l => l.trim()).filter(Boolean).map(l => { const [n, al] = l.split("|"); return { name: n.trim(), aliases: (al || "").split(",").map(s => s.trim()).filter(Boolean) }; });
   $("lsave").onclick = () => {
     const name = $("lname").value.trim(), entries = parseList($("lbody").value);
     if (!name) { $("lmsg").textContent = "Give the list a name."; return; }
     if (!entries.length) { $("lmsg").textContent = "Paste at least one agency."; return; }
-    myLists.push({ name, source: $("lsrc").value.trim(), entries });
+    const id = "my" + Date.now(); myLists.push({ id, name, source: $("lsrc").value.trim(), entries }); checked.add(id);
+    try { localStorage.setItem(CK_KEY, JSON.stringify([...checked])); } catch {}
     if (!saveMine()) $("lmsg").textContent = "This browser will not keep the list after you close the page.";
     else $("lmsg").textContent = "";
     $("lname").value = $("lsrc").value = $("lbody").value = "";
-    renderLists(); refreshRail(); toast("List saved");
+    renderLists(); renderPicks(); refreshRail(); toast("List saved");
   };
   try { myLists = JSON.parse(localStorage.getItem(LS_KEY) || "[]"); } catch { myLists = []; }
-  fetch("kosher-lists.json").then(r => r.ok ? r.json() : { lists: [] }).then(d => { builtinLists = d.lists || []; renderLists(); refreshRail(); }).catch(() => {});
+  myLists.forEach((l, i) => { if (!l.id) l.id = "my" + i; });
+  fetch("kosher-lists.json").then(r => r.ok ? r.json() : { lists: [] }).then(d => { builtinLists = d.lists || []; renderLists(); renderPicks(); refreshRail(); }).catch(() => {});
 
   /* ---------- views ---------- */
   let curView = "check";
@@ -317,7 +363,7 @@
   }
   document.querySelector(".tabs").addEventListener("click", e => { const b = e.target.closest("button"); if (b) go(b.dataset.view); });
 
-  renderLogos(); renderLists(); railEmpty(); loadPlaces();
+  renderPicks(); renderLogos(); renderLists(); railEmpty(); loadPlaces();
   let start = "check"; try { start = localStorage.getItem("kf-view") || "check"; } catch {}
   if (["#check", "#eat", "#lists"].includes(location.hash)) start = location.hash.slice(1);
   const deep = location.hash.slice(1);
