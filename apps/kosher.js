@@ -378,7 +378,7 @@
   });
   async function loadPlaces() {
     try {
-      const d = await (await fetch("kosher-places.json?v=202610181653")).json();
+      const d = await (await fetch("kosher-places.json?v=202610181656")).json();
       PLACES = d.places; META = d.meta;
       const np = $("n-pl"); if (np) np.textContent = PLACES.length.toLocaleString();
       const na = $("n-ag"); if (na) na.textContent = AG.length;
@@ -442,7 +442,7 @@
   };
   try { myLists = JSON.parse(localStorage.getItem(LS_KEY) || "[]"); } catch { myLists = []; }
   myLists.forEach((l, i) => { if (!l.id) l.id = "my" + i; });
-  fetch("kosher-lists.json?v=202610181653").then(r => r.ok ? r.json() : { lists: [] }).then(d => { builtinLists = d.lists || []; renderLists(); renderPicks(); refreshRail(); }).catch(() => {});
+  fetch("kosher-lists.json?v=202610181656").then(r => r.ok ? r.json() : { lists: [] }).then(d => { builtinLists = d.lists || []; renderLists(); renderPicks(); refreshRail(); }).catch(() => {});
 
   /* ---------- views ---------- */
   let curView = "check";
@@ -454,6 +454,7 @@
   function go(v) {
     curView = v;
     if (v === "eat") { placeRail(); setTimeout(() => { if (map) { map.invalidateSize(); drawMap(true); } }, 60); } else if (v === "check") refreshRail();
+    else if (v === "lists") rail.innerHTML = `<div class="rail-sec"><div class="label">Lists</div><p class="small" style="margin:4px 0 0">A list is the set of hechsherim you rely on. The cRc list is built in; add your own here. Tick lists on Check a hechsher and Places to eat to filter by them.</p></div><div class="rail-sec"><p class="small muted" style="margin:0">This is for assistance only. Statuses change, so please double-check the lists and the supervision.</p></div>`;
     ["check", "eat", "chabad", "lists"].forEach(x => { if ($("view-" + x)) { $("view-" + x).hidden = x !== v; $("nav-" + x).setAttribute("aria-pressed", x === v); } });
     if (v === "chabad" && window.KK_CHABAD) window.KK_CHABAD.show();
     try { localStorage.setItem("kf-view", v); } catch {}
