@@ -26,6 +26,7 @@
           ${c.ph ? `<dt>Phone</dt><dd><a href="tel:${esc(c.ph.replace(/[^0-9+]/g, ""))}">${esc(c.ph)}</a></dd>` : ""}
           ${c.w ? `<dt>Website</dt><dd><a href="${esc(href(c.w))}" target="_blank" rel="noopener">${esc(c.w.replace(/^https?:\/\//, "").replace(/\/$/, ""))}</a></dd>` : ""}
         </dl></div>
+      ${c.kg && c.kg.length ? `<div class="rail-sec"><div class="label">Kosher guide on their site</div>${c.kg.map(k => `<div class="small" style="margin-top:4px"><a href="${esc(k.href)}" target="_blank" rel="noopener">${esc(k.text || "Kosher page")}</a></div>`).join("")}</div>` : ""}
       ${svc.length ? `<div class="rail-sec"><div class="label">Offers</div><div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:4px">${svc.map(x => `<span class="chip${highlight.has(x) ? " hl" : ""}">${esc(x === "Guest Accomodations" ? "Guest accommodations" : x)}</span>`).join("")}</div></div>` : ""}
       <div class="rail-sec"><p class="small muted" style="margin:0">${NOTE}</p></div>`;
   }
@@ -50,16 +51,18 @@
       shown = 0;
       const q = norm($("cq").value), st = $("cstate").value, ty = $("ctype").value;
       const need = [...document.querySelectorAll(".cfeat:checked")].map(x => FEAT[x.value]);
-      filtered = C.filter(c => (!st || c.st === st) && (!ty || c.t === ty) && need.every(n => (c.s || []).includes(n)) &&
+      const food = $("cfood") ? $("cfood").checked : true;
+      const FOOD = [FEAT.hosp, FEAT.store, FEAT.meals];
+      filtered = C.filter(c => (!food || (c.kg && c.kg.length) || FOOD.some(x => (c.s || []).includes(x))) && (!st || c.st === st) && (!ty || c.t === ty) && need.every(n => (c.s || []).includes(n)) &&
         (!q || norm([c.n, c.ci, c.st, c.z, c.ad].join(" ")).includes(q)));
       if (here) { filtered.forEach(c => c._d = c.lat != null ? miles(here, [c.lat, c.lng]) : 1e9); filtered.sort((a, b) => a._d - b._d); }
       drawMap(true);
     }
     const slice = filtered.slice(0, shown + PAGE); shown = slice.length;
-    $("ccount").textContent = `${filtered.length.toLocaleString()} of ${C.length.toLocaleString()} Chabad centers shown.`;
+    $("ccount").textContent = `${filtered.length.toLocaleString()} of ${C.length.toLocaleString()} Chabad centers shown.${$("cfood") && $("cfood").checked ? " Showing centers that offer meals, a kosher store or a kosher guide." : ""}`;
     $("crows").innerHTML = slice.map((c, i) => `<button class="row" data-i="${i}"><div><div class="nm">${esc(c.n)}</div><div class="ad">${esc([c.ci, c.st, c.co === "Canada" ? "Canada" : ""].filter(Boolean).join(", "))}${here && c._d < 1e9 ? ` · ${c._d < 10 ? c._d.toFixed(1) : Math.round(c._d)} mi` : ""}</div></div>
       <div class="ag">${esc(c.t || "")}</div>
-      <div class="tags">${(c.s || []).filter(x => Object.values(FEAT).includes(x)).map(x => `<span class="chip hl">${esc(x === "Guest Accomodations" ? "Guest accommodations" : x)}</span>`).join("")}</div></button>`).join("") || `<div class="panel small">No Chabad centers match these choices.</div>`;
+      <div class="tags">${c.kg && c.kg.length ? `<span class="chip hl">Kosher guide</span>` : ""}${(c.s || []).filter(x => Object.values(FEAT).includes(x)).map(x => `<span class="chip hl">${esc(x === "Guest Accomodations" ? "Guest accommodations" : x)}</span>`).join("")}</div></button>`).join("") || `<div class="panel small">No Chabad centers match these choices.</div>`;
     $("cmore").hidden = shown >= filtered.length;
   }
   async function load() {
@@ -76,7 +79,7 @@
     } catch { $("crows").innerHTML = `<div class="panel small">The Chabad list did not load. Reload the page to try again.</div>`; }
   }
   ["cq", "cstate", "ctype"].forEach(id => $(id) && $(id).addEventListener(id === "cq" ? "input" : "change", () => render(true)));
-  document.addEventListener("change", e => { if (e.target.classList && e.target.classList.contains("cfeat")) render(true); });
+  document.addEventListener("change", e => { if (e.target.classList && (e.target.classList.contains("cfeat") || e.target.id === "cfood")) render(true); });
   if ($("cmore")) $("cmore").onclick = () => render(false);
   if ($("crows")) $("crows").addEventListener("click", e => {
     const b = e.target.closest(".row"); if (!b) return;

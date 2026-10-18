@@ -240,7 +240,7 @@ table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-ali
   <div class="spacer"></div>
   <div class="tabs" role="group" aria-label="View">
     <button id="nav-check" data-view="check" aria-pressed="true">Check a hechsher</button>
-    <button id="nav-eat" data-view="eat" aria-pressed="false">Places to eat</button><button id="nav-chabad" data-view="chabad" aria-pressed="false" hidden>Chabad</button>
+    <button id="nav-eat" data-view="eat" aria-pressed="false">Places to eat</button><button id="nav-chabad" data-view="chabad" aria-pressed="false">Chabad</button>
     <button id="nav-lists" data-view="lists" aria-pressed="false">Lists</button><a class="tablink" href="kosher-symbols.html">Symbols</a>
   </div>
   <a class="ll" href="../index.html" title="limudlab" aria-label="limudlab home"><span>ל</span></a>
@@ -318,8 +318,9 @@ table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-ali
       <div class="fl"><label for="cstate">State or province</label><select id="cstate"><option value="">All</option></select></div>
       <div class="fl"><label for="ctype">Kind of center</label><select id="ctype"><option value="">All</option></select></div>
     </div>
-    <div class="listpick" role="group" aria-label="Services">
+    <div class="listpick cpick" role="group" aria-label="Services">
       <span class="lp-label">Offers</span>
+      <label class="lpc"><input type="checkbox" id="cfood" checked> Food only (meals, kosher store or kosher guide)</label>
       <label class="lpc"><input type="checkbox" class="cfeat" value="hosp"> Shabbos and holiday meals</label>
       <label class="lpc"><input type="checkbox" class="cfeat" value="store"> Kosher store</label>
       <label class="lpc"><input type="checkbox" class="cfeat" value="meals"> Kosher meal plan</label>
@@ -356,9 +357,9 @@ table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-ali
 <div class="toast" id="toast" hidden></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
-<script src="kosher-agencies.js?v=202610172245"></script>
-<script src="kosher-chabad.js?v=202610172245"></script>
-<script src="kosher.js?v=202610172245"></script>
+<script src="kosher-agencies.js?v=202610172327"></script>
+<script src="kosher-chabad.js?v=202610172327"></script>
+<script src="kosher.js?v=202610172327"></script>
 <script>document.getElementById("hero-eat").onclick=function(){document.getElementById("nav-eat").click();window.scrollTo(0,0)};</script>
 </body>
 </html>

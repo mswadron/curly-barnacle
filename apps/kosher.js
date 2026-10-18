@@ -345,7 +345,7 @@
   });
   async function loadPlaces() {
     try {
-      const d = await (await fetch("kosher-places.json?v=202610172245")).json();
+      const d = await (await fetch("kosher-places.json?v=202610172327")).json();
       PLACES = d.places; META = d.meta;
       const np = $("n-pl"); if (np) np.textContent = PLACES.length.toLocaleString();
       const na = $("n-ag"); if (na) na.textContent = AG.length;
@@ -364,7 +364,7 @@
   /* ---------- list picker (tick one or more lists) ---------- */
   function renderPicks() {
     const html = `<span class="lp-label">Approved by</span>` + allLists().map(L => `<label class="lpc"><input type="checkbox" data-l="${esc(L.id)}" ${checked.has(L.id) ? "checked" : ""}> ${esc(L.name)} <span class="n">${L.entries.length}</span></label>`).join("");
-    document.querySelectorAll(".listpick").forEach(el => el.innerHTML = html + `<span class="lp-note">${DISCLAIMER}</span>`);
+    document.querySelectorAll(".listpick:not(.cpick)").forEach(el => el.innerHTML = html + `<span class="lp-note">${DISCLAIMER}</span>`);
   }
   document.addEventListener("change", e => {
     const cb = e.target.closest(".listpick input[type=checkbox]"); if (!cb) return;
@@ -399,7 +399,7 @@
   };
   try { myLists = JSON.parse(localStorage.getItem(LS_KEY) || "[]"); } catch { myLists = []; }
   myLists.forEach((l, i) => { if (!l.id) l.id = "my" + i; });
-  fetch("kosher-lists.json?v=202610172245").then(r => r.ok ? r.json() : { lists: [] }).then(d => { builtinLists = d.lists || []; renderLists(); renderPicks(); refreshRail(); }).catch(() => {});
+  fetch("kosher-lists.json?v=202610172327").then(r => r.ok ? r.json() : { lists: [] }).then(d => { builtinLists = d.lists || []; renderLists(); renderPicks(); refreshRail(); }).catch(() => {});
 
   /* ---------- views ---------- */
   let curView = "check";
