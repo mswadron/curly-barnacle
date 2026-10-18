@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Kosher Symbols · Kosher Kretchma · limudlab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Secular+One&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=Fredoka:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../skin.css">
+<style>
+:root{
+  --page:#e6ecf0; --card:#ffffff; --card-soft:#f4f7f9; --rule:#d5dde3; --rule-2:#c3cdd8;
+  --ink:#1c2a35; --mute:#5d6d79; --teal:#0e6e6a; --teal-deep:#0a4f4c; --teal-tint:#e3f1f0;
+  --ok:#2e6b3a; --ok-tint:#e5f2e8; --no:#9a3a22; --no-tint:#f8e9e4; --warn:#9a5b12; --warn-tint:#fbf1e3;
+  --meat:#a2394f; --dairy:#2f5d8a; --pareve:#3d7a32; --fish:#1f6f8b; --cy:#7a4e9a;
+  --food:#b5532a; --food-deep:#8a3c1c; --food-tint:#f7e9e1;
+  --he-title:'Secular One',sans-serif; --he:'IBM Plex Sans Hebrew',sans-serif; --en:'Fredoka','IBM Plex Sans Hebrew',sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--page);color:var(--ink)}
+body{font-family:var(--en);font-size:16px;line-height:1.55}
+a{color:var(--teal)}
+[hidden]{display:none!important}
+
+.top{position:sticky;top:0;z-index:5;background:var(--page);border-bottom:1px solid var(--rule)}
+.top-in{max-width:1200px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink)}
+.logo{width:30px;height:30px;border-radius:7px;background:var(--teal);color:#fff;display:grid;place-items:center;font-family:var(--he-title);font-size:15px;line-height:1}
+.brand-name{font-weight:600;font-size:17px}
+.spacer{flex:1}
+.tabs{display:flex;border:1px solid var(--teal);border-radius:8px;overflow:hidden}
+.tabs button{border:0;background:transparent;color:var(--teal);font:500 14px var(--en);padding:7px 14px;cursor:pointer}
+.tabs button+button{border-left:1px solid var(--teal)}
+.tabs button[aria-pressed="true"]{background:var(--teal);color:#fff}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,label.btn:focus-within{outline:2px solid var(--teal);outline-offset:2px}
+
+main{max-width:1200px;margin:0 auto;padding:18px 16px 70px;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:20px;align-items:start}
+@media (max-width:900px){main{grid-template-columns:minmax(0,1fr)}}
+h1{font-family:var(--en);font-weight:600;color:var(--teal-deep);font-size:clamp(24px,5vw,32px);line-height:1.2;margin:0}
+/* app mark: same rounded tile as the limudlab logo, in the food accent, with plate, fork and knife */
+.app-brand{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+.app-tile{width:64px;height:64px;border-radius:16px;background:var(--food);color:#fff;display:grid;place-items:center;flex:none}
+.app-tile svg{width:46px;height:46px}
+.app-txt{display:flex;flex-direction:column;line-height:1.05}
+.app-txt .t1{font:600 30px var(--en);color:var(--ink)}
+.app-txt .t2{font:24px var(--he-title);color:var(--food)}
+@media (max-width:560px){.app-tile{width:52px;height:52px;border-radius:13px}.app-tile svg{width:38px;height:38px}.app-txt .t1{font-size:25px}.app-txt .t2{font-size:20px}}
+.foodline{display:flex;gap:14px;color:var(--food);opacity:.55;margin:2px 0 10px}
+.foodline svg{width:22px;height:22px}
+.ico{width:16px;height:16px;vertical-align:-3px;flex:none}
+.chip .ico{width:13px;height:13px;margin-right:3px;vertical-align:-2px}
+.label{color:var(--food-deep)}
+.btn.food{background:var(--food);border-color:var(--food)}
+.row .ic{color:var(--food)}
+.lede{color:var(--mute);margin:4px 0 16px;max-width:70ch}
+.panel{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:14px 16px}
+.rail{position:sticky;top:64px;background:var(--card);border:1px solid var(--rule);border-radius:10px;max-height:calc(100vh - 84px);overflow:auto}
+@media (max-width:900px){.rail{position:static;max-height:none}}
+.rail-sec{padding:14px 16px;border-bottom:1px solid var(--rule)}
+.rail-sec:last-child{border-bottom:0}
+.label{font-weight:600;font-size:13px;color:var(--teal);margin-bottom:4px}
+.btn{font:500 15px var(--en);border:1px solid var(--teal);background:var(--teal);color:#fff;padding:9px 16px;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--teal)}
+.btn[disabled]{opacity:.5;cursor:default}
+input[type=text],input[type=search],input[type=url],select,textarea{font:16px var(--en);color:var(--ink);background:var(--card);border:1px solid var(--rule-2);border-radius:8px;padding:8px 10px;min-width:0}
+textarea{width:100%;min-height:130px;font-size:15px}
+.fl{display:flex;flex-direction:column;min-width:0}
+.fl label{font-size:13px;color:var(--mute);margin-bottom:3px}
+.filters{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-bottom:12px}
+.filters input[type=search]{width:240px;max-width:100%}
+.muted{color:var(--mute)} .small{font-size:14px}
+.chip{display:inline-block;font-size:13px;font-weight:500;padding:1px 8px;border-radius:999px;background:var(--card-soft);border:1px solid var(--rule);color:var(--ink)}
+.chip.meat{background:var(--meat);border-color:var(--meat);color:#fff}
+.chip.dairy{background:var(--dairy);border-color:var(--dairy);color:#fff}
+.chip.pareve{background:var(--pareve);border-color:var(--pareve);color:#fff}
+.chip.fish{background:var(--fish);border-color:var(--fish);color:#fff}
+.chip.cy{background:var(--cy);border-color:var(--cy);color:#fff}
+
+/* scan */
+.scan{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:560px){.scan{grid-template-columns:minmax(0,1fr)}}
+.shot{aspect-ratio:1/1;max-width:100%;background:var(--card-soft);border:1px dashed var(--rule-2);border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.shot img{width:100%;height:100%;object-fit:contain}
+.shot .ph{color:var(--mute);text-align:center;padding:12px;font-size:14px}
+.cands{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.cand{display:flex;gap:10px;align-items:center;border:1px solid var(--rule);border-radius:8px;background:var(--card);padding:6px 10px;cursor:pointer;text-align:left;font:inherit;color:inherit}
+.cand:hover{background:var(--teal-tint)}
+.cand img{width:40px;height:40px;object-fit:contain;background:#fff;border-radius:4px}
+.logos{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+.tile{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:8px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;font:inherit;color:inherit;text-align:center}
+.tile:hover{background:var(--teal-tint)}
+.tile[aria-current="true"]{outline:2px solid var(--teal);outline-offset:-2px}
+.tile .lg{width:70px;height:70px;background:#fff;display:flex;align-items:center;justify-content:center}
+.tile img{max-width:70px;max-height:70px;object-fit:contain}
+.tile span{font-size:13px;line-height:1.25}
+.count{font-size:14px;color:var(--mute);font-variant-numeric:tabular-nums}
+.note{font-size:14px;color:var(--mute);border-top:1px solid var(--rule);padding-top:10px;margin-top:16px}
+
+.combo{position:relative}
+.combo input{width:100%}
+#aglist{position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:30;max-height:min(60vh,440px);overflow:auto;margin:0;padding:4px;list-style:none;background:var(--card);border:1px solid var(--rule-2);border-radius:8px;box-shadow:0 8px 24px rgba(20,32,46,.14)}
+#aglist li[role=option]{display:flex;gap:10px;align-items:center;padding:6px 8px;border-radius:6px;cursor:pointer}
+#aglist li[aria-selected="true"],#aglist li[role=option]:hover{background:var(--teal-tint)}
+#aglist .lg{width:44px;height:44px;flex:none;background:#fff;display:grid;place-items:center;border:1px solid var(--rule);border-radius:6px}
+#aglist .lg img{max-width:40px;max-height:40px;object-fit:contain}
+#aglist .tx{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+#aglist .tx span{font-size:13px;color:var(--mute)}
+#aglist li.none{padding:10px;color:var(--mute);font-size:14px}
+.combo-foot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:8px;font-size:14px}
+/* verdict */
+.verdict{display:flex;gap:12px;align-items:flex-start}
+.verdict .lg{width:80px;height:80px;flex:none;background:#fff;border:1px solid var(--rule);border-radius:8px;display:flex;align-items:center;justify-content:center}
+.verdict .lg img{max-width:74px;max-height:74px;object-fit:contain}
+.verdict h3{font-weight:600;font-size:19px;line-height:1.25;margin:0 0 2px}
+.status{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.st{padding:8px 10px;border-radius:8px;border-left:4px solid;font-size:15px}
+.st b{display:block;font-weight:600}
+.st.yes{border-color:var(--ok);background:var(--ok-tint)} .st.yes b{color:var(--ok)}
+.st.no{border-color:var(--no);background:var(--no-tint)} .st.no b{color:var(--no)}
+dl.kv{display:grid;grid-template-columns:76px minmax(0,1fr);gap:4px 10px;margin:8px 0 0;font-size:15px}
+dl.kv dt{color:var(--mute);font-size:13px;padding-top:2px}
+dl.kv dd{margin:0;overflow-wrap:anywhere}
+
+/* places */
+.rows{display:flex;flex-direction:column;gap:6px}
+.row{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:9px 12px;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;text-align:left;font:inherit;color:inherit;width:100%}
+.row:hover{background:var(--teal-tint)}
+.row[aria-current="true"]{outline:2px solid var(--teal);outline-offset:-2px}
+.row .nm{font-weight:600;font-size:16px}
+.row .ad{font-size:14px;color:var(--mute)}
+.row .ag{font-size:13px;color:var(--teal);text-align:right}
+.row .tags{grid-column:1/-1;display:flex;gap:4px;flex-wrap:wrap}
+table.lists{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--rule);font-size:15px}
+table.lists th{font-weight:600;font-size:13px;color:var(--mute);text-align:left;padding:8px 10px;border-bottom:1px solid var(--rule)}
+table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+.tablewrap{overflow-x:auto}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--teal-deep);color:#fff;padding:8px 14px;border-radius:8px;z-index:20}
+</style>
+<style>
+.symwrap{max-width:1200px;margin:0 auto;padding:18px 16px 70px}
+.syms{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.sym{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.sym-top{display:flex;gap:12px;align-items:center}
+.sym .lg{width:88px;height:88px;flex:none;background:#fff;border:1px solid var(--rule);border-radius:8px;display:grid;place-items:center}
+.sym .lg img{max-width:82px;max-height:82px;object-fit:contain}
+.sym h2{font-weight:600;font-size:19px;margin:0;line-height:1.2;color:var(--ink)}
+.sym .full{font-size:14px;color:var(--ink-2,#2a3a4c)}
+.sym .loc{font-size:13.5px;color:var(--mute)}
+.sym dl.kv{grid-template-columns:82px minmax(0,1fr);font-size:14px;margin-top:4px}
+.cnote{font-size:13.5px;color:var(--warn);background:var(--warn-tint);border-radius:6px;padding:6px 8px;margin:0}
+.sym-foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding-top:6px;border-top:1px solid var(--rule)}
+.sym-foot .pl{font-size:13.5px;color:var(--food-deep)}
+.sym-foot .btn{padding:6px 12px;font-size:14px}
+.tabs a.tablink{color:var(--teal);font:500 14px var(--en);padding:7px 14px;text-decoration:none;display:inline-block}.tabs a.tablink+a.tablink{border-left:1px solid var(--teal)}.tabs a.tablink.on{background:var(--teal);color:#fff}
+</style>
+</head>
+<body data-check="kosher.html">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-plate" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="24" cy="25" r="12.5"/><circle cx="24" cy="25" r="7.5" stroke-width="1.8"/>
+      <path d="M6 8v9a3 3 0 0 0 3 3v20M9 8v8M12 8v9a3 3 0 0 1-3 3"/>
+      <path d="M41 40V8c-3 2-4.5 6-4.5 11v4H41"/>
+    </symbol>
+    <symbol id="i-meat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14.5 4.5a5.5 5.5 0 0 1 5 7.8c-1.3 2.6-4.6 3.5-6.8 3.5l-4 4a1.8 1.8 0 1 1-2.5-2.5 1.8 1.8 0 1 1-2.5-2.5l4-4c0-2.2.9-5.5 3.5-6.8a5.6 5.6 0 0 1 3.3-.5z"/>
+    </symbol>
+    <symbol id="i-cup" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 3h8l-1 3v2l2 3v9a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-9l2-3V6z"/><path d="M7 13h10"/>
+    </symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 19c0-8 5-14 15-14 0 10-6 15-14 15"/><path d="M5 19c3-4 6-7 10-9"/>
+    </symbol>
+    <symbol id="i-fish" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 12c3-4 7-6 11-5 3 1 5 3 6 5-1 2-3 4-6 5-4 1-8-1-11-5z"/><path d="M3 12l-1.5-3M3 12l-1.5 3"/><circle cx="16" cy="11" r=".8" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-bread" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 11a4 4 0 0 1 2-7.5h10A4 4 0 0 1 19 11v8a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z"/><path d="M9 9l2 2M13 8l2 2"/>
+    </symbol>
+    <symbol id="i-cake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 20h16v-8H4z"/><path d="M4 15c2 1.5 4 1.5 5.3 0 1.4 1.5 4 1.5 5.4 0 1.3 1.5 3.3 1.5 5.3 0"/><path d="M12 12V8M12 5.5v.1"/>
+    </symbol>
+    <symbol id="i-store" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 9l1.5-5h13L20 9M4 9h16v11H4zM4 9a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0A2.7 2.7 0 0 0 20 9"/><path d="M10 20v-5h4v5"/>
+    </symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>
+    </symbol>
+  </defs>
+</svg>
+<header class="top"><div class="top-in">
+  <a class="brand" href="../index.html"><span class="logo">ל</span><span class="brand-name">limudlab</span></a>
+  <div class="spacer"></div>
+  <div class="tabs" role="group" aria-label="View"><a class="tablink" href="kosher.html#check">Check a hechsher</a><a class="tablink" href="kosher.html#eat">Places to eat</a><a class="tablink on" href="kosher-symbols.html">Symbols</a></div>
+</div></header>
+
+<div class="symwrap">
+  <div class="app-brand">
+    <div class="app-tile" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#i-plate"/></svg></div>
+    <div class="app-txt"><h1 class="t1">Kosher symbols</h1><span class="t2">on the cRc recommended list</span></div>
+  </div>
+  <p class="lede">Every agency the cRc recommends, with its symbol and a snapshot: where it is, its rav, how to reach it, and how many places to eat it certifies in Kosher Kretchma. Tap "Check this symbol" to see it on your lists.</p>
+  <div class="filters">
+    <div class="fl"><label for="symq">Search</label><input id="symq" type="search" placeholder="Name, letters, city" autocomplete="off"></div>
+    <div class="fl"><label for="symcountry">Country</label><select id="symcountry"><option value="">All</option></select></div>
+    <div class="count" id="symcount" style="padding-bottom:9px"></div>
+  </div>
+  <div class="syms" id="syms"></div>
+  <p class="note">From the cRc's notes on its list: an agency that is not listed is not necessarily substandard. Source: <a href="https://consumer.crckosher.org/acceptable-kashrus-agencies/" target="_blank" rel="noopener">cRc Acceptable Kashrus Agencies</a>, copied <span id="crcdate"></span>.</p>
+</div>
+<script src="kosher-agencies.js"></script>
+<script src="kosher-symbols.js"></script>
+<script defer src="../site-chrome.js"></script>
+</body>
+</html>
