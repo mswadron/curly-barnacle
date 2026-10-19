@@ -1,6 +1,14 @@
 /* Kosher Kretchma: Chabad centers (from the Chabad.org center directory), with a map and the services a traveler needs. */
 (function () {
   "use strict";
+  /* List follows the map: zoomed in (level 7+), show only what is inside the map view, nearest the center first. */
+  window.KK_VIEW = window.KK_VIEW || function (map, arr, here) {
+    if (!map || here || map.getZoom() < 7) return arr;
+    const b = map.getBounds(), c = map.getCenter(), R = 3958.8, t = x => x * Math.PI / 180;
+    const dist = (la, lo) => { const h = Math.sin(t(la - c.lat) / 2) ** 2 + Math.cos(t(c.lat)) * Math.cos(t(la)) * Math.sin(t(lo - c.lng) / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); };
+    return arr.filter(x => x.lat != null && b.contains([x.lat, x.lng])).map(x => [dist(x.lat, x.lng), x]).sort((a, z) => a[0] - z[0]).map(x => x[1]);
+  };
+  window.KK_VIEWNOTE = (list, all) => list === all ? "" : ` <b>${list.length.toLocaleString()} in this map area</b>, nearest the middle of the map first. Move or zoom out the map to see others.`;
   /* "You are here": one dot that moves in place as the device moves; the map follows until the user drags it. */
   window.KK_YOU = window.KK_YOU || function (map, ll, acc) {
     if (!map.getPane("you")) { map.createPane("you").style.zIndex = 650; }
@@ -44,7 +52,7 @@
   const href = u => /^https?:/.test(u) ? u : "https://" + u;
   const NOTE = "Chabad centers are listed from the Chabad.org directory. A Chabad House is not a kosher certification listing; call ahead about meals and kashrus. This is for assistance only.";
   const FEAT = { hosp: "Shabbat/Holiday Hospitality", store: "Kosher Store", meals: "Kosher Meal Plan", guest: "Guest Accomodations", kosher: "Kitchen Koshering" };
-  let C = [], META = null, filtered = [], shown = 0, map = null, layer = null, ready = false, current = null, here = null;
+  let C = [], META = null, filtered = [], list = [], quiet = false, shown = 0, map = null, layer = null, ready = false, current = null, here = null;
   const PAGE = 150, rail = () => $("rail");
 
   function railPrompt() {
@@ -70,6 +78,7 @@
   function initMap() {
     if (map || !window.L || !$("cmap")) return;
     map = L.map("cmap", { scrollWheelZoom: false }).setView([42, -95], 4);
+    map.on("moveend", () => { if (quiet) { quiet = false; return; } if (!here && C.length) { shown = 0; render(false); } });
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
     layer = L.markerClusterGroup ? L.markerClusterGroup({ showCoverageOnHover: false, maxClusterRadius: 45 }) : L.layerGroup();
     map.addLayer(layer);
@@ -95,12 +104,13 @@
       if (here) { filtered.forEach(c => c._d = c.lat != null ? miles(here, [c.lat, c.lng]) : 1e9); filtered.sort((a, b) => a._d - b._d); }
       drawMap(true);
     }
-    const slice = filtered.slice(0, shown + PAGE); shown = slice.length;
-    $("ccount").textContent = `${filtered.length.toLocaleString()} of ${C.length.toLocaleString()} Chabad centers shown.${$("cfood") && $("cfood").checked ? " Showing centers that offer meals, a kosher store or a kosher guide." : ""}`;
+    list = window.KK_VIEW(map, filtered, here);
+    const slice = list.slice(0, shown + PAGE); shown = slice.length;
+    $("ccount").innerHTML = `${filtered.length.toLocaleString()} of ${C.length.toLocaleString()} Chabad centers shown.${window.KK_VIEWNOTE(list, filtered)}${$("cfood") && $("cfood").checked ? " Showing centers that offer meals, a kosher store or a kosher guide." : ""}`;
     $("crows").innerHTML = slice.map((c, i) => `<button class="row" data-i="${i}"><div><div class="nm">${esc(c.n)}</div><div class="ad">${esc([c.ci, c.st, c.co === "Canada" ? "Canada" : ""].filter(Boolean).join(", "))}${here && c._d < 1e9 ? ` · ${c._d < 10 ? c._d.toFixed(1) : Math.round(c._d)} mi` : ""}</div></div>
       <div class="ag">${esc(c.t || "")}</div>
       <div class="tags">${c.kg && c.kg.length ? `<span class="chip hl">Kosher guide</span>` : ""}${(c.s || []).filter(x => Object.values(FEAT).includes(x)).map(x => `<span class="chip hl">${esc(x === "Guest Accomodations" ? "Guest accommodations" : x)}</span>`).join("")}</div></button>`).join("") || `<div class="panel small">No Chabad centers match these choices.</div>`;
-    $("cmore").hidden = shown >= filtered.length;
+    $("cmore").hidden = shown >= list.length;
   }
   async function load() {
     if (ready) return; ready = true;
@@ -121,8 +131,8 @@
   if ($("crows")) $("crows").addEventListener("click", e => {
     const b = e.target.closest(".row"); if (!b) return;
     document.querySelectorAll("#crows .row").forEach(r => r.setAttribute("aria-current", r === b ? "true" : "false"));
-    const c = filtered[+b.dataset.i]; showCenter(c);
-    if (c.lat != null && map) map.setView([c.lat, c.lng], Math.max(map.getZoom(), 14));
+    const c = list[+b.dataset.i]; showCenter(c);
+    if (c.lat != null && map) { quiet = true; setTimeout(() => { quiet = false; }, 900); } if (c.lat != null && map) map.setView([c.lat, c.lng], Math.max(map.getZoom(), 14));
     if (window.matchMedia("(max-width: 900px)").matches) rail().scrollIntoView({ behavior: "smooth", block: "start" });
   });
   if ($("cnear")) $("cnear").onclick = () => {

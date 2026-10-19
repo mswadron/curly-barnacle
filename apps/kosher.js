@@ -4,6 +4,14 @@
    logo images on the device and offers the closest-looking logos to confirm. */
 (function () {
   "use strict";
+  /* List follows the map: zoomed in (level 7+), show only what is inside the map view, nearest the center first. */
+  window.KK_VIEW = window.KK_VIEW || function (map, arr, here) {
+    if (!map || here || map.getZoom() < 7) return arr;
+    const b = map.getBounds(), c = map.getCenter(), R = 3958.8, t = x => x * Math.PI / 180;
+    const dist = (la, lo) => { const h = Math.sin(t(la - c.lat) / 2) ** 2 + Math.cos(t(c.lat)) * Math.cos(t(la)) * Math.sin(t(lo - c.lng) / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); };
+    return arr.filter(x => x.lat != null && b.contains([x.lat, x.lng])).map(x => [dist(x.lat, x.lng), x]).sort((a, z) => a[0] - z[0]).map(x => x[1]);
+  };
+  window.KK_VIEWNOTE = (list, all) => list === all ? "" : ` <b>${list.length.toLocaleString()} in this map area</b>, nearest the middle of the map first. Move or zoom out the map to see others.`;
   /* "You are here": one dot that moves in place as the device moves; the map follows until the user drags it. */
   window.KK_YOU = window.KK_YOU || function (map, ll, acc) {
     if (!map.getPane("you")) { map.createPane("you").style.zIndex = 650; }
@@ -294,7 +302,7 @@
   let PLACES = [], META = null, shown = 0, filtered = [], placesByAgency = {}, pendingAgency = null;
   const PAGE = 150;
   function catChip(k) { if (!k) return ""; const key = k.split(/[ &]/)[0]; return `<span class="chip ${esc(key)}">${ICON[key] ? svg(ICON[key]) : ""}${esc(k)}</span>`; }
-  let map = null, cluster = null, here = null;
+  let map = null, cluster = null, here = null, list = [], quiet = false;
   function initMap() {
     if (map || !window.L || !$("map")) return;
     map = L.map("map", { scrollWheelZoom: false }).setView([39.5, -98.35], 4);
@@ -304,6 +312,7 @@
     }).addTo(map);
     cluster = L.markerClusterGroup ? L.markerClusterGroup({ showCoverageOnHover: false, maxClusterRadius: 45 }) : L.layerGroup();
     map.addLayer(cluster);
+    map.on("moveend", () => { if (quiet) { quiet = false; return; } if (!here && PLACES.length) { shown = 0; renderRows(false); } });
   }
   const pinIcon = () => L.divIcon({ className: "kk-pin", html: '<span></span>', iconSize: [22, 22], iconAnchor: [11, 21] });
   function drawMap(fit) {
@@ -336,9 +345,10 @@
     }
     if (reset && here) { filtered.forEach(p => p._d = p.lat != null ? miles(here, [p.lat, p.lng]) : 1e9); filtered.sort((x, y) => x._d - y._d); }
     if (reset) drawMap(true);
-    const slice = filtered.slice(0, shown + PAGE); shown = slice.length;
+    list = window.KK_VIEW(map, filtered, here);
+    const slice = list.slice(0, shown + PAGE); shown = slice.length;
     const hidden = checkedLists().length ? PLACES.filter(p => !agencyOnChecked(byId[p.a])).length : 0;
-    $("eatcount").innerHTML = `${filtered.length.toLocaleString()} of ${PLACES.length.toLocaleString()} places shown.` + (hidden ? ` ${hidden.toLocaleString()} more are under agencies not on the lists you ticked. <button class="linkbtn" type="button" id="showall">Show them too</button>` : "");
+    $("eatcount").innerHTML = `${filtered.length.toLocaleString()} of ${PLACES.length.toLocaleString()} places shown.` + window.KK_VIEWNOTE(list, filtered) + (hidden ? ` ${hidden.toLocaleString()} more are under agencies not on the lists you ticked. <button class="linkbtn" type="button" id="showall">Show them too</button>` : "");
     const sa = $("showall"); if (sa) sa.onclick = () => { checked.clear(); try { localStorage.setItem(CK_KEY, "[]"); } catch {} renderPicks(); renderRows(true); };
     $("rows").innerHTML = slice.map((p, i) => {
       const a = byId[p.a];
@@ -346,7 +356,7 @@
         <div class="ag">${esc(a ? (a.short || a.name) : p.an || "")}</div>
         <div class="tags">${catChip(p.k)}${p.cy ? `<span class="chip cy">Cholov Yisroel</span>` : ""}${p.t ? `<span class="chip">${esc(p.t)}</span>` : ""}${(p.c || []).slice(0, 3).map(c => `<span class="chip">${esc(c)}</span>`).join("")}</div></button>`;
     }).join("") || `<div class="panel small">No places match these choices.</div>`;
-    $("more").hidden = shown >= filtered.length;
+    $("more").hidden = shown >= list.length;
   }
   $("more").onclick = () => renderRows(false);
   ["q", "fstate", "fagency", "fcat", "ftype"].forEach(id => $(id).addEventListener(id === "q" ? "input" : "change", () => renderRows(true)));
@@ -372,13 +382,13 @@
   $("rows").addEventListener("click", e => {
     const b = e.target.closest(".row"); if (!b) return;
     document.querySelectorAll(".row").forEach(r => r.setAttribute("aria-current", r === b ? "true" : "false"));
-    const p = filtered[+b.dataset.i];
-    showPlace(p); if (p.lat != null && map) { map.setView([p.lat, p.lng], Math.max(map.getZoom(), 15)); }
+    const p = list[+b.dataset.i];
+    showPlace(p); if (p.lat != null && map) { quiet = true; setTimeout(() => { quiet = false; }, 900); map.setView([p.lat, p.lng], Math.max(map.getZoom(), 15)); }
     setTimeout(reveal, 0);
   });
   async function loadPlaces() {
     try {
-      const d = await (await fetch("kosher-places.json?v=202610181656")).json();
+      const d = await (await fetch("kosher-places.json?v=202610182154")).json();
       PLACES = d.places; META = d.meta;
       const np = $("n-pl"); if (np) np.textContent = PLACES.length.toLocaleString();
       const na = $("n-ag"); if (na) na.textContent = AG.length;
@@ -442,7 +452,7 @@
   };
   try { myLists = JSON.parse(localStorage.getItem(LS_KEY) || "[]"); } catch { myLists = []; }
   myLists.forEach((l, i) => { if (!l.id) l.id = "my" + i; });
-  fetch("kosher-lists.json?v=202610181656").then(r => r.ok ? r.json() : { lists: [] }).then(d => { builtinLists = d.lists || []; renderLists(); renderPicks(); refreshRail(); }).catch(() => {});
+  fetch("kosher-lists.json?v=202610182154").then(r => r.ok ? r.json() : { lists: [] }).then(d => { builtinLists = d.lists || []; renderLists(); renderPicks(); refreshRail(); }).catch(() => {});
 
   /* ---------- views ---------- */
   let curView = "check";
