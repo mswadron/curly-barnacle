@@ -302,7 +302,7 @@
   let PLACES = [], META = null, shown = 0, filtered = [], placesByAgency = {}, pendingAgency = null;
   const PAGE = 150;
   function catChip(k) { if (!k) return ""; const key = k.split(/[ &]/)[0]; return `<span class="chip ${esc(key)}">${ICON[key] ? svg(ICON[key]) : ""}${esc(k)}</span>`; }
-  let map = null, cluster = null, here = null, list = [], quiet = false;
+  let map = null, cluster = null, here = null, list = [], quiet = false, viewOn = false;
   function initMap() {
     if (map || !window.L || !$("map")) return;
     map = L.map("map", { scrollWheelZoom: false }).setView([39.5, -98.35], 4);
@@ -312,7 +312,7 @@
     }).addTo(map);
     cluster = L.markerClusterGroup ? L.markerClusterGroup({ showCoverageOnHover: false, maxClusterRadius: 45 }) : L.layerGroup();
     map.addLayer(cluster);
-    map.on("moveend", () => { if (quiet) { quiet = false; return; } if (!here && PLACES.length) { shown = 0; renderRows(false); } });
+    map.on("moveend", () => { if (quiet) { quiet = false; return; } viewOn = true; if (!here && PLACES.length) { shown = 0; renderRows(false); } });
   }
   const pinIcon = () => L.divIcon({ className: "kk-pin", html: '<span></span>', iconSize: [22, 22], iconAnchor: [11, 21] });
   function drawMap(fit) {
@@ -326,7 +326,7 @@
       cluster.addLayer(m);
     });
     $("mapnote").textContent = `${pts.length.toLocaleString()} of ${filtered.length.toLocaleString()} on the map. The rest have no street address on the agency's list.`;
-    if (fit && pts.length && !here) map.fitBounds(L.latLngBounds(pts.map(p => [p.lat, p.lng])), { padding: [24, 24], maxZoom: 14 });
+    if (fit && pts.length && !here) (quiet = true, setTimeout(() => { quiet = false; }, 900), map).fitBounds(L.latLngBounds(pts.map(p => [p.lat, p.lng])), { padding: [24, 24], maxZoom: 14 });
   }
   const miles = (a, b) => { const R = 3958.8, t = x => x * Math.PI / 180, dLa = t(b[0] - a[0]), dLo = t(b[1] - a[1]); const h = Math.sin(dLa / 2) ** 2 + Math.cos(t(a[0])) * Math.cos(t(b[0])) * Math.sin(dLo / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); };
   if ($("nearme")) $("nearme").onclick = () => {
@@ -337,6 +337,7 @@
   };
   function renderRows(reset) {
     if (reset) {
+      viewOn = false;
       shown = 0;
       const q = norm($("q").value), st = $("fstate").value, ag = $("fagency").value, cat = $("fcat").value, ty = $("ftype").value;
       const useLists = checkedLists().length > 0;
@@ -360,7 +361,7 @@
     }
     if (reset && here) { filtered.forEach(p => p._d = p.lat != null ? miles(here, [p.lat, p.lng]) : 1e9); filtered.sort((x, y) => x._d - y._d); }
     if (reset) drawMap(true);
-    list = window.KK_VIEW(map, filtered, here);
+    list = window.KK_VIEW(viewOn ? map : null, filtered, here);
     const slice = list.slice(0, shown + PAGE); shown = slice.length;
     const hidden = checkedLists().length ? PLACES.filter(p => !agencyOnChecked(byId[p.a])).length : 0;
     $("eatcount").innerHTML = `${filtered.length.toLocaleString()} of ${PLACES.length.toLocaleString()} places shown.` + window.KK_VIEWNOTE(list, filtered) + (hidden ? ` ${hidden.toLocaleString()} more are under agencies not on the lists you ticked. <button class="linkbtn" type="button" id="showall">Show them too</button>` : "");
@@ -403,7 +404,7 @@
   });
   async function loadPlaces() {
     try {
-      const d = await (await fetch("kosher-places.json?v=202610182201")).json();
+      const d = await (await fetch("kosher-places.json?v=202610182202")).json();
       PLACES = d.places; META = d.meta;
       const np = $("n-pl"); if (np) np.textContent = PLACES.length.toLocaleString();
       const na = $("n-ag"); if (na) na.textContent = AG.length;
@@ -467,7 +468,7 @@
   };
   try { myLists = JSON.parse(localStorage.getItem(LS_KEY) || "[]"); } catch { myLists = []; }
   myLists.forEach((l, i) => { if (!l.id) l.id = "my" + i; });
-  fetch("kosher-lists.json?v=202610182201").then(r => r.ok ? r.json() : { lists: [] }).then(d => { builtinLists = d.lists || []; renderLists(); renderPicks(); refreshRail(); }).catch(() => {});
+  fetch("kosher-lists.json?v=202610182202").then(r => r.ok ? r.json() : { lists: [] }).then(d => { builtinLists = d.lists || []; renderLists(); renderPicks(); refreshRail(); }).catch(() => {});
 
   /* ---------- views ---------- */
   let curView = "check";

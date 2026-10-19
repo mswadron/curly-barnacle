@@ -52,7 +52,7 @@
   const href = u => /^https?:/.test(u) ? u : "https://" + u;
   const NOTE = "Chabad centers are listed from the Chabad.org directory. A Chabad House is not a kosher certification listing; call ahead about meals and kashrus. This is for assistance only.";
   const FEAT = { hosp: "Shabbat/Holiday Hospitality", store: "Kosher Store", meals: "Kosher Meal Plan", guest: "Guest Accomodations", kosher: "Kitchen Koshering" };
-  let C = [], META = null, filtered = [], list = [], quiet = false, shown = 0, map = null, layer = null, ready = false, current = null, here = null;
+  let C = [], META = null, filtered = [], list = [], quiet = false, viewOn = false, shown = 0, map = null, layer = null, ready = false, current = null, here = null;
   const PAGE = 150, rail = () => $("rail");
 
   function railPrompt() {
@@ -78,7 +78,7 @@
   function initMap() {
     if (map || !window.L || !$("cmap")) return;
     map = L.map("cmap", { scrollWheelZoom: false }).setView([42, -95], 4);
-    map.on("moveend", () => { if (quiet) { quiet = false; return; } if (!here && C.length) { shown = 0; render(false); } });
+    map.on("moveend", () => { if (quiet) { quiet = false; return; } viewOn = true; if (!here && C.length) { shown = 0; render(false); } });
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
     layer = L.markerClusterGroup ? L.markerClusterGroup({ showCoverageOnHover: false, maxClusterRadius: 45 }) : L.layerGroup();
     map.addLayer(layer);
@@ -89,11 +89,12 @@
     layer.clearLayers();
     const pts = filtered.filter(c => c.lat != null);
     pts.forEach(c => { const m = L.marker([c.lat, c.lng], { icon: icon(), title: c.n }); m.bindTooltip(esc(c.n), { direction: "top", offset: [0, -18] }); m.on("click", () => showCenter(c)); layer.addLayer(m); });
-    if (fit && pts.length && !here) map.fitBounds(L.latLngBounds(pts.map(c => [c.lat, c.lng])), { padding: [24, 24], maxZoom: 13 });
+    if (fit && pts.length && !here) (quiet = true, setTimeout(() => { quiet = false; }, 900), map).fitBounds(L.latLngBounds(pts.map(c => [c.lat, c.lng])), { padding: [24, 24], maxZoom: 13 });
   }
   const miles = (a, b) => { const R = 3958.8, t = x => x * Math.PI / 180, dLa = t(b[0] - a[0]), dLo = t(b[1] - a[1]); const h = Math.sin(dLa / 2) ** 2 + Math.cos(t(a[0])) * Math.cos(t(b[0])) * Math.sin(dLo / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); };
   function render(reset) {
     if (reset) {
+      viewOn = false;
       shown = 0;
       const q = norm($("cq").value), st = $("cstate").value, ty = $("ctype").value;
       const need = [...document.querySelectorAll(".cfeat:checked")].map(x => FEAT[x.value]);
@@ -104,7 +105,7 @@
       if (here) { filtered.forEach(c => c._d = c.lat != null ? miles(here, [c.lat, c.lng]) : 1e9); filtered.sort((a, b) => a._d - b._d); }
       drawMap(true);
     }
-    list = window.KK_VIEW(map, filtered, here);
+    list = window.KK_VIEW(viewOn ? map : null, filtered, here);
     const slice = list.slice(0, shown + PAGE); shown = slice.length;
     $("ccount").innerHTML = `${filtered.length.toLocaleString()} of ${C.length.toLocaleString()} Chabad centers shown.${window.KK_VIEWNOTE(list, filtered)}${$("cfood") && $("cfood").checked ? " Showing centers that offer meals, a kosher store or a kosher guide." : ""}`;
     $("crows").innerHTML = slice.map((c, i) => `<button class="row" data-i="${i}"><div><div class="nm">${esc(c.n)}</div><div class="ad">${esc([c.ci, c.st, c.co === "Canada" ? "Canada" : ""].filter(Boolean).join(", "))}${here && c._d < 1e9 ? ` · ${c._d < 10 ? c._d.toFixed(1) : Math.round(c._d)} mi` : ""}</div></div>
