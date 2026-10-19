@@ -118,6 +118,13 @@ details>summary{cursor:pointer;color:var(--accent);font-size:13px;margin:4px 0}
 .thes a{color:var(--accent);cursor:pointer;text-decoration:underline}
 #langseg{margin-inline-start:auto}
 
+.vlist{display:grid;gap:0;max-height:420px;overflow-y:auto;border:1px solid var(--line);border-radius:4px;background:var(--panel)}
+.vrow{padding:8px 10px;border-bottom:1px solid var(--line)}
+.vrow:last-child{border-bottom:0}
+.vref{display:inline-block;font-size:13px;color:var(--accent);text-decoration:underline;cursor:pointer;margin-bottom:2px}
+.vtext{font-family:var(--font-text);font-size:18px;line-height:1.8;direction:rtl;text-align:right;unicode-bidi:isolate}
+.vtext .hl{background:var(--hit);color:var(--hit-ink);border-radius:3px;padding:0 2px}
+
 
 .top{background:var(--bg);border-bottom:1px solid var(--line)}
 .top-in{max-width:1280px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px;direction:rtl}
@@ -175,9 +182,10 @@ h1{font-weight:400}
 
   <footer id="footer"></footer>
 </div>
-<script src="milim-data.js?v=202610191211"></script>
-<script src="milim-text.js?v=202610191211"></script>
-<script src="milim.js?v=202610191211"></script>
+<script src="milim-data.js?v=202610191303"></script>
+<script src="milim-text.js?v=202610191303"></script>
+<script src="milim-nach.js?v=202610191303"></script>
+<script src="milim.js?v=202610191303"></script>
 <script defer src="../site-chrome.js"></script>
 </body>
 </html>

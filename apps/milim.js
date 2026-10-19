@@ -730,18 +730,40 @@ function bindCard(li){
 }
 function firstWordOfLex(l){ for (let i = 0; i < NW; i++) if (D.WP[i].some(p => p[0]===l)) return i; return -1; }
 const sefariaUrl = (en, ch, vs) => `https://www.sefaria.org/${encodeURIComponent(en.replace(/ /g,'_'))}.${ch}.${vs}?lang=${LANG === 'en' ? 'bi' : 'he'}`;
+// Nevi'im and Kesuvim text: plain (site) or packed with gzip inside the page (single-file edition), unpacked by the browser
+let nachReady = Promise.resolve();
+if (!window.NX && window.NXZ && window.DecompressionStream) {
+  nachReady = (async () => {
+    const bin = Uint8Array.from(atob(window.NXZ), c => c.charCodeAt(0));
+    const txt = await new Response(new Blob([bin]).stream().pipeThrough(new DecompressionStream('gzip'))).text();
+    window.NX = JSON.parse(txt);
+  })().catch(() => {});
+}
+// the whole pasuk for every place, with the form marked
+function torahVerseHtml(v, hit){
+  let h = '';
+  for (let i = D.V[v][3]; i < verseEnd(v); i++) { const t = D.W[i]; h += `<span class="${hit.has(i) ? 'hl' : ''}">${esc(t)}</span>${t.endsWith('־') ? '' : ' '}`; }
+  return h.trim() + '׃';
+}
+function nachVerseHtml(nv, target){
+  const t = (window.NX && window.NX[nv]) || '';
+  if (!t) return '';
+  return t.split(/(\s+|־)/).map(p => (p.trim() && p !== '־' && cons(p) === target) ? `<span class="hl">${esc(p)}</span>` : esc(p)).join('') + '׃';
+}
 function showRefs(li, f, where){
+  if (!window.NX && window.NXZ) { nachReady.then(() => { if (window.NX) showRefs(li, f, where); }); }
   const target = cons(f.t), out = [];
   for (let i = 0; i < NW; i++) if (D.WP[i].some(p => p[0]===li && p[1]===f.mi) && cons(D.W[i])===target) out.push(i);
+  const hit = new Set(out);
   const torah = `<div><p class="h3" style="margin:6px 0 4px">${L(`בתורה: ${f.tn} פעמים`, `In the Torah: ${f.tn} ${f.tn===1?'time':'times'}`)}</p>
-    <div class="refs">${out.map(i => `<a data-w="${i}">${refOfWord(i)}</a>`).join('') || `<span class="note">${L('לא בתורה', 'Not in the Torah')}</span>`}</div>
-    ${out.length ? `<p class="note">${L('לחיצה פותחת את הפסוק כאן.', 'Click to open the pasuk here.')}</p>` : ''}</div>`;
-  // Nevi'im and Kesuvim: grouped by sefer, each place links to the pasuk on Sefaria (opens in a new tab)
+    ${out.length ? `<div class="vlist">${out.map(i => { const v = wordVerse[i]; return `<div class="vrow"><a data-w="${i}" class="vref">${refOfVerse(v)}</a><div class="vtext">${torahVerseHtml(v, hit)}</div></div>`; }).join('')}</div>
+      <p class="note">${L('לחיצה על המקום פותחת את הפסוק כאן.', 'Click a reference to open the pasuk here.')}</p>` : `<span class="note">${L('לא בתורה', 'Not in the Torah')}</span>`}</div>`;
+  // Nevi'im and Kesuvim: the whole pasuk, grouped by sefer; the reference links to the pasuk on Sefaria (new tab)
   const byBook = new Map();
-  for (const nv of f.refs) { const [b, ch, vs] = D.NV[nv]; if (!byBook.has(b)) byBook.set(b, []); byBook.get(b).push([ch, vs]); }
+  for (const nv of f.refs) { const [b] = D.NV[nv]; if (!byBook.has(b)) byBook.set(b, []); byBook.get(b).push(nv); }
   const nach = `<div><p class="h3" style="margin:10px 0 4px">${L(`בנביאים וכתובים: ${f.nn} פעמים`, `In Nevi'im and Kesuvim: ${f.nn} ${f.nn===1?'time':'times'}`)}</p>
-    ${f.nn ? [...byBook.entries()].map(([b, list]) => `<div class="refs"><b>${nachBook(b)}:</b> ${list.map(([ch, vs]) => `<a href="${sefariaUrl(D.NE[b], ch, vs)}" target="_blank" rel="noopener">${nachRef(b, ch, vs)}</a>`).join('')}</div>`).join('')
-      + `<p class="note">${L('הפסוקים מנביאים וכתובים נפתחים בספריא, בלשונית חדשה.', 'Pesukim from Nevi\'im and Kesuvim open on Sefaria, in a new tab.')}</p>` : `<span class="note">${L('לא בנביאים וכתובים', 'Not in Nevi\'im and Kesuvim')}</span>`}</div>`;
+    ${f.nn ? `<div class="vlist">${[...byBook.entries()].map(([b, list]) => list.map(nv => { const [, ch, vs] = D.NV[nv]; return `<div class="vrow"><a class="vref" href="${sefariaUrl(D.NE[b], ch, vs)}" target="_blank" rel="noopener">${nachBook(b)} ${nachRef(b, ch, vs)}</a><div class="vtext">${nachVerseHtml(nv, target)}</div></div>`; }).join('')).join('')}</div>`
+      + `<p class="note">${L('לחיצה על המקום פותחת את הפסוק בספריא, בלשונית חדשה. נוסח הפסוקים: ETCBC, בלי טעמים.', 'Click a reference to open the pasuk on Sefaria, in a new tab. Text of the pesukim: ETCBC, without cantillation.')}</p>` : `<span class="note">${L('לא בנביאים וכתובים', 'Not in Nevi\'im and Kesuvim')}</span>`}</div>`;
   $('refbox').innerHTML = `<p class="h3">${L('איפה מופיעה הצורה ', 'Where the form appears: ')}<span class="f-he">${esc(f.t.replace('־',''))}</span></p>` + (where === 'nach' ? nach + torah : torah + nach);
   $('refbox').querySelectorAll('a[data-w]').forEach(a => a.addEventListener('click', () => openWord(+a.dataset.w, null)));
   $('refbox').scrollIntoView({block:'nearest'});
