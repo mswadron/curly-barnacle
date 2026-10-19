@@ -151,7 +151,7 @@
         ${a.website ? `<dt>Website</dt><dd><a href="${esc(href(a.website))}" target="_blank" rel="noopener">${esc(a.website.replace(/^https?:\/\//, "").replace(/\/$/, ""))}</a></dd>` : ""}
       </dl></div>
       ${n ? `<div class="rail-sec"><div class="label">${svg("i-plate")} Places to eat</div><p class="small" style="margin:4px 0 10px">${n.toLocaleString()} places under this hechsher.</p><button class="btn ghost" id="seeplaces">Show them</button></div>` : ""}`;
-    const sp = $("seeplaces"); if (sp) sp.onclick = () => { $("fagency").value = id; go("eat"); renderRows(true); };
+    const sp = $("seeplaces"); if (sp) sp.onclick = () => { ["q", "fstate", "ftype", "fcat"].forEach(x => { $(x).value = ""; }); { const f = $("fagency"); if (![...f.options].some(o => o.value === id)) f.add(new Option(id, id)); f.value = id; } go("eat"); renderRows(true); };
   }
   function showUnmatched(text, desc) {
     current = { kind: "free", text, desc };
@@ -340,8 +340,23 @@
       shown = 0;
       const q = norm($("q").value), st = $("fstate").value, ag = $("fagency").value, cat = $("fcat").value, ty = $("ftype").value;
       const useLists = checkedLists().length > 0;
-      filtered = PLACES.filter(p => (!useLists || agencyOnChecked(byId[p.a])) && (!st || p.st === st) && (!ag || p.a === ag) && (!cat || (p.k || "").includes(cat)) && (!ty || p.t === ty) &&
-        (!q || norm([p.n, p.ci, p.st, p.z, p.ad, p.kw, (p.c || []).join(" ")].join(" ")).includes(q)));
+      /* match every filter except the one named in skip, so each dropdown can list only the choices that exist */
+      const ok = (p, skip) => (!useLists || agencyOnChecked(byId[p.a])) && (skip === "st" || !st || p.st === st) && (skip === "ag" || !ag || p.a === ag) &&
+        (skip === "cat" || !cat || (p.k || "").includes(cat)) && (skip === "ty" || !ty || p.t === ty) &&
+        (!q || norm([p.n, p.ci, p.st, p.z, p.ad, p.kw, (p.c || []).join(" ")].join(" ")).includes(q));
+      filtered = PLACES.filter(p => ok(p));
+      const facet = (id, key, label, sortBy) => {
+        const sel = $(id), cur = sel.value, n = {};
+        PLACES.forEach(p => { if (p[key] && ok(p, id === "fstate" ? "st" : id === "fagency" ? "ag" : "ty")) n[p[key]] = (n[p[key]] || 0) + 1; });
+        if (cur && !n[cur]) n[cur] = 0;
+        const keys = Object.keys(n).sort(sortBy);
+        sel.innerHTML = `<option value="">All (${keys.length})</option>` + keys.map(k => `<option value="${esc(k)}">${esc(label(k))} (${n[k]})</option>`).join("");
+        sel.value = cur;
+      };
+      const agName = id => byId[id] ? (byId[id].short || byId[id].name) : id;
+      facet("fstate", "st", k => k, (x, y) => x.localeCompare(y));
+      facet("fagency", "a", agName, (x, y) => agName(x).localeCompare(agName(y)));
+      facet("ftype", "t", k => k, (x, y) => x.localeCompare(y));
     }
     if (reset && here) { filtered.forEach(p => p._d = p.lat != null ? miles(here, [p.lat, p.lng]) : 1e9); filtered.sort((x, y) => x._d - y._d); }
     if (reset) drawMap(true);
@@ -388,7 +403,7 @@
   });
   async function loadPlaces() {
     try {
-      const d = await (await fetch("kosher-places.json?v=202610182155")).json();
+      const d = await (await fetch("kosher-places.json?v=202610182201")).json();
       PLACES = d.places; META = d.meta;
       const np = $("n-pl"); if (np) np.textContent = PLACES.length.toLocaleString();
       const na = $("n-ag"); if (na) na.textContent = AG.length;
@@ -408,7 +423,7 @@
           <h4>Agency websites</h4><ul>${web.map(li).join("")}</ul>
           ${paper.length ? `<h4>Printed lists and the NY State kosher registry</h4><ul>${paper.map(li).join("")}</ul>` : ""}</details>`;
       }
-      if (pendingAgency) { $("fagency").value = pendingAgency; pendingAgency = null; }
+      if (pendingAgency) { { const f = $("fagency"); if (![...f.options].some(o => o.value === pendingAgency)) f.add(new Option(pendingAgency, pendingAgency)); f.value = pendingAgency; } pendingAgency = null; }
       renderRows(true); if (curView === "check") refreshRail(); else if (curView === "eat") placeRail();
       if (curView === "eat") setCrumb();
     } catch { $("rows").innerHTML = `<div class="panel small">The list of places did not load. Reload the page to try again.</div>`; }
@@ -452,7 +467,7 @@
   };
   try { myLists = JSON.parse(localStorage.getItem(LS_KEY) || "[]"); } catch { myLists = []; }
   myLists.forEach((l, i) => { if (!l.id) l.id = "my" + i; });
-  fetch("kosher-lists.json?v=202610182155").then(r => r.ok ? r.json() : { lists: [] }).then(d => { builtinLists = d.lists || []; renderLists(); renderPicks(); refreshRail(); }).catch(() => {});
+  fetch("kosher-lists.json?v=202610182201").then(r => r.ok ? r.json() : { lists: [] }).then(d => { builtinLists = d.lists || []; renderLists(); renderPicks(); refreshRail(); }).catch(() => {});
 
   /* ---------- views ---------- */
   let curView = "check";
