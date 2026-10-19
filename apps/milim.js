@@ -217,10 +217,16 @@ function entryRow(e, i){
   const li = e.x, x = X(li);
   const where = e.w === 'elsewhere' ? `<span class="tag warn">${L('נמצא ב', 'found in ')}${refOfVerse(e.v)}</span>` : '';
   const partial = e.t.filter(t => !t[1].length).map(t => t[0]);
+  const sound = soundNote(e);
   return `<div class="row" tabindex="0" data-w="${e.h}" data-e="${i}" role="button">
     <div class="w">${esc(e.r)}</div>
     <div class="nums">${counts(x)}</div>
-    <div class="meta">${refOfVerse(e.v)} · <span class="f-he" style="font-size:inherit">${esc(x.v)}</span>${LANG === 'en' ? ' · ' + esc(x.g) : ''} ${tags(li)} ${where} ${partial.length ? `<span class="tag warn">${L('לא זוהה: ', 'not matched: ')}${esc(partial.join(' '))}</span>` : ''}</div></div>`;
+    <div class="meta">${refOfVerse(e.v)} · <span class="f-he" style="font-size:inherit">${esc(x.v)}</span>${LANG === 'en' ? ' · ' + esc(x.g) : ''} ${tags(li)} ${where} ${sound ? `<span class="tag warn">${sound}</span>` : ''} ${partial.length ? `<span class="tag warn">${L('לא זוהה: ', 'not matched: ')}${esc(partial.join(' '))}</span>` : ''}</div></div>`;
+}
+// a list word matched by a sound-alike letter (משך in the list, מֶשֶׁק in the pasuk)
+function soundNote(e){
+  if (!e || !e.f || !e.f.length) return '';
+  return e.f.map(t => { const h = (e.t.find(x => x[0] === t) || [0, []])[1]; return h.length ? L(`ברשימה: ${esc(t)}, בפסוק: ${esc(D.W[h[0]].replace('־',''))}`, `list has ${esc(t)}, the pasuk has ${esc(D.W[h[0]].replace('־',''))}`) : ''; }).filter(Boolean).join(' · ');
 }
 function candRow(wi){
   const [li] = mainPart(wi), x = X(li);
@@ -285,7 +291,7 @@ function openWord(wi, entry, keepScroll){
   const jps = TX && TX.j[v] ? `<div><p class="h3">${L('הפסוק באנגלית', 'The pasuk in English')}</p><div class="en-text">${esc(TX.j[v])}</div><div class="src">JPS 1917</div></div>` : '';
   $('card').innerHTML = `
     <div><div class="big">${esc(D.W[wi].replace('־',''))}</div>
-      <div class="note">${refOfVerse(v)} · ${L('פרשת ', 'Parshas ')}${parshaName(pi)}${entry ? L(' · מהרשימה שלך: ', ' · from your list: ') + `<span class="f-he" style="font-size:inherit">${esc(entry.r)}</span>` : ''}</div></div>
+      <div class="note">${refOfVerse(v)} · ${L('פרשת ', 'Parshas ')}${parshaName(pi)}${entry ? L(' · מהרשימה שלך: ', ' · from your list: ') + `<span class="f-he" style="font-size:inherit">${esc(entry.r)}</span>` : ''}${soundNote(entry) ? ` <span class="tag warn">${soundNote(entry)}</span>` : ''}</div></div>
     <div class="pasuk" id="pasuk">${pasuk.trim()}׃</div>
     ${LANG === 'en' ? jps : ''}
     ${LANG === 'en' ? `<div><p class="h3">Meaning</p><div><span class="f-he">${esc(x.v)}</span>: <b>${esc(x.g)}</b> <span class="src">(ETCBC gloss)</span></div></div>` : ''}

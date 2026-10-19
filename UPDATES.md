@@ -29,3 +29,4 @@
 2026-10-14 · Ta'amei HaMikra (trup sound lab) taken off the site until more ready: tile removed from index, apps/trup-real.html moved to dev/trup/trup-real.html, credits line removed from mekoros.html.
 2026-10-15 · Beitzah 1:1: added the Gemara on 7b, the שאור/חמץ dispute is only לענין ביעור, for eating all agree kezayis; editor line covers both clauses.
 2026-10-15 · Beitzah page: omissions review, 13 boxes added on uncovered clauses (1:1, 1:2 x2, 2:4, 2:6, 2:10, 3:3, 3:4, 3:8, 4:2, 4:4, 4:6, 5:2); 5:4 daf labels corrected.
+2026-10-19 · Rare Words in Tanach: list words with a sound-alike typo (משך for מֶשֶׁק, סתם for שָׁתָם, ושתף for וְשֻׁטַּף) now match, open on the right word, and show what the list has versus the pasuk.
