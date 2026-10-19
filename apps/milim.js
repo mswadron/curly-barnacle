@@ -251,8 +251,9 @@ function selectParsha(pi){
   state.p = pi; save(); lastSearch = null;
   $('sefer').value = SEFER_OF_P[pi]; fillParsha(SEFER_OF_P[pi]); $('parsha').value = pi;
   renderList();
+  // open the first word without jumping down to the card (on a phone the list stays at the top)
   const first = $('list').querySelector('.row[data-w]');
-  if (first) first.click();
+  if (first) { openWord(+first.dataset.w, first.dataset.e !== undefined ? D.E[state.p][+first.dataset.e] : null, true); markCurrent(first); }
 }
 
 // ---------- word card ----------
@@ -789,5 +790,7 @@ function weeklyParsha(){
 }
 applyLang();
 fillSefer();
+try { history.scrollRestoration = 'manual'; } catch(e){}
 selectParsha(weeklyParsha());
+window.scrollTo(0, 0);
 })();
