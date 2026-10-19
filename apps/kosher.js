@@ -57,6 +57,7 @@
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const $ = id => document.getElementById(id);
   const rail = $("rail");
+  let curView = "check";
   const LS_KEY = "kf-lists-v1";
   let builtinLists = [];      // from kosher-lists.json (lists added to the site)
   let myLists = [];           // pasted on this device
@@ -166,10 +167,18 @@
       <div class="rail-sec"><div class="label">Checking against</div><p class="small" style="margin:4px 0 0">${checkedLists().map(l => esc(l.name) + " (" + l.entries.length + ")").join("<br>") || "No list chosen"}</p></div>`;
   }
   const reveal = () => { if (window.matchMedia("(max-width: 900px)").matches) rail.scrollIntoView({ behavior: "smooth", block: "start" }); };
-  function refreshRail() {
+  function checkRail() {
     if (current.kind === "agency") showAgency(current.id);
     else if (current.kind === "free") showUnmatched(current.text, current.desc);
     else railEmpty();
+  }
+  const LISTS_RAIL = () => `<div class="rail-sec"><div class="label">Lists</div><p class="small" style="margin:4px 0 0">A list is the set of hechsherim you rely on. The cRc list is built in; add your own here. Tick lists on Check a hechsher and Places to eat to filter by them.</p></div><div class="rail-sec"><p class="small muted" style="margin:0">${DISCLAIMER}</p></div>`;
+  /* the side panel always matches the open tab, whichever file finished loading last */
+  function refreshRail() {
+    if (curView === "eat") placeRail();
+    else if (curView === "lists") rail.innerHTML = LISTS_RAIL();
+    else if (curView === "chabad") { if (window.KK_CHABAD) window.KK_CHABAD.rail(); }
+    else checkRail();
   }
 
   /* ---------- check view ---------- */
@@ -302,7 +311,7 @@
   let PLACES = [], META = null, shown = 0, filtered = [], placesByAgency = {}, pendingAgency = null;
   const PAGE = 150;
   function catChip(k) { if (!k) return ""; const key = k.split(/[ &]/)[0]; return `<span class="chip ${esc(key)}">${ICON[key] ? svg(ICON[key]) : ""}${esc(k)}</span>`; }
-  let map = null, cluster = null, here = null, list = [], quiet = false, viewOn = false;
+  let map = null, cluster = null, here = null, list = [], quiet = false, viewOn = false, needFit = true;
   function initMap() {
     if (map || !window.L || !$("map")) return;
     map = L.map("map", { scrollWheelZoom: false }).setView([39.5, -98.35], 4);
@@ -326,8 +335,17 @@
       cluster.addLayer(m);
     });
     $("mapnote").textContent = `${pts.length.toLocaleString()} of ${filtered.length.toLocaleString()} on the map. The rest have no street address on the agency's list.`;
-    if (fit && pts.length && !here) (quiet = true, setTimeout(() => { quiet = false; }, 900), map).fitBounds(L.latLngBounds(pts.map(p => [p.lat, p.lng])), { padding: [24, 24], maxZoom: 14 });
+    if (fit && pts.length && !here) {
+      if (!$("map").offsetWidth) { needFit = true; return; }   // tab hidden: fit when it opens
+      needFit = false;
+      const na = pts.filter(p => p.lat > 15 && p.lat < 72 && p.lng > -170 && p.lng < -50);   // first view: North America, not the few places abroad
+      const use = na.length >= 20 || !pts.length ? na : pts;
+      quiet = true; setTimeout(() => { quiet = false; }, 900);
+      map.fitBounds(L.latLngBounds((use.length ? use : pts).map(p => [p.lat, p.lng])), { padding: [24, 24], maxZoom: 14 });
+    }
   }
+  /* "10710 142 St NW, Edmonton, AB T5N" + Edmonton, AB: do not say the city and state twice */
+  const addrLine = (p, withZip) => { const a = p.ad || "", n = norm(a); return [a, p.ci && !n.includes(norm(p.ci)) ? p.ci : null, p.st && !(p.ci && n.includes(norm(p.ci))) && !new RegExp("\\b" + p.st + "\\b").test(a) ? p.st : null, withZip && p.z && !a.includes(p.z) ? p.z : null].filter(Boolean).join(", "); };
   const miles = (a, b) => { const R = 3958.8, t = x => x * Math.PI / 180, dLa = t(b[0] - a[0]), dLo = t(b[1] - a[1]); const h = Math.sin(dLa / 2) ** 2 + Math.cos(t(a[0])) * Math.cos(t(b[0])) * Math.sin(dLo / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); };
   if ($("nearme")) $("nearme").onclick = () => {
     const ok = window.KK_WATCH($("nearme"), () => map,
@@ -342,7 +360,7 @@
       const q = norm($("q").value), st = $("fstate").value, ag = $("fagency").value, cat = $("fcat").value, ty = $("ftype").value;
       const useLists = checkedLists().length > 0;
       /* match every filter except the one named in skip, so each dropdown can list only the choices that exist */
-      const ok = (p, skip) => (!useLists || agencyOnChecked(byId[p.a])) && (skip === "st" || !st || p.st === st) && (skip === "ag" || !ag || p.a === ag) &&
+      const ok = (p, skip) => (!useLists || (ag && skip !== "ag") || agencyOnChecked(byId[p.a])) && (skip === "st" || !st || p.st === st) && (skip === "ag" || !ag || p.a === ag) &&
         (skip === "cat" || !cat || (p.k || "").includes(cat)) && (skip === "ty" || !ty || p.t === ty) &&
         (!q || norm([p.n, p.ci, p.st, p.z, p.ad, p.kw, (p.c || []).join(" ")].join(" ")).includes(q));
       filtered = PLACES.filter(p => ok(p));
@@ -368,7 +386,7 @@
     const sa = $("showall"); if (sa) sa.onclick = () => { checked.clear(); try { localStorage.setItem(CK_KEY, "[]"); } catch {} renderPicks(); renderRows(true); };
     $("rows").innerHTML = slice.map((p, i) => {
       const a = byId[p.a];
-      return `<button class="row" data-i="${i}"><div><div class="nm"><span class="ic">${svg(TYPE_ICON[p.t] || "i-plate")}</span> ${esc(p.n)}</div><div class="ad">${esc([p.ad, p.ci, p.st].filter(Boolean).join(", "))}${here && p._d < 1e9 ? ` · ${p._d < 10 ? p._d.toFixed(1) : Math.round(p._d)} mi` : ""}</div></div>
+      return `<button class="row" data-i="${i}"><div><div class="nm"><span class="ic">${svg(TYPE_ICON[p.t] || "i-plate")}</span> ${esc(p.n)}</div><div class="ad">${esc(addrLine(p))}${here && p._d < 1e9 ? ` · ${p._d < 10 ? p._d.toFixed(1) : Math.round(p._d)} mi` : ""}</div></div>
         <div class="ag">${esc(a ? (a.short || a.name) : p.an || "")}</div>
         <div class="tags">${catChip(p.k)}${p.cy ? `<span class="chip cy">Cholov Yisroel</span>` : ""}${p.t ? `<span class="chip">${esc(p.t)}</span>` : ""}${(p.c || []).slice(0, 3).map(c => `<span class="chip">${esc(c)}</span>`).join("")}</div></button>`;
     }).join("") || `<div class="panel small">No places match these choices.</div>`;
@@ -380,7 +398,7 @@
   function showPlace(p) {
     currentPlace = p;
     const a = byId[p.a];
-    const addr = [p.ad, p.ci, p.st, p.z].filter(Boolean).join(", ");
+    const addr = addrLine(p, true);
     rail.innerHTML = `<div class="rail-sec"><div class="label">${svg(TYPE_ICON[p.t] || "i-plate")} ${esc(p.t || "Place")}</div>
         <h3 style="font-weight:600;font-size:20px;margin:2px 0 6px">${esc(p.n)}</h3>
         <div style="display:flex;gap:4px;flex-wrap:wrap">${catChip(p.k)}${p.cy ? `<span class="chip cy">Cholov Yisroel</span>` : ""}${p.py ? `<span class="chip">Pas Yisroel</span>` : ""}${(p.c || []).map(c => `<span class="chip">${esc(c)}</span>`).join("")}</div>
@@ -404,7 +422,7 @@
   });
   async function loadPlaces() {
     try {
-      const d = await (await fetch("kosher-places.json?v=202610182202")).json();
+      const d = await (await fetch("kosher-places.json?v=202610182219")).json();
       PLACES = d.places; META = d.meta;
       const np = $("n-pl"); if (np) np.textContent = PLACES.length.toLocaleString();
       const na = $("n-ag"); if (na) na.textContent = AG.length;
@@ -425,8 +443,7 @@
           ${paper.length ? `<h4>Printed lists and the NY State kosher registry</h4><ul>${paper.map(li).join("")}</ul>` : ""}</details>`;
       }
       if (pendingAgency) { { const f = $("fagency"); if (![...f.options].some(o => o.value === pendingAgency)) f.add(new Option(pendingAgency, pendingAgency)); f.value = pendingAgency; } pendingAgency = null; }
-      renderRows(true); if (curView === "check") refreshRail(); else if (curView === "eat") placeRail();
-      if (curView === "eat") setCrumb();
+      renderRows(true); refreshRail();
     } catch { $("rows").innerHTML = `<div class="panel small">The list of places did not load. Reload the page to try again.</div>`; }
   }
 
@@ -468,19 +485,17 @@
   };
   try { myLists = JSON.parse(localStorage.getItem(LS_KEY) || "[]"); } catch { myLists = []; }
   myLists.forEach((l, i) => { if (!l.id) l.id = "my" + i; });
-  fetch("kosher-lists.json?v=202610182202").then(r => r.ok ? r.json() : { lists: [] }).then(d => { builtinLists = d.lists || []; renderLists(); renderPicks(); refreshRail(); }).catch(() => {});
+  fetch("kosher-lists.json?v=202610182219").then(r => r.ok ? r.json() : { lists: [] }).then(d => { builtinLists = d.lists || []; renderLists(); renderPicks(); refreshRail(); }).catch(() => {});
 
   /* ---------- views ---------- */
-  let curView = "check";
-  function setCrumb() {}
   function placeRail() {
     if (currentPlace) return showPlace(currentPlace);
     rail.innerHTML = `<div class="rail-sec"><div class="label">Place</div><p class="small" style="margin:4px 0 0">Choose a place on the map or in the list to see its address, its hechsher, and whether that hechsher is approved by the lists you ticked.</p></div><div class="rail-sec"><p class="small muted" style="margin:0">${DISCLAIMER}</p></div>`;
   }
   function go(v) {
     curView = v;
-    if (v === "eat") { placeRail(); setTimeout(() => { if (map) { map.invalidateSize(); drawMap(true); } }, 60); } else if (v === "check") refreshRail();
-    else if (v === "lists") rail.innerHTML = `<div class="rail-sec"><div class="label">Lists</div><p class="small" style="margin:4px 0 0">A list is the set of hechsherim you rely on. The cRc list is built in; add your own here. Tick lists on Check a hechsher and Places to eat to filter by them.</p></div><div class="rail-sec"><p class="small muted" style="margin:0">This is for assistance only. Statuses change, so please double-check the lists and the supervision.</p></div>`;
+    if (v !== "chabad") refreshRail();
+    if (v === "eat") setTimeout(() => { if (map) { map.invalidateSize(); if (needFit) drawMap(true); } }, 60);
     ["check", "eat", "chabad", "lists"].forEach(x => { if ($("view-" + x)) { $("view-" + x).hidden = x !== v; $("nav-" + x).setAttribute("aria-pressed", x === v); } });
     if (v === "chabad" && window.KK_CHABAD) window.KK_CHABAD.show();
     try { localStorage.setItem("kf-view", v); } catch {}

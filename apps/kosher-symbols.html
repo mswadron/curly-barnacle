@@ -139,6 +139,15 @@ table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-ali
 .top .logo.kk{background:var(--food)}
 .ll{display:grid;place-items:center;width:22px;height:22px;border-radius:5px;background:#0e6e6a;color:#fff;text-decoration:none;font-family:var(--he-title);font-size:12px;line-height:1;opacity:.75}
 .ll:hover{opacity:1}
+/* phones: tabs scroll sideways on their own row; the limudlab mark stays beside the brand */
+@media (max-width:700px){
+  .top-in{gap:8px 10px}
+  .top-in .ll{order:2;margin-left:auto}
+  .top-in .spacer{display:none}
+  .top-in .tabs{order:3;flex-basis:100%;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .top-in .tabs::-webkit-scrollbar{display:none}
+  .tabs button,.tabs a.tablink{white-space:nowrap;flex:none}
+}
 </style>
 <style>
 .symwrap{max-width:1200px;margin:0 auto;padding:18px 16px 70px}
@@ -195,7 +204,7 @@ table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-ali
 <header class="top"><div class="top-in">
   <a class="brand" href="kosher.html"><span class="logo kk"><svg viewBox="0 0 48 48" width="22" height="22"><use href="#i-plate"/></svg></span><span class="brand-name">Kosher Kretchma</span></a>
   <div class="spacer"></div>
-  <div class="tabs" role="group" aria-label="View"><a class="tablink" href="kosher.html#check">Check a hechsher</a><a class="tablink" href="kosher.html#eat">Places to eat</a><a class="tablink" href="kosher.html#chabad">Chabad</a><a class="tablink on" href="kosher-symbols.html">Symbols</a></div>
+  <div class="tabs" role="group" aria-label="View"><a class="tablink" href="kosher.html#check">Check a hechsher</a><a class="tablink" href="kosher.html#eat">Places to eat</a><a class="tablink" href="kosher.html#chabad">Chabad</a><a class="tablink" href="kosher.html#lists">Lists</a><a class="tablink on" href="kosher-symbols.html">Symbols</a></div>
   <a class="ll" href="../index.html" title="limudlab" aria-label="limudlab home"><span>ל</span></a>
 </div></header>
 
@@ -213,7 +222,7 @@ table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-ali
   <div class="syms" id="syms"></div>
   <p class="note">From the cRc's notes on its list: an agency that is not listed is not necessarily substandard. Source: <a href="https://consumer.crckosher.org/acceptable-kashrus-agencies/" target="_blank" rel="noopener">cRc Acceptable Kashrus Agencies</a>, copied <span id="crcdate"></span>.</p>
 </div>
-<script src="kosher-agencies.js?v=202610182202"></script>
-<script src="kosher-symbols.js?v=202610182202"></script>
+<script src="kosher-agencies.js?v=202610182219"></script>
+<script src="kosher-symbols.js?v=202610182219"></script>
 </body>
 </html>

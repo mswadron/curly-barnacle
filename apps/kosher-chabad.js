@@ -52,7 +52,7 @@
   const href = u => /^https?:/.test(u) ? u : "https://" + u;
   const NOTE = "Chabad centers are listed from the Chabad.org directory. A Chabad House is not a kosher certification listing; call ahead about meals and kashrus. This is for assistance only.";
   const FEAT = { hosp: "Shabbat/Holiday Hospitality", store: "Kosher Store", meals: "Kosher Meal Plan", guest: "Guest Accomodations", kosher: "Kitchen Koshering" };
-  let C = [], META = null, filtered = [], list = [], quiet = false, viewOn = false, shown = 0, map = null, layer = null, ready = false, current = null, here = null;
+  let C = [], META = null, filtered = [], list = [], quiet = false, viewOn = false, needFit = true, shown = 0, map = null, layer = null, ready = false, current = null, here = null;
   const PAGE = 150, rail = () => $("rail");
 
   function railPrompt() {
@@ -89,7 +89,8 @@
     layer.clearLayers();
     const pts = filtered.filter(c => c.lat != null);
     pts.forEach(c => { const m = L.marker([c.lat, c.lng], { icon: icon(), title: c.n }); m.bindTooltip(esc(c.n), { direction: "top", offset: [0, -18] }); m.on("click", () => showCenter(c)); layer.addLayer(m); });
-    if (fit && pts.length && !here) (quiet = true, setTimeout(() => { quiet = false; }, 900), map).fitBounds(L.latLngBounds(pts.map(c => [c.lat, c.lng])), { padding: [24, 24], maxZoom: 13 });
+    if (fit && pts.length && !here && !$("cmap").offsetWidth) { needFit = true; return; }
+    if (fit && pts.length && !here) (needFit = false, quiet = true, setTimeout(() => { quiet = false; }, 900), map).fitBounds(L.latLngBounds(pts.map(c => [c.lat, c.lng])), { padding: [24, 24], maxZoom: 13 });
   }
   const miles = (a, b) => { const R = 3958.8, t = x => x * Math.PI / 180, dLa = t(b[0] - a[0]), dLo = t(b[1] - a[1]); const h = Math.sin(dLa / 2) ** 2 + Math.cos(t(a[0])) * Math.cos(t(b[0])) * Math.sin(dLo / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); };
   function render(reset) {
@@ -141,5 +142,5 @@
       (ll, acc) => { here = ll; initMap(); if (map) { map.setView(here, 12); window.KK_YOU(map, here, acc); } render(true); },
       ll => { here = ll; render(true); });
   };
-  window.KK_CHABAD = { show() { railPrompt(); load().then(() => setTimeout(() => { if (map) { map.invalidateSize(); drawMap(!current); } }, 60)); } };
+  window.KK_CHABAD = { rail() { railPrompt(); }, show() { railPrompt(); load().then(() => setTimeout(() => { if (map) { map.invalidateSize(); if (needFit) drawMap(true); } }, 60)); } };
 })();

@@ -25,7 +25,7 @@
         ${a.aliases?.length ? `<dt>Also called</dt><dd>${esc(a.aliases.join(", "))}</dd>` : ""}
       </dl>
       ${a.note ? `<p class="cnote">cRc note: ${esc(a.note)}</p>` : ""}
-      <div class="sym-foot">${n ? `<a class="btn ghost" href="${esc(CHECK)}#eat-${a.id}">See its ${n.toLocaleString()} places to eat</a>` : `<span class="pl">No places to eat listed yet</span>`}</div>
+      <div class="sym-foot">${n ? `<a class="btn ghost" href="${esc(CHECK)}#eat-${a.id}">See its ${n.toLocaleString()} ${n === 1 ? "place" : "places"} to eat</a>` : `<span class="pl">No places to eat listed yet</span>`}</div>
     </article>`;
   }
   function render() {
@@ -37,7 +37,7 @@
   $("symq").addEventListener("input", render);
   $("symcountry").addEventListener("change", render);
   render();
-  fetch("kosher-places.json?v=202610182202").then(r => r.json()).then(d => {
+  fetch("kosher-places.json?v=202610182219").then(r => r.json()).then(d => {
     counts = d.places.reduce((m, p) => (m[p.a] = (m[p.a] || 0) + 1, m), {});
     render();
     if (location.hash) { const el = document.getElementById(location.hash.slice(1)); if (el) el.scrollIntoView(); }

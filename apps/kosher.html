@@ -158,6 +158,7 @@ textarea{width:100%;min-height:130px;font-size:15px}
 .srcs ul{list-style:none;margin:0;padding:0;columns:2 220px;column-gap:24px}
 .srcs li{display:flex;justify-content:space-between;gap:8px;break-inside:avoid;padding:3px 0;border-bottom:1px solid var(--rule);font-size:13.5px}
 .srcs li b{font-weight:600;color:var(--mute)}
+#eatcount{display:block;margin-top:6px}
 /* verdict */
 .verdict{display:flex;gap:12px;align-items:flex-start}
 .verdict .lg{width:80px;height:80px;flex:none;background:#fff;border:1px solid var(--rule);border-radius:8px;display:flex;align-items:center;justify-content:center}
@@ -189,6 +190,15 @@ table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-ali
 .top .logo.kk{background:var(--food)}
 .ll{display:grid;place-items:center;width:22px;height:22px;border-radius:5px;background:#0e6e6a;color:#fff;text-decoration:none;font-family:var(--he-title);font-size:12px;line-height:1;opacity:.75}
 .ll:hover{opacity:1}
+/* phones: tabs scroll sideways on their own row; the limudlab mark stays beside the brand */
+@media (max-width:700px){
+  .top-in{gap:8px 10px}
+  .top-in .ll{order:2;margin-left:auto}
+  .top-in .spacer{display:none}
+  .top-in .tabs{order:3;flex-basis:100%;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .top-in .tabs::-webkit-scrollbar{display:none}
+  .tabs button,.tabs a.tablink{white-space:nowrap;flex:none}
+}
 </style>
 </head>
 <body>
@@ -371,9 +381,9 @@ table.lists td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-ali
 <div class="toast" id="toast" hidden></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
-<script src="kosher-agencies.js?v=202610182202"></script>
-<script src="kosher-chabad.js?v=202610182202"></script>
-<script src="kosher.js?v=202610182202"></script>
+<script src="kosher-agencies.js?v=202610182219"></script>
+<script src="kosher-chabad.js?v=202610182219"></script>
+<script src="kosher.js?v=202610182219"></script>
 <script>document.getElementById("hero-eat").onclick=function(){document.getElementById("nav-eat").click();window.scrollTo(0,0)};</script>
 </body>
 </html>
