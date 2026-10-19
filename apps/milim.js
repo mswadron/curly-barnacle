@@ -793,4 +793,8 @@ fillSefer();
 try { history.scrollRestoration = 'manual'; } catch(e){}
 selectParsha(weeklyParsha());
 window.scrollTo(0, 0);
+// some phone browsers put the old scroll position back after the page finishes loading
+const toTop = () => { if (!location.hash) window.scrollTo(0, 0); };
+window.addEventListener('load', () => { toTop(); setTimeout(toTop, 50); });
+window.addEventListener('pageshow', e => { if (e.persisted) toTop(); });
 })();

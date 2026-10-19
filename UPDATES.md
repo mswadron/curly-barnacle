@@ -32,3 +32,4 @@
 2026-10-19 · Rare Words in Tanach: list words with a sound-alike typo (משך for מֶשֶׁק, סתם for שָׁתָם, ושתף for וְשֻׁטַּף) now match, open on the right word, and show what the list has versus the pasuk.
 2026-10-19 · Rare Words in Tanach: always opens on this week's parsha (USA / diaspora schedule, built into the page through 2050); a double parsha opens on the half that has a list.
 2026-10-19 · Rare Words in Tanach: opens at the top of the page (no jump down to the word card on load or when the parsha changes).
+2026-10-19 · Rare Words in Tanach: opens at the top even on reload or a reopened phone tab (scroll restore off in the head, reset after load); script links carry a version so phones fetch the new code.
