@@ -34,3 +34,4 @@
 2026-10-19 · Rare Words in Tanach: opens at the top of the page (no jump down to the word card on load or when the parsha changes).
 2026-10-19 · Rare Words in Tanach: opens at the top even on reload or a reopened phone tab (scroll restore off in the head, reset after load); script links carry a version so phones fetch the new code.
 2026-10-19 · Rare Words in Tanach: 'where the form appears' shows the whole pasuk for every place, form highlighted (Torah and Nevi'im/Kesuvim); new apps/milim-nach.js holds the Nach pesukim (ETCBC, no cantillation).
+2026-10-21 · How Old Was Dinah?: new app apps/dinah.html (+ dinah-data.js, dinah.js) and index tile under Chumash; sliders per link with opinions quoted verbatim, warning where no source holds; doc docs/dinah.md.

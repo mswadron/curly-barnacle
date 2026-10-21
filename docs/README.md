@@ -19,6 +19,7 @@ Grouped by seder, in the order they appear on the index page.
 | Nisyonos in the Midbar | [nisyonos.html](../apps/nisyonos.html) | [nisyonos.md](nisyonos.md) |
 | The Counts (Pekudim) | [Counts.html](../apps/Counts.html) | [counts.md](counts.md) |
 | Arayot Tree | [arayot.html](../apps/arayot.html) | [arayot.md](arayot.md) |
+| How Old Was Dinah? | [dinah.html](../apps/dinah.html) | [dinah.md](dinah.md) |
 
 ### קדשים וטהרות · Kodashim & Taharos
 

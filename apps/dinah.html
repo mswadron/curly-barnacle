@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>בת כמה היתה דינה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Secular+One&family=IBM+Plex+Sans+Hebrew:wght@400;500;600&family=Frank+Ruhl+Libre:wght@400;500;700&family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* פריסה: עמודה אחת מימין לשמאל. כרטיס פתרון למעלה, אחריו כרטיס לכל מחוון עם הדעות שלו, ציר זמן מימין לשמאל. */
+:root{
+  --page:#e9eef2; --card:#f8fafb; --ink:#1b2a33; --muted:#5a6b76; --rule:#cfd9e0;
+  --teal:#137a7f; --teal-soft:#d7ecec; --amber:#9a6a12; --amber-soft:#f4e9d2;
+  --ok:#2c7a4b; --ok-soft:#dcefe3; --bad:#b0393d; --bad-soft:#f5dfe0; --band:#8fb9bc;
+  --leah:#137a7f; --zilpah:#9a6a12; --levi:#2c7a4b; --dinah:#a03f6a;
+  --f-title:"Secular One","Arial Hebrew",Arial,sans-serif;
+  --f-text:"IBM Plex Sans Hebrew","Segoe UI",Arial,sans-serif;
+  --f-src:"Frank Ruhl Libre","Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --page:#121a1f; --card:#1a252c; --ink:#e3eaee; --muted:#93a5b0; --rule:#2c3b45;
+  --teal:#5ec3c6; --teal-soft:#173638; --amber:#e0b55c; --amber-soft:#3a2f17;
+  --ok:#6cc391; --ok-soft:#173326; --bad:#ec8b8e; --bad-soft:#3d1e20; --band:#2f6a6d;
+  --leah:#5ec3c6; --zilpah:#e0b55c; --levi:#6cc391; --dinah:#e58db5; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --page:#121a1f; --card:#1a252c; --ink:#e3eaee; --muted:#93a5b0; --rule:#2c3b45;
+  --teal:#5ec3c6; --teal-soft:#173638; --amber:#e0b55c; --amber-soft:#3a2f17;
+  --ok:#6cc391; --ok-soft:#173326; --bad:#ec8b8e; --bad-soft:#3d1e20; --band:#2f6a6d;
+  --leah:#5ec3c6; --zilpah:#e0b55c; --levi:#6cc391; --dinah:#e58db5; color-scheme:dark}
+body{background:var(--page);color:var(--ink);font-family:var(--f-text);font-size:16px;line-height:1.6}
+.wrap{direction:rtl;max-width:820px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:22px}
+h1,h2,h3{font-family:var(--f-title);font-weight:400;color:var(--teal);margin:0;line-height:1.25;text-wrap:balance;text-align:right}
+h1{font-size:clamp(1.9rem,6vw,2.6rem)} h2{font-size:1.35rem} h3{font-size:1.15rem}
+p{margin:0}
+.lede{display:flex;flex-direction:column;gap:8px}
+.lede p{color:var(--muted);max-width:62ch}
+.card{background:var(--card);border:1px solid var(--rule);padding:18px;display:flex;flex-direction:column;gap:14px}
+.src{font-family:var(--f-src);font-size:1.08rem;line-height:1.75}
+.ref{font-size:.82rem;color:var(--muted)}
+.chip{display:inline-block;font-size:.72rem;font-weight:600;padding:1px 7px;border:1px solid currentColor;white-space:nowrap;vertical-align:middle}
+.chip.q{color:var(--teal)} .chip.i{color:var(--amber)} .chip.n{color:var(--bad)} .chip.ai{color:var(--muted)}
+.ai-note{color:var(--muted);font-size:.92rem}
+button{font:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+
+.presets{display:flex;flex-wrap:wrap;gap:8px}
+.presets button{padding:6px 12px;border:1px solid var(--rule);background:transparent;color:var(--ink)}
+.presets button[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:var(--card)}
+#presetNote{font-size:.85rem;color:var(--muted)}
+
+.verdict{padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.verdict.ok{background:var(--ok-soft)} .verdict.bad{background:var(--bad-soft)}
+.verdict .head{font-family:var(--f-title);font-size:1.35rem}
+.verdict.ok .head{color:var(--ok)} .verdict.bad .head{color:var(--bad)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.stat{display:flex;flex-direction:column}
+.stat span{font-size:.78rem;color:var(--muted)}
+.stat b{font-size:1.2rem;font-variant-numeric:tabular-nums}
+.chart{overflow-x:auto} .chart svg{display:block;min-width:560px;width:100%;height:auto}
+
+.ctl-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.ctl-val{font-size:1.25rem;font-weight:600;color:var(--teal);font-variant-numeric:tabular-nums}
+.choices{font-size:.92rem}
+.choices b{color:var(--teal)}
+.allsame{background:var(--teal-soft);color:var(--teal);font-weight:600;font-size:.85rem;padding:3px 10px;align-self:flex-start}
+.slider{position:relative;padding-top:4px}
+.slider input{width:100%;margin:0;accent-color:var(--teal);direction:rtl;position:relative;z-index:2}
+.track{position:relative;height:30px;margin:0 9px}
+.mark{position:absolute;top:0;height:10px;transform:translateX(50%);display:flex;flex-direction:column;align-items:center}
+.mark i{display:block;width:3px;height:10px;background:var(--teal)}
+.mark.inf i{background:var(--amber)} .mark.none i{background:var(--bad)}
+.mark span{font-size:.7rem;color:var(--muted);white-space:nowrap;margin-top:2px}
+.bandm{position:absolute;top:2px;height:6px;background:var(--band);opacity:.8}
+.bandm.inf{background:var(--amber);opacity:.45}
+.feas{position:absolute;top:-22px;height:4px;background:var(--dinah)}
+.scale{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin:0 2px;font-variant-numeric:tabular-nums}
+.warn{background:var(--bad-soft);color:var(--bad);padding:8px 12px;font-weight:600;font-size:.92rem}
+.ops{display:flex;flex-direction:column;gap:8px;list-style:none;margin:0;padding:0}
+.op{border-inline-start:3px solid var(--rule);padding:6px 12px;display:flex;flex-direction:column;gap:4px;cursor:pointer}
+.op:hover{background:var(--teal-soft)}
+.op.on{border-color:var(--teal);background:var(--teal-soft)}
+.op .who{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.op .who b{font-size:1rem}
+.op .v{font-variant-numeric:tabular-nums;color:var(--teal);font-weight:600;font-size:.9rem}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg button{flex:1 1 220px;text-align:right;padding:10px 12px;border:1px solid var(--rule);background:transparent;color:var(--ink);display:flex;flex-direction:column;gap:4px}
+.seg button[aria-pressed="true"]{border-color:var(--teal);background:var(--teal-soft)}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+.tbl{overflow-x:auto}
+th,td{text-align:right;padding:7px 8px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-size:.78rem;color:var(--muted);font-weight:600}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+td.st{font-weight:700} td.st.y{color:var(--ok)} td.st.n{color:var(--bad)}
+.extra{display:flex;flex-direction:column;gap:12px}
+.extra > div{border-inline-start:3px solid var(--rule);padding-inline-start:12px;display:flex;flex-direction:column;gap:4px}
+footer{color:var(--muted);font-size:.85rem;display:flex;flex-direction:column;gap:6px}
+footer a{color:var(--teal)}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:.82rem;color:var(--muted);align-items:center}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--page);border-bottom:1px solid var(--rule)}
+.top-in{max-width:820px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px;direction:rtl}
+.brand{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink)}
+.logo{width:30px;height:30px;border-radius:7px;background:var(--teal);color:var(--card);display:grid;place-items:center;font-family:var(--f-title);font-size:15px;line-height:1}
+.brand-name{font-family:"Fredoka",sans-serif;font-weight:600;font-size:17px}
+a.ref{color:var(--muted);text-decoration:none} a.ref:hover{color:var(--teal);text-decoration:underline}
+*{box-sizing:border-box} html,body{margin:0}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <a class="brand" href="../index.html"><span class="logo">Lל</span><span class="brand-name">limudlab</span></a>
+</div></header>
+<div class="wrap" dir="rtl" lang="he">
+  <header class="lede">
+    <h1>בת כמה היתה דינה במעשה שכם</h1>
+    <p>כל מחוון הוא חוליה אחת בחשבון. תחת כל מחוון רשומות הדעות, כל אחת עם לשון המקור. שבצו את המחוון על דעה; כשהמחוון עומד במקום שאין דעה שמחזיקה בו, יופיע על כך סימון.</p>
+    <div class="legend">
+      <span><span class="chip q">ציטוט</span> לשון המקור</span>
+      <span><span class="chip i">היסק</span> נלמד מן המקור ואינו מפורש בו</span>
+      <span><span class="chip n">אין מקור</span> לא נמצא מקור</span>
+      <span><span class="chip ai">הסבר</span> ניסוח שלנו, לא מן המקור</span>
+    </div>
+  </header>
+
+  <section class="card" aria-label="פתרון">
+    <div class="presets" role="group" aria-label="שיטות">
+      <button type="button" data-p="rashi">רש"י וגמרא, הריון רגיל</button>
+      <button type="button" data-p="so">סדר עולם</button>
+      <button type="button" data-p="gur">גור אריה</button>
+      <button type="button" data-p="ie">אבן עזרא</button>
+    </div>
+    <p id="presetNote"></p>
+    <div id="verdict" class="verdict" aria-live="polite"></div>
+    <div class="chart" id="chart"></div>
+  </section>
+
+  <div id="controls" style="display:flex;flex-direction:column;gap:22px"></div>
+
+  <section class="card">
+    <h2>טבלת החוליות</h2>
+    <div class="tbl"><table id="rules"></table></div>
+  </section>
+
+  <section class="card">
+    <h2>חוליות נוספות שלא נכנסו לחשבון</h2>
+    <div class="extra">
+      <div>
+        <div class="ref">אבן עזרא, בראשית ל כג <span class="chip q">ציטוט</span></div>
+        <div class="src">ויתכן שנתנה לאה שפחתה ליעקב קודם שנולד נפתלי, גם הרתה רחל קודם שנולד זבלון, וגם דינה לא ידענו מתי נולדה</div>
+        <p class="ai-note"><span class="chip ai">הסבר</span> לפי זה הלידות של הנשים חופפות זו לזו, והסדר שבפסוקים אינו סדר הלידה.</p>
+      </div>
+      <div>
+        <div class="ref">קרני אור (מחוקקי יהודה), בראשית לג כז <span class="chip q">ציטוט</span></div>
+        <div class="src">והכתוב אומר "ותעמוד מלדת" (למעלה כט לה) וזה יהיה לכל הפחות ב' שנים</div>
+        <p class="ai-note"><span class="chip ai">הסבר</span> הפסקה של שנתיים אחרי יהודה דוחקת את יששכר, זבולון ודינה עוד יותר מאוחר. החשבון כאן לא מוסיף אותה.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>על פי המאמר של ר' יהושע וקסמן, <a href="https://scribalerror.substack.com/p/how-old-was-dinah-a-constraint-satisfaction" target="_blank" rel="noopener">How Old Was Dinah? A Constraint Satisfaction Problem, Explained</a>, תשרי תשפ"ז. שנים נמנות מבואו של יעקב לבית לבן; מעשה שכם בשנה 20 ועוד השהייה.</p>
+    <p>מהדורות: מקרא על פי המסורה; רש"י, מהדורת רוזנבאום־זילברמן; בראשית רבה, תורת אמת; סדר עולם, ורשה תרס"ד; גמרא מגילה, מהדורת דוידסון; מסכת סופרים, וילנא; גור אריה, מכון ירושלים; אבן עזרא וקרני אור, פיוטרקוב; סדר הדורות, ורשה.</p>
+  </footer>
+</div>
+
+<script src="dinah-data.js?v=20261021a"></script>
+<script src="dinah.js?v=20261021a"></script>
+<script defer src="../site-chrome.js"></script>
+</body>
+</html>

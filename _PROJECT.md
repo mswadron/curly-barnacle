@@ -22,6 +22,7 @@
 - Done 2026-09-27: apps/arba_minim (Four Species as Plants) pushed as b0cc726.
 - Done 2026-09-28: Esrog lineages section added to apps/arba_minim (arba_minim-lineage.js).
 - Done 2026-10-01: Arba Minim content corrections (psul origin, Chasam Sofer thick-rind sign, strain drift, polyembryony).
+- Done 2026-10-21: apps/dinah (How Old Was Dinah?, Hebrew-only, limudlab look) + Chumash tile.
 - In work: none.
 - Planned: Chibuk verbatim fetches; Tumah Tree B (awaiting five decisions); Ornithology Part D render approval; Sugya Scout / Source Dock.
 
@@ -30,6 +31,7 @@
 - Done 2026-09-30: apps/maharils_moon (Maharil's Moon, Hoshana Rabbah sky over Mainz 1387 to 1426) + index tile in Luach & Reference.
 
 ## Open questions
+- dinah: no source found for naarah = 12 or for 9-month gaps (both flagged on the page).
 - piyut-rishonim: 4 entries without piyut text (Beitzah 33a Lombardy yotzer, Zechariah 5:11, Shabbos 114b, Arachin 2b); RH 27a line in Geshem/Tal not identified; line "השר המשרת נער נקרא" not found; azharos day rests on Teshuva MeAhava, not a machzor rubric.
 - maharils_moon: Sefer Maharil's own wording of the incident not yet checked (not on Sefaria); year of the incident not in the sources.
 - arba_minim: rov meshulash line; kaneri (Canary palm) sources; HebrewBooks search on own-rooted cutting from a grafted esrog scion; read Yeshurun 33 on Chazon Ish lineage directly.
