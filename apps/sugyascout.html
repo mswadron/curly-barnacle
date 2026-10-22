@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sugya Scout · מפת הסוגיות</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --maroon:#5a1421; --maroon-dark:#3d0d18;
+  --ink:#2b221b; --paper:#fffdf8; --bg:#f7f2ea;
+  --rule:#e4dccd; --mute:#7a7065; --mute-soft:#a99e90;
+  --he:'Frank Ruhl Libre',serif;
+  --body:'Crimson Pro',Georgia,serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6}
+.he{font-family:var(--he);direction:rtl}
+a{color:var(--maroon)}
+header.shell{position:sticky;top:0;z-index:40;background:var(--bg);border-bottom:1px solid var(--rule);
+  display:flex;align-items:center;justify-content:space-between;padding:12px 20px;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:baseline;gap:10px}
+.brand .heb{font-family:var(--he);font-weight:700;font-size:23px;color:var(--maroon-dark)}
+.brand .name{font-weight:600;font-size:15px;color:var(--mute)}
+.ctl{display:flex;align-items:stretch;gap:0;border:1px solid var(--maroon);border-radius:7px;overflow:hidden;background:var(--paper)}
+.ctl select,.ctl input{font-family:var(--body);font-weight:600;font-size:14px;
+  border:none;border-inline-end:1px solid var(--rule);background:var(--paper);color:var(--ink);padding:7px 10px;outline:none}
+.ctl input{width:58px}
+.ctl button{font-family:var(--body);font-weight:600;font-size:14px;
+  background:var(--maroon);color:#fff;border:none;padding:7px 18px;cursor:pointer}
+.ctl button:disabled{background:var(--mute-soft);cursor:wait}
+main{max-width:860px;margin:0 auto;padding:26px 20px 70px}
+h1{font-family:var(--he);font-weight:700;font-size:27px;margin:2px 0 6px;color:var(--maroon-dark);direction:rtl;text-align:right}
+.sub{color:var(--mute);font-size:15px;margin:0 0 16px}
+.llmbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--rule);border-radius:7px;padding:7px 11px;margin-bottom:9px}
+.llmbar label{font-weight:600;font-size:13.5px;color:var(--maroon)}
+.llmbar select,.llmbar input{font-family:var(--body);font-size:13.5px;border:1px solid var(--rule);border-radius:5px;
+  background:#fff;color:var(--ink);padding:5px 8px;outline:none}
+.llmbar input.model{width:215px}
+.llmbar input.key{width:225px;font-family:monospace;font-size:11.5px}
+.llmbar button{font-family:var(--body);font-size:12.5px;color:var(--maroon);background:none;border:1px solid var(--maroon);border-radius:5px;padding:4px 10px;cursor:pointer}
+.status{font-weight:600;font-size:14px;color:var(--maroon);padding:12px 2px 10px;border-top:1px solid var(--rule);margin-top:8px}
+.card{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:14px 16px;margin-bottom:13px}
+.card .row{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.num{font-family:var(--he);font-weight:700;font-size:21px;color:var(--maroon)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-size:12.5px;font-weight:600;padding:2px 9px;border-radius:11px;background:var(--maroon);color:#fff}
+.chip.ghost{background:transparent;color:var(--maroon);border:1px solid var(--maroon)}
+.chip.mutec{background:var(--mute);color:#fff;border:none}
+.opening{font-family:var(--he);direction:rtl;text-align:right;font-weight:500;font-size:20px;line-height:1.75;margin:9px 0 5px;color:var(--maroon-dark)}
+.refline{font-weight:600;font-size:13px;color:var(--mute);margin-bottom:9px}
+.actions{display:flex;flex-wrap:wrap;border:1px solid var(--maroon);border-radius:6px;overflow:hidden;width:max-content}
+.actions a,.actions button{font-family:var(--body);font-weight:600;font-size:13px;
+  color:var(--maroon);background:var(--paper);border:none;border-inline-end:1px solid var(--rule);padding:6px 13px;text-decoration:none;cursor:pointer}
+.actions a:last-child,.actions button:last-child{border-inline-end:none}
+.actions a:hover,.actions button:hover{background:#f6efe4}
+.actions button.primary{background:var(--maroon);color:#fff}
+.actions button:disabled{background:var(--mute-soft);color:#fff;cursor:wait}
+.scaffold{margin-top:13px;border-top:1px dashed var(--rule);padding-top:11px}
+.scafhead{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px}
+.scafhead .t{font-weight:600;font-size:14px;color:var(--maroon)}
+.move{border:1px solid var(--rule);border-radius:7px;background:#fcf9f3;padding:10px 13px;margin-bottom:9px}
+.move .mtype{font-weight:700;font-size:13.5px;color:var(--maroon)}
+.move .men{font-size:15.5px;margin:4px 0 0}
+.move .mhe{font-family:var(--he);direction:rtl;text-align:right;font-size:16px;margin:3px 0 0}
+.move .mrefs{font-size:12.5px;color:var(--mute-soft);margin-top:5px}
+.smallbtn{font-family:var(--body);font-weight:600;font-size:12.5px;color:var(--maroon);background:#fff;border:1px solid var(--maroon);border-radius:5px;padding:3px 10px;cursor:pointer;margin-top:7px}
+.move .src{display:none;margin-top:9px;border-inline-start:3px solid var(--maroon);background:#fff;border-radius:0 6px 6px 0;padding:9px 12px}
+.move .src.on{display:block}
+.move .src .seg{font-family:var(--he);direction:rtl;text-align:right;font-weight:500;font-size:19px;line-height:1.8;margin:0 0 6px}
+.move .src .segref{font-size:12.5px;color:var(--mute);margin-bottom:7px}
+.move .src .segref a{text-decoration:none;font-weight:600}
+.warn{font-size:13px;font-weight:600;color:var(--maroon);border:1px dashed var(--maroon);border-radius:6px;padding:6px 10px;margin:7px 0}
+.warn.hard{background:var(--maroon);color:#fff;border-style:solid}
+.err{background:var(--paper);border:1px solid var(--maroon);border-inline-start:4px solid var(--maroon);border-radius:6px;padding:10px 13px;font-size:14.5px;margin:12px 0}
+details.audit{margin-top:26px;border-top:1px solid var(--rule);padding-top:12px}
+details.audit summary{font-weight:600;font-size:13.5px;color:var(--mute);cursor:pointer}
+details.audit pre{background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:10px;font-size:11.5px;overflow:auto;max-height:340px;white-space:pre-wrap}
+details.reason{margin-bottom:9px}
+details.reason summary{font-weight:600;font-size:13.5px;color:var(--mute);cursor:pointer}
+details.reason pre{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:9px;font-size:12px;white-space:pre-wrap;max-height:260px;overflow:auto}
+footer.colophon{max-width:860px;margin:0 auto;padding:0 20px 40px;font-size:13.5px;color:var(--mute);font-style:italic}
+footer.colophon a{font-style:normal}
+</style>
+</head>
+<body>
+<header class="shell">
+  <div class="brand">
+    <span class="heb">מפת הסוגיות</span>
+    <span class="name">Sugya Scout</span>
+  </div>
+  <div class="ctl">
+    <select id="mas"></select>
+    <input id="daf" value="65a" maxlength="4" aria-label="daf">
+    <button id="scan">Scan</button>
+  </div>
+</header>
+
+<main>
+  <h1>אילו סוגיות על הדף?</h1>
+  <p class="sub">Pick a masechta and a daf. The page brings the amud and maps every sugya on it,
+  by the canonical passage divisions, with each opening quoted as written. Sugyos that carry in
+  from the previous daf or run past this one are marked. Scaffold opens a sugya into its
+  step-by-step moves, with the Gemara behind every step one tap away, and a second model can
+  review the summaries against the words.</p>
+
+  <div class="llmbar">
+    <label>Scaffolding model</label>
+    <select id="prov">
+      <option value="openrouter">OpenRouter</option>
+      <option value="gemini">Google Gemini</option>
+      <option value="openai">OpenAI</option>
+      <option value="anthropic">Anthropic</option>
+    </select>
+    <input class="model" id="model" value="deepseek/deepseek-chat" aria-label="model">
+    <input class="key" id="key" type="password" placeholder="API key (saved in this browser)">
+    <button id="forget" title="Erase saved keys from this browser">forget</button>
+  </div>
+  <div class="llmbar">
+    <label>Reviewing model</label>
+    <select id="cprov">
+      <option value="openrouter">OpenRouter</option>
+      <option value="gemini">Google Gemini</option>
+      <option value="openai">OpenAI</option>
+      <option value="anthropic">Anthropic</option>
+    </select>
+    <input class="model" id="cmodel" value="gemini-2.5-flash" aria-label="reviewing model">
+  </div>
+
+  <div id="status" class="status" style="display:none"></div>
+  <div id="out"></div>
+
+  <details class="audit" id="audit" style="display:none">
+    <summary>Raw responses (passage divisions and model output)</summary>
+    <pre id="auditpre"></pre>
+  </details>
+</main>
+
+<footer class="colophon">
+  Every quoted word on this page is fetched live from the linked source edition; the models
+  supply structure and summaries only, and the division into sugyos follows the source's
+  canonical passage records. <a href="../mekoros.html">מקורות</a>
+</footer>
+
+<script>
+/* ===== masechta tables =====
+   [canonical reference name, HebrewBooks mesechta number per developers.hebrewbooks.org] */
+var MAS = [
+  ['Berakhot',1],['Shabbat',2],['Eruvin',3],['Pesachim',4],
+  ['Yoma',6],['Sukkah',7],['Beitzah',8],['Rosh Hashanah',9],['Taanit',10],
+  ['Megillah',11],['Moed Katan',12],['Chagigah',13],['Yevamot',14],['Ketubot',15],
+  ['Nedarim',16],['Nazir',17],['Sotah',18],['Gittin',19],['Kiddushin',20],
+  ['Bava Kamma',21],['Bava Metzia',22],['Bava Batra',23],['Sanhedrin',24],['Makkot',25],
+  ['Shevuot',26],['Avodah Zarah',27],['Horayot',28],['Zevachim',29],['Menachot',30],
+  ['Chullin',31],['Bekhorot',32],['Arakhin',33],['Temurah',34],['Keritot',35],
+  ['Meilah',36],['Niddah',37]
+];
+/* Shekalim (HB 5) left out: the printed Bavli Shekalim is Yerushalmi and its divisions differ. */
+var HB_NUM = {}; MAS.forEach(function(m){ HB_NUM[m[0]] = m[1]; });
+var sel = document.getElementById('mas');
+MAS.forEach(function(m){
+  var o = document.createElement('option'); o.value = m[0]; o.textContent = m[0]; sel.appendChild(o);
+});
+sel.value = 'Chullin';
+
+var DEFAULT_MODEL = {
+  openrouter: 'deepseek/deepseek-chat',
+  gemini: 'gemini-2.5-flash',
+  openai: 'gpt-4o-mini',
+  anthropic: 'claude-haiku-4-5'
+};
+
+/* ===== saved settings (this browser only) ===== */
+var STORE = 'sugyascout-llm';
+function loadCfg(){
+  try { return JSON.parse(localStorage.getItem(STORE)) || {}; } catch(e){ return {}; }
+}
+function saveCfg(){
+  try {
+    var cfg = loadCfg();
+    var prov = document.getElementById('prov').value;
+    cfg.prov = prov;
+    cfg.models = cfg.models || {}; cfg.models[prov] = document.getElementById('model').value.trim();
+    cfg.keys = cfg.keys || {};
+    var k = document.getElementById('key').value.trim();
+    if (k) cfg.keys[prov] = k;
+    cfg.cprov = document.getElementById('cprov').value;
+    cfg.cmodel = document.getElementById('cmodel').value.trim();
+    localStorage.setItem(STORE, JSON.stringify(cfg));
+  } catch(e){ /* storage unavailable: settings last for this visit only */ }
+}
+document.getElementById('prov').onchange = function(){
+  document.getElementById('model').value = (loadCfg().models||{})[this.value] || DEFAULT_MODEL[this.value];
+  document.getElementById('key').value = (loadCfg().keys||{})[this.value] || '';
+  saveCfg();
+};
+document.getElementById('cprov').addEventListener('change', function(){
+  document.getElementById('cmodel').value = DEFAULT_MODEL[this.value];
+  saveCfg();
+});
+document.getElementById('model').addEventListener('change', saveCfg);
+document.getElementById('key').addEventListener('change', saveCfg);
+document.getElementById('cmodel').addEventListener('change', saveCfg);
+(function restoreCfg(){
+  var cfg = loadCfg();
+  if (cfg.prov) document.getElementById('prov').value = cfg.prov;
+  var prov = document.getElementById('prov').value;
+  if (cfg.models && cfg.models[prov]) document.getElementById('model').value = cfg.models[prov];
+  if (cfg.keys && cfg.keys[prov]) document.getElementById('key').value = cfg.keys[prov];
+  document.getElementById('cprov').value = cfg.cprov || 'gemini';
+  if (cfg.cmodel) document.getElementById('cmodel').value = cfg.cmodel;
+})();
+document.getElementById('forget').onclick = function(){
+  try { localStorage.removeItem(STORE); } catch(e){}
+  document.getElementById('key').value = '';
+  this.textContent = 'erased';
+  var b = this; setTimeout(function(){ b.textContent = 'forget'; }, 1400);
+};
+
+/* ===== ref helpers ===== */
+function parseDaf(s){
+  var m = String(s).trim().toLowerCase().match(/^(\d{1,3})\s*([ab])?$/);
+  return m ? { num:+m[1], side:m[2]||'a' } : null;
+}
+function dafOrd(d){ return d.num*2 + (d.side==='b'?1:0); }
+function dafStr(d){ return d.num + d.side; }
+function nextAmud(d){ return d.side==='a' ? {num:d.num,side:'b'} : {num:d.num+1,side:'a'}; }
+function urlRef(mas, rest){ return mas.replace(/ /g,'_') + '.' + rest; }
+function parsePassage(pRef){
+  var s = pRef.trim();
+  var i = s.search(/ \d/);
+  var mas = s.slice(0,i), range = s.slice(i+1), parts = range.split('-');
+  var st = parts[0].split(':');
+  var start = { daf: parseDaf(st[0]), seg: st[1] ? +st[1] : null };
+  var end;
+  if (parts.length === 1) end = { daf:start.daf, seg:start.seg };
+  else {
+    var en = parts[1].split(':');
+    if (en.length === 2) end = { daf: parseDaf(en[0]), seg: +en[1] };
+    else                 end = { daf: start.daf, seg: +en[0] };
+  }
+  return { mas:mas, start:start, end:end };
+}
+/* HebrewBooks deep links follow their published shas.aspx scheme */
+function hbLink(mas, d, fmt){
+  var dafParam = d.side==='b' ? d.num+'b' : String(d.num);
+  return 'https://hebrewbooks.org/shas.aspx?mesechta='+HB_NUM[mas]+'&daf='+dafParam+'&format='+fmt;
+}
+function srcLink(mas, d, seg){
+  return 'https://www.sefaria.org/'+urlRef(mas, dafStr(d)+(seg?'.'+seg:''))+'?lang=he';
+}
+
+/* ===== source fetchers ===== */
+async function getJSON(url, opts){
+  var r = await fetch(url, opts);
+  if (!r.ok) throw new Error('Request failed ('+r.status+'): ' + (await r.text()).slice(0,240));
+  return r.json();
+}
+var amudCache = {};
+async function getAmudSegments(mas, d){
+  var k = mas + '|' + dafStr(d);
+  if (amudCache[k]) return amudCache[k];
+  var data = await getJSON('https://www.sefaria.org/api/v3/texts/' + urlRef(mas, dafStr(d)));
+  var vs = (data.versions||[]).filter(function(v){ return v.text && v.text.length; });
+  if (!vs.length) throw new Error('No text came back for ' + mas + ' ' + dafStr(d));
+  var t = vs[0].text; if (typeof t === 'string') t = [t];
+  amudCache[k] = t.map(function(seg){
+    var div = document.createElement('div'); div.innerHTML = seg;
+    return div.textContent.replace(/\s+/g,' ').trim();
+  });
+  return amudCache[k];
+}
+async function getSugyaSegments(pp){
+  var out = [], d = pp.start.daf;
+  while (dafOrd(d) <= dafOrd(pp.end.daf)){
+    var segs = await getAmudSegments(pp.mas, d);
+    var from = (dafOrd(d)===dafOrd(pp.start.daf)) ? (pp.start.seg||1) : 1;
+    var to   = (dafOrd(d)===dafOrd(pp.end.daf))   ? (pp.end.seg||segs.length) : segs.length;
+    for (var i = from; i <= to && i <= segs.length; i++) out.push({ daf:d, seg:i, text:segs[i-1] });
+    d = nextAmud(d);
+    if (out.length > 400) break;
+  }
+  return out;
+}
+async function getPassages(mas, d, nSegs){
+  var refs = [];
+  for (var i=1;i<=nSegs;i++) refs.push(urlRef(mas, dafStr(d)+'.'+i));
+  var out = {};
+  for (var c=0;c<refs.length;c+=25){
+    var res = await getJSON('https://www.sefaria.org/api/passages/' + refs.slice(c,c+25).join('|'));
+    Object.keys(res).forEach(function(kk){ out[kk]=res[kk]; });
+  }
+  return out;
+}
+function firstWords(t,n){ return t.split(' ').slice(0,n).join(' '); }
+
+/* ===== model calls (structure only; no Hebrew ever comes from a model) ===== */
+function scaffoldPrompt(passageRef, sugya){
+  var lines = [
+    'You are Sugyafier, a Talmudic structure analyst. Below are the numbered verbatim segments of the sugya ' + passageRef + '.',
+    'Return ONLY a JSON object, no markdown fences, no commentary. Schema:',
+    '{"moves":[{"n":1,"type":"Question","from":1,"to":2,"en":"plain-language summary","he":"תקציר בעברית רבנית"}]}',
+    'type must be one of: Mishnah, Beraita, Statement, Question, Inquiry, Answer, Objection, Resolution, Proof, Rejection, Dispute, Limitation, Conclusion. Use Beraita (not Mishnah) for tannaitic material introduced within the Gemara (e.g. by a citation formula).',
+    'from/to are 1-based segment numbers; together the moves must cover ALL segments 1..' + sugya.length + ' in order, with no gaps and no overlaps.',
+    'STRICT RULE: "en" is plain conceptual language ONLY - do not quote, transliterate, or name any Aramaic/Hebrew words from the text. "he" is one short sentence in classical rabbinic Hebrew describing the move conceptually - also without quoting the text.',
+    'COMPLETENESS RULE: each summary must account for every distinct claim in its span. If the text announces multiple proofs, sources, or limbs of an argument, the summary must enumerate all of them - omitting a claimed proof is an error.',
+    'ATTRIBUTION RULE: summaries may not attribute material to any named work, corpus, or source-class that the text itself does not name (e.g. do not call a passage a Tosefta or a Mishnah unless the text says so - an unnamed tannaitic citation is a "beraita"), and may not identify unnamed species, objects, or persons with specific outside identifications. Describe only what the text itself asserts.',
+    '',
+    'SEGMENTS:'
+  ];
+  sugya.forEach(function(s, i){ lines.push((i+1) + '. ' + s.text); });
+  return lines.join('\n');
+}
+function keyFor(prov){
+  var cfg = loadCfg();
+  if (prov === document.getElementById('prov').value){
+    var k = document.getElementById('key').value.trim();
+    if (k) return k;
+  }
+  return (cfg.keys || {})[prov] || '';
+}
+/* returns { text, reasoning } */
+async function callLLM(prompt, prov, model){
+  var key = keyFor(prov);
+  if (!key) throw new Error('No saved API key for ' + prov + '. Pick it in the top bar once and paste a key.');
+  if (prov === 'gemini'){
+    var g = await getJSON('https://generativelanguage.googleapis.com/v1beta/models/' + model + ':generateContent?key=' + encodeURIComponent(key), {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ contents:[{ parts:[{ text: prompt }] }] })
+    });
+    var parts = (((g.candidates||[])[0]||{}).content||{}).parts||[];
+    return {
+      text: parts.filter(function(p){ return !p.thought; }).map(function(p){ return p.text||''; }).join('\n'),
+      reasoning: parts.filter(function(p){ return p.thought; }).map(function(p){ return p.text||''; }).join('\n')
+    };
+  }
+  if (prov === 'anthropic'){
+    var a = await getJSON('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{ 'Content-Type':'application/json','x-api-key':key,
+        'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true' },
+      body: JSON.stringify({ model:model, max_tokens:2000, messages:[{role:'user',content:prompt}] })
+    });
+    var cb = a.content||[];
+    return {
+      text: cb.filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('\n'),
+      reasoning: cb.filter(function(b){return b.type==='thinking';}).map(function(b){return b.thinking||'';}).join('\n')
+    };
+  }
+  var base = prov === 'openrouter' ? 'https://openrouter.ai/api/v1' : 'https://api.openai.com/v1';
+  var o = await getJSON(base + '/chat/completions', {
+    method:'POST',
+    headers:{ 'Content-Type':'application/json', 'Authorization':'Bearer ' + key },
+    body: JSON.stringify({ model:model, messages:[{role:'user',content:prompt}] })
+  });
+  var msg = (((o.choices||[])[0]||{}).message||{});
+  return {
+    text: msg.content || '',
+    reasoning: msg.reasoning || msg.reasoning_content || ''
+  };
+}
+function parseJSONLoose(t){
+  var s = String(t).replace(/```json|```/g,'').trim();
+  var i = s.indexOf('{'), j = s.lastIndexOf('}');
+  if (i===-1||j===-1) throw new Error('The model did not return JSON.');
+  return JSON.parse(s.slice(i,j+1));
+}
+function validateMoves(moves, N){
+  var warnings = [], clean = [];
+  (moves||[]).forEach(function(m){
+    var f = Math.max(1, Math.min(N, +m.from||0));
+    var t = Math.max(1, Math.min(N, +m.to||0));
+    if (!f || !t){ warnings.push('a move was dropped: bad span'); return; }
+    if (t < f){ var tmp=f; f=t; t=tmp; }
+    clean.push({ type:String(m.type||'Statement'), from:f, to:t, en:String(m.en||''), he:String(m.he||'') });
+  });
+  clean.sort(function(a,b){ return a.from - b.from; });
+  var covered = new Array(N+1).fill(0);
+  clean.forEach(function(m){ for(var i=m.from;i<=m.to;i++) covered[i]++; });
+  var gaps=[], overs=[];
+  for (var i=1;i<=N;i++){ if(!covered[i]) gaps.push(i); if(covered[i]>1) overs.push(i); }
+  if (gaps.length) warnings.push('segments not covered: ' + gaps.join(','));
+  if (overs.length) warnings.push('segments covered twice: ' + overs.join(','));
+  return { moves: clean, warnings: warnings };
+}
+
+/* ===== scan flow ===== */
+var lastAudit = { passages:null, model:null };
+document.getElementById('scan').onclick = async function(){
+  var mas = sel.value, d = parseDaf(document.getElementById('daf').value);
+  var st = document.getElementById('status'), out = document.getElementById('out');
+  if (!d){ st.style.display='block'; st.textContent='That daf did not parse. Try 65a or 65b.'; return; }
+  var btn=this; btn.disabled=true; st.style.display='block'; out.innerHTML='';
+  try {
+    st.textContent = 'Bringing ' + mas + ' ' + dafStr(d) + '...';
+    var segs = await getAmudSegments(mas, d);
+    st.textContent = 'Mapping ' + segs.length + ' segments to their sugyos...';
+    var passMap = await getPassages(mas, d, segs.length);
+    lastAudit.passages = passMap; refreshAudit();
+
+    var seen={}, ordered=[];
+    for (var i=1;i<=segs.length;i++){
+      var p = passMap[urlRef(mas, dafStr(d)+'.'+i)] || passMap[mas+' '+dafStr(d)+':'+i];
+      if (p && !seen[p]){ seen[p]=true; ordered.push(p); }
+    }
+    if (!ordered.length) throw new Error('No sugya divisions came back for this amud.');
+
+    var here = dafOrd(d);
+    for (var k=0;k<ordered.length;k++){
+      var pp = parsePassage(ordered[k]);
+      var opening = '';
+      if (dafOrd(pp.start.daf)===here && pp.start.seg && segs[pp.start.seg-1]!==undefined){
+        opening = firstWords(segs[pp.start.seg-1],8);
+      } else {
+        try {
+          var pre = await getAmudSegments(pp.mas, pp.start.daf);
+          opening = firstWords(pre[(pp.start.seg||1)-1]||'',8);
+        } catch(e){}
+      }
+      renderCard(k+1, mas, d, ordered[k], pp, opening, here);
+    }
+    st.textContent = ordered.length + ' sugyos on ' + mas + ' ' + dafStr(d) + ' · ' + segs.length + ' segments mapped';
+  } catch(e){
+    st.textContent = 'The scan did not finish';
+    out.innerHTML = '<div class="err">'+String(e.message||e).replace(/</g,'&lt;')+'</div>';
+  }
+  btn.disabled=false;
+};
+function refreshAudit(){
+  document.getElementById('audit').style.display='block';
+  document.getElementById('auditpre').textContent =
+    '--- PASSAGE DIVISIONS ---\n' + JSON.stringify(lastAudit.passages,null,1) +
+    (lastAudit.model ? '\n\n--- LAST MODEL OUTPUT ---\n' + lastAudit.model : '');
+}
+
+/* ===== cards and the in-place scaffold ===== */
+function renderCard(n, mas, d, passageRef, pp, opening, here){
+  var carry = dafOrd(pp.start.daf) < here;
+  var past  = dafOrd(pp.end.daf)   > here;
+  var card = document.createElement('div');
+  card.className='card';
+  card.innerHTML =
+    '<div class="row"><span class="num">'+n+'</span><span class="chips">'+
+      (carry?'<span class="chip mutec">carries in</span>':'<span class="chip ghost">starts here</span>')+
+      (past?'<span class="chip mutec">runs past</span>':'')+
+      '<span class="chip">canonical</span></span></div>'+
+    '<p class="opening"></p><div class="refline"></div>'+
+    '<div class="actions">'+
+      '<button class="a-scaf primary">Scaffold</button>'+
+      '<a target="mekor" rel="noopener" class="a-sef">מקור ↗</a>'+
+      '<a target="hb-pdf" rel="noopener" class="a-pdf">צילום ↗</a>'+
+      '<a target="hb-text" rel="noopener" class="a-txt">טקסט ↗</a>'+
+    '</div>'+
+    '<div class="scaffold" style="display:none"></div>';
+  card.querySelector('.opening').textContent = opening ? opening+'...' : '(the opening could not be brought)';
+  card.querySelector('.refline').textContent = passageRef;
+  card.querySelector('.a-sef').href = srcLink(pp.mas, pp.start.daf, pp.start.seg);
+  card.querySelector('.a-pdf').href = hbLink(mas, pp.start.daf, 'pdf');
+  card.querySelector('.a-txt').href = hbLink(mas, pp.start.daf, 'text');
+  card.querySelector('.a-scaf').onclick = function(){ scaffold(card, passageRef, pp, this); };
+  document.getElementById('out').appendChild(card);
+}
+
+async function scaffold(card, passageRef, pp, btn){
+  var box = card.querySelector('.scaffold');
+  btn.disabled = true; btn.textContent = 'working...';
+  box.style.display='block';
+  box.innerHTML = '<span class="scafhead t">Bringing the sugya...</span>';
+  try {
+    var prov = document.getElementById('prov').value;
+    var model = document.getElementById('model').value.trim();
+    var sugya = await getSugyaSegments(pp);
+    box.innerHTML = '<span class="scafhead t">' + prov + ' / ' + model + ' is structuring ' + sugya.length + ' segments...</span>';
+    var res = await callLLM(scaffoldPrompt(passageRef, sugya), prov, model);
+    lastAudit.model = (res.reasoning ? '--- REASONING ---\n' + res.reasoning + '\n\n' : '') + res.text;
+    refreshAudit();
+    var parsed = parseJSONLoose(res.text);
+    var v = validateMoves(parsed.moves, sugya.length);
+
+    box.innerHTML = '';
+    var head = document.createElement('div');
+    head.className='scafhead';
+    head.innerHTML = '<span class="t">Scaffold · ' + v.moves.length + ' moves · ' + prov + ' / ' + model + '</span>';
+    var auditBtn = document.createElement('button');
+    auditBtn.className = 'smallbtn';
+    auditBtn.style.marginTop = '0';
+    auditBtn.textContent = 'Review (second model)';
+    head.appendChild(auditBtn);
+    box.appendChild(head);
+
+    if (res.reasoning){
+      var det = document.createElement('details');
+      det.className = 'reason';
+      det.innerHTML = '<summary>The model\'s reasoning · ' +
+        res.reasoning.split(/\s+/).length + ' words</summary>';
+      var pre = document.createElement('pre');
+      pre.textContent = res.reasoning;
+      det.appendChild(pre);
+      box.appendChild(det);
+    }
+
+    v.warnings.forEach(function(w){
+      var el = document.createElement('div'); el.className='warn'; el.textContent = 'check: ' + w;
+      box.appendChild(el);
+    });
+    var moveEls = [];
+    v.moves.forEach(function(m, idx){
+      var refA = sugya[m.from-1], refB = sugya[m.to-1];
+      var mv = document.createElement('div');
+      mv.className = 'move';
+      mv.innerHTML =
+        '<span class="mtype">' + (idx+1) + ' · ' + m.type + '</span>' +
+        '<p class="men"></p><p class="mhe"></p>' +
+        '<div class="mrefs">' + pp.mas + ' ' + dafStr(refA.daf) + ':' + refA.seg +
+          (m.to>m.from ? ' to ' + dafStr(refB.daf) + ':' + refB.seg : '') + '</div>' +
+        '<button class="smallbtn rev">reveal the Gemara</button>' +
+        '<div class="src"></div>';
+      mv.querySelector('.men').textContent = m.en;
+      mv.querySelector('.mhe').textContent = m.he;
+      var src = mv.querySelector('.src');
+      for (var i=m.from;i<=m.to;i++){
+        var s = sugya[i-1];
+        var seg = document.createElement('p'); seg.className='seg'; seg.textContent = s.text;
+        var sr = document.createElement('div'); sr.className='segref';
+        var a = document.createElement('a');
+        a.target='mekor'; a.rel='noopener';
+        a.href = srcLink(pp.mas, s.daf, s.seg);
+        a.textContent = pp.mas + ' ' + dafStr(s.daf) + ':' + s.seg + ' ↗';
+        sr.appendChild(a);
+        src.appendChild(seg); src.appendChild(sr);
+      }
+      mv.querySelector('.rev').onclick = function(){
+        src.classList.toggle('on');
+        this.textContent = src.classList.contains('on') ? 'hide the Gemara' : 'reveal the Gemara';
+      };
+      box.appendChild(mv);
+      moveEls.push(mv);
+    });
+
+    auditBtn.onclick = function(){ critic(box, auditBtn, sugya, v.moves, moveEls); };
+    btn.textContent = 'Re-scaffold';
+  } catch(e){
+    box.innerHTML = '<div class="err">'+String(e.message||e).replace(/</g,'&lt;')+'</div>';
+    btn.textContent = 'Scaffold';
+  }
+  btn.disabled = false;
+}
+
+/* ===== review pass: a second model reads the words against the summaries ===== */
+function criticPrompt(sugya, moves){
+  var lines = [
+    'You are auditing a structural summary of a Talmudic sugya for THREE error classes:',
+    '1. OMISSION - a distinct assertion, proof, source, or limb of argument PRESENT in the text but ABSENT from the summary.',
+    '2. MISSTATEMENT - anything the summary asserts that the text does not support, including inverted attributions or reversed conclusions (e.g. summarizing signs of purity as signs of impurity), wrong speakers, or wrong halakhic outcomes. Misstatements are the more serious class - check each summary claim against the text explicitly.',
+    '3. UNSUPPORTED ATTRIBUTION (report as kind "misstatement") - the summary names a source, work, corpus, person, or specific identification that the text itself does not name: e.g. calling an unnamed tannaitic citation a Tosefta or Mishnah, naming an unnamed speaker, or identifying an unnamed species/object with a specific outside identification.',
+    'Ignore style; report substance only. If a summary is complete and correct, do not report it.',
+    'Return ONLY JSON: {"findings":[{"move":2,"kind":"misstatement","issue":"one short sentence"}]} where kind is "omission" or "misstatement". Empty findings array if nothing is wrong.',
+    ''
+  ];
+  moves.forEach(function(m, idx){
+    var txt = [];
+    for (var i=m.from;i<=m.to;i++) txt.push(sugya[i-1].text);
+    lines.push('MOVE ' + (idx+1) + ' [' + m.type + ']');
+    lines.push('TEXT: ' + txt.join(' '));
+    lines.push('SUMMARY: ' + m.en);
+    lines.push('');
+  });
+  return lines.join('\n');
+}
+async function critic(box, auditBtn, sugya, moves, moveEls){
+  var cprov = document.getElementById('cprov').value;
+  var cmodel = document.getElementById('cmodel').value.trim();
+  auditBtn.disabled = true; auditBtn.textContent = 'reviewing...';
+  box.querySelectorAll('.audit-note').forEach(function(n){ n.remove(); });
+  try {
+    var res = await callLLM(criticPrompt(sugya, moves), cprov, cmodel);
+    lastAudit.model = (lastAudit.model||'') + '\n\n--- REVIEW (' + cprov + '/' + cmodel + ') ---\n' + res.text;
+    refreshAudit();
+    var parsed = parseJSONLoose(res.text);
+    var findings = parsed.findings || [];
+    var hits = 0;
+    findings.forEach(function(f){
+      var idx = (+f.move) - 1;
+      var issue = f.issue || f.omission || '';
+      if (idx >= 0 && idx < moveEls.length && issue){
+        var n = document.createElement('div');
+        n.className = 'warn audit-note' + (((f.kind||'')==='misstatement') ? ' hard' : '');
+        n.textContent = (((f.kind||'')==='misstatement') ? 'misstatement? ' : 'omission? ') + issue;
+        moveEls[idx].appendChild(n);
+        hits++;
+      }
+    });
+    var sameModel = (cprov === document.getElementById('prov').value &&
+                     cmodel === document.getElementById('model').value.trim());
+    var sumEl = document.createElement('div');
+    sumEl.className = 'warn audit-note';
+    sumEl.style.borderStyle = 'solid';
+    sumEl.textContent = (hits ? ('Review (' + cprov + '/' + cmodel + '): ' + hits + ' finding(s) marked below')
+                              : ('Review (' + cprov + '/' + cmodel + '): nothing to flag'))
+                        + (sameModel ? ' · note: the reviewer is the same model that scaffolded; pick a different one for a real second opinion' : '');
+    box.insertBefore(sumEl, box.children[1] || null);
+    auditBtn.textContent = 're-review';
+  } catch(e){
+    var errEl = document.createElement('div');
+    errEl.className = 'err audit-note';
+    errEl.textContent = String(e.message||e);
+    box.insertBefore(errEl, box.children[1] || null);
+    auditBtn.textContent = 'Review (second model)';
+  }
+  auditBtn.disabled = false;
+}
+</script>
+<script src="../site-chrome.js"></script>
+</body>
+</html>

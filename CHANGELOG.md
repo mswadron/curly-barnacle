@@ -5,6 +5,9 @@ All notable changes to **Torah Interactive**. Format loosely follows
 
 ## [Unreleased]
 
+### Added (2026-10-22)
+- `apps/sugyascout.html` - Sugya Scout: pick a daf and see every sugya on it by the canonical passage divisions, each opening quoted as written, with links to the text and to the printed daf (shas.aspx scheme). Each sugya opens into a model-built step-by-step scaffold (bring-your-own key: OpenRouter, Gemini, OpenAI, Anthropic; keys stay in the browser), the Gemara behind each step revealed on tap, and a second-model review pass that flags omissions, misstatements, and unsupported attributions. New index tile under Luach & Reference; sub-doc at `docs/sugyascout.md`.
+
 ### Removed
 - Ta'amei HaMikra (trup sound lab) taken off the site until it is more ready: index tile removed, `apps/trup-real.html` moved to `dev/trup/trup-real.html`, trup line dropped from `mekoros.html`. Restore by moving the file back and re-adding the tile. (2026-10-14)
 
