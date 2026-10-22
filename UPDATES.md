@@ -35,3 +35,4 @@
 2026-10-19 · Rare Words in Tanach: opens at the top even on reload or a reopened phone tab (scroll restore off in the head, reset after load); script links carry a version so phones fetch the new code.
 2026-10-19 · Rare Words in Tanach: 'where the form appears' shows the whole pasuk for every place, form highlighted (Torah and Nevi'im/Kesuvim); new apps/milim-nach.js holds the Nach pesukim (ETCBC, no cantillation).
 2026-10-21 · How Old Was Dinah?: new app apps/dinah.html (+ dinah-data.js, dinah.js) and index tile under Chumash; sliders per link with opinions quoted verbatim, warning where no source holds; doc docs/dinah.md.
+2026-10-22 · How Old Was Dinah?: pause after Yehuda (Karnei Ohr, Seder Olam) and overlapping births (Ibn Ezra 30:23) now part of the calculation; Karnei Ohr's 6y11m reproduces.
