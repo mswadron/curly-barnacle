@@ -24,6 +24,7 @@
 - Done 2026-10-01: Arba Minim content corrections (psul origin, Chasam Sofer thick-rind sign, strain drift, polyembryony).
 - Done 2026-10-21: apps/dinah (How Old Was Dinah?, Hebrew-only, limudlab look) + Chumash tile.
 - Done 2026-10-22: dinah, pause after Yehuda and overlapping births wired into the calculation.
+- Done 2026-10-22: dinah, Ralbag wedding-timing slider and preset, Rabbeinu Bachya on Dinah's age.
 - In work: none.
 - Planned: Chibuk verbatim fetches; Tumah Tree B (awaiting five decisions); Ornithology Part D render approval; Sugya Scout / Source Dock.
 

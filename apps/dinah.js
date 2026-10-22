@@ -1,12 +1,12 @@
 (function(){
 const Q="q",I="i",N="n";
 const {SL,TOGGLES,PRESETS}=window.DINAH_DATA;
-const state={gap:9,pause:0,overlap:"strict",stay:1.5,levi:13,yosef:14,dinah:7,order:"seq"};
+const state={wed:7,gap:9,pause:0,overlap:"strict",stay:1.5,levi:13,yosef:14,dinah:7,order:"seq"};
 const $=id=>document.getElementById(id);
 const FR={0:"",0.25:"¼",0.5:"½",0.75:"¾"};
 function age0(v){const q=Math.round(v*4)/4;if(Math.abs(q-v)>1e-6){const y=Math.floor(v),m=Math.round((v-y)*12);return y+" ו־"+m+" ח׳";}const w=Math.floor(q+1e-9),f=+(q-w).toFixed(2);return (w||!f?w:"")+FR[f];}
 function age(v){const s=age0(v);return /ח׳/.test(s)?s:"⁦"+s+"⁩";}
-function fmt(s,v){if(s.unit==="m")return v+" חודשים";if(s.id==="pause"&&v===0)return "בלי הפסקה";if(s.unit==="y"){return s.id==="yosef"?"שנה "+age(v):(v===0?"מיד":age(v)+" שנים");}return "בן/בת "+age(v);}
+function fmt(s,v){if(s.unit==="m")return v+" חודשים";if(s.id==="pause"&&v===0)return "בלי הפסקה";if(s.id==="wed")return v===0?"בתחילת העבודה":"שנה "+age(v);if(s.unit==="y"){return s.id==="yosef"?"שנה "+age(v):(v===0?"מיד":age(v)+" שנים");}return "בן/בת "+age(v);}
 function matches(o,v,step){return o.lo!=null?(v>=o.lo-1e-9&&v<=o.hi+1e-9):Math.abs(o.v-v)<step/2+1e-9;}
 function chip(t){return t===Q?'<span class="chip q">ציטוט</span>':t===I?'<span class="chip i">היסק</span>':'<span class="chip n">אין מקור</span>';}
 
@@ -58,10 +58,10 @@ function buildControls(){
 
 function solve(p){
  const g=p.gap/12,b={};
- b.Reuven=7+g;b.Shimon=b.Reuven+g;b.Levi=b.Shimon+g;b.Yehuda=b.Levi+g;b.Gad=b.Yehuda+g;b.Asher=b.Gad+g;
+ b.Reuven=p.wed+g;b.Shimon=b.Reuven+g;b.Levi=b.Shimon+g;b.Yehuda=b.Levi+g;b.Gad=b.Yehuda+g;b.Asher=b.Gad+g;
  const yAfter=b.Yehuda+g+p.pause;b.Yissachar=p.overlap==="overlap"?yAfter:Math.max(b.Asher,yAfter);b.Zevulun=b.Yissachar+g;
  const seq=p.order==="seq";
- b.Dinah=seq?b.Zevulun+g:7+g;
+ b.Dinah=seq?b.Zevulun+g:p.wed+g;
  const birthLast=seq?p.yosef:20;
  const sh=20+p.stay, leviAge=sh-b.Levi;
  const okOrder=b.Dinah<=birthLast+1e-9;
@@ -69,7 +69,7 @@ function solve(p){
  const okLevi=leviAge>=p.levi-1e-9;
  const okD=okOrder&&p.dinah>=dLo-1e-9&&p.dinah<=dHi+1e-9;
  const rules=[
-  ["חתונה אחרי ז' שנים, ואחריה הריון","בראשית כט כ כג","ראובן בשנה "+age(b.Reuven),true],
+  [p.wed?"חתונה בשנה "+age(p.wed)+", ואחריה הריון":"חתונה בתחילת העבודה, ואחריה הריון",p.wed?"בראשית כט כ כא":"רלב\"ג כט א","ראובן בשנה "+age(b.Reuven),true],
   ["ראובן, שמעון, לוי, יהודה זה אחר זה","בראשית כט לב לה","כל אחד "+p.gap+" חודשים אחרי הקודם",true],
   ["בני זלפה אחרי \"ותעמוד מלדת\"","בראשית כט לה; ל ט","גד אחרי יהודה",true],
   ["הפסקה אחרי יהודה (\"ותעמוד מלדת\")","בראשית כט לה",p.pause?age(p.pause)+" שנים":"בלי הפסקה",true],
@@ -84,14 +84,14 @@ function solve(p){
 
 function chart(p,r){
  const W=720,H=300,R=110,L=30,T=26,B=40;
- const end=Math.max(22,r.sh+1),x0=6,x=v=>W-R-(v-x0)/(end-x0)*(W-R-L);
+ const end=Math.max(22,r.sh+1),x0=Math.min(6,Math.floor(p.wed)-1),x=v=>W-R-(v-x0)/(end-x0)*(W-R-L);
  const rows=[["Reuven","ראובן","--leah"],["Shimon","שמעון","--leah"],["Levi","לוי","--levi"],["Yehuda","יהודה","--leah"],["Gad","גד","--zilpah"],["Asher","אשר","--zilpah"],["Yissachar","יששכר","--leah"],["Zevulun","זבולון","--leah"],["Dinah","דינה","--dinah"]];
  const rh=(H-T-B)/rows.length;
  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="ציר לידות">`;
  for(let t=Math.ceil(x0);t<=end;t+=2)s+=`<line x1="${x(t)}" x2="${x(t)}" y1="${T-6}" y2="${H-B}" stroke="var(--rule)"/><text x="${x(t)}" y="${H-B+18}" font-size="11" text-anchor="middle" fill="var(--muted)">${t}</text>`;
  s+=`<text x="${(W-R+L)/2}" y="${H-4}" font-size="11" text-anchor="middle" fill="var(--muted)">שנים מבואו של יעקב לבית לבן</text>`;
  const mark=(v,lab,col)=>`<line x1="${x(v)}" x2="${x(v)}" y1="${T-10}" y2="${H-B}" stroke="var(${col})" stroke-width="2" stroke-dasharray="4 3"/><text x="${x(v)}" y="${T-13}" font-size="11" text-anchor="middle" fill="var(${col})" font-weight="600">${lab}</text>`;
- s+=mark(7,"חתונה","--muted")+mark(p.yosef,"יוסף","--muted")+mark(20,"יציאה","--muted")+mark(r.sh,"שכם",r.feasible&&r.okD?"--ok":"--bad");
+ s+=mark(p.wed,"חתונה","--muted")+mark(p.yosef,"יוסף","--muted")+mark(20,"יציאה","--muted")+mark(r.sh,"שכם",r.feasible&&r.okD?"--ok":"--bad");
  rows.forEach(([k,he,c],i)=>{
   const y=T+i*rh+rh/2,bx=x(r.b[k]);
   s+=`<text x="${W-R+12}" y="${y+4}" font-size="13" text-anchor="start" fill="var(--ink)" direction="rtl">${he}</text>`;
@@ -130,7 +130,7 @@ function render(){
  $("chart").innerHTML=chart(state,r);
  $("rules").innerHTML="<thead><tr><th>חוליה</th><th>מקור</th><th>ערך</th><th></th></tr></thead><tbody>"+r.rules.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td><td class="num">${x[2]}</td><td class="st ${x[3]?"y":"n"}">${x[3]?"✓":"✗"}</td></tr>`).join("")+"</tbody>";
  let pn="";
- document.querySelectorAll(".presets button").forEach(b=>{const q=PRESETS[b.dataset.p];const on=["gap","pause","overlap","stay","levi","yosef","order"].every(k=>q[k]===state[k]);b.setAttribute("aria-pressed",on?"true":"false");if(on)pn=q.note;});
+ document.querySelectorAll(".presets button").forEach(b=>{const q=PRESETS[b.dataset.p];const on=["wed","gap","pause","overlap","stay","levi","yosef","order"].every(k=>q[k]===state[k]);b.setAttribute("aria-pressed",on?"true":"false");if(on)pn=q.note;});
  $("presetNote").innerHTML=pn?'<span class="chip ai">הסבר</span> '+pn:"";
 }
 buildControls();
