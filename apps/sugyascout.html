@@ -86,6 +86,9 @@ details.audit pre{background:var(--card);border:1px solid var(--rule);padding:10
 details.reason{margin-bottom:9px}
 details.reason summary{font-weight:500;font-size:13.5px;color:var(--mute);cursor:pointer}
 details.reason pre{background:#fff;border:1px solid var(--rule);padding:9px;font-size:12px;white-space:pre-wrap;max-height:260px;overflow:auto}
+#gear{background:var(--card);border:1px solid var(--rule);color:var(--acc);padding:7px 9px;cursor:pointer;display:flex;align-items:center}
+#gear:hover{background:var(--acc-tint)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 details.settings{background:var(--card);border:1px solid var(--rule);margin-bottom:14px}
 details.settings summary{font-weight:500;font-size:14px;color:var(--acc);cursor:pointer;padding:10px 13px}
 details.settings .setbody{padding:4px 13px 11px;display:flex;flex-direction:column;gap:0}
@@ -110,6 +113,9 @@ footer.colophon{max-width:860px;margin:0 auto;padding:0 20px 40px;font-size:13.5
     <input id="daf" value="65a" maxlength="4" aria-label="daf">
     <button id="scan">Scan</button>
   </div>
+  <button id="gear" title="Settings for pro users: pick models, use your own API keys" aria-label="Settings">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.09a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.09a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.09a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+  </button>
 </header>
 
 <main>
@@ -118,14 +124,15 @@ footer.colophon{max-width:860px;margin:0 auto;padding:0 20px 40px;font-size:13.5
   by the canonical passage divisions, with each opening quoted as written. Sugyos that carry in
   from the previous daf or run past this one are marked. Scaffold opens a sugya into its
   step-by-step moves, with the Gemara behind every step one tap away, and a second model can
-  review the summaries against the words. Scaffolding needs an API key: open Settings below to add one.</p>
+  review the summaries against the words. Scaffolding runs free out of the box on the site's built-in models; the gear in the corner lets pro users pick stronger models with their own API keys.</p>
 
   <details class="settings" id="settings">
-<summary>Settings: models and API keys</summary>
+<summary class="vh">Settings: models and API keys</summary>
 <div class="setbody">
 <div class="llmbar">
     <label>Scaffolding model</label>
     <select id="prov">
+      <option value="limudlab">limudlab (free, built in)</option>
       <option value="openrouter">OpenRouter</option>
       <option value="gemini">Google Gemini</option>
       <option value="openai">OpenAI</option>
@@ -138,6 +145,7 @@ footer.colophon{max-width:860px;margin:0 auto;padding:0 20px 40px;font-size:13.5
   <div class="llmbar">
     <label>Reviewing model</label>
     <select id="cprov">
+      <option value="limudlab">limudlab (free, built in)</option>
       <option value="openrouter">OpenRouter</option>
       <option value="gemini">Google Gemini</option>
       <option value="openai">OpenAI</option>
@@ -201,12 +209,18 @@ MAS.forEach(function(m){
 sel.value = 'Chullin';
 
 var DEFAULT_MODEL = {
+  limudlab: '@cf/meta/llama-3.3-70b-instruct-fp8-fast',
   openrouter: 'deepseek/deepseek-chat',
   gemini: 'gemini-2.5-flash',
   openai: 'gpt-4o-mini',
   anthropic: 'claude-haiku-4-5'
 };
 
+function syncKeyVisibility(){
+  var free = document.getElementById('prov').value === 'limudlab';
+  document.getElementById('key').style.display = free ? 'none' : '';
+  document.getElementById('forget').style.display = free ? 'none' : '';
+}
 /* ===== saved settings (this browser only) ===== */
 var STORE = 'sugyascout-llm';
 var sessionKeys = {};   /* keys held for this visit only when "do not remember" is on */
@@ -238,10 +252,11 @@ function saveCfg(){
 document.getElementById('prov').onchange = function(){
   document.getElementById('model').value = (loadCfg().models||{})[this.value] || DEFAULT_MODEL[this.value];
   document.getElementById('key').value = sessionKeys[this.value] || (loadCfg().keys||{})[this.value] || '';
+  syncKeyVisibility();
   saveCfg();
 };
 document.getElementById('cprov').addEventListener('change', function(){
-  document.getElementById('cmodel').value = DEFAULT_MODEL[this.value];
+  document.getElementById('cmodel').value = this.value === 'limudlab' ? '@cf/qwen/qwq-32b' : DEFAULT_MODEL[this.value];
   saveCfg();
 });
 document.getElementById('model').addEventListener('change', saveCfg);
@@ -249,13 +264,16 @@ document.getElementById('key').addEventListener('change', saveCfg);
 document.getElementById('cmodel').addEventListener('change', saveCfg);
 (function restoreCfg(){
   var cfg = loadCfg();
-  if (cfg.prov) document.getElementById('prov').value = cfg.prov;
+  document.getElementById('prov').value = cfg.prov || 'limudlab';
+  if (!cfg.prov) document.getElementById('model').value = DEFAULT_MODEL.limudlab;
   var prov = document.getElementById('prov').value;
   if (cfg.models && cfg.models[prov]) document.getElementById('model').value = cfg.models[prov];
   if (cfg.nosave) document.getElementById('nosave').checked = true;
   else if (cfg.keys && cfg.keys[prov]) document.getElementById('key').value = cfg.keys[prov];
-  document.getElementById('cprov').value = cfg.cprov || 'gemini';
+  document.getElementById('cprov').value = cfg.cprov || 'limudlab';
   if (cfg.cmodel) document.getElementById('cmodel').value = cfg.cmodel;
+  else if (document.getElementById('cprov').value === 'limudlab') document.getElementById('cmodel').value = '@cf/qwen/qwq-32b';
+  syncKeyVisibility();
 })();
 document.getElementById('nosave').addEventListener('change', function(){
   var keyEl = document.getElementById('key');
@@ -269,6 +287,11 @@ document.getElementById('nosave').addEventListener('change', function(){
   }
   saveCfg();
 });
+document.getElementById('gear').onclick = function(){
+  var s = document.getElementById('settings');
+  s.open = !s.open;
+  if (s.open) s.scrollIntoView({behavior:'smooth', block:'nearest'});
+};
 document.getElementById('forget').onclick = function(){
   try { localStorage.removeItem(STORE); } catch(e){}
   sessionKeys = {};
@@ -381,6 +404,15 @@ function keyFor(prov){
 }
 /* returns { text, reasoning } */
 async function callLLM(prompt, prov, model){
+  if (prov === 'limudlab'){
+    var f = await fetch('/api/scaffold', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ model: model, prompt: prompt })
+    });
+    var fr = await f.json().catch(function(){ return {}; });
+    if (!f.ok) throw new Error((fr && fr.error) || ('Built-in model request failed (' + f.status + '). The gear in the corner lets you use your own key instead.'));
+    return { text: fr.text || '', reasoning: fr.reasoning || '' };
+  }
   var key = keyFor(prov);
   if (!key) document.getElementById('settings').open = true;
   throw new Error('No API key saved for ' + prov + '. Open Settings (under the title) and paste a key once; free keys: ai.google.dev for Gemini, openrouter.ai/keys.');
