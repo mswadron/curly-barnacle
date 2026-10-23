@@ -22,6 +22,12 @@ function json(obj, status) {
   });
 }
 
+const REASONING = new Set([
+  '@cf/qwen/qwq-32b',
+  '@cf/deepseek-ai/deepseek-r1-distill-qwen-32b',
+  '@cf/openai/gpt-oss-120b'
+]);
+
 export async function onRequestPost({ request, env }) {
   let body;
   try { body = await request.json(); } catch (e) { return json({ error: 'bad JSON' }, 400); }
@@ -37,7 +43,7 @@ export async function onRequestPost({ request, env }) {
   try {
     const r = await env.AI.run(model, {
       messages: [{ role: 'user', content: prompt }],
-      max_tokens: 2400
+      max_tokens: REASONING.has(model) ? 7000 : 2400
     });
     // Workers AI response shapes vary by model: { response: "..." }, { response: {...} },
     // { result: ... }, OpenAI-style { choices: [...] }, or a bare string. Coerce to text.

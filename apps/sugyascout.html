@@ -452,10 +452,13 @@ async function callLLM(prompt, prov, model){
     reasoning: msg.reasoning || msg.reasoning_content || ''
   };
 }
-function parseJSONLoose(t){
+function parseJSONLoose(t, fallback){
   var s = String(t).replace(/```json|```/g,'').trim();
   var i = s.indexOf('{'), j = s.lastIndexOf('}');
-  if (i===-1||j===-1) throw new Error('The model did not return JSON.');
+  if (i===-1||j===-1){
+    if (fallback) return parseJSONLoose(fallback);
+    throw new Error('The model did not return JSON (it may have spent its whole budget thinking). Try again, or pick a different model in the gear settings.');
+  }
   return JSON.parse(s.slice(i,j+1));
 }
 function validateMoves(moves, N){
@@ -567,7 +570,7 @@ async function scaffold(card, passageRef, pp, btn){
     var res = await callLLM(scaffoldPrompt(passageRef, sugya), prov, model);
     lastAudit.model = (res.reasoning ? '--- REASONING ---\n' + res.reasoning + '\n\n' : '') + res.text;
     refreshAudit();
-    var parsed = parseJSONLoose(res.text);
+    var parsed = parseJSONLoose(res.text, res.reasoning);
     var v = validateMoves(parsed.moves, sugya.length);
 
     box.innerHTML = '';
@@ -669,7 +672,7 @@ async function critic(box, auditBtn, sugya, moves, moveEls){
     var res = await callLLM(criticPrompt(sugya, moves), cprov, cmodel);
     lastAudit.model = (lastAudit.model||'') + '\n\n--- REVIEW (' + cprov + '/' + cmodel + ') ---\n' + res.text;
     refreshAudit();
-    var parsed = parseJSONLoose(res.text);
+    var parsed = parseJSONLoose(res.text, res.reasoning);
     var findings = parsed.findings || [];
     var hits = 0;
     findings.forEach(function(f){
