@@ -210,7 +210,7 @@ footer.colophon{max-width:860px;margin:0 auto;padding:0 20px 40px;font-size:13.5
 <footer class="colophon">
   Every quoted word on this page is fetched live from the linked source edition; the models
   supply structure and summaries only, and the division into sugyos follows the source's
-  canonical passage records. <a href="../mekoros.html">מקורות</a>
+  canonical passage records. Translations under the Gemara are from the William Davidson Edition of the Koren Talmud Bavli (Rabbi Adin Steinsaltz), English and Hebrew, CC BY-NC; with the Kohen, Mincha switch on, the English wording is adapted. <a href="../mekoros.html">מקורות</a>
 </footer>
 
 <script>
@@ -642,14 +642,6 @@ async function fillTranslations(src){
     if (lang === 'en' && pref.terms) swapTerms(box);
     while (box.firstChild) s.appendChild(box.firstChild);
     any = true;
-  }
-  if (any){
-    var c = document.createElement('div'); c.className = 'trcredit';
-    c.textContent = lang === 'he'
-      ? 'Hebrew: William Davidson Edition (Steinsaltz), Koren Publishers, CC BY-NC'
-      : (pref.terms ? 'English adapted from the William Davidson Edition (Koren Talmud Bavli, Steinsaltz), CC BY-NC: Kohen, Mincha and similar terms put in place of the edition’s English renderings'
-                    : 'English: William Davidson Edition (Koren Talmud Bavli, Steinsaltz), CC BY-NC');
-    src.appendChild(c);
   }
 }
 function syncTrBar(){
