@@ -90,6 +90,9 @@ details.settings{background:var(--card);border:1px solid var(--rule);margin-bott
 details.settings summary{font-weight:500;font-size:14px;color:var(--acc);cursor:pointer;padding:10px 13px}
 details.settings .setbody{padding:4px 13px 11px;display:flex;flex-direction:column;gap:0}
 details.settings .llmbar{border:none;border-top:1px dashed var(--rule);padding:8px 0;margin-bottom:0}
+dl.legend{margin:6px 0 4px;font-size:13.5px}
+dl.legend dt{font-weight:600;color:var(--acc);margin-top:8px}
+dl.legend dd{margin:1px 0 0;color:var(--mute)}
 .setnote{font-size:13px;color:var(--mute);margin:6px 0 0;max-width:72ch}
 footer.colophon{max-width:860px;margin:0 auto;padding:0 20px 40px;font-size:13.5px;color:var(--mute)}
 </style>
@@ -141,6 +144,20 @@ footer.colophon{max-width:860px;margin:0 auto;padding:0 20px 40px;font-size:13.5
     <input class="model" id="cmodel" value="gemini-2.5-flash" aria-label="reviewing model">
   </div>
 <p class="setnote">Scanning a daf is free and needs no key. Scaffolding and review call the model provider you pick here with your own API key (free tiers: Gemini at ai.google.dev, OpenRouter :free models). The key is saved only in this browser, on this computer, so you paste it once; it is sent nowhere except the provider you chose. On a shared computer, press forget when you are done.</p>
+</div>
+</details>
+
+  <details class="settings" id="legend">
+<summary>What the labels mean</summary>
+<div class="setbody">
+<dl class="legend">
+<dt>starts here</dt><dd>This sugya begins on the daf you scanned.</dd>
+<dt>carries in</dt><dd>The sugya began on an earlier amud and continues onto this daf. The opening words shown are from where it really begins, back there, and the scan and text links take you to that amud.</dd>
+<dt>runs past</dt><dd>The sugya does not finish on this daf; it continues onto the next amud. Scaffold brings the whole sugya, past the end of the daf.</dd>
+<dt>canonical</dt><dd>The start and end of the sugya come from the source library's recorded passage divisions, the same division every time for everyone. No AI draws these boundaries.</dd>
+<dt>omission? / misstatement?</dt><dd>Flags raised by the reviewing model after it reads each summary against the Gemara's own words: omission means the summary may have skipped a claim the text makes; misstatement means the summary may say something the text does not. They are questions for you to judge, not rulings.</dd>
+<dt>check: segments not covered</dt><dd>The scaffolding model's moves left part of the sugya unaccounted for; the scaffold is incomplete there.</dd>
+</dl>
 </div>
 </details>
 
@@ -459,9 +476,9 @@ function renderCard(n, mas, d, passageRef, pp, opening, here){
   card.className='card';
   card.innerHTML =
     '<div class="row"><span class="num">'+n+'</span><span class="chips">'+
-      (carry?'<span class="chip mutec">carries in</span>':'<span class="chip ghost">starts here</span>')+
-      (past?'<span class="chip mutec">runs past</span>':'')+
-      '<span class="chip">canonical</span></span></div>'+
+      (carry?'<span class="chip mutec" title="Began on an earlier amud and continues onto this daf">carries in</span>':'<span class="chip ghost" title="Begins on this daf">starts here</span>')+
+      (past?'<span class="chip mutec" title="Continues beyond this daf onto the next amud">runs past</span>':'')+
+      '<span class="chip" title="Boundary from the source library&#39;s recorded passage divisions, not from any AI">canonical</span></span></div>'+
     '<p class="opening"></p><div class="refline"></div>'+
     '<div class="actions">'+
       '<button class="a-scaf primary">Scaffold</button>'+
