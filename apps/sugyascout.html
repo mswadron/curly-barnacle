@@ -93,6 +93,8 @@ details.settings .llmbar{border:none;border-top:1px dashed var(--rule);padding:8
 dl.legend{margin:6px 0 4px;font-size:13.5px}
 dl.legend dt{font-weight:600;color:var(--acc);margin-top:8px}
 dl.legend dd{margin:1px 0 0;color:var(--mute)}
+.setpub{display:flex;gap:8px;align-items:baseline;font-size:13.5px;color:var(--ink);margin-top:10px;cursor:pointer}
+.setpub input{accent-color:var(--acc)}
 .setnote{font-size:13px;color:var(--mute);margin:6px 0 0;max-width:72ch}
 footer.colophon{max-width:860px;margin:0 auto;padding:0 20px 40px;font-size:13.5px;color:var(--mute)}
 </style>
@@ -143,6 +145,7 @@ footer.colophon{max-width:860px;margin:0 auto;padding:0 20px 40px;font-size:13.5
     </select>
     <input class="model" id="cmodel" value="gemini-2.5-flash" aria-label="reviewing model">
   </div>
+<label class="setpub"><input type="checkbox" id="nosave"> Public or shared computer: do not remember keys here (a key you paste works only until this tab is closed)</label>
 <p class="setnote">Scanning a daf is free and needs no key. Scaffolding and review call the model provider you pick here with your own API key (free tiers: Gemini at ai.google.dev, OpenRouter :free models). The key is saved only in this browser, on this computer, so you paste it once; it is sent nowhere except the provider you chose. On a shared computer, press forget when you are done.</p>
 </div>
 </details>
@@ -206,6 +209,8 @@ var DEFAULT_MODEL = {
 
 /* ===== saved settings (this browser only) ===== */
 var STORE = 'sugyascout-llm';
+var sessionKeys = {};   /* keys held for this visit only when "do not remember" is on */
+function noSave(){ return document.getElementById('nosave').checked; }
 function loadCfg(){
   try { return JSON.parse(localStorage.getItem(STORE)) || {}; } catch(e){ return {}; }
 }
@@ -215,9 +220,16 @@ function saveCfg(){
     var prov = document.getElementById('prov').value;
     cfg.prov = prov;
     cfg.models = cfg.models || {}; cfg.models[prov] = document.getElementById('model').value.trim();
-    cfg.keys = cfg.keys || {};
-    var k = document.getElementById('key').value.trim();
-    if (k) cfg.keys[prov] = k;
+    cfg.nosave = noSave();
+    if (cfg.nosave){
+      delete cfg.keys;                       /* wipe anything stored earlier */
+      var k0 = document.getElementById('key').value.trim();
+      if (k0) sessionKeys[prov] = k0;
+    } else {
+      cfg.keys = cfg.keys || {};
+      var k = document.getElementById('key').value.trim();
+      if (k) cfg.keys[prov] = k;
+    }
     cfg.cprov = document.getElementById('cprov').value;
     cfg.cmodel = document.getElementById('cmodel').value.trim();
     localStorage.setItem(STORE, JSON.stringify(cfg));
@@ -225,7 +237,7 @@ function saveCfg(){
 }
 document.getElementById('prov').onchange = function(){
   document.getElementById('model').value = (loadCfg().models||{})[this.value] || DEFAULT_MODEL[this.value];
-  document.getElementById('key').value = (loadCfg().keys||{})[this.value] || '';
+  document.getElementById('key').value = sessionKeys[this.value] || (loadCfg().keys||{})[this.value] || '';
   saveCfg();
 };
 document.getElementById('cprov').addEventListener('change', function(){
@@ -240,12 +252,26 @@ document.getElementById('cmodel').addEventListener('change', saveCfg);
   if (cfg.prov) document.getElementById('prov').value = cfg.prov;
   var prov = document.getElementById('prov').value;
   if (cfg.models && cfg.models[prov]) document.getElementById('model').value = cfg.models[prov];
-  if (cfg.keys && cfg.keys[prov]) document.getElementById('key').value = cfg.keys[prov];
+  if (cfg.nosave) document.getElementById('nosave').checked = true;
+  else if (cfg.keys && cfg.keys[prov]) document.getElementById('key').value = cfg.keys[prov];
   document.getElementById('cprov').value = cfg.cprov || 'gemini';
   if (cfg.cmodel) document.getElementById('cmodel').value = cfg.cmodel;
 })();
+document.getElementById('nosave').addEventListener('change', function(){
+  var keyEl = document.getElementById('key');
+  if (this.checked){
+    var prov = document.getElementById('prov').value;
+    var k = keyEl.value.trim();
+    if (k) sessionKeys[prov] = k;
+    keyEl.placeholder = 'API key (this visit only)';
+  } else {
+    keyEl.placeholder = 'API key (saved in this browser)';
+  }
+  saveCfg();
+});
 document.getElementById('forget').onclick = function(){
   try { localStorage.removeItem(STORE); } catch(e){}
+  sessionKeys = {};
   document.getElementById('key').value = '';
   this.textContent = 'erased';
   var b = this; setTimeout(function(){ b.textContent = 'forget'; }, 1400);
@@ -351,7 +377,7 @@ function keyFor(prov){
     var k = document.getElementById('key').value.trim();
     if (k) return k;
   }
-  return (cfg.keys || {})[prov] || '';
+  return sessionKeys[prov] || (cfg.keys || {})[prov] || '';
 }
 /* returns { text, reasoning } */
 async function callLLM(prompt, prov, model){
