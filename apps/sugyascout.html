@@ -625,7 +625,7 @@ function swapTerms(box){
   }
 }
 async function fillTranslations(src){
-  var pref = trPref(); var lang = pref.lang || 'none';
+  var pref = trPref(); var lang = pref.lang || 'en'; if (pref.terms === undefined) pref.terms = true;
   var slots = src.querySelectorAll('.tr');
   var oldCredit = src.querySelector('.trcredit'); if (oldCredit) oldCredit.remove();
   if (lang === 'none'){ slots.forEach(function(s){ s.innerHTML=''; s.classList.remove('he'); }); return; }
@@ -652,7 +652,7 @@ async function fillTranslations(src){
   }
 }
 function syncTrBar(){
-  var pref = trPref(); var lang = pref.lang || 'none';
+  var pref = trPref(); var lang = pref.lang || 'en'; if (pref.terms === undefined) pref.terms = true;
   document.querySelectorAll('.seg3 button').forEach(function(b){ b.classList.toggle('on', b.dataset.tr === lang); });
   document.getElementById('trtermsLab').style.display = lang === 'en' ? '' : 'none';
   document.getElementById('trterms').checked = !!pref.terms;
