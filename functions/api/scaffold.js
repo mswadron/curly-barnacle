@@ -39,10 +39,28 @@ export async function onRequestPost({ request, env }) {
       messages: [{ role: 'user', content: prompt }],
       max_tokens: 2400
     });
-    // Workers AI text models return { response }; reasoning models may inline <think>...</think>
-    let text = (r && (r.response || r.result || '')) || '';
+    // Workers AI response shapes vary by model: { response: "..." }, { response: {...} },
+    // { result: ... }, OpenAI-style { choices: [...] }, or a bare string. Coerce to text.
     let reasoning = '';
-    const m = text.match(/<think>([\s\S]*?)<\/think>/);
+    function toText(v) {
+      if (v == null) return '';
+      if (typeof v === 'string') return v;
+      if (Array.isArray(v)) return v.map(toText).join('');
+      if (typeof v === 'object') {
+        if (typeof v.reasoning === 'string' && v.reasoning) reasoning = reasoning || v.reasoning;
+        if (typeof v.reasoning_content === 'string' && v.reasoning_content) reasoning = reasoning || v.reasoning_content;
+        for (const k of ['response', 'output_text', 'text', 'content', 'result', 'generated_text']) {
+          if (v[k] != null) { const t = toText(v[k]); if (t) return t; }
+        }
+        if (v.choices) return toText(v.choices.map(c => c && (c.message || c)));
+        if (v.message) return toText(v.message);
+        return '';
+      }
+      return String(v);
+    }
+    let text = toText(r);
+    if (!text) text = JSON.stringify(r);
+    const m = String(text).match(/<think>([\s\S]*?)<\/think>/);
     if (m) { reasoning = m[1].trim(); text = text.replace(m[0], '').trim(); }
     return json({ text: text, reasoning: reasoning });
   } catch (e) {
