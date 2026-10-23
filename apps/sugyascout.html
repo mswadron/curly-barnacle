@@ -67,7 +67,7 @@ h1{font-family:var(--title);font-weight:400;font-size:clamp(1.7rem,5vw,2.2rem);m
 .scafhead{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px}
 .scafhead .t{font-weight:500;font-size:14px;color:var(--acc)}
 .move{border:1px solid var(--rule);background:var(--card-soft);padding:11px 13px;margin-bottom:9px}
-.move .mtype{font-weight:600;font-size:13.5px;color:var(--acc);display:inline-flex;align-items:center;gap:6px}
+.move .mtype{font-weight:600;font-size:14px;color:var(--acc);display:inline-flex;align-items:center;gap:7px}
 .move.ind{margin-inline-start:26px}
 .move .mtype.framed{border:1.5px solid var(--acc);padding:1px 8px}
 .move .men{font-size:15.5px;margin:4px 0 0}
@@ -559,7 +559,7 @@ function refreshAudit(){
 
 /* ===== translation under the Gemara (William Davidson Edition, CC BY-NC) ===== */
 var TRSTORE = 'sugyascout-tr';
-function trPref(){ try { return JSON.parse(localStorage.getItem(TRSTORE)) || {}; } catch(e){ return {}; } }
+function trPref(){ var d = { lang:'en', terms:true }; try { var s = JSON.parse(localStorage.getItem(TRSTORE)); return s ? s : d; } catch(e){ return d; } }
 function trSave(o){ try { localStorage.setItem(TRSTORE, JSON.stringify(o)); } catch(e){} }
 var trCache = {};
 async function getAmudTranslation(mas, d, lang){
@@ -689,7 +689,7 @@ var MOVE_META = {
 };
 var C_GREEN='#2c7a4b', C_AMBER='#9a6a12', C_RED='#b0393d', C_TEAL='#0F6E6E';
 function badgeSVG(role){
-  var s='width="15" height="15" viewBox="0 0 20 20" aria-hidden="true" style="flex:none;vertical-align:-2px"';
+  var s='width="21" height="21" viewBox="0 0 20 20" aria-hidden="true" style="flex:none;vertical-align:-2px"';
   switch(role){
     case 'open':  return '<svg '+s+'><circle cx="10" cy="10" r="7.5" fill="'+C_GREEN+'"/></svg>';
     case 'q':     return '<svg '+s+'><text x="10" y="15.5" text-anchor="middle" font-size="17" font-weight="700" fill="'+C_AMBER+'">?</text></svg>';
