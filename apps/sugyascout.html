@@ -6,83 +6,92 @@
 <title>Sugya Scout · מפת הסוגיות</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Secular+One&family=IBM+Plex+Sans+Hebrew:wght@400;500;600&family=Frank+Ruhl+Libre:wght@400;500;700&family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../skin.css">
 <style>
 :root{
-  --maroon:#5a1421; --maroon-dark:#3d0d18;
-  --ink:#2b221b; --paper:#fffdf8; --bg:#f7f2ea;
-  --rule:#e4dccd; --mute:#7a7065; --mute-soft:#a99e90;
-  --he:'Frank Ruhl Libre',serif;
-  --body:'Crimson Pro',Georgia,serif;
+  --acc:#0F6E6E; --acc-deep:#0B4F4F; --acc-tint:#E3F0EF;
+  --ink:#14202E; --card:#FFFFFF; --card-soft:#F6F8FA; --bg:#EEF2F6;
+  --rule:#D6DEE6; --mute:#5a6b76; --mute-soft:#7A8797;
+  --bad:#b0393d; --amber:#9a6a12;
+  --title:'Secular One','IBM Plex Sans Hebrew',sans-serif;
+  --body:'Fredoka','IBM Plex Sans Hebrew','Segoe UI',sans-serif;
+  --he:'Frank Ruhl Libre','Times New Roman',serif;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:400;font-size:16px;line-height:1.6}
 .he{font-family:var(--he);direction:rtl}
-a{color:var(--maroon)}
-header.shell{position:sticky;top:0;z-index:40;background:var(--bg);border-bottom:1px solid var(--rule);
-  display:flex;align-items:center;justify-content:space-between;padding:12px 20px;gap:14px;flex-wrap:wrap}
+a{color:var(--acc)}
+header.shell{background:var(--bg);border-bottom:1px solid var(--rule);
+  display:flex;align-items:center;justify-content:space-between;padding:14px 20px;gap:14px;flex-wrap:wrap;
+  padding-inline-end:100px}
 .brand{display:flex;align-items:baseline;gap:10px}
-.brand .heb{font-family:var(--he);font-weight:700;font-size:23px;color:var(--maroon-dark)}
-.brand .name{font-weight:600;font-size:15px;color:var(--mute)}
-.ctl{display:flex;align-items:stretch;gap:0;border:1px solid var(--maroon);border-radius:7px;overflow:hidden;background:var(--paper)}
-.ctl select,.ctl input{font-family:var(--body);font-weight:600;font-size:14px;
-  border:none;border-inline-end:1px solid var(--rule);background:var(--paper);color:var(--ink);padding:7px 10px;outline:none}
+.brand .heb{font-family:var(--title);font-weight:400;font-size:24px;color:var(--acc-deep)}
+.brand .name{font-weight:500;font-size:15px;color:var(--mute)}
+.ctl{display:flex;align-items:stretch;gap:0;border:1px solid var(--acc);overflow:hidden;background:var(--card)}
+.ctl select,.ctl input{font-family:var(--body);font-weight:500;font-size:14px;
+  border:none;border-inline-end:1px solid var(--rule);background:var(--card);color:var(--ink);padding:7px 10px;outline:none}
 .ctl input{width:58px}
-.ctl button{font-family:var(--body);font-weight:600;font-size:14px;
-  background:var(--maroon);color:#fff;border:none;padding:7px 18px;cursor:pointer}
+.ctl button{font-family:var(--body);font-weight:500;font-size:14px;
+  background:var(--acc);color:#fff;border:none;padding:7px 18px;cursor:pointer}
 .ctl button:disabled{background:var(--mute-soft);cursor:wait}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 main{max-width:860px;margin:0 auto;padding:26px 20px 70px}
-h1{font-family:var(--he);font-weight:700;font-size:27px;margin:2px 0 6px;color:var(--maroon-dark);direction:rtl;text-align:right}
+h1{font-family:var(--title);font-weight:400;font-size:clamp(1.7rem,5vw,2.2rem);margin:2px 0 6px;color:var(--acc);direction:rtl;text-align:right;line-height:1.25}
 .sub{color:var(--mute);font-size:15px;margin:0 0 16px}
-.llmbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--rule);border-radius:7px;padding:7px 11px;margin-bottom:9px}
-.llmbar label{font-weight:600;font-size:13.5px;color:var(--maroon)}
-.llmbar select,.llmbar input{font-family:var(--body);font-size:13.5px;border:1px solid var(--rule);border-radius:5px;
+.llmbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--card);border:1px solid var(--rule);padding:8px 12px;margin-bottom:9px}
+.llmbar label{font-weight:500;font-size:13.5px;color:var(--acc)}
+.llmbar select,.llmbar input{font-family:var(--body);font-size:13.5px;border:1px solid var(--rule);
   background:#fff;color:var(--ink);padding:5px 8px;outline:none}
 .llmbar input.model{width:215px}
 .llmbar input.key{width:225px;font-family:monospace;font-size:11.5px}
-.llmbar button{font-family:var(--body);font-size:12.5px;color:var(--maroon);background:none;border:1px solid var(--maroon);border-radius:5px;padding:4px 10px;cursor:pointer}
-.status{font-weight:600;font-size:14px;color:var(--maroon);padding:12px 2px 10px;border-top:1px solid var(--rule);margin-top:8px}
-.card{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:14px 16px;margin-bottom:13px}
+.llmbar button{font-family:var(--body);font-size:12.5px;color:var(--acc);background:none;border:1px solid var(--acc);padding:4px 10px;cursor:pointer}
+.status{font-weight:500;font-size:14px;color:var(--acc);padding:12px 2px 10px;border-top:1px solid var(--rule);margin-top:8px}
+.card{background:var(--card);border:1px solid var(--rule);padding:15px 17px;margin-bottom:13px}
 .card .row{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.num{font-family:var(--he);font-weight:700;font-size:21px;color:var(--maroon)}
+.num{font-family:var(--title);font-weight:400;font-size:21px;color:var(--acc)}
 .chips{display:flex;gap:6px;flex-wrap:wrap}
-.chip{font-size:12.5px;font-weight:600;padding:2px 9px;border-radius:11px;background:var(--maroon);color:#fff}
-.chip.ghost{background:transparent;color:var(--maroon);border:1px solid var(--maroon)}
-.chip.mutec{background:var(--mute);color:#fff;border:none}
-.opening{font-family:var(--he);direction:rtl;text-align:right;font-weight:500;font-size:20px;line-height:1.75;margin:9px 0 5px;color:var(--maroon-dark)}
-.refline{font-weight:600;font-size:13px;color:var(--mute);margin-bottom:9px}
-.actions{display:flex;flex-wrap:wrap;border:1px solid var(--maroon);border-radius:6px;overflow:hidden;width:max-content}
-.actions a,.actions button{font-family:var(--body);font-weight:600;font-size:13px;
-  color:var(--maroon);background:var(--paper);border:none;border-inline-end:1px solid var(--rule);padding:6px 13px;text-decoration:none;cursor:pointer}
+.chip{font-size:12.5px;font-weight:500;padding:2px 9px;background:var(--acc);color:#fff}
+.chip.ghost{background:var(--acc-tint);color:var(--acc-deep)}
+.chip.mutec{background:var(--card-soft);color:var(--mute);border:1px solid var(--rule)}
+.opening{font-family:var(--he);direction:rtl;text-align:right;font-weight:500;font-size:20px;line-height:1.75;margin:9px 0 5px;color:var(--ink)}
+.refline{font-weight:500;font-size:13px;color:var(--mute);margin-bottom:9px}
+.actions{display:flex;flex-wrap:wrap;border:1px solid var(--acc);overflow:hidden;width:max-content}
+.actions a,.actions button{font-family:var(--body);font-weight:500;font-size:13px;
+  color:var(--acc);background:var(--card);border:none;border-inline-end:1px solid var(--rule);padding:6px 13px;text-decoration:none;cursor:pointer}
 .actions a:last-child,.actions button:last-child{border-inline-end:none}
-.actions a:hover,.actions button:hover{background:#f6efe4}
-.actions button.primary{background:var(--maroon);color:#fff}
+.actions a:hover,.actions button:hover{background:var(--acc-tint)}
+.actions button.primary{background:var(--acc);color:#fff}
 .actions button:disabled{background:var(--mute-soft);color:#fff;cursor:wait}
 .scaffold{margin-top:13px;border-top:1px dashed var(--rule);padding-top:11px}
 .scafhead{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px}
-.scafhead .t{font-weight:600;font-size:14px;color:var(--maroon)}
-.move{border:1px solid var(--rule);border-radius:7px;background:#fcf9f3;padding:10px 13px;margin-bottom:9px}
-.move .mtype{font-weight:700;font-size:13.5px;color:var(--maroon)}
+.scafhead .t{font-weight:500;font-size:14px;color:var(--acc)}
+.move{border:1px solid var(--rule);background:var(--card-soft);padding:11px 13px;margin-bottom:9px}
+.move .mtype{font-weight:600;font-size:13.5px;color:var(--acc)}
 .move .men{font-size:15.5px;margin:4px 0 0}
 .move .mhe{font-family:var(--he);direction:rtl;text-align:right;font-size:16px;margin:3px 0 0}
 .move .mrefs{font-size:12.5px;color:var(--mute-soft);margin-top:5px}
-.smallbtn{font-family:var(--body);font-weight:600;font-size:12.5px;color:var(--maroon);background:#fff;border:1px solid var(--maroon);border-radius:5px;padding:3px 10px;cursor:pointer;margin-top:7px}
-.move .src{display:none;margin-top:9px;border-inline-start:3px solid var(--maroon);background:#fff;border-radius:0 6px 6px 0;padding:9px 12px}
+.smallbtn{font-family:var(--body);font-weight:500;font-size:12.5px;color:var(--acc);background:#fff;border:1px solid var(--acc);padding:3px 10px;cursor:pointer;margin-top:7px}
+.move .src{display:none;margin-top:9px;border-inline-start:3px solid var(--acc);background:#fff;padding:9px 12px}
 .move .src.on{display:block}
 .move .src .seg{font-family:var(--he);direction:rtl;text-align:right;font-weight:500;font-size:19px;line-height:1.8;margin:0 0 6px}
 .move .src .segref{font-size:12.5px;color:var(--mute);margin-bottom:7px}
-.move .src .segref a{text-decoration:none;font-weight:600}
-.warn{font-size:13px;font-weight:600;color:var(--maroon);border:1px dashed var(--maroon);border-radius:6px;padding:6px 10px;margin:7px 0}
-.warn.hard{background:var(--maroon);color:#fff;border-style:solid}
-.err{background:var(--paper);border:1px solid var(--maroon);border-inline-start:4px solid var(--maroon);border-radius:6px;padding:10px 13px;font-size:14.5px;margin:12px 0}
+.move .src .segref a{text-decoration:none;font-weight:500}
+.warn{font-size:13px;font-weight:500;color:var(--amber);border:1px dashed var(--amber);padding:6px 10px;margin:7px 0}
+.warn.hard{background:var(--bad);color:#fff;border:1px solid var(--bad)}
+.err{background:var(--card);border:1px solid var(--bad);border-inline-start:4px solid var(--bad);padding:10px 13px;font-size:14.5px;margin:12px 0;color:var(--ink)}
 details.audit{margin-top:26px;border-top:1px solid var(--rule);padding-top:12px}
-details.audit summary{font-weight:600;font-size:13.5px;color:var(--mute);cursor:pointer}
-details.audit pre{background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:10px;font-size:11.5px;overflow:auto;max-height:340px;white-space:pre-wrap}
+details.audit summary{font-weight:500;font-size:13.5px;color:var(--mute);cursor:pointer}
+details.audit pre{background:var(--card);border:1px solid var(--rule);padding:10px;font-size:11.5px;overflow:auto;max-height:340px;white-space:pre-wrap}
 details.reason{margin-bottom:9px}
-details.reason summary{font-weight:600;font-size:13.5px;color:var(--mute);cursor:pointer}
-details.reason pre{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:9px;font-size:12px;white-space:pre-wrap;max-height:260px;overflow:auto}
-footer.colophon{max-width:860px;margin:0 auto;padding:0 20px 40px;font-size:13.5px;color:var(--mute);font-style:italic}
-footer.colophon a{font-style:normal}
+details.reason summary{font-weight:500;font-size:13.5px;color:var(--mute);cursor:pointer}
+details.reason pre{background:#fff;border:1px solid var(--rule);padding:9px;font-size:12px;white-space:pre-wrap;max-height:260px;overflow:auto}
+details.settings{background:var(--card);border:1px solid var(--rule);margin-bottom:14px}
+details.settings summary{font-weight:500;font-size:14px;color:var(--acc);cursor:pointer;padding:10px 13px}
+details.settings .setbody{padding:4px 13px 11px;display:flex;flex-direction:column;gap:0}
+details.settings .llmbar{border:none;border-top:1px dashed var(--rule);padding:8px 0;margin-bottom:0}
+.setnote{font-size:13px;color:var(--mute);margin:6px 0 0;max-width:72ch}
+footer.colophon{max-width:860px;margin:0 auto;padding:0 20px 40px;font-size:13.5px;color:var(--mute)}
 </style>
 </head>
 <body>
@@ -104,9 +113,12 @@ footer.colophon a{font-style:normal}
   by the canonical passage divisions, with each opening quoted as written. Sugyos that carry in
   from the previous daf or run past this one are marked. Scaffold opens a sugya into its
   step-by-step moves, with the Gemara behind every step one tap away, and a second model can
-  review the summaries against the words.</p>
+  review the summaries against the words. Scaffolding needs an API key: open Settings below to add one.</p>
 
-  <div class="llmbar">
+  <details class="settings" id="settings">
+<summary>Settings: models and API keys</summary>
+<div class="setbody">
+<div class="llmbar">
     <label>Scaffolding model</label>
     <select id="prov">
       <option value="openrouter">OpenRouter</option>
@@ -128,6 +140,9 @@ footer.colophon a{font-style:normal}
     </select>
     <input class="model" id="cmodel" value="gemini-2.5-flash" aria-label="reviewing model">
   </div>
+<p class="setnote">Scanning a daf is free and needs no key. Scaffolding and review call the model provider you pick here with your own API key (free tiers: Gemini at ai.google.dev, OpenRouter :free models). The key is saved only in this browser, on this computer, so you paste it once; it is sent nowhere except the provider you chose. On a shared computer, press forget when you are done.</p>
+</div>
+</details>
 
   <div id="status" class="status" style="display:none"></div>
   <div id="out"></div>
@@ -324,7 +339,8 @@ function keyFor(prov){
 /* returns { text, reasoning } */
 async function callLLM(prompt, prov, model){
   var key = keyFor(prov);
-  if (!key) throw new Error('No saved API key for ' + prov + '. Pick it in the top bar once and paste a key.');
+  if (!key) document.getElementById('settings').open = true;
+  throw new Error('No API key saved for ' + prov + '. Open Settings (under the title) and paste a key once; free keys: ai.google.dev for Gemini, openrouter.ai/keys.');
   if (prov === 'gemini'){
     var g = await getJSON('https://generativelanguage.googleapis.com/v1beta/models/' + model + ':generateContent?key=' + encodeURIComponent(key), {
       method:'POST', headers:{'Content-Type':'application/json'},
