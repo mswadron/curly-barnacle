@@ -91,6 +91,20 @@ details.reason pre{background:#fff;border:1px solid var(--rule);padding:9px;font
 #gear{background:var(--card);border:1px solid var(--rule);color:var(--acc);padding:7px 9px;cursor:pointer;display:flex;align-items:center}
 #gear:hover{background:var(--acc-tint)}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.trbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 12px;font-size:13.5px}
+.trbar .trlab{color:var(--mute);font-weight:500}
+.seg3{display:inline-flex;border:1px solid var(--acc)}
+.seg3 button{font-family:var(--body);font-size:13px;font-weight:500;color:var(--acc);background:var(--card);border:none;border-inline-end:1px solid var(--rule);padding:4px 12px;cursor:pointer}
+.seg3 button:last-child{border-inline-end:none}
+.seg3 button.he{font-family:'IBM Plex Sans Hebrew',sans-serif}
+.seg3 button.on{background:var(--acc);color:#fff}
+.trterms{display:flex;gap:6px;align-items:baseline;color:var(--ink);cursor:pointer}
+.trterms input{accent-color:var(--acc)}
+.move .src .tr{font-size:14.5px;line-height:1.6;color:var(--ink);margin:-2px 0 6px;padding-inline-start:10px;border-inline-start:2px solid var(--rule)}
+.move .src .tr:empty{display:none}
+.move .src .tr.he{font-family:'IBM Plex Sans Hebrew',sans-serif;direction:rtl;text-align:right;padding-inline-start:0;padding-inline-end:10px;border-inline-start:none;border-inline-end:2px solid var(--rule)}
+.move .src .tr b{font-weight:600}
+.move .src .trcredit{font-size:11.5px;color:var(--mute-soft);margin:4px 0 2px}
 details.settings{background:var(--card);border:1px solid var(--rule);margin-bottom:14px}
 details.settings summary{font-weight:500;font-size:14px;color:var(--acc);cursor:pointer;padding:10px 13px}
 details.settings .setbody{padding:4px 13px 11px;display:flex;flex-direction:column;gap:0}
@@ -160,6 +174,14 @@ footer.colophon{max-width:860px;margin:0 auto;padding:0 20px 40px;font-size:13.5
 </div>
 </details>
 
+  <div class="trbar" id="trbar">
+    <span class="trlab">Translation under the Gemara</span>
+    <span class="seg3" role="radiogroup" aria-label="Translation">
+      <button data-tr="none">Off</button><button data-tr="en">English</button><button data-tr="he" class="he">עברית</button>
+    </span>
+    <label class="trterms" id="trtermsLab"><input type="checkbox" id="trterms"> Kohen, Mincha, Yisroel (instead of priest, meal offering, Israelite)</label>
+  </div>
+
   <details class="settings" id="legend">
 <summary>What the labels mean</summary>
 <div class="setbody">
@@ -169,6 +191,7 @@ footer.colophon{max-width:860px;margin:0 auto;padding:0 20px 40px;font-size:13.5
 <dt>runs past</dt><dd>The sugya does not finish on this daf; it continues onto the next amud. Scaffold brings the whole sugya, past the end of the daf.</dd>
 <dt>canonical</dt><dd>The start and end of the sugya come from the source library's recorded passage divisions, the same division every time for everyone. No AI draws these boundaries.</dd>
 <dt>The signs on the moves</dt><dd>Road language: a green circle opens a statement; an amber ? asks (a question or inquiry); a warning triangle is an objection; a green ! answers (answer or resolution); a green up arrow is a proof; a red no-entry sign is a rejection (the proof or answer is blocked); opposing arrows are a machlokes; a circle with a dash is a limitation; a red stop sign is the conclusion. A framed label is a tannaic source (Mishnah or beraisa). Moves that respond to a challenge sit one step inward under it.</dd>
+<dt>Translation under the Gemara</dt><dd>English is the William Davidson Edition (the Koren Talmud Bavli by Rabbi Adin Steinsaltz); its bold words are the literal translation and the plain words are its explanation. עברית is the same edition’s Hebrew Steinsaltz. The Kohen, Mincha switch changes only the English wording, and the credit line then says it was adapted.</dd>
 <dt>omission? / misstatement?</dt><dd>Flags raised by the reviewing model after it reads each summary against the Gemara's own words: omission means the summary may have skipped a claim the text makes; misstatement means the summary may say something the text does not. They are questions for you to judge, not rulings.</dd>
 <dt>check: segments not covered</dt><dd>The scaffolding model's moves left part of the sugya unaccounted for; the scaffold is incomplete there.</dd>
 </dl>
@@ -534,6 +557,118 @@ function refreshAudit(){
     (lastAudit.model ? '\n\n--- LAST MODEL OUTPUT ---\n' + lastAudit.model : '');
 }
 
+/* ===== translation under the Gemara (William Davidson Edition, CC BY-NC) ===== */
+var TRSTORE = 'sugyascout-tr';
+function trPref(){ try { return JSON.parse(localStorage.getItem(TRSTORE)) || {}; } catch(e){ return {}; } }
+function trSave(o){ try { localStorage.setItem(TRSTORE, JSON.stringify(o)); } catch(e){} }
+var trCache = {};
+async function getAmudTranslation(mas, d, lang){
+  var k = lang + '|' + mas + '|' + d;
+  if (trCache[k]) return trCache[k];
+  var url = lang === 'he'
+    ? 'https://www.sefaria.org/api/v3/texts/' + urlRef('Steinsaltz on ' + mas, d) + '?version=' + encodeURIComponent('hebrew|William Davidson Edition - Hebrew')
+    : 'https://www.sefaria.org/api/v3/texts/' + urlRef(mas, d) + '?version=' + encodeURIComponent('english|William Davidson Edition - English');
+  trCache[k] = getJSON(url).then(function(data){
+    var v = (data.versions || [])[0];
+    var t = v ? v.text : [];
+    return Array.isArray(t) ? t : [t];
+  }).catch(function(){ delete trCache[k]; return null; });
+  return trCache[k];
+}
+/* keep only b/strong/i/em/br from the edition's markup; drop footnotes */
+function cleanTranslation(html){
+  var box = document.createElement('div'); box.innerHTML = html;
+  box.querySelectorAll('sup, .footnote, .footnote-marker').forEach(function(n){ n.remove(); });
+  (function walk(node){
+    Array.prototype.slice.call(node.childNodes).forEach(function(c){
+      if (c.nodeType === 1){
+        walk(c);
+        var tag = c.tagName.toLowerCase();
+        if (['b','strong','i','em','br'].indexOf(tag) === -1){
+          while (c.firstChild) node.insertBefore(c.firstChild, c);
+          node.removeChild(c);
+        } else {
+          Array.prototype.slice.call(c.attributes).forEach(function(at){ c.removeAttribute(at.name); });
+        }
+      }
+    });
+  })(box);
+  return box;
+}
+/* Beis-Medrash terms instead of English renderings (order matters: longer phrases first) */
+var TERM_SWAPS = [
+  [/\bHigh Priests\b/g,'Kohanim Gedolim'], [/\bHigh Priest(?:'|’)s\b/g,'Kohen Gadol’s'], [/\bhigh priest\b/gi,'Kohen Gadol'],
+  [/\bpriesthood\b/gi,'kehunah'],
+  [/\bpriests(?:'|’)/gi,'Kohanim’'], [/\bpriests\b/gi,'Kohanim'],
+  [/\bpriest(?:'|’)s\b/gi,'Kohen’s'], [/\bpriest\b/gi,'Kohen'], [/\bpriestly\b/gi,'Kohen’s'],
+  [/\bmeal offerings\b/gi,'Menachos'], [/\bmeal-offerings\b/gi,'Menachos'], [/\bmeal offering\b/gi,'Mincha'], [/\bmeal-offering\b/gi,'Mincha'],
+  [/\bIsraelites\b/g,'Yisroelim'], [/\bIsraelite\b/g,'Yisroel'],
+  [/\bLevites\b/g,'Leviim'], [/\bLevite\b/g,'Levi'],
+  [/\baltar\b/gi,'Mizbeach'],
+  [/\bburnt offerings\b/gi,'olos'], [/\bburnt offering\b/gi,'olah'],
+  [/\bpeace offerings\b/gi,'shelamim'], [/\bpeace offering\b/gi,'shelamim'],
+  [/\bsin offerings\b/gi,'chataos'], [/\bsin offering\b/gi,'chatas'],
+  [/\bguilt offerings\b/gi,'ashamos'], [/\bguilt offering\b/gi,'asham'],
+  [/\blibations\b/gi,'nesachim'], [/\bwine libation\b/gi,'nesech'],
+  [/\bthe Temple\b/g,'the Beis HaMikdash'], [/\bTemple\b/g,'Beis HaMikdash'],
+  [/\britually impure\b/gi,'tamei'], [/\britually pure\b/gi,'tahor'], [/\britual impurity\b/gi,'tumah'], [/\britual purity\b/gi,'taharah'],
+  [/\bcourt\b/g,'Beis Din'], [/\bthe verse states\b/g,'the pasuk states'], [/\bthe verse\b/g,'the pasuk'],
+  [/\bhalakha\b/gi,'halacha'], [/\bbaraita\b/gi,'beraisa'], [/\bmishna\b/gi,'Mishnah'], [/\bTanna\b/g,'Tanna'],
+  [/\bShabbat\b/g,'Shabbos']
+];
+function swapTerms(box){
+  var walker = document.createTreeWalker(box, NodeFilter.SHOW_TEXT, null);
+  var n; while ((n = walker.nextNode())){
+    var t = n.nodeValue;
+    TERM_SWAPS.forEach(function(p){ t = t.replace(p[0], p[1]); });
+    n.nodeValue = t;
+  }
+}
+async function fillTranslations(src){
+  var pref = trPref(); var lang = pref.lang || 'none';
+  var slots = src.querySelectorAll('.tr');
+  var oldCredit = src.querySelector('.trcredit'); if (oldCredit) oldCredit.remove();
+  if (lang === 'none'){ slots.forEach(function(s){ s.innerHTML=''; s.classList.remove('he'); }); return; }
+  var any = false;
+  for (var i = 0; i < slots.length; i++){
+    var s = slots[i];
+    var arr = await getAmudTranslation(s.dataset.mas, s.dataset.daf, lang);
+    var raw = arr ? arr[(+s.dataset.seg) - 1] : null;
+    s.innerHTML = '';
+    s.classList.toggle('he', lang === 'he');
+    if (!raw){ continue; }
+    var box = cleanTranslation(raw);
+    if (lang === 'en' && pref.terms) swapTerms(box);
+    while (box.firstChild) s.appendChild(box.firstChild);
+    any = true;
+  }
+  if (any){
+    var c = document.createElement('div'); c.className = 'trcredit';
+    c.textContent = lang === 'he'
+      ? 'Hebrew: William Davidson Edition (Steinsaltz), Koren Publishers, CC BY-NC'
+      : (pref.terms ? 'English adapted from the William Davidson Edition (Koren Talmud Bavli, Steinsaltz), CC BY-NC: Kohen, Mincha and similar terms put in place of the edition’s English renderings'
+                    : 'English: William Davidson Edition (Koren Talmud Bavli, Steinsaltz), CC BY-NC');
+    src.appendChild(c);
+  }
+}
+function syncTrBar(){
+  var pref = trPref(); var lang = pref.lang || 'none';
+  document.querySelectorAll('.seg3 button').forEach(function(b){ b.classList.toggle('on', b.dataset.tr === lang); });
+  document.getElementById('trtermsLab').style.display = lang === 'en' ? '' : 'none';
+  document.getElementById('trterms').checked = !!pref.terms;
+}
+document.querySelectorAll('.seg3 button').forEach(function(b){
+  b.onclick = function(){
+    var pref = trPref(); pref.lang = b.dataset.tr; trSave(pref); syncTrBar();
+    document.querySelectorAll('.move .src.on').forEach(fillTranslations);
+  };
+});
+document.getElementById('trterms').addEventListener('change', function(){
+  var pref = trPref(); pref.terms = this.checked; trSave(pref);
+  document.querySelectorAll('.move .src.on').forEach(fillTranslations);
+});
+syncTrBar();
+
 /* ===== move-type badges (road-sign language) and indentation ===== */
 var MOVE_META = {
   /* role: src=framed source, open=green circle, q=amber ?, obj=warning triangle,
@@ -666,11 +801,14 @@ async function scaffold(card, passageRef, pp, btn){
         a.href = srcLink(pp.mas, s.daf, s.seg);
         a.textContent = pp.mas + ' ' + dafStr(s.daf) + ':' + s.seg + ' ↗';
         sr.appendChild(a);
-        src.appendChild(seg); src.appendChild(sr);
+        var tr = document.createElement('div'); tr.className='tr';
+        tr.dataset.mas = pp.mas; tr.dataset.daf = dafStr(s.daf); tr.dataset.seg = s.seg;
+        src.appendChild(seg); src.appendChild(tr); src.appendChild(sr);
       }
       mv.querySelector('.rev').onclick = function(){
         src.classList.toggle('on');
         this.textContent = src.classList.contains('on') ? 'hide the Gemara' : 'reveal the Gemara';
+        if (src.classList.contains('on')) fillTranslations(src);
       };
       box.appendChild(mv);
       moveEls.push(mv);
