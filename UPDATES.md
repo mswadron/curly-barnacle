@@ -37,3 +37,4 @@
 2026-10-21 · How Old Was Dinah?: new app apps/dinah.html (+ dinah-data.js, dinah.js) and index tile under Chumash; sliders per link with opinions quoted verbatim, warning where no source holds; doc docs/dinah.md.
 2026-10-22 · How Old Was Dinah?: pause after Yehuda (Karnei Ohr, Seder Olam) and overlapping births (Ibn Ezra 30:23) now part of the calculation; Karnei Ohr's 6y11m reproduces.
 2026-10-22 · How Old Was Dinah?: Ralbag (wedding at the start of the service, births over fourteen years) as a new slider and preset; Rabbeinu Bachya 34:3 on Dinah's age.
+2026-10-25 · How Old Was Dinah?: "why the opinions differ" intro on every slider and toggle, reasons taken from the sources.

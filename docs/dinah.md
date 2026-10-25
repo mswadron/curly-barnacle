@@ -20,6 +20,8 @@ Sliders, each with its opinions marked on the track and quoted under it; a warni
 
 Presets: Rashi/Gemara with ordinary pregnancy (no solution, Levi 12 1/4), Seder Olam (no solution, Levi 12 3/4), Gur Aryeh (Dinah 7 1/2 to 10 1/2), Ibn Ezra (5 years used as an example for "many years"), Ralbag (wedding at the start, ordinary pregnancy: Levi 19 1/4, Dinah 7 1/2 to 15 1/2; the 18 months are from the Gemara, not Ralbag).
 
+Each slider and toggle opens with a "למה הדעות חלוקות" box (marked as our explanation): what drives each opinion, drawn from the reasons the sources themselves give (Ralbag on "כי מלאו ימי" and Yehuda's sons; Gur Aryeh's two fixed links; Megillah 17a's twenty-two years; Gur Aryeh's proofs from 34:1 and 34:22; Ibn Ezra's objection; which Dinah ages are arithmetic and which are tradition). Added 2026-10-25.
+
 ## Sources (verbatim, linked)
 Bereishis 30:21, 31:41, 34:3, 34:25; Rashi 33:17; Bereishis Rabbah 80:10; Megillah 17a; Seder Olam Rabbah 2; Tractate Soferim 21:9; Ibn Ezra 30:23, 33:20; Gur Aryeh 33:17; Ralbag on Torah, Genesis 29:1; Rabbeinu Bachya 34:3; Bereishis 29:20-21; Karnei Ohr (Mechokekei Yehudah) 33:27; Seder HaDorot 2206.
 

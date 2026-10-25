@@ -10,6 +10,7 @@ function fmt(s,v){if(s.unit==="m")return v+" חודשים";if(s.id==="pause"&&v=
 function matches(o,v,step){return o.lo!=null?(v>=o.lo-1e-9&&v<=o.hi+1e-9):Math.abs(o.v-v)<step/2+1e-9;}
 function chip(t){return t===Q?'<span class="chip q">ציטוט</span>':t===I?'<span class="chip i">היסק</span>':'<span class="chip n">אין מקור</span>';}
 
+function why(w){return w?`<div class="why"><div class="why-h">למה הדעות חלוקות <span class="chip ai">הסבר</span></div><p>${w.lead}</p><ul>${w.items.map(i=>`<li><b>${i[0]}:</b> ${i[1]}</li>`).join("")}</ul></div>`:"";}
 function buildControls(){
  const host=$("controls");
  SL.forEach(s=>{
@@ -24,6 +25,7 @@ function buildControls(){
   sec.innerHTML=`
    <div class="ctl-head"><h3>${s.title}</h3><div class="ctl-val" id="${s.id}V"></div></div>
    <p class="ai-note"><span class="chip ai">הסבר</span> ${s.about}</p>
+   ${why(s.why)}
    ${s.same?`<div class="allsame">${s.choices}</div>`:`<p class="choices"><span class="chip ai">הסבר</span> הבחירות האמיתיות: <b>${s.choices}</b></p>`}
    <div class="slider">
     <div class="track">${s.id==="dinah"?'<div class="feas" id="feas"></div>':""}${marks}</div>
@@ -40,6 +42,7 @@ function buildControls(){
   TOGGLES.filter(t=>t.after===s.id).forEach(t=>{
    const o=document.createElement("section");o.className="card";
    o.innerHTML=`<div class="ctl-head"><h3>${t.title}</h3></div>
+    ${why(t.why)}
     <p class="choices"><span class="chip ai">הסבר</span> הבחירות האמיתיות: <b>${t.choices}</b></p>
     <div class="seg" role="group">${t.opts.map(x=>`<button type="button" data-k="${t.key}" data-o="${x.k}"><b>${x.who}</b><span class="ref">${x.url?`<a class="ref" href="${x.url}" target="_blank" rel="noopener">${x.ref} ↗</a>`:x.ref} ${chip(x.t)}</span><span class="src">${x.src}</span>${x.note?`<span class="ai-note"><span class="chip ai">הסבר</span> ${x.note}</span>`:""}</button>`).join("")}</div>
     <p class="ai-note"><span class="chip ai">הסבר</span> ${t.note}</p>`;
