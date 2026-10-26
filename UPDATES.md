@@ -38,3 +38,4 @@
 2026-10-22 · How Old Was Dinah?: pause after Yehuda (Karnei Ohr, Seder Olam) and overlapping births (Ibn Ezra 30:23) now part of the calculation; Karnei Ohr's 6y11m reproduces.
 2026-10-22 · How Old Was Dinah?: Ralbag (wedding at the start of the service, births over fourteen years) as a new slider and preset; Rabbeinu Bachya 34:3 on Dinah's age.
 2026-10-25 · How Old Was Dinah?: "why the opinions differ" intro on every slider and toggle, reasons taken from the sources.
+2026-10-26 · How Old Was Dinah?: English version (HE / EN toggle) with published translations under the Hebrew sources.

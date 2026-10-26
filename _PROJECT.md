@@ -26,6 +26,7 @@
 - Done 2026-10-22: dinah, pause after Yehuda and overlapping births wired into the calculation.
 - Done 2026-10-22: dinah, Ralbag wedding-timing slider and preset, Rabbeinu Bachya on Dinah's age.
 - Done 2026-10-25: dinah, reasoning intro on every section.
+- Done 2026-10-26: dinah, English version with HE / EN toggle.
 - In work: none.
 - Planned: Chibuk verbatim fetches; Tumah Tree B (awaiting five decisions); Ornithology Part D render approval; Sugya Scout / Source Dock.
 
@@ -34,6 +35,7 @@
 - Done 2026-09-30: apps/maharils_moon (Maharil's Moon, Hoshana Rabbah sky over Mainz 1387 to 1426) + index tile in Luach & Reference.
 
 ## Open questions
+- dinah: Gur Aryeh, Karnei Ohr, Ralbag, Seder HaDoros have no published English translation; English mode shows them Hebrew only.
 - dinah: no source found for naarah = 12 or for 9-month gaps (both flagged on the page).
 - piyut-rishonim: 4 entries without piyut text (Beitzah 33a Lombardy yotzer, Zechariah 5:11, Shabbos 114b, Arachin 2b); RH 27a line in Geshem/Tal not identified; line "השר המשרת נער נקרא" not found; azharos day rests on Teshuva MeAhava, not a machzor rubric.
 - maharils_moon: Sefer Maharil's own wording of the incident not yet checked (not on Sefaria); year of the incident not in the sources.
