@@ -12,6 +12,7 @@ All notable changes to **Torah Interactive**. Format loosely follows
 - Ta'amei HaMikra (trup sound lab) taken off the site until it is more ready: index tile removed, `apps/trup-real.html` moved to `dev/trup/trup-real.html`, trup line dropped from `mekoros.html`. Restore by moving the file back and re-adding the tile. (2026-10-14)
 
 ### Added
+- How Old Was Dinah?: pesukim in English mode now from the Metsudah Chumash (2009); the JPS Gender-Sensitive Edition is not used. (2026-10-26)
 - How Old Was Dinah?: HE / EN toggle. English mode renders the whole page in English (left to right) and shows the published English translation under each Hebrew source where one exists, verbatim, with the edition named; sources with no published translation say so. (2026-10-26)
 - How Old Was Dinah?: every slider and toggle now opens with a short "why the opinions differ" box giving the reason behind each position as the sources state it. (2026-10-25)
 - How Old Was Dinah?: new first slider for when Yaakov married Leah (after seven years per 29:20-21 and Seder Olam, or at the start of the service per Ralbag 29:1), Ralbag added to the birth-gap slider, Rabbeinu Bachya 34:3 (8 years 1 month) added to Dinah's age, Ralbag preset. (2026-10-22)

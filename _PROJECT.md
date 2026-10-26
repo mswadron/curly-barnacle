@@ -13,6 +13,7 @@
 - index.html (tile index), apps\*.html + *-data.js + *.js per app, docs\<app>.md per app, CHANGELOG.md, site-chrome.js
 
 ## Decisions
+- Never use the JPS Gender-Sensitive Edition for English pesukim; Metsudah Chumash is used in dinah.
 - House skin for new apps: tolaim/haftarah style (cream, Frank Ruhl Libre + Georgia, tekhelet accent).
 - Every citation verbatim with a Sefaria link; machlokes acknowledged, never paskened.
 - Push pipeline that works (2026-09-27): grant C:\Users\mswad\Dropbox\curly-barnacle to the session, drop a zip in via the device file bridge, Desktop Commander Expand-Archive + git add/commit/push. One approval click.

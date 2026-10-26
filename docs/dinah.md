@@ -5,7 +5,7 @@
 **Status:** Live (linked from index.html), added 2026-10-21
 
 ## What it covers
-HE / EN toggle (added 2026-10-26): English mode switches all UI, explanations, presets, verdict, table and chart to English; source texts stay in Hebrew, with the published English translation under each one where it exists (JPS Gender-Sensitive; Seder Olam community translation; Strickman and Silver Ibn Ezra; Koren Davidson Megillah; Rosenbaum-Silbermann Rashi; Midrash Rabbah 2022; Soncino Soferim; Munk Rabbeinu Bachya), copied verbatim with the edition named. Gur Aryeh, Karnei Ohr, Ralbag and Seder HaDoros have no published English and are marked Hebrew only. Language choice is remembered per browser (tw-lang).
+HE / EN toggle (added 2026-10-26): English mode switches all UI, explanations, presets, verdict, table and chart to English; source texts stay in Hebrew, with the published English translation under each one where it exists (Metsudah Chumash for the pesukim, never the JPS Gender-Sensitive Edition; Seder Olam community translation; Strickman and Silver Ibn Ezra; Koren Davidson Megillah; Rosenbaum-Silbermann Rashi; Midrash Rabbah 2022; Soncino Soferim; Munk Rabbeinu Bachya), copied verbatim with the edition named. Gur Aryeh, Karnei Ohr, Ralbag and Seder HaDoros have no published English and are marked Hebrew only. Language choice is remembered per browser (tw-lang).
 
 Dinah's age at the incident of Shechem (Bereishis 34) treated as a set of links that must all hold at once, after Joshua Waxman, "How Old Was Dinah? A Constraint Satisfaction Problem, Explained" (Scribal Error, 2026-10-19). All Hebrew UI.
 

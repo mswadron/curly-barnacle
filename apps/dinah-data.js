@@ -51,8 +51,8 @@ window.DINAH_DATA={
       "note": "In the order of the pesukim: the work, then the wedding."
      },
      "tr": {
-      "en": "So Jacob served seven years for Rachel and they seemed to him but a few days because of his love for her. Then Jacob said to Laban, “Give me my wife, for my time is fulfilled, that I may cohabit with her.”",
-      "ed": "jps"
+      "en": "Yaakov worked seven years for Rochel, but they seemed to him like a few days, so much did he love her. Yaakov said to Lavan, Give me my wife, for my term is completed; and thus I will consummate the marriage with her.",
+      "ed": "mets"
      }
     },
     {
@@ -560,8 +560,8 @@ window.DINAH_DATA={
       "ref": "Bereishis 31:41"
      },
      "tr": {
-      "en": "Of the twenty years that I spent in your household, I served you fourteen years for your two daughters, and six years for your flocks",
-      "ed": "jps"
+      "en": "These twenty years that I have been in your house, I served you fourteen years for your two daughters, and six years for your sheep",
+      "ed": "mets"
      }
     },
     {
@@ -772,8 +772,8 @@ window.DINAH_DATA={
       "note": "The pasuk is quoted. No commentator was found who fixes Dinah's age at 12 from it; this is a suggestion in the article."
      },
      "tr": {
-      "en": "and in love with the maiden, he spoke to the maiden tenderly.",
-      "ed": "jps"
+      "en": "and he loved the girl. He spoke to the girl’s heart.",
+      "ed": "mets"
      }
     }
    ],
@@ -832,8 +832,8 @@ window.DINAH_DATA={
       "note": "The story brings Zilpah's sons (30:9-13) and then the dudaim (30:14) and Yissachar. So Yissachar was not born before Asher."
      },
      "tr": {
-      "en": "When Leah saw that she had stopped bearing children, she took her maid Zilpah and gave her to Jacob as concubine.",
-      "ed": "jps"
+      "en": "Leah realized that she was no longer bearing children. She [therefore] took Zilpah, her handmaid, and gave her to Yaakov as a wife.",
+      "ed": "mets"
      }
     },
     {
@@ -906,8 +906,8 @@ window.DINAH_DATA={
       "ref": "Bereishis 30:21"
      },
      "tr": {
-      "en": "Last, she bore him a daughter, and named her Dinah.",
-      "ed": "jps"
+      "en": "Afterwards she gave birth to a daughter, and named her Deenah.",
+      "ed": "mets"
      }
     },
     {
@@ -1017,10 +1017,6 @@ window.DINAH_DATA={
   }
  },
  "ED": {
-  "jps": {
-   "he": "JPS, מהדורה רגישת מגדר",
-   "en": "JPS Tanakh, Gender-Sensitive Edition"
-  },
   "soc": {
    "he": "תרגום קהילתי לסדר עולם",
    "en": "Community translation of Seder Olam"
@@ -1048,6 +1044,10 @@ window.DINAH_DATA={
   "munk": {
    "he": "מונק, רבנו בחיי",
    "en": "Eliyahu Munk, Rabbeinu Bachya (1998)"
+  },
+  "mets": {
+   "he": "חומש מצודה (2009)",
+   "en": "Metsudah Chumash (Metsudah Publications, 2009)"
   }
  }
 };
