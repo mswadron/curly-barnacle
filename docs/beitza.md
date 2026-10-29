@@ -18,6 +18,7 @@ Mishnah: Sefaria, Torat Emet 357. Gemara: Sefaria, William Davidson Edition, Voc
 ## Open
 - Mnemonics not yet written.
 - Editor lines for 3:5 and 4:4 still mention the search for the tanna after those moves were dropped.
+- 1:2, אפר כירה (noted 2026-10-28, unclear on the card): the card gives Rav Yehuda's rule (only שהוסק מערב יום טוב; הוסק ביום טוב אסור; ראוי לצלות בו ביצה מותר) but not why. A reader can think the wood being ready before Yom Tov should be enough. It is not: Rashi ח. "דליכא למימר דעתיה עלויה מאתמול"; Bartenura the same; Tosafos Yom Tov citing Tosafos "נולד גמור דמעיקרא עצים והשתא אפר". הוסק means lit, not already burnt to ash. Rashi's "מאתמול בעודם עצים היו מוכנים להסק" is only on the hot-ash exception. Not yet decided how to show the reason, since the card quotes only the Gemara.
 
 ## Machlokes
 Where amoraim or tannaim dispute the same point, the sides are shown in one box: the point in dispute, then each speaker on his own line with his words and daf (19 such boxes). Each side's words are an exact piece of an already-checked quote; a shared opening or closing line of the Gemara is shown above or below the sides in grey. (2026-10-12)
