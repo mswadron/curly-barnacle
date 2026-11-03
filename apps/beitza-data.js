@@ -330,10 +330,37 @@ window.BEITZA_DATA = {
    },
    "text": "בֵּית שַׁמַּאי אוֹמְרִים, אֵין מוֹלִיכִין אֶת הַסֻּלָּם מִשּׁוֹבָךְ לְשׁוֹבָךְ, אֲבָל מַטֵּהוּ מֵחַלּוֹן לְחַלּוֹן. וּבֵית הִלֵּל מַתִּירִין. בֵּית שַׁמַּאי אוֹמְרִים, לֹא יִטֹּל, אֶלָּא אִם כֵּן נִעֲנֵעַ מִבְּעוֹד יוֹם. וּבֵית הִלֵּל אוֹמְרִים, עוֹמֵד וְאוֹמֵר זֶה וָזֶה אֲנִי נוֹטֵל:",
    "gap": {
-    "he": "לפי לשון המשנה, בית שמאי אוסרים להוליך סולם משובך לשובך ובית הלל מתירים, ובית שמאי מצריכים נענוע מערב יום טוב ובית הלל מסתפקים באמירה. רבי שמעון בן אלעזר בברייתא: הכל מודים שמוליכים את הסולם משובך לשובך, ולא נחלקו אלא להחזיר, והמשנה אינה כתנא זה. רבי יהודה בברייתא: דווקא בסולם של שובך, אבל בסולם של עליה דברי הכל אסור. רב חנן בר אמי: מחלוקת הנענוע בבריכה ראשונה, אבל בבריכה שניה דברי הכל די בעומד ואומר 'זה וזה אני נוטל'. והגמרא מוסיפה שאמירה זו מועילה רק מערב יום טוב, אבל ביום טוב אסור.",
-    "en": "As written, Beis Shammai forbid carrying a ladder from dovecote to dovecote and Beis Hillel permit, and Beis Shammai require shaking the birds before Yom Tov while Beis Hillel are satisfied with a statement. Rabbi Shimon ben Elazar in a baraisa: all agree one may carry the ladder from dovecote to dovecote, and the dispute is only about returning it, so the Mishnah does not follow this tanna. Rabbi Yehuda in a baraisa: only a dovecote ladder, but an attic ladder all forbid. Rav Chanan bar Ami: the shaking dispute is about the first brood, but for a second brood all agree standing and saying 'this one and this one I will take' suffices. And the Gemara adds that this statement works only before Yom Tov, but on Yom Tov it is forbidden."
+    "he": "לפי לשון המשנה, בית שמאי אוסרים להוליך סולם משובך לשובך ובית הלל מתירים, ובית שמאי מצריכים נענוע מערב יום טוב ובית הלל מסתפקים באמירה. רב חנן בר אמי: המחלוקת ברשות הרבים, שבית שמאי חוששים שהרואה יאמר להטיח גגו הוא צריך, ובית הלל אומרים שובכו מוכיח עליו, אבל ברשות היחיד הכל מתירים; ואף שרב אמר כל מקום שאסרו חכמים מפני מראית העין אפילו בחדרי חדרים אסור, תנאי היא. ואיכא דאמרי: המחלוקת ברשות היחיד, בית שמאי סוברים כרב ובית הלל אינם סוברים כמותו, אבל ברשות הרבים הכל אוסרים. רבי שמעון בן אלעזר בברייתא: הכל מודים שמוליכים את הסולם משובך לשובך, ולא נחלקו אלא להחזיר, והמשנה אינה כתנא זה. רבי יהודה בברייתא: דווקא בסולם של שובך, אבל בסולם של עליה דברי הכל אסור. רב חנן בר אמי: מחלוקת הנענוע בבריכה ראשונה, אבל בבריכה שניה דברי הכל די בעומד ואומר 'זה וזה אני נוטל'. והגמרא מוסיפה שאמירה זו מועילה רק מערב יום טוב, אבל ביום טוב אסור.",
+    "en": "As written, Beis Shammai forbid carrying a ladder from dovecote to dovecote and Beis Hillel permit, and Beis Shammai require shaking the birds before Yom Tov while Beis Hillel are satisfied with a statement. Rav Chanan bar Ami: the dispute is in the public domain, since Beis Shammai worry an onlooker will say he needs it to plaster his roof, and Beis Hillel say his dovecote shows what it is for, but in a private domain all permit; and though Rav said anything the Sages forbade because of how it looks is forbidden even in the innermost rooms, that is a dispute of tannaim. Others say: the dispute is in a private domain, Beis Shammai hold like Rav and Beis Hillel do not, but in the public domain all forbid. Rabbi Shimon ben Elazar in a baraisa: all agree one may carry the ladder from dovecote to dovecote, and the dispute is only about returning it, so the Mishnah does not follow this tanna. Rabbi Yehuda in a baraisa: only a dovecote ladder, but an attic ladder all forbid. Rav Chanan bar Ami: the shaking dispute is about the first brood, but for a second brood all agree standing and saying 'this one and this one I will take' suffices. And the Gemara adds that this statement works only before Yom Tov, but on Yom Tov it is forbidden."
    },
    "moves": [
+    {
+ "machlokes": true,
+ "tags": [
+  3,
+  5
+ ],
+ "topic": {
+  "he": "היכן נחלקו בסולם ומה טעמם: מראית העין",
+  "en": "Where they disagree about the ladder, and why: how it looks to an onlooker"
+ },
+ "sides": [
+  {
+   "who": "רב חנן בר אמי",
+   "daf": "ביצה ט.",
+   "link": "https://www.sefaria.org/Beitzah.9a.5",
+   "q": "אָמַר רַב חָנָן בַּר אַמֵּי: מַחְלוֹקֶת בִּרְשׁוּת הָרַבִּים, דְּבֵית שַׁמַּאי סָבְרִי: הָרוֹאֶה אוֹמֵר לְהָטִיחַ גַּגּוֹ הוּא צָרִיךְ, וּבֵית הִלֵּל סָבְרִי: שׁוֹבָכוֹ מוֹכִיחַ עָלָיו. אֲבָל בִּרְשׁוּת הַיָּחִיד — דִּבְרֵי הַכֹּל מוּתָּר. אִינִי? וְהָא אָמַר רַב יְהוּדָה אָמַר רַב: כׇּל מָקוֹם שֶׁאָסְרוּ חֲכָמִים מִפְּנֵי מַרְאִית הָעַיִן, אֲפִילּוּ בְּחַדְרֵי חֲדָרִים אָסוּר! תַּנָּאֵי הִיא.",
+   "ref": "9a.5-6"
+  },
+  {
+   "who": "רב חנן בר אמי (איכא דאמרי)",
+   "daf": "ביצה ט.",
+   "link": "https://www.sefaria.org/Beitzah.9a.7",
+   "q": "אִיכָּא דְּאָמְרִי, אָמַר רַב חָנָן בַּר אַמֵּי: מַחְלוֹקֶת בִּרְשׁוּת הַיָּחִיד, דְּבֵית שַׁמַּאי אִית לְהוּ דְּרַב יְהוּדָה אָמַר רַב, וּבֵית הִלֵּל לֵית לְהוּ דְּרַב יְהוּדָה אָמַר רַב, אֲבָל בִּרְשׁוּת הָרַבִּים — דִּבְרֵי הַכֹּל אָסוּר.",
+   "ref": "9a.7"
+  }
+ ]
+},
     {
      "tags": [
       7
