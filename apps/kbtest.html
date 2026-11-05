@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keyboard test</title>
+<style>body{font:16px system-ui,sans-serif;margin:16px}input{font-size:18px;width:100%;box-sizing:border-box;padding:8px}#log{font:12px monospace;direction:ltr;text-align:left;white-space:pre-wrap;margin-top:12px;border:1px solid #ccc;padding:6px;min-height:200px}</style>
+</head><body>
+<p>Keyboard test: tap the box, then swipe space to switch to Hebrew. The list below shows what the phone did.</p>
+<input id="q" type="text" placeholder="type here">
+<div id="log"></div>
+<script>
+const log = m => { const d = document.getElementById('log'); d.textContent = new Date().toISOString().slice(17,23) + ' ' + m + '\n' + d.textContent; };
+const q = document.getElementById('q');
+['focus','blur','compositionstart','compositionend','beforeinput','input','keydown','keyup'].forEach(t => q.addEventListener(t, e => log(t + (e.key ? ' key=' + e.key : '') + (e.inputType ? ' ' + e.inputType : '') + (e.data ? ' data=' + e.data : ''))));
+window.addEventListener('resize', () => log('resize ' + innerWidth + 'x' + innerHeight + ' active=' + (document.activeElement && document.activeElement.id)));
+if (window.visualViewport) visualViewport.addEventListener('resize', () => log('viewport ' + Math.round(visualViewport.height)));
+document.addEventListener('visibilitychange', () => log('visibility ' + document.visibilityState));
+</script>
+</body></html>
