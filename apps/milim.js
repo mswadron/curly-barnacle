@@ -125,7 +125,8 @@ function applyLang(){
   document.documentElement.dir = LANG === 'en' ? 'ltr' : 'rtl';
   document.title = L('מילים נדירות בתנ"ך', 'Rare Words in Tanach');
   $('t-title').textContent = L('מילים נדירות בתנ"ך', 'Rare Words in Tanach');
-  $('q').placeholder = L('חפש מילה, בכתיב מלא או חסר', 'Search a Hebrew word, full or short spelling');
+  $('q').placeholder = L('חפש מילה בעברית, או באנגלית (משמעות או תעתיק)', 'Search Hebrew, English meaning, or how it sounds');
+  $('kbtoggle').setAttribute('aria-label', L('מקלדת עברית', 'Hebrew keypad'));
   $('q').setAttribute('aria-label', L('חיפוש מילה', 'Search'));
   $('t-whole').textContent = L('מילה שלמה', 'Whole word');
   $('t-part').textContent = L('בתוך מילה', 'Inside a word');
@@ -771,7 +772,54 @@ function showRefs(li, f, where){
 
 // ---------- search ----------
 let consIdx = null, relIdx = null;
+// ---------- search with English letters: by meaning (ETCBC English) and by sound (transliteration) ----------
+const TL = [  // longest first; a vowel may be written with א ה ו י ע or not at all
+  ['tch','[צ]'],['sh','ש'],['ch','[חכ]'],['kh','[חכ]'],['tz','צ'],['ts','[צ]'],['th','[ת]'],['ph','פ'],
+  ['b','[בו]'],['v','[בו]'],['w','[ו]'],['g','ג'],['j','[גי]'],['d','ד'],['h','[הח]'],['z','[זצ]'],['t','[טת]'],['y','י'],
+  ['k','[כק]'],['c','[כקצ]'],['q','ק'],['l','ל'],['m','מ'],['n','נ'],['s','[סשת]'],['p','פ'],['f','פ'],['r','ר'],['x','[כק]ס'],
+  ['a','[אהויע]{0,2}'],['e','[אהויע]{0,2}'],['i','[אהויע]{0,2}'],['o','[אהויע]{0,2}'],['u','[אהויע]{0,2}'],["'",'[אע]?']
+];
+function translitRe(q){
+  let s = q.toLowerCase().replace(/[^a-z']/g, ''), out = '';
+  while (s) { const t = TL.find(([k]) => s.startsWith(k)); if (!t) { s = s.slice(1); continue; } out += t[1]; s = s.slice(t[0].length); }
+  // a doubled letter in English (Shabbat, Moshe) is one Hebrew letter
+  out = out.replace(/(\[[^\]]+\]|[א-ת])\1/g, '$1').replace(/(\[אהויע\]\{0,2\})+/g, '[אהויע]{0,3}');
+  translitRe.n = (out.replace(/\[אהויע\]\{0,[23]\}|\[אע\]\?/g, '').match(/\[[^\]]+\]|[א-ת]/g) || []).length;
+  return out ? new RegExp('^(?:[והבכלמש]{0,2})?' + out + '$') : null;
+}
+function englishSearch(q, openFirst){
+  if (!consIdx) { consIdx = D.W.map(cons); relIdx = D.W.map(relaxed); }
+  lastSearch = q;
+  const words = q.toLowerCase().split(/\s+/).filter(Boolean);
+  // 1. by meaning: ETCBC English gloss contains every word typed (whole words)
+  const byMeaning = [];
+  D.X.forEach((r, i) => { const g = (r[2] || '').toLowerCase(); if (r[5] > 0 && words.every(w => new RegExp('(^|[^a-z])' + w.replace(/[^a-z]/g,'') + '([^a-z]|$)').test(g))) byMeaning.push(i); });
+  byMeaning.sort((a, b) => D.X[b][5] - D.X[a][5]);
+  // 2. by sound: the letters typed read as Hebrew letters
+  // several words typed (lech lecha): match them as words that stand next to each other in the pasuk
+  const parts = q.trim().split(/\s+/), res = parts.map(translitRe), nTot = parts.reduce((s, p) => (translitRe(p), s + translitRe.n), 0);
+  translitRe.n = parts.length > 1 ? nTot : (translitRe(q), translitRe.n);
+  const groups = new Map();
+  if (res.every(Boolean)) for (let i = 0; i + res.length <= NW; i++) {
+    if (!res.every((r, k) => r.test(consIdx[i + k]))) continue;
+    const [li] = mainPart(i); if (!groups.has(li)) groups.set(li, []); groups.get(li).push(i);
+  }
+  const list = $('list');
+  $('ltitle').textContent = L('חיפוש: ', 'Search: ') + q;
+  $('lcount').textContent = L(`${byMeaning.length} לפי משמעות · ${groups.size} לפי צליל`, `${byMeaning.length} by meaning · ${groups.size} by sound`);
+  $('lvnote').textContent = L('חיפוש באותיות אנגליות: לפי המשמעות באנגלית (ETCBC), ולפי הצליל (תעתיק). אפשר גם להקליד בעברית או במקלדת א-ת.', 'English letters: searched by English meaning (ETCBC) and by sound (transliteration). You can also type Hebrew or use the א-ת keypad.');
+  const meaningRows = byMeaning.slice(0, 60).map(li => { const wi = firstWordOfLex(li); if (wi < 0) return ''; const x = X(li);
+    return `<div class="row" tabindex="0" data-w="${wi}" role="button"><div class="w">${esc(x.v)}</div><div class="nums">${counts(x)}</div><div class="meta"><b>${esc(x.g)}</b> · ${lab('SP', x.sp)} · ${L('ראשון: ', 'first: ')}${refOfWord(wi)} ${tags(li)}</div></div>`; }).join('');
+  const near = ws => Math.min(...ws.map(i => parts.reduce((s, _, k) => s + (consIdx[i + k] || '').length, 0))) - translitRe.n;   // fewest extra letters first
+  const soundRows = [...groups.entries()].sort((a,b) => (near(a[1]) - near(b[1])) || (b[1].length - a[1].length)).slice(0, 60).map(([li, ws]) => { const x = X(li);
+    return `<div class="row" tabindex="0" data-w="${ws[0]}" role="button"><div class="w">${esc(parts.map((_, k) => D.W[ws[0] + k].replace('־','')).join(' '))}</div><div class="nums">${L(`כאן ${ws.length}`, `here ${ws.length}`)} · ${counts(x)}</div><div class="meta"><span class="f-he" style="font-size:inherit">${esc(x.v)}</span> · ${esc(x.g)} · ${refOfWord(ws[0])} ${tags(li)}</div></div>`; }).join('');
+  list.innerHTML = `<div class="sect">${L('לפי משמעות באנגלית', 'By English meaning')} (${byMeaning.length})</div>` + (meaningRows || `<div class="row"><div class="meta">${L('לא נמצאה מילה בתורה עם המשמעות הזאת.', 'No Torah word has this English meaning.')}</div></div>`)
+    + `<div class="sect">${L('לפי צליל (תעתיק)', 'By sound (transliteration)')} (${groups.size})</div>` + (soundRows || `<div class="row"><div class="meta">${L('לא נמצאה מילה שנשמעת כך.', 'No word sounds like this.')}</div></div>`);
+  bindRows();
+  if (openFirst) { const first = list.querySelector('.row[data-w]'); if (first) first.click(); }
+}
 function runSearch(q, openFirst){
+  if (/[a-z]/i.test(q)) return englishSearch(q, openFirst);
   if (!consIdx) { consIdx = D.W.map(cons); relIdx = D.W.map(relaxed); }
   lastSearch = q;
   const mode = $('m-part').checked ? 'part' : 'whole';
@@ -795,6 +843,22 @@ function runSearch(q, openFirst){
   bindRows();
   if (openFirst) { const first = list.querySelector('.row[data-w]'); if (first) first.click(); }
 }
+// on-screen Hebrew keypad for phones without a Hebrew keyboard
+(function(){
+  const pad = $('kbpad');
+  const rows = ['קראטוןםפ', 'שדגכעיחלךף', 'זסבהנמצתץ'];
+  pad.innerHTML = rows.map(r => '<div class="kbrow">' + [...r].map(c => `<button type="button" data-k="${c}">${c}</button>`).join('') + '</div>').join('')
+    + '<div class="kbrow"><button type="button" data-k="back" class="wide">&#9003;</button><button type="button" data-k="clear" class="wide">C</button><button type="button" data-k="go" class="wide go">&#8629;</button></div>';
+  pad.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const k = b.dataset.k, q = $('q');
+    if (k === 'back') q.value = q.value.slice(0, -1);
+    else if (k === 'clear') q.value = '';
+    else if (k === 'go') { if (q.value.trim()) runSearch(q.value.trim(), true); }
+    else q.value += k;
+  });
+  $('kbtoggle').addEventListener('click', () => { const open = pad.hidden; pad.hidden = !open; $('kbtoggle').setAttribute('aria-pressed', String(open)); });
+})();
 $('sform').addEventListener('submit', ev => { ev.preventDefault(); const q = $('q').value.trim(); if (q) runSearch(q, true); });
 
 // weekly parsha in the diaspora (USA), one entry per Shabbat from 2025-01-04, computed with pyluach; [] = no parsha (Yom Tov)

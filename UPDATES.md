@@ -40,3 +40,4 @@
 2026-10-25 · How Old Was Dinah?: "why the opinions differ" intro on every slider and toggle, reasons taken from the sources.
 2026-10-26 · How Old Was Dinah?: English version (HE / EN toggle) with published translations under the Hebrew sources.
 2026-10-26 · How Old Was Dinah?: English pesukim switched from JPS Gender-Sensitive to Metsudah Chumash.
+2026-11-05 · Rare Words in Tanach: search takes English letters (by English meaning from ETCBC, and by sound, e.g. hagmiini, lech lecha) and has an on-screen א-ת keypad for phones without a Hebrew keyboard.
