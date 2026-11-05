@@ -134,6 +134,10 @@ details>summary{cursor:pointer;color:var(--accent);font-size:13px;margin:4px 0}
 .kbrow button.wide{flex:2 1 0;font-size:16px}
 .kbrow button.go{background:var(--accent);color:#fff;border-color:var(--accent)}
 
+/* phones: the header (search, keypad, language, title) is taller than the screen left above the keyboard,
+   and a sticky header that tall makes the phone close the keyboard when it changes size (switching keyboard language) */
+@media (max-width:860px){header{position:static}}
+
 
 .top{background:var(--bg);border-bottom:1px solid var(--line)}
 .top-in{max-width:1280px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px;direction:rtl}
@@ -193,10 +197,10 @@ h1{font-weight:400}
 
   <footer id="footer"></footer>
 </div>
-<script src="milim-data.js?v=202611052245"></script>
-<script src="milim-text.js?v=202611052245"></script>
-<script src="milim-nach.js?v=202611052245"></script>
-<script src="milim.js?v=202611052245"></script>
+<script src="milim-data.js?v=202611052313"></script>
+<script src="milim-text.js?v=202611052313"></script>
+<script src="milim-nach.js?v=202611052313"></script>
+<script src="milim.js?v=202611052313"></script>
 <script defer src="../site-chrome.js"></script>
 </body>
 </html>
