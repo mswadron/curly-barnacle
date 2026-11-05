@@ -42,3 +42,4 @@
 2026-10-26 · How Old Was Dinah?: English pesukim switched from JPS Gender-Sensitive to Metsudah Chumash.
 2026-11-05 · Rare Words in Tanach: search takes English letters (by English meaning from ETCBC, and by sound, e.g. hagmiini, lech lecha) and has an on-screen א-ת keypad for phones without a Hebrew keyboard.
 2026-11-05 · Rare Words in Tanach: header no longer sticky on phones (it was taller than the screen above the keyboard; switching keyboard language closed the keyboard).
+2026-11-05 · Rare Words in Tanach: search box no longer has autocomplete=off (the only input restriction; suspected of closing the Android keyboard on language switch).
