@@ -580,8 +580,8 @@ window.BEITZA_DATA = {
    },
    "text": "בֵּית שַׁמַּאי אוֹמְרִים, אֵין מוֹלִיכִין חַלָּה וּמַתָּנוֹת לַכֹּהֵן בְּיוֹם טוֹב, בֵּין שֶׁהוּרְמוּ מֵאֶמֶשׁ, בֵּין שֶׁהוּרְמוּ מֵהַיּוֹם. וּבֵית הִלֵּל מַתִּירִין. אָמְרוּ לָהֶם בֵּית שַׁמַּאי, גְּזֵרָה שָׁוָה, חַלָּה וּמַתָּנוֹת מַתָּנָה לַכֹּהֵן, וּתְרוּמָה מַתָּנָה לַכֹּהֵן, כְּשֵׁם שֶׁאֵין מוֹלִיכִין אֶת הַתְּרוּמָה, כָּךְ אֵין מוֹלִיכִין אֶת הַמַּתָּנוֹת. אָמְרוּ לָהֶם בֵּית הִלֵּל, לֹא, אִם אֲמַרְתֶּם בַּתְּרוּמָה, שֶׁאֵינוֹ זַכַּאי בַּהֲרָמָתָהּ, תֹּאמְרוּ בַמַּתָּנוֹת, שֶׁזַּכַּאי בַּהֲרָמָתָן:",
    "gap": {
-    "he": "לפי לשון המשנה, בית שמאי אוסרים להוליך חלה ומתנות לכהן ביום טוב, בין שהורמו מאמש בין מהיום, ובית הלל מתירים. הגמרא שואלת מי התנא של המשנה: לא רבי יוסי ולא רבי יהודה, אלא אחרים. רבי יוסי בברייתא: לא נחלקו על המתנות שמוליכים, ולא נחלקו אלא על התרומה. רבא מדייק: המשנה אומרת 'שהורמו מהיום' ולא 'שנשחטו מהיום', ולעולם שחיטתן מאמש. ורב יהודה אמר שמואל פוסק שהלכה כרבי יוסי.",
-    "en": "As written, Beis Shammai forbid bringing challah and gifts to the Kohen on Yom Tov, whether separated yesterday or today, and Beis Hillel permit. The Gemara asks whose Mishnah this is: not Rabbi Yosi and not Rabbi Yehuda, but Acherim. Rabbi Yosi in a baraisa: they did not dispute the gifts, which may be brought, and disputed only terumah. Rava reads closely: the Mishnah says 'separated today', not 'slaughtered today', and the slaughter was in fact yesterday. And Rav Yehuda in the name of Shmuel rules that the halacha follows Rabbi Yosi."
+    "he": "לפי לשון המשנה, בית שמאי אוסרים להוליך חלה ומתנות לכהן ביום טוב, בין שהורמו מאמש בין מהיום, ובית הלל מתירים; בית שמאי טוענים גזרה שוה מתרומה, ובית הלל משיבים לא, אם אמרתם בתרומה שאינו זכאי בהרמתה תאמרו במתנות שזכאי בהרמתן. הגמרא שואלת מי התנא של המשנה: לא רבי יוסי ולא רבי יהודה, אלא אחרים. רבי יוסי בברייתא הופך את כל המשנה: על המתנות לא נחלקו כלל ומוליכים, ולא נחלקו אלא על התרומה, בית שמאי אוסרים ובית הלל מתירים; הגזרה השוה היא טענת בית הלל, כשם שמוליכים את המתנות כך מוליכים את התרומה, והתשובה 'לא, אם אמרתם במתנות שזכאי בהרמתן תאמרו בתרומה שאין זכאי בהרמתה' היא של בית שמאי. רבא מדייק: המשנה אומרת 'שהורמו מהיום' ולא 'שנשחטו מהיום', ולעולם שחיטתן מאמש. ורב יהודה אמר שמואל פוסק שהלכה כרבי יוסי, כלומר הלכה כהיפוך המשנה.",
+    "en": "As written, Beis Shammai forbid bringing challah and the priestly gifts to a kohen on Yom Tov, whether separated last night or today, and Beis Hillel permit; Beis Shammai argue by analogy from terumah, and Beis Hillel answer no, if you say so of terumah, which he is not entitled to separate today, will you say so of the gifts, which he is entitled to separate. The Gemara asks whose view the Mishnah is: not Rabbi Yose and not Rabbi Yehuda, but Acherim. Rabbi Yose in a baraisa inverts the whole Mishnah: about the gifts there was no dispute at all and they are brought, the dispute is only about terumah, Beis Shammai forbid and Beis Hillel permit; the analogy is Beis Hillel's argument, just as the gifts are brought so is terumah, and the answer 'no, if you say so of the gifts, which he is entitled to separate, will you say so of terumah, which he is not' is Beis Shammai's. Rava infers: the Mishnah says 'separated today', not 'slaughtered today', so the slaughter was last night. And Rav Yehuda in the name of Shmuel rules that the halacha follows Rabbi Yose, that is, the inverse of the Mishnah."
    },
    "moves": [
     {
@@ -596,12 +596,13 @@ window.BEITZA_DATA = {
     },
     {
      "tags": [
+      6,
       7
      ],
      "who": "רבי יוסי (ברייתא)",
      "daf": "ביצה יב:",
      "link": "https://www.sefaria.org/Beitzah.12b",
-     "q": "לֹא נֶחְלְקוּ בֵּית שַׁמַּאי וּבֵית הִלֵּל עַל הַמַּתָּנוֹת שֶׁמּוֹלִיכִין, לֹא נֶחְלְקוּ אֶלָּא עַל הַתְּרוּמָה",
+     "q": "לֹא נֶחְלְקוּ בֵּית שַׁמַּאי וּבֵית הִלֵּל עַל הַמַּתָּנוֹת שֶׁמּוֹלִיכִין, לֹא נֶחְלְקוּ אֶלָּא עַל הַתְּרוּמָה, שֶׁבֵּית שַׁמַּאי אוֹמְרִים: אֵין מוֹלִיכִין, וּבֵית הִלֵּל אוֹמְרִים: מוֹלִיכִין. וְכָךְ הָיוּ בֵּית הִלֵּל דָּנִין: חַלָּה וּמַתָּנוֹת — מַתָּנָה לַכֹּהֵן, וּתְרוּמָה — מַתָּנָה לַכֹּהֵן, כְּשֵׁם שֶׁמּוֹלִיכִין אֶת הַמַּתָּנוֹת, כָּךְ מוֹלִיכִין אֶת הַתְּרוּמָה. אָמְרוּ לָהֶם בֵּית שַׁמַּאי: לֹא, אִם אֲמַרְתֶּם בְּמַתָּנוֹת שֶׁזַּכַּאי בַּהֲרָמָתָן — תֹּאמְרוּ בִּתְרוּמָה שֶׁאֵין זַכַּאי בַּהֲרָמָתָהּ!",
      "ref": "12b.9"
     },
     {

@@ -41,3 +41,6 @@ Prompted by 1:1, where the second clause (שאור בכזית וחמץ בככו�
 
 ## 1:3 מראית העין (2026-11-02)
 - Added the missing machlokes box on 1:3 from ביצה ט. (Rav Chanan bar Ami, two versions): where Beis Shammai and Beis Hillel disagree about moving the ladder (public or private domain) and why (הרואה אומר להטיח גגו הוא צריך / שובכו מוכיח), with Rav's "כל מקום שאסרו חכמים מפני מראית העין אפילו בחדרי חדרים אסור". Prompted by the author pointing to Tiferes Yisrael (Yachin) on this Mishnah.
+
+## 1:6 inverted dialogue (2026-11-16)
+- Rabbi Yose's baraisa (ביצה יב:) is now quoted in full on the 1:6 card, tags 6 and 7: the dispute is about terumah not the gifts, the גזרה שוה argument is Beis Hillel's, and the "לא, אם אמרתם" rebuttal is Beis Shammai's. The card had quoted only the first clause and the editor line had understated it. Halacha is like Rabbi Yose (רב יהודה אמר שמואל), so the halacha is the inverse of the Mishnah's text.
