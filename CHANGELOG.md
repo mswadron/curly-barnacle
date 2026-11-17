@@ -5,6 +5,9 @@ All notable changes to **Torah Interactive**. Format loosely follows
 
 ## [Unreleased]
 
+### Added (2026-11-17)
+- `apps/tannaim.html` (+ `.js`, `-data.js`) and tile under Mishnah: The Sages of the Mishnah. 152 sages and schools, every mention in the Mishnah (Torat Emet 357) counted and sorted by kind, MishnaBase dispute counts, Sefaria generations, teachers, students, family and summaries, Wikidata links. Views: generations, chains (Avos 1-2, the Nesiim, teacher-and-student chart), Work a Mishnah (names marked in the text, lineup by generation, ordering exercise, link into Beitzah and Shabbos), index. Same-name sages split only where the Mishnah or Tosafos Yom Tov says which one. Doc: `docs/tannaim.md`; build scripts in `dev/tannaim/`.
+
 ### Added (2026-10-22)
 - `apps/sugyascout.html` - Sugya Scout: pick a daf and see every sugya on it by the canonical passage divisions, each opening quoted as written, with links to the text and to the printed daf (shas.aspx scheme). Each sugya opens into a model-built step-by-step scaffold (bring-your-own key: OpenRouter, Gemini, OpenAI, Anthropic; keys stay in the browser), the Gemara behind each step revealed on tap, and a second-model review pass that flags omissions, misstatements, and unsupported attributions. New index tile under Luach & Reference; sub-doc at `docs/sugyascout.md`.
 

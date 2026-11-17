@@ -53,6 +53,7 @@ Grouped by seder, in the order they appear on the index page.
 |------|-----|---------|
 | The Mishnah as Torah She-Ba'al Peh · Beitzah | [beitza.html](../apps/beitza.html) | [beitza.md](beitza.md) |
 | The Mishnah as Torah She-Ba'al Peh · Shabbos | [shabbos.html](../apps/shabbos.html) | [shabbos.md](shabbos.md) |
+| The Sages of the Mishnah | [tannaim.html](../apps/tannaim.html) | [tannaim.md](tannaim.md) |
 
 ### תפילה · Tefilah & Liturgy
 
