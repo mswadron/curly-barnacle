@@ -19,11 +19,12 @@
   const mkRef = (t, c, m) => 'Mishnah ' + t + ' ' + c + ':' + m;
 
   /* ---------- state ---------- */
-  const S = { lang: 'he', view: 'gen', chain: 'kab', sel: null, ref: null, sort: 'mentions', q: '' };
+  const S = { lang: 'he', view: 'gen', chain: 'kab', sel: null, ref: null, sort: 'mentions', q: '', mapk: 'all' };
   try { const l = localStorage.getItem('tannaim-lang'); if (l === 'en' || l === 'he') S.lang = l; } catch (e) { /* storage off */ }
   function readHash() {
     const h = new URLSearchParams(location.hash.replace(/^#/, ''));
-    if (['gen', 'chain', 'work', 'list'].includes(h.get('v'))) S.view = h.get('v');
+    if (['gen', 'chain', 'work', 'map', 'list'].includes(h.get('v'))) S.view = h.get('v');
+    if (['all', 'buried', 'born', 'died', 'active'].includes(h.get('k'))) S.mapk = h.get('k');
     if (['kab', 'nes', 'ego'].includes(h.get('c'))) S.chain = h.get('c');
     if (h.get('s') && P[h.get('s')]) S.sel = h.get('s');
     if (h.get('m') && parseRef(h.get('m'))) S.ref = h.get('m');
@@ -34,6 +35,7 @@
     if (S.view === 'chain') h.set('c', S.chain);
     if (S.sel) h.set('s', S.sel);
     if (S.view === 'work' && S.ref) h.set('m', S.ref);
+    if (S.view === 'map' && S.mapk !== 'all') h.set('k', S.mapk);
     const s = '#' + h.toString();
     if (location.hash !== s) history.replaceState(null, '', s);
   }
@@ -42,7 +44,13 @@
   const W = {
     title: ['חכמי המשנה', 'The Sages of the Mishnah'],
     sub: ['מי היה כל אחד, באיזה דור, ממי למד ומי למד ממנו, והיכן הוא מדבר במשנה', 'Who each sage was, his generation, whom he learned from and who learned from him, and where he speaks in the Mishnah'],
-    v_gen: ['דורות', 'Generations'], v_chain: ['שלשלאות', 'Chains'], v_work: ['לימוד משנה', 'Work a Mishnah'], v_list: ['רשימה', 'Index'],
+    v_gen: ['דורות', 'Generations'], v_chain: ['שלשלאות', 'Chains'], v_work: ['לימוד משנה', 'Work a Mishnah'], v_list: ['רשימה', 'Index'], v_map: ['מפה', 'Map'],
+    years: ['שנים ומקומות', 'Years and places'], period: ['תקופת דורו', 'His generation'], born: ['נולד', 'Born'], died: ['נפטר', 'Died'], floruit: ['פעל', 'Active'],
+    p_born: ['מקום לידה', 'Born in'], p_died: ['מקום פטירה', 'Died in'], p_buried: ['מקום קבורה', 'Buried in'], p_active: ['מקום פעילות', 'Taught in'], p_lived: ['מקום מגורים', 'Lived in'],
+    from_name: ['לפי שמו במשנה', 'From his name in the Mishnah'], no_years: ['לא נמצאו שנים או מקומות במקורות שנבדקו.', 'No years or places found in the sources checked.'],
+    col_y: ['תקופה', 'Period'], k_all: ['הכל', 'All'], k_buried: ['קבורה', 'Burial'], k_born: ['לידה', 'Birth'], k_died: ['פטירה', 'Death'], k_active: ['פעילות', 'Teaching'],
+    map_intro: ['מקומות לפי ויקינתונים: לידה, פטירה, קבורה (לרוב לפי המסורת) ומקום פעילות. לחצו על נקודה כדי לראות את החכמים שבה.', 'Places from Wikidata: birth, death, burial (mostly the traditional sites) and where they taught. Tap a point to see its sages.'],
+    map_fail: ['המפה לא נטענה. אפשר לראות את המקומות בכרטיס של כל חכם.', 'The map could not load. Each sage\'s card still lists his places.'],
     c_kab: ['שלשלת הקבלה', 'Chain of receiving'], c_nes: ['בית הנשיאים', 'The Nesiim'], c_ego: ['רבותיו ותלמידיו', 'Teachers and students'],
     search: ['חיפוש חכם...', 'Find a sage...'],
     mentions: ['אזכורים', 'mentions'], mishnayos: ['משניות', 'mishnayos'], disputes: ['מחלוקות', 'disputes'],
@@ -122,6 +130,29 @@
     'Son of Rabban Gamliel HaZaken of Avos 1:16': 'בנו של רבן גמליאל הזקן שבאבות א:טז'
   };
   const SRC_HE = { 'Mishnah text': 'לשון המשנה', 'Tosafos Yom Tov on Avos 1:16': 'תוספות יום טוב אבות א:טז', 'Tosafos Yom Tov on Avos 1:18': 'תוספות יום טוב אבות א:יח', 'Tosafos Yom Tov on Kerisos 1:7': 'תוספות יום טוב כריתות א:ז', 'Mishnah Avos 2:8': 'אבות ב:ח', 'Mishnah Avos 4:4 and 4:6': 'אבות ד:ד ו-ד:ו', 'Mishnah Avos 1:17; Tosafos Yom Tov on Avos 1:18': 'אבות א:יז; תוספות יום טוב אבות א:יח' };
+  const GEM = (n) => {
+    const parts = []; let x = n;
+    [[400, 'ת'], [300, 'ש'], [200, 'ר'], [100, 'ק']].forEach(([v, c]) => { while (x >= v) { parts.push(c); x -= v; } });
+    if (x === 15) parts.push('ט', 'ו'); else if (x === 16) parts.push('ט', 'ז');
+    else { [[90, 'צ'], [80, 'פ'], [70, 'ע'], [60, 'ס'], [50, 'נ'], [40, 'מ'], [30, 'ל'], [20, 'כ'], [10, 'י']].forEach(([v, c]) => { if (x >= v) { parts.push(c); x -= v; } }); if (x) parts.push('אבגדהוזחט'[x - 1]); }
+    if (parts.length === 1) return parts[0] + '׳';
+    return parts.slice(0, -1).join('') + '״' + parts[parts.length - 1];
+  };
+  const am = (ce) => (ce > 0 ? ce + 3760 : 3761 + ce);
+  const amTxt = (ce) => { const a = am(ce); return S.lang === 'he' ? 'ה'.slice(0, 0) + GEM(Math.floor(a / 1000)).replace(/[׳״]/g, '') + '׳' + GEM(a % 1000) : 'AM ' + a; };
+  const ceTxt = (y) => (S.lang === 'he' ? (y < 0 ? -y + ' לפנה״ס' : y + ' לסה״נ') : (y < 0 ? -y + ' BCE' : y + ' CE'));
+  function lifeTxt(e) {
+    const y = e.y;
+    if (e.prec <= 7) {
+      const c = Math.ceil(Math.abs(y) / 100) || 1;
+      return S.lang === 'he' ? 'המאה ה־' + c + (y < 0 ? ' לפנה״ס' : ' לסה״נ') : c + (c === 1 ? 'st' : c === 2 ? 'nd' : c === 3 ? 'rd' : 'th') + ' century' + (y < 0 ? ' BCE' : ' CE');
+    }
+    const approx = e.prec === 8 ? (S.lang === 'he' ? 'בערך ' : 'c. ') : '';
+    return approx + ceTxt(y) + ` <span class="am">(${amTxt(y)})</span>`;
+  }
+  const spanTxt = (a, b) => (S.lang === 'he' ? `${a}–${b} לסה״נ <span class="am">(${amTxt(a)}–${amTxt(b)})</span>` : `${a}–${b} CE <span class="am">(${amTxt(a)}–${amTxt(b)})</span>`);
+  const SEF2JE = { T1: 1, T2: 1, T3: 2, T4: 3, T5: 4, T6: 5, TA: 6 };
+  const JE_YEARS = { 1: [10, 80], 2: [80, 120], 3: [120, 140], 4: [140, 165], 5: [165, 200], 6: [200, 220] };
   const ruleTxt = (r) => (S.lang === 'he' && RULE_HE[r]) || r;
   const srcTxt = (r) => (S.lang === 'he' && SRC_HE[r]) || r;
   function matches(p, q) {
@@ -142,7 +173,7 @@
       ? '<p>כל חכם שנזכר בשמו במשנה, עם מספר הפעמים שהוא נזכר ובאיזה אופן: במחלוקת, בעדות, במעשה, במאמר או בהלכה. הדורות, הרבנים והתלמידים לקוחים מספריא ומוויקינתונים, והמקור מצוין ליד כל פרט.</p>'
       : '<p class="en">Every sage named in the Mishnah, with how often he is named and in what way: in a dispute, a testimony, a story, a saying or a ruling. Generations, teachers and students come from Sefaria and Wikidata, and each detail names its source.</p>';
     document.querySelectorAll('.lang button').forEach((b) => b.classList.toggle('on', b.dataset.lang === S.lang));
-    const vs = ['gen', 'chain', 'work', 'list'];
+    const vs = ['gen', 'chain', 'work', 'map', 'list'];
     $('#views').innerHTML = vs.map((v) => `<button data-v="${v}" class="${S.view === v ? 'on' : ''}">${t('v_' + v)}</button>`).join('');
     $('#q').placeholder = t('search'); $('#q').dir = S.lang === 'he' ? 'rtl' : 'ltr';
     $('#foot').innerHTML = footer();
@@ -154,8 +185,11 @@
     const body = S.lang === 'he'
       ? `<p>הספירה: כל שם של חכם שבמשנה לפי נוסח תורת אמת 357. "מחלוקת" היא משנה ש-MishnaBase מונה בה את החכם בתוך מחלוקת (או במשנה הסמוכה, בגלל הבדלי מספור). בשאר המשניות הסוג נקבע לפי לשון המשנה: עדות (העיד, שמעתי, מקובלני), מעשה (מעשה, פעם אחת, אמרו עליו, משמת), מאמר (אבות, היה אומר), ואחרת הלכה או אזכור. המיון נעשה לפי מילים ולא נבדק משנה משנה.</p>
          <p>זיהוי: שם סתמי מזוהה כמקובל (רבי יהודה בר אלעאי, רבי יוסי בן חלפתא, רבי שמעון בר יוחאי, רבי אליעזר בן הורקנוס, רבי יהושע בן חנניה, רבי אלעזר בן שמוע). כשהמשנה או מפרש אומרים שזה אחר, המשנה מסומנת והמקור מצוין.</p>
-         <p>הדורות לפי ספריא: דור החורבן הוא T1 ורבי הוא T6. האנציקלופדיה היהודית מונה דור אחד פחות (רבן יוחנן בן זכאי הוא דור א שלה), ולכן המספר שלה מוצג בנפרד בכל כרטיס.</p>`
-      : `<p class="en">${esc(m.kind_method)}</p><p class="en">${esc(m.identification)}</p><p class="en">${esc(m.gen_scheme.note)}</p>`;
+         <p>הדורות לפי ספריא: דור החורבן הוא T1 ורבי הוא T6. האנציקלופדיה היהודית מונה דור אחד פחות (רבן יוחנן בן זכאי הוא דור א שלה), ולכן המספר שלה מוצג בנפרד בכל כרטיס.</p>
+         <p>שנים: תקופת כל דור לפי טבלת האנציקלופדיה היהודית (א 10–80, ב 80–120, ג 120–140, ד 140–165, ה 165–200, ו 200–220 לסה״נ). חכם שהאנציקלופדיה אינה ממקמת, דורו בספריא הותאם למספר שלה (T1 ו־T2 = א, T3 = ב, T4 = ג, T5 = ד, T6 = ה, TA = ו; נבדק על חכמים ששתיהן ממקמות). שנות לידה ופטירה הן של ויקינתונים, כפי שהן שם, עם מידת הדיוק; אלו הערכות של היסטוריונים ולא תאריכים מן המקורות.</p>
+         <p>השנה העברית היא השנה הלועזית בתוספת 3760 (3761 לפני הספירה), ושנה לועזית חלה על שתי שנים עבריות. זהו החשבון לפי התיארוך הלועזי; לפי סדר עולם החורבן בשנת ג׳תתכ״ח ולא ג׳תת״ל, ולכן השנים המסורתיות לתקופה זו מוקדמות בכשנתיים.</p>
+         <p>מקומות לידה, פטירה, קבורה ופעילות לפי ויקינתונים; מקומות הקבורה הם לרוב לפי המסורת. רשומות שמציינות רק מדינה מודרנית, פרובינקיה רומית או את האימפריה הושמטו; אזורים (גליל, יהודה, בבל) מופיעים בכרטיס ולא במפה.</p>`
+      : `<p class="en">${esc(m.kind_method)}</p><p class="en">${esc(m.years.periods)}</p><p class="en">${esc(m.years.life)}</p><p class="en">${esc(m.years.jewish_year)}</p><p class="en">${esc(m.years.places)}</p><p class="en">${esc(m.identification)}</p><p class="en">${esc(m.gen_scheme.note)}</p>`;
     return `<p><b>${S.lang === 'he' ? 'מקורות' : 'Sources'}:</b> ${src}</p>${body}
       <details><summary>${S.lang === 'he' ? 'מה עוד חסר' : 'What is still missing'}</summary><ul class="en">${gaps}</ul></details>`;
   }
@@ -198,7 +232,8 @@
       if (!list.length) return;
       const era = code === 'TA' ? '' : (S.lang === 'he' ? 'התנאים' : 'The Tannaim');
       if (era && era !== lastEra) { html += `<h2 class="perek-like" style="font-family:var(--he-title);font-weight:400;color:var(--teal-deep);font-size:22px;margin:14px 0 8px">${era}</h2>`; lastEra = era; }
-      html += `<section class="band"><div class="band-head"><h2>${esc(genLabel(code))}</h2><span class="bn">${esc(code)}</span><span class="bc">${list.length} ${S.lang === 'he' ? 'חכמים' : 'sages'}</span></div><div class="band-body">${list.map(card).join('')}</div></section>`;
+      const jy = JE_YEARS[SEF2JE[code]];
+      html += `<section class="band"><div class="band-head"><h2>${esc(genLabel(code))}</h2><span class="bn">${esc(code)}</span>${jy ? `<span class="by">${spanTxt(jy[0], jy[1])}</span>` : ''}<span class="bc">${list.length} ${S.lang === 'he' ? 'חכמים' : 'sages'}</span></div><div class="band-body">${list.map(card).join('')}</div></section>`;
     });
     if (unplaced.length) html += `<section class="band"><div class="band-head"><h2>${t('unplaced')}</h2><span class="bc">${unplaced.length}</span></div><div class="band-body" style="padding-bottom:4px">${unplaced.sort(sorter).map(card).join('')}</div><p class="note" style="padding:0 14px 10px;margin:0">${t('unplaced_note')}</p></section>`;
     if (voices.length) html += `<section class="band"><div class="band-head"><h2>${t('voices')}</h2></div><div class="band-body">${voices.sort(sorter).map(card).join('')}</div></section>`;
@@ -477,12 +512,12 @@
     const body = rows.map((p) => {
       const tc = p.text_counts || {}; const top = (tc.top_tractates || [])[0];
       return `<tr data-s="${esc(p.id)}"><td><span class="${S.lang === 'he' ? 'he' : 'en'}">${esc(nm(p))}</span><span class="se">${esc(other(p))}</span></td>
-        <td class="num">${esc(genCodes(p).join('/') || '·')}</td><td class="num">${mentions(p)}</td><td class="num hide-sm">${tc.mishnayos || '·'}</td>
+        <td class="num">${esc(genCodes(p).join('/') || '·')}</td><td class="num hide-sm" style="white-space:nowrap">${p.period ? p.period.from + '–' + p.period.to : '·'}</td><td class="num">${mentions(p)}</td><td class="num hide-sm">${tc.mishnayos || '·'}</td>
         <td class="bar">${kindBar(p)}</td><td class="num hide-sm">${(p.dispute_counts || {}).arguments || '·'}</td>
         <td class="hide-sm">${top ? esc(S.lang === 'he' ? TR[top[0]].he : TR[top[0]].en) + ' <span class="note">' + top[1] + '</span>' : ''}</td></tr>`;
     }).join('');
     return `<div class="kinds">${KINDS.map((k) => `<span><i class="k-${k}"></i>${esc(kindName(k))}</span>`).join('')}</div>
-      <table class="idx"><thead><tr>${th('name', t('col_name'))}${th('gen', t('col_gen'))}${th('mentions', t('col_m'))}${th('mishnayos', t('col_n'), 'hide-sm')}<th>${t('col_k')}</th>${th('disputes', t('col_d'), 'hide-sm')}<th class="hide-sm">${t('col_t')}</th></tr></thead><tbody>${body}</tbody></table>`;
+      <table class="idx"><thead><tr>${th('name', t('col_name'))}${th('gen', t('col_gen'))}<th class="hide-sm">${t('col_y')}</th>${th('mentions', t('col_m'))}${th('mishnayos', t('col_n'), 'hide-sm')}<th>${t('col_k')}</th>${th('disputes', t('col_d'), 'hide-sm')}<th class="hide-sm">${t('col_t')}</th></tr></thead><tbody>${body}</tbody></table>`;
   }
 
   /* ---------- rail: the profile ---------- */
@@ -499,6 +534,7 @@
     if (p.kind === 'school') chips.push(`<span class="chip grey">${S.lang === 'he' ? 'בית מדרש' : 'school'}</span>`);
     if (p.kind === 'collective') chips.push(`<span class="chip grey">${S.lang === 'he' ? 'קול כללי' : 'unnamed voice'}</span>`);
     let html = `<div class="rail-head"><button class="close" id="close" aria-label="close">×</button><h2 class="he">${esc(heName(p))}</h2><div class="en-name">${esc(p.id)}</div><div class="chips">${chips.join('')}</div></div>`;
+    html += yearsBlock(p);
     // the Mishnah numbers
     const tc = p.text_counts; const dc = p.dispute_counts;
     html += `<div class="rs"><span class="eyebrow">${t('in_mishnah')}</span>`;
@@ -553,11 +589,85 @@
     box.innerHTML = html;
   }
 
+  function yearsBlock(p) {
+    if (p.kind !== 'person') return '';
+    const rows = [];
+    if (p.period) {
+      const src = p.period.via === 'je'
+        ? (S.lang === 'he' ? 'האנציקלופדיה היהודית, דור ' + p.period.je_gen : 'Jewish Encyclopedia, gen. ' + p.period.je_gen)
+        : (S.lang === 'he' ? 'דור ' + genCodes(p)[0] + ' בספריא = דור ' + p.period.je_gen + ' באנציקלופדיה היהודית' : 'Sefaria ' + genCodes(p)[0] + ' = Jewish Encyclopedia gen. ' + p.period.je_gen);
+      rows.push(`<div class="yr"><span class="yl">${t('period')}</span><span>${spanTxt(p.period.from, p.period.to)}<span class="ys">${esc(src)}</span></span></div>`);
+    }
+    if (p.life) ['born', 'died', 'floruit'].forEach((k) => { if (p.life[k] && p.life[k].length) rows.push(`<div class="yr"><span class="yl">${t(k)}</span><span>${p.life[k].map(lifeTxt).join(S.lang === 'he' ? ' או ' : ' or ')}<span class="ys">${esc(p.life.src)}</span></span></div>`); });
+    const pl = {};
+    (p.places || []).forEach((e) => { (pl[e.kind] = pl[e.kind] || []).push(e); });
+    ['born', 'active', 'lived', 'died', 'buried'].forEach((k) => {
+      if (!pl[k]) return;
+      rows.push(`<div class="yr"><span class="yl">${t('p_' + k)}</span><span>${pl[k].map((e) => { const g = D.places[e.qid]; const label = esc(S.lang === 'he' ? (e.he || e.en) : (e.en || e.he)); return g && !g.region ? `<button class="plc" data-place="${esc(e.qid)}">${label}</button>` : label; }).join(', ')}<span class="ys">Wikidata</span></span></div>`);
+    });
+    const origin = /איש ([^ ]+(?: [^ ]+)?)$/.exec((p.name.he_display || p.name.he || '').replace(/ בן .*? איש /, ' איש '));
+    if (origin) rows.push(`<div class="yr"><span class="yl">${t('from_name')}</span><span class="he">${esc('איש ' + origin[1])}</span></div>`);
+    if (!rows.length) return `<div class="rs"><span class="eyebrow">${t('years')}</span><p class="note" style="margin:0">${t('no_years')}</p></div>`;
+    return `<div class="rs"><span class="eyebrow">${t('years')}</span>${rows.join('')}</div>`;
+  }
+
+  /* ---------- view: map ---------- */
+  let LMAP = null, LLAYER = null, LOADING = null;
+  function loadLeaflet() {
+    if (window.L && window.L.map) return Promise.resolve();
+    if (LOADING) return LOADING;
+    LOADING = new Promise((res, rej) => {
+      const css = document.createElement('link'); css.rel = 'stylesheet'; css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'; document.head.appendChild(css);
+      const js = document.createElement('script'); js.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'; js.onload = res; js.onerror = rej; document.head.appendChild(js);
+    });
+    return LOADING;
+  }
+  function placeIndex() {
+    const idx = {};
+    D.people.forEach((p) => (p.places || []).forEach((e) => {
+      const g = D.places[e.qid]; if (!g || g.region) return;
+      if (S.mapk !== 'all' && e.kind !== S.mapk && !(S.mapk === 'active' && e.kind === 'lived')) return;
+      const x = (idx[e.qid] = idx[e.qid] || { g, kinds: {} });
+      (x.kinds[e.kind] = x.kinds[e.kind] || []).push(p.id);
+    }));
+    return idx;
+  }
+  function viewMap() {
+    const seg = ['all', 'buried', 'born', 'died', 'active'].map((k) => `<button data-mk="${k}" class="${S.mapk === k ? 'on' : ''}">${t('k_' + k)}</button>`).join('');
+    setTimeout(drawMap, 0);
+    return `<nav class="seg sm" id="mapnav" style="margin-bottom:10px">${seg}</nav><div class="panel" style="padding:10px"><p class="note" style="margin:0 0 8px">${t('map_intro')}</p><div id="map"></div><div id="placebox"></div></div>`;
+  }
+  function placeHtml(qid) {
+    const idx = placeIndex(); const x = idx[qid]; if (!x) return '';
+    const g = x.g;
+    const order = ['buried', 'born', 'active', 'lived', 'died'];
+    return `<h3 style="margin-top:4px">${esc(S.lang === 'he' ? (g.he || g.en) : (g.en || g.he))}</h3>` + order.filter((k) => x.kinds[k]).map((k) => `<div style="margin:4px 0"><span class="note" style="font-weight:700">${t('p_' + k)}</span><div class="pills" style="margin-top:3px">${[...new Set(x.kinds[k])].map((id) => pill(id)).join('')}</div></div>`).join('');
+  }
+  async function drawMap() {
+    const box = $('#map'); if (!box) return;
+    try { await loadLeaflet(); } catch (e) { box.innerHTML = `<p class="note">${t('map_fail')}</p>`; box.style.height = 'auto'; return; }
+    if (!$('#map')) return;
+    if (LMAP) { LMAP.remove(); LMAP = null; }
+    LMAP = window.L.map(box, { scrollWheelZoom: false }).setView([32.3, 35.1], 8);
+    window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 15, attribution: '&copy; OpenStreetMap' }).addTo(LMAP);
+    const idx = placeIndex(); const pts = [];
+    Object.keys(idx).forEach((q) => {
+      const x = idx[q]; const n = new Set([].concat(...Object.values(x.kinds))).size;
+      const m = window.L.circleMarker([x.g.lat, x.g.lon], { radius: 6 + Math.min(10, n * 1.5), color: '#0a4f4c', weight: 2, fillColor: x.kinds.buried ? '#0e6e6a' : '#2f5d8a', fillOpacity: 0.75 }).addTo(LMAP);
+      m.bindTooltip(`${esc(S.lang === 'he' ? (x.g.he || x.g.en) : (x.g.en || x.g.he))} · ${n}`, { direction: 'top' });
+      m.on('click', () => { $('#placebox').innerHTML = placeHtml(q); $('#placebox').scrollIntoView({ block: 'nearest', behavior: 'smooth' }); });
+      pts.push([x.g.lat, x.g.lon]);
+    });
+    const near = pts.filter(([a, b]) => b > 33 && b < 37 && a > 29 && a < 34.5);
+    if (near.length > 1) LMAP.fitBounds(near, { padding: [20, 20] });
+  }
+
   /* ---------- render + events ---------- */
   function render() {
     shell();
     const v = $('#view');
-    v.innerHTML = S.view === 'gen' ? viewGen() : S.view === 'chain' ? viewChain() : S.view === 'work' ? viewWork() : viewList();
+    if (S.view !== 'map' && LMAP) { LMAP.remove(); LMAP = null; }
+    v.innerHTML = S.view === 'gen' ? viewGen() : S.view === 'chain' ? viewChain() : S.view === 'work' ? viewWork() : S.view === 'map' ? viewMap() : viewList();
     rail();
     writeHash();
   }
@@ -583,6 +693,10 @@
     if (lb) { S.lang = lb.dataset.lang; try { localStorage.setItem('tannaim-lang', S.lang); } catch (x) { /* storage off */ } render(); return; }
     const vb = e.target.closest('#views button');
     if (vb) { S.view = vb.dataset.v; render(); return; }
+    const mk = e.target.closest('#mapnav button');
+    if (mk) { S.mapk = mk.dataset.mk; render(); return; }
+    const pb = e.target.closest('[data-place]');
+    if (pb) { S.view = 'map'; openSheet(false); render(); setTimeout(() => { const g = D.places[pb.dataset.place]; if (LMAP && g) LMAP.setView([g.lat, g.lon], 11); const b = $('#placebox'); if (b) b.innerHTML = placeHtml(pb.dataset.place); }, 400); window.scrollTo({ top: 0 }); return; }
     const cb = e.target.closest('#chainnav button');
     if (cb) { S.chain = cb.dataset.c; render(); return; }
     if (e.target.closest('#close') || e.target.closest('#scrim')) { openSheet(false); return; }
