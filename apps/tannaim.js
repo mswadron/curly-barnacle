@@ -37,7 +37,8 @@
     if (S.view === 'work' && S.ref) h.set('m', S.ref);
     if (S.view === 'map' && S.mapk !== 'all') h.set('k', S.mapk);
     const s = '#' + h.toString();
-    if (location.hash !== s) history.replaceState(null, '', s);
+    /* some viewers (sandboxed previews) refuse address changes; the page works without them */
+    try { if (location.hash !== s) history.replaceState(null, '', s); } catch (e) { /* ignore */ }
   }
 
   /* ---------- words ---------- */
