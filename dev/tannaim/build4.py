@@ -11,8 +11,20 @@ JE_YEARS={1:(10,80),2:(80,120),3:(120,140),4:(140,165),5:(165,200),6:(200,220)}
 SEF2JE={'T1':1,'T2':1,'T3':2,'T4':3,'T5':4,'T6':5,'TA':6}
 def yr(val,prec):
   m=re.match(r'^(-?)(\d+)-',val); y=int(m.group(2))*(-1 if m.group(1) else 1)
+  # the query service counts 1 BCE as year 0, so BCE years come back one short; century values are not shifted
+  if y<=0 and int(prec)>=8: y-=1
   return {'y':y,'prec':int(prec)}
 places_all={}
+# review 2026-11-17: 'Rabbi Chanina ben Akiva' had been matched to Sefaria's Hananyah b. Akabia, a different sage
+for p in D['people']:
+  if p['id']=='Rabbi Chanina ben Akiva': p['sefaria']=None
+  for r in ([p['sefaria']] if p.get('sefaria') and not p['sefaria'].get('two') else (p.get('sefaria') or {}).get('two',[])):
+    for lst in (r.get('links') or {}).values():
+      for l in lst:
+        if l.get('slug')=='rabbi-hananyah-b-akabia': l['id']='Rabbi Chananya ben Akavya'
+for st in D['chains']['nesiim']:
+  if st.get('id')=='Rabban Gamliel': st['src'][0]['label']='תוספות יום טוב אבות א:יח (שם נאמר שרבן שמעון בן גמליאל הוא נכדו של שמעון; רבן גמליאל דיבנה, הבן שביניהם, אינו נזכר שם בשמו)'
+D['meta']['gaps']=[g for g in D['meta']['gaps'] if not g.startswith('The Jewish Encyclopedia and Sefaria disagree')]+['The Jewish Encyclopedia and Sefaria disagree on the generation of five sages: R\' Tarfon, R\' Elazar ben Azarya, R\' Dosa ben Harkinas, R\' Tzadok and R\' Nasan. Each is placed on the page by Sefaria; his years follow the Encyclopedia; the profile shows both.']
 for p in D['people']:
   q=(p.get('wikidata') or {}).get('id')
   life={'born':[],'died':[],'floruit':[]}; places=[]
@@ -35,7 +47,9 @@ for p in D['people']:
         e={'kind':KIND[pr],'qid':pq,'en':v(r,'valLabel'),'he':v(r,'heLabel'),'lat':lat,'lon':lon}
         places.append(e)
         if lat is not None: places_all.setdefault(pq,{'qid':pq,'en':e['en'],'he':e['he'],'lat':round(lat,4),'lon':round(lon,4),'region':pq in REGION})
-    for k in life: life[k].sort(key=lambda e:(e['y'],-e['prec']))
+    for k in life:
+      if any(e['prec']>=8 for e in life[k]): life[k]=[e for e in life[k] if e['prec']>=8]  # a century adds nothing beside a year
+      life[k].sort(key=lambda e:(e['y'],-e['prec']))
   if any(life.values()): p['life']=dict(life,src='Wikidata '+q)
   if places:
     # one entry per place and kind; a place may carry two coordinates, keep the first
