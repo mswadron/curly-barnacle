@@ -48,11 +48,13 @@ for p in D['people']:
   if je:
     a,b=JE_YEARS[je]; p['period']={'from':a,'to':b,'je_gen':je,'via':via}
 D['places']=places_all
+D['basemap']=json.load(open('/home/claude/geo/basemap.json'))
 D['meta']['years']={
  'periods':'Generation spans are the Jewish Encyclopedia (1906) table: 1st 10-80, 2nd 80-120, 3rd 120-140, 4th 140-165, 5th 165-200, 6th 200-220 CE. Where the Encyclopedia does not place a sage, his Sefaria generation is matched to its number (Sefaria T1 and T2 = 1st, T3 = 2nd, T4 = 3rd, T5 = 4th, T6 = 5th, TA = 6th; checked on Rabban Yochanan ben Zakkai, R\' Eliezer, R\' Akiva, R\' Meir, Rebbe, which both place).',
  'life':'Birth and death years are Wikidata\'s, shown as given with their precision (year, decade, century). Where Wikidata holds two values both are shown. They are estimates by historians, not dates from the sources.',
  'jewish_year':'The Jewish year is the secular year converted by adding 3760 (3761 before the common era); a secular year covers parts of two Jewish years. This follows the secular dating; the traditional count of Seder Olam puts the Churban in 3828 rather than 3830, so traditional years for this period run about two years earlier.',
  'places':'Places of birth, death, burial and teaching are Wikidata\'s. Burial places are mostly the traditional sites. Entries that name only a modern state, a Roman province or the empire are left out; regions (Galilee, Judea, Babylon) are listed but not put on the map.'}
+D['meta']['sources'].append({'id':'naturalearth','title':'Natural Earth 1:10m coastline, lakes and rivers (public domain), for the map','url':'https://www.naturalearthdata.com'})
 D['meta']['sources'].append({'id':'wikidata','title':'Wikidata (dates, places, coordinates), queried 2026-11-17','url':'https://www.wikidata.org'})
 D['meta']['version']=4
 open('tannaim-data.v4.js','w').write('/* Tannaim of the Mishnah, v4, 2026-11-17. v3 plus years (Wikidata, Jewish Encyclopedia generation spans) and places (Wikidata). See meta.sources, meta.years and meta.gaps. */\nwindow.TANNAIM_DATA = '+json.dumps(D,ensure_ascii=False,separators=(',',':'))+';\n')

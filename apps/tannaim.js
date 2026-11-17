@@ -19,7 +19,7 @@
   const mkRef = (t, c, m) => 'Mishnah ' + t + ' ' + c + ':' + m;
 
   /* ---------- state ---------- */
-  const S = { lang: 'he', view: 'gen', chain: 'kab', sel: null, ref: null, sort: 'mentions', q: '', mapk: 'all' };
+  const S = { lang: 'he', view: 'gen', chain: 'kab', sel: null, ref: null, sort: 'mentions', q: '', mapk: 'all', place: null };
   try { const l = localStorage.getItem('tannaim-lang'); if (l === 'en' || l === 'he') S.lang = l; } catch (e) { /* storage off */ }
   function readHash() {
     const h = new URLSearchParams(location.hash.replace(/^#/, ''));
@@ -174,6 +174,7 @@
       : '<p class="en">Every sage named in the Mishnah, with how often he is named and in what way: in a dispute, a testimony, a story, a saying or a ruling. Generations, teachers and students come from Sefaria and Wikidata, and each detail names its source.</p>';
     document.querySelectorAll('.lang button').forEach((b) => b.classList.toggle('on', b.dataset.lang === S.lang));
     const vs = ['gen', 'chain', 'work', 'map', 'list'];
+    $('#legend').innerHTML = (S.view === 'gen' || S.view === 'list') ? KINDS.map((k) => `<span><i class="k-${k}"></i>${esc(kindName(k))}</span>`).join('') + `<span class="note">${S.lang === 'he' ? 'המספר: אזכורים במשנה' : 'Number: mentions in the Mishnah'}</span>` : '';
     $('#views').innerHTML = vs.map((v) => `<button data-v="${v}" class="${S.view === v ? 'on' : ''}">${t('v_' + v)}</button>`).join('');
     $('#q').placeholder = t('search'); $('#q').dir = S.lang === 'he' ? 'rtl' : 'ltr';
     $('#foot').innerHTML = footer();
@@ -213,10 +214,10 @@
       return `<button class="sage${big}${dim}${on}${p.kind !== 'person' ? ' voice' : ''}" data-s="${esc(p.id)}">
         <span class="sn ${S.lang === 'he' ? 'he' : 'en'}">${esc(nm(p))}${p.nasi ? `<span class="tag-nasi">${t('nasi')}</span>` : ''}</span>
         <span class="se">${esc(other(p))} ${gtxt}</span>
-        <span class="sm"><span>${mentions(p)}</span>${kindBar(p)}</span></button>`;
+        ${cardWhere(p)}<span class="sm"><span>${mentions(p)}</span>${kindBar(p)}</span></button>`;
     };
     const sorter = (a, b) => mentions(b) - mentions(a);
-    let html = `<div class="kinds">${KINDS.map((k) => `<span><i class="k-${k}"></i>${esc(kindName(k))}</span>`).join('')}<span class="note">${S.lang === 'he' ? 'המספר: אזכורים במשנה' : 'Number: mentions in the Mishnah'}</span></div>`;
+    let html = mapPanel(false);
     let lastEra = '';
     if (pre.length) {
       pre.sort((x, y) => x.pre_zugot.localeCompare(y.pre_zugot, 'en', { numeric: true }));
@@ -238,6 +239,23 @@
     if (unplaced.length) html += `<section class="band"><div class="band-head"><h2>${t('unplaced')}</h2><span class="bc">${unplaced.length}</span></div><div class="band-body" style="padding-bottom:4px">${unplaced.sort(sorter).map(card).join('')}</div><p class="note" style="padding:0 14px 10px;margin:0">${t('unplaced_note')}</p></section>`;
     if (voices.length) html += `<section class="band"><div class="band-head"><h2>${t('voices')}</h2></div><div class="band-body">${voices.sort(sorter).map(card).join('')}</div></section>`;
     return html;
+  }
+
+  function cardWhere(p) {
+    if (p.kind !== 'person') return '';
+    const pl = (p.places || []);
+    const pick = ['buried', 'active', 'lived', 'born', 'died'].map((k) => pl.find((e) => e.kind === k)).find(Boolean);
+    let yrs = '';
+    const d = p.life && p.life.died && p.life.died.find((e) => e.prec >= 8);
+    const bn = p.life && p.life.born && p.life.born.find((e) => e.prec >= 8);
+    const bce = S.lang === 'he' ? ' לפנה״ס' : ' BCE';
+    if (bn && d) yrs = (bn.y < 0 && d.y < 0) ? (-bn.y) + '–' + (-d.y) + bce : bn.y < 0 ? (-bn.y) + bce + ' – ' + d.y : bn.y + '–' + d.y;
+    else if (p.period) yrs = p.period.from + '–' + p.period.to;
+    else if (d) yrs = (S.lang === 'he' ? 'נפטר ' : 'died ') + (d.y < 0 ? (-d.y) + bce : d.y);
+    if (!pick && !yrs) return '';
+    const PIN = '<svg viewBox="0 0 10 13" width="8" height="10" aria-hidden="true"><path d="M5 0a5 5 0 0 0-5 5c0 3.6 5 8 5 8s5-4.4 5-8a5 5 0 0 0-5-5zm0 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" fill="currentColor"/></svg>';
+    const where = pick ? `<span class="cw-p" title="${esc(t('p_' + pick.kind))}">${PIN}${esc(S.lang === 'he' ? (pick.he || pick.en) : (pick.en || pick.he))}</span>` : '';
+    return `<span class="cw">${where}${yrs ? `<span class="cw-y">${esc(yrs)}</span>` : ''}</span>`;
   }
 
   /* ---------- view: chains ---------- */
@@ -516,8 +534,7 @@
         <td class="bar">${kindBar(p)}</td><td class="num hide-sm">${(p.dispute_counts || {}).arguments || '·'}</td>
         <td class="hide-sm">${top ? esc(S.lang === 'he' ? TR[top[0]].he : TR[top[0]].en) + ' <span class="note">' + top[1] + '</span>' : ''}</td></tr>`;
     }).join('');
-    return `<div class="kinds">${KINDS.map((k) => `<span><i class="k-${k}"></i>${esc(kindName(k))}</span>`).join('')}</div>
-      <table class="idx"><thead><tr>${th('name', t('col_name'))}${th('gen', t('col_gen'))}<th class="hide-sm">${t('col_y')}</th>${th('mentions', t('col_m'))}${th('mishnayos', t('col_n'), 'hide-sm')}<th>${t('col_k')}</th>${th('disputes', t('col_d'), 'hide-sm')}<th class="hide-sm">${t('col_t')}</th></tr></thead><tbody>${body}</tbody></table>`;
+    return `<table class="idx"><thead><tr>${th('name', t('col_name'))}${th('gen', t('col_gen'))}<th class="hide-sm">${t('col_y')}</th>${th('mentions', t('col_m'))}${th('mishnayos', t('col_n'), 'hide-sm')}<th>${t('col_k')}</th>${th('disputes', t('col_d'), 'hide-sm')}<th class="hide-sm">${t('col_t')}</th></tr></thead><tbody>${body}</tbody></table>`;
   }
 
   /* ---------- rail: the profile ---------- */
@@ -611,62 +628,58 @@
     return `<div class="rs"><span class="eyebrow">${t('years')}</span>${rows.join('')}</div>`;
   }
 
-  /* ---------- view: map ---------- */
-  let LMAP = null, LLAYER = null, LOADING = null;
-  function loadLeaflet() {
-    if (window.L && window.L.map) return Promise.resolve();
-    if (LOADING) return LOADING;
-    LOADING = new Promise((res, rej) => {
-      const css = document.createElement('link'); css.rel = 'stylesheet'; css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'; document.head.appendChild(css);
-      const js = document.createElement('script'); js.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'; js.onload = res; js.onerror = rej; document.head.appendChild(js);
-    });
-    return LOADING;
-  }
+  /* ---------- map (drawn here, no outside scripts) ---------- */
+  const BM = D.basemap;
+  const proj = (lon, lat) => [(lon - BM.bbox[0]) * BM.kx * BM.sx, (BM.bbox[3] - lat) * BM.sx];
+  const inFrame = (g) => g.lon > BM.bbox[0] && g.lon < BM.bbox[2] && g.lat > BM.bbox[1] && g.lat < BM.bbox[3];
+  const MAPK = { all: null, buried: ['buried'], born: ['born'], died: ['died'], active: ['active', 'lived'] };
+  let FRAME = 'all';
   function placeIndex() {
     const idx = {};
     D.people.forEach((p) => (p.places || []).forEach((e) => {
-      const g = D.places[e.qid]; if (!g || g.region) return;
-      if (S.mapk !== 'all' && e.kind !== S.mapk && !(S.mapk === 'active' && e.kind === 'lived')) return;
-      const x = (idx[e.qid] = idx[e.qid] || { g, kinds: {} });
-      (x.kinds[e.kind] = x.kinds[e.kind] || []).push(p.id);
+      const g = D.places[e.qid]; if (!g) return;
+      if (MAPK[S.mapk] && !MAPK[S.mapk].includes(e.kind)) return;
+      const x = (idx[e.qid] = idx[e.qid] || { q: e.qid, g, kinds: {}, ids: new Set() });
+      (x.kinds[e.kind] = x.kinds[e.kind] || []).push(p.id); x.ids.add(p.id);
     }));
     return idx;
   }
-  function viewMap() {
-    const seg = ['all', 'buried', 'born', 'died', 'active'].map((k) => `<button data-mk="${k}" class="${S.mapk === k ? 'on' : ''}">${t('k_' + k)}</button>`).join('');
-    setTimeout(drawMap, 0);
-    return `<nav class="seg sm" id="mapnav" style="margin-bottom:10px">${seg}</nav><div class="panel" style="padding:10px"><p class="note" style="margin:0 0 8px">${t('map_intro')}</p><div id="map"></div><div id="placebox"></div></div>`;
+  const plName = (g) => esc(S.lang === 'he' ? (g.he || g.en) : (g.en || g.he));
+  function mapPanel(big) {
+    const idx = placeIndex(); const sel = P[S.sel];
+    const selQ = new Set(((sel && sel.places) || []).map((e) => e.qid));
+    const fr = BM.frames[FRAME]; const z = BM.w / fr[2];
+    const inside = Object.values(idx).filter((x) => !x.g.region && inFrame(x.g));
+    const outside = Object.values(idx).filter((x) => x.g.region || !inFrame(x.g));
+    inside.sort((a, b) => b.ids.size - a.ids.size);
+    const dots = inside.map((x) => {
+      const [cx, cy] = proj(x.g.lon, x.g.lat); const n = x.ids.size; const on = selQ.has(x.q);
+      const r = (4 + Math.min(7, n * 1.3)) / z;
+      const fill = x.kinds.buried ? 'var(--teal)' : 'var(--k-testimony)';
+      const showLabel = on || n >= 3 || (FRAME === 'galil' && n >= 2);
+      return `<g class="mp${on ? ' on' : ''}" data-place="${esc(x.q)}" tabindex="0"><circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${(on ? r * 1.35 : r).toFixed(2)}" fill="${on ? '#c2410c' : fill}" stroke="#fff" stroke-width="${(1.2 / z).toFixed(2)}"></circle>${showLabel ? `<text x="${(S.lang === 'he' ? cx - r - 2 / z : cx + r + 2 / z).toFixed(1)}" y="${(cy + 3.5 / z).toFixed(1)}" font-size="${(10.5 / z).toFixed(2)}" style="direction:${S.lang === 'he' ? 'rtl' : 'ltr'}">${plName(x.g)}${n > 1 ? ' ' + n : ''}</text>` : ''}</g>`;
+    }).join('');
+    const geoLabels = (BM.labels || []).map((l) => { const [x, y] = proj(l.lon, l.lat); return `<text class="geo" x="${x}" y="${y}" font-size="${(10 / z).toFixed(2)}">${esc(S.lang === 'he' ? l.he : l.en)}</text>`; }).join('');
+    const svg = `<svg class="bm" viewBox="${fr.join(' ')}" role="img" aria-label="map"><rect x="-50" y="-50" width="${BM.w + 100}" height="${BM.h + 100}" fill="#dce9f0"></rect><path d="${BM.land}" fill="#f6f3ec" stroke="#a9bcc7" stroke-width="${(0.8 / z).toFixed(2)}"></path><path d="${BM.rivers}" fill="none" stroke="#9cc3d8" stroke-width="${(1 / z).toFixed(2)}"></path><path d="${BM.lakes}" fill="#dce9f0" stroke="#a9bcc7" stroke-width="${(0.8 / z).toFixed(2)}"></path>${geoLabels}${dots}</svg>`;
+    const kseg = ['all', 'buried', 'born', 'died', 'active'].map((k) => `<button data-mk="${k}" class="${S.mapk === k ? 'on' : ''}">${t('k_' + k)}</button>`).join('');
+    const fseg = `<button data-fr="all" class="${FRAME === 'all' ? 'on' : ''}">${S.lang === 'he' ? 'כל הארץ' : 'The land'}</button><button data-fr="galil" class="${FRAME === 'galil' ? 'on' : ''}">${S.lang === 'he' ? 'הגליל' : 'Galilee'}</button>`;
+    const out = outside.length ? `<div class="outside"><span class="note" style="font-weight:700">${S.lang === 'he' ? 'מחוץ למפה ואזורים:' : 'Off the map, and regions:'}</span> ${outside.sort((a, b) => b.ids.size - a.ids.size).map((x) => `<button class="pill${selQ.has(x.q) ? ' sel' : ''}" data-place="${esc(x.q)}">${plName(x.g)} <span class="g">${x.ids.size}</span></button>`).join('')}</div>` : '';
+    return `<div class="panel mappanel${big ? ' big' : ''}"><div class="maphead"><h2>${S.lang === 'he' ? 'מקומות' : 'Places'}</h2><nav class="seg sm" id="mapnav">${kseg}</nav><nav class="seg sm" id="framenav">${fseg}</nav></div>
+      <div class="mapgrid"><div class="mapbox">${svg}</div><div id="placebox" class="placebox">${S.place ? placeHtml(S.place) : `<p class="note">${t('map_intro')}</p>`}</div></div>${out}
+      <div class="srcline">${S.lang === 'he' ? 'מקומות: ויקינתונים · קווי חוף, אגמים ונהרות: Natural Earth' : 'Places: Wikidata · coast, lakes and rivers: Natural Earth'}</div></div>`;
   }
   function placeHtml(qid) {
-    const idx = placeIndex(); const x = idx[qid]; if (!x) return '';
-    const g = x.g;
+    const x = placeIndex()[qid] || (() => { const g = D.places[qid]; return g ? { g, kinds: {}, ids: new Set() } : null; })();
+    if (!x) return '';
     const order = ['buried', 'born', 'active', 'lived', 'died'];
-    return `<h3 style="margin-top:4px">${esc(S.lang === 'he' ? (g.he || g.en) : (g.en || g.he))}</h3>` + order.filter((k) => x.kinds[k]).map((k) => `<div style="margin:4px 0"><span class="note" style="font-weight:700">${t('p_' + k)}</span><div class="pills" style="margin-top:3px">${[...new Set(x.kinds[k])].map((id) => pill(id)).join('')}</div></div>`).join('');
+    return `<h3 style="margin-top:0">${plName(x.g)}</h3>` + order.filter((k) => x.kinds[k]).map((k) => `<div style="margin:4px 0"><span class="note" style="font-weight:700">${t('p_' + k)}</span><div class="pills" style="margin-top:3px">${[...new Set(x.kinds[k])].map((id) => pill(id)).join('')}</div></div>`).join('');
   }
-  async function drawMap() {
-    const box = $('#map'); if (!box) return;
-    try { await loadLeaflet(); } catch (e) { box.innerHTML = `<p class="note">${t('map_fail')}</p>`; box.style.height = 'auto'; return; }
-    if (!$('#map')) return;
-    if (LMAP) { LMAP.remove(); LMAP = null; }
-    LMAP = window.L.map(box, { scrollWheelZoom: false }).setView([32.3, 35.1], 8);
-    window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 15, attribution: '&copy; OpenStreetMap' }).addTo(LMAP);
-    const idx = placeIndex(); const pts = [];
-    Object.keys(idx).forEach((q) => {
-      const x = idx[q]; const n = new Set([].concat(...Object.values(x.kinds))).size;
-      const m = window.L.circleMarker([x.g.lat, x.g.lon], { radius: 6 + Math.min(10, n * 1.5), color: '#0a4f4c', weight: 2, fillColor: x.kinds.buried ? '#0e6e6a' : '#2f5d8a', fillOpacity: 0.75 }).addTo(LMAP);
-      m.bindTooltip(`${esc(S.lang === 'he' ? (x.g.he || x.g.en) : (x.g.en || x.g.he))} · ${n}`, { direction: 'top' });
-      m.on('click', () => { $('#placebox').innerHTML = placeHtml(q); $('#placebox').scrollIntoView({ block: 'nearest', behavior: 'smooth' }); });
-      pts.push([x.g.lat, x.g.lon]);
-    });
-    const near = pts.filter(([a, b]) => b > 33 && b < 37 && a > 29 && a < 34.5);
-    if (near.length > 1) LMAP.fitBounds(near, { padding: [20, 20] });
-  }
+  function viewMap() { return mapPanel(true); }
 
   /* ---------- render + events ---------- */
   function render() {
     shell();
     const v = $('#view');
-    if (S.view !== 'map' && LMAP) { LMAP.remove(); LMAP = null; }
     v.innerHTML = S.view === 'gen' ? viewGen() : S.view === 'chain' ? viewChain() : S.view === 'work' ? viewWork() : S.view === 'map' ? viewMap() : viewList();
     rail();
     writeHash();
@@ -695,8 +708,17 @@
     if (vb) { S.view = vb.dataset.v; render(); return; }
     const mk = e.target.closest('#mapnav button');
     if (mk) { S.mapk = mk.dataset.mk; render(); return; }
+    const fb = e.target.closest('#framenav button');
+    if (fb) { FRAME = fb.dataset.fr; render(); return; }
     const pb = e.target.closest('[data-place]');
-    if (pb) { S.view = 'map'; openSheet(false); render(); setTimeout(() => { const g = D.places[pb.dataset.place]; if (LMAP && g) LMAP.setView([g.lat, g.lon], 11); const b = $('#placebox'); if (b) b.innerHTML = placeHtml(pb.dataset.place); }, 400); window.scrollTo({ top: 0 }); return; }
+    if (pb) {
+      S.place = pb.dataset.place;
+      const g = D.places[S.place];
+      if (g && !g.region && inFrame(g)) FRAME = (g.lat > 32.6 && g.lon > 34.95) ? FRAME : 'all';
+      if (!$('#placebox')) { S.view = 'gen'; openSheet(false); render(); } else { $('#placebox').innerHTML = placeHtml(S.place); }
+      const box = $('.mappanel'); if (box) box.scrollIntoView({ block: 'start', behavior: 'smooth' });
+      return;
+    }
     const cb = e.target.closest('#chainnav button');
     if (cb) { S.chain = cb.dataset.c; render(); return; }
     if (e.target.closest('#close') || e.target.closest('#scrim')) { openSheet(false); return; }
@@ -758,7 +780,10 @@
   $('#qx').addEventListener('click', () => { S.q = ''; $('#q').value = ''; $('#qx').hidden = true; $('#results').hidden = true; render(); });
   window.addEventListener('hashchange', () => { readHash(); render(); });
 
+  const setHdr = () => { const h = $('.top'); document.documentElement.style.setProperty('--hdr', (h ? h.getBoundingClientRect().height : 51) + 'px'); };
+  window.addEventListener('resize', setHdr); window.addEventListener('load', setHdr); setTimeout(setHdr, 600);
   readHash();
+  setHdr();
   render();
   if (S.sel && isPhone() && location.hash.includes('s=')) openSheet(false);
 })();

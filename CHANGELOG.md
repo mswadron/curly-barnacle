@@ -6,6 +6,7 @@ All notable changes to **Torah Interactive**. Format loosely follows
 ## [Unreleased]
 
 ### Added (2026-11-17)
+- The Sages of the Mishnah: the map is now drawn in the page (SVG from Natural Earth, no Leaflet or outside scripts) and also sits at the top of the Generations page with a Galilee zoom; sage cards show main place and years; view tabs, search and legend stay frozen under the header.
 - The Sages of the Mishnah: years and places. Each profile shows the generation's span (Jewish Encyclopedia table, CE and Jewish year), Wikidata birth and death years with their precision, and places of birth, death, burial and teaching; generation bands show their span; new Map view (Leaflet, OpenStreetMap) with a filter by kind; index gains a period column. Method and the Seder Olam two-year difference stated in the footer.
 - `apps/tannaim.html` (+ `.js`, `-data.js`) and tile under Mishnah: The Sages of the Mishnah. 152 sages and schools, every mention in the Mishnah (Torat Emet 357) counted and sorted by kind, MishnaBase dispute counts, Sefaria generations, teachers, students, family and summaries, Wikidata links. Views: generations, chains (Avos 1-2, the Nesiim, teacher-and-student chart), Work a Mishnah (names marked in the text, lineup by generation, ordering exercise, link into Beitzah and Shabbos), index. Same-name sages split only where the Mishnah or Tosafos Yom Tov says which one. Doc: `docs/tannaim.md`; build scripts in `dev/tannaim/`.
 
