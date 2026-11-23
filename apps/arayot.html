@@ -106,6 +106,10 @@
     border-radius: 0 999px 999px 0;
     border-left-width: 1px;
   }
+  .view-toggle button:nth-child(2) {
+    border-right-width: 1px;
+    border-left-width: 1px;
+  }
   .view-toggle button:last-child {
     border-radius: 999px 0 0 999px;
     border-right-width: 1px;
@@ -644,8 +648,9 @@ html,body{background:var(--ll-paper)}
 </header>
 
 <nav class="view-toggle">
-  <button id="treeBtn" class="active">עץ משפחה</button>
-  <button id="categoriesBtn">שבע קבוצות</button>
+  <button id="treeBtn" class="active" data-view="viewTree">עץ: מצד האיש</button>
+  <button id="womanBtn" data-view="viewWoman">עץ: מצד האשה</button>
+  <button id="categoriesBtn" data-view="viewCategories">שבע קבוצות</button>
 </nav>
 
 <div class="instruction-bar">
@@ -733,6 +738,88 @@ html,body{background:var(--ll-paper)}
       </div>
 
     </div>
+  </div>
+</div>
+
+<!-- ========== WOMAN TREE VIEW ========== -->
+<div class="view view-tree" id="viewWoman">
+  <div class="instruction-bar" style="padding-top:6px">
+    <span class="instruction">כאן ״אֲנִי״ היא האשה. כל איש צבעוני אסור עליה. ימין: משפחתה. שמאל: משפחת בעלה.</span>
+  </div>
+  <div class="tree-scroll">
+    <div class="tree">
+
+      <div class="generation">
+        <div class="couple">
+          <div class="node mb-death" data-clickable="true" data-id="w-fathers-father">אֲבִי אָבִיהָ<span class="tag">שריפה וכרת</span></div>
+          <div class="node structural">אֵם אָבִיהָ<span class="note">—</span></div>
+        </div>
+        <div class="couple">
+          <div class="node mb-death" data-clickable="true" data-id="w-mothers-father">אֲבִי אִמָּהּ<span class="tag">שריפה וכרת</span></div>
+          <div class="node structural">אֵם אִמָּהּ<span class="note">—</span></div>
+        </div>
+        <div class="couple">
+          <div class="node rabbinic" data-clickable="true" data-id="w-husbands-grandfather">אֲבִי חָמִיהָ<span class="tag">שנִיָּה</span></div>
+          <div class="node structural">אֵם חָמִיהָ<span class="note">—</span></div>
+        </div>
+      </div>
+
+      <div class="generation">
+        <div class="couple">
+          <div class="node mb-death" data-clickable="true" data-id="w-father">אָבִיהָ<span class="tag">שריפה וכרת</span></div>
+          <div class="node structural">אִמָּהּ<span class="note">—</span></div>
+        </div>
+        <div class="node mb-death" data-clickable="true" data-id="w-stepfather" style="margin-bottom:12px;">בַּעַל אִמָּהּ<span class="tag">שריפה וכרת</span><span class="condition">בחיי אמה; אחר כך כרת</span></div>
+        <div class="couple">
+          <div class="node mb-death" data-clickable="true" data-id="w-father-in-law">חָמִיהָ<span class="tag">סקילה וכרת</span></div>
+          <div class="node structural">חֲמוֹתָהּ<span class="note">—</span></div>
+        </div>
+      </div>
+
+      <div class="generation">
+        <div class="node karet" data-clickable="true" data-id="w-brother">אָחִיהָ<span class="tag">כרת ומלקות</span></div>
+        <div class="couple">
+          <div class="node structural">אֲחוֹתָהּ<span class="note">—</span></div>
+          <div class="node karet" data-clickable="true" data-id="w-sisters-husband" style="margin-bottom:12px;">בַּעַל אֲחוֹתָהּ<span class="tag">כרת ומלקות</span><span class="condition">רק בחיי אחותה</span></div>
+        </div>
+        <div class="couple">
+          <div class="node self">אֲנִי<span class="tag">★</span></div>
+          <div class="node structural">בַּעְלָהּ<span class="note">מותר</span></div>
+        </div>
+        <div class="couple">
+          <div class="node karet" data-clickable="true" data-id="w-husbands-brother">אֲחִי בַּעְלָהּ<span class="tag">כרת ומלקות</span></div>
+          <div class="node structural">אֲחוֹת בַּעְלָהּ<span class="note">—</span></div>
+        </div>
+        <div class="node mb-death" data-clickable="true" data-id="w-any-man" style="margin-bottom:12px;">כָּל אִישׁ אַחֵר<span class="tag">חנק וכרת</span><span class="condition">כשהיא אשת איש</span></div>
+      </div>
+
+      <div class="generation">
+        <div class="node karet" data-clickable="true" data-id="w-brothers-son">בֶּן אָחִיהָ<span class="tag">כרת ומלקות</span></div>
+        <div class="node karet" data-clickable="true" data-id="w-sisters-son">בֶּן אֲחוֹתָהּ<span class="tag">כרת ומלקות</span></div>
+        <div class="couple">
+          <div class="node mb-death" data-clickable="true" data-id="w-son">בְּנָהּ<span class="tag">סקילה וכרת</span></div>
+          <div class="node structural">כַּלָּתָהּ<span class="note">—</span></div>
+        </div>
+        <div class="couple">
+          <div class="node structural">בִּתָּהּ<span class="note">—</span></div>
+          <div class="node mb-death" data-clickable="true" data-id="w-son-in-law">חֲתָנָהּ<span class="tag">שריפה וכרת</span></div>
+        </div>
+        <div class="node mb-death" data-clickable="true" data-id="w-stepson">בֶּן בַּעְלָהּ<span class="tag">סקילה וכרת</span></div>
+        <div class="node karet" data-clickable="true" data-id="w-husbands-brothers-son" style="margin-bottom:12px;">בֶּן אֲחִי בַּעְלָהּ<span class="tag">כרת ומלקות</span><span class="condition">כשהאחים מן האב</span></div>
+        <div class="node rabbinic" data-clickable="true" data-id="w-husbands-sisters-son">בֶּן אֲחוֹת בַּעְלָהּ<span class="tag">שנִיָּה</span></div>
+      </div>
+
+      <div class="generation">
+        <div class="node rabbinic" data-clickable="true" data-id="w-sons-son">בֶּן בְּנָהּ<span class="tag">שנִיָּה</span></div>
+        <div class="node rabbinic" data-clickable="true" data-id="w-daughters-son">בֶּן בִּתָּהּ<span class="tag">שנִיָּה</span></div>
+        <div class="node mb-death" data-clickable="true" data-id="w-granddaughters-husband">בַּעַל בַּת בִּתָּהּ / בַּת בְּנָהּ<span class="tag">שריפה, מחלוקת</span></div>
+        <div class="node rabbinic" data-clickable="true" data-id="w-husbands-grandson">בֶּן בֶּן בַּעְלָהּ<span class="tag">שנִיָּה</span></div>
+      </div>
+
+    </div>
+  </div>
+  <div class="instruction-bar" style="padding-bottom:12px">
+    <span class="instruction">דודיה (אחי אביה ואחי אמה) מותרים לה, ולכן אינם מופיעים</span>
   </div>
 </div>
 
@@ -1195,7 +1282,120 @@ html,body{background:var(--ll-paper)}
       verse: "״ערות בת בנך או בת בתך לא תגלה ערותן״ (ויקרא י״ח:י׳); ״זמה הִוא״ (ויקרא י״ח:י״ז).",
       punish: "שריפה וכרת",
       punishKind: "mb-death"
-    }
+    },
+    // ===== מצד האשה =====
+    "w-father": { title: "אָבִיהָ", kind: "mb-death", kindLabel: "ערוה מן התורה, שריפה וכרת",
+      relation: "אביה. היא בִּתּוֹ",
+      prohibition: "היא בתו של האיש. בתו נלמדה מן הכתוב של בת בתו, והמשנה מונה ״בִּתּוֹ״ בין הנשרפין. האשה חייבת כמוהו.",
+      verse: "״יֵשׁ בִּכְלָל אִשָּׁה וּבִתָּהּ, בִּתּוֹ, וּבַת בִּתּוֹ, וּבַת בְּנוֹ...״ (משנה סנהדרין ט׳:א׳).",
+      punish: "שריפה וכרת", punishKind: "mb-death" },
+    "w-fathers-father": { title: "אֲבִי אָבִיהָ", kind: "mb-death", kindLabel: "ערוה מן התורה, שריפה וכרת",
+      relation: "סבה מצד האב. היא בַּת בְּנוֹ",
+      prohibition: "היא בת בנו, מפורש בתורה.",
+      verse: "״עֶרְוַת בַּת־בִּנְךָ אוֹ בַת־בִּתְּךָ לֹא תְגַלֶּה עֶרְוָתָן כִּי עֶרְוָתְךָ הֵנָּה״ (ויקרא י״ח:י׳).",
+      punish: "שריפה וכרת", punishKind: "mb-death" },
+    "w-mothers-father": { title: "אֲבִי אִמָּהּ", kind: "mb-death", kindLabel: "ערוה מן התורה, שריפה וכרת",
+      relation: "סבה מצד האם. היא בַּת בִּתּוֹ",
+      prohibition: "היא בת בתו, מפורש בתורה.",
+      verse: "״עֶרְוַת בַּת־בִּנְךָ אוֹ בַת־בִּתְּךָ לֹא תְגַלֶּה עֶרְוָתָן כִּי עֶרְוָתְךָ הֵנָּה״ (ויקרא י״ח:י׳).",
+      punish: "שריפה וכרת", punishKind: "mb-death" },
+    "w-stepfather": { title: "בַּעַל אִמָּהּ", kind: "mb-death", kindLabel: "ערוה מן התורה",
+      relation: "בעלה של אמה (אביה החורג). היא בַּת אִשְׁתּוֹ",
+      prohibition: "היא בת אשתו. בחיי אמה בשריפה. אחר מיתת אמה האיסור נשאר.",
+      verse: "״עֶרְוַת אִשָּׁה וּבִתָּהּ לֹא תְגַלֵּה״ (ויקרא י״ח:י״ז); ״בָּאֵשׁ יִשְׂרְפוּ אֹתוֹ וְאֶתְהֶן״ (ויקרא כ׳:י״ד).",
+      punish: "שריפה וכרת (בחיי אמה)", punishKind: "mb-death",
+      lifetime: "בחיי אמה: שריפה. אחר מיתת אמה: אסורה לעולם, בכרת." },
+    "w-father-in-law": { title: "חָמִיהָ", kind: "mb-death", kindLabel: "ערוה מן התורה, סקילה וכרת",
+      relation: "אבי בעלה. היא כַּלָּתוֹ",
+      prohibition: "היא כלתו. אסורה עליו בחיי בעלה ואחר מיתתו, מן האירוסין ומן הנישואין.",
+      verse: "״וְאִישׁ אֲשֶׁר יִשְׁכַּב אֶת־כַּלָּתוֹ מוֹת יוּמְתוּ שְׁנֵיהֶם״ (ויקרא כ׳:י״ב).",
+      punish: "סקילה וכרת", punishKind: "mb-death",
+      lifetime: "״בֵּין בְּחַיֵּי בְנוֹ בֵּין לְאַחַר מִיתַת בְּנוֹ״ (משנה סנהדרין ז׳:ד׳)." },
+    "w-brother": { title: "אָחִיהָ", kind: "karet", kindLabel: "ערוה מן התורה, כרת ומלקות",
+      relation: "אחיה, מן האב או מן האם. היא אֲחוֹתוֹ",
+      prohibition: "היא אחותו, בין מן האב בין מן האם.",
+      verse: "״עֶרְוַת אֲחוֹתְךָ בַת־אָבִיךָ אוֹ בַת־אִמֶּךָ... לֹא תְגַלֶּה עֶרְוָתָן״ (ויקרא י״ח:ט׳); ״וְנִכְרְתוּ לְעֵינֵי בְּנֵי עַמָּם״ (ויקרא כ׳:י״ז).",
+      punish: "כרת ומלקות", punishKind: "karet" },
+    "w-sisters-husband": { title: "בַּעַל אֲחוֹתָהּ", kind: "karet", kindLabel: "ערוה מן התורה, בחיי אחותה",
+      relation: "גיסה. היא אֲחוֹת אִשְׁתּוֹ",
+      prohibition: "היא אחות אשתו. אסורה עליו כל זמן שאחותה בחיים, אף אם גירשה.",
+      verse: "״וְאִשָּׁה אֶל־אֲחֹתָהּ לֹא תִקָּח לִצְרֹר לְגַלּוֹת עֶרְוָתָהּ עָלֶיהָ בְּחַיֶּיהָ״ (ויקרא י״ח:י״ח).",
+      punish: "כרת ומלקות (בחיי אחותה)", punishKind: "karet",
+      lifetime: "אחר מיתת אחותה: מותרת לו." },
+    "w-husbands-brother": { title: "אֲחִי בַּעְלָהּ", kind: "karet", kindLabel: "ערוה מן התורה, כרת ומלקות",
+      relation: "גיסה. היא אֵשֶׁת אָחִיו",
+      prohibition: "היא אשת אחיו. אסורה עליו בחיי בעלה, ואחר מיתתו כשהניח זרע.",
+      verse: "״עֶרְוַת אֵשֶׁת־אָחִיךָ לֹא תְגַלֵּה עֶרְוַת אָחִיךָ הִוא״ (ויקרא י״ח:ט״ז); ״עֲרִירִים יִהְיוּ״ (ויקרא כ׳:כ״א).",
+      punish: "כרת ומלקות", punishKind: "karet",
+      lifetime: "מת בעלה בלא זרע: מצות יבום מתירה אותה ליבם." },
+    "w-any-man": { title: "כָּל אִישׁ אַחֵר", kind: "mb-death", kindLabel: "ערוה מן התורה, חנק וכרת",
+      relation: "כל איש שאינו בעלה, כל זמן שהיא נשואה",
+      prohibition: "כשהיא אשת איש, אסורה לכל אדם זולת בעלה. הנואף והנואפת שניהם חייבים.",
+      verse: "״וְאִישׁ אֲשֶׁר יִנְאַף אֶת־אֵשֶׁת אִישׁ... מוֹת־יוּמַת הַנֹּאֵף וְהַנֹּאָפֶת״ (ויקרא כ׳:י׳).",
+      punish: "חנק וכרת", punishKind: "mb-death" },
+    "w-son": { title: "בְּנָהּ", kind: "mb-death", kindLabel: "ערוה מן התורה, סקילה וכרת",
+      relation: "בנה. היא אִמּוֹ",
+      prohibition: "היא אמו. אם היא אשת אביו, חייב גם משום אשת אב.",
+      verse: "״עֶרְוַת אָבִיךָ וְעֶרְוַת אִמְּךָ לֹא תְגַלֵּה אִמְּךָ הִוא״ (ויקרא י״ח:ז׳).",
+      punish: "סקילה וכרת", punishKind: "mb-death",
+      lifetime: "״הַבָּא עַל הָאֵם, חַיָּב עָלֶיהָ מִשּׁוּם אֵם וּמִשּׁוּם אֵשֶׁת אָב״ (משנה סנהדרין ז׳:ד׳)." },
+    "w-son-in-law": { title: "חֲתָנָהּ", kind: "mb-death", kindLabel: "ערוה מן התורה, שריפה וכרת",
+      relation: "בעל בתה. היא חֲמוֹתוֹ",
+      prohibition: "היא חמותו, אסורה עליו לעולם.",
+      verse: "״וְאִישׁ אֲשֶׁר יִקַּח אֶת־אִשָּׁה וְאֶת־אִמָּהּ זִמָּה הִוא בָּאֵשׁ יִשְׂרְפוּ אֹתוֹ וְאֶתְהֶן״ (ויקרא כ׳:י״ד).",
+      punish: "שריפה וכרת", punishKind: "mb-death" },
+    "w-stepson": { title: "בֶּן בַּעְלָהּ", kind: "mb-death", kindLabel: "ערוה מן התורה, סקילה וכרת",
+      relation: "בן בעלה מאשה אחרת. היא אֵשֶׁת אָבִיו",
+      prohibition: "היא אשת אביו. אסורה עליו לעולם, אף אחר מיתת אביו או גירושין.",
+      verse: "״וְאִישׁ אֲשֶׁר יִשְׁכַּב אֶת־אֵשֶׁת אָבִיו עֶרְוַת אָבִיו גִּלָּה מוֹת־יוּמְתוּ שְׁנֵיהֶם״ (ויקרא כ׳:י״א).",
+      punish: "סקילה וכרת", punishKind: "mb-death",
+      lifetime: "״בֵּין בְּחַיֵּי אָבִיו בֵּין לְאַחַר מִיתַת אָבִיו״ (משנה סנהדרין ז׳:ד׳)." },
+    "w-brothers-son": { title: "בֶּן אָחִיהָ", kind: "karet", kindLabel: "ערוה מן התורה, כרת ומלקות",
+      relation: "אחיינה. היא אֲחוֹת אָבִיו",
+      prohibition: "היא אחות אביו.",
+      verse: "״עֶרְוַת אֲחוֹת־אָבִיךָ לֹא תְגַלֵּה שְׁאֵר אָבִיךָ הִוא״ (ויקרא י״ח:י״ב).",
+      punish: "כרת ומלקות", punishKind: "karet" },
+    "w-sisters-son": { title: "בֶּן אֲחוֹתָהּ", kind: "karet", kindLabel: "ערוה מן התורה, כרת ומלקות",
+      relation: "אחיינה. היא אֲחוֹת אִמּוֹ",
+      prohibition: "היא אחות אמו.",
+      verse: "״עֶרְוַת אֲחוֹת־אִמְּךָ לֹא תְגַלֵּה כִּי־שְׁאֵר אִמְּךָ הִוא״ (ויקרא י״ח:י״ג).",
+      punish: "כרת ומלקות", punishKind: "karet" },
+    "w-husbands-brothers-son": { title: "בֶּן אֲחִי בַּעְלָהּ", kind: "karet", kindLabel: "ערוה מן התורה, כרת ומלקות",
+      relation: "אחיין בעלה. היא אֵשֶׁת אֲחִי אָבִיו, ״דֹּדָתוֹ״",
+      prohibition: "היא אשת דודו. מן התורה רק כשבעלה ואביו אחים מן האב. כשהם אחים מן האם בלבד: שניה מדרבנן.",
+      verse: "״עֶרְוַת אֲחִי־אָבִיךָ לֹא תְגַלֵּה אֶל־אִשְׁתּוֹ לֹא תִקְרָב דֹּדָתְךָ הִוא״ (ויקרא י״ח:י״ד).",
+      punish: "כרת ומלקות", punishKind: "karet",
+      lifetime: "אסורה עליו גם אחר מיתת בעלה." },
+    "w-husbands-sisters-son": { title: "בֶּן אֲחוֹת בַּעְלָהּ", kind: "rabbinic", kindLabel: "שנִיָּה לעריות, מדרבנן",
+      relation: "אחיין בעלה מאחותו. היא אֵשֶׁת אֲחִי אִמּוֹ",
+      prohibition: "היא אשת אחי אמו, שניה לעריות.",
+      verse: "יבמות כ״א ע״א.",
+      punish: "איסור דרבנן, מכת מרדות", punishKind: "rabbinic" },
+    "w-husbands-grandfather": { title: "אֲבִי חָמִיהָ", kind: "rabbinic", kindLabel: "שנִיָּה לעריות, מדרבנן",
+      relation: "סבו של בעלה. היא כַּלַּת בְּנוֹ",
+      prohibition: "היא אשת בן בנו, שניה לאיסור כלתו.",
+      verse: "יבמות כ״א ע״א.",
+      punish: "איסור דרבנן, מכת מרדות", punishKind: "rabbinic" },
+    "w-sons-son": { title: "בֶּן בְּנָהּ", kind: "rabbinic", kindLabel: "שנִיָּה לעריות, מדרבנן",
+      relation: "נכדה מן הבן. היא אֵם אָבִיו",
+      prohibition: "היא אם אביו, שניה לאיסור אמו.",
+      verse: "יבמות כ״א ע״א.",
+      punish: "איסור דרבנן, מכת מרדות", punishKind: "rabbinic" },
+    "w-daughters-son": { title: "בֶּן בִּתָּהּ", kind: "rabbinic", kindLabel: "שנִיָּה לעריות, מדרבנן",
+      relation: "נכדה מן הבת. היא אֵם אִמּוֹ",
+      prohibition: "היא אם אמו, שניה לאיסור אמו.",
+      verse: "יבמות כ״א ע״א.",
+      punish: "איסור דרבנן, מכת מרדות", punishKind: "rabbinic" },
+    "w-granddaughters-husband": { title: "בַּעַל נֶכְדָּתָהּ", kind: "mb-death", kindLabel: "מחלוקת ראשונים, שריפה או שנייה",
+      relation: "בעל בת בתה או בעל בת בנה. היא אֵם חֲמוֹתוֹ או אֵם חָמִיו",
+      prohibition: "היא סבתה של אשתו. המשנה מונה אם חמותו ואם חמיו בין הנשרפין.",
+      verse: "״חֲמוֹתוֹ, וְאֵם חֲמוֹתוֹ, וְאֵם חָמִיו״ (משנה סנהדרין ט׳:א׳).",
+      punish: "לרמב״ם שריפה וכרת מן התורה; לרא״ש שנייה מדרבנן", punishKind: "mb-death" },
+    "w-husbands-grandson": { title: "בֶּן בֶּן בַּעְלָהּ", kind: "rabbinic", kindLabel: "שנִיָּה לעריות, מדרבנן",
+      relation: "נכד בעלה מאשה אחרת. היא אֵשֶׁת אֲבִי אָבִיו",
+      prohibition: "היא אשת אבי אביו, שניה לאיסור אשת אב.",
+      verse: "יבמות כ״א ע״א.",
+      punish: "איסור דרבנן, מכת מרדות", punishKind: "rabbinic" }
   };
 
   const overlay = document.getElementById('overlay');
@@ -1287,26 +1487,12 @@ html,body{background:var(--ll-paper)}
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
   // View toggle
-  const treeBtn = document.getElementById('treeBtn');
-  const catBtn = document.getElementById('categoriesBtn');
-  const viewTree = document.getElementById('viewTree');
-  const viewCat = document.getElementById('viewCategories');
-
-  treeBtn.addEventListener('click', () => {
-    treeBtn.classList.add('active');
-    catBtn.classList.remove('active');
-    viewTree.classList.add('active');
-    viewCat.classList.remove('active');
+  const btns = document.querySelectorAll('.view-toggle button');
+  btns.forEach(b => b.addEventListener('click', () => {
+    btns.forEach(x => x.classList.toggle('active', x === b));
+    document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === b.dataset.view));
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  catBtn.addEventListener('click', () => {
-    catBtn.classList.add('active');
-    treeBtn.classList.remove('active');
-    viewCat.classList.add('active');
-    viewTree.classList.remove('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  }));
 </script>
 
 <script defer src="../site-chrome.js"></script>
