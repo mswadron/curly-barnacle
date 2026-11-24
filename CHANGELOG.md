@@ -5,6 +5,9 @@ All notable changes to **Torah Interactive**. Format loosely follows
 
 ## [Unreleased]
 
+### Added (2026-11-24)
+- Piyut in the Rishonim, second sweep: 109 more places where Rishonim beyond Rashi and Tosafos quote a piyut line (Chizkuni, Da'as Zekenim, Hadar Zekenim, Riva, Paaneach Raza, Rabbeinu Bachya, Rashbam, Ramban, Ibn Ezra, Tosafos Yeshanim, Ritva, Meiri, Rosh, Mordechai, Rabbeinu Yonah, Machzor Vitry, Kol Bo, Or Zarua, Tur, Shibbolei HaLeket, Smag, Seder Troyes and others), in three new sections; piyut text for 50 of them, 18 more Wikisource pages; Purim and Shabbos calendar slots; build carries the published entries over unchanged. Now 174 entries, 111 with the piyut text.
+
 ### Added (2026-11-17)
 - The Sages of the Mishnah, review fixes: BCE years from Wikidata were one short (the query service counts 1 BCE as year 0), now corrected with their Jewish years; a century is no longer shown beside an exact year; R' Chanina ben Akiva was wrongly matched to Sefaria's Hananyah b. Akabia, match removed; the Nesiim chain says plainly what Tosafos Yom Tov does and does not name; footer lists the five sages whose generation the Jewish Encyclopedia and Sefaria give differently.
 - The Sages of the Mishnah: the map is now drawn in the page (SVG from Natural Earth, no Leaflet or outside scripts) and also sits at the top of the Generations page with a Galilee zoom; sage cards show main place and years; view tabs, search and legend stay frozen under the header.

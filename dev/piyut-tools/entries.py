@@ -7,6 +7,9 @@ SECTIONS = [
     ("nach", 'רש"י על נביאים וכתובים'),
     ("shas", 'רש"י על הש"ס'),
     ("tosafos", "תוספות"),
+    ("torah2", "שאר ראשונים על התורה"),
+    ("shas2", 'שאר ראשונים על הש"ס ועל אבות'),
+    ("halacha", "ספרי הלכה ומנהג"),
 ]
 
 # Liturgy sources: key -> (sefaria ref, Hebrew label, nusach label)

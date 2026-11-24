@@ -44,3 +44,4 @@
 2026-11-05 · Rare Words in Tanach: header no longer sticky on phones (it was taller than the screen above the keyboard; switching keyboard language closed the keyboard).
 2026-11-05 · Rare Words in Tanach: search box no longer has autocomplete=off (the only input restriction; suspected of closing the Android keyboard on language switch).
 2026-11-05 · Rare Words in Tanach: after the Android keyboard chooser (long-press space) closes, the cursor goes back to the search box; removed the #debug log and apps/kbtest.html.
+2026-11-24 · Piyut in the Rishonim: second sweep, 109 places in other Rishonim (Chizkuni on Vayetzei 30:21 among them), 50 with piyut text; now 174 entries, 111 with text.

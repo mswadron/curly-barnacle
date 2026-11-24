@@ -31,6 +31,7 @@
 - In work: none.
 - Planned: Chibuk verbatim fetches; Tumah Tree B (awaiting five decisions); Ornithology Part D render approval; Sugya Scout / Source Dock.
 
+- Done 2026-11-24: piyut-rishonim second sweep, other Rishonim (109 new, 50 with text; 174 total).
 - Done 2026-10-09: piyut-rishonim texts from Wikisource (59/65), Teshuva MeAhava entries, new slots.
 - Done 2026-10-07: apps/piyut-rishonim (Piyut in the Rishonim, Rashi and Tosafos quoting piyut) + new Tefilah & Liturgy index section.
 - Done 2026-09-30: apps/maharils_moon (Maharil's Moon, Hoshana Rabbah sky over Mainz 1387 to 1426) + index tile in Luach & Reference.
