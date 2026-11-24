@@ -734,6 +734,7 @@ html,body{background:var(--ll-paper)}
         <div class="node mb-death" data-clickable="true" data-id="son-daughter">בַּת הַבֵּן<span class="tag">שריפה וכרת</span></div>
         <div class="node mb-death" data-clickable="true" data-id="daughter-daughter">בַּת הַבַּת<span class="tag">שריפה וכרת</span></div>
         <div class="node rabbinic" data-clickable="true" data-id="grandson-wife">כַּלַּת בְּנוֹ<span class="tag">שנִיָּה</span></div>
+        <div class="node rabbinic" data-clickable="true" data-id="daughters-son-wife">כַּלַּת בִּתּוֹ<span class="tag">שנִיָּה</span></div>
         <div class="node rabbinic" data-clickable="true" data-id="great-grandson-wife">כַּלַּת בֶּן בְּנוֹ<span class="tag">שנִיָּה</span></div>
       </div>
 
@@ -761,6 +762,10 @@ html,body{background:var(--ll-paper)}
         <div class="couple">
           <div class="node rabbinic" data-clickable="true" data-id="w-husbands-grandfather">אֲבִי חָמִיהָ<span class="tag">שנִיָּה</span></div>
           <div class="node structural">אֵם חָמִיהָ<span class="note">—</span></div>
+        </div>
+        <div class="couple">
+          <div class="node rabbinic" data-clickable="true" data-id="w-husbands-maternal-grandfather">אֲבִי חֲמוֹתָהּ<span class="tag">שנִיָּה</span></div>
+          <div class="node structural">אֵם חֲמוֹתָהּ<span class="note">—</span></div>
         </div>
       </div>
 
@@ -924,6 +929,7 @@ html,body{background:var(--ll-paper)}
         <div class="cat-section-title">שניות מדרבנן</div>
         <div class="pill-list">
           <div class="pill rabbinic" data-id="grandson-wife">כַּלַּת בְּנוֹ <span class="pill-tag">שנִיָּה</span></div>
+          <div class="pill rabbinic" data-id="daughters-son-wife">כַּלַּת בִּתּוֹ <span class="pill-tag">שנִיָּה</span></div>
           <div class="pill rabbinic" data-id="great-grandson-wife">כַּלַּת בֶּן בְּנוֹ <span class="pill-tag">שנִיָּה</span></div>
         </div>
       </div>
@@ -1066,6 +1072,26 @@ html,body{background:var(--ll-paper)}
       prohibition: "אשת אחי אב שהוא אחיו מן האם בלבד (ולא מן האב) — אסורה עליו מדברי סופרים. ערוה דאורייתא חלה רק כשהדוד אחי אביו מן האב.",
       verse: "יבמות כ״א ע״א; רמב״ם איסורי ביאה א׳:ו׳.",
       punish: "איסור דרבנן — מכת מרדות",
+      punishKind: "rabbinic"
+    },
+    "daughters-son-wife": {
+      title: "כַּלַּת בִּתּוֹ",
+      kind: "rabbinic",
+      kindLabel: "שנִיָּה לעריות, מדרבנן",
+      relation: "אשת בן בתו",
+      prohibition: "אשת בן בתו אסורה עליו מדברי סופרים, שניה לערות ״כלתך״. נמנית בברייתא של השניות בצד כלת בנו.",
+      verse: "״תָּנוּ רַבָּנַן, מָה הֵם שְׁנִיּוֹת: ... וְכַלַּת בְּנוֹ, וְכַלַּת בִּתּוֹ״ (יבמות כ״א ע״א).",
+      punish: "איסור דרבנן, מכת מרדות",
+      punishKind: "rabbinic"
+    },
+    "w-husbands-maternal-grandfather": {
+      title: "אֲבִי חֲמוֹתָהּ",
+      kind: "rabbinic",
+      kindLabel: "שנִיָּה לעריות, מדרבנן",
+      relation: "סבו של בעלה מצד אמו. היא כַּלַּת בִּתּוֹ",
+      prohibition: "היא אשת בן בתו, שניה לאיסור כלתו.",
+      verse: "״תָּנוּ רַבָּנַן, מָה הֵם שְׁנִיּוֹת: ... וְכַלַּת בְּנוֹ, וְכַלַּת בִּתּוֹ״ (יבמות כ״א ע״א).",
+      punish: "איסור דרבנן, מכת מרדות",
       punishKind: "rabbinic"
     },
     "grandson-wife": {
