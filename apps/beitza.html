@@ -122,7 +122,13 @@ h1{font-family:var(--he-title);font-weight:400;color:var(--teal-deep);font-size:
 .simen .eyebrow{margin:0}
 .simen .blank{flex:1;border:1px dashed var(--rule);border-radius:6px;padding:4px 10px;color:var(--mute);font-size:13px}
 
-#pereknav{position:sticky;top:51px;z-index:4;display:flex;gap:0;overflow-x:auto;background:var(--page);padding:8px 0;margin:-6px 0 14px;direction:rtl;scrollbar-width:none}
+#jumpnav{position:sticky;top:51px;z-index:4;background:var(--page);margin:-6px 0 14px}
+#pereknav{display:flex;gap:0;overflow-x:auto;padding:8px 0 4px;direction:rtl;scrollbar-width:none}
+#mishnanav{display:flex;align-items:center;gap:4px;overflow-x:auto;padding:0 0 8px;direction:rtl;scrollbar-width:none}
+#mishnanav .mlabel{font:700 12px var(--he);color:var(--mute);margin-inline-end:4px;white-space:nowrap}
+#mishnanav button{flex:0 0 auto;min-width:30px;border:1px solid var(--rule);border-radius:6px;background:#fff;color:var(--teal);font:600 13px var(--he);padding:3px 7px;cursor:pointer}
+#mishnanav button.on{background:var(--teal);border-color:var(--teal);color:#fff}
+.card{scroll-margin-top:118px}
 #pereknav button{flex:0 0 auto;border:1px solid var(--teal);margin-inline-start:-1px;background:#fff;color:var(--teal);font:600 13px var(--he);padding:6px 12px;cursor:pointer;white-space:nowrap}
 #pereknav button:first-child{border-radius:0 6px 6px 0}
 #pereknav button:last-child{border-radius:6px 0 0 6px}
@@ -160,7 +166,7 @@ footer{max-width:980px;margin:0 auto;padding:0 16px 40px;color:var(--mute);font-
     <div id="legend"></div>
   </section>
 
-  <nav id="pereknav"></nav>
+  <div id="jumpnav"><nav id="pereknav"></nav><nav id="mishnanav" hidden></nav></div>
   <section id="cards"></section>
 </main>
 
@@ -168,8 +174,8 @@ footer{max-width:980px;margin:0 auto;padding:0 16px 40px;color:var(--mute);font-
   משנה: ספריא, תורת אמת 357. גמרא: ספריא, מהדורת William Davidson, ארמית מנוקדת. כל ציטוט מועתק מילה במילה מן המקור ונבדק מול טקסט ספריא; שורות "מה שהגמרא מוסיפה" הן ניסוח העורך ומסומנות כך.
 </footer>
 
-<script src="beitza-data.js?v=20261116a"></script>
-<script src="beitza.js?v=20261116a"></script>
+<script src="beitza-data.js?v=20261123a"></script>
+<script src="beitza.js?v=20261123a"></script>
 <script defer src="../site-chrome.js"></script>
 </body>
 </html>

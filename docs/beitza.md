@@ -44,3 +44,6 @@ Prompted by 1:1, where the second clause (שאור בכזית וחמץ בככו�
 
 ## 1:6 inverted dialogue (2026-11-16)
 - Rabbi Yose's baraisa (ביצה יב:) is now quoted in full on the 1:6 card, tags 6 and 7: the dispute is about terumah not the gifts, the גזרה שוה argument is Beis Hillel's, and the "לא, אם אמרתם" rebuttal is Beis Shammai's. The card had quoted only the first clause and the editor line had understated it. Halacha is like Rabbi Yose (רב יהודה אמר שמואל), so the halacha is the inverse of the Mishnah's text.
+
+## Chapter and Mishnah jump bar (2026-11-23)
+- Under the sticky perek bar there is now a second sticky row listing the mishnayos of the selected perek (Hebrew letters in HE, numbers in EN). Tapping one scrolls to that card and sets the URL hash (#m2-3), so a link to a specific Mishnah opens on it. Hidden while "כל המסכת" is selected. Same on the Shabbos page.

@@ -126,6 +126,21 @@
     $('#pereknav').innerHTML = btn(0, lang === 'he' ? 'כל המסכת' : 'All') +
       D.perakim.map((p) => btn(p.n, lang === 'he' ? `${HL[p.n]} · ${p.he}` : `${p.n} · ${p.en}`)).join('');
     $('#pereknav').querySelectorAll('button').forEach((b) => b.onclick = () => { perek = +b.dataset.p; render(); window.scrollTo({ top: 0 }); });
+    const mn = $('#mishnanav');
+    if (!perek) { mn.hidden = true; mn.innerHTML = ''; return; }
+    const ms = D.mishnayos.filter((m) => m.perek === perek);
+    mn.hidden = false;
+    mn.innerHTML = `<span class="mlabel">${lang === 'he' ? 'משנה' : 'Mishnah'}</span>` +
+      ms.map((m) => `<button data-m="${m.id}" title="${esc(m.name.he)}">${lang === 'he' ? HL[+m.id.split('-')[1]] : m.id.split('-')[1]}</button>`).join('');
+    mn.querySelectorAll('button').forEach((b) => b.onclick = () => jumpTo(b.dataset.m));
+  }
+
+  function jumpTo(id) {
+    const el = document.getElementById('m' + id);
+    if (!el) return;
+    document.querySelectorAll('#mishnanav button').forEach((b) => b.classList.toggle('on', b.dataset.m === id));
+    history.replaceState(null, '', '#m' + id);
+    el.scrollIntoView({ block: 'start' });
   }
 
   function render() {
@@ -156,5 +171,8 @@
 
   document.querySelectorAll('.lang button').forEach((b) => b.onclick = () => { lang = b.dataset.lang; render(); });
   $('#clear').onclick = () => { filter = null; render(); };
+  const h = (location.hash || '').match(/^#m(\d+)-(\d+)$/);
+  if (h) perek = +h[1];
   render();
+  if (h) jumpTo(h[1] + '-' + h[2]);
 })();
