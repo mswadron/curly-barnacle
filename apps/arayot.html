@@ -457,6 +457,12 @@
   }
   .pill.rabbinic .pill-tag { background: var(--rabbinic); color: #e0efee; }
 
+  .pill.permitted { border-color: #2f6b3a; background: #e5f4e4; color: var(--ink); }
+  .pill.permitted .pill-tag { background: #2f6b3a; color: #e5f4e4; }
+  .kind-badge.permitted { background: #2f6b3a; color: #e5f4e4; }
+  .punish-display.permitted { color: #2f6b3a; }
+  .permitted-box { max-width: 760px; margin: 0 auto 18px; padding: 14px 16px; border: 1px dashed #2f6b3a; border-radius: 10px; position: relative; z-index: 1; }
+
   .no-rabbinic {
     font-family: 'Frank Ruhl Libre', serif;
     font-style: italic;
@@ -696,7 +702,7 @@ html,body{background:var(--ll-paper)}
         <div class="node karet" data-clickable="true" data-id="mother-sister">אֲחוֹת אֵם<span class="tag">כרת ומלקות</span></div>
         <div class="couple">
           <div class="node structural">אֲחִי אֵם<span class="note">דוד</span></div>
-          <div class="node rabbinic" data-clickable="true" data-id="mother-brother-wife">אֵשֶׁת אֲחִי אֵם<span class="tag">שנִיָּה</span></div>
+          <div class="node rabbinic" data-clickable="true" data-id="mother-brother-wife">אֵשֶׁת אֲחִי אֵם מִן הָאָב<span class="tag">שנִיָּה</span></div>
         </div>
         <div class="couple">
           <div class="node structural">חָם<span class="note">אבי אשתו</span></div>
@@ -811,7 +817,7 @@ html,body{background:var(--ll-paper)}
         </div>
         <div class="node mb-death" data-clickable="true" data-id="w-stepson">בֶּן בַּעְלָהּ<span class="tag">סקילה וכרת</span></div>
         <div class="node karet" data-clickable="true" data-id="w-husbands-brothers-son" style="margin-bottom:12px;">בֶּן אֲחִי בַּעְלָהּ<span class="tag">כרת ומלקות</span><span class="condition">כשהאחים מן האב</span></div>
-        <div class="node rabbinic" data-clickable="true" data-id="w-husbands-sisters-son">בֶּן אֲחוֹת בַּעְלָהּ<span class="tag">שנִיָּה</span></div>
+        <div class="node rabbinic" data-clickable="true" data-id="w-husbands-sisters-son" style="margin-bottom:12px;">בֶּן אֲחוֹת בַּעְלָהּ<span class="tag">שנִיָּה</span><span class="condition">מן האב</span></div>
       </div>
 
       <div class="generation">
@@ -819,6 +825,7 @@ html,body{background:var(--ll-paper)}
         <div class="node rabbinic" data-clickable="true" data-id="w-daughters-son">בֶּן בִּתָּהּ<span class="tag">שנִיָּה</span></div>
         <div class="node mb-death" data-clickable="true" data-id="w-granddaughters-husband">בַּעַל בַּת בִּתָּהּ / בַּת בְּנָהּ<span class="tag">שריפה, מחלוקת</span></div>
         <div class="node rabbinic" data-clickable="true" data-id="w-husbands-grandson">בֶּן בֶּן בַּעְלָהּ<span class="tag">שנִיָּה</span></div>
+        <div class="node rabbinic" data-clickable="true" data-id="w-husbands-daughters-son">בֶּן בַּת בַּעְלָהּ<span class="tag">שנִיָּה</span></div>
       </div>
 
     </div>
@@ -889,7 +896,7 @@ html,body{background:var(--ll-paper)}
       <div class="cat-section">
         <div class="cat-section-title">שניות מדרבנן</div>
         <div class="pill-list">
-          <div class="pill rabbinic" data-id="mother-brother-wife">אֵשֶׁת אֲחִי אֵם <span class="pill-tag">שנִיָּה</span></div>
+          <div class="pill rabbinic" data-id="mother-brother-wife">אֵשֶׁת אֲחִי אֵם מִן הָאָב <span class="pill-tag">שנִיָּה</span></div>
           <div class="pill rabbinic" data-id="father-half-brother-wife">אֵשֶׁת אֲחִי אָב מִן הָאֵם <span class="pill-tag">שנִיָּה</span></div>
         </div>
       </div>
@@ -977,6 +984,15 @@ html,body{background:var(--ll-paper)}
   </div>
 </div>
 
+<section class="permitted-box">
+  <div class="cat-section-title">מוּתָּרִים: קרובים שאינם אסורים</div>
+  <div class="pill-list">
+    <div class="pill permitted" data-id="ok-bas-achoso">בַּת אֲחוֹתוֹ <span class="pill-tag">מותרת</span></div>
+    <div class="pill permitted" data-id="ok-eshes-chamiv">אֵשֶׁת חָמִיו <span class="pill-tag">מותרת</span></div>
+    <div class="pill permitted" data-id="ok-eshes-chorgo">אֵשֶׁת חוֹרְגוֹ <span class="pill-tag">מותרת</span></div>
+  </div>
+</section>
+
 <footer>
   מקורות עיקריים: ויקרא י״ח, כ׳ • משנה סנהדרין ז׳–ט׳, כריתות א׳ • יבמות כ״א ע״א • רמב״ם הלכות איסורי ביאה א׳–ב׳ • שלחן ערוך אבן העזר ט״ו
   <br><small style="opacity:0.8">מיועד ללימוד בלבד — לא להוראת הלכה למעשה</small>
@@ -1055,12 +1071,12 @@ html,body{background:var(--ll-paper)}
       punishKind: "rabbinic"
     },
     "mother-brother-wife": {
-      title: "אֵשֶׁת אֲחִי אֵם",
+      title: "אֵשֶׁת אֲחִי אֵם מִן הָאָב",
       kind: "rabbinic",
       kindLabel: "שנִיָּה לעריות — מדרבנן",
-      relation: "אשת דוד מצד האם",
-      prohibition: "אשת אחי אמו אסורה עליו מדברי סופרים, שניה לערות אשת אחי אב (שהיא מן התורה רק כשהדוד מן אביו).",
-      verse: "יבמות כ״א ע״א; רמב״ם איסורי ביאה א׳:ו׳.",
+      relation: "אשת דוד מצד האם, כשהדוד ואמו אחים מאותו אב",
+      prohibition: "אשת אחי אמו אסורה עליו מדברי סופרים, שניה לערות אשת אחי אב. הברייתא מונה אותה דווקא כשאחי אמו הוא אחיה מן האב.",
+      verse: "״וְאֵשֶׁת אֲחִי הָאָב מִן הָאֵם, וְאֵשֶׁת אֲחִי הָאֵם מִן הָאָב״ (יבמות כ״א ע״א); רמב״ם איסורי ביאה א׳:ו׳.",
       punish: "איסור דרבנן — מכת מרדות",
       punishKind: "rabbinic"
     },
@@ -1394,8 +1410,8 @@ html,body{background:var(--ll-paper)}
       lifetime: "אסורה עליו גם אחר מיתת בעלה." },
     "w-husbands-sisters-son": { title: "בֶּן אֲחוֹת בַּעְלָהּ", kind: "rabbinic", kindLabel: "שנִיָּה לעריות, מדרבנן",
       relation: "אחיין בעלה מאחותו. היא אֵשֶׁת אֲחִי אִמּוֹ",
-      prohibition: "היא אשת אחי אמו, שניה לעריות.",
-      verse: "יבמות כ״א ע״א.",
+      prohibition: "היא אשת אחי אמו, שניה לעריות. דווקא כשבעלה ואם הבן אחים מן האב.",
+      verse: "״וְאֵשֶׁת אֲחִי הָאָב מִן הָאֵם, וְאֵשֶׁת אֲחִי הָאֵם מִן הָאָב״ (יבמות כ״א ע״א).",
       punish: "איסור דרבנן, מכת מרדות", punishKind: "rabbinic" },
     "w-husbands-grandfather": { title: "אֲבִי חָמִיהָ", kind: "rabbinic", kindLabel: "שנִיָּה לעריות, מדרבנן",
       relation: "סבו של בעלה. היא כַּלַּת בְּנוֹ",
@@ -1420,8 +1436,28 @@ html,body{background:var(--ll-paper)}
     "w-husbands-grandson": { title: "בֶּן בֶּן בַּעְלָהּ", kind: "rabbinic", kindLabel: "שנִיָּה לעריות, מדרבנן",
       relation: "נכד בעלה מאשה אחרת. היא אֵשֶׁת אֲבִי אָבִיו",
       prohibition: "היא אשת אבי אביו, שניה לאיסור אשת אב.",
-      verse: "יבמות כ״א ע״א.",
-      punish: "איסור דרבנן, מכת מרדות", punishKind: "rabbinic" }
+      verse: "״תָּנוּ רַבָּנַן, מָה הֵם שְׁנִיּוֹת: אֵם אִמּוֹ, וְאֵם אָבִיו, וְאֵשֶׁת אֲבִי אָבִיו, וְאֵשֶׁת אֲבִי אִמּוֹ...״ (יבמות כ״א ע״א).",
+      punish: "איסור דרבנן, מכת מרדות", punishKind: "rabbinic" },
+    "w-husbands-daughters-son": { title: "בֶּן בַּת בַּעְלָהּ", kind: "rabbinic", kindLabel: "שנִיָּה לעריות, מדרבנן",
+      relation: "נכד בעלה מבתו מאשה אחרת. היא אֵשֶׁת אֲבִי אִמּוֹ",
+      prohibition: "היא אשת אבי אמו, שניה לאיסור אשת אב.",
+      verse: "״תָּנוּ רַבָּנַן, מָה הֵם שְׁנִיּוֹת: אֵם אִמּוֹ, וְאֵם אָבִיו, וְאֵשֶׁת אֲבִי אָבִיו, וְאֵשֶׁת אֲבִי אִמּוֹ...״ (יבמות כ״א ע״א).",
+      punish: "איסור דרבנן, מכת מרדות", punishKind: "rabbinic" },
+    "ok-bas-achoso": { title: "בַּת אֲחוֹתוֹ", kind: "permitted", kindLabel: "מותרת",
+      relation: "בת אחותו (אחייניתו)",
+      prohibition: "התורה אסרה את הדודה ולא את בת האחות. ואדרבה, הגמרא מונה את הנושא בת אחותו בין המעשים הטובים. אבל האשה אסורה בבן אחותה, שהרי היא אחות אמו.",
+      verse: "״הָאוֹהֵב אֶת שְׁכֵינָיו, וְהַמְקָרֵב אֶת קְרוֹבָיו, וְהַנּוֹשֵׂא אֶת בַּת אֲחוֹתוֹ...״ (יבמות ס״ב ע״ב).",
+      punish: "מותרת", punishKind: "permitted" },
+    "ok-eshes-chamiv": { title: "אֵשֶׁת חָמִיו", kind: "permitted", kindLabel: "מותרת",
+      relation: "אשת אבי אשתו, כשאינה אם אשתו",
+      prohibition: "אשתו השניה של חמיו מותרת לו. אבל בתה מאשה אחרת אסורה עליו בחיי אשתו, שהיא אחות אשתו מן האב.",
+      verse: "״וּמוּתָּר אָדָם בְּאֵשֶׁת חָמִיו וּבְאֵשֶׁת חוֹרְגוֹ״ (יבמות כ״א ע״א).",
+      punish: "מותרת", punishKind: "permitted" },
+    "ok-eshes-chorgo": { title: "אֵשֶׁת חוֹרְגוֹ", kind: "permitted", kindLabel: "מותרת",
+      relation: "אשת בן אשתו מאיש אחר",
+      prohibition: "אשת חורגו מותרת לו. אבל בתה של אשת חורגו אסורה עליו, שהיא בת בן אשתו.",
+      verse: "״וּמוּתָּר אָדָם בְּאֵשֶׁת חָמִיו וּבְאֵשֶׁת חוֹרְגוֹ, וְאָסוּר בְּבַת חוֹרְגוֹ״ (יבמות כ״א ע״א).",
+      punish: "מותרת", punishKind: "permitted" }
   };
 
   const overlay = document.getElementById('overlay');
